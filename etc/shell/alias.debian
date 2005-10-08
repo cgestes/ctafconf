@@ -1,0 +1,28 @@
+#!/bin/sh
+## zshalias for ctafconf in /ctaf/conf/ctafconf/zsh
+## 
+## Made by root
+## Login   <root@epita.fr>
+## 
+## Started on  Fri Feb 18 01:52:43 2005 root
+## Last update Sun Oct  2 20:37:46 2005 GESTES Cedric
+## 
+##CTAFCONF
+
+###################
+## commands aliases
+###################
+
+#set xhost to accept local connection
+#alias setx$sh_aliaseq'xhost +192.168.0.1 +192.168.0.6 +192.168.0.7 +localhost'
+alias setx$sh_aliaseq'xhost +localhost'
+
+alias ff$sh_aliaseq'firefox'
+alias tb$sh_aliaseq'mozilla-thunderbird'
+
+#apt-get
+alias apt$sh_aliaseq'$ctafconf_sudo apt-get install'
+alias apts$sh_aliaseq'$ctafconf_sudo apt-cache search'
+
+#redifine it with --connect-timeout
+alias wgetr$sh_aliaseq'wget -r -N -l inf --connect-timeout=10'

@@ -1,0 +1,12 @@
+#!/bin/sh
+## bashrc.mine for ctafconf in /home/ctaf/.ctafconf/share/mine
+##
+## Made by GESTES Cedric
+## Login   <gestes_c@epita.fr>
+##
+## Started on  Tue Oct  4 02:43:16 2005 GESTES Cedric
+## Last update Tue Oct  4 02:54:20 2005 GESTES Cedric
+##
+#CTAFCONF
+#You can personalize this file, she will never be modified by the ctafconf
+

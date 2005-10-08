@@ -1,0 +1,35 @@
+#!/bin/sh
+## zshenv for ctafconf in /ctaf/conf/ctafconf/zsh
+##
+## Made by GESTES Cedric
+## Login   <gestes_c@epita.fr>
+##
+## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
+## Last update Tue Oct  4 17:30:56 2005 GESTES Cedric
+##
+##CTAFCONF
+
+sh_export=export
+sh_exporteq="="
+#include global environment
+[ -f ~/.ctafconf/etc/shell/globalenv ]; . ~/.ctafconf/etc/shell/globalenv
+unset sh_export
+unset sh_exporteq
+
+export HISTSIZE=1000
+export HISTFILE=~/.zshhistory
+export SAVEHIST=1000
+export BLOCK_SIZE=human-readable
+# depth of the directory history
+DIRSTACKSIZE=30
+
+#show who login and who logout on the system
+export WATCHFMT="%n has %a %l from %M"
+export WATCH=all
+
+# Automatically remove duplicates from these arrays
+typeset -U PATH
+
+if [ -f ~/.zshenv.mine ]; then
+    source ~/.zshenv.mine
+fi

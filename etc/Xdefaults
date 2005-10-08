@@ -1,0 +1,35 @@
+;;Xdefault
+;;CTAFCONF
+
+;;xterm*VT100.Translations: #override \
+              Delete:    string("\033[3~")\n\
+              Home:      string("\033[1~")\n\
+              End:       string("\033[4~")
+
+;;*ttyModes: erase ^h
+
+*ttyModes: intr ^c erase ^h susp ^@ dsusp ^@ kill ^u eof ^d
+
+xterm*Foreground:       white
+xterm*Background:       rgb:12/12/45
+xterm*Border:           dark blue
+xterm*ScrollBar:        on
+xterm*TitleBar:         on
+xterm*TextUnderIcon:    on
+xterm*AllowIconInput:   on
+xterm*AutoRaise:        on
+xterm*termtype:         vt100
+xterm*ttyModes:         intr ^c erase ^h susp ^@ dsusp ^@ kill ^u eof ^d
+
+Aterm*foreground: white
+Aterm*background: black
+Aterm*cursorColor: 11
+Aterm*transparent: true
+Aterm*shading: 30
+
+Aterm*font: -misc-fixed-medium-r-normal--11-*-*-*-*-*-iso8859-15
+
+Aterm*scrollBar: true
+Aterm*saveLines: 5000
+Aterm*utmpInhibit: true
+Aterm*loginShell: false

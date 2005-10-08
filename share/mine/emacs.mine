@@ -1,0 +1,8 @@
+;;
+;; emacs.mine for ctafconf in /home/ctaf/.ctafconf/share/mine
+;;
+;;CTAFCONF
+;;You can personalize this file, she will never be modified by the ctafconf
+
+;;backspace (t, nil)
+;;(normal-erase-mode-is-backspace t)

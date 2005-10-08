@@ -1,0 +1,54 @@
+#!/bin/sh
+## ct-help.sh for ct-help in /home/ctaf/.ctafconf/bin
+##
+## Made by GESTES Cedric
+## Login   <ctaf@epita.fr>
+##
+## Started on  Mon Aug 15 01:30:05 2005 GESTES Cedric
+## Last update Tue Oct  4 15:03:34 2005 GESTES Cedric
+##
+#FROM CTAFCONF
+#display help
+
+
+echo "--directory-------"
+echo "+ : next directory"
+echo "- : previous directory"
+echo "h : directory history"
+echo ""
+echo "--compilation-----"
+echo "c : ./configure"
+echo "m : make"
+echo "mm : make avec sortie qui scroll"
+echo "md : make distclean"
+echo "gm : gmake"
+echo "ma : make clean all"
+echo "mac : make clean all check"
+echo "fixme : affiche tous les fixme de tous les fichiers du repertoire"
+echo "purge : remove fuckin file (~* #*)"
+echo "rpurge : recursive purge"
+echo "rpurge_svn : purge svn and cvs file"
+echo ""
+echo "--logiciel--------"
+echo "e : emacs"
+echo "ne : emacs en console"
+echo "rd : rm directory"
+echo "tb : thunderbird"
+echo "ff : firefox"
+echo "wgetr : wget recursif"
+echo ""
+echo "--divers----------"
+echo "most : processus prenant le plus de proc"
+echo "ct-esdonoff : toggle esd on and off"
+echo "sshe : ssh epita (sshe agla)"
+echo "sshep : ssh epita"
+echo "ct-profile : modify your profile configuration"
+echo "ct-save-ssh : save your ssh configuration"
+echo "ct-save-gaim : save your gaim profile"
+echo "ct-save-firefox : save your firefox profile"
+echo "ct-save-thunderbird : save your thunderbird profile"
+echo "ct-repo : admin your repository (svn and cvs)"
+echo "ct-ssh : admin your ssh connection"
+echo "ct-socks : set your socks password"
+echo "ct-remove-backup : remove *-prev-date file in your home directory"
+echo "ct-proxy : configure wget"

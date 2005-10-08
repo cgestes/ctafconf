@@ -1,0 +1,96 @@
+# $HOME/.screenrc
+# Anreas Kneib <akneib AT gmx DOT net>
+
+# Defines the time a message is displayed
+# if screen is not disturbed by other activity.
+msgwait 1
+
+# Print the current version and the
+# compile date in the status line.
+version
+
+# Same as the login command except that the
+# default setting for new windows is  changed.
+deflogin off
+
+# Same as the scrollback command except that
+# the default setting for new windows is changed.
+defscrollback 1000
+
+# If set to "on", screen will append to the "hardcopy.n"
+# files created by the command "C-a h", otherwise these
+# files are overwritten each time.
+hardcopy_append on
+
+# This command configures the use and emulation of the
+# terminal's hardstatus line
+hardstatus on
+
+# When you  are  familiar  with  the  game "nethack",
+# you  may enjoy the nethack-style messages which will
+# often blur the facts a little, but are much funnier to read.
+nethack on
+
+# Select whether you want to see the copyright notice during
+# startup
+startup_message off
+
+# Sets the visual bell setting for this window.
+vbell off
+
+# If you prepend the word "always" to the type (e.g.,
+# "alwayslastline"), screen will use the type even if the
+# terminal supports a hardstatus.
+hardstatus alwayslastline " %c | %d.%m.%Y |  %w"
+
+# Change the way screen does highlighting for text marking
+# and  printing  messages.
+#
+# explanation about color codes:
+#
+# sorendition <attribute> <color>
+# sorendition ab cd  //  a,c=bg  b,d=fg
+#
+#  ab             c&d       c&d
+#  00 normal       0 black   4 blue
+#  1- invert       1 red     5 magenta
+#  25 bright       2 green   6 cyan
+#  3- 1+2          3 brown   7 silver
+#
+# * attributes are cumulative, so a=3 is invert+bright
+# * colors use the same codes for bg & fg colors,
+#   so cd=22 all you get is green, text unreadable
+#
+# examples:
+#  00 02 - black bg (0), green fg (2), no attributes (00)
+#  20 30 - brown bg (3), black fg (0), bright bg (2) -> turns yellow
+#  35 74 - silver bg (7), blue fg (4), invert, bright bg (3), bright fg (5)
+#
+#
+# Coloring:
+#sorendition 10 49 # Blue on White
+#sorendition 05 46 # Cyan on Blue
+#sorendition 05 42 # Green on Blue
+#sorendition  05 70
+sorendition  25 70
+
+# The message specified here is output
+# whenever a `Power detach' was performed.
+pow_detach_msg	"BYE"
+
+# Keybindings
+bind ~ activity	"activity in %n (%t) [%w:%s]~"
+bind * activity	"activity in %n (%t) [%w:%s]"
+bind m screen -t 'mutt' mutt
+bind ä screen -t 'slrn' slrn -n
+bind v screen -t 'vim' vim
+bind w screen -t 'w3m' env TERM=xterm w3m -B
+bind y screen -t 'mc' env PAGER=less.sh mc -c
+bind z screen -t 'ROOT' su
+bind ü screen -t 'tcd' tcd
+bind ö screen -t 'snownews' env TERM=xterm snownews -u
+bind Ö screen -t 'lynx' env TERM=xterm lynx -lss=/home/andreas/.own/lynx/lib/test.lss
+bind N screen -t 'notes' notes
+bind G screen -t 'google' links http://groups.google.com/advanced_group_search?hl=de
+bind Ü screen -t 'micq' micq
+bind L screen -t 'LOGFILE' sudo /usr/bin/tail -f /var/log/messages

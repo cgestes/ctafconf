@@ -1,0 +1,54 @@
+#!/bin/zsh
+## ctafinfo.sh for ctafconf in /ctaf/conf
+##
+## Made by root
+## Login   <root@epita.fr>
+##
+## Started on  Fri Feb 18 16:13:08 2005 root
+## Last update Tue Oct  4 04:06:11 2005 GESTES Cedric
+##
+##ORIGINALY FROM CTAFCONF
+
+##if ! [ $# -eq 1 ]; then
+##  echo "usage: ct-set-bg <wallpaper.image>"
+##  exit
+##fi
+##
+
+##
+##PORVIDE USER INFO TO ALL CTAFCONF
+##
+
+if ! [ -f ~/.ctafconf/user-profile ]; then
+  echo "Can't find your ~/.ctafconf/user-profile"
+  echo "you should reinstall env with ctafconf-install"
+  exit 1
+fi
+. ~/.ctafconf/user-profile
+
+wallpp=~/.ctafconf/share/wallpaper/$ctafconf_wallpaper
+
+
+# if [ which gconftool-2 > /dev/null 2> /dev/null ] ; then
+#     gconftool-2 -s /desktop/gnome/background/picture_filename $wallpp
+#     gconftool-2 -s /desktop/gnome/background/picture_options stretched
+# fi
+
+if [ `which "Esetroot" >/dev/null 2>/dev/null; echo $?;` -eq 0 ]; then
+  echo "#### CTAFCONF: using Esetroot"
+  Esetroot -scale $wallpp;
+  exit 0
+fi
+
+if [ `which "fbsetbg" >/dev/null 2>/dev/null; echo $?;` -eq 0 ]; then
+  echo "#### CTAFCONF: using fbsetbg"
+  fbsetbg -u xv $wallpp;
+  #fbsetroot -f $wallpp;
+  exit 0
+fi
+if ! [ `which "xsetroot" >/dev/null 2>/dev/null; echo $?;` -eq 0 ]; then
+#elif which "xsetroot"; then
+  echo "#### CTAFCONF: using xsetroot"
+  xsetroot -solid black
+  exit 0
+fi

@@ -1,0 +1,4 @@
+[begin] (  CTAFBox  )
+[include] (~/.ctafconf/etc/fluxbox/menu-general)
+[end]
+

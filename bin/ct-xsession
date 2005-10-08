@@ -1,0 +1,16 @@
+#!/bin/sh
+## ct-xsession.sh for ct-xsession in /home/ctaf/.ctafconf/bin
+##
+## Made by GESTES Cedric
+## Login   <ctaf@epita.fr>
+##
+## Started on  Mon Sep 26 02:30:56 2005 GESTES Cedric
+## Last update Tue Oct  4 14:54:47 2005 GESTES Cedric
+##
+##CTAFCONF
+##this script should be in /bin or /usr/bin or /usr/local/bin
+
+#this script is launched by gdm (maybe kdm)
+echo "Here we are!!!"
+~/.ctafconf/etc/xsession/xsession
+echo "Session killed"

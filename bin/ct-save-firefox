@@ -1,0 +1,18 @@
+#!/bin/sh
+##  ct-savethunderbird for ct-savethunderbird in /home/ctaf/.ctafconf/bin
+##
+## Made by GESTES Cedric
+## Login   <ctaf@epita.fr>
+##
+## Started on  Sat Sep 24 21:05:47 2005 GESTES Cedric
+## Last update Tue Oct  4 15:04:27 2005 GESTES Cedric
+##
+
+if [ -d ~/.mozilla/firefox ]; then
+  cd ~
+  tar -cvzf save-firefox-`date "+%Y%m%d"`.tgz .mozilla/firefox
+
+  echo "tarball of firefox profiles: " ~/save-firefox-`date "+%Y%m%d"`.tgz
+else
+  echo "can't find directory: ~/.mozilla/firefox"
+fi

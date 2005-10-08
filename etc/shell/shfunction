@@ -1,0 +1,52 @@
+#!/bin/sh
+## shfunction for ctafconf in /home/ctaf/.ctafconf
+## 
+## Made by GESTES Cedric
+## Login   <ctaf@epita.fr>
+## 
+## Started on  Sun Oct  2 07:23:17 2005 GESTES Cedric
+## Last update Sun Oct  2 07:23:36 2005 GESTES Cedric
+##
+##CTAFCONF
+
+
+#mkdir then cd
+mkdcd ()
+{
+ mkdir $1 && cd $1
+}
+
+#purge file in a dir
+purge ()
+{
+ (echo removing: *\~) 2>/dev/null
+ (rm -f *\~) 2>/dev/null;
+ (echo \.*\~) 2>/dev/null
+ (rm -f \.*\~) 2>/dev/null;
+ (echo \#*\#) 2>/dev/null
+ (rm -f \#*\#) 2>/dev/null;
+ echo "directory purged";
+}
+
+#recursive purge
+rpurge ()
+{
+ (echo removing: ***/*\~) 2>/dev/null
+ (rm -f ***/*\~) 2>/dev/null;
+ (echo ***/\.*\~) 2>/dev/null
+ (rm -f ***/\.*\~) 2>/dev/null;
+ (echo ***/\#*\#) 2>/dev/null
+ (rm -f ***/\#*\#) 2>/dev/null;
+ echo "directory recursively purged";
+}
+
+#purge .svn and .cvs
+rpurge_svn ()
+{
+ (echo removing: ***/.svn) 2>/dev/null
+ (rm -rf ***/.svn) 2>/dev/null;
+ (echo ***/.cvs) 2>/dev/null
+ (rm -rf ***/.cvs) 2>/dev/null;
+ echo ".svn and .cvs directory recursively purged";
+}
+

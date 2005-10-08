@@ -1,0 +1,9 @@
+#CTAFCONF
+#This file should be used with ct-repo
+
+server="ctaf@elthariel.no-ip.org"
+repos="/home/ctaf/svn/.ctafconf"
+rsh="svn+ssh"
+svnssh="ssh"
+module=".ctafconf"
+desc="the ctafconf"

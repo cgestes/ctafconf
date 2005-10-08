@@ -1,0 +1,22 @@
+#!/bin/sh
+## zshalias for ctafconf in /ctaf/conf/ctafconf/zsh
+## 
+## Made by root
+## Login   <root@epita.fr>
+## 
+## Started on  Fri Feb 18 01:52:43 2005 root
+## Last update Sun Oct  2 20:45:02 2005 GESTES Cedric
+## 
+##CTAFCONF
+
+###################
+## commands aliases
+###################
+
+#set xhost to accept local connection
+alias setx$sh_aliaseq'xhost +localhost'
+
+alias ff$sh_aliaseq'firefox'
+
+alias apt$sh_aliaseq"$ctafconf_sudo emerge"
+alias apts$sh_aliaseq"ctafconf_sudo emerge --search"

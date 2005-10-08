@@ -1,0 +1,28 @@
+#!/bin/sh
+## zshalias for ctafconf in /ctaf/conf/ctafconf/zsh
+##
+## Made by root
+## Login   <root@epita.fr>
+##
+## Started on  Fri Feb 18 01:52:43 2005 root
+## Last update Tue Oct  4 14:50:51 2005 GESTES Cedric
+##
+##CTAFCONF
+
+#for alias
+sh_aliaseq="="
+
+#source global alias
+[ -f ~/.ctafconf/etc/shell/alias ] && . ~/.ctafconf/etc/shell/alias
+
+unset sh_aliaseq
+
+#remove autocorrect on those commands:
+alias mv='nocorrect mv'
+alias cd='nocorrect cd'
+alias cp='nocorrect cp'
+alias mkdir='nocorrect mkdir'
+alias man='nocorrect man'
+alias find='noglob find'
+alias gcc='nocorrect gcc'
+alias mkdir='nocorrect mkdir'

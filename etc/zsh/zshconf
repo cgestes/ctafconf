@@ -1,0 +1,201 @@
+#!/bin/sh
+## zshrcctaf for ctafconf in /ctaf/conf/ctafconf/zsh
+##
+## Made by gestes_c
+## Login   <gestes_c@epita.fr>
+##
+## Started on  Fri Feb 18 01:52:43 2005 GESTES Cedric
+## Last update Tue Oct  4 18:20:38 2005 cedric gestes
+##
+##CTAFCONF
+
+#umask 022;
+#emacs binddings: ctrl-e(end) ctrl-a(begin of line)
+bindkey -e
+
+bindkey -s '^T' 'uptime\n'
+
+#append the path of a command
+#bindkey "i" expand-cmd-path
+bindkey "j" insert-files
+bindkey "i" incremental-complete-word
+bindkey "m" menu-select
+#  bindkey e backward-delete-word
+
+#limit core 0
+#disable beep
+set b 0 0 0
+set b off
+###################
+## Options Settings (man zshoptions)
+###################
+setopt correct                 # spelling correction
+setopt autocd                  # change to dirs without cd
+
+setopt nobeep #disable beep in zsh
+setopt extended_glob
+
+setopt autopushd	      # automatically append dirs to the push/pop list
+setopt pushd_minus	      # exchange meaning of + and - for pushd
+setopt pushd_silent	      # don't tell me about automatic pushd
+setopt pushd_to_home	      # use $HOME when no arguments specified
+setopt pushd_ignoredups	      # ignore duplicates
+
+setopt hist_ignore_dups
+setopt auto_list
+
+setopt auto_param_keys
+
+setopt auto_param_slash #auto add slash when completing path
+setopt auto_remove_slash
+
+setopt append_history
+setopt complete_aliases
+setopt equals
+setopt extended_glob
+#setopt hash_cmds
+#setopt hash_dirs
+setopt mail_warning
+setopt magic_equal_subst
+setopt numericglobsort
+
+
+#setopt menu_complete		#jump thrue menus
+
+
+setopt automenu			# don't cycle completions
+#setopt cdablevars              # avoid the need for an explicit $
+#setopt nocheckjobs             # don't warn me about bg processes when exiting
+#setopt nohup                   # and don't kill them, either
+#setopt listpacked              # compact completion lists
+#setopt listtypes               # show types in completion
+#setopt dvorak                  # with spelling correction, assume dvorak kb
+setopt extendedglob            # weird & wacky pattern matching - yay zsh!
+setopt completeinword          # not just at the end
+#setopt alwaystoend             # when complete from middle, move cursor
+
+#setopt nopromptcr       # don't add \r which overwrites cmd output with no \n
+setopt hist_expire_dups_first  #no dups in history
+setopt hist_verify              # when using ! cmds, confirm first
+setopt interactivecomments     # date # comment will work
+#setopt recexact                # recognise exact, ambiguous matches
+#setopt printexitvalue          # alert me if something's failed
+#autoload -U colors
+#colors
+#setopt complete_in_word
+
+
+# Filename suffixes to ignore during completion
+fignore=(.o .c~ .pro)
+
+##################
+## Terminal Stuffs
+##################
+#if [ -f $HOME/.dircolorsrc ]; then
+if which gdircolors >/dev/null 2>/dev/null; then
+    eval `gdircolors`
+else
+    if which dircolors >/dev/null 2>/dev/null; then
+	eval `dircolors`
+    fi
+fi
+
+##############################
+## Plugins autoload && bindkey
+##############################
+autoload mere zed zfinit
+
+plateforme=`uname -s`
+#ca marche pas sur sun
+if [ x$plateforme != "xSunOS" ]; then
+  zmodload zsh/complist
+  zmodload zsh/zpty
+
+
+  autoload nslookup
+  autoload -U zed
+  autoload -U zmv
+  autoload compinit
+  autoload insert-files
+  zle -N insert-files
+  zle -N incremental-complete-word
+  compinit -u
+
+  zstyle ':completion:*' format '%{[32m%}-=> %{[01m%}%d%{[0m%}'
+  zstyle ':completion:*' auto-description 'specify: %d'
+#  zstyle ':completion:*' completer _complete _correct _approximate
+  zstyle ':completion:*' group-name ''
+  zstyle ':completion:*' insert-unambiguous true
+  zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+#  zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'l:|=* r:|=*' 'r:|[._-]=* r:|=*'
+  zstyle ':completion:*' menu select=10
+ # zstyle ':completion:*' original true
+  zstyle ':completion:*' squeeze-slashes true
+  zstyle ':completion:*' verbose true
+  zstyle ':completion:*:processes' list-colors '=(#b)(?????)(#B)?????????????????????????????????([^ ]#/)#(#b)([^ /]#)*=00=01;31=01;33'
+
+## General completion technique
+## complete as much u can ..
+  zstyle ':completion:*' completer _complete _list _oldlist _expand _ignored _match _correct _approximate _prefix
+## complete less
+#zstyle ':completion:*' completer _expand _complete _list _ignored _approximate
+## complete minimal
+#zstyle ':completion:*' completer _complete _ignored
+
+## allow one error
+#zstyle ':completion:*:approximate:*' max-errors 1 numeric
+#  zstyle ':completion:*' max-errors 2
+## allow one error for every three characters typed in approximate completer
+#zstyle -e ':completion:*:approximate:*' max-errors \
+#    'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'
+
+# formatting and messages
+  zstyle ':completion:*:descriptions' format $'%{\e[0;31m%}%d%{\e[0m%}'
+  zstyle ':completion:*:messages' format $'%{\e[0;31m%}%d%{\e[0m%}'
+  zstyle ':completion:*:warnings' format $'%{\e[0;31m%}No matches for: %d%{\e[0m%}'
+  zstyle ':completion:*:corrections' format $'%{\e[0;31m%}%d (errors: %e)%{\e[0m%}'
+  zstyle ':completion:*' group-name ''
+
+## determine in which order the names (files) should be
+## listed and completed when using menu completion.
+## `size' to sort them by the size of the file
+## `links' to sort them by the number of links to the file
+## `modification' or `time' or `date' to sort them by the last modification time
+## `access' to sort them by the last access time
+## `inode' or `change' to sort them by the last inode change time
+## `reverse' to sort in decreasing order
+## If the style is set to any other value, or is unset, files will be
+## sorted alphabetically by name.
+  zstyle ':completion:*' file-sort name
+
+## how many completions switch on menu selection
+## use 'long' to start menu compl. if list is bigger than screen
+## or some number to start menu compl. if list has that number
+## of completions (or more).
+  zstyle ':completion:*' menu select=long
+
+## case-insensitive (uppercase from lowercase) completion
+#zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+## case-insensitive (all) completion
+  zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+## case-insensitive,partial-word and then substring completion
+#zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+## offer indexes before parameters in subscripts
+  zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
+
+## insert all expansions for expand completer
+  zstyle ':completion:*:expand:*' tag-order all-expansions
+
+## ignore completion functions (until the _ignored completer)
+  zstyle ':completion:*:functions' ignored-patterns '_*'
+
+## completion caching
+  zstyle ':completion::complete:*' use-cache 1
+  zstyle ':completion::complete:*' cache-path ~/.zcompcache/$HOST
+
+## add colors to completions
+  zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+fi

@@ -1,0 +1,85 @@
+#!/bin/sh
+## bashprompt for ctafconf in /home/ctaf/.ctafconf/etc/bash
+##
+## Made by GESTES Cedric
+## Login   <ctaf@epita.fr>
+##
+## Started on  Fri Sep 30 23:28:35 2005 GESTES Cedric
+## Last update Thu Oct  6 05:43:00 2005 GESTES Cedric
+##
+##CTAFCONF
+
+#
+# ANSI Escape Color
+#
+DULL=0
+BRIGHT=1
+#
+FG_BLACK=30
+FG_RED=31
+FG_GREEN=32
+FG_YELLOW=33
+FG_BLUE=34
+FG_VIOLET=35
+FG_TURQUOISE=36
+FG_WHITE=37
+#
+#1 = transparent
+#40 = black
+BG_BLACK=1
+BG_RED=41
+BG_GREEN=42
+BG_YELLOW=43
+BG_BLUE=44
+BG_VIOLET=45
+BG_TURQUISE=46
+BG_WHITE=47
+
+#
+# ANSI Escape Commands. Change the colors here
+#
+ESC="\033"
+NORM_MODE="$ESC[m"
+USER_MODE="$ESC[${DULL};${FG_YELLOW};${BG_BLACK}m"
+HOST_MODE="$ESC[${BRIGHT};${FG_TURQUOISE};${BG_BLACK}m"
+TIME_MODE="$ESC[${DULL};${FG_GREEN};${BG_BLACK}m"
+DATE_MODE="$ESC[${DULL};${FG_BLUE};${BG_BLACK}m"
+DIR_MODE="$ESC[${DULL};${FG_BLUE};${BG_BLACK}m"
+CPU_MODE="$ESC[${DULL};${FG_VIOLET};${BG_BLACK}m"
+JOB_MODE="$ESC[${BRIGHT};${FG_RED};${BG_BLACK}m"
+ERR_MODE="$ESC[${BRIGHT};${FG_RED};${BG_BLACK}m"
+STRUCT_MODE="$ESC[${DULL};${FG_RED};${BG_BLACK}m"
+
+function prompt_command
+{
+    ret=$?
+	#Don't show the whole path if it's too long; this function from the HOWTO
+	#How many characters of the $PWD should be kept
+	local pwdmaxlen=28
+	#Indicator that there has been directory truncation:
+	local trunc_symbol=".../"
+	if [ ${#PWD} -gt $pwdmaxlen ]
+	then
+		local pwdoffset=$(( ${#PWD} - $pwdmaxlen ))
+		newPWD="${trunc_symbol}${PWD:$pwdoffset:$pwdmaxlen}"
+	else
+		newPWD=${PWD}
+	fi
+	#Show the username and host (with colors defined above)
+	echo -n -e "$USER_MODE$USER$HOST_MODE@"
+	echo -n `hostname`
+	#Show the current directory (or most of it), and say how many files
+	#are in it and how big they are
+	if [ x$ret = x0 ]; then
+	    echo -n -e "$CPU_MODE [$NORM_MODE$ret$CPU_MODE] ["
+	else
+	    echo -n -e "$CPU_MODE [$JOB_MODE$ret$CPU_MODE] ["
+	fi
+	echo -e "$DIR_MODE$newPWD$CPU_MODE] $NORM_MODE"
+}
+
+#
+# Export Variables
+#
+export PROMPT_COMMAND=prompt_command
+export PS1="ba\\$ "

@@ -1,0 +1,7 @@
+#CTAFCONF
+#ctssh
+
+server="ssh.epita.fr"
+user="gestes_c"
+command=""
+desc="epita's gate"

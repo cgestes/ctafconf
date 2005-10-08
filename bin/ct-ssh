@@ -1,0 +1,162 @@
+#!/bin/sh
+## ct-ssh for ct-ssh in /home/ctaf/.ctafconf/bin
+##
+## Made by GESTES Cedric
+## Login   <ctaf@epita.fr>
+##
+## Started on  Mon Sep 26 04:19:16 2005 GESTES Cedric
+## Last update Tue Oct  4 15:04:53 2005 GESTES Cedric
+##
+##CTAFCONF
+
+action=$1
+fname=$2
+
+readparam=""
+echo test_bob | read -e testbob >/dev/null 2>/dev/null;
+if [ x$? = x0 ]; then
+readparam="-e"
+fi
+
+ssh_params=
+
+ssh_list ()
+{
+  for i in $(ls ~/.ctafconf/ssh) ; do
+      echo $i
+  done
+}
+
+ssh_updatefiles ()
+{
+  local name;
+  local server;
+  local user;
+  local command;
+  local desc;
+
+  for i in $(ls ~/.ctafconf/ssh | grep ".ssh") ; do
+    . ~/.ctafconf/share/ssh/$i
+
+    echo "updating: ~/.ctafconf/share/ssh/$i"
+    filename=~/.ctafconf/share/ssh/$i
+    echo "#CTAFCONF" >$filename
+    echo "#ctssh" >>$filename
+    echo "" >>$filename
+    echo "server=\"$server\"" >>$filename
+    echo "user=\"$user\"" >>$filename
+    echo "command=\"$command\"" >>$filename
+    echo "desc=\"$desc\"" >>$filename
+  done
+}
+
+ssh_connect ()
+{
+    local server;
+    local user;
+    local command;
+    local desc;
+
+    echo $fname
+    if [ -f ~/.ctafconf/share/ssh/"$fname".ssh ] ; then
+	. ~/.ctafconf/share/ssh/"$fname".ssh
+
+	echo "connection  : ssh $user@$server $command"
+	echo "description : $desc"
+
+	ssh $ssh_params $user@$server $command
+    else
+	echo "can't find your ssh file in ~/.ctafconf/ssh"
+    fi
+}
+
+ssh_add ()
+{
+    local name;
+    local server;
+    local user;
+    local command;
+    local desc;
+
+    echo "adding a new ssh file (in ~/.ctafconf/ssh)"
+    echo "Enter the name of the new ssh file"
+    echo -n "name ?"
+    read $readparam name
+    if [ -f $name".ssh" ] ; then
+	echo "This name already exist for one of your ssh files, Exiting"
+	exit 1
+    fi
+
+    echo ""
+    echo "Enter the server name"
+    echo "localhost ssh.sourceforge.net ssh.epita.fr"
+    echo -n "server ?"
+    read $readparam server
+
+    echo ""
+    echo "Enter one username"
+    echo -n "user ?"
+    read $readparam user
+
+    echo "If you want, you can specify one command."
+    echo "eg: /bin/zsh , /usr/bin/screen , .."
+    echo -n "Command ?"
+    read $readparam command
+
+    echo ""
+    echo -n "Enter one description (avoid using \")?"
+    read $readparam desc
+
+    filename=~/.ctafconf/share/ssh/"$name".ssh
+    echo "#CTAFCONF" >$filename
+    echo "#ctssh" >>$filename
+    echo "" >>$filename
+    echo "server=\"$server\"" >>$filename
+    echo "user=\"$user\"" >>$filename
+    echo "command=\"$command\"" >>$filename
+    echo "desc=\"$desc\"" >>$filename
+}
+
+if [ x$# = x0 ] ||
+    [ x$action = 'x-h' ] ||
+   [ x$action = 'x--help' ] ; then
+    echo "ct-ssh [option] <sshName>"
+    echo "Actions possible: "
+    echo " --help, -h, help"
+    echo "    : display this help"
+    echo " --list, -l, list"
+    echo "    : list all repositoy"
+    echo " --checkout, -c, co <reponame>"
+    echo "    : checkout the repository in the current directory"
+    echo " --add, -a, add"
+    echo "    : add a new repository"
+    echo " --update-files"
+    echo "    : update all the file in ~/.ctafconf/ssh"
+    echo " x, -x, -X : compressed X forwarding"
+    exit 1
+fi
+
+if [ x$action = 'x--list' ] || [ x$action = xlist ] || [ x$action = 'x-l' ]; then
+    ssh_list
+    exit 0
+fi
+if [ x$action = 'xadd' ] || [ x$action = 'x--add' ] || [ x$action = 'x-a' ] ; then
+    ssh_add
+    exit 0
+fi
+
+if [ x$action = "x-X" ] || [ x$action = "x-x" ] || [ x$action = "xx" ] ; then
+  ssh_params="-X -C"
+  ssh_connect
+  exit 0
+fi
+
+if [ x$action = 'x--update-files' ] ; then
+    ssh_updatefiles
+    exit 0
+fi
+
+fname=$1
+ssh_connect
+exit 0
+

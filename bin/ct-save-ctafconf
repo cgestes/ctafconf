@@ -1,0 +1,16 @@
+#!/bin/sh
+## ct-save-ctafconf for ctafconf in /home/ctaf/.ctafconf
+##
+## Made by GESTES Cedric
+## Login   <ctaf@epita.fr>
+##
+## Started on  Tue Oct  4 03:04:18 2005 GESTES Cedric
+## Last update Tue Oct  4 16:15:24 2005 cedric gestes
+##
+#CTAFCONF
+
+
+cd ~
+tar --exclude ".svn" --exclude "user-profile" --exclude "user-profile.mine" --exclude "user-profile-previous" --exclude "user-profile.csh" -cvzf ctafconf-`date "+%Y%m%d"`.tgz .ctafconf
+
+echo "tarball of the ctafconf: " ~/ctafconf-`date "+%Y%m%d"`.tgz

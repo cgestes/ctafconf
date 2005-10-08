@@ -1,0 +1,3 @@
+#!/bin/sh
+
+dialog --menu "Possible Task:" 0 0 7 "Configure ctafconf" "" "Install ctafconf" "" "Gnome settings" "" "Configure for gdm/kdm" "" "Configure for xdm" "" "Configure for startx" "" "Desinstall" ""

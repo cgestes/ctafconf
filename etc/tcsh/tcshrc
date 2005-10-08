@@ -1,0 +1,168 @@
+#!/bin/sh
+# .tcshrc - 30/06/05 19:16 - Turea Alexandru Teodor (classicmanpro@yahoo.com)
+
+#######################
+# ##### GENERAL ##### #
+#######################
+
+#ne rien faire si on est pas en mode interactif TODO
+
+umask 022
+
+limit    coredumpsize 0
+limit -h coredumpsize 0
+
+#####################################
+# ##### ENVIRONMENT VARIABLES ##### #
+#####################################
+
+#setenv    LS_COLORS    'no=01;37:fi=01;37:di=01;34:ln=01;36:pi=01;32:so=01;35:do=01;35:bd=01;33:cd=01;33:ex=01;31:mi=00;05;37:or=00;05;37:'
+
+#setenv    PAGER        'less'
+#setenv    EDITOR       'nano --smooth --tabsize=4 --const --mouse --nowrap --suspend'
+#setenv    VISUAL       "${EDITOR}"
+
+#unsetenv  HPATH
+
+###############################
+# ##### SHELL VARIABLES ##### #
+###############################
+set color
+set filec
+set rmstar
+set dunique
+set autolist
+set ellipsis
+set dextract
+set addsuffix
+set noclobber
+set autoexpand
+#set autocorrect
+set pushdsilent
+set pushdtohome
+#set printexitvalue
+
+set history     = 50
+set savehist    = 50
+set histdup     = all
+
+set savedirs    = 50
+
+set killring    = 50
+set killdup     = all
+
+set correct     = all
+set listjobs    = long
+set echo_style  = both
+set symlinks    = chase
+set inputmode   = insert
+set matchbeep   = ambiguous
+set promptchars = '$#'
+set listflags   = 'A'
+
+set watch       = (0 nobody nobody)
+set who         = "%n(`whoami`) has %a %l from %M"
+
+unset {histfile,dirsfile,autologout,implicitcd,notify,tperiod}
+
+#######################
+# ##### ALIASES ##### #
+#######################
+
+alias    .                'source'
+
+alias    ds               'dirs -v'
+alias    dsl              'dirs -L'
+alias    dss              'dirs -S'
+alias    dsc              'dirs -c'
+
+alias    po               'popd'  # po    [+n]
+alias    pu               'pushd' # pu    [name|+n]
+
+alias    cd               'pu'    # cd    [name|+n]
+alias    chdir            'cd'    # chdir [name|+n]
+
+alias    ..               'cd ..'
+alias    -                'cd -'
+
+alias    hc               'history -c'
+alias    hcc              'hc;c'
+
+alias    cx               'cd;dsc;hc;x'
+
+alias    ffinf               "find . -name '\!*' -print"
+
+alias    psa              'ps aux'
+alias    psu              'ps  ux'
+
+alias    lpsa             "ps aux \!* | p"
+alias    lpsu             "ps  ux \!* | p"
+
+unalias {beepcmd,cwdcmd,jobcmd,periodic,precmd,postcmd,shell}
+
+###########################
+# ##### COMPLETIONS ##### #
+###########################
+complete {mkfs,fsck} 'n/-t/(4.2 4.3 adfs affs autofs bdev coda coherent cramfs devpts efs ext ext2 ext3 hfs hpfs iso9660 jfs mfs minix msdos ncpfs nfs ntfs pipefs proc qnx4 ramfs reiserfs romfs rootfs S51K S52K shm smbfs sockfs sysv tmp tmpfs udf ufs umsdos usbfs usbdevfs vfat xenix xfs xiafs)/'
+complete {man,where,which,whatis,sudo,info,apropos} 'p/*/c/'
+complete kill 'c/-/S/' 'n/-s/S/' 'c/%/j/' 'p/*/(%)/'
+complete qmake 'n/-o/(Makefile)/' 'p/*/f:*.pro/'
+complete {cat,pico,nano,vi,vim,view,emacs} 'p/*/f/'
+complete {{,un}setenv,printenv,env} 'p/*/e/'
+complete {fg,bg,stop} 'c/%/j/' 'p/*/(%)/'
+complete {,un}alias 'p/*/c/' 'p/*/a/'
+complete {cd,pushd,{ch,mk,rm}dir} 'p/*/d/'
+complete {finger,pinky,groups} 'p/*/u/'
+complete {,un}complete 'p/1/X/'
+complete {,un}set 'p/*/s/'
+
+
+############################
+# ##### KEY BINDINGS ##### #
+############################
+bindkey "^[j" complete-word-back
+bindkey "^[k" complete-word-fwd
+
+bindkey "^[m" list-glob
+
+bindkey "^[e" expand-line
+bindkey "^[g" expand-glob
+bindkey "^[v" expand-variables
+
+bindkey "^[z" normalize-path
+bindkey "^[x" normalize-command
+
+bindkey "^[i" i-search-fwd
+bindkey "^[I" i-search-back
+
+bindkey "^[a" spell-line
+bindkey "^[o" overwrite-mode
+bindkey "^[q" keyboard-quit
+
+#############################################
+# ##### SOURCE/LOAD - DIRECTORY STACK ##### #
+#############################################
+set usr_cwd = "`pwd`" # most WMs open terminals in specific locations therefore note the current working directory
+dsl                   # source/load the directory stack, if present ... this usually changes the current working directory
+cd "${usr_cwd}"       # 'cd' back to the initial/original working directory and push it onto the directory stack
+unset usr_cwd         # cleanup
+
+#if ( -f ~/.ctafconf/user-profile.csh ) source ~/.ctafconf/user-profile.csh
+
+if ( -f ~/.ctafconf/etc/tcsh/tcshprompt ) source ~/.ctafconf/etc/tcsh/tcshprompt
+
+set sh_aliaseq=" "
+set sh_export="setenv"
+set sh_exporteq=" "
+
+if ( -f ~/.ctafconf/etc/shell/globalenv ) source ~/.ctafconf/etc/shell/globalenv
+
+if ( -f ~/.ctafconf/etc/shell/alias ) source ~/.ctafconf/etc/shell/alias
+
+
+
+unset sh_aliaseq
+unset sh_exporteq
+unset sh_export
+
+if ( -f ~/.tcshrc.mine ) source ~/.tcshrc.mine

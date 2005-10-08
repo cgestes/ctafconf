@@ -1,0 +1,41 @@
+#!/bin/sh
+## kshrc for ctafconf in /home/ctaf/.ctafconf
+##
+## Made by GESTES Cedric
+## Login   <ctaf@epita.fr>
+##
+## Started on  Thu Oct  6 04:55:46 2005 GESTES Cedric
+## Last update Thu Oct  6 06:50:23 2005 cedric gestes
+##
+##CTAFCONF
+
+# skip remaining setup if shell non-interactive
+[[ -o interactive ]] || return 0
+
+# turn on command line editing mode
+set -o emacs
+#set -o vi-tabcomplete   # tab filename completion ON!
+
+alias source=.
+sh_aliaseq="="
+sh_export="export"
+sh_exporteq="="
+
+if [ -f ~/.ctafconf/etc/ksh/kshprompt ]; then
+    . ~/.ctafconf/etc/ksh/kshprompt
+fi
+
+if [ -f ~/.ctafconf/etc/shell/globalenv ]; then
+    . ~/.ctafconf/etc/shell/globalenv
+fi
+if [ -f ~/.ctafconf/etc/shell/alias ]; then
+    . ~/.ctafconf/etc/shell/alias
+fi
+
+unset sh_aliaseq
+unset sh_exporteq
+unset sh_export
+
+if [ -f ~/.kshrc.mine ]; then
+    . ~/.kshrc.mine
+fi

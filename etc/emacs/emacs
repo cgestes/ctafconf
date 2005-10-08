@@ -1,0 +1,418 @@
+;;
+;; .emacs for env in std_env
+;;
+;; Made by Cedric GESTES
+;; Login   <gestes_c@epita.fr>
+;;
+;; Started on  Sat Oct 16 12:48:04 1993 Cedric GESTES
+;;
+;;CTAFCONF
+
+;;; Wrapper to make .emacs self-compiling.
+(defvar init-top-level t)
+(if init-top-level
+    (let ((init-top-level nil))
+      (if (file-newer-than-file-p "~/.emacs" "~/.emacs.elc")
+          (progn
+            (load "~/.emacs")
+            (byte-compile-file "~/.emacs")
+	    (load "~/.emacs.elc")
+            ;; Delete the following line if necessary:
+	    ;;            (rename-file "~/.emacsc" "~/.emacs.elc" t)
+            )
+        (load "~/.emacs.elc")))
+  (progn
+
+;;     <current .emacs file here>
+
+;;eviter les pb de chargement (fichier portable)
+;; (require 'foo)
+;;=>
+;; (require 'foo nil t)
+;; (foo-mode 1)
+;;=>
+;; (when (fboundp 'foo-mode) (foo-mode 1))
+;; '(current-language-environment "Latin-1")
+;; '(default-input-method "latin-1-prefix")
+
+;;TEST FOR OS TYPE
+;;(cond ((eq system-type 'darwin)
+;;       ()
+;;))
+;;;;PATH
+
+
+;;;PATH and .el file
+(setq load-path (cons "~/.ctafconf/etc/emacs/site-lisp/" load-path))
+(load "std.el")
+(load "std_comment.el")
+
+
+(if (file-exists-p "~/.myemacs")
+    (load-file "~/.myemacs"))
+(if (file-exists-p "~/.emacs.mine")
+    (load-file "~/.emacs.mine"))
+
+
+;;file extension mode
+(setq auto-mode-alist
+      (append
+	'(
+	  ("\\.txt$" . text-mode)
+	  ("\\.dat$" . text-mode)
+	  ("\\.pas$" . pascal-mode)
+	  ("\\.java$" . c-mode)
+	  ("\\.doc$" . plain-tex-mode)
+	  ("\\.bib$" . bibtex-mode)
+	  ("\\.bst$" . bst-mode)
+	  (".emacs$" . emacs-lisp-mode)
+	  ("*emacs$" . emacs-lisp-mode)
+	  ("\\.tcsh*" . csh-mode)
+	  )
+	auto-mode-alist)
+      )
+
+;;for ocaml
+(when (require 'tuareg nil t)
+  nil)
+
+;;IDO MODE
+(when (require 'ido nil t)
+  (ido-mode t))
+
+;;IDO for switching between buffers
+(iswitchb-mode 1)
+
+;;IDO for find-file, and others
+(ido-mode 1)
+;;;/IDO MODE
+
+;;pour les accents (obselete)
+;;(standard-display-european 1)
+
+;;scroll avec la souris
+(mouse-wheel-mode 1)
+
+;;coloration syntaxique
+(global-font-lock-mode 1)
+
+;;suppression du menu
+(menu-bar-mode 0)
+
+;;suppression de la toolbar
+(tool-bar-mode 0)
+
+;;affiche les lignes et les colonnes dans la barre en bas
+(column-number-mode 1)
+(line-number-mode 1)
+
+;; display the current time
+;;(display-time)
+;;(setq display-time-day-and-date t)
+;;(setq display-time-24hr-format t)
+;;(setq display-time-string-forms "%H:%M")
+;;(setq display-time-string-forms "%H:%M" )
+
+;; replace highlighted text with what I type rather than just
+;; inserting at a point
+(delete-selection-mode t)
+
+;;supprime le bootsplash
+(setq inhibit-startup-message t)
+
+;;supprime le bootspash gnus
+;;(gnus-inhibit-startup-message t)
+
+;; highlight during searching
+(setq query-replace-highlight t)
+
+;; highlight incremental search
+(setq search-highlight t)
+
+;; highlight matches from searches
+;;(setq isearch-highlight t)
+(setq-default transient-mark-mode t)
+
+(when (fboundp 'blink-cursor-mode)
+  (blink-cursor-mode -1))
+
+;;supprimer les fichiers de backup(temporaire) en quittant
+;;(setq make-backup-files nil)
+
+(setq make-backup-files t               ; make ~ files
+      ;; With nil, numbered backups are made only if they already exist.
+      ;; A new backup version is made every time the file is loaded.
+      ;;version-control nil ; set to t below if `backup-directory-alist' exists
+      kept-old-versions 2
+      kept-new-versions 2
+      ;; Preserves permissions of file being edited. Also affects links.
+      backup-by-copying nil
+      backup-by-copying-when-linked t
+      backup-by-copying-when-mismatch nil
+      backup-by-copying-when-privileged-mismatch 200
+      delete-old-versions t           ; auto-delete excess numbered backups
+      delete-auto-save-files t          ; delete auto-save files on save
+      auto-save-default t               ; auto-save on every visit
+      auto-save-interval 200            ; input events between auto-saves
+      auto-save-timeout 30)             ; seconds idleness before autosave
+
+; yank to point rather than cursor
+(setq mouse-yank-at-point t)
+
+;;preverse position when scroling
+;;(scroll-preserve-screen-position t)
+;;color
+(set-face-background   'modeline "black")
+(set-face-foreground   'modeline "steelblue3")
+(set-face-background   'scroll-bar "#0050C5")
+(set-face-foreground   'scroll-bar "#0050C5")
+
+
+(defun jl-kill-region ()
+  "if the mark is not active kill the current word \
+  or if the mark is active kill the active region"
+  (interactive)
+  (if (equal mark-active t)
+    (kill-region (region-beginning) (region-end))
+    (progn
+      (search-backward " ")
+      (kill-word 1)
+      (insert " "))
+    )
+  )
+
+;;want it?
+;(setq kill-whole-line t)
+
+;;TEST
+(setq default-major-mode 'indented-text-mode)
+(setq font-lock-support-mode 'lazy-lock-mode)
+(setq font-lock-maximum-decoration t)
+
+;;support de la souris dans les terminaux x
+(xterm-mouse-mode 1)
+
+;;show matching parenthese
+(show-paren-mode 1)
+
+;;; some functions
+(defun push-line ()
+  "Select current line, push onto kill ring."
+  (interactive)
+  (save-excursion
+    (copy-region-as-kill (re-search-backward "^") (re-search-forward "$"))))
+(global-set-key "\C-cp" 'push-line)
+
+(defun push-rest-of-line ()
+  "Select text from point to end of current line, push onto kill ring."
+  (interactive)
+  (save-excursion
+    (copy-region-as-kill (point) (re-search-forward "$"))))
+(global-set-key "\C-ck" 'push-rest-of-line)
+
+(global-set-key "\C-w"          'jl-kill-region)
+
+;; easy commenting out of lines
+;;(autoload 'comment-out-region "comment" nil t)
+;;(global-set-key "\C-cq" 'comment-out-region)
+
+;;
+(defun up-slightly () (interactive) (scroll-up 5))
+(defun down-slightly () (interactive) (scroll-down 5))
+(global-set-key [mouse-4] 'down-slightly)
+(global-set-key [mouse-5] 'up-slightly)
+
+(defun up-one () (interactive) (scroll-up 1))
+(defun down-one () (interactive) (scroll-down 1))
+(global-set-key [S-mouse-4] 'down-one)
+(global-set-key [S-mouse-5] 'up-one)
+
+
+(defun up-a-lot () (interactive) (scroll-up))
+(defun down-a-lot () (interactive) (scroll-down))
+(global-set-key [C-mouse-4] 'down-a-lot)
+(global-set-key [C-mouse-5] 'up-a-lot)
+
+(global-set-key [S-right]       'next-buffer)
+(global-set-key [S-left]        'prev-buffer)
+
+;; montre les lignes inutilisées et les limites d'un buffer
+(setq-default indicate-empty-lines t)
+
+;; s'assurer que les fichiers comportent un retour a la ligne en fin
+;; nil      n'ajoute pas de newline
+;; non-nil  pose la question
+;; t        rajoute les newlines automatiquement
+(setq require-final-newline 1
+      mode-require-final-newline 1)
+
+;; kill trailing white space on save
+;;(autoload 'nuke-trailing-whitespace "whitespace" nil t)
+(add-hook 'write-file-hooks 'delete-trailing-whitespace)
+
+;;shell indentation = 2 (bash script)
+;;(setq sh-indent 2)
+;;(setq sh-indent-comment t)
+
+;;transforme 'yes or no' en 'y or n'
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;;change le comportement de backspace et de suppr
+(normal-erase-is-backspace-mode 1)
+
+;;;;FONCTIONS
+;;list-colors-display to display all color
+; Conversion des fins de lignes du format MS-DOS au format Unix
+(defun dos2unix ()
+  (interactive)
+  (goto-char (point-min))
+  (while (search-forward "\r" nil t)
+    (replace-match "")
+  )
+)
+
+
+; Conversion des fins de ligne du format Unix au format MS-DOS
+(defun unix2dos ()
+  (interactive)
+  (goto-char (point-min))
+  (while (search-forward "\n" nil t)
+    (replace-match "\r\n")
+  )
+)
+
+;; Zlock handling for emacs
+(defun zlock ()
+  (interactive)
+  (shell-command "zlock -immed"))
+
+;; easy commenting out of lines
+(autoload 'comment-out-region "comment" nil t)
+
+(global-set-key "\C-cq" 'comment-out-region)
+
+;;;;CLAVIER
+(global-set-key "\C-c\C-z" 'zlock)
+
+;;changement de buffer ac ctrl+tab
+(global-set-key [(control tab)] 'other-window)
+
+;;appelle la derniere macro enregistré
+(global-set-key "\C-z" 'call-last-kbd-macro)
+
+(global-set-key [f1] (lambda ()
+		       (interactive)
+		       (manual-entry (current-word))))
+(global-set-key [f2] 'call-last-kbd-macro)
+(global-set-key [f3] 'query-replace)
+
+(global-set-key [f4] 'comment-region)
+(global-set-key [(shift f4)] 'uncomment-region)
+
+;;goto line= alt+l
+(global-set-key "\M-l" 'goto-line)
+
+;;test si on est en graphique
+(if window-system
+    (setq default-frame-alist
+      '((width . 80) (height . 30)
+        (cursor-color . "yellow")
+        (cursor-type . box)
+        (foreground-color . "MediumPurple2")
+        (background-color . "black")))
+)
+
+
+;;ilisp mode;;;;;;;;;;;;;;;;;;;;;;;
+;; (if (file-exists-p "~/.ctafconf/etc/site-lisp/ilisp")
+;;     (progn
+;;       (setq load-path (cons "~/ilisp" load-path))
+;;       ;;support extension file
+;;       (set-default 'auto-mode-alist
+;; 		   (append '(("\\.lisp$" . lisp-mode)
+;; 			     ("\\.lsp$" . lisp-mode)
+;; 			     ("\\.cl$" . lisp-mode))
+;; 			   auto-mode-alist))
+;;       ;;C-c evalue l'exprression sur laquel le pointeur se trouve
+;;       (setq lisp-mode-hook '(lambda () (require 'ilisp)
+;; 			      (local-set-key "\C-c" 'eval-defun-lisp)))
+;;       ;;pas de popup, scrollauto de la fenetre ilisp
+;;       (setq ilisp-mode-hook '(lambda ()
+;; 			       (setq lisp-no-popper t)
+;; 			       (setq comint-always-scroll t)))
+;;       (require 'ilisp)))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(custom-set-faces
+  ;; custom-set-faces was added by Custom -- don't edit or cut/paste it!
+  ;; Your init file should contain only one such instance.
+;;		:foreground "thistle3"
+ '(default ((t (:background "black"
+		:foreground "white"
+		:inverse-video nil
+		:box nil
+		:strike-through nil
+		:overline nil
+		:underline nil
+		:slant normal
+		:weight normal
+		:height 125
+		:width normal
+		:family "misc-fixed")))))
+
+(custom-set-variables
+  ;; custom-set-variables was added by Custom -- don't edit or cut/paste it!
+  ;; Your init file should contain only one such instance.
+ )
+
+
+;;end: configuration emacs / version compile
+))
+
+
+;;
+;;
+;;
+;;
+;; (global-set-key "\C-t\C-h" 'insert-function-header)
+
+;; ;; indent the entire buffer
+;; (defun c-indent-buffer ()
+;;   "Indent entire buffer of C source code."
+;;   (interactive)
+;;   (save-excursion
+;;     (goto-char (point-min))
+;;     (while (< (point) (point-max))
+;;       (c-indent-command)
+;;       (end-of-line)
+;;       (forward-char 1))))
+
+;; (defun insert-function-header () (interactive)
+;;   (insert "  /*///////////////////////////////////*/\n")
+;;   (insert "  /**\n")
+;;   (insert "   * \n")
+;;   (insert "   * @param: \n")
+;;   (insert "   * @return: \n")
+;;   (insert "   */\n"))
+
+;; (global-set-key "\C-t\C-g" 'insert-file-header)
+
+;;;; Abbreviations ;;;;
+;; (setq-default abbrev-mode t)
+;; (setq save-abbrevs t
+;;       abbrev-file-name (expand-file-name "abbrevs" my-emacsdir)
+;;       ;; Free up space in the mode line by removing the "Abbrev" string.
+;;       minor-mode-alist
+;;       (delq (assq 'abbrev-mode minor-mode-alist) minor-mode-alist))
+
+;; (if (file-exists-p abbrev-file-name) (quietly-read-abbrev-file))
+
+;; ;; Avoid the annoying "Save abbrevs in... ?" prompt.
+;; (defun my-abbrevs-save ()
+;;   "Save the abbreviations file if it has changed.
+;; Intended for use with `my-before-kill-emacs-hook'."
+;;   (when (and abbrevs-changed save-abbrevs)
+;;     (write-abbrev-file abbrev-file-name)
+;;     (setq abbrevs-changed nil)))
+
+;; (add-hook 'my-before-kill-emacs-hook 'my-abbrevs-save)

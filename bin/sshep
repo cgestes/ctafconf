@@ -1,0 +1,3 @@
+#!/bin/sh
+
+ssh gestes_c@ssh.epita.fr

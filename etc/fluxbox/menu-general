@@ -1,0 +1,80 @@
+[begin] (  CTAFBox  )
+  [exec] (Aterm) {aterm -tr -fg white -bg black}
+  [exec] (Emacs SRC) {(cd ~/42/42sh/src && emacs)}
+  [exec] (Xterm) {xterm -fg white -bg black}
+  [exec] (XmmS) {xmms}
+  [exec] (SSH epita) {xterm -fg white -bg black -e ssh -p 42 gestes_c@ssh.epita.fr}
+  [exec] (Nautilus) {nautilus --no-desktop}
+  [exec] (Emacs) {emacs}
+  [exec] (xKill) {xkill}
+
+  [submenu] (Net)
+    [exec] (Firefox) {firefox}
+    [exec] (Thunderbird) {thunderbird}
+    [exec] (Amsn) {amsn}
+    [exec] (Gaim) {gaim}
+    [exec] (Amule) {amule}
+    [exec] (NoSoucy) {sudo killall NoSoucy;NoSoucy-0.3c/NoSoucy}
+    [exec] (Kmail) {kmail}
+    [exec] (Dillo) {dillo}
+    [exec] (VNC Gros PC) {vncviewer -FullScreen 192.168.0.1}
+    [exec] (VNC Blef) {vncviewer -FullScreen blef.ath.cx}
+  [end]
+
+  [submenu] (Jeux)
+    [exec] (quake3) {quake3}
+    [exec] (chromium) {chromium}
+    [exec] (TuxRacer) {tuxracer}
+    [exec] (supertux) {supertux}
+    [exec] (tuxkart) {tuxkart}
+    [exec] (toppler) {toppler}
+    [exec] (bzflag) {bzflag}
+    [exec] (jumpnbump) {jumpnbump -fullscreen}
+    [exec] (lbreakout2) {lbreakout2}
+  [end]
+
+  [submenu] (Misc)
+    [exec] (caltos) {kcalc}
+    [exec] (Sound Level) {kmix}
+  [end]
+
+  [submenu] (CTAFConf)
+    [exec] (XtermRev) {xterm -fg black -bg white}
+    [exec] (Synaptics) {sudo /usr/sbin/synaptic}
+    [exec] (Network) {network-admin}
+    [exec] (Boot) {boot-admin}
+    [exec] (Time) {time-admin}
+    [exec] (Users) {users-admin}
+    [exec] (Aterm ROOT) {aterm -C -cr red -bw 0 -trsb +tr -name "aterm" -title "SHell ROOT" -e su}
+    [exec] (Eterm incrust) {Eterm -x 0 --trans --buttonbar 0 --scrollbar=off -f orange&}
+    [exec] (Cpuinfo) {aterm -e cat /proc/cpuinfo }
+    [exec] (Power state) {aterm -e cat /proc/acpi/battery/CMB1/state}
+    [exec] (fluxbox menu) {emacs ~/.ctafconf/etc/fluxbox/menu-general}
+    [exec] (Slay gestes_c) {sudo /usr/sbin/slay gestes_c}
+    [exec] (Linux Bible) {emacs ~/linux-bible.ctaf}
+    [submenu] (fluxbox menu)
+      [config] (Configure)
+      [submenu] (System Styles) {Choose a style...}
+        [stylesdir] (/usr/share/fluxbox/styles)
+        [stylesdir] (/usr/share/commonbox/styles/)
+      [end]
+      [submenu] (User Styles) {Choose a style...}
+        [stylesdir] (~/.ctafconf/etc/fluxbox/styles)
+      [end]
+      [workspaces]   (Workspace List)
+      [submenu] (Tools)
+        [exec] (Window name) {xprop WM_CLASS|cut -d \" -f 2|xmessage -file - -center}
+        [exec] (Screenshot) {import screenshot.png && qiv -W 50 screenshot.png}
+        [exec] (Run) {fbrun }
+        [exec] (Regen Menu) {fluxbox-generate_menu}
+      [end]
+      [exec] (Lock screen) {zlock -immed}
+      [reconfig] (Reload config)
+    [end]
+  [end]
+
+  [submenu] (Others)
+    [include] (~/.ctafconf/etc/fluxbox/menudef)
+  [end]
+  [exit] (exit)
+[end]

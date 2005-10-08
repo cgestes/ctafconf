@@ -1,0 +1,150 @@
+05/10/2005
+- add : kshrc (use global env and global alias) (custom prompt)
+- mod : set default permission for ~/.ctafconf : no write access
+- add : nanorc configuration
+
+04/10/2005 -- 0.1.0-rc2
+- mod : same env for tcsh, bash, zsh
+- mod : bugs
+- mod : ct-installconf read setting from user-profile.mine if it exist
+- mod : create arch:
+        .ctafconf/bin
+	.ctafconf/share/{mine,repos,ssh,wallpaper,misc}
+	.ctafconf/etc/{emacs,shell,..}
+
+03/10/2005
+- add : ~/.ctafconf/user-profile.mine : static setting's
+- add : ct-save-mine (backup personal configuration file)
+- add : .zshrc.mine , .emacs.mine , .zshenv.mine, .tcsh.mine, .bashrc.mine, .xsession.mine
+- mod : ct-installconf : readonly on ctafconf files (linked in ~)
+- mod : emacs : auto-compiled .emacs, better color config, keys (c-w, S-left, S-right, f1, f2, f3), kill white space
+- add : /.ctafconf/share/{repos,ssh,mine} (mine = tmpl for some config file)
+- mod : xsession (eterm & torsmo just for fluxbox)
+- mod : ct-installconf,ct-profile: answer = no bt default, support .mine tmpl
+- mod : speedup startup of bash/zsh under cygwin
+
+02/10/2005
+- mod : tcsh now support shell/alias
+- mod : ct-installconf : dont backup symilar symlink
+
+01/10/2005
+- mod : zshprompt (with date and time now)
+- add : partial support for tcsh (only prompt)
+
+30/09/2005
+- add : toprc for command top
+- add : prompt for bash (bashprompt)
+- add : ctafconf_sudo is really used
+- add : shell/globalenv, shell/alias, are shared between bash and zsh
+- del : zshenv.* : nothing realy specific
+- mod : zshenv clean $PATH
+- mod : zsh completion: tweak
+- mod : bug ct-installconf, ct-profile
+- add : ct-ssh to manage your ssh connection
+- mod : bug ls, epita-linux
+- mod : emacs support mouse in console
+- mod : ct-repo,ct-ssh : add description, add update-file option, bug with quoting
+
+29/09/2005 -- 0.1.0-rc1
+- mod : Xdefault, xsession : xrdb -merge
+- mod : debug ct-installconf (ca marche par ssh)
+- add : ct-deinstall : pour desinstaller la ctafconf
+- mod : zshconf tweak completion (not good enough btw)
+- mod : ct-help : mise a jour
+- mod : ct-repo : debug, debug
+
+28/09/2005
+- mod : xsession,zshenv,zshrc => mise a jour pour epita (xhost,tb,ff, path)
+- mod : bug ct-installconf, ct-repo, ct-profile (source)
+- add : gdialog/kdialog/dialog/read comme interface pour l'installation (cool!)
+
+26/09/2005
+- add : repository manager : ct-repo (repo info in ~/.ctafconf/repos)
+- add : ctafconf_wm : choisi le desktop utilise (gnome, fluxbox, ...)
+- add : ct-xsession, ctafconf.desktop : utiliser par gdm et kdm
+- add : no more different xsession
+
+25/09/2005
+- add : zprompt to ct-info
+- add : ct-remove-backup to remove backup of your file (doesnt remove -previous)
+- mod : change wallpaper for gnome
+- add : ct-profile => edite le fichier de configuration de la ctafconf
+- rem : remove directory : ~/.ctafconf/profile
+- add : ctafconf_zprompt : define the zsh prompt you use
+- add : ct-save-firefox, ct-save-thunderbird
+
+24/09/2005
+- mod : speedup zsh launch
+- mod : nouveau path pour epita
+- mod : lot's of cleanup
+- mod : move zshrcctaf => zshconf
+- mod : zshenv : $PATH est mieux genere
+- mod : keys in fluxbox
+- mod : profile
+- add : two wallpapers ('meuh.jpg', 'meuhh.jpg' !!) (elles viennent de devianart)
+- add : ct-cleanpath : retourne a $PATH sans doublon
+- rem : suppression des profiles, il reste juste un profile generique
+- mod : emacs => .emacs lisible, std.el, std_comment.el et ido et ilisp auto installe
+
+20/09/2005
+- mod : emacs => ctrl+z => appelle la derniere macro clavier
+
+15/09/2005
+- mod : emacs => la touche suppr marche sur les conf de base (normal-erase-..)
+
+13/09/2005
+- mod : zshprompt => suppresion de PR_NO_COLOUR pr cygwin
+
+05/09/2005
+- mod : xbindkeys (suppression des binding xmms)
+- mod : ct-saveconf ordre de la date
+
+29/08/2005
+- mod : xbindkeys win+e => EsdOnOff.sh
+
+15/08/2005
+- add : debian/xorg.conf (dpms suspend)
+- add : ct-help
+- mod : rename some files
+
+14/08/2005
+- add : bin/EsdOnOff.sh
+- mod : emacs -> tuareg
+
+15/07/2005
+- mod : xbindkeys: volume
+- mod : xbindkeys: ctrl + shift + ':'
+- mod : xbindkeys: ctrl + shift + '!'
+
+17/06/2005
+- add : profile for debian
+- mod : zshalias -> apts sans sudo
+- mod : zshprompt
+- mod : emacs -> nomenu,nobar
+
+12/06/2005
+- add : std.el, std_comment.el in misc folder
+- add : ctafconf use subversion
+- mod : install_ctafconf.sh -> new display, run at epita, save all oldfile with a date tag, install .emacs
+- mod : zshenv.epita
+- mod : zshprompt to run at epita
+- add : zshalias.epita
+- add : rubyenv.epita
+- add : emacs config file
+- add : svctaf, checkout the ctafconf
+
+08/06/2005
+- add : rpurge
+- mod : purge
+- mod : $PATH to include ctafbin and bin
+- mod : zshenv,zshalias (link to .debian, .freebsd,..)
+- mod : ls
+- mod : wallpaper are in ~/.ctafconf/env/wallpaper
+- mod : ct-info
+
+03/06/2005
+- add : TODO
+- modif : zshprompt (display user and machine)
+- modif : zshalias
+
+La ya un TROU!

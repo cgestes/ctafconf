@@ -1,0 +1,80 @@
+#!/bin/sh
+## xsession for xsession in /home/ctaf/.ctafconf/etc/xsession
+##
+## Made by GESTES Cedric
+## Login   <ctaf@epita.fr>
+##
+## Started on  Mon Sep 26 02:37:56 2005 GESTES Cedric
+## Last update Tue Oct  4 14:57:11 2005 GESTES Cedric
+##
+##CTAFCONF
+
+#refuse all connection to xserver except local co
+xhost -
+xhost +localhost
+
+#merge setting for x application (xterm,aterm,..)
+xrdb -merge ~/.ctafconf/etc/Xdefaults
+
+if [ -f ~/.ctafconf/user-profile ] ; then
+    . ~/.ctafconf/user-profile
+fi
+
+
+if [ x$ctafconf_wm != xgnome ] ; then
+#set the wallpaper
+~/.ctafconf/bin/ct-set-bg
+fi
+
+#xbindkeys
+if which xbindkeys >/dev/null 2>/dev/null; then
+  xbindkeys&
+fi
+
+#gaim
+if which gaim >/dev/null 2>/dev/null; then
+  gaim&
+fi
+
+if [ -f ~/.xsession.mine ]; then
+    source ~/.xsession.mine
+fi
+
+########################### LAUNCHING WM ###########################
+#Lauch gnome (appel bloquant)
+if [ x$ctafconf_wm = xgnome ]; then
+    exec gnome-session
+fi
+
+#launch the gnome setting daemon (for font, gconf, ...) after gnome-session
+#cause gnome-session launch it
+if which gnome-settings-daemon >/dev/null 2>/dev/null; then
+  gnome-settings-daemon&
+fi
+
+#fluxbox
+if [ x$ctafconf_wm = xfluxbox ] || [ x$ctafconf_wm = x ] ; then
+  #eterm
+  if which Eterm >/dev/null 2>/dev/null; then
+    Eterm -x 0 --trans --buttonbar 0 --scrollbar=off -O --shade 50 -g 84x20+0+15&
+    Eterm -x 0 --trans --buttonbar 0 --scrollbar=off -O --shade 50 -g 84x20+512+15&
+  fi
+
+  #torsmo
+  if which torsmo >/dev/null 2>/dev/null; then
+    torsmo -b&
+  fi
+
+  exec startfluxbox
+fi
+
+#anothers wm
+if which ctafconf_wm >/dev/null 2>/dev/null ; then
+    exec $ctafconf_wm
+fi
+
+exec xterm
+
+#if [ -f ~/.ctafconf/etc/xsession/xsession.$ctafconf_config ]; then
+#  . ~/.ctafconf/etc/xsession/xsession.$ctafconf_config
+#fi

@@ -1,0 +1,191 @@
+# torsmo configuration
+# see http://well-adjusted.de/images/torsmo.png for screenshot
+
+# set to yes if you want tormo to be forked in the background
+background no
+
+# X font used, you can pick one with program xfontsel
+#font 5x7
+#font 6x10
+#font 7x13
+#font 8x13
+#font 9x15I
+# font *mintsmild.se*
+# font -*-*-*-*-*-*-34-*-*-*-*-*-*-*
+#font -jmk-neep-medium-*-normal-*-11-*-*-*-*-*-*-*
+
+# mail spool (IMAP doesn't work)
+#mail_spool imap://user:pass@debris/INBOX
+
+# Update interval in seconds
+update_interval 2
+
+# Create own window instead of using desktop (required in nautilus)
+own_window no
+
+# Minimum size of text area
+#minimum_size 170 5
+
+# Draw shades?
+draw_shades yes
+
+# Draw outlines?
+draw_outline yes
+
+# Draw borders around text
+draw_borders no
+
+# Stippled borders?
+stippled_borders 0
+
+# border margins
+border_margin 0
+
+# border width
+border_width 0
+
+# Default colors and also border colors
+default_color gray
+default_shade_color yellow
+default_outline_color black
+
+# Text alignment, other possible values are commented
+alignment top_left
+#alignment top_right
+#alignment bottom_left
+#alignment bottom_right
+
+# Gap between borders of screen and text
+gap_x 20
+gap_y 570
+
+# Subtract file system buffers from used memory?
+no_buffers yes
+
+# set to yes if you want all text to be in uppercase
+uppercase no
+
+# Possible variables to be used:
+#
+#      Variable         Arguments                  Description                
+#  acpiacadapter                     ACPI ac adapter state.                   
+#  acpifan                           ACPI fan state                           
+#  acpitemp                          ACPI temperature.                        
+#  battery           (name)          Remaining capasity in ACPI or APM        
+#                                    battery. ACPI battery name can be      
+#                                    given as argument (default is BAT0).     
+#  buffers                           Amount of memory buffered                
+#  cached                            Amount of memory cached                  
+#  color             (color)         Change drawing color to color            
+#  cpu                               CPU usage in percents                    
+#  cpubar            (height)        Bar that shows CPU usage, height is      
+#                                    bar's height in pixels                   
+#  downspeed         net             Download speed in kilobytes              
+#  downspeedf        net             Download speed in kilobytes with one     
+#                                    decimal                                  
+#  exec              shell command   Executes a shell command and displays    
+#                                    the output in torsmo. warning: this      
+#                                    takes a lot more resources than other    
+#                                    variables. I'd recommend coding wanted   
+#                                    behaviour in C and posting a patch :-).  
+#  execi             interval, shell Same as exec but with specific interval. 
+#                    command         Interval can't be less than              
+#                                    update_interval in configuration.        
+#  fs_bar            (height), (fs)  Bar that shows how much space is used on 
+#                                    a file system. height is the height in   
+#                                    pixels. fs is any file on that file      
+#                                    system.                                  
+#  fs_free           (fs)            Free space on a file system available    
+#                                    for users.                               
+#  fs_free_perc      (fs)            Free percentage of space on a file       
+#                                    system available for users.              
+#  fs_size           (fs)            File system size                         
+#  fs_used           (fs)            File system used space                   
+#  hr                (height)        Horizontal line, height is the height in 
+#                                    pixels                                   
+#  i2c               (dev), type, n  I2C sensor from sysfs (Linux 2.6). dev   
+#                                    may be omitted if you have only one I2C  
+#                                    device. type is either in (or vol)       
+#                                    meaning voltage, fan meaning fan or temp 
+#                                    meaning temperature. n is number of the  
+#                                    sensor. See /sys/bus/i2c/devices/ on     
+#                                    your local computer.                     
+#  kernel                            Kernel version                           
+#  loadavg           (1), (2), (3)   System load average, 1 is for past 1     
+#                                    minute, 2 for past 5 minutes and 3 for   
+#                                    past 15 minutes.                         
+#  machine                           Machine, i686 for example                
+#  mails                             Mail count in mail spool. You can use    
+#                                    program like fetchmail to get mails from 
+#                                    some server using your favourite         
+#                                    protocol. See also new_mails.            
+#  mem                               Amount of memory in use                  
+#  membar            (height)        Bar that shows amount of memory in use   
+#  memmax                            Total amount of memory                   
+#  memperc                           Percentage of memory in use              
+#  new_mails                         Unread mail count in mail spool.         
+#  nodename                          Hostname                                 
+#  outlinecolor      (color)         Change outline color                     
+#  pre_exec          shell command   Executes a shell command one time before 
+#                                    torsmo displays anything and puts output 
+#                                    as text.                                 
+#  processes                         Total processes (sleeping and running)   
+#  running_processes                 Running processes (not sleeping),        
+#                                    requires Linux 2.6                       
+#  shadecolor        (color)         Change shading color                     
+#  stippled_hr       (space),        Stippled (dashed) horizontal line        
+#                    (height)        
+#  swapbar           (height)        Bar that shows amount of swap in use     
+#  swap                              Amount of swap in use                    
+#  swapmax                           Total amount of swap                     
+#  swapperc                          Percentage of swap in use                
+#  sysname                           System name, Linux for example           
+#  temp1                             Temperature #1 from i2c-sensors, same as 
+#                                    ${i2c temp 1}                            
+#  temp2                             Temperature #2 from i2c-sensors, same as 
+#                                    ${i2c temp 2}                            
+#  time              (format)        Local time, see man strftime to get more 
+#                                    information about format                 
+#  totaldown         net             Total download, overflows at 4 GB on     
+#                                    Linux with 32-bit arch and there doesn't 
+#                                    seem to be a way to know how many times  
+#                                    it has already done that before torsmo   
+#                                    has started.                             
+#  totalup           net             Total upload, this one too, may overflow 
+#  updates                           Number of updates (for debugging)        
+#  upspeed           net             Upload speed in kilobytes                
+#  upspeedf          net             Upload speed in kilobytes with one       
+#                                    decimal                                  
+#  uptime                            Uptime                                   
+#  uptime_short                      Uptime in a shorter format               
+
+
+# variable is given either in format $variable or in ${variable}. Latter
+# allows characters right after the variable and must be used in network
+# stuff because of an argument
+
+#${color light slate gray}Temperatures:
+# CPU:$color ${i2c temp 1}°C${color light slate gray} - MB:$color ${i2c temp 2}°C
+# stuff after 'TEXT' will be formatted on screen
+
+TEXT
+${color light slate gray}${sysname} ${kernel}, uptime: ${color}$uptime
+${color light slate gray}Battery : ${color}[${acpiacadapter}] ${battery CMB1}
+
+${color light slate gray}CPU ${color} [$cpu% for $processes procs] [${freq}Mhz]
+
+${color light slate gray}eth0 $color ${upspeed eth0} kB/s${color light slate gray} - ${color}${downspeed eth0} kB/s
+${color light slate gray}eth1 $color ${upspeed eth1} kB/s${color light slate gray} - ${color}${downspeed eth1} kB/s
+
+
+
+
+
+
+
+
+
+${color light slate gray}/   : ${fs_free /} $color${fs_bar 4 /}
+${color light slate gray}RAM : ${mem} $color${membar 4}
+${color light slate gray}Swap: ${swap} $color${swapbar 4}
+

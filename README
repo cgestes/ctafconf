@@ -1,0 +1,59 @@
+  --+-- -- --+--
+ +-- CTAFCONF --+
+  --+-- -- --+--
+
+--INSTALL--
+untar in your home directory.
+> cd ~
+> tar xvzf ctafconf-DATE.tgz
+> cd .ctafconf
+
+this script save our old config file, install the new config file,
+set gnome options, install the ctafconf for xdm/gdm/kdm if wanted
+parameter possible (for interface): | dialog | gdialog | kdialog | conread
+
+> ./ctafconf-install
+
+--UNINSTALL--
+!!highly experimental!! (use at your own risk)
+ct-uninstall : basic (ask for each file)
+
+--REINSTALL/UPDATE--
+overwrite ~/.ctafconf with the new tarball.
+relauch ~/.ctafconf/ctafconf-install
+
+--HELP--
+ct-profile : configure your ctafconf profile (wallpaper, wm, mail, etc..)
+ct-installconf : reinstall la ctafconf (et l'install aussi qd mm!)
+ct-repo : admin your repository (svn and cvs)
+ct-ssh : admin your ssh connexion
+ct-help : a litle help about the ctafconf command
+ct-socks : set your socks password (mostly for epita)
+
+visit http://www.ctaf.free.fr for more information/help about the ctafconf
+
+--DOSSIERS--
+.ctafconf/user-profile      : user configuration modified by ct-profile
+.ctafconf/user-profile.mine : static information (module to install, path)
+
+.ctafconf		root directory
+.ctafconf/etc		containt all the configuration file (zsh,fluxbox,..)
+.ctafconf/bin		ct-profile, ct-installconf, ctssh, ctrepo, ...
+.ctafconf/share/repos		repository for ct-repo (ctrepo)
+.ctafconf/share/wallpaper	wallpaper
+.ctafconf/share/ssh		ssh informations for ctssh
+.ctafconf/share/mine		template file for .mine
+.ctafconf/share/misc		misc
+
+Cedric GESTES (goctaf@gmail.com)
+http://www.ctaf.free.fr
+
+ _____________________________________
+< CTAFCONF? yuhh? MeuuuuuuuuuHHHHHHHH >
+ -------------------------------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+

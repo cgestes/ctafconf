@@ -1,0 +1,39 @@
+#!/bin/sh
+## zshrc.linux for ctafconf in /ctaf/conf/ctafconf/zsh
+##
+## Made by GESTES Cedric
+## Login   <gestes_c@epita.fr>
+##
+## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
+## Last update Tue Oct  4 14:50:25 2005 GESTES Cedric
+##
+##CTAFCONF
+
+#userconfig (already in zshenv)
+#source ~/.ctafconf/user-profile
+
+# Shell is non-interactive.  Be done now
+if [[ $- != *i* ]]; then
+    return
+fi
+
+
+#alias
+. ~/.ctafconf/etc/zsh/zshalias
+
+#General config
+. ~/.ctafconf/etc/zsh/zshconf
+
+. ~/.ctafconf/etc/shell/shfunction
+#Prompt
+if [ x$ctafconf_zprompt = x ] || [ x$ctafconf_zprompt = xctaf ] ; then
+    source ~/.ctafconf/etc/zsh/zshprompt
+else
+    autoload -U promptinit
+    promptinit
+    prompt $ctafconf_zprompt
+fi
+
+if [ -f ~/.zshrc.mine ]; then
+    source ~/.zshrc.mine
+fi

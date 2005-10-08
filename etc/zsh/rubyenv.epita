@@ -1,0 +1,64 @@
+#! /bin/sh
+## configure
+##
+## Made by (CUISSARD Vincent)
+## Login   <cuissa_v@epita.fr>
+##
+## Started on  Mon Jan 17 18:20:15 2005 CUISSARD Vincent
+## Last update Wed Mar 23 14:35:49 2005 Adnan Aita
+##
+
+nth=$(ps aux | grep -v 'grep' | grep -E "^$USER.*(sh |\./)configure")
+
+[ $? -eq 0 ] && {
+    echo -e "\033[3;31mThis configure MUST be sourced\033[0m"
+    exit 3
+}
+
+SYSTEM=$(/usr/bin/uname)
+MY_RUBY_PATH="/u/guest/ski/pub/ruby/"
+unset RUBYDIR
+unset RUBYPATH
+unset RUBYLIB
+
+check()
+{
+    echo -n "Configure $1... "
+}
+
+result()
+{
+    echo $1
+}
+
+check_result()
+{
+    check $1
+    result $2;
+}
+
+error()
+{
+    echo -e "\033[3;31m"$1"\033[0m"
+    exit 2
+}
+
+export RUBYDIR=$MY_RUBY_PATH
+check_result "RUBYDIR" $RUBYDIR
+export RUBYPATH=$MY_RUBY_PATH"/bin"
+check_result "RUBYPATH" $RUBYPATH
+export PATH=$RUBYPATH":"$PATH
+check_result "PATH" $PATH
+
+case $SYSTEM in
+    NetBSD)
+	export RUBYLIB=$MY_RUBY_PATH"/lib/ruby/1.8:"$MY_RUBY_PATH"/lib/ruby/1.8/i386-netbsdelf"
+	export RUBYLIB=$RUBYLIB":"$MY_RUBY_PATH"/lib/ruby/site_ruby/1.8/DBD/Pg/"
+	check_result "RUBYLIB" $RUBYLIB
+	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH":"$MY_RUBY_PATH"/lib/ruby/site_ruby/1.8/DBD/Pg/":"/u/guest/ski/pub/fox/lib"
+	;;
+    *)
+	echo unknown architechture: $SYSTEM
+	exit 1
+	;;
+esac

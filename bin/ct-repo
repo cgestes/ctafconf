@@ -1,0 +1,316 @@
+#!/bin/sh
+## ct-repo for ct-repo in /home/ctaf/.ctafconf/bin
+##
+## Made by GESTES Cedric
+## Login   <ctaf@epita.fr>
+##
+## Started on  Mon Sep 26 04:19:16 2005 GESTES Cedric
+## Last update Tue Oct  4 15:05:12 2005 GESTES Cedric
+##
+##CTAFCONF
+
+action=$1
+repo=$2
+cmd=$3
+readparam=""
+echo test_bob | read -e testbob >/dev/null 2>/dev/null;
+if [ x$? = x0 ]; then
+readparam="-e"
+fi
+repo_list ()
+{
+  for i in $(ls ~/.ctafconf/share/repos) ; do
+      echo $i
+  done
+}
+
+repo_updatefiles ()
+{
+    local name
+    local server
+    local repos
+    local module
+    local rsh
+    local svnssh
+    local desc
+
+    for i in $(ls ~/.ctafconf/share/repos | grep .svn) ; do
+      . ~/.ctafconf/share/repos/$i
+
+      echo "updating: ~/ctafconf/repos/$i"
+      filename=~/.ctafconf/share/repos/$i
+      echo "#CTAFCONF" >$filename
+      echo "#This file should be used with ct-repo" >>$filename
+      echo "" >>$filename
+      echo "server=\"$server\"" >>$filename
+      echo "repos=\"$repos\"" >>$filename
+      echo "rsh=\"$rsh\"" >>$filename
+      echo "svnssh=\"$svnssh\"" >>$filename
+      echo "module=\"$module\"" >>$filename
+      echo "desc=\"$desc\"" >>$filename
+    done
+
+    for i in $(ls ~/.ctafconf/share/repos | grep .cvs) ; do
+      . ~/.ctafconf/share/repos/$i
+
+      echo "updating: ~/ctafconf/repos/$i"
+      filename=~/.ctafconf/share/repos/$i
+      echo "#CTAFCONF" >$filename
+      echo "#This file should be used with ct-repo" >>$filename
+      echo "" >>$filename
+      echo "server=\"$server\"" >>$filename
+      echo "repos=\"$repos\"" >>$filename
+      echo "rsh=\"$rsh\"" >>$filename
+      echo "svnssh=\"$svnssh\"" >>$filename
+      echo "module=\"$module\"" >>$filename
+      echo "desc=\"$desc\"" >>$filename
+    done
+}
+
+#checkout a repo
+repo_checkout ()
+{
+    local name
+    local desc
+    local server
+    local repos
+    local module
+    local rsh
+    local svnssh
+
+    if [ -f ~/.ctafconf/share/repos/"$repo".cvs ] ; then
+	. ~/.ctafconf/share/repos/"$repo".cvs
+	echo "cvs checkout : $desc"
+	export CVS_RSH=$rsh
+	export CVSROOT="$server":"$repos"
+	echo cvs co -d "$server":"$repos" $module
+	cvs co $module
+    else
+	if [ -f ~/.ctafconf/share/repos/"$repo".svn ] ; then
+	    export SVN_SSH=$svnssh
+	    echo export SVN_SSH=$svnssh
+	    . ~/.ctafconf/share/repos/"$repo".svn
+	    echo "svn checkout : $desc"
+	    echo svn co "$rsh"://"$server"/"$repos" $module
+	    svn co "$rsh"://"$server"/"$repos" $module
+	else
+	    echo "can't find your repository in ~/.ctafconf/share/repos"
+	fi
+    fi
+}
+
+repo_global ()
+{
+    local name
+    local desc
+    local server
+    local repos
+    local module
+    local rsh
+    local svnssh
+
+    if [ -f ~/.ctafconf/share/repos/"$repo".cvs ] ; then
+	. ~/.ctafconf/share/repos/"$repo".cvs
+	echo "cvs export : $desc"
+	export CVS_RSH=$rsh
+	export CVSROOT="$server":"$repos"
+	echo export CVS_RSH=$rsh
+	echo export CVSROOT="$server":"$repos"
+    else if [ -f ~/.ctafconf/share/repos/"$repo".svn ] ; then
+	   . ~/.ctafconf/share/repos/"$repo".svn
+	   echo "svn export : $desc"
+	   export SVN_SSH=$svnssh
+	   echo export SVN_SSH=$svnssh
+	   echo svn repo url is "$rsh://$server/$repos"
+         else
+	   echo "can't find your repository in ~/.ctafconf/share/repos"
+         fi
+    fi
+}
+
+#update a repository and set export CVS config
+repo_update ()
+{
+    local name
+    local desc
+    local server
+    local repos
+    local module
+    local rsh
+    local svnssh
+
+    if [ -f ~/.ctafconf/share/repos/"$repo".cvs ] ; then
+	. ~/.ctafconf/share/repos/"$repo".cvs
+	echo "cvs update : $desc"
+	export CVS_RSH=$rsh
+	export CVSROOT="$server":"$repos"
+	echo cvs up -d "$server":"$repos" $module
+	cvs up
+    else
+	if [ -f ~/.ctafconf/share/repos/"$repo".svn ] ; then
+	    export SVN_SSH=$svnssh
+	    echo export SVN_SSH=$svnssh
+	    . ~/.ctafconf/share/repos/"$repo".svn
+	    echo "svn update: $desc"
+	    echo svn up "$rsh"://"$server"/"$repos" $module
+	    svn co "$rsh"://"$server"/"$repos" $module
+	else
+	    echo "can't find your repository in ~/.ctafconf/share/repos"
+	fi
+    fi
+}
+
+repo_add ()
+{
+    local desc
+    local name;
+    local server;
+    local repos;
+    local rsh;
+    local module;
+
+    echo "adding a new repository (in ~/.ctafconf/share/repos)"
+
+    echo -n "Is it a cvs or svn repository [svn/cvs] ?"
+    read $readparam cvssvn
+
+    if [ x$cvssvn != "xsvn" ] && [ x$cvssvn != "xcvs" ]; then
+	echo "you should choose between svn and cvs. Exiting"
+	exit 1
+    fi
+    echo "Enter the name of the new repository (eg ctafconf, sourceforge)"
+    echo "The name you will use to manage this repository"
+    echo -n "name ?"
+    read $readparam name
+    if [ -f $name".svn" ] || [ -f $name".cvs" ] ; then
+	echo "This name already exist for one of your repository, Exiting"
+	exit 1
+    fi
+
+    echo ""
+    echo "Enter the server name"
+    echo "localhost (use it at epita): login_l@localhost"
+    echo "sourceforge: login@ssh.sourceforge.net)"
+    echo "outside epita:
+           - sshe should be used as rsh (remenber for later)
+           - login_l@machine (eg: login_l@agla)"
+    echo -n "server ?"
+    read $readparam server
+
+    echo ""
+    echo "Enter the absolute repository path"
+    echo "NEVER USE ~, your home directory is: $(pwd)"
+    echo "(eg: /home/ctaf/svn, /home/ctaf/cvs, /u/a2/login_l/cvs)"
+    echo -n "repos ?"
+    read $readparam repos
+
+    echo ""
+    if [ x$cvssvn = xsvn ]; then
+      echo "Enter your connection method to access the file"
+      echo "it's the url prefix (eg ssh+svn from ssh+svn://server/name))"
+      echo "choose one from: ssh+svn, svn, file, http, sshe, etc..."
+      echo "To connect to epita through the gate use: sshe"
+      echo "else if you don't know what to choose use: svn+ssh"
+      svnssh="ssh"
+    else
+      echo "Enter the rsh you want cvs to use (remote shell)"
+      echo "choose one from: ssh, rsh, sshe, etc ..."
+      echo "sshe could be used to connect to epita through the ssh gate"
+      svnssh=
+    fi
+    echo -n "rsh ?"
+    read $readparam rsh
+    if [ x$rsh == xsshe ] && [ x$cvssvn = xsvn ]; then
+	svnssh=sshe
+	rsh=svn+ssh
+    fi
+    echo ""
+    echo "the module name (or project name) used to checkout"
+    echo -n "module ?"
+    read $readparam module
+
+    echo ""
+    echo -n "Enter one description (avoiding \" ) : "
+    read $readparam desc
+
+    if [ -f ~/.ctafconf/share/repos/"$name".$cvssvn ] ; then
+	echo ~/.ctafconf/share/repos/"$name" already exist.
+	echo "can't add new repository"
+    else
+	filename=~/.ctafconf/share/repos/"$name".$cvssvn
+	echo "#CTAFCONF" >$filename
+	echo "#This file should be used with ct-repo" >>$filename
+	echo "" >>$filename
+	echo "server=\"$server\"" >>$filename
+	echo "repos=\"$repos\"" >>$filename
+	echo "rsh=\"$rsh\"" >>$filename
+	echo "svnssh=\"$svnssh\"" >>$filename
+	echo "module=\"$module\"" >>$filename
+	echo "desc=\"$desc\"" >>$filename
+    fi
+}
+
+if [ x$# = x0 ] ||
+   [ x$action = 'x-h' ] ||
+   [ x$action = 'x--help' ] ; then
+    echo "ct-repo ACTIONS [REPONAME]"
+    echo "Actions possible: "
+    echo " --help, -h, help"
+    echo "    : display this help"
+    echo " --list, -l, list"
+    echo "    : list all repositoy"
+    echo " --checkout, -c, co <reponame>"
+    echo "    : checkout the repository in the current directory"
+    echo " --update, -u, up <reponame>"
+    echo "    : update the repository in the current directory"
+    echo " --commit, -i, ci <reponame>"
+    echo "    : commit the repository in the current directory"
+    echo " --global, -g, global <reponame>"
+    echo "    : set environnement variable for cvs (CVS_RSH, CVSROOT) and svn (SVN_RSH)"
+    echo " --add, -a, add"
+    echo "    : add a new repository"
+    echo " --update-files : update files in ~/.ctafconf/ssh"
+    echo " --dtest : dialog test interface"
+    exit 1
+fi
+
+if [ x$action = 'x--list' ] || [ x$action = xlist ] || [ x$action = 'x-l' ]; then
+    repo_list
+    exit 0
+fi
+
+if [ x$action = 'xco' ] || [ x$action = 'xcheckout' ]  || [ x$action = 'x-c' ]; then
+    repo_checkout
+    exit 0
+fi
+if [ x$action = 'xci' ] || [ x$action = 'x--commit' ]|| [ x$action = 'x-i' ]; then
+    repo_update
+    exit 0
+fi
+
+if [ x$action = 'xup' ] || [ x$action = 'x--update' ]|| [ x$action = 'x-u' ]; then
+    repo_update
+    exit 0
+fi
+
+if [ x$action = 'xadd' ] || [ x$action = 'x--add' ] || [ x$action = 'x-a' ] ; then
+    repo_add
+    exit 0
+fi
+
+if [ x$action = 'xglobal' ] || [ x$action = 'x--global' ]|| [ x$action = 'x-g' ]; then
+    repo_global
+    exit 0
+fi
+
+if [ x$action = 'x--update-files' ] ; then
+    repo_updatefiles
+    exit 0
+fi
+
+if [ x$action = 'x--dtest' ]; then
+rep=$(zenity --title "ctrepo -- Choose your repository:" --file-selection --filename=~/.ctafconf/share/repos/ctafconf.svn 2>/dev/null)
+echo "repo: $rep"
+act=$(zenity --title "ctrepo -- Choose one action:" )
+echo "action: $rep"
+fi

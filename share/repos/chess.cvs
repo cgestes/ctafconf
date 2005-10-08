@@ -1,0 +1,9 @@
+#CTAFCONF
+#This file should be used with ct-repo
+
+server="gestes_c@localhost"
+repos="/u/a2/gestes_c/cvs"
+rsh="ssh"
+svnssh="ssh"
+module="chess"
+desc="chess at epita (localhost)"
