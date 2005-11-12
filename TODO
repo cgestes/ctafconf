@@ -6,6 +6,7 @@ CTAFCONF:
 - xsession : change session "on the fly"
 - top : top mem / top cpu nothing else
 - use sabayon for gnome-conf/ff-conf
+- BUG when .fluxbox have bad permission
 
 ENV
 - visual,editor,shell => emacs else nano,else ..
