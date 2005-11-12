@@ -1,0 +1,44 @@
+#!/bin/sh
+## user-profile.mine for ctafconf in /home/ctaf/.ctafconf/share/mine
+##
+## Made by GESTES Cedric
+## Login   <ctaf@epita.fr>
+##
+## Started on  Tue Oct  4 03:24:42 2005 GESTES Cedric
+## Last update Sat Oct 22 15:21:49 2005 GESTES Cedric
+####
+#THIS FILE SHOULD BE NAMED: user-profile.mine
+#
+#THIS FILE WILL NEVER BE MODIFIED BY THE CTAFCONF
+#It's a personnal file, "autosaved" by ct-save-mine
+####
+
+#Where to store the result of ct-save-ctafconf
+ctafconf_savepath=~/
+
+#Where to store the result of command like ct-save-mine, ct-save-gaim, etcc.)
+ctafconf_persosavepath=~/
+
+#set ctafconf files readonly (if you don't know the answer is yes)
+ctafconf_install_setronly=yes
+#ctafconf_install_ctafconfperm='a-w'
+
+##POSSIBLE CHOICE: ask/no/yes
+##Configuration file to install
+ctafconf_install_zsh=yes
+ctafconf_install_ksh=yes
+ctafconf_install_tcsh=yes
+ctafconf_install_bash=yes
+ctafconf_install_fluxbox=ask
+ctafconf_install_emacs=yes
+ctafconf_install_nano=yes
+ctafconf_install_xbindkeys=yes
+ctafconf_install_torsmo=yes
+ctafconf_install_top=yes
+ctafconf_install_gnomesetting=ask
+
+#xsession and gdm work's well for me, but it's steal a beta feature
+ctafconf_install_gdmkdm=ask
+ctafconf_install_xsession=ask
+ctafconf_install_xinitrc=ask
+
