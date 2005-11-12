@@ -1,3 +1,9 @@
+12/11/2005
+- mod : emacs
+- mod : ct-save-ctafconf
+- mod : install
+- mod : new repo svn: noshell.info
+
 22/10/2005
 - add : emacs: htmlize.el (export code with color to html), tiger.el
 - mod : default user-profile.mine: install console file by default
