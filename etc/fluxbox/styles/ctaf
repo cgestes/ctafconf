@@ -43,7 +43,7 @@ toolbar.label.textColor:             rgb:FF/FF/FF
 toolbar.label.justify:		     right
 
 !WINDOWS NAME
-toolbar.windowLabel:                 Raised Gradient Vertical 
+toolbar.windowLabel:                 Raised Gradient Vertical
 toolbar.windowLabel.color:           rgb:62/70/85
 toolbar.windowLabel.colorTo:         rgb:56/66/75
 toolbar.windowLabel.textColor:       rgb:FF/FF/FF
@@ -91,17 +91,17 @@ window.tab.borderColor:              black
 window.justify:                 center
 window.roundCorners:            TopRight TopLeft BottomLeft BottomRight
 window.bevelWidth:              0
-window.borderWidth:              0
-window.title.height:            16
+window.borderWidth:             0
+window.title.height:            0
 window.handleWidth:             0
 window.alpha:                   150
 
- 
+
 menu.title:                     Flat
 menu.frame:                     Flat
 menu.hilite:                    Sunken
 menu.title.color:               #FFFF00
-menu.title.textColor:           #000000 
+menu.title.textColor:           #000000
 menu.title.justify:             center
 menu.frame.color:               #000000
 menu.frame.textColor:           #D7F020

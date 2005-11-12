@@ -5,92 +5,159 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Fri Sep 30 22:17:33 2005 GESTES Cedric
-## Last update Tue Oct  4 17:55:53 2005 GESTES Cedric
+## Last update Thu Oct 13 06:17:10 2005 cedric gestes
 ##
 ##CTAFCONF
+
+# Available keywords (commands):
+# inspired from 1999-08-07 Markus Gyger <mgyger@gmu.edu>
+#
+#   setenv   <VAR> <value>      # set environment variable
+#   unsetenv <VAR>              # undef environment variable
+#   ifndef   <VAR> <value>      # set variable only if not defined yet
+#   ifnull   <VAR> <value>      # set variable if not defined or empty
+#   append   <VAR> <path>       # append  path separated by :
+#   prepend  <VAR> <path>       # prepend path separated by :
+
+# The following sets up above mentioned commands if they are not native
+# to the used shell already. It looks a bit cryptic because some shells
+# are rather buggy...
+
+#IF
+# test X != "X$sh_" && goto cshish
+#   setenv()   { eval $1=\$2 export $1; }
+#   unsetenv() { unset "$@"; }
+#   ifndef()   { eval $1=\${$1-\$2} export $1; }
+#   ifnull()   { eval $1=\${$1:-\$2} export $1; }
+#   ift()	     { test -$1 $2 }
+#   alias()    { alias $1=$2 }
+#   append()   { eval $1=\${$1:+\$$1${2:+:}}\$2 export $1; }
+#   prepend()  { eval $1=\$2\${$1:+${2:+:}\$$1} export $1; }
+# cat << \: >/dev/null
+# #ELSE
+#  cshish:
+#   alias ifndef  'if (! $?\!:1) setenv \!:1 \!:2'
+#   alias ifnull  'if (! $?\!:1) setenv \!:1; eval " \\
+#       test X != '\''X$\!:1'\'' || setenv \!:1 \!:2"'
+#   alias append  'if (! $?\!:1) setenv \!:1; eval " \\
+#       test X != '\''X$\!:1'\'' && setenv \!:1 $\!:1\:\!:2 || setenv \!:1 \!:2"'
+#   alias prepend 'if (! $?\!:1) setenv \!:1; eval " \\
+#       test X != '\''X$\!:1'\'' && setenv \!:1 \!:2\:$\!:1 || setenv \!:1 \!:2"'
+# :
+#FI
 
 ##need sh_sh sh_csh sh_export
 
 ##include CTAFCONF INFORMATION
-test -f ~/.ctafconf/user-profile || echo "###############################################################"
-test -f ~/.ctafconf/user-profile || echo "##### CTAFCONF: Cant find ~/.ctafconf/user-profile        #####"
-test -f ~/.ctafconf/user-profile || echo "##### CTAFCONF: This file contain the user information    #####"
-test -f ~/.ctafconf/user-profile || echo "##### CTAFCONF: needed by the ctafconf                    #####"
-test -f ~/.ctafconf/user-profile || echo "##### CTAFCONF: You can manage this file with: ct-profile #####"
-test -f ~/.ctafconf/user-profile || echo "###############################################################"
+#ift 'x$1 = xsh' ' \
+# ift "-f ~/.ctafconf/user-profile" " \
+#  echo "###############################################################" \
+#  echo "##### CTAFCONF: Cant find ~/.ctafconf/user-profile        #####" \
+#  echo "##### CTAFCONF: This file contain the user information    #####" \
+#  echo "##### CTAFCONF: needed by the ctafconf                    #####" \
+#  echo "##### CTAFCONF: You can manage this file with: ct-profile #####" \
+#  echo "###############################################################" \
+# ift f ~/.ctafconf/user-profile '. ~/.ctafconf/user-profile'
+# '
+
+source ~/.ctafconf/etc/shell/ctaftools.sh $1
+
+var_set param $1
 # else
-test x$sh_export = "xexport" && test -f ~/.ctafconf/user-profile && . ~/.ctafconf/user-profile
+test x$param = "xsh" && test -f ~/.ctafconf/user-profile && . ~/.ctafconf/user-profile
 
-test x$sh_export = "xsetenv" && test -f ~/.ctafconf/user-profile.csh && source ~/.ctafconf/user-profile.csh
+test x$param = "xcsh" && test -f ~/.ctafconf/user-profile.csh && source ~/.ctafconf/user-profile.csh
 
-# fi
+
+# test -f ~/.ctafconf/user-profile || echo "###############################################################"
+# test -f ~/.ctafconf/user-profile || echo "##### CTAFCONF: Cant find ~/.ctafconf/user-profile        #####"
+# test -f ~/.ctafconf/user-profile || echo "##### CTAFCONF: This file contain the user information    #####"
+# test -f ~/.ctafconf/user-profile || echo "##### CTAFCONF: needed by the ctafconf                    #####"
+# test -f ~/.ctafconf/user-profile || echo "##### CTAFCONF: You can manage this file with: ct-profile #####"
+# test -f ~/.ctafconf/user-profile || echo "###############################################################"
+# # else
+# test x$set_env = "xexport" && test -f ~/.ctafconf/user-profile && . ~/.ctafconf/user-profile
+
+# test x$set_env = "xsetenv" && test -f ~/.ctafconf/user-profile.csh && source ~/.ctafconf/user-profile.csh
+
+# # fi
 
 ###############################
 ## Environment variables export
 ###############################
-$sh_export TERM$sh_exporteq"xterm"
-$sh_export COLORTERM$sh_exporteq"xterm"
+env_set TERM "xterm"
+env_set COLORTERM "xterm"
 #shell for XTERM
 
-$sh_export SHELL$sh_exporteq`which zsh`
+env_set SHELL `which zsh`
 
-$sh_export LS_COLORS$sh_exporteq'no=00:fi=00:di=0;33:ln=01;36:pi=40;33:so=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jpg=01;35:*.gif=01;35:*.bmp=01;35:*.pgm=01;35:*.pbm=01;35:*.ppm=01;35:*.tga=01;35:*.png=01;35:*.GIF=01;35:*.JPG=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.mpg=01;37:*.avi=01;37:*.gl=01;37:*.dl=01;37:*.mly=01;37:*.mll=01;37:*.mli=01;37:*.ml=01;37:*.cpp=01;37:*.cc=01;37:*.c=01;37:*.hh=01;37:*.h=01;37:*Makefile=4;32:*.pl=4;32:*.sh=4;32:*.ps=4;34:*.pdf=4;34:*.txt=01;37:*.tex=01;37:*TODO=01;37'
+env_set LS_COLORS 'no=00:fi=00:di=0;33:ln=01;36:pi=40;33:so=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jpg=01;35:*.gif=01;35:*.bmp=01;35:*.pgm=01;35:*.pbm=01;35:*.ppm=01;35:*.tga=01;35:*.png=01;35:*.GIF=01;35:*.JPG=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.mpg=01;37:*.avi=01;37:*.gl=01;37:*.dl=01;37:*.mly=01;37:*.mll=01;37:*.mli=01;37:*.ml=01;37:*.cpp=01;37:*.cc=01;37:*.c=01;37:*.hh=01;37:*.h=01;37:*Makefile=4;32:*.pl=4;32:*.sh=4;32:*.ps=4;34:*.pdf=4;34:*.txt=01;37:*.tex=01;37:*TODO=01;37'
 
-#$sh_export LANG=ja_JP.eucJP
-#$sh_export LC_CTYPE$sh_exporteq$LANG
-#$sh_export LC_ALL$sh_exporteq$LANG
-#$sh_export XMODIFIERS$sh_exporteq"@im$sh_exporteqkinput2" #for japanese input
+#env_set LANG=ja_JP.eucJP
+#env_set LC_CTYPE $LANG
+#env_set LC_ALL $LANG
+#env_set XMODIFIERS "@im kinput2" #for japanese input
 
-$sh_export NNTPSERVER$sh_exporteq'news.epita.fr'
+env_set NNTPSERVER 'news.epita.fr'
 
 #specify the socks global variable (for runsocks, )
-$sh_export SOCKS5_SERVER$sh_exporteq'socks:1080'
-$sh_export SOCKS5_USER$sh_exporteq"$ctafconf_login"
-$sh_export SOCKS5_PASSWD$sh_exporteq"$ctafconf_home"/.socks
+env_set SOCKS5_SERVER 'socks:1080'
+
+env_set SOCKS5_USER "$ctafconf_login"
+env_set SOCKS5_PASSWD ~/.socks
 
 #specify proxy (for apt, )
-$sh_export http_proxy$sh_exporteq #http://localhost:3128/
-$sh_export ftp_proxy$sh_exporteq #http://localhost:3128/
+#env_set http_proxy  ''#http://localhost:3128/
+#env_set ftp_proxy  ''#http://localhost:3128/
 
 
-$sh_export FULLNAME$sh_exporteq"$ctafconf_name"
-$sh_export REALNAME$sh_exporteq"$ctafconf_name"
+
+env_set FULLNAME "$ctafconf_name"
+env_set REALNAME "$ctafconf_name"
 
 
-$sh_export EADNULLCMD$sh_exporteq'less'
-$sh_export EMAIL$sh_exporteq"$ctafconf_mail"
-$sh_export MAIL$sh_exporteq"/var/mail/$ctafconf_login"
+env_set EADNULLCMD 'less'
+env_set EMAIL "$ctafconf_mail"
+env_set MAIL "/var/mail/$ctafconf_login"
 
 #for debian
-$sh_export DEBEMAIL$sh_exporteq"$ctafconf_mail"
+env_set DEBEMAIL "$ctafconf_mail"
 
 
 #option for less
-$sh_export LESS$sh_exporteq"-cex3M"
+env_set LESS "-cex3M"
 
 #text editor in console mode
-$sh_export VISUAL$sh_exporteq"emacs"
-$sh_export EDITOR$sh_exporteq"emacs"
+env_set VISUAL "emacs"
+env_set EDITOR "emacs"
 
 #used by man, ..
-$sh_export PAGER$sh_exporteq"less"
+env_set PAGER "less"
 
 #cvs variable
-$sh_export CVS_RSH$sh_exporteq"ssh"
+env_set CVS_RSH "ssh"
 
 # if [ -d /usr/pkg/lib ]; then
-#     export LD_LIBRARY_PATH$sh_exporteq$LD_LIBRARY_PATH:/usr/pkg/lib
+#     export LD_LIBRARY_PATH $LD_LIBRARY_PATH:/usr/pkg/lib
 # fi
 
-
 #SETTING PATH
-test -d /usr/sbin && $sh_export PATH$sh_exporteq"$PATH":/usr/sbin
-test -d /sbin && $sh_export PATH$sh_exporteq"$PATH":/sbin
+#ift '-d /usr/sbin' 'env_set PATH "$PATH":/usr/sbin'
+#ift '-d /sbin' 'env_set PATH "$PATH":/sbin'
+#ift '-d ~/.ctafconf/bin' 'env_set PATH "$PATH":$ctafconf_home/.ctafconf/bin:.'
 
-#[ -d /usr/pkg/bin  && PATH$sh_exporteq$PATH:/usr/pkg/bin
-#test -d ~/.ctafconf/bin && PATH$sh_exporteq"$PATH:~/.ctafconf/bin"
-test -d ~/.ctafconf/bin && $sh_export PATH$sh_exporteq"$PATH":$ctafconf_home/.ctafconf/bin:.
+
+test -d /usr/sbin && env_set PATH "$PATH":/usr/sbin
+test -d /sbin && env_set PATH "$PATH":/sbin
+
+#[ -d /usr/pkg/bin  && PATH$sh_exportPATH:/usr/pkg/bin
+
+
+test -d ~/.ctafconf/bin && env_set PATH "$PATH":"$HOME"/.ctafconf/bin:.
+
+#[ -d /usr/pkg/bin  && PATH $PATH:/usr/pkg/bin
+#test -d ~/.ctafconf/bin && PATH "$PATH:~/.ctafconf/bin"
 
 
 #sourcing plateform spécifik
-test x$ctafconf_config != x && test -f ~/.ctafconf/etc/shell/globalenv.$ctafconf_config && . ~/.ctafconf/etc/shell/globalenv.$ctafconf_config
+#ift 'x$ctafconf_config != x -a -f ~/.ctafconf/etc/shell/globalenv.$ctafconf_config' '. ~/.ctafconf/etc/shell/globalenv.$ctafconf_config'

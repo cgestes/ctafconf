@@ -6,3 +6,9 @@
 
 ;;backspace (t, nil)
 ;;(normal-erase-mode-is-backspace t)
+
+;;support de la souris dans les terminaux x (supprime le copier coller)
+;;(xterm-mouse-mode 1)
+
+;;yank to point rather than cursor
+;;(setq mouse-yank-at-point t)

@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Oct  2 23:04:47 2005 GESTES Cedric
-## Last update Thu Oct  6 06:45:17 2005 GESTES Cedric
+## Last update Thu Oct 13 04:46:45 2005 GESTES Cedric
 ##
 #
 # CTAFCONF INSTALLATION
@@ -56,6 +56,7 @@ cttestlink ()
       return 0
   fi
 }
+
 #create a link
 #ctlink src dst
 ctlink ()
@@ -143,10 +144,10 @@ gnomesettings ()
 
       #metacity window
       echo "Setting metacity window shortcut:"
-      echo "<Control><Alt>f fullscreen  <Control><Alt>m maximised"
+      echo "<Control><Alt>f fullscreen  <Control><Alt>m maximized"
       echo "<Control><Alt>w move        <Control><Alt>x resize"
       gconftool-2 --type string --set /apps/metacity/window_keybindings/toggle_fullscreen "<Control><Alt>f"
-      gconftool-2 --type string --set /apps/metacity/window_keybindings/toggle_maximised "<Control><Alt>m"
+      gconftool-2 --type string --set /apps/metacity/window_keybindings/toggle_maximized "<Control><Alt>m"
       gconftool-2 --type string --set /apps/metacity/window_keybindings/begin_move "<Control><Alt>w"
       gconftool-2 --type string --set /apps/metacity/window_keybindings/begin_resize "<Control><Alt>x"
     fi
@@ -307,7 +308,7 @@ if [ x$ctafconf_install_gdmkdm = xyes ] || ( [ x$ctafconf_install_gdmkdm != xno 
 fi
 
 #set default permission on ~/.ctafconf
-chmod -R $ctafconf_install_perm $ctafconf_home/.ctafconf/
+#chmod -R $ctafconf_install_perm ~/.ctafconf/
 
 #setting's for gnome
 gnomesettings

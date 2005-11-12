@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Sep 25 21:51:34 2005 GESTES Cedric
-## Last update Tue Oct  4 16:00:08 2005 GESTES Cedric
+## Last update Thu Oct 13 22:14:37 2005 
 ##
 ##CTAFCONF
 
@@ -56,7 +56,6 @@ showctafconf ()
   echo "login   : $ctafconf_login"
   echo "group   : $ctafconf_group"
   echo "name    : $ctafconf_name"
-  echo "home    : $ctafconf_home"
   echo "mail    : $ctafconf_mail"
   echo "config  : $ctafconf_config"
   echo "wallpp  : $ctafconf_wallpaper"
@@ -75,7 +74,6 @@ shownewconf()
   echo "login   : $login"
   echo "group   : $group"
   echo "name    : $name"
-  echo "home    : $home"
   echo "mail    : $mail"
   echo "config  : $config"
   echo "wallpp  : $wallpaper"
@@ -102,7 +100,6 @@ savenewconf()
   echo "ctafconf_login='$login'"  >> $savefile
   echo "ctafconf_group='$group'" >> $savefile
   echo "ctafconf_name='$name'" >> $savefile
-  echo "ctafconf_home='$home'" >> $savefile
   echo "ctafconf_mail='$mail'" >> $savefile
   echo "ctafconf_config='$config'" >> $savefile
   echo "ctafconf_wallpaper='$wallpaper'" >> $savefile
@@ -131,7 +128,6 @@ savenewconfcsh()
   echo "set ctafconf_login='$login'"  >> $savefile
   echo "set ctafconf_group='$group'" >> $savefile
   echo "set ctafconf_name='$name'" >> $savefile
-  echo "set ctafconf_home='$home'" >> $savefile
   echo "set ctafconf_mail='$mail'" >> $savefile
   echo "set ctafconf_config='$config'" >> $savefile
   echo "set ctafconf_wallpaper='$wallpaper'" >> $savefile
@@ -194,20 +190,6 @@ if [ "x$mail" = x ] ; then
 fi
 
 echo "--------------------------------------"
-echo -n "your system report your current home directory is: "
-echo $HOME
-if [ "x$ctafconf_home" = x ]; then
-  ctafconf_home=$HOME
-fi
-echo "please don't finish with a backslash (/)"
-echo "eg write: /home not /home/"
-echo -n "set your home directory [$ctafconf_home]:"
-read $readparam home
-if [ "x$home" = x ] ; then
-  home=$ctafconf_home
-fi
-
-echo "--------------------------------------"
 echo "choose your wallpaper from the list (include .jpg in your answer):"
 echo $(ls ~/.ctafconf/share/wallpaper)
 if [ x$ctafconf_wallpaper = x ] ; then
@@ -256,7 +238,7 @@ fi
 
 echo "--------------------------------------"
 echo "Choose your wm from the list:"
-echo "fluxbox gnome"
+echo "fluxbox gnome kde xfce4"
 if [ x$ctafconf_wm = x ] ; then
   ctafconf_wm=fluxbox
 fi
@@ -268,7 +250,7 @@ fi
 
 shownewconf
 echo "Save the configuration?"
-echo "I will make a backup of your previous user-profile"
+echo "I will backup your previous user-profile"
 echo -n "Save (y/N)? :"
 read $readparam yesno
 if [ "x$yesno" = xy ] || [ "x$yesno" = xY ] ; then

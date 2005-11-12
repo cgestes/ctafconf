@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Fri Sep 30 22:08:35 2005 GESTES Cedric
-## Last update Tue Oct  4 17:30:21 2005 GESTES Cedric
+## Last update Thu Oct 13 06:19:51 2005 cedric gestes
 ##
 #!/bin/sh
 
@@ -50,22 +50,11 @@ else
 	fi
 fi
 
-#special var for csh/sh difference
-sh_aliaseq="="
-sh_exporteq="="
-sh_export="export"
-
-[ -f ~/.ctafconf/etc/shell/globalenv ] && . ~/.ctafconf/etc/shell/globalenv
-
-
+[ -f ~/.ctafconf/etc/shell/globalenv ] && . ~/.ctafconf/etc/shell/globalenv sh
 
 [ -f ~/.ctafconf/etc/shell/alias ] && . ~/.ctafconf/etc/shell/alias
 
 [ -f ~/.ctafconf/etc/bash/bashprompt ] && . ~/.ctafconf/etc/bash/bashprompt
-
-unset sh_aliaseq
-unset sh_exporteq
-unset sh_export
 
 if [ -f ~/.bashrc.mine ]; then
     source ~/.bashrc.mine

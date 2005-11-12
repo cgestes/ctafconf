@@ -1,4 +1,4 @@
-;;
+;;sdsdq
 ;; .emacs for env in std_env
 ;;
 ;; Made by Cedric GESTES
@@ -8,6 +8,31 @@
 ;;
 ;;CTAFCONF
 
+;;SOURCES:
+;;http://wcube.epita.fr/~eole
+;;
+;;
+
+;;TODO
+;;shortcut: kill one line
+;;c/c++ mode (epita indentation)
+;;bash : tab = 2 space
+;;kill space til one word
+;;list all functions of one file
+
+
+;;(require 'tex-site)
+;;(require 'mpg123)
+;;(require 'un-define)
+;;(require 'bar-cursor)
+;;(require 'crypt++)
+;;; This rulez
+;;(require 'boxquote)
+;;(require 'gnugo)
+;;(require 'emvaders)
+;;; for editing the .Xdefaults file
+;;(require 'xrdb-mode)
+
 ;;; Wrapper to make .emacs self-compiling.
 (defvar init-top-level t)
 (if init-top-level
@@ -15,14 +40,15 @@
       (if (file-newer-than-file-p "~/.emacs" "~/.emacs.elc")
           (progn
             (load "~/.emacs")
-            (byte-compile-file "~/.emacs")
+	    ;;(delete-file "~/.emacs.elc")
+	    (byte-compile-file "~/.emacs")
 	    (load "~/.emacs.elc")
-            ;; Delete the following line if necessary:
+	    ;; Delete the following line if necessary:
 	    ;;            (rename-file "~/.emacsc" "~/.emacs.elc" t)
             )
         (load "~/.emacs.elc")))
   (progn
-
+;;(delete-file "~/.emacs.elc")
 ;;     <current .emacs file here>
 
 ;;eviter les pb de chargement (fichier portable)
@@ -47,11 +73,11 @@
 (load "std.el")
 (load "std_comment.el")
 
-
 (if (file-exists-p "~/.myemacs")
     (load-file "~/.myemacs"))
 (if (file-exists-p "~/.emacs.mine")
     (load-file "~/.emacs.mine"))
+
 
 
 ;;file extension mode
@@ -68,6 +94,10 @@
 	  (".emacs$" . emacs-lisp-mode)
 	  ("*emacs$" . emacs-lisp-mode)
 	  ("\\.tcsh*" . csh-mode)
+          ("\\.[ly]$" . c-mode) ;; bison/flex
+          ("\\.Xdefaults$"    . xrdb-mode)
+          ("\\.Xenvironment$" . xrdb-mode)
+          ("\\.Xresources$"   . xrdb-mode)
 	  )
 	auto-mode-alist)
       )
@@ -87,6 +117,9 @@
 (ido-mode 1)
 ;;;/IDO MODE
 
+;;only space
+;;(setq indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil);
 ;;pour les accents (obselete)
 ;;(standard-display-european 1)
 
@@ -101,6 +134,32 @@
 
 ;;suppression de la toolbar
 (tool-bar-mode 0)
+
+
+;; Auto launch the modes auto-newline et hungry-delete-key
+;;; `auto-newline' goto to the next and indent automaticaly for '{', '}'and ';'
+;;; `hungry-delete-key' delete every space instead of one with backspace.
+(add-hook 'c-mode-hook 'c-toggle-auto-hungry-state)
+(add-hook 'c-mode-hook 'hs-minor-mode)
+(add-hook 'c++-mode-hook 'c-toggle-auto-hungry-state)
+(add-hook 'c++-mode-hook 'hs-minor-mode)
+
+
+(require 'cc-mode)
+(add-to-list 'c-style-alist
+	     '("epita"
+	       (c-basic-offset . 2)
+	       (c-comment-only-line-offset . 0)
+	       (c-hanging-braces-alist     . ((substatement-open before after)))
+	       (c-offsets-alist . ((topmost-intro        . 0)
+				   (substatement         . +)
+				   (substatement-open    . 0)
+				   (case-label           . +)
+				   (access-label         . -)
+				   (inclass              . ++)
+				   (inline-open          . 0)))))
+
+(setq c-default-style "epita")
 
 ;;affiche les lignes et les colonnes dans la barre en bas
 (column-number-mode 1)
@@ -190,7 +249,7 @@
 (setq font-lock-maximum-decoration t)
 
 ;;support de la souris dans les terminaux x
-(xterm-mouse-mode 1)
+(xterm-mouse-mode 0)
 
 ;;show matching parenthese
 (show-paren-mode 1)
@@ -236,6 +295,25 @@
 (global-set-key [S-right]       'next-buffer)
 (global-set-key [S-left]        'prev-buffer)
 
+
+
+;; M-x pc-bindings-mode sets up bindings compatible with many PC editors. In particular, Delete and its variants delete forward instead of backward. Use Backspace to delete backward.
+;; C-Backspace kills backward a word (as C-Delete normally would).
+;; M-Backspace does undo.
+;; Home and End move to beginning and end of line
+;; C-Home and C-End move to beginning and end of buffer.
+;;(pc-bindings-mode)
+;;use shift + left/right to select something
+;;(pc-selection-mode)
+
+(global-set-key "\C-x\C-b" 'electric-buffer-list)
+(global-set-key [delete] 'delete-char)
+(global-set-key [kp-delete] 'delete-char)
+(global-set-key [backward-delete-char] 'backward-delete-char)
+(global-set-key [C-delete] 'kill-word)
+(global-set-key [C-kp-delete] 'kill-word)
+(global-set-key [C-backward-delete-char] 'backward-kill-word)
+
 ;; montre les lignes inutilisées et les limites d'un buffer
 (setq-default indicate-empty-lines t)
 
@@ -258,7 +336,8 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;;change le comportement de backspace et de suppr
-(normal-erase-is-backspace-mode 1)
+;;0 is the default for the linux console
+(normal-erase-is-backspace-mode 0)
 
 ;;;;FONCTIONS
 ;;list-colors-display to display all color
@@ -289,7 +368,6 @@
 ;; easy commenting out of lines
 (autoload 'comment-out-region "comment" nil t)
 
-(global-set-key "\C-cq" 'comment-out-region)
 
 ;;;;CLAVIER
 (global-set-key "\C-c\C-z" 'zlock)
@@ -303,14 +381,26 @@
 (global-set-key [f1] (lambda ()
 		       (interactive)
 		       (manual-entry (current-word))))
+
+(global-set-key [(shift f1)] (lambda ()
+		       (interactive)
+		       (manual-entry (current-word) 3)))
 (global-set-key [f2] 'call-last-kbd-macro)
+(global-set-key [(shift f2)] 'xterm-mouse-mode)
+(global-set-key [f14] 'xterm-mouse-mode)
+
 (global-set-key [f3] 'query-replace)
+(global-set-key [(shift f3)] 'replace-string)
+(global-set-key [f15] 'replace-string)
 
 (global-set-key [f4] 'comment-region)
 (global-set-key [(shift f4)] 'uncomment-region)
+(global-set-key [f16] 'uncomment-region)
 
+(global-set-key [f5] 'term)
 ;;goto line= alt+l
 (global-set-key "\M-l" 'goto-line)
+
 
 ;;test si on est en graphique
 (if window-system
@@ -364,6 +454,8 @@
   ;; custom-set-variables was added by Custom -- don't edit or cut/paste it!
   ;; Your init file should contain only one such instance.
  )
+
+
 
 
 ;;end: configuration emacs / version compile

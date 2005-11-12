@@ -1,8 +1,8 @@
-  --+-- -- --+--
- +-- CTAFCONF --+
-  --+-- -- --+--
+                   --+-- -- -- -- -- -- --+--
+                  +--       CTAFCONF       --+
+                   --+-- -- -- -- -- -- --+--
 
---INSTALL--
+---------------------------INSTALL---------------------------
 untar in your home directory.
 > cd ~
 > tar xvzf ctafconf-DATE.tgz
@@ -14,15 +14,15 @@ parameter possible (for interface): | dialog | gdialog | kdialog | conread
 
 > ./ctafconf-install
 
---UNINSTALL--
+---------------------------UNINSTALL---------------------------
 !!highly experimental!! (use at your own risk)
 ct-uninstall : basic (ask for each file)
 
---REINSTALL/UPDATE--
+---------------------------REINSTALL/UPDATE---------------------------
 overwrite ~/.ctafconf with the new tarball.
 relauch ~/.ctafconf/ctafconf-install
 
---HELP--
+---------------------------HELP---------------------------
 ct-profile : configure your ctafconf profile (wallpaper, wm, mail, etc..)
 ct-installconf : reinstall la ctafconf (et l'install aussi qd mm!)
 ct-repo : admin your repository (svn and cvs)
@@ -32,21 +32,27 @@ ct-socks : set your socks password (mostly for epita)
 
 visit http://www.ctaf.free.fr for more information/help about the ctafconf
 
---DOSSIERS--
+---------------------------FILES---------------------------
 .ctafconf/user-profile      : user configuration modified by ct-profile
 .ctafconf/user-profile.mine : static information (module to install, path)
 
-.ctafconf		root directory
-.ctafconf/etc		containt all the configuration file (zsh,fluxbox,..)
-.ctafconf/bin		ct-profile, ct-installconf, ctssh, ctrepo, ...
+---------------------------FOLDERS---------------------------
+.ctafconf                       root directory
+.ctafconf/etc                   contain all configuration files
+.ctafconf/bin                   ct-profile, ct-installconf, ctssh, ctrepo, ...
 .ctafconf/share/repos		repository for ct-repo (ctrepo)
 .ctafconf/share/wallpaper	wallpaper
 .ctafconf/share/ssh		ssh informations for ctssh
 .ctafconf/share/mine		template file for .mine
 .ctafconf/share/misc		misc
 
+---------------------------Credits---------------------------
+All thoses configurations files have been compiled from a lot's of files from differents places
+
+---------------------------About---------------------------
 Cedric GESTES (goctaf@gmail.com)
 http://www.ctaf.free.fr
+http://www.noshell.info
 
  _____________________________________
 < CTAFCONF? yuhh? MeuuuuuuuuuHHHHHHHH >

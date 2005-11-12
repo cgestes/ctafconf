@@ -1,3 +1,30 @@
+22/10/2005
+- add : emacs: htmlize.el (export code with color to html), tiger.el
+- mod : default user-profile.mine: install console file by default
+- mod : emacs: config file
+- mod : alias: wgetc = wget and continue
+
+14/10/2005
+- mod : emacs: never use tab to indent
+
+13/10/2005
+- mod : xsession support kde
+- add : gnome-setting: metacity, gnome style, gnometerminal profile
+- add : ctaftools.sh : portable function for shell script (sh,csh)
+- mod : globalenv : use ctaftools.sh
+- mod : alias & co : use ctaftools.sh
+- mod : remove ctafconf_home
+- mod : emacs : normal config for backspace, shortcut in console, (shift f2 = xterm mouse)
+- bug : xsession no emergency term
+
+11/10/2005
+- mod : ct-launch (better term)
+- mod : better fluxbox menu
+
+09/10/2005
+- add : ct-launch (launch program, for fluxbox)
+- mod : fluxbox/menu-general: use ct-launch , better menu
+
 05/10/2005
 - add : kshrc (use global env and global alias) (custom prompt)
 - mod : set default permission for ~/.ctafconf : no write access
@@ -77,7 +104,7 @@
 - mod : speedup zsh launch
 - mod : nouveau path pour epita
 - mod : lot's of cleanup
-- mod : move zshrcctaf => zshconf
+- mod : move zshrcctaf to zshconf
 - mod : zshenv : $PATH est mieux genere
 - mod : keys in fluxbox
 - mod : profile

@@ -151,18 +151,10 @@ unset usr_cwd         # cleanup
 
 if ( -f ~/.ctafconf/etc/tcsh/tcshprompt ) source ~/.ctafconf/etc/tcsh/tcshprompt
 
-set sh_aliaseq=" "
-set sh_export="setenv"
-set sh_exporteq=" "
 
-if ( -f ~/.ctafconf/etc/shell/globalenv ) source ~/.ctafconf/etc/shell/globalenv
+
+if ( -f ~/.ctafconf/etc/shell/globalenv ) source ~/.ctafconf/etc/shell/globalenv csh
 
 if ( -f ~/.ctafconf/etc/shell/alias ) source ~/.ctafconf/etc/shell/alias
-
-
-
-unset sh_aliaseq
-unset sh_exporteq
-unset sh_export
 
 if ( -f ~/.tcshrc.mine ) source ~/.tcshrc.mine

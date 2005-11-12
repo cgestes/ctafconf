@@ -33,11 +33,4 @@
 [app] (gaim)
   [Sticky]	{yes}
 [end]
-[app] (Gecko)
-  [Dimensions]	{1024 763}
-  [Position]	{0 181}
-[end]
-[app] (kmail)
-  [Dimensions]	{1023 762}
-  [Position]	{-1 181}
-[end]
+

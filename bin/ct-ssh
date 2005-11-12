@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Mon Sep 26 04:19:16 2005 GESTES Cedric
-## Last update Tue Oct  4 15:04:53 2005 GESTES Cedric
+## Last update Sun Oct  9 03:09:45 2005 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -22,7 +22,7 @@ ssh_params=
 
 ssh_list ()
 {
-  for i in $(ls ~/.ctafconf/ssh) ; do
+  for i in $(ls ~/.ctafconf/share/ssh) ; do
       echo $i
   done
 }

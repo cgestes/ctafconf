@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Mon Sep 26 04:19:16 2005 GESTES Cedric
-## Last update Tue Oct  4 15:05:12 2005 GESTES Cedric
+## Last update Sun Oct 23 06:01:16 2005 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -87,12 +87,12 @@ repo_checkout ()
 	cvs co $module
     else
 	if [ -f ~/.ctafconf/share/repos/"$repo".svn ] ; then
-	    export SVN_SSH=$svnssh
-	    echo export SVN_SSH=$svnssh
+	    export SVN_SSH=$rsh
+	    echo export SVN_SSH=$rsh
 	    . ~/.ctafconf/share/repos/"$repo".svn
 	    echo "svn checkout : $desc"
-	    echo svn co "$rsh"://"$server"/"$repos" $module
-	    svn co "$rsh"://"$server"/"$repos" $module
+	    echo svn co "$svnssh"://"$server"/"$repos" $module
+	    svn co "$svnssh"://"$server"/"$repos" $module
 	else
 	    echo "can't find your repository in ~/.ctafconf/share/repos"
 	fi

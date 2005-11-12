@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Thu Oct  6 04:55:46 2005 GESTES Cedric
-## Last update Thu Oct  6 06:50:23 2005 cedric gestes
+## Last update Thu Oct 13 05:03:58 2005 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -18,23 +18,21 @@ set -o emacs
 
 alias source=.
 sh_aliaseq="="
-sh_export="export"
-sh_exporteq="="
 
 if [ -f ~/.ctafconf/etc/ksh/kshprompt ]; then
     . ~/.ctafconf/etc/ksh/kshprompt
 fi
 
 if [ -f ~/.ctafconf/etc/shell/globalenv ]; then
-    . ~/.ctafconf/etc/shell/globalenv
+    . ~/.ctafconf/etc/shell/globalenv sh
 fi
+
 if [ -f ~/.ctafconf/etc/shell/alias ]; then
     . ~/.ctafconf/etc/shell/alias
 fi
 
 unset sh_aliaseq
-unset sh_exporteq
-unset sh_export
+
 
 if [ -f ~/.kshrc.mine ]; then
     . ~/.kshrc.mine

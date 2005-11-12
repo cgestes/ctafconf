@@ -1,11 +1,11 @@
 #!/bin/sh
 ## ctafinfo.sh for ctafconf in /ctaf/conf
-## 
+##
 ## Made by root
 ## Login   <root@epita.fr>
-## 
+##
 ## Started on  Fri Feb 18 16:13:08 2005 root
-## Last update Mon Sep 26 17:30:27 2005 GESTES Cedric
+## Last update Thu Oct 13 22:15:00 2005 
 ##
 ##ORIGINALY FROM CTAFCONF
 
@@ -14,7 +14,7 @@
 ##
 
 if ! [ $# -eq 1 ]; then
-  echo "usage: ctafinfo <login|name|group|home|wm";
+  echo "usage: ctafinfo <login|name|group|wm";
   echo "                 |config|sudo|wallpaper|zprompt>";
   exit
 fi
@@ -31,12 +31,6 @@ fi
 #UID
 if [ "x$info_wanted" = "xlogin" ]; then
   echo $ctafconf_login
-  exit 0
-fi
-
-#HOMEDIR
-if [ "x$info_wanted" = "xhome" ]; then
-  echo $ctafconf_home
   exit 0
 fi
 
@@ -79,5 +73,5 @@ if [ "x$info_wanted" = "xwm" ]; then
   exit 1
 fi
 
-echo "pleaze select a valid option: login|group|name|home|config|sudo|wallpaper|zprompt wm"
+echo "pleaze select a valid option: login|group|name|config|sudo|wallpaper|zprompt wm"
 exit 2

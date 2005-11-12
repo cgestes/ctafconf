@@ -5,7 +5,7 @@
 ## Login   <gestes_c@epita.fr>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 root
-## Last update Tue Oct  4 14:43:01 2005 GESTES Cedric
+## Last update Thu Oct 13 06:08:47 2005 cedric gestes
 ##
 ##CTAFCONF
 
@@ -14,8 +14,9 @@
 ## commands aliases
 ###################
 
-test x`uname` = xNetBSD && alias ls$sh_aliaseq'/u/dp/public/arch/i386-NetBSD/bin/gnu-ls -F --color=tty'
+test x`uname` = xNetBSD && alias_unset ls
+test x`uname` = xNetBSD && alias_set ls '/u/dp/public/arch/i386-NetBSD/bin/gnu-ls -F --color=tty'
 
 #alias mandp$sh_aliaseq'man -M "`cat /u/dp/public/etc/dp_manpath 2>/dev/null`"'
 
-alias svctaf$sh_aliaseq'runsocks ct-repo co ctafconf'
+alias_set svctaf 'runsocks ct-repo co ctafconf'
