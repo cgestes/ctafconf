@@ -1,0 +1,9 @@
+#CTAFCONF
+#This file should be used with ct-repo
+
+server="u38928862@noshell.info"
+repos="/kunden/homepages/45/d139660639/htdocs/svn/delosfs"
+rsh="ssh"
+svnssh="svn+ssh"
+module="delosfs"
+desc="test on noshell"

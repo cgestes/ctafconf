@@ -1,0 +1,7 @@
+#CTAFCONF
+#ctssh
+
+server="noshell.info"
+user="u38928862"
+command=""
+desc="noshell"

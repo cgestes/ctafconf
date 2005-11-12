@@ -1,0 +1,87 @@
+#!/bin/sh
+## ct-launch for ctafconf in /home/ctaf/.ctafconf/bin
+##
+## Made by GESTES Cedric
+## Login   <ctaf@epita.fr>
+##
+## Started on  Sun Oct  9 22:15:03 2005 GESTES Cedric
+## Last update Tue Oct 11 19:09:42 2005 GESTES Cedric
+##
+##CTAFCONF
+
+param=$1
+param2=$2
+
+ctafconf_sudo=
+source ~/.ctafconf/user-profile >/dev/null 2>/dev/null
+
+errorcantfind ()
+{
+  local msg=$1
+  #how to notify user, we cant find one program? (xdialog?)
+}
+
+if [ x$param = xsudo ] && ! [ x$param2 = x ] ; then
+  if [ x$ctafconf_sudo = x ]; then
+    $param2
+  else
+    $ctafconf_sudo $param2
+  fi
+  exit
+fi
+
+if [ x$param = xexec ] && ! [ x$param2 = x ] ; then
+  if which $param2 >/dev/null 2>/dev/null ; then
+    exec $param2
+  else
+    errorcantfind $param2
+  fi
+  exit
+fi
+
+#firefox
+if [ x$param = xff ]; then
+  if which firefox 2>/dev/null >/dev/null; then
+    `which firefox`
+    exit
+  fi
+  if which mozilla-firefox >/dev/null 2>/dev/null ; then
+     `which mozilla-firefox`
+     exit
+  fi
+fi
+
+#thunderbird
+if [ x$param = xtb ]; then
+  if which mozilla-thunderbird >/dev/null 2>/dev/null ; then
+      `which mozilla-thunderbird`
+      exit
+  fi
+
+  if which thunderbird 2>/dev/null >/dev/null ; then
+      `which thunderbird`
+      exit
+  fi
+fi
+
+#term
+if [ x$param = xterm ] || [ x$param = xtermrev ] ; then
+  [ x$param = xterm ] && termparam="-fg white -bg black"
+  [ x$param = xtermrev ] && termparam="-fg black -bg white"
+  if which gnome-terminal >/dev/null 2>/dev/null ; then
+      `which gnome-terminal`
+      exit
+  fi
+  if which Eterm >/dev/null 2>/dev/null ; then
+      `which Eterm --trans --buttonbar 0 --scrollbar=off -O --shade 75`
+      exit
+  fi
+  if which aterm >/dev/null 2>/dev/null ; then
+      `which aterm $termparam`
+      exit
+  fi
+  if which xterm >/dev/null 2>/dev/null ; then
+      `which xterm $termparam`
+      exit
+  fi
+fi

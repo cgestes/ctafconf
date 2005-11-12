@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=No name
+Type=Application
+Exec=mozilla-thunderbird
+TryExec=
+Icon=/usr/share/pixmaps/mozilla-thunderbird.xpm
+X-GNOME-DocPath=
+Terminal=false
+Name[en_GB]=thunderbird
+GenericName[en_GB]=
+Comment[en_GB]=

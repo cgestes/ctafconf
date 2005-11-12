@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=No name
+Type=Application
+Exec=firefox
+TryExec=
+X-GNOME-DocPath=
+Terminal=false
+Name[en_GB]=Firefox
+GenericName[en_GB]=
+Comment[en_GB]=
+Icon=/usr/share/pixmaps/mozilla-firefox.png

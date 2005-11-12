@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Exec=gnome-terminal
+TryExec=
+Icon=/usr/share/pixmaps/gnome-term-tiger.png
+X-GNOME-DocPath=
+Terminal=false
+Name[en_GB]=Terminal
+GenericName[en_GB]=Term
+Comment[en_GB]=
