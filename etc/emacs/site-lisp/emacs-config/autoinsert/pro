@@ -1,0 +1,17 @@
+# |||.pro
+#
+# Jan Borsodi <jbfdata@online.no>
+# Last change: Time-stamp: <>
+#
+
+PROJECT			= |||
+CONFIG			= warn_on debug
+
+OBJECTS_DIR		= obj
+
+HEADERS			=
+
+SOURCES			= \
+			  main.cpp
+
+TARGET			= @@@

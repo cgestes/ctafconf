@@ -1,0 +1,7 @@
+"@CLASS_NAME@"	(upcase (substring tpl-file-name 0 -2))
+"@USER-LOGIN@"      tpl-user-login
+"@USER-NAME@"       tpl-user-name
+"@DATE-STAMP@"      tpl-date-stamp
+"@HOST@"            tpl-host
+"@YEAR@"	    tpl-year
+"@Id@"              (concat () "Id")

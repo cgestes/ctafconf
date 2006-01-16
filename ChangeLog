@@ -1,3 +1,15 @@
+2006-01-16  GESTES Cedric  <ctaf@CTAF-DEB.ctafland>
+	* etc/emacs/emacs ("~/.ctafconf/etc/emacs/startup.emacs"): tac
+
+16/01/2005
+- mod : shfunctions: rpurge_cvs, rpurge_svn
+- mod : emacs add ECB,CEDET,ILISP, lots of .el file
+- mod : split emacs config file
+- mod : handle error in .emacs
+
+15/01/2005
+- mod : emacs (norme, cparse, ctype, cpcomment, ...)
+
 12/11/2005
 - mod : emacs
 - mod : ct-save-ctafconf

@@ -1,0 +1,4 @@
+;;(blink-cursor-mode nil)
+;;(set-cursor-color "yellow")
+(set-terminal-coding-system 'latin-1)
+(set-keyboard-coding-system 'latin-1)

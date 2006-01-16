@@ -1,0 +1,9 @@
+"@FILE-NAME@"       tpl-file-name
+"@USER-LOGIN@"      tpl-user-login
+"@USER-NAME@"       tpl-user-name
+"@DATE-STAMP@"      tpl-date-stamp
+"@HOST@"            tpl-host
+"@IFDEF@"           (concat (upcase (subst-char-in-string ?- ?_ (substring tpl-file-name 0 -4))) "_HXX_")
+"@ENDIFDEF@"        (concat "!" (upcase (subst-char-in-string ?- ?_ (substring tpl-file-name 0 -4))) "_HXX_")
+"@YEAR@"	    tpl-year
+"@Id@"              (concat () "Id")

@@ -1,0 +1,8 @@
+"@FILE-NAME@"       tpl-file-name
+"@INCLUDE-NAME@"    (concat (substring tpl-file-name 0 -1) "h")
+"@USER-LOGIN@"      tpl-user-login
+"@USER-NAME@"       tpl-user-name
+"@DATE-STAMP@"      tpl-date-stamp
+"@HOST@"            tpl-host
+"@YEAR@"	    tpl-year
+"@Id@"              (concat () "Id")

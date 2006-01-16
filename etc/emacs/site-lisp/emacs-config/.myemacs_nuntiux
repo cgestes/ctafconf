@@ -1,0 +1,70 @@
+;;
+;; .myemacs for NunTiuX's Emacs Configuration in
+;;
+;; Made by Samuel
+;; Login   <samuel.pasquier@epita.fr>
+;;
+;; Started on  Wed Jan 30 16:12:28 2002 Samuel
+;;
+
+
+(global-set-key "" 'std-file-header)
+
+(iso-accents-mode t)
+(standard-display-european t)
+
+(setq user-full-name "Samuel Pasquier")
+(setq user-nickname "Samuel Pasquier")
+(setq user-login-name "samuel")
+;; pour l @ des comment
+(setq system-name "happycoders.org")
+
+(setq smtpmail-local-domain "happycoders.org")
+(setq mail-host-address "happycoders.org")
+(setq column-number-mode 1 )
+
+(setq font-lock-maximum-size
+      (if font-lock-maximum-decoration (* 70 1024) (* 150 1024)))
+(setq my_font "-misc-*-*-*-*-*-15-*-*-*-*-*-*-*")
+
+(set-face-background 'modeline          "DodgerBlue1")
+(set-face-foreground 'modeline          "white")
+
+(setq initial-frame-alist nil)
+(add-to-list 'default-frame-alist
+      '(background-color . "Black"))
+(add-to-list 'default-frame-alist
+      '(foreground-color . "white"))
+(add-to-list 'default-frame-alist
+      '(cursor-color . "yellow"))
+
+(setq tags-table-list
+      '("/usr/src"))
+
+;;(set-face-background 'region          "yellow")
+
+(setq-default show-trailing-whitespace t)
+;;(setq write-file-hooks (cons 'delete-trailing-whitespace
+;;                           write-file-hooks))
+
+;; -- APACHE Configuration
+;;(autoload 'apache-mode "~/my-emacs-config/apache-mode.el" "autoloaded" t)
+;;(add-to-list 'auto-mode-alist '("\\.htaccess$"   . apache-mode))
+;;(add-to-list 'auto-mode-alist '("httpd\\.conf$"  . apache-mode))
+;;(add-to-list 'auto-mode-alist '("srm\\.conf$"    . apache-mode))
+;;(add-to-list 'auto-mode-alist '("access\\.conf$" . apache-mode))
+
+;;(autoload 'pf-mode "~/my-emacs-config/pf-mode.el" "autoloaded" t)
+;;(add-to-list 'auto-mode-alist '("pf\\.conf$"   . pf-mode))
+
+;; -- CORRECTION AUTOMATIQUE
+(require 'flyspell)
+;;(add-hook 'text-mode-hook 'flyspell-mode)
+
+(custom-set-variables
+   '(flyspell-dictionaries-that-consider-dash-as-word-delimiter (quote
+         ("francais")))
+   '(flyspell-default-dictionary "francais"))
+
+;; Doxymacs
+(add-hook 'c-mode-common-hook 'doxymacs-mode)
