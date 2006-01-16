@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:13:33 2006 GESTES Cedric
-;; Last update Mon Jan 16 02:09:42 2006 GESTES Cedric
+;; Last update Mon Jan 16 06:52:20 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: SETTINGS.EMACS")
 
@@ -31,9 +31,16 @@
 ;;suppression de la toolbar
 (tool-bar-mode 0)
 
+;;supprime la scrollbar
+(scroll-bar-mode -1)
+
+;; Avoid those crappy "tooltips":
+(setq tooltip-delay 9999)
+
 ;;ne coupe pas les ligne avec des $
 (set-variable 'truncate-partial-width-windows nil)
 
+(setq-default truncate-lines t)
 ;;affiche les lignes et les colonnes dans la barre en bas
 (column-number-mode 1)
 (line-number-mode 1)
@@ -108,8 +115,22 @@
 ;;show matching parenthese
 (show-paren-mode 1)
 
+;; Non-nil means try to flash the frame to represent a bell.
+(setq visible-bell nil)
+
 ;; montre les lignes inutilisées et les limites d'un buffer
 (setq-default indicate-empty-lines t)
+
+;; A more fine-grained minibuffer completion feedback scheme.
+;; Prospective completions are concisely indicated within the
+;; minibuffer itself, with each successive keystroke.
+(icomplete-mode t)
+
+;; Non-nil if searches should ignore case
+;;(setq case-fold-search t)
+
+;; Non-nil means query-replace should preserve case in replacements
+;;(setq case-replace t)
 
 ;; s'assurer que les fichiers comportent un retour a la ligne en fin
 ;; nil      n'ajoute pas de newline

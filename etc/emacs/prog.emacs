@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:14:21 2006 GESTES Cedric
-;; Last update Mon Jan 16 02:13:49 2006 GESTES Cedric
+;; Last update Mon Jan 16 09:57:06 2006 GESTES Cedric
 ;;
 
 (message "ctafconf loading: PROG.EMACS")
@@ -22,9 +22,9 @@
 (ctypes-auto-parse-mode 1)
 
 ;;scanne le dossier courant a la recherche de nouveau type
-(lambda()
-  (interactive)
-  (ctypes-dir "."))
+;;(lambda()
+;;  (interactive)
+;;  (ctypes-dir "."))
 
 ;;CPARSE ;;;;;;;;;;;;;;;;;;;;;;;
 ;;activation de cparse: c en anglais, mais tt est dit ..
@@ -52,7 +52,6 @@ make any needed substitutions to update the header file.  If the
 function is static, then create needed stuff in this c file for the
 prototype." t)
 
-;;CWARN ;;;;;;;;;;;;;;;;;;;;;;;
 
 (defvar c-mode-map)
 ;; encore kkes key binding pour utiliser cparse..
@@ -68,6 +67,9 @@ prototype." t)
 ;;test it
 ;;(add-hook c++-mode-hook 'cparse-setup-keybindings)
 
+;;CWARN (for old emacs i think)
+;;(require 'cwarn)
+;;(global-cwarn-mode 1)
 
 ;; Auto launch the modes auto-newline et hungry-delete-key
 ;;; `auto-newline' goto to the next and indent automaticaly for '{', '}'and ';'
@@ -76,6 +78,9 @@ prototype." t)
 ;;(add-hook 'c-mode-hook 'hs-minor-mode)
 (add-hook 'c++-mode-hook 'c-toggle-auto-hungry-state)
 ;;(add-hook 'c++-mode-hook 'hs-minor-mode)
+
+(load-file "~/.ctafconf/etc/emacs/site-lisp/emacs-config/echeck.el")
+(load-file "~/.ctafconf/etc/emacs/site-lisp/emacs-config/norme.el")
 
 ;; (require 'cc-mode)
 ;; (add-to-list 'c-style-alist
@@ -107,6 +112,8 @@ prototype." t)
 ;; Load CEDET
 (condition-case err
     (progn
+      ;;(setq semantic-load-turn-useful-things-on t)
+      (setq semantic-load-turn-everything-on t)
       (load-file "~/.ctafconf/etc/emacs/site-lisp/cedet/common/cedet.el")
       ;; Enabling various SEMANTIC minor modes.  See semantic/INSTALL for more ideas.
       ;; Select one of the following:
@@ -120,9 +127,17 @@ prototype." t)
       ;; (semantic-load-enable-guady-code-helpers)
       ;; * This turns on which-func support (Plus all other code helpers)
       (semantic-load-enable-excessive-code-helpers)
-      ;;(semantic-idle-completions-mode)
       ;;S-SPC
       (global-set-key '[33554464] 'semantic-complete-analyze-inline)
+      (global-semantic-show-unmatched-syntax-mode 1)
+      (global-semantic-show-parser-state-mode 1)
+      (global-semantic-decoration-mode 1)
+      (global-semantic-idle-completions-mode 1)
+      (global-semantic-highlight-edits-mode 1)
+      (global-semantic-stickyfunc-mode 1)
+
+      (global-highlight-changes 1)
+
       ;;(global-set-key "\C-SPC" 'semantic-complete-analyze-inline)
       ;; This turns on modes that aid in grammar writing and semantic tool
       ;; development.  It does not enable any other features such as code
@@ -136,8 +151,10 @@ prototype." t)
 
 (condition-case err
     (progn
+;;      (setq ecb-auto-activate t)
+      (setq ecb-tip-of-the-day nil)
       (require 'ecb nil t)
-      ;;(require 'ecb-autoloads)
+;;      (require 'ecb-autoloads)
       )
   (error
    (message "Cannot load ecb %s" (cdr err))))
@@ -145,22 +162,22 @@ prototype." t)
 
 
 ;;ilisp mode;;;;;;;;;;;;;;;;;;;;;;;
-(condition-case err
-    (if (file-exists-p "~/.ctafconf/etc/emacs/site-lisp/ilisp/ilisp.el")
-        (progn
-          ;;support extension file
-          (set-default 'auto-mode-alist
-                       (append '(("\\.lisp$" . lisp-mode)
-                                 ("\\.lsp$" . lisp-mode)
-                                 ("\\.cl$" . lisp-mode))
-                               auto-mode-alist))
-          ;;C-c evalue l'exprression sur laquel le pointeur se trouve
-          (setq lisp-mode-hook '(lambda () (require 'ilisp)
-                                  (local-set-key "\C-c" 'eval-defun-lisp)))
-          ;;pas de popup, scrollauto de la fenetre ilisp
-            (setq ilisp-mode-hook '(lambda ()
-                                     (setq lisp-no-popper t)
-                                     (setq comint-always-scroll t)))
-            (require 'ilisp)))
-  (error
-   (message "Cannot load ilisp %s" (cdr err))))
+;; (condition-case err
+;;     (if (file-exists-p "~/.ctafconf/etc/emacs/site-lisp/ilisp/ilisp.el")
+;;         (progn
+;;           ;;support extension file
+;;           (set-default 'auto-mode-alist
+;;                        (append '(("\\.lisp$" . lisp-mode)
+;;                                  ("\\.lsp$" . lisp-mode)
+;;                                  ("\\.cl$" . lisp-mode))
+;;                                auto-mode-alist))
+;;           ;;C-c evalue l'exprression sur laquel le pointeur se trouve
+;;           (setq lisp-mode-hook '(lambda () (require 'ilisp)
+;;                                   (local-set-key "\C-c" 'eval-defun-lisp)))
+;;           ;;pas de popup, scrollauto de la fenetre ilisp
+;;             (setq ilisp-mode-hook '(lambda ()
+;;                                      (setq lisp-no-popper t)
+;;                                      (setq comint-always-scroll t)))
+;;             (require 'ilisp)))
+;;   (error
+;;    (message "Cannot load ilisp %s" (cdr err))))

@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Mon Jan 16 02:09:53 2006 GESTES Cedric
+;; Last update Mon Jan 16 09:59:51 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: STARTUP.EMACS")
 
@@ -52,6 +52,10 @@
 ;;  - list all functions of one file
 ;;  - safe load
 ;;  - prev/next buffer
+;;  - cwarn mode (global-cwarn-mode)
+;;  - prev/next buffer
+;;  - truncate line
+;;  - cparse/ctype is now integrated into semantic
 ") "Initial message displayed in *scratch* buffer at startup.
 If this is nil, no message will be displayed."
   :type 'string)

@@ -34,7 +34,7 @@
   (interactive)
   (save-excursion
     (progn
-      (while 
+      (while
           (progn
             (search-backward "{")
             (setq col (current-column))
@@ -55,7 +55,7 @@
       (setq diff (- (point) start))
       (if (>= diff 80)
           (message "Error %d chars !" diff)))))
-          
+
 (defun ec-main (start end len)
 ;  (interactive "P")
 ;  (ec-line-count-char-msg)
@@ -95,7 +95,7 @@
 
 (defun ec-highlight-regexps(regexplist)
 
-  (setq regexplist (list 
+  (setq regexplist (list
    "[^ =+*/%<>!-]\\(=\\)"               ;pas n'importe quoi avant le =
    "\\(=\\)[^ =]"                       ;soit un espace soit un autre = apres un =
    "[^ ]\\(*\\||\\/\\)"			;pas d'espace avant operateur binaire pas unaire
@@ -135,18 +135,3 @@
       (forward-line -1))
     (back-to-indentation)
     (eq (char-after) ?#)))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
