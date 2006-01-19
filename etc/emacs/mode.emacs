@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 00:57:16 2006 GESTES Cedric
-;; Last update Mon Jan 16 02:24:54 2006 GESTES Cedric
+;; Last update Thu Jan 19 16:07:55 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: MODE.EMACS")
 
@@ -88,3 +88,9 @@
 ;;auto-template for .cc, .c, .h, .hh, ...
 (setq auto-template-dir "~/.ctafconf/etc/emacs/templates/")
 (require 'auto-template "auto-template.el")
+
+;;; bubble-buffer
+(when (require 'bubble-buffer nil t)
+  (global-set-key [f11] 'bubble-buffer-next)
+  (global-set-key [(shift f11)] 'bubble-buffer-previous))
+(setq bubble-buffer-omit-regexp "\\(^ .+$\\|\\*Messages\\*\\|*compilation\\*\\|\\*.+output\\*$\\|\\*TeX Help\\*$\\|\\*vc-diff\\*\\|\\*Occur\\*\\|\\*grep\\*\\|\\*cvs-diff\\*\\|\\*modelsim\\*\\)")

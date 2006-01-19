@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Mon Jan 16 09:59:51 2006 GESTES Cedric
+;; Last update Thu Jan 19 16:06:03 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: STARTUP.EMACS")
 
@@ -17,14 +17,15 @@
 ;;
 ;; [S-left]     previous buffer         [S-right]       next buffer
 ;; [C-TAB]      change window           [C-c C-z]       zlock
-;; [F1]         man                     [S-F1]
+;; [C-backspace]join-line               [C-b ]          buffer list
+;; [F1]         SHOW THIS HELP          [S-F1]          man
 ;; [F2]         check norme (epita)     [S-F2]          xterm-mouse on/off
 ;; [F3]         query-replace           [S-F3]          replace-string
 ;; [F4]         comment-region          [S-F4]          uncomment-region
 ;; [F5]         terminal                [S-F5]          speedbar
 ;; [F6]		Switch other buffer
 ;; [F7]		SpeedBar
-;; [F8]		Compile
+;; [F8]		Compile                 [S-F8]          debug
 ;; [F9]		Reindent current-file
 ;; [F10]	Reindent a Directory
 ;; [F11]	show ecb (code browser) [S-F11]         hide ecb (code browser)
@@ -56,6 +57,9 @@
 ;;  - prev/next buffer
 ;;  - truncate line
 ;;  - cparse/ctype is now integrated into semantic
+;;  - working directory for gdb/compile
+;;  - F1 -> scratch buffer
+;;  - switch key for group of windows in ecb
 ") "Initial message displayed in *scratch* buffer at startup.
 If this is nil, no message will be displayed."
   :type 'string)

@@ -1,11 +1,11 @@
-2006-01-16  GESTES Cedric  <ctaf@CTAF-DEB.ctafland>
-	* etc/emacs/emacs ("~/.ctafconf/etc/emacs/startup.emacs"): tac
+2006-01-19  CTAF <>
+	* emacs : key bindings, electricbuffer, bubblebuffer
 
-16/01/2005
-- mod : shfunctions: rpurge_cvs, rpurge_svn
-- mod : emacs add ECB,CEDET,ILISP, lots of .el file
-- mod : split emacs config file
-- mod : handle error in .emacs
+2006-01-16  GESTES Cedric <>
+	* mod : shfunctions=> rpurge_cvs, rpurge_svn
+	* mod : emacs add ECB,CEDET,ILISP, lots of .el file
+	* mod :	split emacs config file
+	* mod :	handle error in .emacs
 
 15/01/2005
 - mod : emacs (norme, cparse, ctype, cpcomment, ...)
