@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Fri Sep 30 22:17:33 2005 GESTES Cedric
-## Last update Thu Oct 13 06:17:10 2005 cedric gestes
+## Last update Tue Jan 24 14:04:26 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -60,6 +60,7 @@
 # ift f ~/.ctafconf/user-profile '. ~/.ctafconf/user-profile'
 # '
 
+echo "## loading ctafconf (ct-help for help) ##"
 source ~/.ctafconf/etc/shell/ctaftools.sh $1
 
 var_set param $1

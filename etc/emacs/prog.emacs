@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:14:21 2006 GESTES Cedric
-;; Last update Mon Jan 16 09:57:06 2006 GESTES Cedric
+;; Last update Fri Jan 20 16:47:42 2006 GESTES Cedric
 ;;
 
 (message "ctafconf loading: PROG.EMACS")
@@ -66,6 +66,10 @@ prototype." t)
 (add-hook 'c-mode-common-hook 'cparse-setup-keybindings)
 ;;test it
 ;;(add-hook c++-mode-hook 'cparse-setup-keybindings)
+
+;; Compilation Options
+(setq compile-command "make -k")
+(setq compilation-window-height 20)
 
 ;;CWARN (for old emacs i think)
 ;;(require 'cwarn)

@@ -8,6 +8,7 @@ CTAFCONF:
 - use sabayon for gnome-conf/ff-conf
 - BUG when .fluxbox have bad permission
 - BUG read and socks (read passwd) (just ask for socks?)
+- ctafconf.sh => add color for all term (CT_RED,CT_YELLOW,..) and for prompt
 
 ENV
 - visual,editor,shell => emacs else nano,else ..

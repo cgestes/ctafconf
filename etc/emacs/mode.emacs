@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 00:57:16 2006 GESTES Cedric
-;; Last update Thu Jan 19 16:07:55 2006 GESTES Cedric
+;; Last update Fri Jan 20 16:36:22 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: MODE.EMACS")
 
@@ -92,5 +92,17 @@
 ;;; bubble-buffer
 (when (require 'bubble-buffer nil t)
   (global-set-key [f11] 'bubble-buffer-next)
-  (global-set-key [(shift f11)] 'bubble-buffer-previous))
+  (global-set-key [(shift f11)] 'bubble-buffer-previous)
+  (message "bobo le lapin est un tout naze")
 (setq bubble-buffer-omit-regexp "\\(^ .+$\\|\\*Messages\\*\\|*compilation\\*\\|\\*.+output\\*$\\|\\*TeX Help\\*$\\|\\*vc-diff\\*\\|\\*Occur\\*\\|\\*grep\\*\\|\\*cvs-diff\\*\\|\\*modelsim\\*\\)")
+
+(when (require 'ibuffer "ibuffer" t)
+  (setq ibuffer-shrink-to-minimum-size t)
+  ;;(setq ibuffer-always-show-last-buffer ':nomini)
+  (setq ibuffer-always-show-last-buffer nil)
+  (setq ibuffer-sorting-mode 'recency)
+  (setq ibuffer-use-header-line t)
+  (setq ibuffer-formats '((mark modified read-only " " (name 30 30)
+                                " " (size 6 -1) " " (mode 16 16) " " filename)
+                          (mark " " (name 30 -1) " " filename)))
+  (define-key ibuffer-mode-map (kbd "#") 'ibuffer-switch-format))

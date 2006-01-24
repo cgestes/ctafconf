@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:13:33 2006 GESTES Cedric
-;; Last update Mon Jan 16 06:52:20 2006 GESTES Cedric
+;; Last update Tue Jan 24 14:09:56 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: SETTINGS.EMACS")
 
@@ -38,9 +38,10 @@
 (setq tooltip-delay 9999)
 
 ;;ne coupe pas les ligne avec des $
-(set-variable 'truncate-partial-width-windows nil)
+;;(set-variable 'truncate-partial-width-windows nil)
 
-(setq-default truncate-lines t)
+;;(setq-default truncate-lines t)
+
 ;;affiche les lignes et les colonnes dans la barre en bas
 (column-number-mode 1)
 (line-number-mode 1)
