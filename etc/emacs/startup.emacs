@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Thu Jan 19 16:06:03 2006 GESTES Cedric
+;; Last update Sat Jan 28 03:29:48 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: STARTUP.EMACS")
 
@@ -45,6 +45,8 @@
 ;; c-x c-e :evaluate elisp expression
 ;; c-x 4 a :add one entry to the ChangeLog
 
+;; when opening file [C-UP], [C-DOWN] move up and down into the history
+;; normal open file [C-x f] then [C-f] (to open new file with a name shorter than one already existing)
 ;; === TODO ===
 ;;  - shortcut: kill one line
 ;;  - c/c++ mode (epita indentation)
@@ -60,6 +62,9 @@
 ;;  - working directory for gdb/compile
 ;;  - F1 -> scratch buffer
 ;;  - switch key for group of windows in ecb
+;;  - doxyemacs (auto comment, with good param)
+;;  - tab-space
+;;  - match ( & co on cursor
 ") "Initial message displayed in *scratch* buffer at startup.
 If this is nil, no message will be displayed."
   :type 'string)
@@ -70,3 +75,4 @@ If this is nil, no message will be displayed."
     (insert hinitial-scratch-message))
   (set-buffer-modified-p nil))
 
+(require 'smart-operator)

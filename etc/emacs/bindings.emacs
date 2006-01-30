@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:16:47 2006 GESTES Cedric
-;; Last update Fri Jan 20 16:44:57 2006 GESTES Cedric
+;; Last update Sat Jan 28 01:43:50 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: BINDINGS.EMACS")
 ;;(global-unset-key "\M-[")
@@ -119,3 +119,28 @@
 
 
 (global-set-key [(C-b)] 'electric-buffer-list)
+
+;;BROKEN
+;; (defun match-paren (arg)
+;;   "Go to the matching parenthesis if on parenthesis otherwise insert %."
+;;   (interactive "p")
+;;   (cond ((looking-at "\\s\(") (forward-list 1) (backward-char 1))
+;;         ((and (looking-at "\\s\)") (inside (point)))
+;;          (forward-char 1) (backward-list 1))
+;;         (t (self-insert-command (or arg 1)))))
+;; (global-set-key "%" 'match-paren)
+;;(global-set-key [(f11)] 'describe-function-at-point)
+;;(global-set-key [(f12)] 'describe-variable-at-point)
+;; buffer cycling
+(autoload 'cycle-buffer "cycle-buffer" "Cycle forward." t)
+(autoload 'cycle-buffer-backward "cycle-buffer" "Cycle backward." t)
+(autoload 'cycle-buffer-permissive "cycle-buffer" "Cycle forward allowing *buffers*." t)
+(autoload 'cycle-buffer-backward-permissive "cycle-buffer"
+  "Cycle backward allowing *buffers*." t)
+(autoload 'cycle-buffer-toggle-interesting "cycle-buffer"
+  "Toggle if this buffer will be considered." t)
+
+(global-set-key [(alt right)] 'cycle-buffer)
+(global-set-key [(alt left)] 'cycle-buffer-backward)
+(global-set-key [(alt shift right)] 'cycle-buffer-permissive)
+(global-set-key [(alt shift left)] 'cycle-buffer-backward-permissive)

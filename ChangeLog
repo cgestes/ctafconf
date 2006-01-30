@@ -1,3 +1,11 @@
+2006-01-30  -- 0.1.0-rc3
+	* ct-sock : bug
+
+
+
+2006-01-24  CTAF <>
+	* shfunction : rpurge_clean to remove all .o
+
 2006-01-20  CTAF <>
 	* emacs : key bindings, compilation
 

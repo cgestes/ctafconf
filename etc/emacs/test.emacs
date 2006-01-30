@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:09:16 2006 GESTES Cedric
-;; Last update Mon Jan 16 02:10:03 2006 GESTES Cedric
+;; Last update Sat Jan 28 01:35:42 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: TEST.EMACS")
 
@@ -127,3 +127,64 @@
 ;;permet la completion?
 ;;(require 'completion nil t)
 ;;(initialize-completions)
+
+(defvar running-xemacs (string-match "XEmacs" (emacs-version)))
+(defvar running-fsfemacs (string-match "GNU Emacs" (emacs-version)))
+(defvar running-windows (eq window-system 'windows))
+(setq
+      ;; autosave
+  ;;    auto-save-directory (expand-file-name "~/autosave/")
+  ;;    auto-save-directory-fallback auto-save-directory
+  ;;    auto-save-hash-p nil
+
+  ;;    efs-auto-save t
+  ;;    efs-auto-save-remotely nil
+  ;;    efs-nslookup-program "/usr/bin/nslookup -silent"
+      ;; now that we have auto-save-timeout, let's crank this up
+      ;; for better interactive response.
+  ;;    auto-save-interval 0
+  ;;    auto-save-timeout 0
+
+)
+
+;; This is here to avoid hitting X FSF bytecode incompatibilities
+;; *.el in ~/lib/emacs is simply ln -s'ed to X or FSF subdir and
+;; then bytecompiled
+;;(setq my-lib-path (if running-xemacs
+;;                      (expand-file-name "~/lib/emacs/X")
+;;                    (expand-file-name "~/lib/emacs/FSF")))
+
+;;(setq load-path (cons my-lib-path load-path))
+
+(defun byte-compile-specific-files ()
+  (dolist (name (directory-files my-lib-path t ".el$"))
+    (byte-compile-file name)))
+
+defun good-buffer-p (&optional buffer)
+  (let ((buffer-name (buffer-name buffer)))
+    (or (member buffer-name '("*scratch*" "*cvs*"))
+        (not (string-match "^ ?\\*.*\\*$" buffer-name)))))
+
+(defun my-kill-this-buffer-and-window ()
+  (interactive)
+  (kill-this-buffer)
+  (if (= (count-windows) 2) (delete-window))
+  (or (good-buffer-p)
+      (switch-to-buffer
+       (or (find-if 'good-buffer-p (buffer-list)) "*scratch*"))))
+
+(defun my-recompile ()
+  (interactive)
+  (let ((compilation-ask-about-save nil))
+    (recompile)))
+
+;; buffer cycling
+(autoload 'cycle-buffer "cycle-buffer" "Cycle forward." t)
+(autoload 'cycle-buffer-backward "cycle-buffer" "Cycle backward." t)
+(autoload 'cycle-buffer-permissive "cycle-buffer" "Cycle forward allowing *buffers*." t)
+(autoload 'cycle-buffer-backward-permissive "cycle-buffer"
+  "Cycle backward allowing *buffers*." t)
+(autoload 'cycle-buffer-toggle-interesting "cycle-buffer"
+  "Toggle if this buffer will be considered." t)
+
+;;http://www.boblycat.org/~malc/.emacs

@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Oct  2 07:23:17 2005 GESTES Cedric
-## Last update Mon Jan 16 01:54:17 2006 GESTES Cedric
+## Last update Tue Jan 24 14:21:13 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -40,17 +40,25 @@ rpurge ()
  echo "directory recursively purged";
 }
 
+#recursive purge
+rpurge_clean ()
+{
+ (echo removing: ***/*\.o) 2>/dev/null
+ (rm -f ***/*\.o) 2>/dev/null;
+ echo "directory recursively purged";
+}
+
 #purge .svn and .cvs
 rpurge_svn ()
 {
- (echo removing: ***/.svn) 2>/dev/null;
- (rm -rf ***/.svn) 2>/dev/null;
+ (echo removing: ***/\.svn) 2>/dev/null;
+ (rm -rf ***/\.svn) 2>/dev/null;
  echo "svn directory recursively purged";
 }
 
 rpurge_cvs ()
 {
- (echo removing: ***/.cvs ***/CVS) 2>/dev/null
- (rm -rf ***/.cvs ***/CVS) 2>/dev/null;
+ (echo removing: ***/\.cvs ***/CVS) 2>/dev/null
+ (rm -rf ***/\.cvs ***/CVS) 2>/dev/null;
  echo "cvs directory recursively purged";
 }

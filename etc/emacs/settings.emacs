@@ -5,10 +5,17 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:13:33 2006 GESTES Cedric
-;; Last update Tue Jan 24 14:09:56 2006 GESTES Cedric
+;; Last update Sat Jan 28 01:06:56 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: SETTINGS.EMACS")
 
+(setq
+ ;;TEST
+ completion-auto-help t;; I want as much help as I can get
+ completion-auto-exit t;; Don't want to always hit return
+      bs-default-sort-name "by mode"
+ garbage-collection-messages t)
+;;/TEST
 ;; Distance between tab stops (for display of tab characters), in columns.
 ;; Automatically becomes buffer-local when set in any fashion.
 ;;(setq default-tab-width 8)
@@ -60,6 +67,9 @@
 ;;supprime le bootsplash
 (setq inhibit-startup-message t)
 
+(setq ;; remove anoying bell
+      bell-volume 0
+)
 ;;supprime le bootspash gnus
 ;;(gnus-inhibit-startup-message t)
 

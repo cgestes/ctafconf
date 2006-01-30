@@ -5,18 +5,18 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Thu Sep 29 05:11:52 2005 GESTES Cedric
-## Last update Tue Oct  4 15:08:18 2005 GESTES Cedric
+## Last update Mon Jan 30 22:13:05 2006 GESTES Cedric
 ##
 
 echo "This program set your socks password"
 echo "He write it in CLEAR in ~/.socks"
-echo "socks server varenv could be configured in ~/.ctafconf/etc/zsh/zshenv"
+echo "socks server varenv could be configured in ~/.ctafconf/etc/shell/globalenv"
 
-te=$( cat ~/.socks 2>/dev/null)
-echo -n "pleaze enter your socks password [$te]:"
+#te=$( cat ~/.socks 2>/dev/null)
+echo -n "pleaze enter your socks password :"
 read pwdso
 
-echo $pwdso >~/.socks
+echo -n $pwdso >~/.socks
 
 echo "Changing permission for ~/.socks : 600"
 chmod 600 ~/.socks
