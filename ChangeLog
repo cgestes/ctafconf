@@ -1,7 +1,6 @@
 2006-01-30  -- 0.1.0-rc3
-	* ct-sock : bug
-
-
+	* ct-socks : bug showing the anc pass
+	* ct-install : bug with fluxbox
 
 2006-01-24  CTAF <>
 	* shfunction : rpurge_clean to remove all .o
@@ -13,10 +12,10 @@
 	* emacs : key bindings, electricbuffer, bubblebuffer
 
 2006-01-16  GESTES Cedric <>
-	* mod : shfunctions=> rpurge_cvs, rpurge_svn
-	* mod : emacs add ECB,CEDET,ILISP, lots of .el file
-	* mod :	split emacs config file
-	* mod :	handle error in .emacs
+	* shfunctions : rpurge_cvs, rpurge_svn
+	* emacs : emacs add ECB,CEDET,ILISP, lots of .el file
+	* emacs : split emacs config file
+	* emacs : handle error in .emacs
 
 15/01/2005
 - mod : emacs (norme, cparse, ctype, cpcomment, ...)

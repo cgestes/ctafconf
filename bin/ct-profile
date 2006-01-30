@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Sep 25 21:51:34 2005 GESTES Cedric
-## Last update Thu Oct 13 22:14:37 2005 
+## Last update Mon Jan 30 22:34:49 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -193,7 +193,7 @@ echo "--------------------------------------"
 echo "choose your wallpaper from the list (include .jpg in your answer):"
 echo $(ls ~/.ctafconf/share/wallpaper)
 if [ x$ctafconf_wallpaper = x ] ; then
-    ctafconf_wallpaper='meuhh.jpg'
+    ctafconf_wallpaper='psycho18.jpg'
 fi
 echo -n "wallpaper [$ctafconf_wallpaper]:"
 read $readparam wallpaper

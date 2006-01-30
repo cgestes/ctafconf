@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Oct  2 23:04:47 2005 GESTES Cedric
-## Last update Thu Oct 13 04:46:45 2005 GESTES Cedric
+## Last update Mon Jan 30 22:44:03 2006 GESTES Cedric
 ##
 #
 # CTAFCONF INSTALLATION
@@ -105,6 +105,9 @@ ctfile ()
   local src=$1
   local template=$2
 
+  rm -rf "$src"-previous 2>/dev/null
+  cp -r $src "$src"-previous 2>/dev/null
+  mv $src "$src"-prev-"$date" 2>/dev/null
   if ! [ -f $src ]; then
       cp $template $src
   fi
@@ -115,13 +118,13 @@ ctdir ()
 {
   local src=$1
 
+  rm -rf "$src"-previous 2>/dev/null
+  cp -r $src "$src"-previous 2>/dev/null
+  mv $src "$src"-prev-"$date" 2>/dev/null
   if ! [ -d $src ]; then
 #      echo "create directory:$src"
       mkdir $src 2>/dev/null
   fi
-#  rm -rf "$dst"-previous 2>/dev/null
-#  cp -r $src "$dst"-previous 2>/dev/null
-#  mv $src "$src"-prev-"$date" 2>/dev/null
 }
 
 gnomesettings ()
