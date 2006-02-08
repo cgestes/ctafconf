@@ -1,3 +1,6 @@
+2006-02-08
+	* emacs : autoload python-mode.el
+
 2006-01-30  -- 0.1.0-rc3
 	* ct-socks : bug showing the anc pass
 	* ct-install : bug with fluxbox
