@@ -5,7 +5,7 @@
 ## Login   <root@epita.fr>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 root
-## Last update Thu Oct 13 05:36:00 2005 GESTES Cedric
+## Last update Fri Feb 10 19:39:25 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -14,10 +14,10 @@
 ###################
 
 #set xhost to accept local connection
-alias setx 'xhost +localhost'
+alias_set setx 'xhost +localhost'
 
-alias ff 'firefox'
-alias tb 'thunderbird'
+#alias_set ff 'firefox'
+#alias_set tb 'thunderbird'
 
 #ls
 alias_unset ls

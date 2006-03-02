@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Wed Oct 12 00:20:30 2005 GESTES Cedric
-## Last update Thu Oct 13 05:56:12 2005 GESTES Cedric
+## Last update Fri Feb 10 19:41:26 2006 GESTES Cedric
 ##
 ##CTAFCONF
 ###

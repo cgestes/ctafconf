@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 00:57:16 2006 GESTES Cedric
-;; Last update Sat Jan 28 01:39:53 2006 GESTES Cedric
+;; Last update Fri Feb 10 20:03:02 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: MODE.EMACS")
 
@@ -106,3 +106,6 @@
                                 " " (size 6 -1) " " (mode 16 16) " " filename)
                           (mark " " (name 30 -1) " " filename)))
   (define-key ibuffer-mode-map (kbd "#") 'ibuffer-switch-format))
+
+
+(require 'smart-operator)

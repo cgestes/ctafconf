@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 00:58:57 2006 GESTES Cedric
-;; Last update Mon Jan 16 02:09:10 2006 GESTES Cedric
+;; Last update Thu Mar  2 06:07:03 2006 root
 ;;
 (message "ctafconf loading: FUNCTIONS.EMACS")
 
@@ -83,3 +83,23 @@
 (defun zlock ()
   (interactive)
   (shell-command "zlock -immed"))
+
+
+;;; buffer functions
+(defun my-previous-buffer ()
+  "Cycle to the previous buffer with keyboard."
+  (interactive)
+  (bury-buffer))
+
+(defun my-next-buffer ()
+  "Cycle to the next buffer with keyboard."
+  (interactive)
+  (let* ((bufs (buffer-list))
+         (entry (1- (length bufs)))
+         val)
+    (while (not (setq val (nth entry bufs)
+                      val (and (/= (aref (buffer-name val) 0)
+                                   ? )
+                               val)))
+      (setq entry (1- entry)))
+    (switch-to-buffer val)))

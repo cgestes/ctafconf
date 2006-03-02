@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:14:21 2006 GESTES Cedric
-;; Last update Sat Jan 28 20:52:54 2006 GESTES Cedric
+;; Last update Fri Feb 10 19:57:18 2006 GESTES Cedric
 ;;
 
 (message "ctafconf loading: PROG.EMACS")
@@ -191,6 +191,7 @@
   (error
    (message "Cannot load ilisp %s" (cdr err))))
 
+;;Python
 (autoload 'python-mode "python-mode" "Python editing mode." t)
 (setq auto-mode-alist
       (cons '("\\.py$" . python-mode)

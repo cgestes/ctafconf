@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Oct  2 23:04:47 2005 GESTES Cedric
-## Last update Mon Jan 30 22:44:03 2006 GESTES Cedric
+## Last update Fri Feb 10 20:29:15 2006 GESTES Cedric
 ##
 #
 # CTAFCONF INSTALLATION
@@ -29,21 +29,19 @@ conread ()
 }
 
 dial=conread
-# if which gdialog >/dev/null 2>/dev/null ; then
-#   dial=gdialog
-# else if which kdialog >/dev/null 2>/dev/null ; then
-#   dial=kdialog
-# else if which dialog >/dev/null 2>/dev/null ; then
-#   dial=dialog
-# fi
-# fi
-# fi
+if which gdialog >/dev/null 2>/dev/null ; then
+    dial=gdialog
+elif which kdialog >/dev/null 2>/dev/null ; then
+    dial=kdialog
+elif which dialog >/dev/null 2>/dev/null ; then
+    dial=dialog
+fi
 
 if [ x$1 != x ]; then
   dial=$1
 fi
 
-cd ~/
+pushd ~
 
 cttestlink ()
 {
@@ -322,3 +320,4 @@ echo "----------------------"
 echo "You can put your own settings in :.emacs.mine, .zshrc.mine,"
 echo "   .zshenv.mine, .bashrc.mine, .tcshrc.mine, .xsession.mine"
 
+popd

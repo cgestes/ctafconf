@@ -6,8 +6,8 @@ CTAFCONF:
 - xsession : change session "on the fly"
 - top : top mem / top cpu nothing else
 - use sabayon for gnome-conf/ff-conf
-- BUG when .fluxbox have bad permission
 - ctafconf.sh => add color for all term (CT_RED,CT_YELLOW,..) and for prompt
+- better template (.mine) for env, emacs, and co, allowing easy customization (define var to enable/disable functionnality (ecb/semantic/)
 
 ENV
 - visual,editor,shell => emacs else nano,else ..

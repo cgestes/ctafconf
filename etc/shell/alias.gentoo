@@ -5,7 +5,7 @@
 ## Login   <root@epita.fr>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 root
-## Last update Thu Oct 13 05:38:19 2005 GESTES Cedric
+## Last update Fri Feb 10 19:39:42 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -16,7 +16,7 @@
 #set xhost to accept local connection
 alias_set setx 'xhost +localhost'
 
-alias_set ff 'firefox'
+#alias_set ff 'firefox'
 
 alias_set apt "$ctafconf_sudo emerge"
 alias_set apts "ctafconf_sudo emerge --search"

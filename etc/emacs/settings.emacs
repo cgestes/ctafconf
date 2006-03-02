@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:13:33 2006 GESTES Cedric
-;; Last update Sat Jan 28 01:06:56 2006 GESTES Cedric
+;; Last update Fri Feb 10 19:55:08 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: SETTINGS.EMACS")
 
@@ -13,12 +13,13 @@
  ;;TEST
  completion-auto-help t;; I want as much help as I can get
  completion-auto-exit t;; Don't want to always hit return
-      bs-default-sort-name "by mode"
+ bs-default-sort-name "by mode"
  garbage-collection-messages t)
 ;;/TEST
+
 ;; Distance between tab stops (for display of tab characters), in columns.
 ;; Automatically becomes buffer-local when set in any fashion.
-;;(setq default-tab-width 8)
+(setq default-tab-width 2)
 
 ;;only space
 ;;(setq indent-tabs-mode nil)
@@ -67,9 +68,12 @@
 ;;supprime le bootsplash
 (setq inhibit-startup-message t)
 
-(setq ;; remove anoying bell
-      bell-volume 0
-)
+;; remove anoying bell
+(setq bell-volume 0)
+
+;; Non-nil means try to flash the frame to represent a bell.
+(setq visible-bell nil)
+
 ;;supprime le bootspash gnus
 ;;(gnus-inhibit-startup-message t)
 
@@ -126,8 +130,6 @@
 ;;show matching parenthese
 (show-paren-mode 1)
 
-;; Non-nil means try to flash the frame to represent a bell.
-(setq visible-bell nil)
 
 ;; montre les lignes inutilisées et les limites d'un buffer
 (setq-default indicate-empty-lines t)

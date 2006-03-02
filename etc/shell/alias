@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Fri Sep 30 22:17:52 2005 GESTES Cedric
-## Last update Sat Oct 29 02:27:13 2005 GESTES Cedric
+## Last update Thu Mar  2 05:00:53 2006 root
 ##
 ##CTAFCONF
 
@@ -26,12 +26,18 @@ alias_set - 'pushd -1'
 #############################
 #COMPILATION ALIAS_SET
 #############################
+alias_set c './configure'
+alias_set a './autogen.sh'
 alias_set m 'make'
 alias_set md 'make distclean'
 alias_set ma 'make clean all'
 alias_set mac 'make clean all check'
-alias_set c './configure'
 alias_set gm 'gmake'
+alias_set mm 'make |& less'
+alias_set make_muet "make 1>/dev/null"
+alias_set fixme 'grep -n -a -s FIXME * 2> /dev/null'
+alias_set todo 'grep -n -a -s TODO * 2> /dev/null'
+#alias_set make 'gmake'
 
 #default alias_set for firefox and thunderbird
 alias_set ff 'firefox'
@@ -39,8 +45,16 @@ alias_set tb 'thunderbird'
 
 #wget recursif
 #alias_set wgetr 'wget -r -N -l inf --connect-timeout=10'
-alias_set wgetr 'wget -r -N -l inf'
-alias_set wgetc 'wget -c'
+#-r recursif
+#-N timestamping
+#-l inf : recursion depth
+#-c continue
+#-np no parent => don't download parent directory
+#-nH no hostname => wgetr ftp.free.fr/bob/ => ./bob/
+#-p get all files needed in order to render the html page completely
+#--convert-links
+alias_set wgetr 'wget -r -N -l inf -c -np'
+alias_set wgetr_localhtml 'wget -r -N -l inf -c -np --convert-links -p'
 
 #recursive grep with filename and line number
 alias_set grepr 'grep -r -n -H'
@@ -53,9 +67,13 @@ alias_set e 'emacs'
 #emacs en console
 alias_set enox 'emacs -nw'
 alias_set ne 'emacs -nw'
+#alias_set gnus 'LC_CTYPE=fr_FR emacs -f gnus'
+alias_set gnus 'emacs -nw -f gnus'
 
 alias_set z "zsh"
 alias_set b "bash"
+alias_set k "ksh"
+alias_set t "tcsh"
 
 #change the user::group of all the file in the home user directory
 alias_set chownhome '$ctafconf_sudo chown -R $ctafconf_user:$ctafconf_group ~/'
@@ -71,41 +89,14 @@ alias_set gv "gv -resize -center -antialias_set"
 alias_set xfig 'xfig -metric -startgridmode 1'
 alias_set less 'less -r -X -M'
 
-#alias_set make 'gmake'
-alias_set mm 'make |& less'
-alias_set make_muet "make 1>/dev/null"
-
-alias_set netscape "rm ~/.netscape/lock 2>/dev/null ; netscape &!"
-
 alias_set getx 'export DISPLAY=:0.0'
 
 alias_set j 'jobs'
 alias_set h 'history'
 
-alias_set a1 'ns_who -asgl | grep a1 | grep sm-'
-alias_set a2 'ns_who -asgl | grep a2 | grep sm-'
-alias_set a3 'ns_who -asgl | grep a3 | grep sm-'
-
-alias_set reports "w3m http://www.lrde.epita.fr/~akim/compil/reports.html"
-alias_set compil "w3m http://www.lrde.epita.fr/~akim/compil/"
-#alias_set gnus 'LC_CTYPE=fr_FR emacs -f gnus'
-alias_set gnus 'emacs -nw -f gnus'
-alias_set fixme 'grep -n -a -s FIXME * 2> /dev/null'
-
+#VNC
 alias_set ct-tightvnc 'xtightvncviewer -bgr233 -compresslevel 9 -quality 0 -depth 8 -owncmap -encodings tight'
-
 alias_set ct-vnc 'xvnc4viewer'
-
-###########################################
-# Global alias_setes -- These do not have to be
-# at the beginning of the command line.
-###########################################
-#alias_set -g M '|more'
-#alias_set -g H '|head'
-#alias_set -g T '|tail'
-#alias_set -g tcopt "--types-check --hir-compute --hir-display" ## For Tiger
-
-alias_set svctaf 'svn co svn+ssh://ctaf@elthariel.no-ip.org/home/ctaf/svn/.ctafconf'
 
 
 alias_set ls 'ls -F --color=tty'
@@ -120,3 +111,17 @@ test x$ctafconf_config != x && test -f ~/.ctafconf/etc/shell/alias.$ctafconf_con
 alias_set l 'ls -F --color=tty'
 alias_set ll 'ls -lF --color=tty'
 alias_set la 'ls -lAF --color=tty'
+alias_set lg 'ls -F --color=tty | grep'
+
+###UNUSED UN-USEFULL###
+#alias_set reports "w3m http://www.lrde.epita.fr/~akim/compil/reports.html"
+#alias_set compil "w3m http://www.lrde.epita.fr/~akim/compil/"
+#alias_set svctaf 'svn co svn+ssh://ctaf@elthariel.no-ip.org/home/ctaf/svn/.ctafconf'
+#alias_set netscape "rm ~/.netscape/lock 2>/dev/null ; netscape &!"
+###########################################
+# Global aliases -- These do not have to be
+# at the beginning of the command line.
+###########################################
+#alias -g M='|more'
+#alias -g H='|head'
+#alias -g T='|tail'

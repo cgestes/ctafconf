@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Sat Jan 28 03:29:48 2006 GESTES Cedric
+;; Last update Thu Mar  2 06:37:27 2006 root
 ;;
 (message "ctafconf loading: STARTUP.EMACS")
 
@@ -53,18 +53,14 @@
 ;;  - bash : tab = 2 space
 ;;  - kill space til one word
 ;;  - list all functions of one file
-;;  - safe load
-;;  - prev/next buffer
-;;  - cwarn mode (global-cwarn-mode)
 ;;  - prev/next buffer
 ;;  - truncate line
-;;  - cparse/ctype is now integrated into semantic
 ;;  - working directory for gdb/compile
-;;  - F1 -> scratch buffer
 ;;  - switch key for group of windows in ecb
 ;;  - doxyemacs (auto comment, with good param)
 ;;  - tab-space
 ;;  - match ( & co on cursor
+;;  - svn
 ") "Initial message displayed in *scratch* buffer at startup.
 If this is nil, no message will be displayed."
   :type 'string)
@@ -75,4 +71,3 @@ If this is nil, no message will be displayed."
     (insert hinitial-scratch-message))
   (set-buffer-modified-p nil))
 
-(require 'smart-operator)

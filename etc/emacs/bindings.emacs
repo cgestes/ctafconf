@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:16:47 2006 GESTES Cedric
-;; Last update Sat Jan 28 01:43:50 2006 GESTES Cedric
+;; Last update Thu Mar  2 06:07:56 2006 root
 ;;
 (message "ctafconf loading: BINDINGS.EMACS")
 ;;(global-unset-key "\M-[")
@@ -33,11 +33,17 @@
   (switch-to-buffer (nth (- (length (buffer-list)) 1) (buffer-list)))
 )
 
-(global-set-key [S-right]       'switch-to-previous-buffer)
-(global-set-key [S-left]        'switch-to-next-buffer)
+;; (global-set-key [S-right]       'switch-to-previous-buffer)
+;; (global-set-key [S-left]        'switch-to-next-buffer)
 
-(global-set-key [CS-right]       'switch-to-previous-buffer)
-(global-set-key [CS-left]        'switch-to-next-buffer)
+;; (global-set-key [CS-right]       'switch-to-previous-buffer)
+;; (global-set-key [CS-left]        'switch-to-next-buffer)
+
+(global-set-key [S-right]       'my-previous-buffer)
+(global-set-key [S-left]        'my-next-buffer)
+
+(global-set-key [CS-right]       'my-previous-buffer)
+(global-set-key [CS-left]        'my-next-buffer)
 
 ;;emacs22 way
 ;;(global-set-key [S-right]       'next-buffer)
@@ -72,12 +78,13 @@
 (global-set-key "\C-z" 'call-last-kbd-macro)
 
 (global-set-key [f1] (lambda ()
-		       (interactive)
-		       (manual-entry (current-word))))
+                       (interactive)
+                       (switch-to-buffer "*scratch*")
+                       ))
 
 (global-set-key [(shift f1)] (lambda ()
-		       (interactive)
-		       (manual-entry (current-word) 3)))
+                               (interactive)
+                               (manual-entry (current-word))))
 
 (global-set-key [f2] 'norme)
 (global-set-key [(shift f2)] 'xterm-mouse-mode)
