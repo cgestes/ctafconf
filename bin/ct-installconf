@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Oct  2 23:04:47 2005 GESTES Cedric
-## Last update Wed Mar 22 23:17:04 2006 GESTES Cedric
+## Last update Wed Mar 22 23:22:39 2006 GESTES Cedric
 ##
 #
 # CTAFCONF INSTALLATION
@@ -41,7 +41,9 @@ if [ x$1 != x ]; then
   dial=$1
 fi
 
-pushd ~ >/dev/null
+#pushd ~ >/dev/null
+pwwd=`pwd`
+cd ~
 
 cttestlink ()
 {
@@ -320,4 +322,4 @@ echo "----------------------"
 echo "You can put your own settings in :.emacs.mine, .zshrc.mine,"
 echo "   .zshenv.mine, .bashrc.mine, .tcshrc.mine, .xsession.mine"
 
-popd >/dev/null
+cd $pwwd
