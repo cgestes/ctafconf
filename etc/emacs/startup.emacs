@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Wed Mar 22 07:02:44 2006 GESTES Cedric
+;; Last update Wed Mar 22 08:38:36 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: STARTUP.EMACS")
 
@@ -39,8 +39,8 @@
 ;; C-c r	revert buffer
 ;; M-x dos2unix	convert a Dos format to unix format
 ;; M-x setget to create {set,get}_var function (on the line)
-;; M-x counter-reinitialize to give the parameters for counter
-;; M-x counter-insert to use the counter
+;;?? M-x counter-reinitialize to give the parameters for counter
+;;?? M-x counter-insert to use the counter
 ;; M-y yank cycle previous buffer
 ;;
 ;; emacs default keybinding
