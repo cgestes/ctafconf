@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:16:47 2006 GESTES Cedric
-;; Last update Sun Mar 19 22:12:10 2006 GESTES Cedric
+;; Last update Wed Mar 22 06:41:31 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: BINDINGS.EMACS")
 ;;(global-unset-key "\M-[")
@@ -102,6 +102,13 @@
 (global-set-key [f5] 'ansi-term)
 (global-set-key [(shift f5)] 'speedbar)
 (global-set-key [f17] 'speedbar)
+
+(global-set-key [f6] 'bm-toggle)
+(global-set-key [(shift f6)] 'bm-next)
+(global-set-key [f18] 'bm-next)
+(global-set-key [(control f6)] 'bm-previous)
+(global-set-key [(alt f6)] 'marker-visit-next)
+(global-set-key [(alt control f6)] 'marker-visit-prev)
 
 ;;(global-set-key [f6] 'comment-region)
 ;;(global-set-key [(shift f6)] 'uncomment-region)

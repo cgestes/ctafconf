@@ -1,7 +1,11 @@
 2006-03-22 CTAF <>
 	* alias : cf => conkeror (firefox which use only the kbd)
 	* tcshrc : cleanup, speedup
+	* emacs : C-return : selection box mode
+	* emacs : F6, S-F6, C-F6, toggle bookmark, previous, next
+	* emacs : M-F6, M-C-F6 : next-mark, prev-mark
 	* SVN : the project is hosted on sf.net !!!
+	* emacs.bm.el : add empty line at the end of file
 
 2006-03-19 CTAF <>
 	* ksh.tcsh.zsh.bash : some cleanup
