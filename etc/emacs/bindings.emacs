@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:16:47 2006 GESTES Cedric
-;; Last update Thu Mar  2 06:07:56 2006 root
+;; Last update Sun Mar 19 22:12:10 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: BINDINGS.EMACS")
 ;;(global-unset-key "\M-[")
@@ -61,6 +61,7 @@
 ;;(pc-selection-mode)
 
 (global-set-key "\C-x\C-b" 'electric-buffer-list)
+(global-set-key "\C-x b" 'electric-buffer-list)
 (global-set-key [delete] 'delete-char)
 (global-set-key [kp-delete] 'delete-char)
 (global-set-key [backward-delete-char] 'backward-delete-char)
@@ -125,7 +126,7 @@
 (global-set-key "\M-l" 'goto-line)
 
 
-(global-set-key [(C-b)] 'electric-buffer-list)
+;;(global-set-key [(C-b)] 'electric-buffer-list)
 
 ;;BROKEN
 ;; (defun match-paren (arg)

@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:14:21 2006 GESTES Cedric
-;; Last update Fri Feb 10 19:57:18 2006 GESTES Cedric
+;; Last update Wed Mar 22 03:03:41 2006 GESTES Cedric
 ;;
 
 (message "ctafconf loading: PROG.EMACS")
@@ -138,7 +138,7 @@
       (semantic-load-enable-excessive-code-helpers)
       ;;S-SPC
       (global-set-key '[33554464] 'semantic-complete-analyze-inline)
-      (global-semantic-show-unmatched-syntax-mode 1)
+      (global-semantic-show-unmatched-syntax-mode 0)
       (global-semantic-show-parser-state-mode 1)
       (global-semantic-decoration-mode 1)
       (global-semantic-idle-completions-mode 1)

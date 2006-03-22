@@ -1,8 +1,8 @@
 #!/bin/sh
 #CTAFCONF
 #You can personalize this file, she will never be modified by the ctafconf
-
-#if you want to exit from this script ad continue the xsession execution use return
+#if you want to exit from this script
+#add "continue", the xsession execution use return
 #
 
 #if ! [ -f ~/.fvwmrc ]; then

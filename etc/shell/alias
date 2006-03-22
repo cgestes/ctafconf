@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Fri Sep 30 22:17:52 2005 GESTES Cedric
-## Last update Thu Mar  2 05:00:53 2006 root
+## Last update Wed Mar 22 03:17:49 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -40,8 +40,16 @@ alias_set todo 'grep -n -a -s TODO * 2> /dev/null'
 #alias_set make 'gmake'
 
 #default alias_set for firefox and thunderbird
-alias_set ff 'firefox'
-alias_set tb 'thunderbird'
+
+which mozilla-firefox >/dev/null && alias_set ff 'mozilla-firefox'
+which firefox >/dev/null && alias_set ff 'firefox'
+
+which mozilla-firefox >/dev/null&& alias_set cf 'mozilla-firefox -chrome chrome://conkeror/content'
+which firefox >/dev/null && alias_set cf 'firefox -chrome chrome://conkeror/content'
+
+which mozilla-thunderbird >/dev/null && alias_set tb 'mozilla-thunderbird'
+which thunderbird >/dev/null && alias_set tb 'thunderbird'
+
 
 #wget recursif
 #alias_set wgetr 'wget -r -N -l inf --connect-timeout=10'
@@ -74,6 +82,9 @@ alias_set z "zsh"
 alias_set b "bash"
 alias_set k "ksh"
 alias_set t "tcsh"
+
+alias_set psa 'ps -ax'
+alias_set psu 'ps -aux'
 
 #change the user::group of all the file in the home user directory
 alias_set chownhome '$ctafconf_sudo chown -R $ctafconf_user:$ctafconf_group ~/'

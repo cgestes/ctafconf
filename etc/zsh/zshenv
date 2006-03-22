@@ -5,13 +5,14 @@
 ## Login   <gestes_c@epita.fr>
 ##
 ## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
-## Last update Thu Oct 13 05:04:27 2005 GESTES Cedric
+## Last update Thu Mar 16 02:02:24 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
 
 #include global environment
 [ -f ~/.ctafconf/etc/shell/globalenv ]; . ~/.ctafconf/etc/shell/globalenv sh
+
 
 export HISTSIZE=1000
 export HISTFILE=~/.zshhistory

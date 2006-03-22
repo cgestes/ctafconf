@@ -5,7 +5,7 @@
 ## Login   <gestes_c@epita.fr>
 ##
 ## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
-## Last update Tue Oct  4 14:50:25 2005 GESTES Cedric
+## Last update Thu Mar 16 02:01:42 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -16,7 +16,8 @@
 if [[ $- != *i* ]]; then
     return
 fi
-
+echo -n "shell: zsh, "
+cat ~/.ctafconf/etc/shell/motd
 
 #alias
 . ~/.ctafconf/etc/zsh/zshalias

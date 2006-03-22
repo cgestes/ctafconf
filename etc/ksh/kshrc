@@ -5,19 +5,20 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Thu Oct  6 04:55:46 2005 GESTES Cedric
-## Last update Thu Oct 13 05:03:58 2005 GESTES Cedric
+## Last update Sun Mar 19 20:36:18 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
 # skip remaining setup if shell non-interactive
 [[ -o interactive ]] || return 0
+echo -n "shell: ksh, "
+cat ~/.ctafconf/etc/shell/motd
 
 # turn on command line editing mode
 set -o emacs
 #set -o vi-tabcomplete   # tab filename completion ON!
 
 alias source=.
-sh_aliaseq="="
 
 if [ -f ~/.ctafconf/etc/ksh/kshprompt ]; then
     . ~/.ctafconf/etc/ksh/kshprompt
@@ -30,9 +31,6 @@ fi
 if [ -f ~/.ctafconf/etc/shell/alias ]; then
     . ~/.ctafconf/etc/shell/alias
 fi
-
-unset sh_aliaseq
-
 
 if [ -f ~/.kshrc.mine ]; then
     . ~/.kshrc.mine

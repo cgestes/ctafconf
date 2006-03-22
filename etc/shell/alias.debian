@@ -5,7 +5,7 @@
 ## Login   <root@epita.fr>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 root
-## Last update Fri Feb 10 19:38:46 2006 GESTES Cedric
+## Last update Sun Mar 19 20:49:25 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -16,9 +16,6 @@
 #set xhost to accept local connection
 #alias setx 'xhost +192.168.0.1 +192.168.0.6 +192.168.0.7 +localhost'
 alias_set setx 'xhost +localhost'
-
-alias_set ff 'firefox'
-alias_set tb 'mozilla-thunderbird'
 
 #apt-get
 alias_set apt '$ctafconf_sudo apt-get install'

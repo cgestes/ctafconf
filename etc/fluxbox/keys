@@ -17,7 +17,7 @@ Mod1 F10 :Workspace 10
 Mod1 F11 :Workspace 11
 Mod1 F12 :Workspace 12
 Control Mod1 T :ToggleDecor
-Control Mod1 T :MaximizeWindow
+Control Mod1 M :MaximizeWindow
 Control Mod1 C :Close
 Control Mod1 K :KillWindow
 Control Mod1 q :NudgeLeft

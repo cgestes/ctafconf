@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/tcsh
 # .tcshrc - 30/06/05 19:16 - Turea Alexandru Teodor (classicmanpro@yahoo.com)
 
 #######################
@@ -6,6 +6,10 @@
 #######################
 
 #ne rien faire si on est pas en mode interactif TODO
+if ($?prompt) then
+
+echo -n "shell: tcsh, "
+cat ~/.ctafconf/etc/shell/motd
 
 umask 022
 
@@ -71,32 +75,32 @@ unset {histfile,dirsfile,autologout,implicitcd,notify,tperiod}
 
 alias    .                'source'
 
-alias    ds               'dirs -v'
-alias    dsl              'dirs -L'
-alias    dss              'dirs -S'
-alias    dsc              'dirs -c'
+# alias    ds               'dirs -v'
+# alias    dsl              'dirs -L'
+# alias    dss              'dirs -S'
+# alias    dsc              'dirs -c'
 
-alias    po               'popd'  # po    [+n]
-alias    pu               'pushd' # pu    [name|+n]
+# alias    po               'popd'  # po    [+n]
+# alias    pu               'pushd' # pu    [name|+n]
 
-alias    cd               'pu'    # cd    [name|+n]
-alias    chdir            'cd'    # chdir [name|+n]
+# alias    cd               'pu'    # cd    [name|+n]
+# alias    chdir            'cd'    # chdir [name|+n]
 
-alias    ..               'cd ..'
-alias    -                'cd -'
+# alias    ..               'cd ..'
+# alias    -                'cd -'
 
-alias    hc               'history -c'
-alias    hcc              'hc;c'
+# alias    hc               'history -c'
+# alias    hcc              'hc;c'
 
-alias    cx               'cd;dsc;hc;x'
+# alias    cx               'cd;dsc;hc;x'
 
-alias    ffinf               "find . -name '\!*' -print"
+# alias    ffinf               "find . -name '\!*' -print"
 
-alias    psa              'ps aux'
-alias    psu              'ps  ux'
+# alias    psa              'ps aux'
+# alias    psu              'ps  ux'
 
-alias    lpsa             "ps aux \!* | p"
-alias    lpsu             "ps  ux \!* | p"
+# alias    lpsa             "ps aux \!* | p"
+# alias    lpsu             "ps  ux \!* | p"
 
 unalias {beepcmd,cwdcmd,jobcmd,periodic,precmd,postcmd,shell}
 
@@ -142,19 +146,18 @@ bindkey "^[q" keyboard-quit
 #############################################
 # ##### SOURCE/LOAD - DIRECTORY STACK ##### #
 #############################################
-set usr_cwd = "`pwd`" # most WMs open terminals in specific locations therefore note the current working directory
-dsl                   # source/load the directory stack, if present ... this usually changes the current working directory
-cd "${usr_cwd}"       # 'cd' back to the initial/original working directory and push it onto the directory stack
-unset usr_cwd         # cleanup
+#set usr_cwd = "`pwd`" # most WMs open terminals in specific locations therefore note the current working directory
+#dsl                   # source/load the directory stack, if present ... this usually changes the current working directory
+#cd "${usr_cwd}"       # 'cd' back to the initial/original working directory and push it onto the directory stack
+#unset usr_cwd         # cleanup
 
-#if ( -f ~/.ctafconf/user-profile.csh ) source ~/.ctafconf/user-profile.csh
 
 if ( -f ~/.ctafconf/etc/tcsh/tcshprompt ) source ~/.ctafconf/etc/tcsh/tcshprompt
-
-
 
 if ( -f ~/.ctafconf/etc/shell/globalenv ) source ~/.ctafconf/etc/shell/globalenv csh
 
 if ( -f ~/.ctafconf/etc/shell/alias ) source ~/.ctafconf/etc/shell/alias
 
 if ( -f ~/.tcshrc.mine ) source ~/.tcshrc.mine
+
+endif

@@ -1,3 +1,15 @@
+2006-03-22 CTAF <>
+	* alias : cf => conkeror (firefox which use only the kbd)
+	* tcshrc : cleanup, speedup
+	* SVN : the project is hosted on sf.net !!!
+
+2006-03-19 CTAF <>
+	* ksh.tcsh.zsh.bash : some cleanup
+	* ksh.tcsh.zsh.bash : add motd
+	* fluxbox : ctrl+alt+m togglemaximize
+	* alias : autodetected thunderbird and firefox path for ff and tn
+	* alias : psa and psu for ps -ax and ps -aux
+
 2006-03-02 CTAF <>
 	* alias : add alias lg => ls | grep
 	* emacs : shift-left,shift-right prev/next buffer, F1 help

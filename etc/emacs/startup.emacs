@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Thu Mar  2 06:37:27 2006 root
+;; Last update Wed Mar 22 03:44:19 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: STARTUP.EMACS")
 
@@ -46,7 +46,8 @@
 ;; c-x 4 a :add one entry to the ChangeLog
 
 ;; when opening file [C-UP], [C-DOWN] move up and down into the history
-;; normal open file [C-x f] then [C-f] (to open new file with a name shorter than one already existing)
+;; to get the standart open file [C-x f] then [C-f]
+;; (usefull to open new file with a name shorter than one already existing)
 ;; === TODO ===
 ;;  - shortcut: kill one line
 ;;  - c/c++ mode (epita indentation)
@@ -59,8 +60,15 @@
 ;;  - switch key for group of windows in ecb
 ;;  - doxyemacs (auto comment, with good param)
 ;;  - tab-space
+;;  - kill-word, kill-ring,..
 ;;  - match ( & co on cursor
 ;;  - svn
+;;  - bookmark, folding
+;;
+;;  === DOC ===
+;;  see: http://www.dur.ac.uk/p.j.heslin/Software/Emacs/Easymacs
+;;  =programming=
+;;  =installing ecb,semantic, cedet, ilisp=
 ") "Initial message displayed in *scratch* buffer at startup.
 If this is nil, no message will be displayed."
   :type 'string)

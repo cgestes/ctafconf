@@ -3,11 +3,14 @@ CTAFCONF:
 - unset, unalias => unset unnecessary stuff?
 - screen : fichier de conf std (3 windows), automatiquement lance?, keys to browse hystory
 - grepr : directory not needed (use .)
-- xsession : change session "on the fly"
+- xsession : change session "on the fly" (ct-switch (kill current wm))
 - top : top mem / top cpu nothing else
 - use sabayon for gnome-conf/ff-conf
 - ctafconf.sh => add color for all term (CT_RED,CT_YELLOW,..) and for prompt
 - better template (.mine) for env, emacs, and co, allowing easy customization (define var to enable/disable functionnality (ecb/semantic/)
+- tweak and use screenrc
+- 4 distrib: tinyemacs, emacs (with ecb, ilisp, ..), tinyctafconf, ctafconf (with ecb, ilisp, ..)
+-makefile (download ecb, ilisp, ..)?, ct-update (update ctafconf from sf svn)
 
 ENV
 - visual,editor,shell => emacs else nano,else ..
@@ -20,7 +23,7 @@ SHELL
 - completion for apt, apts
 
 EMACS
-- emacs: in console (ctrl+backspace, beep)
+- emacs: in console (ctrl+backspace, beep) (enable vt102 in xterm,..)
 - emacs: ctrl-qqch => replace the current line , with the current buffer
 - tab = 2 in bash-mode
 - transparent (use console backcolor)
@@ -31,12 +34,12 @@ CTAFTOOLS (needed?):
 - for, foreachfile
 
 BONUS:
-- put on sf.net when reaching something stable enough?
 - a gnome terminal that scroll like quake3 console using one hotkey
 - compiler for some configuration file ( emacs, fluxbox, etc..)
-- ct-repo/ct-ssh : use dialog/gdialog?
+- ct-repo/ct-ssh : use dialog/gdialog? (one lib exists, find it, use it)
 - use gid and uid with mount command (maybe do a ct-mount)
-- kde, gnome (taskbar, etc), ff extension, blackbox, openbox, fvwm
+- kde, gnome (taskbar, etc), ff extension, blackbox, openbox, fvwm, enligthment
+- debian package
 
 DRAFT:
 qra query-replace-all => find all file that contain one pattern (exclude .svn), then open emacs with the result
