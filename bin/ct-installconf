@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Oct  2 23:04:47 2005 GESTES Cedric
-## Last update Wed Mar 22 05:41:35 2006 GESTES Cedric
+## Last update Wed Mar 22 23:17:04 2006 GESTES Cedric
 ##
 #
 # CTAFCONF INSTALLATION
@@ -29,13 +29,13 @@ conread ()
 }
 
 dial=conread
-if which gdialog >/dev/null 2>/dev/null ; then
-    dial=gdialog
-elif which kdialog >/dev/null 2>/dev/null ; then
-    dial=kdialog
-elif which dialog >/dev/null 2>/dev/null ; then
-    dial=dialog
-fi
+# if which gdialog >/dev/null 2>/dev/null ; then
+#     dial=gdialog
+# elif which kdialog >/dev/null 2>/dev/null ; then
+#     dial=kdialog
+# elif which dialog >/dev/null 2>/dev/null ; then
+#     dial=dialog
+# fi
 
 if [ x$1 != x ]; then
   dial=$1
