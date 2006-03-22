@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Sep 25 21:51:34 2005 GESTES Cedric
-## Last update Mon Jan 30 22:34:49 2006 GESTES Cedric
+## Last update Wed Mar 22 23:26:33 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -30,15 +30,15 @@ conread ()
 }
 
 dial=conread
-if which gdialog >/dev/null 2>/dev/null ; then
-  dial=gdialog
-else if which kdialog >/dev/null 2>/dev/null ; then
-  dial=kdialog
-else if which dialog >/dev/null 2>/dev/null ; then
-  dial=dialog
-fi
-fi
-fi
+# if which gdialog >/dev/null 2>/dev/null ; then
+#   dial=gdialog
+# else if which kdialog >/dev/null 2>/dev/null ; then
+#   dial=kdialog
+# else if which dialog >/dev/null 2>/dev/null ; then
+#   dial=dialog
+# fi
+# fi
+# fi
 
 if [ x$1 != x ]; then
   dial=$1
@@ -230,6 +230,9 @@ echo "Choose your zshprompt, you can use my style: ctaf"
 echo "or any others style from zsh (test with the prompt command):"
 echo "adam1 adam2 bart zefram fade redhat suse walters"
 echo "bigfade clint elite elite2 fire off olivier"
+if [ x$ctafconf_zprompt = x ] ; then
+    ctafconf_zprompt='ctaf'
+fi
 echo -n "zsh prompt style [$ctafconf_zprompt]:"
 read $readparam zprompt
 if [ "x$zprompt" = x ] ; then

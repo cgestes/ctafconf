@@ -1,5 +1,6 @@
 2006-03-23 CTAF <>
 	* ct-installconf : defaut interface: conread
+	* ct-profile : default for zprompt: ctaf
 
 2006-03-22 CTAF <>
 	* alias : cf => conkeror (firefox which use only the kbd)
