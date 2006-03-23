@@ -19,7 +19,6 @@
 
 ;;;PATH and .el file
 (setq load-path (nconc '( "~/.ctafconf/etc/emacs/site-lisp/"
-			  "~/.ctafconf/etc/emacs/site-lisp/emacs-config/"
 			  "~/.ctafconf/etc/emacs/site-lisp/ilisp/"
 			  "~/.ctafconf/etc/emacs/site-lisp/ecb/"
 			  "~/.ctafconf/etc/emacs/site-lisp/tuareg/"
@@ -45,7 +44,7 @@
 ;;menu
 (safe-load "~/.ctafconf/etc/emacs/menu.emacs")
 ;;test
-(safe-load "~/.ctafconf/etc/emacs/test.emacs")
+;;(safe-load "~/.ctafconf/etc/emacs/test.emacs")
 
 
 

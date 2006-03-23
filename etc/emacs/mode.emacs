@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 00:57:16 2006 GESTES Cedric
-;; Last update Wed Mar 22 06:39:42 2006 GESTES Cedric
+;; Last update Thu Mar 23 03:31:22 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: MODE.EMACS")
 
@@ -108,7 +108,16 @@
   (define-key ibuffer-mode-map (kbd "#") 'ibuffer-switch-format))
 
 
-(require 'smart-operator)
+;; indent =, <, ... in cmode
+;;(require 'smart-operator)
+;; (defun my-c-mode-common-hook()
+;;   (smart-insert-operator-hook)
+;;
+;;   (local-unset-key (kbd "."))
+;;   (local-unset-key (kbd ":"))
+;;   (local-set-key (kbd "*") 'c-electric-star))
+;;
+;; (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 
 
 ;;C-return => selection mode

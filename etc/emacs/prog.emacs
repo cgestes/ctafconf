@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:14:21 2006 GESTES Cedric
-;; Last update Wed Mar 22 03:03:41 2006 GESTES Cedric
+;; Last update Thu Mar 23 03:39:51 2006 GESTES Cedric
 ;;
 
 (message "ctafconf loading: PROG.EMACS")
@@ -88,8 +88,8 @@
 ;;(add-hook 'c++-mode-hook 'c-toggle-auto-hungry-state)
 ;;(add-hook 'c++-mode-hook 'hs-minor-mode)
 
-(load-file "~/.ctafconf/etc/emacs/site-lisp/emacs-config/echeck.el")
-(load-file "~/.ctafconf/etc/emacs/site-lisp/emacs-config/norme.el")
+(load-file "~/.ctafconf/etc/emacs/site-lisp/echeck.el")
+(load-file "~/.ctafconf/etc/emacs/site-lisp/norme.el")
 
 ;; (require 'cc-mode)
 ;; (add-to-list 'c-style-alist
@@ -146,7 +146,7 @@
       (global-semantic-stickyfunc-mode 1)
 
       (global-highlight-changes 1)
-      (setq semanticdb-default-save-directory "~/.ctafconf/share/semantic")
+      (setq semanticdb-default-save-directory "~/.ctafconf/perso/semantic")
       ;;(global-set-key "\C-SPC" 'semantic-complete-analyze-inline)
       ;; This turns on modes that aid in grammar writing and semantic tool
       ;; development.  It does not enable any other features such as code
