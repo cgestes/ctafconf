@@ -1,7 +1,0 @@
-#CTAFCONF
-#ctssh
-
-server="elthariel.no-ip.org"
-user="ctaf"
-command=""
-desc="elthariel server"

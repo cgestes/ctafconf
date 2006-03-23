@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Wed Mar 22 08:38:36 2006 GESTES Cedric
+;; Last update Thu Mar 23 01:24:30 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: STARTUP.EMACS")
 
@@ -66,6 +66,7 @@
 ;;  - match ( & co on cursor
 ;;  - svn
 ;;  - bookmark, folding
+;;  - cache semantic => .ctafconf/perso
 ;;
 ;;easy emacs:
 ;;Ctrl-/         Bounce         Move from the beginning to the end or

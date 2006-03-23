@@ -1,9 +1,0 @@
-#CTAFCONF
-#This file should be used with ct-repo
-
-server="u38928862@s139660657.onlinehome.fr"
-repos="/kunden/homepages/45/d139660639/htdocs/svn"
-rsh="ssh"
-svnssh="ssh"
-module="test"
-desc="test on noshell"

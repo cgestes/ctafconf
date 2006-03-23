@@ -1,9 +1,0 @@
-#CTAFCONF
-#This file should be used with ct-repo
-
-server="ctaf@cvs.sourceforge.net"
-repos="/cvsroot/gaim-netsoul"
-rsh="ssh"
-svnssh="ssh"
-module="gaim-netsoul"
-desc="gaim-netsoul on sourceforge"

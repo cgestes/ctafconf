@@ -5,12 +5,13 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Mon Sep 26 04:19:16 2005 GESTES Cedric
-## Last update Sun Oct  9 03:09:45 2005 GESTES Cedric
+## Last update Thu Mar 23 01:57:58 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
 action=$1
 fname=$2
+sshdir=~/.ctafconf/perso/ssh
 
 readparam=""
 echo test_bob | read -e testbob >/dev/null 2>/dev/null;
@@ -22,7 +23,7 @@ ssh_params=
 
 ssh_list ()
 {
-  for i in $(ls ~/.ctafconf/share/ssh) ; do
+  for i in $(ls $sshdir) ; do
       echo $i
   done
 }
@@ -35,11 +36,11 @@ ssh_updatefiles ()
   local command;
   local desc;
 
-  for i in $(ls ~/.ctafconf/ssh | grep ".ssh") ; do
-    . ~/.ctafconf/share/ssh/$i
+  for i in $(ls $sshdir | grep ".ssh") ; do
+    . $sshdir/$i
 
-    echo "updating: ~/.ctafconf/share/ssh/$i"
-    filename=~/.ctafconf/share/ssh/$i
+    echo "updating: $sshdir/$i"
+    filename=$sshdir/$i
     echo "#CTAFCONF" >$filename
     echo "#ctssh" >>$filename
     echo "" >>$filename
@@ -58,15 +59,15 @@ ssh_connect ()
     local desc;
 
     echo $fname
-    if [ -f ~/.ctafconf/share/ssh/"$fname".ssh ] ; then
-	. ~/.ctafconf/share/ssh/"$fname".ssh
+    if [ -f $sshdir/"$fname".ssh ] ; then
+	. $sshdir/"$fname".ssh
 
 	echo "connection  : ssh $user@$server $command"
 	echo "description : $desc"
 
 	ssh $ssh_params $user@$server $command
     else
-	echo "can't find your ssh file in ~/.ctafconf/ssh"
+	echo "can't find your ssh file in $sshdir"
     fi
 }
 
@@ -107,7 +108,7 @@ ssh_add ()
     echo -n "Enter one description (avoid using \")?"
     read $readparam desc
 
-    filename=~/.ctafconf/share/ssh/"$name".ssh
+    filename=$sshdir/"$name".ssh
     echo "#CTAFCONF" >$filename
     echo "#ctssh" >>$filename
     echo "" >>$filename

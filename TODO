@@ -1,3 +1,7 @@
+NEEDED:
+- cleanup: share/misc, personnal info (sshe, ...), emacs config, site-lisp
+- one directory with all .mine?
+
 CTAFCONF:
 - DOCUMENTATION (rescue session shortcut) (single session log)
 - unset, unalias => unset unnecessary stuff?
@@ -29,10 +33,6 @@ EMACS
 - transparent (use console backcolor)
 - kill char from cur to begin
 
-CTAFTOOLS (needed?):
-- ifp and if portable, (without '' or "") (else endif)
-- for, foreachfile
-
 BONUS:
 - a gnome terminal that scroll like quake3 console using one hotkey
 - compiler for some configuration file ( emacs, fluxbox, etc..)
@@ -40,9 +40,6 @@ BONUS:
 - use gid and uid with mount command (maybe do a ct-mount)
 - kde, gnome (taskbar, etc), ff extension, blackbox, openbox, fvwm, enligthment
 - debian package
-
-DRAFT:
-qra query-replace-all => find all file that contain one pattern (exclude .svn), then open emacs with the result
 
 
 POSIX

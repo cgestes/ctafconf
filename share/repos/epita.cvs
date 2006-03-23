@@ -1,9 +1,0 @@
-#CTAFCONF
-#This file should be used with ct-repo
-
-server="gestes_c@agla"
-repos="/nfs/s1/space/users/a1/gestes_c/CVS"
-rsh="sshe"
-svnssh="ssh"
-module=""
-desc="epita through the gate"

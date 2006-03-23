@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Mon Sep 26 04:19:16 2005 GESTES Cedric
-## Last update Fri Feb 10 19:52:57 2006 GESTES Cedric
+## Last update Thu Mar 23 01:52:37 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -13,13 +13,15 @@ action=$1
 repo=$2
 cmd=$3
 readparam=""
+repodir=~/.ctafconf/perso/repos
+
 echo test_bob | read -e testbob >/dev/null 2>/dev/null;
 if [ x$? = x0 ]; then
 readparam="-e"
 fi
 repo_list ()
 {
-  for i in $(ls ~/.ctafconf/share/repos) ; do
+  for i in $(ls $repodir) ; do
       echo $i
   done
 }
@@ -34,11 +36,11 @@ repo_updatefiles ()
     local svnssh
     local desc
 
-    for i in $(ls ~/.ctafconf/share/repos | grep .svn) ; do
-      . ~/.ctafconf/share/repos/$i
+    for i in $(ls $repodir | grep .svn) ; do
+      . $repodir/$i
 
       echo "updating: ~/ctafconf/repos/$i"
-      filename=~/.ctafconf/share/repos/$i
+      filename=$repodir/$i
       echo "#CTAFCONF" >$filename
       echo "#This file should be used with ct-repo" >>$filename
       echo "" >>$filename
@@ -50,11 +52,11 @@ repo_updatefiles ()
       echo "desc=\"$desc\"" >>$filename
     done
 
-    for i in $(ls ~/.ctafconf/share/repos | grep .cvs) ; do
-      . ~/.ctafconf/share/repos/$i
+    for i in $(ls $repodir | grep .cvs) ; do
+      . $repodir/$i
 
       echo "updating: ~/ctafconf/repos/$i"
-      filename=~/.ctafconf/share/repos/$i
+      filename=$repodir/$i
       echo "#CTAFCONF" >$filename
       echo "#This file should be used with ct-repo" >>$filename
       echo "" >>$filename
@@ -78,23 +80,23 @@ repo_checkout ()
     local rsh
     local svnssh
 
-    if [ -f ~/.ctafconf/share/repos/"$repo".cvs ] ; then
-	. ~/.ctafconf/share/repos/"$repo".cvs
+    if [ -f $repodir/"$repo".cvs ] ; then
+	. $repodir/"$repo".cvs
 	echo "cvs checkout : $desc"
 	export CVS_RSH=$rsh
 	export CVSROOT="$server":"$repos"
 	echo cvs co -d "$server":"$repos" $module
 	cvs co $module
     else
-	if [ -f ~/.ctafconf/share/repos/"$repo".svn ] ; then
+	if [ -f $repodir/"$repo".svn ] ; then
 	    export SVN_SSH=$rsh
 	    echo export SVN_SSH=$rsh
-	    . ~/.ctafconf/share/repos/"$repo".svn
+	    . $repodir/"$repo".svn
 	    echo "svn checkout : $desc"
 	    echo svn co "$svnssh"://"$server"/"$repos" $module
 	    svn co "$svnssh"://"$server"/"$repos" $module
 	else
-	    echo "can't find your repository in ~/.ctafconf/share/repos"
+	    echo "can't find your repository in $repodir"
 	fi
     fi
 }
@@ -109,21 +111,21 @@ repo_global ()
     local rsh
     local svnssh
 
-    if [ -f ~/.ctafconf/share/repos/"$repo".cvs ] ; then
-	. ~/.ctafconf/share/repos/"$repo".cvs
+    if [ -f $repodir/"$repo".cvs ] ; then
+	. $repodir/"$repo".cvs
 	echo "cvs export : $desc"
 	export CVS_RSH=$rsh
 	export CVSROOT="$server":"$repos"
 	echo export CVS_RSH=$rsh
 	echo export CVSROOT="$server":"$repos"
-    else if [ -f ~/.ctafconf/share/repos/"$repo".svn ] ; then
-	   . ~/.ctafconf/share/repos/"$repo".svn
+    else if [ -f $repodir/"$repo".svn ] ; then
+	   . $repodir/"$repo".svn
 	   echo "svn export : $desc"
 	   export SVN_SSH=$svnssh
 	   echo export SVN_SSH=$svnssh
 	   echo svn repo url is "$rsh://$server/$repos"
          else
-	   echo "can't find your repository in ~/.ctafconf/share/repos"
+	   echo "can't find your repository in $repodir"
          fi
     fi
 }
@@ -139,23 +141,23 @@ repo_update ()
     local rsh
     local svnssh
 
-    if [ -f ~/.ctafconf/share/repos/"$repo".cvs ] ; then
-	. ~/.ctafconf/share/repos/"$repo".cvs
+    if [ -f $repodir/"$repo".cvs ] ; then
+	. $repodir/"$repo".cvs
 	echo "cvs update : $desc"
 	export CVS_RSH=$rsh
 	export CVSROOT="$server":"$repos"
 	echo cvs up -d "$server":"$repos" $module
 	cvs up
     else
-	if [ -f ~/.ctafconf/share/repos/"$repo".svn ] ; then
+	if [ -f $repodir/"$repo".svn ] ; then
 	    export SVN_SSH=$svnssh
 	    echo export SVN_SSH=$svnssh
-	    . ~/.ctafconf/share/repos/"$repo".svn
+	    . $repodir/"$repo".svn
 	    echo "svn update: $desc"
 	    echo svn up "$rsh"://"$server"/"$repos" $module
 	    svn co "$rsh"://"$server"/"$repos" $module
 	else
-	    echo "can't find your repository in ~/.ctafconf/share/repos"
+	    echo "can't find your repository in $repodir"
 	fi
     fi
 }
@@ -169,7 +171,7 @@ repo_add ()
     local rsh;
     local module;
 
-    echo "adding a new repository (in ~/.ctafconf/share/repos)"
+    echo "adding a new repository (in $repodir)"
 
     echo -n "Is it a cvs or svn repository [svn/cvs] ?"
     read $readparam cvssvn
@@ -233,11 +235,11 @@ repo_add ()
     echo -n "Enter one description (avoiding \" ) : "
     read $readparam desc
 
-    if [ -f ~/.ctafconf/share/repos/"$name".$cvssvn ] ; then
-	echo ~/.ctafconf/share/repos/"$name" already exist.
+    if [ -f $repodir/"$name".$cvssvn ] ; then
+	echo $repodir/"$name" already exist.
 	echo "can't add new repository"
     else
-	filename=~/.ctafconf/share/repos/"$name".$cvssvn
+	filename=$repodir/"$name".$cvssvn
 	echo "#CTAFCONF" >$filename
 	echo "#This file should be used with ct-repo" >>$filename
 	echo "" >>$filename
@@ -309,7 +311,7 @@ if [ x$action = 'x--update-files' ] ; then
 fi
 
 if [ x$action = 'x--dtest' ]; then
-rep=$(zenity --title "ctrepo -- Choose your repository:" --file-selection --filename=~/.ctafconf/share/repos/ctafconf.svn 2>/dev/null)
+rep=$(zenity --title "ctrepo -- Choose your repository:" --file-selection --filename=$repodir/ctafconf.svn 2>/dev/null)
 echo "repo: $rep"
 act=$(zenity --title "ctrepo -- Choose one action:" )
 echo "action: $rep"

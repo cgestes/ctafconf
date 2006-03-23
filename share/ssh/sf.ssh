@@ -1,7 +1,0 @@
-#CTAFCONF
-#ctssh
-
-server="ssh.sourceforge.net"
-user="ctaf"
-command=""
-desc="sourceforge"
