@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Oct  2 23:04:47 2005 GESTES Cedric
-## Last update Thu Mar 23 06:39:42 2006 GESTES Cedric
+## Last update Thu Mar 23 08:44:18 2006 GESTES Cedric
 ##
 #
 # CTAFCONF INSTALLATION
@@ -131,6 +131,10 @@ gnomesettings ()
 {
     #setting background for gnome
     wallpp=~/.ctafconf/etc/wallpaper/$ctafconf_wallpaper
+    wallpp2=~/.ctafconf/perso/wallpaper/$ctafconf_wallpaper
+    if [ -f $wallpp2 ]; then
+        wallpp=$wallpp2
+    fi
     echo "Setting wallpaper for gnome: $ctafconf_wallpaper"
     if which gconftool-2 > /dev/null 2> /dev/null ; then
       gconftool-2 --type=string -s /desktop/gnome/background/picture_filename "$wallpp"
