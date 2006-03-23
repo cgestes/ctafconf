@@ -7,6 +7,7 @@
 	* global : remove .ctafconf/share (wallpaper, mine goes in etc)
 	* emacs : big cleanup
 	* emacs : invert C-x b and C-x C-b
+	* emacs : recall macro : M-s
 
 2006-03-22 CTAF <>
 	* alias : cf => conkeror (firefox which use only the kbd)

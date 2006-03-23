@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:14:21 2006 GESTES Cedric
-;; Last update Thu Mar 23 03:39:51 2006 GESTES Cedric
+;; Last update Thu Mar 23 04:52:29 2006 GESTES Cedric
 ;;
 
 (message "ctafconf loading: PROG.EMACS")
@@ -73,7 +73,7 @@
 
 ;; Compilation Options
 (setq compile-command "make -k")
-(setq compilation-window-height 20)
+;;(setq compilation-window-height 20)
   ;; little compilation window
 (setq compilation-window-height 9)
 ;;CWARN (for old emacs i think)

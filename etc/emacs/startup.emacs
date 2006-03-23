@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Thu Mar 23 01:24:30 2006 GESTES Cedric
+;; Last update Thu Mar 23 04:57:43 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: STARTUP.EMACS")
 
@@ -32,7 +32,7 @@
 ;; [F11]	show ecb (code browser) [S-F11]         hide ecb (code browser)
 ;; [F12][A-Pup]	scroll-other-window     [S-F12][A-Pdown]scroll-other-window-down
 ;; [S-SPC]      inline completion
-;; C-z          Recall last kbd macro, C-x ( record, C-x ) stop recording
+;; M-s          Recall last kbd macro, C-x ( record, C-x ) stop recording
 ;; M-l          Goto-line
 ;; C-return     Box-mode selection
 ;; C--		undo
@@ -99,9 +99,11 @@
 If this is nil, no message will be displayed."
   :type 'string)
 
-(with-current-buffer (get-buffer "*scratch*")
-  (erase-buffer)
-  (when hinitial-scratch-message
-    (insert hinitial-scratch-message))
-  (set-buffer-modified-p nil))
+(defun ctafconf-help ()
+  (with-current-buffer (get-buffer "*scratch*")
+    (erase-buffer)
+    (when hinitial-scratch-message
+      (insert hinitial-scratch-message))
+    (set-buffer-modified-p nil)))
 
+(ctafconf-help)

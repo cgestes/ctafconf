@@ -5,18 +5,38 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Tue Oct  4 03:04:18 2005 GESTES Cedric
-## Last update Thu Mar 23 03:57:00 2006 GESTES Cedric
+## Last update Thu Mar 23 04:59:13 2006 GESTES Cedric
 ##
 #CTAFCONF
 
 
 cd ~
+# tar --exclude ".svn" \
+#     --exclude ".ctafconf/user-profile" \
+#     --exclude ".ctafconf/user-profile.mine" \
+#     --exclude ".ctafconf/user-profile-previous" \
+#     --exclude ".ctafconf/user-profile.csh" \
+#     --exclude ".ctafconf/user-profile.csh-previous" \
+#     -cvzf ctafconf-`date "+%Y%m%d"`.tgz .ctafconf
+
 tar --exclude ".svn" \
-    --exclude ".ctafconf/user-profile" \
-    --exclude ".ctafconf/user-profile.mine" \
-    --exclude ".ctafconf/user-profile-previous" \
-    --exclude ".ctafconf/user-profile.csh" \
-    --exclude ".ctafconf/user-profile.csh-previous" \
-    -cvzf ctafconf-`date "+%Y%m%d"`.tgz .ctafconf
+    --exclude ".ctafconf/etc/emacs/site-lisp/ilisp" \
+    --exclude ".ctafconf/etc/emacs/site-lisp/ecb" \
+    --exclude ".ctafconf/etc/emacs/site-lisp/cedet" \
+    -cvzf ctafconf-`date "+%Y%m%d"`.tgz \
+    .ctafconf/bin \
+    .ctafconf/etc \
+    .ctafconf/ctafconf-configuration \
+    .ctafconf/ctafconf-install \
+    .ctafconf/ctafconf-uninstall \
+    .ctafconf/ChangeLog \
+    .ctafconf/README \
+    .ctafconf/TODO \
+    .ctafconf/VERSION \
+    .ctafconf/AUTHORS \
+    .ctafconf/perso/ssh/empty \
+    .ctafconf/perso/repos/empty \
+    .ctafconf/perso/semantic/empty
+
 
 echo "tarball of the ctafconf: " ~/ctafconf-`date "+%Y%m%d"`.tgz

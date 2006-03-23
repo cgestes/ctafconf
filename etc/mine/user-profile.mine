@@ -5,12 +5,14 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Tue Oct  4 03:24:42 2005 GESTES Cedric
-## Last update Sat Oct 22 15:21:49 2005 GESTES Cedric
+## Last update Thu Mar 23 04:08:40 2006 GESTES Cedric
 ####
 #THIS FILE SHOULD BE NAMED: user-profile.mine
 #
 #THIS FILE WILL NEVER BE MODIFIED BY THE CTAFCONF
 #It's a personnal file, "autosaved" by ct-save-mine
+#
+#You could customize this file, to customize the ct-installconf command behavour
 ####
 
 #Where to store the result of ct-save-ctafconf
