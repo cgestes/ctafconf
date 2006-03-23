@@ -1,5 +1,6 @@
 2006-03-23 CTAF <>
 	* ct-installconf : defaut interface: conread
+	* ct-installconf : gconf setting (gnome-terminal, ...)
 	* ct-profile : default for zprompt: ctaf
 	* ct-repo : relocate share/repos to perso/repos
 	* ct-ssh : relocate share/ssh to perso/ssh
@@ -8,6 +9,8 @@
 	* emacs : big cleanup
 	* emacs : invert C-x b and C-x C-b
 	* emacs : recall macro : M-s
+	* ct-addwallpaper : add a new wallpaper
+	* ct-gconf : load and store some gconf key
 
 2006-03-22 CTAF <>
 	* alias : cf => conkeror (firefox which use only the kbd)

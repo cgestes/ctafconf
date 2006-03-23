@@ -5,7 +5,7 @@
 ## Login   <gestes_c@epita.fr>
 ##
 ## Started on  Mon Aug 15 01:30:05 2005 GESTES Cedric
-## Last update Fri Feb 10 19:49:01 2006 GESTES Cedric
+## Last update Thu Mar 23 05:30:33 2006 GESTES Cedric
 ##
 #FROM CTAFCONF
 #display help
@@ -47,6 +47,8 @@ echo "ct-esdonoff : toggle esd on and off"
 echo "sshe : ssh epita (sshe agla)"
 echo "sshep : ssh epita"
 echo "ct-profile : modify your profile configuration"
+echo "ct-installconf : install the ctafconf or update it"
+echo "ct-addwallpaper : add a new wallpaper into .ctafconf/perso/wallpaper"
 echo "ct-save-ssh : save your ssh configuration"
 echo "ct-save-gaim : save your gaim profile"
 echo "ct-save-firefox : save your firefox profile"

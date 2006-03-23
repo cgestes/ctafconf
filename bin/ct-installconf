@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Oct  2 23:04:47 2005 GESTES Cedric
-## Last update Thu Mar 23 03:03:46 2006 GESTES Cedric
+## Last update Thu Mar 23 06:16:22 2006 GESTES Cedric
 ##
 #
 # CTAFCONF INSTALLATION
@@ -153,6 +153,22 @@ gnomesettings ()
       gconftool-2 --type string --set /apps/metacity/window_keybindings/toggle_maximized "<Control><Alt>m"
       gconftool-2 --type string --set /apps/metacity/window_keybindings/begin_move "<Control><Alt>w"
       gconftool-2 --type string --set /apps/metacity/window_keybindings/begin_resize "<Control><Alt>x"
+
+      #gnone-panel-bar
+      gconftool-2 --dump /apps/panel > ~/.ctafconf/perso/previous/panel.gconf
+      #gnome style
+      gconftool-2 --dump /desktop/gnome/interface > ~/.ctafconf/perso/previous/gnome-interface.gconf
+      #gnome-terminal profile
+      gconftool-2 --dump /apps/gnome-terminal > ~/.ctafconf/perso/previous/gnome-terminal.gconf
+      #metacity theme
+      gconftool-2 --dump /apps/metacity/general > ~/.ctafconf/perso/previous/metacity-window.gconf
+
+      echo "### to revert gconf settings launch gconftool-2 --load=FILE      ###"
+      echo "### where FILE is one file from .ctafconf/perso/previous/*.gconf ###"
+      gconftool-2 --load=~/.ctafconf/etc/gconf/panel
+      gconftool-2 --load=~/.ctafconf/etc/gconf/gnome-interface
+      gconftool-2 --load=~/.ctafconf/etc/gconf/gnome-terminal
+      gconftool-2 --load=~/.ctafconf/etc/gconf/metacity-window
     fi
 }
 

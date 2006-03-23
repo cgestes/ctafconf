@@ -5,7 +5,7 @@
 ## Login   <root@epita.fr>
 ##
 ## Started on  Fri Feb 18 16:13:08 2005 root
-## Last update Thu Mar 23 02:57:56 2006 GESTES Cedric
+## Last update Thu Mar 23 05:35:28 2006 GESTES Cedric
 ##
 ##ORIGINALY FROM CTAFCONF
 
@@ -27,6 +27,11 @@ fi
 . ~/.ctafconf/perso/user-profile
 
 wallpp=~/.ctafconf/etc/wallpaper/$ctafconf_wallpaper
+wallpp2=~/.ctafconf/perso/wallpaper/$ctafconf_wallpaper
+if [ -f $wallpp2 ]; then
+  wallpp=$wallpp2
+fi
+
 
 
 # if [ which gconftool-2 > /dev/null 2> /dev/null ] ; then

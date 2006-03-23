@@ -1,25 +1,28 @@
 NEEDED:
 - cleanup: personnal info (sshe, sshep (put in perso/bin))
-- one directory with all .mine?
-- ct-save-conf, ct-save-mine
-- doc: README.EMACS, install just emacs, just test emacsconf, ..
+- one directory with all .mine?, ct-save-mine
+- put all previous file in .ctafconf/perso/previous
+- save previous gconf value before applying gnomesetting (ct-install)
+
+DOCUMENTATION:
+- emacs: README.EMACS, install just emacs, just test emacsconf, ..
+- svn: checkout from svn, update
+- DOCUMENTATION (rescue session shortcut) (single session log)
+- enhance ct-help
+- revert gconf setting
+- what is in perso
 
 CTAFCONF:
-- DOCUMENTATION (rescue session shortcut) (single session log)
-- unset, unalias => unset unnecessary stuff?
+- ramdom wallpaper (wallpp = ramdom, ramdomperso)
 - screen : fichier de conf std (3 windows), automatiquement lance?, keys to browse hystory
 - grepr : directory not needed (use .)
 - xsession : change session "on the fly" (ct-switch (kill current wm))
 - top : top mem / top cpu nothing else
 - use sabayon for gnome-conf/ff-conf
-- ctafconf.sh => add color for all term (CT_RED,CT_YELLOW,..) and for prompt
 - better template (.mine) for env, emacs, and co, allowing easy customization (define var to enable/disable functionnality (ecb/semantic/)
 - tweak and use screenrc
 - 4 distrib: tinyemacs, emacs (with ecb, ilisp, ..), tinyctafconf, ctafconf (with ecb, ilisp, ..)
 -makefile (download ecb, ilisp, ..)?, ct-update (update ctafconf from sf svn)
-
-ENV
-- visual,editor,shell => emacs else nano,else ..
 
 SHELL
 - completion de zsh (cursor like in hh)
@@ -27,6 +30,9 @@ SHELL
 - test: zsh speed with compiled configuration file
 - epita: zsh color
 - completion for apt, apts
+- unset, unalias => unset unnecessary stuff?
+- visual,editor,shell => emacs else nano,else ..
+- ctafconf.sh => add color for all term (CT_RED,CT_YELLOW,..) and for prompt
 
 EMACS
 - emacs: in console (ctrl+backspace, beep) (enable vt102 in xterm,..)
@@ -43,7 +49,7 @@ BONUS:
 - kde, gnome (taskbar, etc), ff extension, blackbox, openbox, fvwm, enligthment
 - debian package
 
-
+===========================================================
 POSIX
 --sh
 if cmp -s $SRCFILE $FILE; then
