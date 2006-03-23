@@ -2,7 +2,7 @@ NEEDED:
 - cleanup: personnal info (sshe, sshep (put in perso/bin))
 - one directory with all .mine?, ct-save-mine
 - put all previous file in .ctafconf/perso/previous
-- save previous gconf value before applying gnomesetting (ct-install)
+- save previous gconf value before applying gnomesetting (ct-install) (using -prev-date)
 
 DOCUMENTATION:
 - emacs: README.EMACS, install just emacs, just test emacsconf, ..
