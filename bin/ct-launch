@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Oct  9 22:15:03 2005 GESTES Cedric
-## Last update Fri Feb 10 19:52:09 2006 GESTES Cedric
+## Last update Thu Mar 23 02:55:47 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -13,7 +13,7 @@ param=$1
 param2=$2
 
 ctafconf_sudo=
-source ~/.ctafconf/user-profile >/dev/null 2>/dev/null
+source ~/.ctafconf/perso/user-profile >/dev/null 2>/dev/null
 
 errorcantfind ()
 {

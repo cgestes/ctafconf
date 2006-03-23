@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Sep 25 21:51:34 2005 GESTES Cedric
-## Last update Wed Mar 22 23:26:33 2006 GESTES Cedric
+## Last update Thu Mar 23 03:03:17 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -17,7 +17,7 @@ if [ x$? = x0 ]; then
 fi
 
 #ctafconf user profile file (don't use quote to expand ~)
-savefile=~/.ctafconf/user-profile
+savefile=~/.ctafconf/perso/user-profile
 
 conread ()
 {
@@ -140,9 +140,9 @@ savenewconfcsh()
 }
 
 ##START##
-if [ -f ~/.ctafconf/user-profile ]; then
+if [ -f ~/.ctafconf/perso/user-profile ]; then
   echo "you already have a configuration file"
-  . ~/.ctafconf/user-profile
+  . ~/.ctafconf/perso/user-profile
   showctafconf
   echo -n "Do you want to edit this configuration [y/N]? :"
   read $readparam yesno
@@ -191,7 +191,7 @@ fi
 
 echo "--------------------------------------"
 echo "choose your wallpaper from the list (include .jpg in your answer):"
-echo $(ls ~/.ctafconf/share/wallpaper)
+echo $(ls ~/.ctafconf/etc/wallpaper)
 if [ x$ctafconf_wallpaper = x ] ; then
     ctafconf_wallpaper='psycho18.jpg'
 fi
@@ -253,7 +253,7 @@ fi
 
 shownewconf
 echo "Save the configuration?"
-echo "I will backup your previous user-profile"
+echo "I will backup your previous perso/user-profile"
 echo -n "Save (y/N)? :"
 read $readparam yesno
 if [ "x$yesno" = xy ] || [ "x$yesno" = xY ] ; then

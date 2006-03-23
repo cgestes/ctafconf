@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Mon Sep 26 02:37:56 2005 GESTES Cedric
-## Last update Thu Oct 13 23:31:11 2005 GESTES Cedric
+## Last update Thu Mar 23 02:54:13 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -16,8 +16,8 @@ xhost +localhost
 #merge setting for x application (xterm,aterm,..)
 xrdb -merge ~/.ctafconf/etc/Xdefaults
 
-if [ -f ~/.ctafconf/user-profile ] ; then
-    . ~/.ctafconf/user-profile
+if [ -f ~/.ctafconf/perso/user-profile ] ; then
+    . ~/.ctafconf/perso/user-profile
 fi
 
 

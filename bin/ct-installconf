@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Oct  2 23:04:47 2005 GESTES Cedric
-## Last update Wed Mar 22 23:22:39 2006 GESTES Cedric
+## Last update Thu Mar 23 03:03:46 2006 GESTES Cedric
 ##
 #
 # CTAFCONF INSTALLATION
@@ -130,7 +130,7 @@ ctdir ()
 gnomesettings ()
 {
     #setting background for gnome
-    wallpp=~/.ctafconf/share/wallpaper/$ctafconf_wallpaper
+    wallpp=~/.ctafconf/etc/wallpaper/$ctafconf_wallpaper
     echo "Setting wallpaper for gnome: $ctafconf_wallpaper"
     if which gconftool-2 > /dev/null 2> /dev/null ; then
       gconftool-2 --type=string -s /desktop/gnome/background/picture_filename "$wallpp"
@@ -166,12 +166,12 @@ fi
 #launch ct-profile to configure one profile
 ~/.ctafconf/bin/ct-profile
 
-if ! [ -f ~/.ctafconf/user-profile ] ; then
-  echo "Can't find ~/.ctafconf/user-profile directory"
+if ! [ -f ~/.ctafconf/perso/user-profile ] ; then
+  echo "Can't find ~/.ctafconf/perso/user-profile directory"
   echo "Aborting, execute ct-profile, or relauch install"
   exit
 fi
-. ~/.ctafconf/user-profile
+. ~/.ctafconf/perso/user-profile
 
 #include .mine configuration file
 ctafconf_install_setronly=yes
@@ -192,17 +192,17 @@ ctafconf_install_gdmkdm=ask
 ctafconf_install_xsession=ask
 ctafconf_install_xinitrc=ask
 
-if [ -f ~/.ctafconf/user-profile.mine ] ; then
-  . ~/.ctafconf/user-profile.mine
+if [ -f ~/.ctafconf/perso/user-profile.mine ] ; then
+  . ~/.ctafconf/perso/user-profile.mine
 fi
 
 #zsh
 if ! cttestlink ~/.ctafconf/etc/zsh/zshrc ~/.zshrc || ! cttestlink ~/.ctafconf/etc/zsh/zshenv ~/.zshenv ; then
   if [ x$ctafconf_install_zsh = xyes ] || ( [ x$ctafconf_install_zsh != xno ] && $dial --yesno "Install configuration for zsh (.zshrc, .zshenv) [y/N]?" 0 0); then
     ctlink ~/.ctafconf/etc/zsh/zshrc ~/.zshrc
-    ctfile ~/.zshrc.mine ~/.ctafconf/share/mine/zshrc.mine
+    ctfile ~/.zshrc.mine ~/.ctafconf/etc/mine/zshrc.mine
     ctlink ~/.ctafconf/etc/zsh/zshenv ~/.zshenv
-    ctfile ~/.zshenv.mine ~/.ctafconf/share/mine/zshenv.mine
+    ctfile ~/.zshenv.mine ~/.ctafconf/etc/mine/zshenv.mine
     echo "Installing ctafconf for: zsh"
   fi
 fi
@@ -211,7 +211,7 @@ fi
 if ! cttestlink ~/.ctafconf/etc/bash/bashrc ~/.bashrc ; then
   if  [ x$ctafconf_install_bash = xyes ] || ( [ x$ctafconf_install_bash != xno ] && $dial --yesno "Install configuration for bash (.bashrc)[y/N]?" 0 0) ; then
     ctlink ~/.ctafconf/etc/bash/bashrc ~/.bashrc
-    ctfile .bashrc.mine ~/.ctafconf/share/mine/bashrc.mine
+    ctfile .bashrc.mine ~/.ctafconf/etc/mine/bashrc.mine
     echo "Installing ctafconf for: bash"
   fi
 fi
@@ -220,7 +220,7 @@ fi
 if ! cttestlink ~/.ctafconf/etc/ksh/kshrc ~/.kshrc ; then
   if  [ x$ctafconf_install_ksh = xyes ] || ( [ x$ctafconf_install_ksh != xno ] && $dial --yesno "Install configuration for ksh (.kshrc)[y/N]?" 0 0) ; then
     ctlink ~/.ctafconf/etc/ksh/kshrc ~/.kshrc
-    ctfile .kshrc.mine ~/.ctafconf/share/mine/kshrc.mine
+    ctfile .kshrc.mine ~/.ctafconf/etc/mine/kshrc.mine
     echo "Installing ctafconf for: ksh"
   fi
 fi
@@ -229,7 +229,7 @@ fi
 if ! cttestlink ~/.ctafconf/etc/tcsh/tcshrc ~/.tcshrc ; then
   if  [ x$ctafconf_install_tcsh = xyes ] || ( [ x$ctafconf_install_tcsh != xno ] && $dial --yesno "Install configuration for tcsh (.tcshrc)[y/N]?" 0 0) ; then
     ctlink ~/.ctafconf/etc/tcsh/tcshrc ~/.tcshrc
-    ctfile .tcshrc.mine ~/.ctafconf/share/mine/tcshrc.mine
+    ctfile .tcshrc.mine ~/.ctafconf/etc/mine/tcshrc.mine
     echo "Installing ctafconf for: tcsh"
   fi
 fi
@@ -273,7 +273,7 @@ fi
 if ! cttestlink ~/.ctafconf/etc/emacs/emacs ~/.emacs ; then
   if  [ x$ctafconf_install_emacs = xyes ] || ( [ x$ctafconf_install_emacs != xno ] && $dial --yesno "Install configuration for emacs (.emacs)[y/N]?" 0 0) ; then
     ctlink ~/.ctafconf/etc/emacs/emacs ~/.emacs
-    ctfile ~/.emacs.mine ~/.ctafconf/share/mine/emacs.mine
+    ctfile ~/.emacs.mine ~/.ctafconf/etc/mine/emacs.mine
     echo "Installing ctafconf for: emacs"
   fi
 fi
@@ -287,12 +287,12 @@ if ! cttestlink ~/.ctafconf/etc/nanorc ~/.nanorc ; then
 fi
 
 #ctafconf user profile
-ctfile ~/.ctafconf/user-profile.mine ~/.ctafconf/share/mine/user-profile.mine
+ctfile ~/.ctafconf/perso/user-profile.mine ~/.ctafconf/etc/mine/user-profile.mine
 
 if ! cttestlink ~/.ctafconf/etc/xsession/xsession ~/.xsession ; then
   if  [ x$ctafconf_install_xsession = xyes ] || ( [ x$ctafconf_install_xsession != xno ] && $dial --yesno "Support xdm (~/.xsession) [y/N]?" 0 0) ; then
   ctlink ~/.ctafconf/etc/xsession/xsession ~/.xsession
-  ctfile ~/.xsession.mine ~/.ctafconf/share/mine/xsession.mine
+  ctfile ~/.xsession.mine ~/.ctafconf/etc/mine/xsession.mine
     echo "Installing ctafconf for: xdm"
   fi
 fi
@@ -300,7 +300,7 @@ if ! cttestlink ~/.ctafconf/etc/xsession/xsession ~/.xinitrc ; then
   if  [ x$ctafconf_install_xinitrc = xyes ] || ( [ x$ctafconf_install_xinitrc != xno ] &&  $dial --yesno "Support startx(~/.xinitrc) [y/N]?" 0 0) ; then
   #we reuse xsession, it's the same think
   ctlink ~/.ctafconf/etc/xsession/xsession ~/.xinitrc
-  ctfile ~/.xsession.mine ~/.ctafconf/share/mine/xsession.mine
+  ctfile ~/.xsession.mine ~/.ctafconf/etc/mine/xsession.mine
     echo "Installing ctafconf for: startx"
   fi
 fi

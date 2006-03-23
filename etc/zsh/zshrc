@@ -5,12 +5,9 @@
 ## Login   <gestes_c@epita.fr>
 ##
 ## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
-## Last update Thu Mar 16 02:01:42 2006 GESTES Cedric
+## Last update Thu Mar 23 02:54:42 2006 GESTES Cedric
 ##
 ##CTAFCONF
-
-#userconfig (already in zshenv)
-#source ~/.ctafconf/user-profile
 
 # Shell is non-interactive.  Be done now
 if [[ $- != *i* ]]; then

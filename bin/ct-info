@@ -5,7 +5,7 @@
 ## Login   <root@epita.fr>
 ##
 ## Started on  Fri Feb 18 16:13:08 2005 root
-## Last update Thu Oct 13 22:15:00 2005 
+## Last update Thu Mar 23 02:58:51 2006 GESTES Cedric
 ##
 ##ORIGINALY FROM CTAFCONF
 
@@ -21,12 +21,12 @@ fi
 
 info_wanted=$1
 
-if ! [ -f ~/.ctafconf/user-profile ]; then
-  echo "Can't find your ~/.ctafconf/user_profile.ctafconf"
+if ! [ -f ~/.ctafconf/perso/user-profile ]; then
+  echo "Can't find your ~/.ctafconf/perso/user_profile.ctafconf"
   echo "you should reinstall env with ctafconf-install"
   exit 1
 fi
-. ~/.ctafconf/user-profile
+. ~/.ctafconf/perso/user-profile
 
 #UID
 if [ "x$info_wanted" = "xlogin" ]; then
