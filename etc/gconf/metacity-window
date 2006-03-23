@@ -88,7 +88,7 @@
       <key>theme</key>
       <schema_key>/schemas/apps/metacity/general/theme</schema_key>
       <value>
-        <string>Industrial</string>
+        <string>Amaranth</string>
       </value>
     </entry>
     <entry>

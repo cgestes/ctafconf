@@ -5,11 +5,19 @@
 ## Login   <simon@epita.fr>
 ##
 ## Started on  Thu Oct 13 04:27:37 2005
-## Last update Thu Mar 23 06:28:35 2006 GESTES Cedric
+## Last update Thu Mar 23 06:34:04 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
-param=$1
+if [ $# -gt 0 ]; then
+    param=$1
+else
+    echo "dump: ct-gconf dump"
+    echo "load: ct-gconf load"
+    exit
+fi
+
+
 
 if [ w$param = wdump ] ; then
 #gnone-panel-bar
@@ -23,8 +31,12 @@ if [ w$param = wdump ] ; then
 fi
 
 if [ w$param = wload ] ; then
-  gconftool-2 --load="~/.ctafconf/etc/gconf/panel"
-  gconftool-2 --load="~/.ctafconf/etc/gconf/gnome-interface"
-  gconftool-2 --load="~/.ctafconf/etc/gconf/gnome-terminal"
-  gconftool-2 --load="~/.ctafconf/etc/gconf/metacity-window"
+    gfile=~/.ctafconf/etc/gconf/panel
+    gconftool-2 --load="$gfile"
+    gfile=~/.ctafconf/etc/gconf/gnome-interface
+    gconftool-2 --load="$gfile"
+    gfile=~/.ctafconf/etc/gconf/gnome-terminal
+    gconftool-2 --load="$gfile"
+    gfile=~/.ctafconf/etc/gconf/metacity-window
+    gconftool-2 --load="$gfile"
 fi

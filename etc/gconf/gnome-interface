@@ -29,6 +29,13 @@
       </value>
     </entry>
     <entry>
+      <key>document_font_name</key>
+      <schema_key>/schemas/desktop/gnome/interface/document_font_name</schema_key>
+      <value>
+        <string>Sans 10</string>
+      </value>
+    </entry>
+    <entry>
       <key>enable_animations</key>
       <schema_key>/schemas/desktop/gnome/interface/enable_animations</schema_key>
       <value>
@@ -74,14 +81,21 @@
       <key>gtk_theme</key>
       <schema_key>/schemas/desktop/gnome/interface/gtk_theme</schema_key>
       <value>
-        <string>Industrial</string>
+        <string>Smokey-Blue</string>
       </value>
     </entry>
     <entry>
       <key>icon_theme</key>
       <schema_key>/schemas/desktop/gnome/interface/icon_theme</schema_key>
       <value>
-        <string>Industrial</string>
+        <string>Smokey-Blue</string>
+      </value>
+    </entry>
+    <entry>
+      <key>menubar_accel</key>
+      <schema_key>/schemas/desktop/gnome/interface/menubar_accel</schema_key>
+      <value>
+        <string>F10</string>
       </value>
     </entry>
     <entry>
