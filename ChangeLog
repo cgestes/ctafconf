@@ -1,4 +1,4 @@
-2006-03-23 CTAF <>
+2006-03-23 CTAF <> -- 0.2.0
 	* ct-installconf : defaut interface: conread
 	* ct-installconf : gconf setting (gnome-terminal, ...)
 	* ct-profile : default for zprompt: ctaf

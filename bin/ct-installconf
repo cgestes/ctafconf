@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Oct  2 23:04:47 2005 GESTES Cedric
-## Last update Thu Mar 23 06:16:22 2006 GESTES Cedric
+## Last update Thu Mar 23 06:28:21 2006 GESTES Cedric
 ##
 #
 # CTAFCONF INSTALLATION
@@ -165,10 +165,10 @@ gnomesettings ()
 
       echo "### to revert gconf settings launch gconftool-2 --load=FILE      ###"
       echo "### where FILE is one file from .ctafconf/perso/previous/*.gconf ###"
-      gconftool-2 --load=~/.ctafconf/etc/gconf/panel
-      gconftool-2 --load=~/.ctafconf/etc/gconf/gnome-interface
-      gconftool-2 --load=~/.ctafconf/etc/gconf/gnome-terminal
-      gconftool-2 --load=~/.ctafconf/etc/gconf/metacity-window
+      gconftool-2 --load="~/.ctafconf/etc/gconf/panel"
+      gconftool-2 --load="~/.ctafconf/etc/gconf/gnome-interface"
+      gconftool-2 --load="~/.ctafconf/etc/gconf/gnome-terminal"
+      gconftool-2 --load="~/.ctafconf/etc/gconf/metacity-window"
     fi
 }
 
