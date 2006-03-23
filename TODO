@@ -1,6 +1,8 @@
 NEEDED:
-- cleanup: share/misc, personnal info (sshe, ...), emacs config, site-lisp
+- cleanup: personnal info (sshe, sshep (put in perso/bin))
 - one directory with all .mine?
+- ct-save-conf, ct-save-mine
+- doc: README.EMACS, install just emacs, just test emacsconf, ..
 
 CTAFCONF:
 - DOCUMENTATION (rescue session shortcut) (single session log)

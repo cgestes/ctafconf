@@ -5,24 +5,24 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Tue Oct  4 03:04:18 2005 GESTES Cedric
-## Last update Tue Oct  4 03:42:00 2005 GESTES Cedric
+## Last update Thu Mar 23 04:00:57 2006 GESTES Cedric
 ##
 #CTAFCONF
 
 
 cd ~
 filetotar=
-for i in `ls ~/.ctafconf/share/mine/` ; do
+for i in `ls ~/.ctafconf/etc/mine/` ; do
     i=.$i
     if [ x$i = xuser-profile.mine ] ; then
 	continue
     fi
     if [ -f $i ] ; then
-	filetotar="$filetotar $i"
+	      filetotar="$filetotar $i"
     fi
 done
-if [ -f ~/.ctafconf/user-profile.mine ]; then
-    i=".ctafconf/user-profile.mine"
+if [ -f ~/.ctafconf/perso/user-profile.mine ]; then
+    i=".ctafconf/perso/user-profile.mine"
     filetotar="$filetotar $i"
 fi
 

@@ -14,6 +14,11 @@ parameter possible (for interface): | dialog | gdialog | kdialog | conread
 
 > ./ctafconf-install
 
+If you only want emacs:
+ln -s ~/.ctafconf/etc/emacs/emacs ~/.emacs
+or add to your own ~/.emacs:
+(load-file "~/.ctafconf/etc/emacs/emacs")
+
 ------------------EXPERIMENTAL--
 pour emacs:
 recuperer au choix sur le web:
@@ -52,8 +57,8 @@ ct-socks : set your socks password (mostly for epita)
 visit http://www.noshell.info for more information/help about the ctafconf
 
 ---------------------------FILES---------------------------------------
-.ctafconf/user-profile      : user configuration modified by ct-profile
-.ctafconf/user-profile.mine : static information (module to install, path)
+.ctafconf/perso/user-profile      : user configuration modified by ct-profile
+.ctafconf/perso/user-profile.mine : static information (module to install, path)
 
 ---------------------------FOLDERS-------------------------------------
 .ctafconf                       root directory
@@ -70,6 +75,8 @@ All thoses configurations files have been compiled from a lot's of files from di
 
 ---------------------------About---------------------------
 Cedric GESTES (goctaf@gmail.com)
+http://www.sf.net/projects/grk
+http://grk.sf.net
 http://www.ctaf.free.fr
 http://www.noshell.info
 

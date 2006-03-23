@@ -4,6 +4,9 @@
 	* ct-repo : relocate share/repos to perso/repos
 	* ct-ssh : relocate share/ssh to perso/ssh
 	* global : move all personnal file to .ctafconf/perso
+	* global : remove .ctafconf/share (wallpaper, mine goes in etc)
+	* emacs : big cleanup
+	* emacs : invert C-x b and C-x C-b
 
 2006-03-22 CTAF <>
 	* alias : cf => conkeror (firefox which use only the kbd)

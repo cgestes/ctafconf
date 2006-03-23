@@ -1,9 +1,0 @@
-#CTAFCONF
-#This file should be used with ct-repo
-
-server="svn.sourceforge.net"
-repos="/svnroot/grk"
-rsh="https"
-svnssh="ssh"
-module=".ctafconf"
-desc="grk on sourceforge"
