@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Sep 25 21:51:34 2005 GESTES Cedric
-## Last update Thu Mar 23 05:36:06 2006 GESTES Cedric
+## Last update Mon Mar 27 03:27:38 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -18,6 +18,7 @@ fi
 
 #ctafconf user profile file (don't use quote to expand ~)
 savefile=~/.ctafconf/perso/user-profile
+bakfile=~/.ctafconf/perso/previous/user-profile
 
 conread ()
 {
@@ -88,9 +89,9 @@ savenewconf()
 {
   if [ -f $savefile ]; then
       echo "storing your previous configuration"
-      echo -"to: "$savefile"-previous"
-      rm -rf $savefile-previous
-      mv $savefile $savefile-previous
+      echo -"to: $bakfile-previous"
+      rm -rf $bakfile-previous
+      mv $savefile $bakfile-previous
   fi
   echo "saving...."
   touch $savefile
@@ -115,9 +116,9 @@ savenewconfcsh()
 {
   if [ -f $savefile ]; then
       echo "storing your previous configuration"
-      echo -"to: "$savefile"-previous"
-      rm -rf $savefile-previous
-      mv $savefile $savefile-previous
+      echo -"to: "$bakfile"-previous"
+      rm -rf $bakfile-previous
+      mv $savefile $bakfile-previous
   fi
   echo "saving...."
   touch $savefile
@@ -260,5 +261,6 @@ read $readparam yesno
 if [ "x$yesno" = xy ] || [ "x$yesno" = xY ] ; then
     savenewconf
     savefile=$savefile".csh"
+    bakfile=$bakfile".csh"
     savenewconfcsh
 fi

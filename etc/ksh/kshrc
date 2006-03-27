@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Thu Oct  6 04:55:46 2005 GESTES Cedric
-## Last update Mon Mar 27 02:36:19 2006 GESTES Cedric
+## Last update Mon Mar 27 03:40:09 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -32,6 +32,6 @@ if [ -f ~/.ctafconf/etc/shell/alias ]; then
     . ~/.ctafconf/etc/shell/alias
 fi
 
-if [ -f ~/.kshrc.mine ]; then
-    . ~/.ctafconf/perso/.kshrc.mine
+if [ -f ~/.ctafconf/perso/kshrc.mine ]; then
+    . ~/.ctafconf/perso/kshrc.mine
 fi

@@ -5,17 +5,17 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Tue Oct  4 03:04:18 2005 GESTES Cedric
-## Last update Thu Mar 23 05:28:45 2006 GESTES Cedric
+## Last update Mon Mar 27 03:33:49 2006 GESTES Cedric
 ##
 #CTAFCONF
 
-if [ $# -gt 0 ]
-then
-wallpp=$1
+if [ $# -gt 0 ]; then
+    wallpp=$1
 else
-wallpp=1
+    echo "you should specify an image"
+    exit
 fi
 
 echo "add wallpaper $wallpp"
-echo "to use it launch ct-profile, and set the wallpaper to what you want"
+echo "Use ct-profile or ct-installconf to modify your current wallpaper"
 cp $wallpp ~/.ctafconf/perso/wallpaper/

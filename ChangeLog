@@ -6,7 +6,9 @@
 	* ct-remove-backup : removed, no needed anymore
 	* globalenv : add ~/.ctafconf/perso/bin to $PATH
 	* vimrc : simple configuration file for vim (coloration, folding, ...)
-
+	* ct-add-wallpaper : bug if .ctafconf/perso/wallpaper doesnt exist
+	* ct-installconf : .mine are alwais installed if they don't exist
+	* ct-installconf : remove empty file in perso
 
 2006-03-23 CTAF <> -- 0.2.0
 	* ct-installconf : defaut interface: conread

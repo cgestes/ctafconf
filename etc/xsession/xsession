@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Mon Sep 26 02:37:56 2005 GESTES Cedric
-## Last update Mon Mar 27 02:37:23 2006 GESTES Cedric
+## Last update Mon Mar 27 03:40:41 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -41,8 +41,8 @@ if which gaim >/dev/null 2>/dev/null; then
   gaim&
 fi
 
-if [ -f ~/.ctafconf/perso/.xsession.mine ]; then
-    source ~/.ctafconf/perso/.xsession.mine
+if [ -f ~/.ctafconf/perso/xsession.mine ]; then
+    source ~/.ctafconf/perso/xsession.mine
 fi
 
 ########################### LAUNCHING WM ###########################

@@ -5,7 +5,7 @@
 ## Login   <gestes_c@epita.fr>
 ##
 ## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
-## Last update Mon Mar 27 02:35:58 2006 GESTES Cedric
+## Last update Mon Mar 27 03:41:22 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -32,6 +32,6 @@ else
     prompt $ctafconf_zprompt
 fi
 
-if [ -f ~/.zshrc.mine ]; then
-    source ~/.ctafconf/perso/.zshrc.mine
+if [ -f ~/.ctafconf/perso/zshrc.mine ]; then
+    source ~/.ctafconf/perso/zshrc.mine
 fi
