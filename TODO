@@ -36,7 +36,6 @@ SHELL
 - visual,editor,shell => emacs else nano,else ..
 - ctafconf.sh => add color for all term (CT_RED,CT_YELLOW,..) and for prompt
 - date reminder, who show event when lauching a shell
-- vimrc test merge
 
 EMACS
 - emacs: in console (ctrl+backspace, beep) (enable vt102 in xterm,..)

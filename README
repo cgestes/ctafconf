@@ -64,14 +64,17 @@ visit http://www.noshell.info for more information/help about the ctafconf
 .ctafconf                       root directory
 .ctafconf/etc                   contain all configuration files
 .ctafconf/bin                   ct-profile, ct-installconf, ctssh, ctrepo, ...
-.ctafconf/share/repos		repository for ct-repo (ctrepo)
-.ctafconf/share/wallpaper	wallpaper
-.ctafconf/share/ssh		ssh informations for ctssh
-.ctafconf/share/mine		template file for .mine
-.ctafconf/share/misc		misc
+.ctafconf/perso                 user specific configuration files
+
+.ctafconf/perso/bin             user binary
+.ctafconf/perso/semantic        semantic cache file (for emacs, when cedet is installed)
+.ctafconf/perso/previous        all file replaced by the ctafconf
+.ctafconf/perso/wallpaper       user wallpaper (ct-add-wallpaper to add one)
+
 
 ---------------------------Credits---------------------------
-All thoses configurations files have been compiled from a lot's of files from differents places
+All thoses configurations files have been collected, modified
+and enhanced from a lot's of files from differents places
 
 ---------------------------About---------------------------
 Cedric GESTES (goctaf@gmail.com)

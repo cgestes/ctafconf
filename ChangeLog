@@ -7,6 +7,7 @@
 	* globalenv : add ~/.ctafconf/perso/bin to $PATH
 	* vimrc : simple configuration file for vim (coloration, folding, ...)
 
+
 2006-03-23 CTAF <> -- 0.2.0
 	* ct-installconf : defaut interface: conread
 	* ct-installconf : gconf setting (gnome-terminal, ...)
