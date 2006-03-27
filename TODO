@@ -3,6 +3,7 @@ NEEDED:
 - save previous gconf value before applying gnomesetting (ct-install) (using -prev-date)
 - appli launched by default in perso (ctafconf/perso/startup)
 - conky then torsmo..
+- diff .mine file
 
 DOCUMENTATION:
 - emacs: README.EMACS, install just emacs, just test emacsconf, ..

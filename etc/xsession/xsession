@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Mon Sep 26 02:37:56 2005 GESTES Cedric
-## Last update Mon Mar 27 03:40:41 2006 GESTES Cedric
+## Last update Mon Mar 27 05:39:16 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -27,20 +27,6 @@ if [ x$ctafconf_wm != xgnome ] ; then
 fi
 
 #personal startup file
-if [ -f ~/.ctafconf/perso/startup ]; then
-    ~/.ctafconf/perso/startup
-fi
-
-#xbindkeys
-if which xbindkeys >/dev/null 2>/dev/null; then
-  xbindkeys&
-fi
-
-#gaim
-if which gaim >/dev/null 2>/dev/null; then
-  gaim&
-fi
-
 if [ -f ~/.ctafconf/perso/xsession.mine ]; then
     source ~/.ctafconf/perso/xsession.mine
 fi
@@ -48,7 +34,9 @@ fi
 ########################### LAUNCHING WM ###########################
 #Lauch gnome (appel bloquant)
 if [ x$ctafconf_wm = xgnome ]; then
+  if which gnome-session >/dev/null 2>/dev/null; then
     exec gnome-session
+  fi
 fi
 
 #launch the gnome setting daemon (for font, gconf, ...) after gnome-session
@@ -74,17 +62,6 @@ fi
 
 #fluxbox
 if [ x$ctafconf_wm = xfluxbox ]; then
-  #eterm
-  if which Eterm >/dev/null 2>/dev/null; then
-    Eterm -x 0 --trans --buttonbar 0 --scrollbar=off -O --shade 75 -g 84x20+0+15&
-    Eterm -x 0 --trans --buttonbar 0 --scrollbar=off -O --shade 75 -g 84x20+512+15&
-  fi
-
-  #torsmo
-  if which torsmo >/dev/null 2>/dev/null; then
-    torsmo -b&
-  fi
-
   exec startfluxbox
 fi
 
@@ -95,6 +72,12 @@ fi
 
 exec xterm
 
-#if [ -f ~/.ctafconf/etc/xsession/xsession.$ctafconf_config ]; then
-#  . ~/.ctafconf/etc/xsession/xsession.$ctafconf_config
-#fi
+# curr_wm=$ctafconf_wm
+# echo $ctafconf_wm >~/.ctafconf/current_wm
+
+# while ; do
+#     if ! [ x`cat ~/.ctafconf/current_wm` = x$curr_wm ]; then
+#         xterm
+#         sleep 2
+#     fi
+# done

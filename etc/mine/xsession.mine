@@ -1,12 +1,28 @@
 #!/bin/sh
+## xsession.mine for ctafconf in /home/ctaf/.ctafconf/etc/mine
+##
+## Made by GESTES Cedric
+## Login   <ctaf@epita.fr>
+##
+## Started on  Mon Mar 27 05:32:00 2006 GESTES Cedric
+## Last update Mon Mar 27 05:36:33 2006 GESTES Cedric
+##
 #CTAFCONF
 #You can personalize this file, she will never be modified by the ctafconf
-#if you want to exit from this script
-#add "continue", the xsession execution use return
+
+#----------HELP----------
+# use $ctafconf_wm to know the windows manager
 #
+# use continue, to quit this script
+#
+# use exit after launching a windows manager to prevent
+# the ctafconf's xsession from launching another windows manager
+# when the one you launched is killed
+#
+#------------------------
 
 #if ! [ -f ~/.fvwmrc ]; then
-#  return
+#  continue
 #fi
 
 #if which fvwm >/dev/null 2>/dev/null; then
@@ -14,7 +30,27 @@
 #  exit
 #fi
 
-#
-#if you launch a windows manager finish with exit
-#exit
 
+#xbindkeys
+if which xbindkeys >/dev/null 2>/dev/null; then
+  xbindkeys&
+fi
+
+#gaim
+if which gaim >/dev/null 2>/dev/null; then
+  gaim&
+fi
+
+#launch special stuff for fluxbox
+if [ x$ctafconf_wm = xfluxbox ]; then
+  #eterm
+  if which Eterm >/dev/null 2>/dev/null; then
+    Eterm -x 0 --trans --buttonbar 0 --scrollbar=off -O --shade 75 -g 84x20+0+15&
+    Eterm -x 0 --trans --buttonbar 0 --scrollbar=off -O --shade 75 -g 84x20+512+15&
+  fi
+
+  #torsmo
+  if which torsmo >/dev/null 2>/dev/null; then
+    torsmo -b&
+  fi
+fi
