@@ -3,6 +3,9 @@
 	* global : all .mine are in .ctafconf/perso
 	* ct-installconf : all overwritten file are now saved in .ctafconf/perso/previous
 	* ct-save-mine : updated, compress .ctafconf/perso
+	* ct-remove-backup : removed, no needed anymore
+	* globalenv : add ~/.ctafconf/perso/bin to $PATH
+	* vimrc : simple configuration file for vim (coloration, folding, ...)
 
 2006-03-23 CTAF <> -- 0.2.0
 	* ct-installconf : defaut interface: conread

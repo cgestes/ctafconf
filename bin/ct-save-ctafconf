@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Tue Oct  4 03:04:18 2005 GESTES Cedric
-## Last update Mon Mar 27 02:40:09 2006 GESTES Cedric
+## Last update Mon Mar 27 03:03:43 2006 GESTES Cedric
 ##
 #CTAFCONF
 
@@ -37,7 +37,8 @@ tar --exclude ".svn" \
     .ctafconf/perso/ssh/empty \
     .ctafconf/perso/repos/empty \
     .ctafconf/perso/semantic/empty \
-    .ctafconf/perso/previous/empty
+    .ctafconf/perso/previous/empty \
+    .ctafconf/perso/bin/empty
 
 
 echo "tarball of the ctafconf: " ~/ctafconf-`date "+%Y%m%d"`.tgz
