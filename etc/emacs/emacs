@@ -22,6 +22,7 @@
 			  "~/.ctafconf/etc/emacs/site-lisp/ilisp/"
 			  "~/.ctafconf/etc/emacs/site-lisp/ecb/"
 			  "~/.ctafconf/etc/emacs/site-lisp/tuareg/"
+			  "~/.ctafconf/etc/emacs/site-lisp/doxyemacs/lisp"
 			  "~/.ctafconf/etc/emacs/site-lisp/sieve/") load-path))
 
 

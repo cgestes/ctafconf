@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Fri Mar 24 11:01:11 2006 GESTES Cedric
+;; Last update Mon Mar 27 11:11:58 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: STARTUP.EMACS")
 
@@ -46,6 +46,16 @@
 ;; emacs default keybinding
 ;; c-x c-e :evaluate elisp expression
 ;; c-x 4 a :add one entry to the ChangeLog
+
+;; DOXYEMACS
+;; C-c d ? will look up documentation for the symbol under the point.
+;; C-c d r will rescan your Doxygen tags file.
+;; C-c d f will insert a Doxygen comment for the next function.
+;; C-c d i will insert a Doxygen comment for the current file.
+;; C-c d ; will insert a Doxygen comment for a member variable on the current line (like M-;).
+;; C-c d m will insert a blank multi-line Doxygen comment.
+;; C-c d s will insert a blank single-line Doxygen comment.
+;; C-c d @ will insert grouping comments around the current region.
 
 ;; when opening file [C-UP], [C-DOWN] move up and down into the history
 ;; to get the standart open file [C-x f] then [C-f]

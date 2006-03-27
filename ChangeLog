@@ -1,6 +1,7 @@
 2006-03-28 CTAF <>
 	* wallpaper : remove some wallpaper
 	* xsession : user specific stuff moved to xsession.mine
+	* emacs : support doxyemacs
 
 2006-03-27 CTAF <> -- 0.2.1
 	* ct-installconf : never overwrite .mine file

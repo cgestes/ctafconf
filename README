@@ -25,6 +25,7 @@ recuperer au choix sur le web:
 cedet (outils pour le developpement, completion automatique, meilleur coloration, ...)
 ilisp (lisp interactif)
 ecb   (IDE pour emacs, basé sur cedet)
+doxyemacs
 
 les decompresser dans ~/.ctafconf/etc/emacs/site-lisp
 renommer ecb-* en ecb, cedet-* en cedet, pareil pour ilisp
@@ -34,7 +35,7 @@ compiler chaque projet:
   cd cedet;make;
   cd ecb;make;
   cd ilisp;make;
-
+  cd doxyemacs; configure; make;
  (pour compiler avec une autre version d'emacs: make EMACS=emacs21)
 
 

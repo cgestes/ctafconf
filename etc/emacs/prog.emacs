@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:14:21 2006 GESTES Cedric
-;; Last update Thu Mar 23 04:52:29 2006 GESTES Cedric
+;; Last update Mon Mar 27 11:04:09 2006 GESTES Cedric
 ;;
 
 (message "ctafconf loading: PROG.EMACS")
@@ -168,6 +168,16 @@
   (error
    (message "Cannot load ecb %s" (cdr err))))
 
+
+(condition-case err
+    (require 'doxymacs);; in your .emacs  file.
+    (add-hook 'c-mode-common-hook'doxymacs-mode)
+    (defun my-doxymacs-font-lock-hook ()
+      (if (or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
+          (doxymacs-font-lock)))
+    (add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook)
+	  (error
+     (message "Cannot load doxyemacs %s" (cdr err))))
 
 
 ;;ilisp mode;;;;;;;;;;;;;;;;;;;;;;;
