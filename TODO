@@ -1,8 +1,8 @@
 NEEDED:
 - cleanup: personnal info (sshe, sshep (put in perso/bin))
-- one directory with all .mine?, ct-save-mine
-- put all previous file in .ctafconf/perso/previous
 - save previous gconf value before applying gnomesetting (ct-install) (using -prev-date)
+- appli launched by default in perso (ctafconf/perso/startup)
+- conky then torsmo..
 
 DOCUMENTATION:
 - emacs: README.EMACS, install just emacs, just test emacsconf, ..
@@ -17,12 +17,14 @@ CTAFCONF:
 - screen : fichier de conf std (3 windows), automatiquement lance?, keys to browse hystory
 - grepr : directory not needed (use .)
 - xsession : change session "on the fly" (ct-switch (kill current wm))
+  loop, readfile, if wm /=currwm killcurrwm, lanch wm; sleep
 - top : top mem / top cpu nothing else
 - use sabayon for gnome-conf/ff-conf
 - better template (.mine) for env, emacs, and co, allowing easy customization (define var to enable/disable functionnality (ecb/semantic/)
 - tweak and use screenrc
 - 4 distrib: tinyemacs, emacs (with ecb, ilisp, ..), tinyctafconf, ctafconf (with ecb, ilisp, ..)
--makefile (download ecb, ilisp, ..)?, ct-update (update ctafconf from sf svn)
+- makefile (download ecb, ilisp, ..)?, ct-update (update ctafconf from sf svn)
+- remove user and group and home directory from ct-profile (not usefull)
 
 SHELL
 - completion de zsh (cursor like in hh)
@@ -33,6 +35,8 @@ SHELL
 - unset, unalias => unset unnecessary stuff?
 - visual,editor,shell => emacs else nano,else ..
 - ctafconf.sh => add color for all term (CT_RED,CT_YELLOW,..) and for prompt
+- date reminder, who show event when lauching a shell
+- vimrc test merge
 
 EMACS
 - emacs: in console (ctrl+backspace, beep) (enable vt102 in xterm,..)
@@ -48,6 +52,12 @@ BONUS:
 - use gid and uid with mount command (maybe do a ct-mount)
 - kde, gnome (taskbar, etc), ff extension, blackbox, openbox, fvwm, enligthment
 - debian package
+
+===========================================================
+GUIDELINE:
+all file in ctafconf/etc must be static (user should not edit them)
+
+all file in ctafconf/perso must not be overwritten and are user specific
 
 ===========================================================
 POSIX
@@ -77,26 +87,13 @@ export al=val
 alias al=val
 var=val
 
-install who copy configuration for one module then compile/setup file
-update should be possible
-
 --
-ctafconf modules:
-Tools:
-ctssh,ctrepo,ctinstall,ctupdate,cthelp,ctsave,ctsocks
-
-Shell:
-zsh,tcsh,bash,ksh,top,emacs,xsession,nano
---
-X modules:
-fluxbox, torsmo
-xbindkeys
-gdm/kdm
-ff, tb
-gaim
-gnomesetting (use sabayon?)
-
-compiled files:
+compiled files?:
 fluxbox/init (style)
 fluxbox/menu ?
 xbindkeys (?)
+
+
+-- DONE --
+- put all previous file in .ctafconf/perso/previous
+- one directory with all .mine?

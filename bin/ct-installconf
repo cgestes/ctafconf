@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Oct  2 23:04:47 2005 GESTES Cedric
-## Last update Thu Mar 23 08:44:18 2006 GESTES Cedric
+## Last update Mon Mar 27 02:48:44 2006 GESTES Cedric
 ##
 #
 # CTAFCONF INSTALLATION
@@ -63,17 +63,21 @@ ctlink ()
 {
   local src=$1
   local dst=$2
+  local name=$3
+
   if [ x$ctafconf_install_setronly = xyes ]; then
       if [ -x $src ]; then
-	  chmod 500 $src
+	        chmod 500 $src
       else
-	  chmod 400 $src
+	        chmod 400 $src
       fi
   fi
   if ! which file >/dev/null 2>/dev/null || ! [ "x`file -b $dst`" = "xsymbolic link to \`$src'" ] ; then
-      rm -rf "$dst"-previous 2>/dev/null
-      cp $dst "$dst"-previous 2>/dev/null
-      mv $dst "$dst"-prev-"$date" 2>/dev/null
+      if ! [ x$name = x ]; then
+          rm -rf ~/.ctafconf/perso/previous/"$name"-previous 2>/dev/null
+          cp $dst ~/.ctafconf/perso/previous/"$name"-previous 2>/dev/null
+          mv $dst ~/.ctafconf/perso/previous/"$name"-prev-"$date" 2>/dev/null
+      fi
 #      echo "create link     : $dst -> $src"
       ln -s $src $dst
   fi
@@ -100,15 +104,16 @@ ctsudolink ()
   fi
 }
 
+#install .mine
 ctfile ()
 {
   local src=$1
   local template=$2
 
-  rm -rf "$src"-previous 2>/dev/null
-  cp -r $src "$src"-previous 2>/dev/null
-  mv $src "$src"-prev-"$date" 2>/dev/null
   if ! [ -f $src ]; then
+      #rm -rf "$src"-previous 2>/dev/null
+      #cp -r $src "$src"-previous 2>/dev/null
+      #mv $src "$src"-prev-"$date" 2>/dev/null
       cp $template $src
   fi
 }
@@ -117,10 +122,13 @@ ctfile ()
 ctdir ()
 {
   local src=$1
+  local name=$2
 
-  rm -rf "$src"-previous 2>/dev/null
-  cp -r $src "$src"-previous 2>/dev/null
-  mv $src "$src"-prev-"$date" 2>/dev/null
+  if ! [ x$name = x ]; then
+      rm -rf ~/.ctafconf/perso/previous/"$name"-previous 2>/dev/null
+      cp -r $src ~/.ctafconf/perso/previous/"$name"-previous 2>/dev/null
+      mv $src ~/.ctafconf/perso/previous/"$name"-prev-"$date" 2>/dev/null
+  fi
   if ! [ -d $src ]; then
 #      echo "create directory:$src"
       mkdir $src 2>/dev/null
@@ -199,7 +207,7 @@ fi
 
 #include .mine configuration file
 ctafconf_install_setronly=yes
-ctafconf_install_perm="a-w"
+#ctafconf_install_perm="a-w"
 
 ctafconf_install_zsh=ask
 ctafconf_install_ksh=ask
@@ -208,6 +216,7 @@ ctafconf_install_bash=ask
 ctafconf_install_fluxbox=ask
 ctafconf_install_emacs=ask
 ctafconf_install_nano=ask
+ctafconf_install_vim=ask
 ctafconf_install_xbindkeys=ask
 ctafconf_install_torsmo=ask
 ctafconf_install_top=ask
@@ -223,10 +232,10 @@ fi
 #zsh
 if ! cttestlink ~/.ctafconf/etc/zsh/zshrc ~/.zshrc || ! cttestlink ~/.ctafconf/etc/zsh/zshenv ~/.zshenv ; then
   if [ x$ctafconf_install_zsh = xyes ] || ( [ x$ctafconf_install_zsh != xno ] && $dial --yesno "Install configuration for zsh (.zshrc, .zshenv) [y/N]?" 0 0); then
-    ctlink ~/.ctafconf/etc/zsh/zshrc ~/.zshrc
-    ctfile ~/.zshrc.mine ~/.ctafconf/etc/mine/zshrc.mine
-    ctlink ~/.ctafconf/etc/zsh/zshenv ~/.zshenv
-    ctfile ~/.zshenv.mine ~/.ctafconf/etc/mine/zshenv.mine
+    ctlink ~/.ctafconf/etc/zsh/zshrc ~/.zshrc zshrc
+    ctfile ~/.ctafconf/perso/.zshrc.mine ~/.ctafconf/etc/mine/zshrc.mine
+    ctlink ~/.ctafconf/etc/zsh/zshenv ~/.zshenv zshenv
+    ctfile ~/.ctafconf/perso/.zshenv.mine ~/.ctafconf/etc/mine/zshenv.mine
     echo "Installing ctafconf for: zsh"
   fi
 fi
@@ -234,8 +243,8 @@ fi
 #bash (dont support ctafenv... need work.)
 if ! cttestlink ~/.ctafconf/etc/bash/bashrc ~/.bashrc ; then
   if  [ x$ctafconf_install_bash = xyes ] || ( [ x$ctafconf_install_bash != xno ] && $dial --yesno "Install configuration for bash (.bashrc)[y/N]?" 0 0) ; then
-    ctlink ~/.ctafconf/etc/bash/bashrc ~/.bashrc
-    ctfile .bashrc.mine ~/.ctafconf/etc/mine/bashrc.mine
+    ctlink ~/.ctafconf/etc/bash/bashrc ~/.bashrc bashrc
+    ctfile ~/.ctafconf/perso/.bashrc.mine ~/.ctafconf/etc/mine/bashrc.mine
     echo "Installing ctafconf for: bash"
   fi
 fi
@@ -243,8 +252,8 @@ fi
 #ksh
 if ! cttestlink ~/.ctafconf/etc/ksh/kshrc ~/.kshrc ; then
   if  [ x$ctafconf_install_ksh = xyes ] || ( [ x$ctafconf_install_ksh != xno ] && $dial --yesno "Install configuration for ksh (.kshrc)[y/N]?" 0 0) ; then
-    ctlink ~/.ctafconf/etc/ksh/kshrc ~/.kshrc
-    ctfile .kshrc.mine ~/.ctafconf/etc/mine/kshrc.mine
+    ctlink ~/.ctafconf/etc/ksh/kshrc ~/.kshrc kshrc
+    ctfile ~/.ctafconf/perso/.kshrc.mine ~/.ctafconf/etc/mine/kshrc.mine
     echo "Installing ctafconf for: ksh"
   fi
 fi
@@ -252,8 +261,8 @@ fi
 #tcsh
 if ! cttestlink ~/.ctafconf/etc/tcsh/tcshrc ~/.tcshrc ; then
   if  [ x$ctafconf_install_tcsh = xyes ] || ( [ x$ctafconf_install_tcsh != xno ] && $dial --yesno "Install configuration for tcsh (.tcshrc)[y/N]?" 0 0) ; then
-    ctlink ~/.ctafconf/etc/tcsh/tcshrc ~/.tcshrc
-    ctfile .tcshrc.mine ~/.ctafconf/etc/mine/tcshrc.mine
+    ctlink ~/.ctafconf/etc/tcsh/tcshrc ~/.tcshrc tcshrc
+    ctfile ~/.ctafconf/perso/.tcshrc.mine ~/.ctafconf/etc/mine/tcshrc.mine
     echo "Installing ctafconf for: tcsh"
   fi
 fi
@@ -261,10 +270,10 @@ fi
 #fluxbox
 if ! cttestlink ~/.ctafconf/etc/fluxbox/init ~/.fluxbox/init || ! cttestlink ~/.ctafconf/etc/fluxbox/keys ~/.fluxbox/keys || ! cttestlink ~/.ctafconf/etc/fluxbox/menu ~/.fluxbox/menu ; then
   if  [ x$ctafconf_install_fluxbox = xyes ] || ( [ x$ctafconf_install_fluxbox != xno ] && $dial --yesno "Install configuration for fluxbox (.fluxbox)[y/N]?" 0 0) ; then
-    ctdir ~/.fluxbox
-    ctlink ~/.ctafconf/etc/fluxbox/init ~/.fluxbox/init #globalconf
-    ctlink ~/.ctafconf/etc/fluxbox/keys ~/.fluxbox/keys #hotkey
-    ctlink ~/.ctafconf/etc/fluxbox/menu ~/.fluxbox/menu #menu
+    ctdir ~/.fluxbox fluxbox
+    ctlink ~/.ctafconf/etc/fluxbox/init ~/.fluxbox/init fluxbox/init #globalconf
+    ctlink ~/.ctafconf/etc/fluxbox/keys ~/.fluxbox/keys fluxbox/keys #hotkey
+    ctlink ~/.ctafconf/etc/fluxbox/menu ~/.fluxbox/menu fluxbox/menu #menu
     echo "Installing ctafconf for: fluxbox"
   fi
 fi
@@ -272,7 +281,7 @@ fi
 #top
 if ! cttestlink ~/.ctafconf/etc/toprc ~/.toprc ; then
   if  [ x$ctafconf_install_top = xyes ] || ( [ x$ctafconf_install_top != xno ] && $dial --yesno "Install configuration for top (.toprc)[y/N]?" 0 0) ; then
-    ctlink ~/.ctafconf/etc/toprc ~/.toprc
+    ctlink ~/.ctafconf/etc/toprc ~/.toprc toprc
     echo "Installing ctafconf for: top"
   fi
 fi
@@ -280,7 +289,7 @@ fi
 #Torsmo
 if ! cttestlink ~/.ctafconf/etc/torsmorc ~/.torsmorc ; then
   if  [ x$ctafconf_install_torsmo = xyes ] || ( [ x$ctafconf_install_torsmo != xno ] && $dial --yesno "Install configuration for torsmo (.torsmorc)[y/N]?" 0 0) ; then
-    ctlink ~/.ctafconf/etc/torsmorc ~/.torsmorc
+    ctlink ~/.ctafconf/etc/torsmorc ~/.torsmorc torsmorc
     echo "Installing ctafconf for: torsmo"
   fi
 fi
@@ -288,7 +297,7 @@ fi
 #Xbindkeys
 if ! cttestlink ~/.ctafconf/etc/xbindkeysrc ~/.xbindkeysrc ; then
   if  [ x$ctafconf_install_xbindkeys = xyes ] || ( [ x$ctafconf_install_xbindkeys != xno ] && $dial --yesno "Install configuration for xbindkeys (.xbindkeysrc)[y/N]?" 0 0) ; then
-    ctlink ~/.ctafconf/etc/xbindkeysrc ~/.xbindkeysrc
+    ctlink ~/.ctafconf/etc/xbindkeysrc ~/.xbindkeysrc xbindkeysrc
     echo "Installing ctafconf for: xbindkeys"
   fi
 fi
@@ -296,16 +305,24 @@ fi
 #emacs
 if ! cttestlink ~/.ctafconf/etc/emacs/emacs ~/.emacs ; then
   if  [ x$ctafconf_install_emacs = xyes ] || ( [ x$ctafconf_install_emacs != xno ] && $dial --yesno "Install configuration for emacs (.emacs)[y/N]?" 0 0) ; then
-    ctlink ~/.ctafconf/etc/emacs/emacs ~/.emacs
-    ctfile ~/.emacs.mine ~/.ctafconf/etc/mine/emacs.mine
+    ctlink ~/.ctafconf/etc/emacs/emacs ~/.emacs emacs
+    ctfile ~/.ctafconf/perso/.emacs.mine ~/.ctafconf/etc/mine/emacs.mine
     echo "Installing ctafconf for: emacs"
+  fi
+fi
+
+#vim
+if ! cttestlink ~/.ctafconf/etc/vimrc ~/.vimrc ; then
+  if  [ x$ctafconf_install_vim = xyes ] || ( [ x$ctafconf_install_vim != xno ] && $dial --yesno "Install configuration for vim (.vimrc)[y/N]?" 0 0) ; then
+    ctlink ~/.ctafconf/etc/vimrc ~/.vimrc vimrc
+    echo "Installing ctafconf for: vim"
   fi
 fi
 
 #nano
 if ! cttestlink ~/.ctafconf/etc/nanorc ~/.nanorc ; then
   if  [ x$ctafconf_install_nano = xyes ] || ( [ x$ctafconf_install_nano != xno ] && $dial --yesno "Install configuration for nano (.nanorc)[y/N]?" 0 0) ; then
-    ctlink ~/.ctafconf/etc/nanorc ~/.nanorc
+    ctlink ~/.ctafconf/etc/nanorc ~/.nanorc nanorc
     echo "Installing ctafconf for: nano"
   fi
 fi
@@ -315,16 +332,16 @@ ctfile ~/.ctafconf/perso/user-profile.mine ~/.ctafconf/etc/mine/user-profile.min
 
 if ! cttestlink ~/.ctafconf/etc/xsession/xsession ~/.xsession ; then
   if  [ x$ctafconf_install_xsession = xyes ] || ( [ x$ctafconf_install_xsession != xno ] && $dial --yesno "Support xdm (~/.xsession) [y/N]?" 0 0) ; then
-  ctlink ~/.ctafconf/etc/xsession/xsession ~/.xsession
-  ctfile ~/.xsession.mine ~/.ctafconf/etc/mine/xsession.mine
+  ctlink ~/.ctafconf/etc/xsession/xsession ~/.xsession xsession
+  ctfile ~/.ctafconf/perso/.xsession.mine ~/.ctafconf/etc/mine/xsession.mine
     echo "Installing ctafconf for: xdm"
   fi
 fi
 if ! cttestlink ~/.ctafconf/etc/xsession/xsession ~/.xinitrc ; then
   if  [ x$ctafconf_install_xinitrc = xyes ] || ( [ x$ctafconf_install_xinitrc != xno ] &&  $dial --yesno "Support startx(~/.xinitrc) [y/N]?" 0 0) ; then
   #we reuse xsession, it's the same think
-  ctlink ~/.ctafconf/etc/xsession/xsession ~/.xinitrc
-  ctfile ~/.xsession.mine ~/.ctafconf/etc/mine/xsession.mine
+  ctlink ~/.ctafconf/etc/xsession/xsession ~/.xinitrc xinitrc
+  ctfile ~/.ctafconf/perso/.xsession.mine ~/.ctafconf/etc/mine/xsession.mine
     echo "Installing ctafconf for: startx"
   fi
 fi

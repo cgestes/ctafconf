@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Fri Sep 30 22:08:35 2005 GESTES Cedric
-## Last update Sun Mar 19 20:25:17 2006 GESTES Cedric
+## Last update Mon Mar 27 02:36:33 2006 GESTES Cedric
 ##
 #!/bin/sh
 
@@ -59,5 +59,5 @@ fi
 [ -f ~/.ctafconf/etc/bash/bashprompt ] && . ~/.ctafconf/etc/bash/bashprompt
 
 if [ -f ~/.bashrc.mine ]; then
-    source ~/.bashrc.mine
+    source ~/.ctafconf/perso/.bashrc.mine
 fi

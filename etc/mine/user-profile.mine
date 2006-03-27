@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Tue Oct  4 03:24:42 2005 GESTES Cedric
-## Last update Thu Mar 23 04:08:40 2006 GESTES Cedric
+## Last update Mon Mar 27 02:17:26 2006 GESTES Cedric
 ####
 #THIS FILE SHOULD BE NAMED: user-profile.mine
 #
@@ -31,9 +31,10 @@ ctafconf_install_zsh=yes
 ctafconf_install_ksh=yes
 ctafconf_install_tcsh=yes
 ctafconf_install_bash=yes
-ctafconf_install_fluxbox=ask
+ctafconf_install_fluxbox=yes
 ctafconf_install_emacs=yes
 ctafconf_install_nano=yes
+ctafconf_install_vim=yes
 ctafconf_install_xbindkeys=yes
 ctafconf_install_torsmo=yes
 ctafconf_install_top=yes

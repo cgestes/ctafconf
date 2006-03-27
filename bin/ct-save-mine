@@ -5,27 +5,29 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Tue Oct  4 03:04:18 2005 GESTES Cedric
-## Last update Thu Mar 23 04:00:57 2006 GESTES Cedric
+## Last update Mon Mar 27 02:53:24 2006 GESTES Cedric
 ##
 #CTAFCONF
 
 
-cd ~
-filetotar=
-for i in `ls ~/.ctafconf/etc/mine/` ; do
-    i=.$i
-    if [ x$i = xuser-profile.mine ] ; then
-	continue
-    fi
-    if [ -f $i ] ; then
-	      filetotar="$filetotar $i"
-    fi
-done
-if [ -f ~/.ctafconf/perso/user-profile.mine ]; then
-    i=".ctafconf/perso/user-profile.mine"
-    filetotar="$filetotar $i"
-fi
+# cd ~
+# filetotar=
+# for i in `ls ~/.ctafconf/etc/mine/` ; do
+#     i=.$i
+#     if [ x$i = xuser-profile.mine ] ; then
+# 	continue
+#     fi
+#     if [ -f $i ] ; then
+# 	      filetotar="$filetotar $i"
+#     fi
+# done
+# if [ -f ~/.ctafconf/perso/user-profile.mine ]; then
+#     i=".ctafconf/perso/user-profile.mine"
+#     filetotar="$filetotar $i"
+# fi
 
-tar --exclude ".svn" --exclude "user-profile" -cvzf ct-mineconf-`id -u -n`-`uname -n`-`date "+%Y%m%d"`.tgz -- $filetotar
+# tar --exclude ".svn" --exclude "user-profile" -cvzf ct-mineconf-`id -u -n`-`uname -n`-`date "+%Y%m%d"`.tgz -- $filetotar
 
-echo "tarball of the ctafconf: " ~/ct-mineconf-`id -u -n`-`uname -n`-`date "+%Y%m%d"`.tgz
+tar --exclude ".svn" -cvzf ct-personalfile-`id -u -n`-`uname -n`-`date "+%Y%m%d"`.tgz ~/.ctafconf/perso
+
+echo "tarball of the ctafconf: " ~/ct-personalfile-`id -u -n`-`uname -n`-`date "+%Y%m%d"`.tgz

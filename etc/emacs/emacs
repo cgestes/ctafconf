@@ -51,8 +51,8 @@
 ;;personal settings
 (if (file-exists-p "~/.myemacs")
     (safe-load "~/.myemacs"))
-(if (file-exists-p "~/.emacs.mine")
-    (safe-load "~/.emacs.mine"))
+(if (file-exists-p "~/.ctafconf/perso/.emacs.mine")
+    (safe-load "~/.ctafconf/perso/.emacs.mine"))
 
 ;;print debug info
 (safe-load-check)

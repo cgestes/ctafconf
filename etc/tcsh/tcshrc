@@ -158,6 +158,6 @@ if ( -f ~/.ctafconf/etc/shell/globalenv ) source ~/.ctafconf/etc/shell/globalenv
 
 if ( -f ~/.ctafconf/etc/shell/alias ) source ~/.ctafconf/etc/shell/alias
 
-if ( -f ~/.tcshrc.mine ) source ~/.tcshrc.mine
+if ( -f ~/.ctafconf/perso/.tcshrc.mine ) source ~/.ctafconf/perso/.tcshrc.mine
 
 endif

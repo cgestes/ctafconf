@@ -1,3 +1,9 @@
+2006-03-27 CTAF <>
+	* ct-installconf : never overwrite .mine file
+	* global : all .mine are in .ctafconf/perso
+	* ct-installconf : all overwritten file are now saved in .ctafconf/perso/previous
+	* ct-save-mine : updated, compress .ctafconf/perso
+
 2006-03-23 CTAF <> -- 0.2.0
 	* ct-installconf : defaut interface: conread
 	* ct-installconf : gconf setting (gnome-terminal, ...)

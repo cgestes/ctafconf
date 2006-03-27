@@ -1,0 +1,13 @@
+" Affichage
+set nowrap
+
+" Gestion des espaces
+set autoindent
+set expandtab
+set tabstop=8
+set shiftwidth=4
+
+" Programmation
+syntax on
+set showmatch
+set fdm=indent

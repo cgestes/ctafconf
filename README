@@ -89,3 +89,8 @@ http://www.noshell.info
                 ||----w |
                 ||     ||
 
+
+
+--FEATURE--
+emacs:
+semantic cache file are saved in .ctafconf/perso/semantic
