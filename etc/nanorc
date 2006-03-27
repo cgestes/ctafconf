@@ -89,7 +89,7 @@ color yellow "<(true|false|null)>"
 color blue "//.*"
 color blue start="/\*" end="\*/"
 color brightblue start="/\*\*" end="\*/"
-color brightgreen,brightgreen "[       ]+$"
+color green,green "[       ]+$"
 
 syntax "nanorc" "[\.]*nanorc$"
 color white "^ *(set|unset).*$"
