@@ -36,7 +36,12 @@ compiler chaque projet:
   cd ilisp;make;
 
  (pour compiler avec une autre version d'emacs: make EMACS=emacs21)
---------------------------------
+
+
+---------------------------RECOMMANDED SOFTWARE------------------------
+most : to get color with man
+xbindkeys
+conky or torsmo
 
 ---------------------------UNINSTALL-----------------------------------
 !!highly experimental!! (use at your own risk)

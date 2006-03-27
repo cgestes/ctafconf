@@ -29,15 +29,15 @@ CTAFCONF:
 
 SHELL
 - completion de zsh (cursor like in hh)
+  see http://www.die.net/doc/linux/man/man1/zshcontrib.1.html for zsh
 - kbd mapping (azerty, qwerty, dvorak) (shell/X)
 - test: zsh speed with compiled configuration file
 - epita: zsh color
 - completion for apt, apts
 - unset, unalias => unset unnecessary stuff?
-- visual,editor,shell => emacs else nano,else ..
 - ctafconf.sh => add color for all term (CT_RED,CT_YELLOW,..) and for prompt
 - date reminder, who show event when lauching a shell
-
+- zsh: bindkey => "^Xf" => firefox, "^Xt" thunderbird ...
 EMACS
 - emacs: in console (ctrl+backspace, beep) (enable vt102 in xterm,..)
 - emacs: ctrl-qqch => replace the current line , with the current buffer
@@ -97,3 +97,4 @@ xbindkeys (?)
 -- DONE --
 - put all previous file in .ctafconf/perso/previous
 - one directory with all .mine?
+- visual,editor,shell => emacs else nano,else ..

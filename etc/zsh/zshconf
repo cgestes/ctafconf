@@ -5,21 +5,23 @@
 ## Login   <gestes_c@epita.fr>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 GESTES Cedric
-## Last update Tue Oct  4 18:20:38 2005 cedric gestes
+## Last update Mon Mar 27 08:01:25 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
 #umask 022;
 #emacs binddings: ctrl-e(end) ctrl-a(begin of line)
+
+#completion max size
+#LISTMAX=0    # Only ask if line would scroll off screen
+LISTMAX=1000  # "Never" ask
+
 bindkey -e
 
 bindkey -s '^T' 'uptime\n'
 
 #append the path of a command
 #bindkey "i" expand-cmd-path
-bindkey "j" insert-files
-bindkey "i" incremental-complete-word
-bindkey "m" menu-select
 #  bindkey e backward-delete-word
 
 #limit core 0
@@ -72,7 +74,7 @@ setopt automenu			# don't cycle completions
 #setopt dvorak                  # with spelling correction, assume dvorak kb
 setopt extendedglob            # weird & wacky pattern matching - yay zsh!
 setopt completeinword          # not just at the end
-#setopt alwaystoend             # when complete from middle, move cursor
+setopt no_alwaystoend             # when complete from middle, move cursor
 
 #setopt nopromptcr       # don't add \r which overwrites cmd output with no \n
 setopt hist_expire_dups_first  #no dups in history
@@ -96,7 +98,7 @@ if which gdircolors >/dev/null 2>/dev/null; then
     eval `gdircolors`
 else
     if which dircolors >/dev/null 2>/dev/null; then
-	eval `dircolors`
+	      eval `dircolors`
     fi
 fi
 
@@ -117,9 +119,37 @@ if [ x$plateforme != "xSunOS" ]; then
   autoload -U zmv
   autoload compinit
   autoload insert-files
+
+# This set of functions implements a sort of magic history searching.
+# After predict-on, typing characters causes the editor to look backward
+# in the history for the first line beginning with what you have typed so
+# far.  After predict-off, editing returns to normal for the line found.
+# In fact, you often don't even need to use predict-off, because if the
+# line doesn't match something in the history, adding a key performs
+# standard completion - though editing in the middle is liable to delete
+# the rest of the line.
+autoload -U incremental-complete-word
+autoload -U predict-on
+zle -N predict-on
+zle -N predict-off
+zle -N incremental-complete-word
+
+#predict-on
+
+bindkey '^Xi' incremental-complete-word
+bindkey '^Xp' predict-on
+bindkey '^X^P' predict-off
+#bindkey "^X^Z" predict-on
+#bindkey "^Z" predict-off
+
+  # remove maximum size command line limitation
+  autoload -U zargs
+
+
   zle -N insert-files
-  zle -N incremental-complete-word
   compinit -u
+  #use --help to complete some cmd (df , ..)
+  compdef _gnu_generic df
 
   zstyle ':completion:*' format '%{[32m%}-=> %{[01m%}%d%{[0m%}'
   zstyle ':completion:*' auto-description 'specify: %d'
