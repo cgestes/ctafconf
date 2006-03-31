@@ -5,7 +5,7 @@
 ## Login   <goctaf@gmail.com>
 ##
 ## Started on  Fri Sep 30 22:17:33 2005 GESTES Cedric
-## Last update Mon Mar 27 06:34:54 2006 GESTES Cedric
+## Last update Fri Mar 31 20:46:28 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -40,7 +40,7 @@ env_set NNTPSERVER 'news.epita.fr'
 
 #specify the socks global variable (for runsocks, )
 env_set SOCKS5_SERVER 'socks:1080'
-env_set SOCKS5_USER "$ctafconf_login"
+env_set SOCKS5_USER $USER
 env_set SOCKS5_PASSWD ~/.socks
 
 #specify proxy (for apt, )
@@ -51,10 +51,15 @@ env_set SOCKS5_PASSWD ~/.socks
 env_set FULLNAME "$ctafconf_name"
 env_set REALNAME "$ctafconf_name"
 
+#used by man, ..
+env_set PAGER "more"
+which less >/dev/null && env_set PAGER "less"
+which most >/dev/null && env_set PAGER "most"
 
-env_set EADNULLCMD 'less'
+
+env_set EADNULLCMD $PAGER
 env_set EMAIL "$ctafconf_mail"
-env_set MAIL "/var/mail/$ctafconf_login"
+env_set MAIL "/var/mail/$USER"
 
 #for debian
 env_set DEBEMAIL "$ctafconf_mail"
@@ -71,10 +76,6 @@ which vi >/dev/null && env_set EDITOR "vi"
 which nano >/dev/null && env_set VISUAL "nano"
 which nano >/dev/null && env_set EDITOR "nano"
 
-#used by man, ..
-env_set PAGER "more"
-which less >/dev/null && env_set PAGER "less"
-which most >/dev/null && env_set PAGER "most"
 
 
 #cvs variable

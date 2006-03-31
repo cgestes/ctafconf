@@ -23,7 +23,6 @@ CTAFCONF:
 - better template (.mine) for env, emacs, and co, allowing easy customization (define var to enable/disable functionnality (ecb/semantic/)
 - 4 distrib: tinyemacs, emacs (with ecb, ilisp, ..), tinyctafconf, ctafconf (with ecb, ilisp, ..)
 - makefile (download ecb, ilisp, ..)?, ct-update (update ctafconf from sf svn)
-- remove user and group and home directory from ct-profile (not usefull)
 
 SHELL
 - completion de zsh (cursor like in hh)
@@ -99,3 +98,4 @@ xbindkeys (?)
 - date reminder, who show event when lauching a shell
 - save previous gconf value before applying gnomesetting (ct-install) (using -prev-date)
 - appli launched by default in perso (ctafconf/perso/startup) (moved to xsession.mine)
+- remove user and group and home directory from ct-profile (not usefull)

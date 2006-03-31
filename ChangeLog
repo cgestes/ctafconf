@@ -1,4 +1,5 @@
 2006-03-31 CTAF <> -- 0.2.2
+	* global : remove ctafconf_login, ctafconf_group : not usefull
 	* ct-date : new console date reminder !!
 	* global : call ct-date when launching a shell
 	* emacs : change directory for doxymacs (doxyemacs => doxymacs)

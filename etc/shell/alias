@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Fri Sep 30 22:17:52 2005 GESTES Cedric
-## Last update Wed Mar 22 03:17:49 2006 GESTES Cedric
+## Last update Fri Mar 31 20:44:51 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -87,7 +87,7 @@ alias_set psa 'ps -ax'
 alias_set psu 'ps -aux'
 
 #change the user::group of all the file in the home user directory
-alias_set chownhome '$ctafconf_sudo chown -R $ctafconf_user:$ctafconf_group ~/'
+alias_set chownhome '$ctafconf_sudo chown -R $USER:`id -g -n` ~/'
 
 #image en fullscreen
 alias_set full 'xv -maxpect'
