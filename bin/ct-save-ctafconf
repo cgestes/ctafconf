@@ -5,19 +5,13 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Tue Oct  4 03:04:18 2005 GESTES Cedric
-## Last update Fri Mar 31 20:33:29 2006 GESTES Cedric
+## Last update Fri Mar 31 20:39:46 2006 GESTES Cedric
 ##
 #CTAFCONF
 
 pwdd=`pwd`
 cd ~
-# tar --exclude ".svn" \
-#     --exclude ".ctafconf/user-profile" \
-#     --exclude ".ctafconf/user-profile.mine" \
-#     --exclude ".ctafconf/user-profile-previous" \
-#     --exclude ".ctafconf/user-profile.csh" \
-#     --exclude ".ctafconf/user-profile.csh-previous" \
-#     -cvzf ctafconf-`date "+%Y%m%d"`.tgz .ctafconf
+
 touch .ctafconf/perso/ssh/empty \
       .ctafconf/perso/repos/empty \
       .ctafconf/perso/semantic/empty \
