@@ -19,23 +19,24 @@ ln -s ~/.ctafconf/etc/emacs/emacs ~/.emacs
 or add to your own ~/.emacs:
 (load-file "~/.ctafconf/etc/emacs/emacs")
 
-------------------EXPERIMENTAL--
+------------------EMACS ADD-ONS---------
 pour emacs:
 recuperer au choix sur le web:
-cedet (outils pour le developpement, completion automatique, meilleur coloration, ...)
-ilisp (lisp interactif)
-ecb   (IDE pour emacs, basé sur cedet)
-doxyemacs
+cedet           (outils pour le developpement, completion automatique, meilleur coloration, ...)
+ilisp           (lisp interactif)
+ecb             (IDE pour emacs, basé sur cedet)
+doxyemacs       (commentaire doxygen)
 
 les decompresser dans ~/.ctafconf/etc/emacs/site-lisp
-renommer ecb-* en ecb, cedet-* en cedet, pareil pour ilisp
-afin d'avoir ecb,cedet et ilisp comme repertoire dans site-lisp
+renommer ecb-* en ecb, cedet-* en cedet, doxymacs-* en doxymacs, pareil pour ilisp
+afin d'avoir ecb,cedet,ilisp et doxymacs comme repertoire dans site-lisp
 
 compiler chaque projet:
   cd cedet;make;
   cd ecb;make;
   cd ilisp;make;
-  cd doxyemacs; configure; make;
+  cd doxyemacs; configure; make; (maybe you should remove -Werror to compile successfully)
+
  (pour compiler avec une autre version d'emacs: make EMACS=emacs21)
 
 
@@ -64,6 +65,7 @@ visit http://www.noshell.info for more information/help about the ctafconf
 
 ---------------------------FILES---------------------------------------
 .ctafconf/perso/user-profile      : user configuration modified by ct-profile
+.ctafconf/perso/user-profile.csh  : user configuration modified by ct-profile used by csh term
 .ctafconf/perso/user-profile.mine : static information (module to install, path)
 
 ---------------------------FOLDERS-------------------------------------
@@ -97,9 +99,3 @@ http://www.noshell.info
             (__)\       )\/\
                 ||----w |
                 ||     ||
-
-
-
---FEATURE--
-emacs:
-semantic cache file are saved in .ctafconf/perso/semantic

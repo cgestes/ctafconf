@@ -1,7 +1,5 @@
 NEEDED:
 - cleanup: personnal info (sshe, sshep (put in perso/bin))
-- save previous gconf value before applying gnomesetting (ct-install) (using -prev-date)
-- appli launched by default in perso (ctafconf/perso/startup)
 - conky then torsmo..
 - diff .mine file
 
@@ -12,6 +10,7 @@ DOCUMENTATION:
 - enhance ct-help
 - revert gconf setting
 - what is in perso
+- epita specific (sshe, socksify, ..)
 
 CTAFCONF:
 - ramdom wallpaper (wallpp = ramdom, ramdomperso)
@@ -22,7 +21,6 @@ CTAFCONF:
 - top : top mem / top cpu nothing else
 - use sabayon for gnome-conf/ff-conf
 - better template (.mine) for env, emacs, and co, allowing easy customization (define var to enable/disable functionnality (ecb/semantic/)
-- tweak and use screenrc
 - 4 distrib: tinyemacs, emacs (with ecb, ilisp, ..), tinyctafconf, ctafconf (with ecb, ilisp, ..)
 - makefile (download ecb, ilisp, ..)?, ct-update (update ctafconf from sf svn)
 - remove user and group and home directory from ct-profile (not usefull)
@@ -30,14 +28,14 @@ CTAFCONF:
 SHELL
 - completion de zsh (cursor like in hh)
   see http://www.die.net/doc/linux/man/man1/zshcontrib.1.html for zsh
-- kbd mapping (azerty, qwerty, dvorak) (shell/X)
+- kbd mapping (azerty, qwerty, dvorak) (shell/X) (Xdefault binding for term)
 - test: zsh speed with compiled configuration file
 - epita: zsh color
 - completion for apt, apts
 - unset, unalias => unset unnecessary stuff?
 - ctafconf.sh => add color for all term (CT_RED,CT_YELLOW,..) and for prompt
-- date reminder, who show event when lauching a shell
 - zsh: bindkey => "^Xf" => firefox, "^Xt" thunderbird ...
+
 EMACS
 - emacs: in console (ctrl+backspace, beep) (enable vt102 in xterm,..)
 - emacs: ctrl-qqch => replace the current line , with the current buffer
@@ -98,3 +96,6 @@ xbindkeys (?)
 - put all previous file in .ctafconf/perso/previous
 - one directory with all .mine?
 - visual,editor,shell => emacs else nano,else ..
+- date reminder, who show event when lauching a shell
+- save previous gconf value before applying gnomesetting (ct-install) (using -prev-date)
+- appli launched by default in perso (ctafconf/perso/startup) (moved to xsession.mine)

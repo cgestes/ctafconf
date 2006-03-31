@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Mon Sep 26 02:37:56 2005 GESTES Cedric
-## Last update Mon Mar 27 05:39:16 2006 GESTES Cedric
+## Last update Tue Mar 28 07:39:30 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -37,13 +37,14 @@ if [ x$ctafconf_wm = xgnome ]; then
   if which gnome-session >/dev/null 2>/dev/null; then
     exec gnome-session
   fi
-fi
-
+else
 #launch the gnome setting daemon (for font, gconf, ...) after gnome-session
 #cause gnome-session launch it
-if which gnome-settings-daemon >/dev/null 2>/dev/null; then
-  gnome-settings-daemon&
+  if which gnome-settings-daemon >/dev/null 2>/dev/null; then
+    gnome-settings-daemon&
+  fi
 fi
+
 
 #lauch kde
 if [ x$ctafconf_wm = xkde ]; then
@@ -62,7 +63,9 @@ fi
 
 #fluxbox
 if [ x$ctafconf_wm = xfluxbox ]; then
-  exec startfluxbox
+  if which startfluxbox >/dev/null 2>/dev/null; then
+    exec startfluxbox
+  fi
 fi
 
 #anothers wm

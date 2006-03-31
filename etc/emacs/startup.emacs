@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Mon Mar 27 11:11:58 2006 GESTES Cedric
+;; Last update Wed Mar 29 11:11:31 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: STARTUP.EMACS")
 
@@ -43,6 +43,11 @@
 ;;?? M-x counter-insert to use the counter
 ;; M-y yank cycle previous buffer
 ;;
+;; mode-term:
+;; c-c c-j line mode
+;; c-c c-k char mode
+;; c-c c-c control-c in a term (interrupt)
+
 ;; emacs default keybinding
 ;; c-x c-e :evaluate elisp expression
 ;; c-x 4 a :add one entry to the ChangeLog

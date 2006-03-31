@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Thu Oct  6 04:55:46 2005 GESTES Cedric
-## Last update Mon Mar 27 03:40:09 2006 GESTES Cedric
+## Last update Fri Mar 31 19:36:29 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -13,6 +13,9 @@
 [[ -o interactive ]] || return 0
 echo -n "shell: ksh, "
 cat ~/.ctafconf/etc/shell/motd
+
+#date reminder
+~/.ctafconf/bin/ct-date
 
 # turn on command line editing mode
 set -o emacs

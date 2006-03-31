@@ -11,6 +11,9 @@ if ($?prompt) then
 echo -n "shell: tcsh, "
 cat ~/.ctafconf/etc/shell/motd
 
+#date reminder
+~/.ctafconf/bin/ct-date
+
 umask 022
 
 limit    coredumpsize 0

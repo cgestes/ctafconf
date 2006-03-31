@@ -1,5 +1,12 @@
+2006-03-31 CTAF <> -- 0.2.2
+	* ct-date : new console date reminder !!
+	* global : call ct-date when launching a shell
+	* emacs : change directory for doxymacs (doxyemacs => doxymacs)
+	* ct-installconf : save previous gconf value (.ctafconf/perso/previous/*-prev-date.gconf
+	* ct-save-ctafconf : exclude doxymacs, restore the working directory
+
 2006-03-28 CTAF <>
-	* wallpaper : remove some wallpaper
+	* wallpaper : remove some wallpaper (smaller tarball)
 	* xsession : user specific stuff moved to xsession.mine
 	* emacs : support doxyemacs
 
