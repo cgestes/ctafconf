@@ -1,5 +1,13 @@
-# $HOME/.screenrc
-# Anreas Kneib <akneib AT gmx DOT net>
+##
+## screenrc for ctafconf in /home/ctaf/.ctafconf
+##
+## Made by GESTES Cedric
+## Login   <ctaf@epita.fr>
+##
+## Started on  Sat Apr  1 03:17:58 2006 GESTES Cedric
+## Last update Sat Apr  1 03:18:59 2006 GESTES Cedric
+##
+# thanks: Anreas Kneib <akneib AT gmx DOT net>
 
 # Defines the time a message is displayed
 # if screen is not disturbed by other activity.
@@ -13,9 +21,15 @@ version
 # default setting for new windows is  changed.
 deflogin off
 
+#scrollback for fast scrolling term
+termcapinfo xterm* OL=10000
+
+# Make xterm scrollbar work
+termcapinfo xterm ti@:te@
+
 # Same as the scrollback command except that
 # the default setting for new windows is changed.
-defscrollback 1000
+defscrollback 5000
 
 # If set to "on", screen will append to the "hardcopy.n"
 # files created by the command "C-a h", otherwise these
@@ -72,7 +86,8 @@ hardstatus alwayslastline " %c | %d.%m.%Y |  %w"
 #sorendition 05 46 # Cyan on Blue
 #sorendition 05 42 # Green on Blue
 #sorendition  05 70
-sorendition  25 70
+sorendition  00 49
+#sorendition  00 40
 
 # The message specified here is output
 # whenever a `Power detach' was performed.
@@ -81,12 +96,7 @@ pow_detach_msg	"BYE"
 # Keybindings
 bind ~ activity	"activity in %n (%t) [%w:%s]~"
 bind * activity	"activity in %n (%t) [%w:%s]"
-bind m screen -t 'mutt' mutt
-bind ä screen -t 'slrn' slrn -n
-bind v screen -t 'vim' vim
-bind w screen -t 'w3m' env TERM=xterm w3m -B
-bind y screen -t 'mc' env PAGER=less.sh mc -c
-bind z screen -t 'ROOT' su
+bind r screen -t 'ROOT' su
 bind ü screen -t 'tcd' tcd
 bind ö screen -t 'snownews' env TERM=xterm snownews -u
 bind Ö screen -t 'lynx' env TERM=xterm lynx -lss=/home/andreas/.own/lynx/lib/test.lss
@@ -94,3 +104,9 @@ bind N screen -t 'notes' notes
 bind G screen -t 'google' links http://groups.google.com/advanced_group_search?hl=de
 bind Ü screen -t 'micq' micq
 bind L screen -t 'LOGFILE' sudo /usr/bin/tail -f /var/log/messages
+
+bindkey ^[O3D prev
+bindkey ^[O3C next
+
+bindkey ^[[1;3D prev
+bindkey ^[[1;3C next

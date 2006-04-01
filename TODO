@@ -15,10 +15,6 @@ DOCUMENTATION:
 CTAFCONF:
 - ramdom wallpaper (wallpp = ramdom, ramdomperso)
 - screen : fichier de conf std (3 windows), automatiquement lance?, keys to browse hystory
-- grepr : directory not needed (use .)
-- xsession : change session "on the fly" (ct-switch (kill current wm))
-  loop, readfile, if wm /=currwm killcurrwm, lanch wm; sleep
-- top : top mem / top cpu nothing else
 - use sabayon for gnome-conf/ff-conf
 - better template (.mine) for env, emacs, and co, allowing easy customization (define var to enable/disable functionnality (ecb/semantic/)
 - 4 distrib: tinyemacs, emacs (with ecb, ilisp, ..), tinyctafconf, ctafconf (with ecb, ilisp, ..)
@@ -28,10 +24,7 @@ SHELL
 - completion de zsh (cursor like in hh)
   see http://www.die.net/doc/linux/man/man1/zshcontrib.1.html for zsh
 - kbd mapping (azerty, qwerty, dvorak) (shell/X) (Xdefault binding for term)
-- test: zsh speed with compiled configuration file
 - epita: zsh color
-- completion for apt, apts
-- unset, unalias => unset unnecessary stuff?
 - ctafconf.sh => add color for all term (CT_RED,CT_YELLOW,..) and for prompt
 - zsh: bindkey => "^Xf" => firefox, "^Xt" thunderbird ...
 
@@ -99,3 +92,5 @@ xbindkeys (?)
 - save previous gconf value before applying gnomesetting (ct-install) (using -prev-date)
 - appli launched by default in perso (ctafconf/perso/startup) (moved to xsession.mine)
 - remove user and group and home directory from ct-profile (not usefull)
+- grepr : directory not needed (use .)
+- top : top mem / top cpu nothing else

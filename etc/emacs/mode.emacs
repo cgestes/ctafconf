@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 00:57:16 2006 GESTES Cedric
-;; Last update Thu Mar 23 03:31:22 2006 GESTES Cedric
+;; Last update Sat Apr  1 02:20:38 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: MODE.EMACS")
 
@@ -93,7 +93,6 @@
 (when (require 'bubble-buffer nil t)
   (global-set-key [f11] 'bubble-buffer-next)
   (global-set-key [(shift f11)] 'bubble-buffer-previous)
-  (message "bobo le lapin est un tout naze")
 (setq bubble-buffer-omit-regexp "\\(^ .+$\\|\\*Messages\\*\\|*compilation\\*\\|\\*.+output\\*$\\|\\*TeX Help\\*$\\|\\*vc-diff\\*\\|\\*Occur\\*\\|\\*grep\\*\\|\\*cvs-diff\\*\\|\\*modelsim\\*\\)"))
 
 (when (require 'ibuffer "ibuffer" t)

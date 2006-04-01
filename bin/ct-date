@@ -5,7 +5,7 @@
 ## Login   <goctaf@gmail.com>
 ##
 ## Started on  Fri Mar 31 19:54:39 2006 GESTES Cedric
-## Last update Fri Mar 31 20:52:49 2006 GESTES Cedric
+## Last update Sat Apr  1 02:13:52 2006 GESTES Cedric
 ##
 ##use: http://www.intuitive.com/wicked/showscript.cgi?030-agenda.sh
 ##use: http://aplawrence.com/Bofcusm/1455.html
@@ -91,7 +91,7 @@ normalize()
 
 normanumber()
 {
-    local num=$1
+    local num=$(($1))
     if [ $num -lt 10 ]; then
         num="0$num"
     fi
@@ -216,9 +216,13 @@ if [ $# -gt 0 ] && [ x$1 = xadd ]; then
 
 fi
 
+if [ $# -gt 0 ] && [ x$1 = xlist ]; then
+    cat $agendafile
+fi
+
 if [ $# -gt 0 ]; then
-    echo "usage ct-date [add]"
-    echo "edit .ctafconf/perso/reminder to remove one date"
+    echo "usage ct-date [add] [list]"
+    echo "edit ~/.ctafconf/perso/reminder to remove one date"
     exit 1
 fi
 

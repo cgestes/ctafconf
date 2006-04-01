@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Tue Oct  4 03:24:42 2005 GESTES Cedric
-## Last update Mon Mar 27 02:17:26 2006 GESTES Cedric
+## Last update Sat Apr  1 03:27:43 2006 GESTES Cedric
 ####
 #THIS FILE SHOULD BE NAMED: user-profile.mine
 #
@@ -38,6 +38,7 @@ ctafconf_install_vim=yes
 ctafconf_install_xbindkeys=yes
 ctafconf_install_torsmo=yes
 ctafconf_install_top=yes
+ctafconf_install_screen=yes
 ctafconf_install_gnomesetting=ask
 
 #xsession and gdm work's well for me, but it's steal a beta feature

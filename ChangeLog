@@ -1,3 +1,11 @@
+2006-04-01 CTAF <>
+	* sshep : removed (epita specific)
+	* ct-date : bug with day between 01 and 09
+	* grepr : remove directory (use current directory)
+	* top : 2 windows (cpu and mem)
+	* screen : new configuration file for screen
+	* ct-installconf : install screen
+
 2006-03-31 CTAF <> -- 0.2.2
 	* global : remove ctafconf_login, ctafconf_group : not usefull
 	* ct-date : new console date reminder !!

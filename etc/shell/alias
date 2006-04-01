@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Fri Sep 30 22:17:52 2005 GESTES Cedric
-## Last update Fri Mar 31 20:44:51 2006 GESTES Cedric
+## Last update Sat Apr  1 03:33:51 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -63,9 +63,6 @@ which thunderbird >/dev/null && alias_set tb 'thunderbird'
 #--convert-links
 alias_set wgetr 'wget -r -N -l inf -c -np'
 alias_set wgetr_localhtml 'wget -r -N -l inf -c -np --convert-links -p'
-
-#recursive grep with filename and line number
-alias_set grepr 'grep -r -n -H'
 
 #remove directory
 alias_set rd 'rm -r'

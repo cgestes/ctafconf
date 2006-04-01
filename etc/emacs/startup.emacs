@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Wed Mar 29 11:11:31 2006 GESTES Cedric
+;; Last update Sat Apr  1 03:26:45 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: STARTUP.EMACS")
 
@@ -62,6 +62,10 @@
 ;; C-c d s will insert a blank single-line Doxygen comment.
 ;; C-c d @ will insert grouping comments around the current region.
 
+;;LEARN one key:
+;;M-x global-set-key
+;;C-x ESC ESC (affiche la commande precedente nikel chrome)
+
 ;; when opening file [C-UP], [C-DOWN] move up and down into the history
 ;; to get the standart open file [C-x f] then [C-f]
 ;; (usefull to open new file with a name shorter than one already existing)
@@ -109,7 +113,7 @@
 ;;  === DOC ===
 ;;  see: http://www.dur.ac.uk/p.j.heslin/Software/Emacs/Easymacs
 ;;  =programming=
-;;  =installing ecb,semantic, cedet, ilisp=
+;;  =installing ecb,semantic, cedet, ilisp, doxymacs=
 ") "Initial message displayed in *scratch* buffer at startup.
 If this is nil, no message will be displayed."
   :type 'string)

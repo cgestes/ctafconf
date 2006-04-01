@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Oct  2 23:04:47 2005 GESTES Cedric
-## Last update Fri Mar 31 20:05:29 2006 GESTES Cedric
+## Last update Sat Apr  1 03:28:52 2006 GESTES Cedric
 ##
 #
 # CTAFCONF INSTALLATION
@@ -239,6 +239,7 @@ ctafconf_install_bash=ask
 ctafconf_install_fluxbox=ask
 ctafconf_install_emacs=ask
 ctafconf_install_nano=ask
+ctafconf_install_screen=ask
 ctafconf_install_vim=ask
 ctafconf_install_xbindkeys=ask
 ctafconf_install_torsmo=ask
@@ -307,6 +308,14 @@ if ! cttestlink ~/.ctafconf/etc/toprc ~/.toprc ; then
   if  [ x$ctafconf_install_top = xyes ] || ( [ x$ctafconf_install_top != xno ] && $dial --yesno "Install configuration for top (.toprc)[y/N]?" 0 0) ; then
     ctlink ~/.ctafconf/etc/toprc ~/.toprc toprc
     echo "Installing ctafconf for: top"
+  fi
+fi
+
+#screen
+if ! cttestlink ~/.ctafconf/etc/screenrc ~/.screenrc ; then
+  if  [ x$ctafconf_install_screen = xyes ] || ( [ x$ctafconf_install_screen != xno ] && $dial --yesno "Install configuration for screen (.screenrc)[y/N]?" 0 0) ; then
+    ctlink ~/.ctafconf/etc/screenrc ~/.screenrc screenrc
+    echo "Installing ctafconf for: screen"
   fi
 fi
 
