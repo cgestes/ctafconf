@@ -10,7 +10,6 @@ DOCUMENTATION:
 - enhance ct-help
 - revert gconf setting
 - what is in perso
-- epita specific (sshe, socksify, ..)
 
 CTAFCONF:
 - ramdom wallpaper (wallpp = ramdom, ramdomperso)
@@ -94,3 +93,4 @@ xbindkeys (?)
 - remove user and group and home directory from ct-profile (not usefull)
 - grepr : directory not needed (use .)
 - top : top mem / top cpu nothing else
+- epita specific (sshe, socksify, ..)

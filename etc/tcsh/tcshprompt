@@ -5,15 +5,13 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sat Oct  1 00:46:09 2005 GESTES Cedric
-## Last update Tue Oct  4 18:01:32 2005 GESTES Cedric
+## Last update Sat Apr  1 16:04:32 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
 ##############################
 # ##### PROMPT SECTION ##### #
 ##############################
-# set color_name = '%{^[[ color_code m%}'
-
 set rgb_restore   = '%{^[[00m%}'
 set rgb_black     = '%{^[[00;30m%}'
 set rgb_firebrick = '%{^[[00;31m%}'

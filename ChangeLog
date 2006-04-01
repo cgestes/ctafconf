@@ -1,4 +1,5 @@
 2006-04-01 CTAF <>
+	* zshprompt : cleanup
 	* sshep : removed (epita specific)
 	* ct-date : bug with day between 01 and 09
 	* grepr : remove directory (use current directory)

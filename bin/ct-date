@@ -5,7 +5,7 @@
 ## Login   <goctaf@gmail.com>
 ##
 ## Started on  Fri Mar 31 19:54:39 2006 GESTES Cedric
-## Last update Sat Apr  1 02:13:52 2006 GESTES Cedric
+## Last update Sat Apr  1 15:57:15 2006 GESTES Cedric
 ##
 ##use: http://www.intuitive.com/wicked/showscript.cgi?030-agenda.sh
 ##use: http://aplawrence.com/Bofcusm/1455.html
@@ -218,6 +218,7 @@ fi
 
 if [ $# -gt 0 ] && [ x$1 = xlist ]; then
     cat $agendafile
+    exit 0
 fi
 
 if [ $# -gt 0 ]; then
