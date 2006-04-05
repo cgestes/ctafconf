@@ -1,3 +1,7 @@
+2006-04-05 CTAF <>
+	* std_comment.el : bug with GNUMakefile mode
+	* ct-date : event can be every month
+
 2006-04-01 CTAF <>
 	* zshprompt : cleanup
 	* sshep : removed (epita specific)

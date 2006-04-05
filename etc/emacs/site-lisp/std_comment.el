@@ -1,11 +1,11 @@
 ;;
 ;; StdComment.el for Emacs in ~/Emacs
-;; 
+;;
 ;; Made by Frederic Denis
 ;; Login   <fred@epita.fr>
-;; 
+;;
 ;; Started on  Thu Sep  9 23:34:05 1993 Frederic Denis
-;; Last update Thu Aug 15 13:19:32 2002 Charlie Root
+;; Last update Wed Apr  5 17:51:00 2006 GESTES Cedric
 ;;
 ;; Based on Comment routines by Isaac
 ;;
@@ -26,7 +26,7 @@
       header-in		" in "
       domaine-name	"epita.fr")
 (if (setq user-nickname (getenv "USER_NICKNAME"))
-    t 
+    t
   (setq user-nickname (user-full-name))
 )
 
@@ -62,6 +62,7 @@
                         ("Fundamental"          . std-fundamental-alist)
                         ("Shell-script"         . std-sscript-alist)
                         ("Makefile"             . std-makefile-alist)
+                        ("GNUmakefile"          . std-makefile-alist)
                         ("Perl"                 . std-cperl-alist)
                         ("CPerl"                . std-cperl-alist)
                         ("xdefault"             . std-xdefault-alist)
@@ -89,7 +90,7 @@
           (goto-char (point-min))
           (if (search-forward header-last nil t)
               (progn
-;               (delete-region (point-at-bol) (point-at-eol))                                                                                                                   
+;               (delete-region (point-at-bol) (point-at-eol))
                 (delete-region
                  (progn (beginning-of-line) (point))
                  (progn (end-of-line) (point)))
@@ -189,7 +190,7 @@
 		  (beginning-of-line)
 		  (insert-string (std-get 'cs))
 		  (end-of-line)
-		  (insert-string (std-get 'ce))))))))) 
+		  (insert-string (std-get 'ce)))))))))
   ;;  (indent-according-to-mode)
   (indent-for-tab-command)
   (next-line 1))

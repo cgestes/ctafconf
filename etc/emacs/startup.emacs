@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Sat Apr  1 03:26:45 2006 GESTES Cedric
+;; Last update Sun Apr  2 22:11:56 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: STARTUP.EMACS")
 
@@ -86,6 +86,8 @@
 ;;  - svn
 ;;  - bookmark, folding
 ;;  - dired colored
+;;  - man page size
+;;  - php-mode/html/css
 ;;
 ;;easy emacs:
 ;;Ctrl-/         Bounce         Move from the beginning to the end or
