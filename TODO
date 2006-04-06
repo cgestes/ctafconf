@@ -1,7 +1,7 @@
 NEEDED:
 - cleanup: personnal info (sshe, sshep (put in perso/bin))
 - conky then torsmo..
-- diff .mine file
+- diff .mine file /?/ remove .mine from archive and touch them from ct-install
 
 DOCUMENTATION:
 - emacs: README.EMACS, install just emacs, just test emacsconf, ..
@@ -23,24 +23,31 @@ SHELL
 - completion de zsh (cursor like in hh)
   see http://www.die.net/doc/linux/man/man1/zshcontrib.1.html for zsh
 - kbd mapping (azerty, qwerty, dvorak) (shell/X) (Xdefault binding for term)
-- epita: zsh color
+- epita: zsh color sur systemes != netBsd
 - ctafconf.sh => add color for all term (CT_RED,CT_YELLOW,..) and for prompt
 - zsh: bindkey => "^Xf" => firefox, "^Xt" thunderbird ...
 
 EMACS
-- emacs: in console (ctrl+backspace, beep) (enable vt102 in xterm,..)
+- emacs: in console (ctrl+backspace, disable ring bell) (enable vt102 in xterm,..)
 - emacs: ctrl-qqch => replace the current line , with the current buffer
 - tab = 2 in bash-mode
 - transparent (use console backcolor)
 - kill char from cur to begin
+- /???/ Emacs autoresize at start conflicts with wm app properties save
+
+ENLIGHTENMENT
+- Enhance integration with ctafconf(wallpapers/bindkeys/E16-Gnome)
+- Support uninstall.
 
 BONUS:
 - a gnome terminal that scroll like quake3 console using one hotkey
 - compiler for some configuration file ( emacs, fluxbox, etc..)
 - ct-repo/ct-ssh : use dialog/gdialog? (one lib exists, find it, use it)
 - use gid and uid with mount command (maybe do a ct-mount)
-- kde, gnome (taskbar, etc), ff extension, blackbox, openbox, fvwm, enligthment
+- kde, gnome (taskbar, etc), ff extension, blackbox, openbox, fvwm
 - debian package
+- packagized configurations : separated dirs with : pack_install, pack_conf [--edit|--view], pack_uninstall
+                            :           why not using make for the toplevel package management(conf compilation)?
 
 ===========================================================
 GUIDELINE:
@@ -94,3 +101,4 @@ xbindkeys (?)
 - grepr : directory not needed (use .)
 - top : top mem / top cpu nothing else
 - epita specific (sshe, socksify, ..)
+- basic e16 integration
