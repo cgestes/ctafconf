@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Oct  2 23:04:47 2005 GESTES Cedric
-## Last update Sat Apr  1 03:28:52 2006 GESTES Cedric
+## Last update Thu Apr  6 11:48:23 2006 Elthariel
 ##
 #
 # CTAFCONF INSTALLATION
@@ -237,6 +237,7 @@ ctafconf_install_ksh=ask
 ctafconf_install_tcsh=ask
 ctafconf_install_bash=ask
 ctafconf_install_fluxbox=ask
+ctafconf_install_e16=ask
 ctafconf_install_emacs=ask
 ctafconf_install_nano=ask
 ctafconf_install_screen=ask
@@ -302,6 +303,16 @@ if ! cttestlink ~/.ctafconf/etc/fluxbox/init ~/.fluxbox/init || ! cttestlink ~/.
     echo "Installing ctafconf for: fluxbox"
   fi
 fi
+
+#top
+if ! cttestlink ~/.ctafconf/etc/enlightenment ~/.enlightenment ; then
+  if  [ x$ctafconf_install_e16 = xyes ] || ( [ x$ctafconf_install_e16 != xno ] && $dial --yesno "Install configuration for Enlightenment (.enlightenment/)[y/N]?" 0 0) ; then
+    ctlink ~/.ctafconf/etc/enlightenment ~/.enlightenment enlightenment
+    ctlink ~/.ctafconf/perso/wallpaper ~/.enlightenment/backgrounds backgrounds
+    echo "Installing ctafconf for: Enlightenment"
+  fi
+fi
+
 
 #top
 if ! cttestlink ~/.ctafconf/etc/toprc ~/.toprc ; then
@@ -373,7 +384,7 @@ ctfile ~/.ctafconf/perso/xsession.mine ~/.ctafconf/etc/mine/xsession.mine
 
 if ! cttestlink ~/.ctafconf/etc/xsession/xsession ~/.xinitrc ; then
   if  [ x$ctafconf_install_xinitrc = xyes ] || ( [ x$ctafconf_install_xinitrc != xno ] &&  $dial --yesno "Support startx(~/.xinitrc) [y/N]?" 0 0) ; then
-  #we reuse xsession, it's the same think
+  #we reuse xsession, it's the same thing
   ctlink ~/.ctafconf/etc/xsession/xsession ~/.xinitrc xinitrc
   echo "Installing ctafconf for: startx"
   fi

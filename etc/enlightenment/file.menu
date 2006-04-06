@@ -1,0 +1,4 @@
+"Elthabox"
+"term" NULL exec "gnome-terminal"
+"firefox" NULL exec "firefox"
+"emacsos" NULL exec "emacs"

@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Sep 25 21:51:34 2005 GESTES Cedric
-## Last update Fri Mar 31 20:47:10 2006 GESTES Cedric
+## Last update Thu Apr  6 11:32:44 2006 Elthariel
 ##
 ##CTAFCONF
 
@@ -211,7 +211,7 @@ fi
 
 echo "--------------------------------------"
 echo "Choose your wm from the list:"
-echo "fluxbox gnome kde xfce4"
+echo "fluxbox gnome kde xfce4 e16"
 if [ x$ctafconf_wm = x ] ; then
   ctafconf_wm=fluxbox
 fi

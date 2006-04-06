@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Mon Sep 26 02:37:56 2005 GESTES Cedric
-## Last update Tue Mar 28 07:39:30 2006 GESTES Cedric
+## Last update Thu Apr  6 11:27:14 2006 Elthariel
 ##
 ##CTAFCONF
 
@@ -21,7 +21,7 @@ if [ -f ~/.ctafconf/perso/user-profile ] ; then
 fi
 
 
-if [ x$ctafconf_wm != xgnome ] ; then
+if [ x$ctafconf_wm != xgnome && x$ctafconf_wm != xe16 ] ; then
 #set the wallpaper
 ~/.ctafconf/bin/ct-set-bg
 fi
@@ -48,9 +48,9 @@ fi
 
 #lauch kde
 if [ x$ctafconf_wm = xkde ]; then
-  if which startkde >/dev/null 2>/dev/null; then
+    if which startkde >/dev/null 2>/dev/null; then
     exec startkde
-  fi
+    fi
 fi
 
 #lauch xfce4
@@ -68,12 +68,19 @@ if [ x$ctafconf_wm = xfluxbox ]; then
   fi
 fi
 
+#Enlightenment 16
+if [ x$ctafconf_wm = xe16 ]; then
+    if which enlightenment >/dev/null 2>/dev/null; then
+        exec starte16
+    fi
+fi
+
 #anothers wm
 if which $ctafconf_wm >/dev/null 2>/dev/null ; then
     exec $ctafconf_wm
 fi
 
-exec xterm
+exec aterm
 
 # curr_wm=$ctafconf_wm
 # echo $ctafconf_wm >~/.ctafconf/current_wm
