@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:16:47 2006 GESTES Cedric
-;; Last update Thu Mar 23 04:56:49 2006 GESTES Cedric
+;; Last update Sun Apr  9 21:06:16 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: BINDINGS.EMACS")
 ;;(global-unset-key "\M-[")
@@ -77,6 +77,8 @@
 
 ;;appelle la derniere macro enregistré
 (global-set-key "\M-s" 'call-last-kbd-macro)
+(global-set-key "\C-z" 'call-last-kbd-macro)
+;;(global-set-key "\s-s" 'call-last-kbd-macro)
 
 (global-set-key [f1] (lambda ()
                        (interactive)

@@ -5,7 +5,7 @@
 ## Login   <goctaf@gmail.com>
 ##
 ## Started on  Fri Mar 31 19:54:39 2006 GESTES Cedric
-## Last update Wed Apr  5 19:23:26 2006 GESTES Cedric
+## Last update Sun Apr  9 20:52:34 2006 GESTES Cedric
 ##
 ##use: http://www.intuitive.com/wicked/showscript.cgi?030-agenda.sh
 ##use: http://aplawrence.com/Bofcusm/1455.html
@@ -40,9 +40,9 @@ agendafile="$HOME/.ctafconf/perso/reminder"
 tomorrow()
 {
     local next=$1
-    day=$(( `date +%d` + $next ))
-    month=`date +%m`
-    year=`date +%Y`
+    day=$(( `date +%-d` + $next ))
+    month=`date +%-m`
+    year=`date +%-Y`
     set `cal $month $year`
     shift $(($# - 1))
     monthday=$1

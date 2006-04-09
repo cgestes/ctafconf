@@ -35,9 +35,13 @@ EMACS
 - kill char from cur to begin
 - /???/ Emacs autoresize at start conflicts with wm app properties save
 
+FLUXBOX
+- remove keys and menu links
+
 ENLIGHTENMENT
 - Enhance integration with ctafconf(wallpapers/bindkeys/E16-Gnome)
 - Support uninstall.
+- install: create ~/.enligtenment, and links only necessary files..
 
 BONUS:
 - a gnome terminal that scroll like quake3 console using one hotkey

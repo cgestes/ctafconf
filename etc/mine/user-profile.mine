@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Tue Oct  4 03:24:42 2005 GESTES Cedric
-## Last update Sat Apr  1 03:27:43 2006 GESTES Cedric
+## Last update Sun Apr  9 22:00:40 2006 GESTES Cedric
 ####
 #THIS FILE SHOULD BE NAMED: user-profile.mine
 #
@@ -32,6 +32,7 @@ ctafconf_install_ksh=yes
 ctafconf_install_tcsh=yes
 ctafconf_install_bash=yes
 ctafconf_install_fluxbox=yes
+ctafconf_install_e16=yes
 ctafconf_install_emacs=yes
 ctafconf_install_nano=yes
 ctafconf_install_vim=yes
@@ -41,7 +42,7 @@ ctafconf_install_top=yes
 ctafconf_install_screen=yes
 ctafconf_install_gnomesetting=ask
 
-#xsession and gdm work's well for me, but it's steal a beta feature
+#xsession and gdm work's well for me, but it's still a beta feature
 ctafconf_install_gdmkdm=ask
 ctafconf_install_xsession=ask
 ctafconf_install_xinitrc=ask
