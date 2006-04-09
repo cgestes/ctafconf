@@ -2,6 +2,7 @@
 	* ct-date : bug with tomorrow
 	* ct-profile : add #!/bin/{csh, sh} to user-profile{,csh}
 	* user-profile.mine : support enligthenment
+	* enlightenment/file.menu : use ct-launch
 
 2006-04-06 Elthariel <>
 	* enligthenment : basic config (ct-install, ct-profile)

@@ -1,9 +1,7 @@
 "Elthabox"
-"gnome-term" NULL exec "gnome-terminal"
-"term" NULL exec "ct-launch term"
-"term-rev" NULL exec "ct-launch termrev"
-"firefox" NULL exec "firefox"
-"thunderbird" NULL exec "thunderbird"
+"term" NULL exec "sh -c '~/.ctafconf/bin/ct-launch term'"
+"firefox" NULL exec "sh -c '~/.ctafconf/bin/ct-launch ff'"
+"thunderbird" NULL exec "sh -c '~/.ctafconf/bin/ct-launch tb'"
 "emacsos" NULL exec "emacs"
-
-
+"term-rev" NULL exec "sh -c '~/.ctafconf/bin/ct-launch termrev'"
+"gnome-term" NULL exec "gnome-terminal"

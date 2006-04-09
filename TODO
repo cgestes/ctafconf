@@ -44,7 +44,6 @@ ENLIGHTENMENT
 - Support uninstall.
 - install: create ~/.enligtenment, and links only necessary files.., else some shit goes into .ctafconf/etc/enlightenment wich should'nt change.
 - problem with permission (read only on .enlightenment, .background)
-- use ct-launch for term/firefox/thunderbird ...
 
 BONUS:
 - a gnome terminal that scroll like quake3 console using one hotkey
@@ -109,3 +108,4 @@ xbindkeys (?)
 - top : top mem / top cpu nothing else
 - epita specific (sshe, socksify, ..)
 - basic e16 integration
+- use ct-launch for term/firefox/thunderbird ...
