@@ -1,4 +1,9 @@
 "Elthabox"
-"term" NULL exec "gnome-terminal"
+"gnome-term" NULL exec "gnome-terminal"
+"term" NULL exec "ct-launch term"
+"term-rev" NULL exec "ct-launch termrev"
 "firefox" NULL exec "firefox"
+"thunderbird" NULL exec "thunderbird"
 "emacsos" NULL exec "emacs"
+
+

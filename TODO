@@ -2,6 +2,7 @@ NEEDED:
 - cleanup: personnal info (sshe, sshep (put in perso/bin))
 - conky then torsmo..
 - diff .mine file /?/ remove .mine from archive and touch them from ct-install
+- define default program: navigateur/mail reader/term/pager/.../EDITOR/..
 
 DOCUMENTATION:
 - emacs: README.EMACS, install just emacs, just test emacsconf, ..
@@ -41,7 +42,9 @@ FLUXBOX
 ENLIGHTENMENT
 - Enhance integration with ctafconf(wallpapers/bindkeys/E16-Gnome)
 - Support uninstall.
-- install: create ~/.enligtenment, and links only necessary files..
+- install: create ~/.enligtenment, and links only necessary files.., else some shit goes into .ctafconf/etc/enlightenment wich should'nt change.
+- problem with permission (read only on .enlightenment, .background)
+- use ct-launch for term/firefox/thunderbird ...
 
 BONUS:
 - a gnome terminal that scroll like quake3 console using one hotkey
