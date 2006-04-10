@@ -11,6 +11,7 @@ DOCUMENTATION:
 - enhance ct-help
 - revert gconf setting
 - what is in perso
+- coding style/general guide line
 
 CTAFCONF:
 - ramdom wallpaper (wallpp = ramdom, ramdomperso)
