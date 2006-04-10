@@ -1,3 +1,6 @@
+2006-04-10 CTAF <>
+	* ct-add-wallpaper : bug with name with space
+
 2006-04-09 CTAF <>
 	* ct-date : bug with tomorrow
 	* ct-profile : add #!/bin/{csh, sh} to user-profile{,csh}

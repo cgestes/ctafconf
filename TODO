@@ -16,9 +16,10 @@ CTAFCONF:
 - ramdom wallpaper (wallpp = ramdom, ramdomperso)
 - screen : fichier de conf std (3 windows), automatiquement lance?, keys to browse hystory
 - use sabayon for gnome-conf/ff-conf
-- better template (.mine) for env, emacs, and co, allowing easy customization (define var to enable/disable functionnality (ecb/semantic/)
+- better template (.mine) for env, emacs, and co, allowing easy customization (define var to enable/disable functionnality (ecb/semantic/) (default size for emacs/no default size)
 - 4 distrib: tinyemacs, emacs (with ecb, ilisp, ..), tinyctafconf, ctafconf (with ecb, ilisp, ..)
 - makefile (download ecb, ilisp, ..)?, ct-update (update ctafconf from sf svn)
+- ct-add-wallpaper: ask if we should change the wallpaper now
 
 SHELL
 - completion de zsh (cursor like in hh)
@@ -29,12 +30,13 @@ SHELL
 - zsh: bindkey => "^Xf" => firefox, "^Xt" thunderbird ...
 
 EMACS
+- ## SEE .ctafconf/etc/emacs/startup.emacs ##
 - emacs: in console (ctrl+backspace, disable ring bell) (enable vt102 in xterm,..)
 - emacs: ctrl-qqch => replace the current line , with the current buffer
 - tab = 2 in bash-mode
 - transparent (use console backcolor)
 - kill char from cur to begin
-- /???/ Emacs autoresize at start conflicts with wm app properties save
+- /???/ Emacs autoresize at start conflicts with wm app properties save (use .mine to customize the beahavour)
 
 FLUXBOX
 - remove keys and menu links
