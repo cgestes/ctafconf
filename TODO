@@ -6,6 +6,7 @@ NEEDED:
 - define default program: navigateur/mail reader/term/pager/.../EDITOR/..
 - if user-profile and user-profile.csh exist ask which param to modify
 - remove ctafconf_sudo (why do we need it?) just ask to use sudo or su -c when installing gdm/kdm or define ct-sudo?
+- copy instead of linking => after that, ct-installconf always reinstall
 
 DOCUMENTATION:
 - emacs: README.EMACS, install just emacs, just test emacsconf, ..
