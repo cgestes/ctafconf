@@ -1,5 +1,14 @@
+2006-04-11 CTAF <>
+	* ssft.sh : added "shell script frontend" (lib from debian)
+	* ct-profile : use ssft
+	* ct-profile : new value ctafconf_interface to choose a default frontend
+	* global : remove empty file in .ctafconf/perso/*/
+	* ct-installconf : create directory in perso if they don't exist
+	* ssft.sh : remove source check, adapt title, cleanup
+
 2006-04-10 CTAF <>
 	* ct-add-wallpaper : bug with name with space
+	* xsession : new wm term (just run one term)
 
 2006-04-09 CTAF <>
 	* ct-date : bug with tomorrow

@@ -41,6 +41,7 @@ EMACS
 
 FLUXBOX
 - remove keys and menu links
+- .mine for user-menu
 
 ENLIGHTENMENT
 - Enhance integration with ctafconf(wallpapers/bindkeys/E16-Gnome)

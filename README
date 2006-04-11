@@ -41,13 +41,14 @@ compiler chaque projet:
 
 
 ---------------------------RECOMMANDED SOFTWARE------------------------
-most : to get color with man
-xbindkeys
-conky or torsmo
+most            : to get color with man
+xbindkeys       : to specify global keyboard shortcut
+conky or torsmo : to draw information on your desktop
+xarg, awk       : for ssft, needed for installation
 
 ---------------------------UNINSTALL-----------------------------------
 !!highly experimental!! (use at your own risk)
-ct-uninstall : basic (ask for each file)
+ct-uninstall : don't work at all!!
 
 ---------------------------REINSTALL/UPDATE----------------------------
 overwrite ~/.ctafconf with the new tarball.
@@ -81,8 +82,11 @@ visit http://www.noshell.info for more information/help about the ctafconf
 
 
 ---------------------------Credits---------------------------
-All thoses configurations files have been collected, modified
-and enhanced from a lot's of files from differents places
+Some of thoses configurations files have been collected, modified
+and enhanced from a lot's of files from differents places.
+thanks for all people who put there config on the web.
+--
+thanks for Sergio Talens-Oliag <sto@debian.org> for his ssft library
 
 ---------------------------About---------------------------
 Cedric GESTES (goctaf@gmail.com)

@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Mon Sep 26 02:37:56 2005 GESTES Cedric
-## Last update Thu Apr  6 11:27:14 2006 Elthariel
+## Last update Mon Apr 10 03:49:29 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -20,10 +20,14 @@ if [ -f ~/.ctafconf/perso/user-profile ] ; then
     . ~/.ctafconf/perso/user-profile
 fi
 
+if [ x$ctafconf_wm = xterm ]; then
+    #appel bloquant
+    exec ~/.ctafconf/bin/ct-launch term
+fi
 
 if [ x$ctafconf_wm != xgnome && x$ctafconf_wm != xe16 ] ; then
 #set the wallpaper
-~/.ctafconf/bin/ct-set-bg
+    ~/.ctafconf/bin/ct-set-bg
 fi
 
 #personal startup file
@@ -80,7 +84,8 @@ if which $ctafconf_wm >/dev/null 2>/dev/null ; then
     exec $ctafconf_wm
 fi
 
-exec aterm
+#term
+exec ~/.ctafconf/bin/ct-launch term
 
 # curr_wm=$ctafconf_wm
 # echo $ctafconf_wm >~/.ctafconf/current_wm

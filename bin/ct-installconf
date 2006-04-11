@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Oct  2 23:04:47 2005 GESTES Cedric
-## Last update Sun Apr  9 22:01:53 2006 GESTES Cedric
+## Last update Tue Apr 11 05:21:24 2006 GESTES Cedric
 ##
 #
 # CTAFCONF INSTALLATION
@@ -198,24 +198,32 @@ if ! [ -d ~/.ctafconf/ ] ; then
   exit
 fi
 
-if [ -f ~/.ctafconf/perso/semantic/empty ]; then
-    rm -rf ~/.ctafconf/perso/semantic/empty
-fi
-if [ -f ~/.ctafconf/perso/ssh/empty ]; then
-    rm -rf ~/.ctafconf/perso/ssh/empty
-fi
-if [ -f ~/.ctafconf/perso/repos/empty ]; then
-    rm -rf ~/.ctafconf/perso/repos/empty
-fi
-if [ -f ~/.ctafconf/perso/wallpaper/empty ]; then
-    rm -rf ~/.ctafconf/perso/wallpaper/empty
-fi
-if [ -f ~/.ctafconf/perso/bin/empty ]; then
-    rm -rf ~/.ctafconf/perso/bin/empty
-fi
-if [ -f ~/.ctafconf/perso/previous/empty ]; then
-    rm -rf ~/.ctafconf/perso/previous/empty
-fi
+ctdir ~/.ctafconf/perso
+ctdir ~/.ctafconf/perso/semantic
+ctdir ~/.ctafconf/perso/ssh
+ctdir ~/.ctafconf/perso/repos
+ctdir ~/.ctafconf/perso/wallpaper
+ctdir ~/.ctafconf/perso/bin
+ctdir ~/.ctafconf/perso/previous
+
+# if [ -f ~/.ctafconf/perso/semantic/empty ]; then
+#     rm -rf ~/.ctafconf/perso/semantic/empty
+# fi
+# if [ -f ~/.ctafconf/perso/ssh/empty ]; then
+#     rm -rf ~/.ctafconf/perso/ssh/empty
+# fi
+# if [ -f ~/.ctafconf/perso/repos/empty ]; then
+#     rm -rf ~/.ctafconf/perso/repos/empty
+# fi
+# if [ -f ~/.ctafconf/perso/wallpaper/empty ]; then
+#     rm -rf ~/.ctafconf/perso/wallpaper/empty
+# fi
+# if [ -f ~/.ctafconf/perso/bin/empty ]; then
+#     rm -rf ~/.ctafconf/perso/bin/empty
+# fi
+# if [ -f ~/.ctafconf/perso/previous/empty ]; then
+#     rm -rf ~/.ctafconf/perso/previous/empty
+# fi
 
 
 #launch ct-profile to configure one profile
