@@ -2,6 +2,7 @@ NEEDED:
 - cleanup: personnal info (sshe, sshep (put in perso/bin))
 - conky then torsmo..
 - diff .mine file /?/ remove .mine from archive and touch them from ct-install
+- save installed .mine in perso/mine, to allow a good diff
 - define default program: navigateur/mail reader/term/pager/.../EDITOR/..
 
 DOCUMENTATION:
@@ -14,6 +15,7 @@ DOCUMENTATION:
 - coding style/general guide line
 
 CTAFCONF:
+- uninstall with revert to date (choose from all previous file)
 - ramdom wallpaper (wallpp = ramdom, ramdomperso)
 - screen : fichier de conf std (3 windows), automatiquement lance?, keys to browse hystory
 - use sabayon for gnome-conf/ff-conf
@@ -23,6 +25,7 @@ CTAFCONF:
 - ct-add-wallpaper: ask if we should change the wallpaper now
 
 SHELL
+- use ssft for ct-installconf, ctssh, ctrepo
 - completion de zsh (cursor like in hh)
   see http://www.die.net/doc/linux/man/man1/zshcontrib.1.html for zsh
 - kbd mapping (azerty, qwerty, dvorak) (shell/X) (Xdefault binding for term)
@@ -40,7 +43,7 @@ EMACS
 - /???/ Emacs autoresize at start conflicts with wm app properties save (use .mine to customize the beahavour)
 
 FLUXBOX
-- remove keys and menu links
+- remove keys and menu links (not used?)
 - .mine for user-menu
 
 ENLIGHTENMENT
