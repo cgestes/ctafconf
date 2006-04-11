@@ -4,6 +4,8 @@ NEEDED:
 - diff .mine file /?/ remove .mine from archive and touch them from ct-install
 - save installed .mine in perso/mine, to allow a good diff
 - define default program: navigateur/mail reader/term/pager/.../EDITOR/..
+- if user-profile and user-profile.csh exist ask which param to modify
+- remove ctafconf_sudo (why do we need it?) just ask to use sudo or su -c when installing gdm/kdm or define ct-sudo?
 
 DOCUMENTATION:
 - emacs: README.EMACS, install just emacs, just test emacsconf, ..
@@ -14,12 +16,22 @@ DOCUMENTATION:
 - what is in perso
 - coding style/general guide line
 
+MINE:
+- screen at shell startup
+- ecb/cedet/ilisp/doxyemacs
+- emacs size (set/unset)
+- macro for xsession [launch_wm, launch_app, test_wm] (launch_app after a sleep after launch_wm)
+
+SSFT:
+- check if the frontend exist, else default to another
+- remove I10N
+- use default value
+
 CTAFCONF:
 - uninstall with revert to date (choose from all previous file)
 - ramdom wallpaper (wallpp = ramdom, ramdomperso)
-- screen : fichier de conf std (3 windows), automatiquement lance?, keys to browse hystory
+- screen : fichier de conf std (3 windows), automatiquement lance?, keys to browse history and to change term
 - use sabayon for gnome-conf/ff-conf
-- better template (.mine) for env, emacs, and co, allowing easy customization (define var to enable/disable functionnality (ecb/semantic/) (default size for emacs/no default size)
 - 4 distrib: tinyemacs, emacs (with ecb, ilisp, ..), tinyctafconf, ctafconf (with ecb, ilisp, ..)
 - makefile (download ecb, ilisp, ..)?, ct-update (update ctafconf from sf svn)
 - ct-add-wallpaper: ask if we should change the wallpaper now
@@ -43,24 +55,22 @@ EMACS
 - /???/ Emacs autoresize at start conflicts with wm app properties save (use .mine to customize the beahavour)
 
 FLUXBOX
-- remove keys and menu links (not used?)
 - .mine for user-menu
 
 ENLIGHTENMENT
 - Enhance integration with ctafconf(wallpapers/bindkeys/E16-Gnome)
 - Support uninstall.
-- install: create ~/.enligtenment, and links only necessary files.., else some shit goes into .ctafconf/etc/enlightenment wich should'nt change.
 - problem with permission (read only on .enlightenment, .background)
 
 BONUS:
+- ct-repo/ct-ssh : use dialog/gdialog? (one lib exists, find it, use it (ssft))
 - a gnome terminal that scroll like quake3 console using one hotkey
 - compiler for some configuration file ( emacs, fluxbox, etc..)
-- ct-repo/ct-ssh : use dialog/gdialog? (one lib exists, find it, use it)
 - use gid and uid with mount command (maybe do a ct-mount)
 - kde, gnome (taskbar, etc), ff extension, blackbox, openbox, fvwm
 - debian package
 - packagized configurations : separated dirs with : pack_install, pack_conf [--edit|--view], pack_uninstall
-                            :           why not using make for the toplevel package management(conf compilation)?
+                            :           why not using make for the toplevel package management(conf compilation)? should be nice
 
 ===========================================================
 GUIDELINE:
@@ -116,3 +126,5 @@ xbindkeys (?)
 - epita specific (sshe, socksify, ..)
 - basic e16 integration
 - use ct-launch for term/firefox/thunderbird ...
+- install: create ~/.enligtenment, and links only necessary files.., else some shit goes into .ctafconf/etc/enlightenment wich should'nt change.
+- remove keys and menu links (not used?)

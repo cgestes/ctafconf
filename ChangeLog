@@ -5,6 +5,10 @@
 	* global : remove empty file in .ctafconf/perso/*/
 	* ct-installconf : create directory in perso if they don't exist
 	* ssft.sh : remove source check, adapt title, cleanup
+	* enlightenment : etc/enlightenment is static, ~/.enlightenment is a real directory
+	* enlightenment : scan for ctafconf wallpaper (in perso and in etc)
+	* fluxbox : remove keys and menu links in ~/.fluxbox (not needed)
+	* ct-save-ctafconf : remove empty file handling
 
 2006-04-10 CTAF <>
 	* ct-add-wallpaper : bug with name with space

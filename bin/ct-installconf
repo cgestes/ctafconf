@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Oct  2 23:04:47 2005 GESTES Cedric
-## Last update Tue Apr 11 05:36:53 2006 GESTES Cedric
+## Last update Tue Apr 11 06:29:49 2006 GESTES Cedric
 ##
 #
 # CTAFCONF INSTALLATION
@@ -302,21 +302,26 @@ fi
 ctfile ~/.ctafconf/perso/tcshrc.mine ~/.ctafconf/etc/mine/tcshrc.mine
 
 #fluxbox
-if ! cttestlink ~/.ctafconf/etc/fluxbox/init ~/.fluxbox/init || ! cttestlink ~/.ctafconf/etc/fluxbox/keys ~/.fluxbox/keys || ! cttestlink ~/.ctafconf/etc/fluxbox/menu ~/.fluxbox/menu ; then
+if ! cttestlink ~/.ctafconf/etc/fluxbox/init ~/.fluxbox/init; then
   if  [ x$ctafconf_install_fluxbox = xyes ] || ( [ x$ctafconf_install_fluxbox != xno ] && $dial --yesno "Install configuration for fluxbox (.fluxbox)[y/N]?" 0 0) ; then
     ctdir ~/.fluxbox fluxbox
     ctlink ~/.ctafconf/etc/fluxbox/init ~/.fluxbox/init #globalconf
-    ctlink ~/.ctafconf/etc/fluxbox/keys ~/.fluxbox/keys #hotkey
-    ctlink ~/.ctafconf/etc/fluxbox/menu ~/.fluxbox/menu #menu
     echo "Installing ctafconf for: fluxbox"
   fi
 fi
 
 #enlightenment
-if ! cttestlink ~/.ctafconf/etc/enlightenment ~/.enlightenment ; then
+if ! cttestlink ~/.ctafconf/etc/enlightenment/user_theme.cfg ~/.enlightenment/user_theme.cfg || ! cttestlink ~/.ctafconf/etc/enlightenment/file.menu ~/.enlightenment/file.menu ; then
   if  [ x$ctafconf_install_e16 = xyes ] || ( [ x$ctafconf_install_e16 != xno ] && $dial --yesno "Install configuration for Enlightenment (.enlightenment/)[y/N]?" 0 0) ; then
-    ctlink ~/.ctafconf/etc/enlightenment ~/.enlightenment enlightenment
-    ctlink ~/.ctafconf/perso/wallpaper ~/.enlightenment/backgrounds backgrounds
+      #backup
+    ctdir ~/.enlightenment enlightenment
+    #nobackup
+    ctdir ~/.enlightenment/backgrounds
+    ctlink ~/.ctafconf/etc/enlightenment/user_theme.cfg ~/.enlightenment/user_theme.cfg
+    ctlink ~/.ctafconf/etc/enlightenment/file.menu ~/.enlightenment/file.menu
+    #wallpaper
+    ctlink ~/.ctafconf/perso/wallpaper ~/.enlightenment/backgrounds/persowallpp
+    ctlink ~/.ctafconf/etc/wallpaper ~/.enlightenment/backgrounds/ctafconfwallpp
     echo "Installing ctafconf for: Enlightenment"
   fi
 fi
