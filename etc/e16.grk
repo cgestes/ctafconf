@@ -1,0 +1,91 @@
+#!/bin/sh
+##
+## e16.grk for ctafconf in /home/ctaf/.ctafconf/etc
+##
+## Made by GESTES Cedric
+## Login   <ctaf@epita.fr>
+##
+## Started on  Tue Apr 11 12:32:11 2006 GESTES Cedric
+## Last update Tue Apr 11 23:33:23 2006 GESTES Cedric
+##
+
+#--function
+#grk_link
+#grk_unlink
+
+#grk_sudolink
+#grk_unsudolink
+
+#grk_dir
+#grk_undir
+
+#grk_file
+#grk_unfile
+
+
+#grk_variable?
+#grk_value?
+
+#grk_testfile
+#grk_testdir
+#grk_testlink
+
+#this package should be named e16.grk
+e16_name='e16'
+
+#dependance
+#e16_depend='shell'
+
+#description
+e16_description()
+{
+    echo "This package contains configuration file for e16"
+    echo "It a powerfull window manager (clickodrome)"
+}
+
+
+#is this package installed?
+#0 = installed
+#1 = not installed
+e16_is_installed()
+{
+    grk_testdir ~/.enlightenment &&
+    grk_testdir ~/.enlightenment/backgrounds &&
+    grk_testfile etc/e16/user_theme.cfg ~/.enlightenment/user_theme.cfg &&
+    grk_testfile etc/e16/file.menu ~/.enlightenment/file.menu &&
+    grk_testlink perso/wallpaper ~/.enlightenment/backgrounds/persowallpp &&
+    grk_testlink etc/wallpaper ~/.enlightenment/backgrounds/ctafconfwallpp
+    return $?
+}
+
+#install this package is e16_is_installed return "not installed"
+#0 = installed
+#1 = not installed
+e16_install()
+{
+    grk_dir ~/.enlightenment e16
+    #no backup til now
+    grk_dir ~/.enlightenment/backgrounds
+    grk_file etc/e16/user_theme.cfg ~/.enlightenment/user_theme.cfg
+    grk_file etc/e16/file.menu ~/.enlightenment/file.menu
+    grk_link perso/wallpaper ~/.enlightenment/backgrounds/persowallpp
+    grk_link etc/wallpaper ~/.enlightenment/backgrounds/ctafconfwallpp
+    return 0
+}
+
+#uninstall file install with e16_install
+e16_uninstall()
+{
+    grk_undir ~/.enlightenment e16
+    return 0
+}
+
+#this function is always called when you call ct-installconf
+#dont affected by e16_uninstall
+#put all .mine there
+e16_alwaysinstall()
+{
+    #grk_mine kshrc
+    #nothing to do
+    return 0
+}

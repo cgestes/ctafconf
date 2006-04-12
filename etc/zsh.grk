@@ -1,0 +1,84 @@
+#!/bin/sh
+##
+## zsh.grk for ctafconf in /home/ctaf/.ctafconf/etc
+##
+## Made by GESTES Cedric
+## Login   <ctaf@epita.fr>
+##
+## Started on  Tue Apr 11 12:32:11 2006 GESTES Cedric
+## Last update Tue Apr 11 23:33:36 2006 GESTES Cedric
+##
+
+#--function
+#grk_link
+#grk_unlink
+
+#grk_sudolink
+#grk_unsudolink
+
+#grk_dir
+#grk_undir
+
+#grk_file
+#grk_unfile
+
+
+#grk_variable?
+#grk_value?
+
+#grk_testfile
+#grk_testdir
+#grk_testlink
+
+#this package should be named zsh.grk
+zsh_name='zsh'
+
+#dependance
+#zsh_depend='shell'
+
+#description
+zsh_description()
+{
+    echo "This package contains configuration file for zsh"
+    echo "providing a good prompt, usefull alias and completion"
+    echo "It's the most supported and best shell for grk!!"
+}
+
+
+#is this package installed?
+#0 = installed
+#1 = not installed
+zsh_is_installed()
+{
+    grk_testfile etc/zsh/zshrc ~/.zshrc &&
+    grk_testfile etc/zsh/zshenv ~/.zshenv
+    return $?
+}
+
+#install this package is zsh_is_installed return "not installed"
+#0 = installed
+#1 = not installed
+zsh_install()
+{
+    grk_file etc/zsh/zshrc ~/.zshrc zshrc
+    grk_file etc/zsh/zshenv ~/.zshenv zshenv
+    return 0
+}
+
+#uninstall file install with zsh_install
+zsh_uninstall()
+{
+    grk_unfile ~/.zshrc zshrc
+    return 0
+}
+
+#this function is always called when you call ct-installconf
+#dont affected by zsh_uninstall
+#put all .mine there
+zsh_alwaysinstall()
+{
+    #nothing to do
+    grk_mine zshrc
+    grk_mine zshenv
+    return 0
+}

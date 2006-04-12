@@ -1,0 +1,79 @@
+#!/bin/sh
+##
+## xbindkeys.grk for ctafconf in /home/ctaf/.ctafconf/etc
+##
+## Made by GESTES Cedric
+## Login   <ctaf@epita.fr>
+##
+## Started on  Tue Apr 11 12:32:11 2006 GESTES Cedric
+## Last update Tue Apr 11 22:34:54 2006 GESTES Cedric
+##
+
+#--function
+#grk_link
+#grk_unlink
+
+#grk_sudolink
+#grk_unsudolink
+
+#grk_dir
+#grk_undir
+
+#grk_file
+#grk_unfile
+
+
+#grk_variable?
+#grk_value?
+
+#grk_testfile
+#grk_testdir
+#grk_testlink
+
+#this package should be named top.grk
+xbindkeys_name='xbindkeys'
+
+#dependance
+#xbindkeys_depend='shell'
+
+#description
+xbindkeys_description()
+{
+    echo "This package contains configuration file for xbindkeys"
+    echo "It a very fast and small text editor"
+}
+
+
+#is this package installed?
+#0 = installed
+#1 = not installed
+xbindkeys_is_installed()
+{
+    grk_testfile etc/xbindkeys/xbindkeysrc ~/.xbindkeysrc
+    return $?
+}
+
+#install this package is xbindkeys_is_installed return "not installed"
+#0 = installed
+#1 = not installed
+xbindkeys_install()
+{
+    grk_file etc/xbindkeys/xbindkeysrc ~/.xbindkeysrc xbindkeysrc
+    return 0
+}
+
+#uninstall file install with xbindkeys_install
+xbindkeys_uninstall()
+{
+    grk_unfile ~/.xbindkeysrc xbindkeysrc
+    return 0
+}
+
+#this function is always called when you call ct-installconf
+#dont affected by xbindkeys_uninstall
+#put all .mine there
+xbindkeys_alwaysinstall()
+{
+    #nothing to do
+    return 0
+}

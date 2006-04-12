@@ -1,0 +1,135 @@
+#!/bin/sh
+##
+## gnome.grk for ctafconf in /home/ctaf/.ctafconf/etc
+##
+## Made by GESTES Cedric
+## Login   <ctaf@epita.fr>
+##
+## Started on  Tue Apr 11 12:32:11 2006 GESTES Cedric
+## Last update Tue Apr 11 23:06:04 2006 GESTES Cedric
+##
+
+#--function
+#grk_link
+#grk_unlink
+
+#grk_sudolink
+#grk_unsudolink
+
+#grk_dir
+#grk_undir
+
+#grk_file
+#grk_unfile
+
+
+#grk_variable?
+#grk_value?
+
+#grk_testfile
+#grk_testdir
+#grk_testlink
+
+#this package should be named gnome.grk
+gnome_name='gnome'
+
+#dependance
+#gnome_depend='shell'
+
+#description
+gnome_description()
+{
+    echo "This package contains configuration file for gnome"
+}
+
+
+#is this package installed?
+#0 = installed
+#1 = not installed
+gnome_is_installed()
+{
+    return 1
+}
+
+#install this package is gnome_is_installed return "not installed"
+#0 = installed
+#1 = not installed
+gnome_install()
+{
+    #setting background for gnome
+    wallpp=~/.ctafconf/etc/wallpaper/$ctafconf_wallpaper
+    wallpp2=~/.ctafconf/perso/wallpaper/$ctafconf_wallpaper
+    if [ -f $wallpp2 ]; then
+        wallpp=$wallpp2
+    fi
+    echo "Setting wallpaper for gnome: $ctafconf_wallpaper"
+    if which gconftool-2 > /dev/null 2> /dev/null ; then
+      gconftool-2 --dump /desktop/gnome/background > ~/.ctafconf/perso/previous/background-prev-$date.gconf
+      gconftool-2 --dump /desktop/gnome/background > ~/.ctafconf/perso/previous/background-previous.gconf
+      gconftool-2 --type=string -s /desktop/gnome/background/picture_filename "$wallpp"
+      gconftool-2 --type=string -s /desktop/gnome/background/picture_options "stretched"
+
+      #metacity workspace
+      echo "Setting metacity workspace shortcut:"
+      echo "<Alt>F1 Workspace 1         <Alt>F2 Workspace 2"
+      echo "<Alt>F3 Workspace 3         <Alt>F4 Workspace 4"
+      gconftool-2 --dump /apps/metacity/global_keybindings > ~/.ctafconf/perso/previous/globalkeybindings-prev-$date.gconf
+      gconftool-2 --dump /apps/metacity/global_keybindings > ~/.ctafconf/perso/previous/globalkeybindings-previous.gconf
+      gconftool-2 --type string --set /apps/metacity/global_keybindings/switch_to_workspace_1 "<Alt>F1"
+      gconftool-2 --type string --set /apps/metacity/global_keybindings/switch_to_workspace_2 "<Alt>F2"
+      gconftool-2 --type string --set /apps/metacity/global_keybindings/switch_to_workspace_3 "<Alt>F3"
+      gconftool-2 --type string --set /apps/metacity/global_keybindings/switch_to_workspace_4 "<Alt>F4"
+
+      #metacity window
+      echo "Setting metacity window shortcut:"
+      echo "<Control><Alt>f fullscreen  <Control><Alt>m maximized"
+      echo "<Control><Alt>w move        <Control><Alt>x resize"
+      gconftool-2 --dump /apps/metacity/window_keybindings > ~/.ctafconf/perso/previous/windowkeybindings-previous.gconf
+      gconftool-2 --dump /apps/metacity/window_keybindings > ~/.ctafconf/perso/previous/windowkeybindings-prev-$date.gconf
+      gconftool-2 --type string --set /apps/metacity/window_keybindings/toggle_fullscreen "<Control><Alt>f"
+      gconftool-2 --type string --set /apps/metacity/window_keybindings/toggle_maximized "<Control><Alt>m"
+      gconftool-2 --type string --set /apps/metacity/window_keybindings/begin_move "<Control><Alt>w"
+      gconftool-2 --type string --set /apps/metacity/window_keybindings/begin_resize "<Control><Alt>x"
+
+      gconftool-2 --dump /apps/panel > ~/.ctafconf/perso/previous/panel-previous.gconf
+      gconftool-2 --dump /desktop/gnome/interface > ~/.ctafconf/perso/previous/gnome-interface-previous.gconf
+      gconftool-2 --dump /apps/gnome-terminal > ~/.ctafconf/perso/previous/gnome-terminal-previous.gconf
+      gconftool-2 --dump /apps/metacity/general > ~/.ctafconf/perso/previous/metacity-window-previous.gconf
+
+      #gnone-panel-bar
+      gconftool-2 --dump /apps/panel > ~/.ctafconf/perso/previous/panel-prev-$date.gconf
+      #gnome style
+      gconftool-2 --dump /desktop/gnome/interface > ~/.ctafconf/perso/previous/gnome-interface-prev-$date.gconf
+      #gnome-terminal profile
+      gconftool-2 --dump /apps/gnome-terminal > ~/.ctafconf/perso/previous/gnome-terminal-prev-$date.gconf
+      #metacity theme
+      gconftool-2 --dump /apps/metacity/general > ~/.ctafconf/perso/previous/metacity-window-prev-$date.gconf
+
+#      gfile=~/.ctafconf/etc/gconf/panel
+#      gconftool-2 --load="$gfile"
+#      gfile=~/.ctafconf/etc/gconf/gnome-interface
+#      gconftool-2 --load="$gfile"
+      gfile=~/.ctafconf/etc/gnome/gnome-terminal
+      gconftool-2 --load="$gfile"
+#      gfile=~/.ctafconf/etc/gconf/metacity-window
+#      gconftool-2 --load="$gfile"
+      echo "### to revert gconf settings launch gconftool-2 --load=FILE      ###"
+      echo "### where FILE is one file from .ctafconf/perso/previous/*.gconf ###"
+    fi
+    return 0
+}
+
+#uninstall file install with gnome_install
+gnome_uninstall()
+{
+    return 0
+}
+
+#this function is always called when you call ct-installconf
+#dont affected by gnome_uninstall
+#put all .mine there
+gnome_alwaysinstall()
+{
+    #nothing to do
+    return 0
+}

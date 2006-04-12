@@ -1,0 +1,79 @@
+#!/bin/sh
+##
+## xsession.grk for ctafconf in /home/ctaf/.ctafconf/etc
+##
+## Made by GESTES Cedric
+## Login   <ctaf@epita.fr>
+##
+## Started on  Tue Apr 11 12:32:11 2006 GESTES Cedric
+## Last update Tue Apr 11 22:34:37 2006 GESTES Cedric
+##
+
+#--function
+#grk_link
+#grk_unlink
+
+#grk_sudolink
+#grk_unsudolink
+
+#grk_dir
+#grk_undir
+
+#grk_file
+#grk_unfile
+
+
+#grk_variable?
+#grk_value?
+
+#grk_testfile
+#grk_testdir
+#grk_testlink
+
+#this package should be named xsession.grk
+xsession_name='xsession'
+
+#dependance
+#xsession_depend='shell'
+
+#description
+xsession_description()
+{
+    echo "This package contains configuration file for xsession"
+}
+
+
+#is this package installed?
+#0 = installed
+#1 = not installed
+xsession_is_installed()
+{
+    grk_testfile etc/xsession/xsession ~/.xsession
+    return $?
+}
+
+#install this package is xsession_is_installed return "not installed"
+#0 = installed
+#1 = not installed
+xsession_install()
+{
+    grk_file etc/xsession/xsession ~/.xsession xsession
+    return 0
+}
+
+
+#uninstall file install with xsession_install
+xsession_uninstall()
+{
+    grk_unfile ~/.xsession xsession
+    return 0
+}
+
+#this function is always called when you call ct-installconf
+#dont affected by xsession_uninstall
+#put all .mine there
+xsession_alwaysinstall()
+{
+    #nothing to do
+    return 0
+}

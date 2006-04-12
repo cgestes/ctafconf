@@ -1,0 +1,80 @@
+#!/bin/sh
+##
+## bash.grk for ctafconf in /home/ctaf/.ctafconf/etc
+##
+## Made by GESTES Cedric
+## Login   <ctaf@epita.fr>
+##
+## Started on  Tue Apr 11 12:32:11 2006 GESTES Cedric
+## Last update Tue Apr 11 22:38:29 2006 GESTES Cedric
+##
+
+#--function
+#grk_link
+#grk_unlink
+
+#grk_sudolink
+#grk_unsudolink
+
+#grk_dir
+#grk_undir
+
+#grk_file
+#grk_unfile
+
+
+#grk_variable?
+#grk_value?
+
+#grk_testfile
+#grk_testdir
+#grk_testlink
+
+#this package should be named bash.grk
+bash_name='bash'
+
+#dependance
+#bash_depend='shell'
+
+#description
+bash_description()
+{
+    echo "This package contains configuration file for bash"
+    echo "providing a good prompt, usefull alias and completion"
+}
+
+
+#is this package installed?
+#0 = installed
+#1 = not installed
+bash_is_installed()
+{
+    grk_testfile etc/bash/bashrc ~/.bashrc
+    return $?
+}
+
+#install this package is bash_is_installed return "not installed"
+#0 = installed
+#1 = not installed
+bash_install()
+{
+    grk_file etc/bash/bashrc ~/.bashrc bashrc
+    return 0
+}
+
+#uninstall file install with bash_install
+bash_uninstall()
+{
+    grk_unfile ~/.bashrc bashrc
+    return 0
+}
+
+#this function is always called when you call ct-installconf
+#dont affected by bash_uninstall
+#put all .mine there
+bash_alwaysinstall()
+{
+    #nothing to do
+    grk_mine bashrc
+    return 0
+}

@@ -1,0 +1,80 @@
+#!/bin/sh
+##
+## tcsh.grk for ctafconf in /home/ctaf/.ctafconf/etc
+##
+## Made by GESTES Cedric
+## Login   <ctaf@epita.fr>
+##
+## Started on  Tue Apr 11 12:32:11 2006 GESTES Cedric
+## Last update Tue Apr 11 22:35:39 2006 GESTES Cedric
+##
+
+#--function
+#grk_link
+#grk_unlink
+
+#grk_sudolink
+#grk_unsudolink
+
+#grk_dir
+#grk_undir
+
+#grk_file
+#grk_unfile
+
+
+#grk_variable?
+#grk_value?
+
+#grk_testfile
+#grk_testdir
+#grk_testlink
+
+#this package should be named tcsh.grk
+tcsh_name='tcsh'
+
+#dependance
+#tcsh_depend='shell'
+
+#description
+tcsh_description()
+{
+    echo "This package contains configuration file for tcsh"
+    echo "providing a good prompt, usefull alias and completion"
+}
+
+
+#is this package installed?
+#0 = installed
+#1 = not installed
+tcsh_is_installed()
+{
+    grk_testfile etc/tcsh/tcshrc ~/.tcshrc
+    return $?
+}
+
+#install this package is tcsh_is_installed return "not installed"
+#0 = installed
+#1 = not installed
+tcsh_install()
+{
+    grk_file etc/tcsh/tcshrc ~/.tcshrc tcshrc
+    return 0
+}
+
+#uninstall file install with tcsh_install
+tcsh_uninstall()
+{
+    grk_unfile ~/.tcshrc tcshrc
+    return 0
+}
+
+#this function is always called when you call ct-installconf
+#dont affected by tcsh_uninstall
+#put all .mine there
+tcsh_alwaysinstall()
+{
+    grk_mine kshrc
+    #nothing to do
+    return 0
+}
