@@ -1,3 +1,17 @@
+ERROR
+Creating directory: /u/a2/gestes_c/.enlightenment
+Creating directory: /u/a2/gestes_c/.enlightenment/backgrounds
+Copying: etc/e16/user_theme.cfg in /u/a2/gestes_c/.enlightenment/user_theme.cfg
+cp: /u/a2/gestes_c/.enlightenment/user_theme.cfg: No such file or directory
+Copying: etc/e16/file.menu in /u/a2/gestes_c/.enlightenment/file.menu
+cp: /u/a2/gestes_c/.enlightenment/file.menu: No such file or directory
+Linking: /u/a2/gestes_c/.enlightenment/backgrounds/persowallpp -> perso/wallpaper
+ln: /u/a2/gestes_c/.enlightenment/backgrounds/persowallpp: No such file or directory
+Linking: /u/a2/gestes_c/.enlightenment/backgrounds/ctafconfwallpp -> etc/wallpaper
+ln: /u/a2/gestes_c/.enlightenment/backgrounds/ctafconfwallpp: No such file or directory
+Package e16 installed
+
+
 NEEDED:
 - cleanup: personnal info (sshe, sshep (put in perso/bin))
 - conky then torsmo..
@@ -29,6 +43,7 @@ SSFT:
 - check if the frontend exist, else default to another
 - remove I10N
 - default value for yesno
+- read -e at epita
 
 CTAFCONF:
 - uninstall with revert to date (choose from all previous file)

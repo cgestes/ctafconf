@@ -147,15 +147,15 @@ grk_file ()
 #backup the dir if name is speficied
 grk_dir ()
 {
-  local src=$1
+  local dst=$1
   local name=$2
 
   if ! [ -d $dst ]; then
       if ! [ x$name = x ]; then
           [ x$grk_debug = xyes ] && echo "grk_dir: Backup $name"
           rm -rf $grk_backup/"$name"-previous 2>/dev/null
-          cp -r $src $grk_backup/"$name"-previous 2>/dev/null
-          mv $src ~/.ctafconf/perso/previous/"$name"-prev-"$date" 2>/dev/null
+          cp -r $dst $grk_backup/"$name"-previous 2>/dev/null
+          mv $dst ~/.ctafconf/perso/previous/"$name"-prev-"$date" 2>/dev/null
       fi
   fi
   [ x$grk_debug = xyes ] && echo "Creating directory: $src"
