@@ -1,3 +1,8 @@
+2006-04-12 CTAF <>
+	* ct-installconf : use default value with ssft
+	* ct-profile : use default value with ssft
+	* ct-installconf : use a multiple choice list to install just the package the user want
+
 2006-04-11 CTAF <>
 	* ssft.sh : added "shell script frontend" (lib from debian)
 	* ct-profile : use ssft
@@ -9,6 +14,10 @@
 	* enlightenment : scan for ctafconf wallpaper (in perso and in etc)
 	* fluxbox : remove keys and menu links in ~/.fluxbox (not needed)
 	* ct-save-ctafconf : remove empty file handling
+	* ct-installconf : complete rewrite with ssft
+	* etc/*.grk : package file allowing installation/uninstallation (not finished)
+	* global : change svn:executable bit, remove when not usefull
+	* global : moved all configuration file in .ctafconf/etc to a subdirectory (except *.grk)
 
 2006-04-10 CTAF <>
 	* ct-add-wallpaper : bug with name with space

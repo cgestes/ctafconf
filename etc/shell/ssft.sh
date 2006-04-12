@@ -28,26 +28,26 @@
 # =============== #
 
 # Try to load the real gettext.sh functions or define fake ones
-if [ -n "`which gettext.sh 2> /dev/null`" ]; then
-  # ZSH fix, set NOFUNCTIONARGZERO before loading
-  NOFUNCTIONARGZERO="`set -o | awk '/^nofunctionargzero/ { print $2 }'`"
-  if [ "$NOFUNCTIONARGZERO" = "off" ]; then
-    set -o NOFUNCTIONARGZERO
-  fi
-  . gettext.sh
-  # ZSH fix, unset NOFUNCTIONARGZERO if it was set
-  if [ "$NOFUNCTIONARGZERO" = "off" ]; then
-    set +o NOFUNCTIONARGZERO
-  fi
-else
-  gettext()  { printf "%s" "$1"; }
+# if [ -n "`which gettext.sh 2> /dev/null`" ]; then
+#   # ZSH fix, set NOFUNCTIONARGZERO before loading
+#   NOFUNCTIONARGZERO="`set -o | awk '/^nofunctionargzero/ { print $2 }'`"
+#   if [ "$NOFUNCTIONARGZERO" = "off" ]; then
+#     set -o NOFUNCTIONARGZERO
+#   fi
+#   . gettext.sh
+#   # ZSH fix, unset NOFUNCTIONARGZERO if it was set
+#   if [ "$NOFUNCTIONARGZERO" = "off" ]; then
+#     set +o NOFUNCTIONARGZERO
+#   fi
+# else
+  gettext() { printf "%s" "$1"; }
   eval_gettext() { eval `echo printf \"%s\" \"$1\"`; }
   ngettext() { [ "$3" -eq "1" ] && printf "%s" "$1" || printf "%s" "$2"; }
   eval_ngettext() {
     [ "$3" -eq "1" ] && _l_str="$1" || _l_str="$2";
     eval `echo printf \"%s\" \"$_l_str\"`;
   }
-fi
+#fi
 
 # ============ #
 # L10N Support #
@@ -935,6 +935,8 @@ ssft_yesno() {
   # Local variables
   _l_title="";
   _l_question="";
+  _l_default="$SSFT_DEFAULT"
+  unset SSFT_DEFAULT
   _l_ret=255;
 
   # Check arguments
@@ -954,12 +956,17 @@ ssft_yesno() {
     _l_ret=$?
   ;;
   kdialog)
-    kdialog --title "$_l_title" --yesno "$_l_question";
-    _l_ret=$?
+          kdialog --title "$_l_title" --yesno "$_l_question";
+          _l_ret=$?
   ;;
   dialog)
-    dialog --stdout --title "$_l_title" --yesno "$_l_question" 0 0;
-    _l_ret=$?
+          if [ x$_l_default = xno ]; then
+              dialog --stdout --title "$_l_title" --defaultno --yesno "$_l_question" 0 0;
+              _l_ret=$?
+          else
+              dialog --stdout --title "$_l_title" --yesno "$_l_question" 0 0;
+              _l_ret=$?
+          fi
   ;;
   text)
     ssft_print_text_title "$_l_title"

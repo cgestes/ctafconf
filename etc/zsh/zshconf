@@ -5,7 +5,7 @@
 ## Login   <gestes_c@epita.fr>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 GESTES Cedric
-## Last update Mon Mar 27 08:01:25 2006 GESTES Cedric
+## Last update Tue Apr 11 12:22:41 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -149,7 +149,7 @@ bindkey '^X^P' predict-off
   zle -N insert-files
   compinit -u
   #use --help to complete some cmd (df , ..)
-  compdef _gnu_generic df
+  compdef _gnu_generic df svn
 
   zstyle ':completion:*' format '%{[32m%}-=> %{[01m%}%d%{[0m%}'
   zstyle ':completion:*' auto-description 'specify: %d'

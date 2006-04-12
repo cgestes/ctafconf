@@ -2,11 +2,12 @@ NEEDED:
 - cleanup: personnal info (sshe, sshep (put in perso/bin))
 - conky then torsmo..
 - diff .mine file /?/ remove .mine from archive and touch them from ct-install
-- save installed .mine in perso/mine, to allow a good diff
+- save installed .mine in perso/previous/mine, to allow a good diff
 - define default program: navigateur/mail reader/term/pager/.../EDITOR/..
 - if user-profile and user-profile.csh exist ask which param to modify
-- remove ctafconf_sudo (why do we need it?) just ask to use sudo or su -c when installing gdm/kdm or define ct-sudo?
-- copy instead of linking => after that, ct-installconf always reinstall
+- test if it work with space in /home/ct af/ for example
+- specify interface in argument to ct-profile, ct-install, ...
+- add help for ct-profile, ct-install (for interface)
 
 DOCUMENTATION:
 - emacs: README.EMACS, install just emacs, just test emacsconf, ..
@@ -22,22 +23,23 @@ MINE:
 - ecb/cedet/ilisp/doxyemacs
 - emacs size (set/unset)
 - macro for xsession [launch_wm, launch_app, test_wm] (launch_app after a sleep after launch_wm)
+- .mine for fluxbox user-menu
 
 SSFT:
 - check if the frontend exist, else default to another
 - remove I10N
-- use default value
+- default value for yesno
 
 CTAFCONF:
 - uninstall with revert to date (choose from all previous file)
 - ramdom wallpaper (wallpp = ramdom, ramdomperso)
-- screen : fichier de conf std (3 windows), automatiquement lance?, keys to browse history and to change term
 - use sabayon for gnome-conf/ff-conf
 - 4 distrib: tinyemacs, emacs (with ecb, ilisp, ..), tinyctafconf, ctafconf (with ecb, ilisp, ..)
 - makefile (download ecb, ilisp, ..)?, ct-update (update ctafconf from sf svn)
 - ct-add-wallpaper: ask if we should change the wallpaper now
 
 SHELL
+- screen : fichier de conf std (3 windows), automatiquement lance?, keys to browse history and to change term
 - use ssft for ct-installconf, ctssh, ctrepo
 - completion de zsh (cursor like in hh)
   see http://www.die.net/doc/linux/man/man1/zshcontrib.1.html for zsh
@@ -55,13 +57,10 @@ EMACS
 - kill char from cur to begin
 - /???/ Emacs autoresize at start conflicts with wm app properties save (use .mine to customize the beahavour)
 
-FLUXBOX
-- .mine for user-menu
-
 ENLIGHTENMENT
 - Enhance integration with ctafconf(wallpapers/bindkeys/E16-Gnome)
 - Support uninstall.
-- problem with permission (read only on .enlightenment, .background)
+
 
 BONUS:
 - ct-repo/ct-ssh : use dialog/gdialog? (one lib exists, find it, use it (ssft))
@@ -70,42 +69,7 @@ BONUS:
 - use gid and uid with mount command (maybe do a ct-mount)
 - kde, gnome (taskbar, etc), ff extension, blackbox, openbox, fvwm
 - debian package
-- packagized configurations : separated dirs with : pack_install, pack_conf [--edit|--view], pack_uninstall
-                            :           why not using make for the toplevel package management(conf compilation)? should be nice
 
-===========================================================
-GUIDELINE:
-all file in ctafconf/etc must be static (user should not edit them)
-
-all file in ctafconf/perso must not be overwritten and are user specific
-
-===========================================================
-POSIX
---sh
-if cmp -s $SRCFILE $FILE; then
-fi
-export al=val
-alias al=val
-var=val
-source
-
---tcsh
-if ( -x file ) echo cool
-setenv al val
-alias al val
-set var val
-
---ksh
-export al=val
-alias al=val
-var=val
-
---zsh
-if cmp -s $SRCFILE $FILE; then
-fi
-export al=val
-alias al=val
-var=val
 
 --
 compiled files?:
@@ -129,3 +93,9 @@ xbindkeys (?)
 - use ct-launch for term/firefox/thunderbird ...
 - install: create ~/.enligtenment, and links only necessary files.., else some shit goes into .ctafconf/etc/enlightenment wich should'nt change.
 - remove keys and menu links (not used?)
+- remove ctafconf_sudo (why do we need it?) just ask to use sudo or su -c when installing gdm/kdm or define ct-sudo?
+- packagized configurations : separated dirs with : pack_install, pack_conf [--edit|--view], pack_uninstall
+                            :           why not using make for the toplevel package management(conf compilation)?
+- problem with permission (read only on .enlightenment, .background)
+- testfile test if not a symlink
+- copy instead of linking => after that, ct-installconf always reinstall

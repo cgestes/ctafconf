@@ -5,9 +5,10 @@
 ## Login   <goctaf@gmail.com>
 ##
 ## Started on  Fri Sep 30 22:17:33 2005 GESTES Cedric
-## Last update Fri Mar 31 20:46:28 2006 GESTES Cedric
+## Last update Tue Apr 11 12:26:38 2006 GESTES Cedric
 ##
 ##CTAFCONF
+
 
 
 #include portable tools (env_set, alias_set, ...)

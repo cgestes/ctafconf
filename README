@@ -55,6 +55,8 @@ overwrite ~/.ctafconf with the new tarball.
 relauch ~/.ctafconf/ctafconf-install
 
 ---------------------------HELP----------------------------------------
+It's a good framework to create our own personnal configuration
+
 ct-profile : configure your ctafconf profile (wallpaper, wm, mail, etc..)
 ct-installconf : reinstall la ctafconf (et l'install aussi qd mm!)
 ct-repo : admin your repository (svn and cvs)

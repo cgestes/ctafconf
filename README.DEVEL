@@ -1,0 +1,33 @@
+===========================================================
+GUIDELINE:
+all file in ctafconf/etc must be static (user should not edit them, program should not add file into)
+all file in ctafconf/perso must not be overwritten and are user specific
+
+===========================================================
+POSIX
+--sh
+if cmp -s $SRCFILE $FILE; then
+fi
+export al=val
+alias al=val
+var=val
+source
+
+--tcsh
+if ( -x file ) echo cool
+setenv al val
+alias al val
+set var val
+
+--ksh
+export al=val
+alias al=val
+var=val
+
+--zsh
+if cmp -s $SRCFILE $FILE; then
+fi
+export al=val
+alias al=val
+var=val
+
