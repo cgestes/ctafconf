@@ -6,7 +6,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Tue Apr 11 12:32:11 2006 GESTES Cedric
-## Last update Wed Apr 12 03:29:09 2006 GESTES Cedric
+## Last update Wed Apr 12 06:41:24 2006 GESTES Cedric
 ##
 
 #--function
@@ -77,5 +77,6 @@ gdmkdm_uninstall()
 gdmkdm_alwaysinstall()
 {
     #nothing to do
+    grk_mine xsession
     return 0
 }

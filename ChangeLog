@@ -2,6 +2,8 @@
 	* ct-installconf : use default value with ssft
 	* ct-profile : use default value with ssft
 	* ct-installconf : use a multiple choice list to install just the package the user want
+	* global : bug at epita (dialog don't work well with ssh)
+	* grktools.sh : new shell tools to link/copy file/dir with backup and uninstall
 
 2006-04-11 CTAF <>
 	* ssft.sh : added "shell script frontend" (lib from debian)

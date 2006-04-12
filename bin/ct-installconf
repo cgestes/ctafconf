@@ -61,36 +61,36 @@ pkg_alwaysinstall()
     return $?
 }
 
+#0 installed
+#1 already installed
+#2 failed
 grk_install()
 {
     local name
-    local installed
     name=$1
-
-    echo "Package Name: $name"
+    local ret
     . ~/.ctafconf/etc/"$name".grk
 
     if pkg_is_installed $name; then
-        installed=no;
+        ret=1
     else
-        echo -n "Description :"
-        pkg_description $name
-        echo "--"
-        installed=yes
-
         if pkg_install $name; then
-            echo "Package $name installed"
+            ret=0
         else
-            echo "NOT INSTALLED"
+            ret=2
         fi
     fi
     if ! pkg_alwaysinstall $name ; then
-        echo "AlwaysInstalled FAILED"
+        ret=2
     fi
-    if [ x$installed = xyes ]; then
-        echo ""
-        echo ""
-    fi
+    return $ret
+}
+
+grk_ask_install()
+{
+    name=$1
+
+    echo "Ask: $name"
 }
 
 grk_install_list()
@@ -98,8 +98,17 @@ grk_install_list()
     list=$@
     for i in $list; do
         grk_install $i
+        ret=$?
+        if [ x$ret = x0 ]; then
+            echo "Package installed: $i"
+        elif [ x$ret = x1 ]; then
+            echo "Package already installed: $i"
+        else
+            echo "## Package installation failed: $i ##"
+        fi
     done
 }
+
 
 grk_installed_list()
 {
@@ -146,15 +155,32 @@ grk_dir ~/.ctafconf/perso/previous
 
 export SSFT_FRONTEND=$ctafconf_interface
 
-SSFT_DEFAULT=`grk_installed_list`
-ssft_select_multiple "Install" "Select packages you want to install" `ls -1 ~/.ctafconf/etc | grep ".grk$" | sed -e s/.grk//`
 
-grk_install_list $SSFT_RESULT
+SSFT_DEFAULT=ask
+ssft_select_single "Select one installation method" "'All' install every package, 'Ask' ask your before each package, and 'Choice' let you select packages you want in a list" all ask choice
+insmethod=$SSFT_RESULT
+###ASK
+if [ x$insmethod = xask ]; then
+    ls -1 ~/.ctafconf/etc | grep ".grk$" | while read line; do
+        name=`echo $line | sed -e s/.grk//`
+        grk_ask_install $name
+    done
+fi
 
+###ALL
+if [ x$insmethod = xall ]; then
+    ls -1 ~/.ctafconf/etc | grep ".grk$" | while read line; do
+        name=`echo $line | sed -e s/.grk//`
+        grk_install $name
+    done
+fi
 
-# ls -1 ~/.ctafconf/etc | grep ".grk$" | while read line; do
-#     name=`echo $line | sed -e s/.grk//`
-#     grk_install $name
-# done
+###CHOICE
+if [ x$insmethod = xchoice ]; then
+    SSFT_DEFAULT=`grk_installed_list`
+    ssft_select_multiple "Install" "Select packages you want to install" `ls -1 ~/.ctafconf/etc | grep ".grk$" | sed -e s/.grk//`
+    grk_install_list $SSFT_RESULT
+fi
+
 
 

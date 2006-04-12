@@ -44,8 +44,10 @@ SSFT:
 - remove I10N
 - default value for yesno
 - read -e at epita
+- default window size
 
 CTAFCONF:
+- ask when installing: ask|all|choice
 - uninstall with revert to date (choose from all previous file)
 - ramdom wallpaper (wallpp = ramdom, ramdomperso)
 - use sabayon for gnome-conf/ff-conf

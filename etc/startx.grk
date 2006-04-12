@@ -6,7 +6,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Tue Apr 11 12:32:11 2006 GESTES Cedric
-## Last update Tue Apr 11 22:35:54 2006 GESTES Cedric
+## Last update Wed Apr 12 06:41:38 2006 GESTES Cedric
 ##
 
 #--function
@@ -75,5 +75,6 @@ startx_uninstall()
 startx_alwaysinstall()
 {
     #nothing to do
+    grk_mine xsession
     return 0
 }

@@ -23,7 +23,7 @@
 
 grk_backup=~/.ctafconf/perso/previous
 grk_etc=~/.ctafconf
-grk_debug=yes
+grk_debug=no
 
 #0 good
 #1 bad

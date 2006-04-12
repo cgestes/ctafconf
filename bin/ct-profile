@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Sep 25 21:51:34 2005 GESTES Cedric
-## Last update Wed Apr 12 05:55:46 2006 cedric gestes
+## Last update Wed Apr 12 06:13:04 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -130,24 +130,21 @@ if [ -f ~/.ctafconf/perso/user-profile ]; then
     . ~/.ctafconf/perso/user-profile
 fi
 
-#default interface
-#if which dialog >/dev/null 2>/dev/null; then
-#    ctafconf_interface=$(getvaldef $ctafconf_interface "dialog")
-#else
-    ctafconf_interface=$(getvaldef $ctafconf_interface "text")
-#fi
-echo "using frontend: $ctafconf_interface, you could change it with ct-profile"
-export SSFT_FRONTEND=$ctafconf_interface
+
+export SSFT_FRONTEND=$(getvaldef $ctafconf_interface "text")
+
+echo "using frontend: $SSFT_FRONTEND, you could change it with ct-profile"
+
 
 if [ -f ~/.ctafconf/perso/user-profile ]; then
-#    SSFT_DEFAULT=no
+    SSFT_DEFAULT=no
     if ! ssft_yesno "you already have a configuration file" "`showctafconf`"; then
         exit
     fi
 fi
 
 
-
+ctafconf_interface=$(getvaldef $ctafconf_interface "text")
 SSFT_DEFAULT=$ctafconf_interface
 if ssft_select_single "Interface for the ctafconf" "choose a graphic one from 'zenity'(gnome) or 'kdialog'(kde) or choose a console one from 'dialog' (ncurse) or 'text'. I recommand 'DIALOG'" zenity kdialog dialog text; then
     ctafconf_interface=$(getvaldef $SSFT_RESULT $ctafconf_interface)
