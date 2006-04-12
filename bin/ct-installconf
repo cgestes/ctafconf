@@ -144,7 +144,7 @@ grk_dir ~/.ctafconf/perso/bin
 grk_dir ~/.ctafconf/perso/previous
 
 
-export SSFT_FRONTEND=dialog
+export SSFT_FRONTEND=$ctafconf_interface
 
 SSFT_DEFAULT=`grk_installed_list`
 ssft_select_multiple "Install" "Select packages you want to install" `ls -1 ~/.ctafconf/etc | grep ".grk$" | sed -e s/.grk//`
