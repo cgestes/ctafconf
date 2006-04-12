@@ -1,233 +1,132 @@
 #!/bin/sh
-## ct-installconf for ctafconf in /home/ctaf/.ctafconf
 ##
-## Made by GESTES Cedric
-## Login   <ctaf@epita.fr>
+## ct-install.sh
+## Login : <ctaf@localhost.localdomain>
+## Started on  Tue Apr 11 13:55:03 2006 GESTES Cedric
+## $Id$
 ##
-## Started on  Sun Oct  2 23:04:47 2005 GESTES Cedric
-## Last update Tue Apr 11 06:29:49 2006 GESTES Cedric
+## Copyright (C) 2006 GESTES Cedric
+## This program is free software; you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation; either version 2 of the License, or
+## (at your option) any later version.
 ##
-#
-# CTAFCONF INSTALLATION
-#
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+##
+## You should have received a copy of the GNU General Public License
+## along with this program; if not, write to the Free Software
+## Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+##
 
-date=`date "+%H%M%S-%d%m%Y"`
-readparam=""
-echo test_bob | read -e testbob >/dev/null 2>/dev/null;
-if [ x$? = x0 ]; then
-    readparam="-e"
-fi
-
-conread ()
+pkg_description()
 {
-   echo -n $2
-   read $readparam var
-   if [ x$var = xyes ] || [ x$var = xy ] || [ x$var = xY ] ; then
-       return 0
-   fi
-   return 1
+    local name=$1
+
+    eval $name"_description"
+    return $?
 }
 
-dial=conread
-# if which gdialog >/dev/null 2>/dev/null ; then
-#     dial=gdialog
-# elif which kdialog >/dev/null 2>/dev/null ; then
-#     dial=kdialog
-# elif which dialog >/dev/null 2>/dev/null ; then
-#     dial=dialog
-# fi
-
-if [ x$1 != x ]; then
-  dial=$1
-fi
-
-#pushd ~ >/dev/null
-pwwd=`pwd`
-cd ~
-
-cttestlink ()
+pkg_is_installed()
 {
-  local src=$1
-  local dst=$2
+    local name=$1
 
-  if ! which file >/dev/null 2>/dev/null || ! [ "x`file -b $dst`" = "xsymbolic link to \`$src'" ] ; then
-      return 1
-  else
-      return 0
-  fi
+    eval $name"_is_installed"
+    return $?
 }
 
-#create a link
-#ctlink src dst
-ctlink ()
+pkg_install()
 {
-  local src=$1
-  local dst=$2
-  local name=$3
+    local name=$1
 
-  if [ x$ctafconf_install_setronly = xyes ]; then
-      if [ -x $src ]; then
-	        chmod 500 $src
-      else
-	        chmod 400 $src
-      fi
-  fi
-  if ! which file >/dev/null 2>/dev/null || ! [ "x`file -b $dst`" = "xsymbolic link to \`$src'" ] ; then
-      if ! [ x$name = x ]; then
-          rm -rf ~/.ctafconf/perso/previous/"$name"-previous 2>/dev/null
-          cp $dst ~/.ctafconf/perso/previous/"$name"-previous 2>/dev/null
-          mv $dst ~/.ctafconf/perso/previous/"$name"-prev-"$date" 2>/dev/null
-      fi
-#      echo "create link     : $dst -> $src"
-      ln -s $src $dst
-  fi
+    eval $name"_install"
+    return $?
 }
 
-ctsudolink ()
+pkg_uninstall()
 {
-  local src=$1
-  local dst=$2
+    local name=$1
 
-  if [ x$ctafconf_install_setronly = xyes ]; then
-      if [ -x $src ]; then
-	  chmod 555 $src
-      else
-	  chmod 444 $src
-      fi
-  fi
-  if ! [ "x`file -b $dst`" = "xsymbolic link to \`$src'" ] ; then
-      $ctafconf_sudo rm -rf "$dst"-previous 2>/dev/null
-      $ctafconf_sudo cp $dst "$dst"-previous 2>/dev/null
-      $ctafconf_sudo mv $dst "$dst"-prev-"$date" 2>/dev/null
-#      echo "create link     : $dst -> $src"
-      $ctafconf_sudo ln -s $src $dst
-  fi
+    eval $name"_uninstall"
+    return $?
 }
 
-#install .mine
-ctfile ()
+pkg_alwaysinstall()
 {
-  local src=$1
-  local template=$2
+    local name=$1
 
-  if ! [ -f $src ]; then
-      #rm -rf "$src"-previous 2>/dev/null
-      #cp -r $src "$src"-previous 2>/dev/null
-      #mv $src "$src"-prev-"$date" 2>/dev/null
-      cp $template $src
-  fi
+    eval $name"_alwaysinstall"
+    return $?
 }
 
-#create a dir
-ctdir ()
+grk_install()
 {
-  local src=$1
-  local name=$2
+    local name
+    local installed
+    name=$1
 
-  if ! [ x$name = x ]; then
-      rm -rf ~/.ctafconf/perso/previous/"$name"-previous 2>/dev/null
-      cp -r $src ~/.ctafconf/perso/previous/"$name"-previous 2>/dev/null
-      mv $src ~/.ctafconf/perso/previous/"$name"-prev-"$date" 2>/dev/null
-  fi
-  if ! [ -d $src ]; then
-#      echo "create directory:$src"
-      mkdir $src 2>/dev/null
-  fi
-}
+    echo "Package Name: $name"
+    . ~/.ctafconf/etc/"$name".grk
 
-gnomesettings ()
-{
-    #setting background for gnome
-    wallpp=~/.ctafconf/etc/wallpaper/$ctafconf_wallpaper
-    wallpp2=~/.ctafconf/perso/wallpaper/$ctafconf_wallpaper
-    if [ -f $wallpp2 ]; then
-        wallpp=$wallpp2
+    if pkg_is_installed $name; then
+        installed=no;
+    else
+        echo -n "Description :"
+        pkg_description $name
+        echo "--"
+        installed=yes
+
+        if pkg_install $name; then
+            echo "Package $name installed"
+        else
+            echo "NOT INSTALLED"
+        fi
     fi
-    echo "Setting wallpaper for gnome: $ctafconf_wallpaper"
-    if which gconftool-2 > /dev/null 2> /dev/null ; then
-      gconftool-2 --dump /desktop/gnome/background > ~/.ctafconf/perso/previous/background-prev-$date.gconf
-      gconftool-2 --type=string -s /desktop/gnome/background/picture_filename "$wallpp"
-      gconftool-2 --type=string -s /desktop/gnome/background/picture_options "stretched"
-
-      #metacity workspace
-      echo "Setting metacity workspace shortcut:"
-      echo "<Alt>F1 Workspace 1         <Alt>F2 Workspace 2"
-      echo "<Alt>F3 Workspace 3         <Alt>F4 Workspace 4"
-      gconftool-2 --dump /apps/metacity/global_keybindings > ~/.ctafconf/perso/previous/globalkeybindings-prev-$date.gconf
-      gconftool-2 --type string --set /apps/metacity/global_keybindings/switch_to_workspace_1 "<Alt>F1"
-      gconftool-2 --type string --set /apps/metacity/global_keybindings/switch_to_workspace_2 "<Alt>F2"
-      gconftool-2 --type string --set /apps/metacity/global_keybindings/switch_to_workspace_3 "<Alt>F3"
-      gconftool-2 --type string --set /apps/metacity/global_keybindings/switch_to_workspace_4 "<Alt>F4"
-
-      #metacity window
-      echo "Setting metacity window shortcut:"
-      echo "<Control><Alt>f fullscreen  <Control><Alt>m maximized"
-      echo "<Control><Alt>w move        <Control><Alt>x resize"
-      gconftool-2 --dump /apps/metacity/window_keybindings > ~/.ctafconf/perso/previous/windowkeybindings-prev-$date.gconf
-      gconftool-2 --type string --set /apps/metacity/window_keybindings/toggle_fullscreen "<Control><Alt>f"
-      gconftool-2 --type string --set /apps/metacity/window_keybindings/toggle_maximized "<Control><Alt>m"
-      gconftool-2 --type string --set /apps/metacity/window_keybindings/begin_move "<Control><Alt>w"
-      gconftool-2 --type string --set /apps/metacity/window_keybindings/begin_resize "<Control><Alt>x"
-
-      #gnone-panel-bar
-      gconftool-2 --dump /apps/panel > ~/.ctafconf/perso/previous/panel-prev-$date.gconf
-      #gnome style
-      gconftool-2 --dump /desktop/gnome/interface > ~/.ctafconf/perso/previous/gnome-interface-prev-$date.gconf
-      #gnome-terminal profile
-      gconftool-2 --dump /apps/gnome-terminal > ~/.ctafconf/perso/previous/gnome-terminal-prev-$date.gconf
-      #metacity theme
-      gconftool-2 --dump /apps/metacity/general > ~/.ctafconf/perso/previous/metacity-window-prev-$date.gconf
-
-#      gfile=~/.ctafconf/etc/gconf/panel
-#      gconftool-2 --load="$gfile"
-#      gfile=~/.ctafconf/etc/gconf/gnome-interface
-#      gconftool-2 --load="$gfile"
-      gfile=~/.ctafconf/etc/gconf/gnome-terminal
-      gconftool-2 --load="$gfile"
-#      gfile=~/.ctafconf/etc/gconf/metacity-window
-#      gconftool-2 --load="$gfile"
-      echo "### to revert gconf settings launch gconftool-2 --load=FILE      ###"
-      echo "### where FILE is one file from .ctafconf/perso/previous/*.gconf ###"
+    if ! pkg_alwaysinstall $name ; then
+        echo "AlwaysInstalled FAILED"
+    fi
+    if [ x$installed = xyes ]; then
+        echo ""
+        echo ""
     fi
 }
 
+grk_install_list()
+{
+    list=$@
+    for i in $list; do
+        grk_install $i
+    done
+}
+
+grk_installed_list()
+{
+    ls -1 ~/.ctafconf/etc | grep ".grk$" | while read line; do
+        name=`echo $line | sed -e s/.grk//`
+        . ~/.ctafconf/etc/"$name".grk
+        if pkg_is_installed $name >/dev/null; then
+            echo "$name"
+        fi
+    done
+}
+
+#############################################################################
 ##START
+#############################################################################
 if ! [ -d ~/.ctafconf/ ] ; then
   echo "Can't find ~/.ctafconf directory"
   echo "Aborting, verify that you have untar the archive into your home directory"
   exit
 fi
 
-ctdir ~/.ctafconf/perso
-ctdir ~/.ctafconf/perso/semantic
-ctdir ~/.ctafconf/perso/ssh
-ctdir ~/.ctafconf/perso/repos
-ctdir ~/.ctafconf/perso/wallpaper
-ctdir ~/.ctafconf/perso/bin
-ctdir ~/.ctafconf/perso/previous
+#. ~/.ctafconf/bin/ct-profile
+#install tools
+. ~/.ctafconf/etc/shell/grktools.sh
+#shellscript frontend
+. ~/.ctafconf/etc/shell/ssft.sh
 
-# if [ -f ~/.ctafconf/perso/semantic/empty ]; then
-#     rm -rf ~/.ctafconf/perso/semantic/empty
-# fi
-# if [ -f ~/.ctafconf/perso/ssh/empty ]; then
-#     rm -rf ~/.ctafconf/perso/ssh/empty
-# fi
-# if [ -f ~/.ctafconf/perso/repos/empty ]; then
-#     rm -rf ~/.ctafconf/perso/repos/empty
-# fi
-# if [ -f ~/.ctafconf/perso/wallpaper/empty ]; then
-#     rm -rf ~/.ctafconf/perso/wallpaper/empty
-# fi
-# if [ -f ~/.ctafconf/perso/bin/empty ]; then
-#     rm -rf ~/.ctafconf/perso/bin/empty
-# fi
-# if [ -f ~/.ctafconf/perso/previous/empty ]; then
-#     rm -rf ~/.ctafconf/perso/previous/empty
-# fi
-
-
-#launch ct-profile to configure one profile
-~/.ctafconf/bin/ct-profile
 
 if ! [ -f ~/.ctafconf/perso/user-profile ] ; then
   echo "Can't find ~/.ctafconf/perso/user-profile directory"
@@ -236,190 +135,26 @@ if ! [ -f ~/.ctafconf/perso/user-profile ] ; then
 fi
 . ~/.ctafconf/perso/user-profile
 
-#include .mine configuration file
-ctafconf_install_setronly=yes
-#ctafconf_install_perm="a-w"
-
-ctafconf_install_zsh=ask
-ctafconf_install_ksh=ask
-ctafconf_install_tcsh=ask
-ctafconf_install_bash=ask
-ctafconf_install_fluxbox=ask
-ctafconf_install_e16=ask
-ctafconf_install_emacs=ask
-ctafconf_install_nano=ask
-ctafconf_install_screen=ask
-ctafconf_install_vim=ask
-ctafconf_install_xbindkeys=ask
-ctafconf_install_torsmo=ask
-ctafconf_install_top=ask
-ctafconf_install_gnomesetting=ask
-ctafconf_install_gdmkdm=ask
-ctafconf_install_xsession=ask
-ctafconf_install_xinitrc=ask
-
-if [ -f ~/.ctafconf/perso/user-profile.mine ] ; then
-  . ~/.ctafconf/perso/user-profile.mine
-fi
-
-#zsh
-if ! cttestlink ~/.ctafconf/etc/zsh/zshrc ~/.zshrc || ! cttestlink ~/.ctafconf/etc/zsh/zshenv ~/.zshenv ; then
-  if [ x$ctafconf_install_zsh = xyes ] || ( [ x$ctafconf_install_zsh != xno ] && $dial --yesno "Install configuration for zsh (.zshrc, .zshenv) [y/N]?" 0 0); then
-    ctlink ~/.ctafconf/etc/zsh/zshrc ~/.zshrc zshrc
-    ctlink ~/.ctafconf/etc/zsh/zshenv ~/.zshenv zshenv
-
-    echo "Installing ctafconf for: zsh"
-  fi
-fi
-ctfile ~/.ctafconf/perso/zshenv.mine ~/.ctafconf/etc/mine/zshenv.mine
-ctfile ~/.ctafconf/perso/zshrc.mine ~/.ctafconf/etc/mine/zshrc.mine
-
-#bash (dont support ctafenv... need work.)
-if ! cttestlink ~/.ctafconf/etc/bash/bashrc ~/.bashrc ; then
-  if  [ x$ctafconf_install_bash = xyes ] || ( [ x$ctafconf_install_bash != xno ] && $dial --yesno "Install configuration for bash (.bashrc)[y/N]?" 0 0) ; then
-    ctlink ~/.ctafconf/etc/bash/bashrc ~/.bashrc bashrc
-    echo "Installing ctafconf for: bash"
-  fi
-fi
-ctfile ~/.ctafconf/perso/bashrc.mine ~/.ctafconf/etc/mine/bashrc.mine
-
-#ksh
-if ! cttestlink ~/.ctafconf/etc/ksh/kshrc ~/.kshrc ; then
-  if  [ x$ctafconf_install_ksh = xyes ] || ( [ x$ctafconf_install_ksh != xno ] && $dial --yesno "Install configuration for ksh (.kshrc)[y/N]?" 0 0) ; then
-    ctlink ~/.ctafconf/etc/ksh/kshrc ~/.kshrc kshrc
-    echo "Installing ctafconf for: ksh"
-  fi
-fi
-ctfile ~/.ctafconf/perso/kshrc.mine ~/.ctafconf/etc/mine/kshrc.mine
-
-#tcsh
-if ! cttestlink ~/.ctafconf/etc/tcsh/tcshrc ~/.tcshrc ; then
-  if  [ x$ctafconf_install_tcsh = xyes ] || ( [ x$ctafconf_install_tcsh != xno ] && $dial --yesno "Install configuration for tcsh (.tcshrc)[y/N]?" 0 0) ; then
-    ctlink ~/.ctafconf/etc/tcsh/tcshrc ~/.tcshrc tcshrc
-    echo "Installing ctafconf for: tcsh"
-  fi
-fi
-ctfile ~/.ctafconf/perso/tcshrc.mine ~/.ctafconf/etc/mine/tcshrc.mine
-
-#fluxbox
-if ! cttestlink ~/.ctafconf/etc/fluxbox/init ~/.fluxbox/init; then
-  if  [ x$ctafconf_install_fluxbox = xyes ] || ( [ x$ctafconf_install_fluxbox != xno ] && $dial --yesno "Install configuration for fluxbox (.fluxbox)[y/N]?" 0 0) ; then
-    ctdir ~/.fluxbox fluxbox
-    ctlink ~/.ctafconf/etc/fluxbox/init ~/.fluxbox/init #globalconf
-    echo "Installing ctafconf for: fluxbox"
-  fi
-fi
-
-#enlightenment
-if ! cttestlink ~/.ctafconf/etc/enlightenment/user_theme.cfg ~/.enlightenment/user_theme.cfg || ! cttestlink ~/.ctafconf/etc/enlightenment/file.menu ~/.enlightenment/file.menu ; then
-  if  [ x$ctafconf_install_e16 = xyes ] || ( [ x$ctafconf_install_e16 != xno ] && $dial --yesno "Install configuration for Enlightenment (.enlightenment/)[y/N]?" 0 0) ; then
-      #backup
-    ctdir ~/.enlightenment enlightenment
-    #nobackup
-    ctdir ~/.enlightenment/backgrounds
-    ctlink ~/.ctafconf/etc/enlightenment/user_theme.cfg ~/.enlightenment/user_theme.cfg
-    ctlink ~/.ctafconf/etc/enlightenment/file.menu ~/.enlightenment/file.menu
-    #wallpaper
-    ctlink ~/.ctafconf/perso/wallpaper ~/.enlightenment/backgrounds/persowallpp
-    ctlink ~/.ctafconf/etc/wallpaper ~/.enlightenment/backgrounds/ctafconfwallpp
-    echo "Installing ctafconf for: Enlightenment"
-  fi
-fi
+grk_dir ~/.ctafconf/perso
+grk_dir ~/.ctafconf/perso/semantic
+grk_dir ~/.ctafconf/perso/ssh
+grk_dir ~/.ctafconf/perso/repos
+grk_dir ~/.ctafconf/perso/wallpaper
+grk_dir ~/.ctafconf/perso/bin
+grk_dir ~/.ctafconf/perso/previous
 
 
-#top
-if ! cttestlink ~/.ctafconf/etc/toprc ~/.toprc ; then
-  if  [ x$ctafconf_install_top = xyes ] || ( [ x$ctafconf_install_top != xno ] && $dial --yesno "Install configuration for top (.toprc)[y/N]?" 0 0) ; then
-    ctlink ~/.ctafconf/etc/toprc ~/.toprc toprc
-    echo "Installing ctafconf for: top"
-  fi
-fi
+export SSFT_FRONTEND=dialog
 
-#screen
-if ! cttestlink ~/.ctafconf/etc/screenrc ~/.screenrc ; then
-  if  [ x$ctafconf_install_screen = xyes ] || ( [ x$ctafconf_install_screen != xno ] && $dial --yesno "Install configuration for screen (.screenrc)[y/N]?" 0 0) ; then
-    ctlink ~/.ctafconf/etc/screenrc ~/.screenrc screenrc
-    echo "Installing ctafconf for: screen"
-  fi
-fi
+SSFT_DEFAULT=`grk_installed_list`
+ssft_select_multiple "Install" "Select packages you want to install" `ls -1 ~/.ctafconf/etc | grep ".grk$" | sed -e s/.grk//`
 
-#Torsmo
-if ! cttestlink ~/.ctafconf/etc/torsmorc ~/.torsmorc ; then
-  if  [ x$ctafconf_install_torsmo = xyes ] || ( [ x$ctafconf_install_torsmo != xno ] && $dial --yesno "Install configuration for torsmo (.torsmorc)[y/N]?" 0 0) ; then
-    ctlink ~/.ctafconf/etc/torsmorc ~/.torsmorc torsmorc
-    echo "Installing ctafconf for: torsmo"
-  fi
-fi
-
-#Xbindkeys
-if ! cttestlink ~/.ctafconf/etc/xbindkeysrc ~/.xbindkeysrc ; then
-  if  [ x$ctafconf_install_xbindkeys = xyes ] || ( [ x$ctafconf_install_xbindkeys != xno ] && $dial --yesno "Install configuration for xbindkeys (.xbindkeysrc)[y/N]?" 0 0) ; then
-    ctlink ~/.ctafconf/etc/xbindkeysrc ~/.xbindkeysrc xbindkeysrc
-    echo "Installing ctafconf for: xbindkeys"
-  fi
-fi
-
-#emacs
-if ! cttestlink ~/.ctafconf/etc/emacs/emacs ~/.emacs ; then
-  if  [ x$ctafconf_install_emacs = xyes ] || ( [ x$ctafconf_install_emacs != xno ] && $dial --yesno "Install configuration for emacs (.emacs)[y/N]?" 0 0) ; then
-    ctlink ~/.ctafconf/etc/emacs/emacs ~/.emacs emacs
-    echo "Installing ctafconf for: emacs"
-  fi
-fi
-ctfile ~/.ctafconf/perso/emacs.mine ~/.ctafconf/etc/mine/emacs.mine
-
-#vim
-if ! cttestlink ~/.ctafconf/etc/vimrc ~/.vimrc ; then
-  if  [ x$ctafconf_install_vim = xyes ] || ( [ x$ctafconf_install_vim != xno ] && $dial --yesno "Install configuration for vim (.vimrc)[y/N]?" 0 0) ; then
-    ctlink ~/.ctafconf/etc/vimrc ~/.vimrc vimrc
-    echo "Installing ctafconf for: vim"
-  fi
-fi
-
-#nano
-if ! cttestlink ~/.ctafconf/etc/nanorc ~/.nanorc ; then
-  if  [ x$ctafconf_install_nano = xyes ] || ( [ x$ctafconf_install_nano != xno ] && $dial --yesno "Install configuration for nano (.nanorc)[y/N]?" 0 0) ; then
-    ctlink ~/.ctafconf/etc/nanorc ~/.nanorc nanorc
-    echo "Installing ctafconf for: nano"
-  fi
-fi
-
-#ctafconf user profile
-ctfile ~/.ctafconf/perso/user-profile.mine ~/.ctafconf/etc/mine/user-profile.mine
-
-if ! cttestlink ~/.ctafconf/etc/xsession/xsession ~/.xsession ; then
-  if  [ x$ctafconf_install_xsession = xyes ] || ( [ x$ctafconf_install_xsession != xno ] && $dial --yesno "Support xdm (~/.xsession) [y/N]?" 0 0) ; then
-  ctlink ~/.ctafconf/etc/xsession/xsession ~/.xsession xsession
-  echo "Installing ctafconf for: xdm"
-  fi
-fi
-ctfile ~/.ctafconf/perso/xsession.mine ~/.ctafconf/etc/mine/xsession.mine
-
-if ! cttestlink ~/.ctafconf/etc/xsession/xsession ~/.xinitrc ; then
-  if  [ x$ctafconf_install_xinitrc = xyes ] || ( [ x$ctafconf_install_xinitrc != xno ] &&  $dial --yesno "Support startx(~/.xinitrc) [y/N]?" 0 0) ; then
-  #we reuse xsession, it's the same thing
-  ctlink ~/.ctafconf/etc/xsession/xsession ~/.xinitrc xinitrc
-  echo "Installing ctafconf for: startx"
-  fi
-fi
-
-if [ x$ctafconf_install_gdmkdm = xyes ] || ( [ x$ctafconf_install_gdmkdm != xno ] && $dial --yesno "Support gdm and kdm? The sudo command need to be set correctly. This make two symlinks: /usr/share/xsession/ctafconf.desktop and /usr/bin/ct-xsession. Support gdm and kdm [y/N]?" 0 0) ; then
-  ctsudolink ~/.ctafconf/etc/xsession/ctafconf.desktop /usr/share/xsession
-  ctsudolink ~/.ctafconf/bin/ct-xsession /usr/bin/ct-xsession
-  echo "Installing ctafconf for: gdm/kdm"
-fi
-
-#set default permission on ~/.ctafconf
-#chmod -R $ctafconf_install_perm ~/.ctafconf/
-
-#setting's for gnome
-gnomesettings
+grk_install_list $SSFT_RESULT
 
 
-echo "----------------------"
-echo "installation successed"
-echo "----------------------"
-echo "You can put your own settings in :.emacs.mine, .zshrc.mine,"
-echo "   .zshenv.mine, .bashrc.mine, .tcshrc.mine, .xsession.mine"
+# ls -1 ~/.ctafconf/etc | grep ".grk$" | while read line; do
+#     name=`echo $line | sed -e s/.grk//`
+#     grk_install $name
+# done
 
-cd $pwwd
+
