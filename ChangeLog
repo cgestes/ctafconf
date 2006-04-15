@@ -5,6 +5,7 @@
 	* ssft.sh : correct a bug with ssft_check_frontend (if dialog dont exist)
 	* ct-installconf : create perso/* directory before calling ct-profile
 	* globalenv : $SHELL should be set by the shell: unset it
+	* globalenv, alias : which => \which (bash which suck)
 
 2006-04-14 CTAF <>
 	* ct-installconf : choice between "install all" "ask for each" "choose in a list" method to install pkg

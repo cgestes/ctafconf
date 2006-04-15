@@ -9,7 +9,6 @@ NEEDED:
 - specify interface in argument to ct-profile, ct-install, ...
 - add help for ct-profile, ct-install (for interface)
 - remove header when doing diff/remove header from *.mine
-- which >/dev/null 2>/dev/null (find a solution)
 
 DOCUMENTATION:
 - emacs: README.EMACS, install just emacs, just test emacsconf, ..
@@ -104,3 +103,4 @@ xbindkeys (?)
 - tab = 2 in bash-mode
 - default value for yesno (impossible for zenity nor kdialog)
 - default window size for ssft
+- which >/dev/null 2>/dev/null (find a solution, bash in cygwin)
