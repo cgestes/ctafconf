@@ -9,6 +9,7 @@ NEEDED:
 - specify interface in argument to ct-profile, ct-install, ...
 - add help for ct-profile, ct-install (for interface)
 - remove header when doing diff/remove header from *.mine
+- which >/dev/null 2>/dev/null (find a solution)
 
 DOCUMENTATION:
 - emacs: README.EMACS, install just emacs, just test emacsconf, ..

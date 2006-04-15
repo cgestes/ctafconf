@@ -49,10 +49,10 @@
   }
 #fi
 
-if ! which $PAGER >/dev/null; then
+if ! which $PAGER >/dev/null 2>/dev/null; then
   export PAGER="more"
-  which less >/dev/null && export PAGER="less"
-  which most >/dev/null && export PAGER="most"
+  which less >/dev/null 2>/dev/null && export PAGER="less"
+  which most >/dev/null 2>/dev/null && export PAGER="most"
 fi
 # ============ #
 # L10N Support #
@@ -136,6 +136,18 @@ ssft_check_frontend()
     if [ x$SSFT_FRONTEND = xgraphic ] || [ x$SSFT_FRONTEND = xconsole ]; then
       SSFT_FRONTEND=`ssft_choose_frontend $SSFT_FRONTEND`
     fi
+    if  [ x$SSFT_FRONTEND = xdialog ] ; then
+	if [ -x "`which $SSFT_FRONTEND`" ]; then
+	    SSFT_FRONTEND=text
+	fi
+    fi
+    if  [ x$SSFT_FRONTEND = xzenity ] ||
+        [ x$SSFT_FRONTEND = xkdialog ] ; then
+	if ! [ -x "`which $SSFT_FRONTEND`" ]; then
+	    SSFT_FRONTEND=`ssft_choose_frontend graphic`
+	fi
+    fi
+
     #no display, no graphic frontend
     if ! [ -n "$DISPLAY" ]; then
         if [ x$SSFT_FRONTEND = xkdialog ] || [ x$SSFT_FRONTEND = xzenity ]; then

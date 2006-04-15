@@ -2,6 +2,9 @@
 	* emacs : alt+left, alt+right change buffer, shift sucked
 	* ssft.sh : use $PAGER, set it if unset
 	* ct-installconf : call ct-profile
+	* ssft.sh : correct a bug with ssft_check_frontend (if dialog dont exist)
+	* ct-installconf : create perso/* directory before calling ct-profile
+	* globalenv : $SHELL should be set by the shell: unset it
 
 2006-04-14 CTAF <>
 	* ct-installconf : choice between "install all" "ask for each" "choose in a list" method to install pkg

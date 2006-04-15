@@ -135,11 +135,21 @@ if ! [ -d ~/.ctafconf/ ] ; then
   exit
 fi
 
-. ~/.ctafconf/bin/ct-profile
 #install tools
 . ~/.ctafconf/etc/shell/grktools.sh
 #shellscript frontend
 . ~/.ctafconf/etc/shell/ssft.sh
+
+grk_dir ~/.ctafconf/perso
+grk_dir ~/.ctafconf/perso/semantic
+grk_dir ~/.ctafconf/perso/ssh
+grk_dir ~/.ctafconf/perso/repos
+grk_dir ~/.ctafconf/perso/wallpaper
+grk_dir ~/.ctafconf/perso/bin
+grk_dir ~/.ctafconf/perso/previous
+
+#launch profile manager
+. ~/.ctafconf/bin/ct-profile
 
 
 if ! [ -f ~/.ctafconf/perso/user-profile ] ; then
@@ -149,13 +159,6 @@ if ! [ -f ~/.ctafconf/perso/user-profile ] ; then
 fi
 . ~/.ctafconf/perso/user-profile
 
-grk_dir ~/.ctafconf/perso
-grk_dir ~/.ctafconf/perso/semantic
-grk_dir ~/.ctafconf/perso/ssh
-grk_dir ~/.ctafconf/perso/repos
-grk_dir ~/.ctafconf/perso/wallpaper
-grk_dir ~/.ctafconf/perso/bin
-grk_dir ~/.ctafconf/perso/previous
 
 
 export SSFT_FRONTEND=$ctafconf_interface
