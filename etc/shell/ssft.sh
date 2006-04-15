@@ -49,6 +49,11 @@
   }
 #fi
 
+if ! which $PAGER >/dev/null; then
+  export PAGER="more"
+  which less >/dev/null && export PAGER="less"
+  which most >/dev/null && export PAGER="most"
+fi
 # ============ #
 # L10N Support #
 # ============ #
@@ -882,18 +887,18 @@ ssft_select_single() {
     while true; do
       _l_count=0;
       for _l_item in "$@"; do
-	if [ "$_l_count" -eq "0" ]; then
+	      if [ "$_l_count" -eq "0" ]; then
           echo "$_l_question"
           echo ""
-	fi
+	      fi
         _l_count=$(( $_l_count + 1 ))
-	if [ "$_l_item" = "$_l_default" ]; then
-	  _l_selected="*"
-	else
-	  _l_selected=" "
-	fi
+	      if [ "$_l_item" = "$_l_default" ]; then
+	        _l_selected="*"
+	      else
+	        _l_selected=" "
+	      fi
         printf "%s %2s. %s\n" "$_l_selected" "$_l_count" "$_l_item"
-      done | more
+      done | $PAGER #more
       echo ""
       printf "%s: " "$_l_PROMPT_STR"
       read _l_option
