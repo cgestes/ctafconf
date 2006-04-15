@@ -5,17 +5,21 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Tue Oct  4 03:04:18 2005 GESTES Cedric
-## Last update Mon Apr 10 03:20:26 2006 GESTES Cedric
+## Last update Fri Apr 14 20:54:12 2006 GESTES Cedric
 ##
 #CTAFCONF
 
 if [ $# -gt 0 ]; then
-    wallpp=$@
+  wallpp=$@
+  echo "add wallpaper $wallpp"
+  echo "Use ct-profile or ct-installconf to modify your current wallpaper"
+  cp "$wallpp" ~/.ctafconf/perso/wallpaper/
 else
-    echo "you should specify an image"
-    exit
-fi
+  . ~/.ctafconf/etc/shell/ssft.sh
+  SSFT_FRONTEND=graphic
 
-echo "add wallpaper $wallpp"
-echo "Use ct-profile or ct-installconf to modify your current wallpaper"
-cp "$wallpp" ~/.ctafconf/perso/wallpaper/
+  if ssft_file_selection "Select the wallpaper you want"; then
+    cp "$SSFT_RESULT" ~/.ctafconf/perso/wallpaper/
+  fi
+  exit
+fi

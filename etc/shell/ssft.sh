@@ -122,11 +122,43 @@ ssft_reset_textdomain() {
 # FRONTEND FUNCTIONS #
 # ================== #
 
+
+
+#select a good frontend
+#graphic, console, zenity, kdialog, dialog, text, noninteractive
+ssft_check_frontend()
+{
+    if [ x$SSFT_FRONTEND = xgraphic ] || [ x$SSFT_FRONTEND = xconsole ]; then
+      SSFT_FRONTEND=`ssft_choose_frontend $SSFT_FRONTEND`
+    fi
+    #no display, no graphic frontend
+    if ! [ -n "$DISPLAY" ]; then
+        if [ x$SSFT_FRONTEND = xkdialog ] || [ x$SSFT_FRONTEND = xzenity ]; then
+            SSFT_FRONTEND=`ssft_choose_frontend`
+        fi
+    fi
+    if  [ x$SSFT_FRONTEND != xzenity ] &&
+        [ x$SSFT_FRONTEND != xkdialog ] &&
+        [ x$SSFT_FRONTEND != xdialog ] &&
+        [ x$SSFT_FRONTEND != xtext ] &&
+        [ x$SSFT_FRONTEND != xnoninteractive ] ; then
+         SSFT_FRONTEND=`ssft_choose_frontend`
+    fi
+}
+
 # Function: ssft_choose_frontend
 #
 # Description: print the name of the preferred frontend, but don't set it
-
 ssft_choose_frontend() {
+  if [ x$1 = xconsole ]; then
+    if [ -x "`which dialog`" ]; then
+      echo "dialog"
+    else
+      echo "text"
+    fi
+    return
+  fi
+
   if [ -n "$DISPLAY" ]; then
     if [ -x "`which zenity`" ]; then
       echo "zenity"
@@ -175,6 +207,7 @@ ssft_display_message() {
   shift;
   _l_message="$@";
 
+  ssft_check_frontend
   # Read values
   case "$SSFT_FRONTEND" in
   zenity)
@@ -184,7 +217,7 @@ ssft_display_message() {
     kdialog --title "$_l_title" --msgbox "$_l_message" 2> /dev/null;
   ;;
   dialog)
-    dialog --stdout --title "$_l_title" --msgbox "$_l_message" 0 0;
+    dialog --stdout --title "$_l_title" --msgbox "$_l_message" 20 70;
   ;;
   text)
     ssft_print_text_title "$_l_title"
@@ -228,6 +261,7 @@ ssft_display_error() {
   shift;
   _l_message="$@";
 
+  ssft_check_frontend
   # Read values
   case "$SSFT_FRONTEND" in
   zenity)
@@ -237,7 +271,7 @@ ssft_display_error() {
     kdialog --title "$_l_title" --error "$_l_message" 2> /dev/null;
   ;;
   dialog)
-    dialog --stdout --title "$_l_title" --msgbox "$_l_message" 0 0;
+    dialog --stdout --title "$_l_title" --msgbox "$_l_message" 20 70;
   ;;
   text)
     ssft_print_text_title "$_l_title" >&2
@@ -296,6 +330,7 @@ ssft_file_selection() {
   # Set _l_variables
   _l_title="$1";
 
+  ssft_check_frontend
   # Read values
   case "$SSFT_FRONTEND" in
   zenity)
@@ -305,7 +340,7 @@ ssft_file_selection() {
     _l_fpath=$( kdialog --title "$_l_title" --getopenfilename "`pwd`" "*" 2> /dev/null);
   ;;
   dialog)
-    _l_fpath=$( dialog --stdout --title "$_l_title" --fselect "`pwd`" 0 0 );
+    _l_fpath=$( dialog --stdout --title "$_l_title" --fselect "`pwd`" 20 70 );
   ;;
   text)
     ssft_print_text_title "$_l_title"
@@ -344,6 +379,7 @@ ssft_progress_bar() {
     _l_percent="$2";
   fi
 
+  ssft_check_frontend
   # Read values
   case "$SSFT_FRONTEND" in
   zenity)
@@ -390,7 +426,7 @@ ssft_progress_bar() {
       echo "$_l_line" | sed -e '/^[0-9][0-9]*$/! {
         s/^\(.*\)$/XXX\n\1\nXXX/;
       };'
-    done | dialog --stdout --title "$_l_title" --gauge "" 0 0 $_l_percent;
+    done | dialog --stdout --title "$_l_title" --gauge "" 20 70 $_l_percent;
   ;;
   text|*)
     ssft_print_text_title "$_l_title"
@@ -442,6 +478,7 @@ ssft_read_string() {
   shift;
   _l_question="$@";
 
+  ssft_check_frontend
   # Read values
   case "$SSFT_FRONTEND" in
   zenity)
@@ -454,7 +491,7 @@ ssft_read_string() {
   ;;
   dialog)
     _l_string=$( dialog --stdout --title "$_l_title" --inputbox \
-                 "$_l_question" 0 0 "$_l_default");
+                 "$_l_question" 20 70 "$_l_default");
   ;;
   text)
     if [ -n "$_l_default" ]; then
@@ -506,6 +543,7 @@ ssft_read_password() {
   shift;
   _l_question="$@";
 
+  ssft_check_frontend
   # Read values
   case "$SSFT_FRONTEND" in
   zenity)
@@ -515,7 +553,7 @@ ssft_read_password() {
     _l_string=$( kdialog --title "$_l_title" --password "$_l_question" )
   ;;
   dialog)
-    _l_string=$( dialog --stdout --title "$_l_title" --passwordbox "$_l_question" 0 0 )
+    _l_string=$( dialog --stdout --insecure --title "$_l_title" --passwordbox "$_l_question" 20 70 )
   ;;
   text)
     ssft_print_text_title "$_l_title"
@@ -579,6 +617,7 @@ ssft_select_multiple() {
   shift 2;
   _l_numitems=$#;
 
+  ssft_check_frontend
   # Read values
   case "$SSFT_FRONTEND" in
   zenity)
@@ -645,7 +684,7 @@ ssft_select_multiple() {
     done
     _l_out=$( echo "$_l_ditems" \
       | xargs dialog --stdout --title "$_l_title" \
-      --checklist "$_l_question" 0 0 5 2> /dev/null );
+      --checklist "$_l_question" 20 70 5 2> /dev/null );
     _l_string=$(echo $_l_out | sed -e 's/^"//; s/"$//; s/" "/\n/g;');
   ;;
   text)
@@ -777,6 +816,7 @@ ssft_select_single() {
   shift 2;
   _l_numitems=$#;
 
+  ssft_check_frontend
   # Read values
   case "$SSFT_FRONTEND" in
   zenity)
@@ -834,7 +874,7 @@ ssft_select_single() {
     done
     _l_out=$( echo "$_l_ditems" \
       | xargs dialog --stdout --title "$_l_title" \
-      --radiolist "$_l_question" 0 0 5 2> /dev/null );
+      --radiolist "$_l_question" 20 70 5 2> /dev/null );
     _l_string=$(echo $_l_out | sed -e 's/^"//; s/"$//; s/" "/\n/g;');
   ;;
   text)
@@ -949,6 +989,7 @@ ssft_yesno() {
   shift;
   _l_question="$@";
 
+  ssft_check_frontend
   # Read values
   case "$SSFT_FRONTEND" in
   zenity)
@@ -961,10 +1002,10 @@ ssft_yesno() {
   ;;
   dialog)
           if [ x$_l_default = xno ]; then
-              dialog --stdout --title "$_l_title" --defaultno --yesno "$_l_question" 0 0;
+              dialog --stdout --title "$_l_title" --defaultno --yesno "$_l_question" 20 70;
               _l_ret=$?
           else
-              dialog --stdout --title "$_l_title" --yesno "$_l_question" 0 0;
+              dialog --stdout --title "$_l_title" --yesno "$_l_question" 20 70;
               _l_ret=$?
           fi
   ;;
@@ -1024,6 +1065,7 @@ ssft_show_file() {
   # Test if the file is readable
   test -r "$_l_file" || return 1
 
+  ssft_check_frontend
   # Show file
   case "$SSFT_FRONTEND" in
   zenity)
@@ -1033,7 +1075,7 @@ ssft_show_file() {
     kdialog --title "$_l_title" --textbox "$_l_file" 2> /dev/null;
   ;;
   dialog)
-    dialog --stdout --title "$_l_title" --textbox "$_l_file" 0 0;
+    dialog --stdout --title "$_l_title" --textbox "$_l_file" 20 70;
   ;;
   text)
     ssft_print_text_title "$_l_title"

@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Sun Apr  2 22:11:56 2006 GESTES Cedric
+;; Last update Sat Apr 15 04:20:48 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: STARTUP.EMACS")
 
@@ -41,7 +41,7 @@
 ;; M-x setget to create {set,get}_var function (on the line)
 ;;?? M-x counter-reinitialize to give the parameters for counter
 ;;?? M-x counter-insert to use the counter
-;; M-y yank cycle previous buffer
+;; M-y yank cycle previous buffer (C-y then M-y ... M-y till the previous yank you want)
 ;;
 ;; mode-term:
 ;; c-c c-j line mode
@@ -72,15 +72,12 @@
 ;; === TODO ===
 ;;  - shortcut: kill one line
 ;;  - c/c++ mode (epita indentation)
-;;  - bash : tab = 2 space
 ;;  - kill space til one word
 ;;  - list all functions of one file
-;;  - prev/next buffer
 ;;  - truncate line
 ;;  - working directory for gdb/compile
 ;;  - switch key for group of windows in ecb
 ;;  - doxyemacs (auto comment, with good param)
-;;  - tab-space
 ;;  - kill-word, kill-ring,..
 ;;  - match ( & co on cursor
 ;;  - svn

@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Sep 25 21:51:34 2005 GESTES Cedric
-## Last update Wed Apr 12 06:13:04 2006 GESTES Cedric
+## Last update Fri Apr 14 20:59:59 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -64,12 +64,12 @@ shownewconf()
 #enum all wallpaper
 enumwallpp()
 {
-  ls -1 ~/.ctafconf/etc/wallpaper 2>dev/null | while read line; do
-      echo -n $line/
+  ls -1 ~/.ctafconf/etc/wallpaper 2>/dev/null | while read line; do
+      echo -n "$line"/
   done
 
-  ls -1 ~/.ctafconf/perso/wallpaper 2>dev/null | while read line; do
-      echo -n $line/
+  ls -1 ~/.ctafconf/perso/wallpaper 2>/dev/null | while read line; do
+      echo -n "$line"/
   done
 }
 
@@ -167,13 +167,14 @@ if ssft_read_string "Unix Email" "enter your Unix Email"; then
 fi
 
 
+echo `enumwallpp`
 
 ancIFS=$IFS
 IFS="/"
 ctafconf_wallpaper=$(getvaldef $ctafconf_wallpaper 'ctafconf-psycho.jpg' )
 SSFT_DEFAULT=$ctafconf_wallpaper
-if ssft_select_single "Wallpaper" "choose your wallpaper from the list" $(enumwallpp); then
-    ctafconf_wallpaper=$(getvaldef $SSFT_RESULT $ctafconf_wallpaper )
+if ssft_select_single "Wallpaper" "choose your wallpaper from the list" `enumwallpp`; then
+  ctafconf_wallpaper=$(getvaldef $SSFT_RESULT $ctafconf_wallpaper )
 fi
 IFS=$ancIFS
 
@@ -182,10 +183,10 @@ IFS=$ancIFS
 
 SSFT_DEFAULT=$ctafconf_config
 if ssft_select_single "Distribution" "Choose your distribution" debian gentoo freebsd epita other; then
-    ctafconf_config=$(getvaldef $SSFT_RESULT $ctafconf_config)
-    if [ "x$ctafconf_config" = xother ] ; then
-        ctafconf_config=""
-    fi
+  ctafconf_config=$(getvaldef $SSFT_RESULT $ctafconf_config)
+  if [ "x$ctafconf_config" = xother ] ; then
+    ctafconf_config=""
+  fi
 fi
 
 
@@ -212,11 +213,15 @@ if ssft_select_single "Zsh prompt" "Choose your zshprompt (another may be availa
 fi
 
 
+
+
 ctafconf_wm=$(getvaldef $ctafconf_wm 'fluxbox' )
 SSFT_DEFAULT=$ctafconf_wm
 if ssft_select_single "Window Manager" "Choose your wm from the list" fluxbox gnome kde xfce4 e16 term; then
     ctafconf_wm=$(getvaldef $SSFT_RESULT $ctafconf_wm )
 fi
+
+
 
 if ssft_yesno "Save your settings" "`shownewconf`"; then
     savectafconf

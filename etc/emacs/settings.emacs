@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:13:33 2006 GESTES Cedric
-;; Last update Fri Feb 10 19:55:08 2006 GESTES Cedric
+;; Last update Fri Apr 14 05:52:25 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: SETTINGS.EMACS")
 
@@ -20,9 +20,23 @@
 ;; Distance between tab stops (for display of tab characters), in columns.
 ;; Automatically becomes buffer-local when set in any fashion.
 (setq default-tab-width 2)
+(setq sh-indentation 2)
+(setq sh-indent-for-then 0)
+(setq csh-indent 2)
+(setq sh-basic-offset 2)
+(setq standard-indent 2)
 
-;;only space
-;;(setq indent-tabs-mode nil)
+;;only space when indenting
+;; Emacs normally uses both tabs and spaces to indent lines. If you
+;; prefer, all indentation can be made from spaces only. To request this,
+;; set `indent-tabs-mode' to `nil'. This is a per-buffer variable;
+;; altering the variable affects only the current buffer, but it can be
+;; disabled for all buffers.
+
+;;
+;; Use (setq ...) to set value locally to a buffer
+;; Use (setq-default ...) to set value globally
+;;
 (setq-default indent-tabs-mode nil);
 ;;pour les accents (obselete)
 ;;(standard-display-european 1)
@@ -175,3 +189,6 @@
         (foreground-color . "MediumPurple2")
         (background-color . "black")))
 )
+
+
+

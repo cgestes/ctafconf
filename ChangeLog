@@ -1,3 +1,15 @@
+2006-04-14 CTAF <>
+	* ct-installconf : choice between "install all" "ask for each" "choose in a list" method to install pkg
+	* ssft.sh : check if the frontend select is good, else choose a good one
+	* emacs : console kdb : iso-8859-15 (to test)
+	* emacs : shell (sh and csh mode) indentation = 2 space !!!
+	* ssft.sh : 2 new frontend: "console" and "graphic"
+	* ct-add-wallpaper : if no args specified launch a file select box
+	* ct-profile : bug with choose wallpaper
+	* ct-installconf : ask for installation only if pkg is not installed
+	* grktools.sh : grk_testfile: diff between files
+	* ssft.sh : default size : 20 x 70
+
 2006-04-12 CTAF <>
 	* ct-installconf : use default value with ssft
 	* ct-profile : use default value with ssft

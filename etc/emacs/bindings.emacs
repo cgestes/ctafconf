@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:16:47 2006 GESTES Cedric
-;; Last update Sun Apr  9 21:06:16 2006 GESTES Cedric
+;; Last update Fri Apr 14 05:14:35 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: BINDINGS.EMACS")
 ;;(global-unset-key "\M-[")
@@ -162,3 +162,11 @@
 (global-set-key [(alt left)] 'cycle-buffer-backward)
 (global-set-key [(alt shift right)] 'cycle-buffer-permissive)
 (global-set-key [(alt shift left)] 'cycle-buffer-backward-permissive)
+
+
+
+;;--------------------------------------------------------------------
+;; support de mon clavier en mode console
+(set-terminal-coding-system 'iso-8859-15-unix)
+(set-keyboard-coding-system 'iso-8859-15-unix)
+(set-language-environment 'Latin-1)
