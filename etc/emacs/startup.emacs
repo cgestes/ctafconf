@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Sat Apr 15 04:20:48 2006 GESTES Cedric
+;; Last update Sat Apr 15 04:41:18 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: STARTUP.EMACS")
 
@@ -79,19 +79,18 @@
 ;;  - switch key for group of windows in ecb
 ;;  - doxyemacs (auto comment, with good param)
 ;;  - kill-word, kill-ring,..
-;;  - match ( & co on cursor
 ;;  - svn
 ;;  - bookmark, folding
 ;;  - dired colored
 ;;  - man page size
 ;;  - php-mode/html/css
+
 ;;
 ;;easy emacs:
 ;;Ctrl-/         Bounce         Move from the beginning to the end or
 ;;               Expression     from the end to the beginning of a
 ;;                              balanced expression, such as one enclosed
 ;;                              by () [] or {}
-;;
 ;;backspace kill the selection, shift up and down => selection
 ;; Ctrl-F5        Character      Duplicate the character from the line
 ;;                Above          above, and move one character forward.

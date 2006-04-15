@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:16:47 2006 GESTES Cedric
-;; Last update Fri Apr 14 05:14:35 2006 GESTES Cedric
+;; Last update Sat Apr 15 04:40:15 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: BINDINGS.EMACS")
 ;;(global-unset-key "\M-[")
@@ -39,11 +39,11 @@
 ;; (global-set-key [CS-right]       'switch-to-previous-buffer)
 ;; (global-set-key [CS-left]        'switch-to-next-buffer)
 
-(global-set-key [S-right]       'my-previous-buffer)
-(global-set-key [S-left]        'my-next-buffer)
+(global-set-key [M-right]       'my-previous-buffer)
+(global-set-key [M-left]        'my-next-buffer)
 
-(global-set-key [CS-right]       'my-previous-buffer)
-(global-set-key [CS-left]        'my-next-buffer)
+;;(global-set-key [CS-right]       'my-previous-buffer)
+;;(global-set-key [CS-left]        'my-next-buffer)
 
 ;;emacs22 way
 ;;(global-set-key [S-right]       'next-buffer)
