@@ -135,7 +135,7 @@ if ! [ -d ~/.ctafconf/ ] ; then
   exit
 fi
 
-#. ~/.ctafconf/bin/ct-profile
+. ~/.ctafconf/bin/ct-profile
 #install tools
 . ~/.ctafconf/etc/shell/grktools.sh
 #shellscript frontend
