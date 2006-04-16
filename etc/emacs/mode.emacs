@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 00:57:16 2006 GESTES Cedric
-;; Last update Sat Apr  1 02:20:38 2006 GESTES Cedric
+;; Last update Sun Apr 16 03:41:30 2006 
 ;;
 (message "ctafconf loading: MODE.EMACS")
 
@@ -95,6 +95,7 @@
   (global-set-key [(shift f11)] 'bubble-buffer-previous)
 (setq bubble-buffer-omit-regexp "\\(^ .+$\\|\\*Messages\\*\\|*compilation\\*\\|\\*.+output\\*$\\|\\*TeX Help\\*$\\|\\*vc-diff\\*\\|\\*Occur\\*\\|\\*grep\\*\\|\\*cvs-diff\\*\\|\\*modelsim\\*\\)"))
 
+
 (when (require 'ibuffer "ibuffer" t)
   (setq ibuffer-shrink-to-minimum-size t)
   ;;(setq ibuffer-always-show-last-buffer ':nomini)
@@ -119,37 +120,52 @@
 ;; (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 
 
-;;C-return => selection mode
-(if (boundp 'cua-mode)
-    ;; For 21.3.50 and higher
-    (cua-mode t)
-  ;; For earlier emacs
-  (load "cua")
-  (CUA-mode t))
+(condition-case err
+    (progn
+      ;;C-return => selection mode
+      (if (boundp 'cua-mode)
+          ;; For 21.3.50 and higher
+          (cua-mode t)
+        ;; For earlier emacs
+        (load "cua")
+        (CUA-mode t)))
+
+  (error
+   (message "Cannot load cua %s" (cdr err))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;BOOKMARK
   ;; Make sure the repository is loaded as early as possible (for desktop-read)
-(setq bm-restore-repository-on-load t)
-(require 'bm)
-(setq-default bm-buffer-persistence t)
-;; Restoring bookmarks when on file find.
-(add-hook 'find-file-hooks 'bm-buffer-restore)
-;; Saving bookmark data on killing a buffer
-(add-hook 'kill-buffer-hook 'bm-buffer-save)
-;; Saving the repository to file when on exit.
-;; kill-buffer-hook is not called when emacs is killed, so we
-;; must save all bookmarks first.  Ignore errors, so that Emacs
-;; doesn't become unkillable.
-(add-hook 'kill-emacs-hook
-          '(lambda nil (condition-case nil
-                           (progn
-                             (bm-buffer-save-all)
-                             (bm-repository-save)))))
-;; Update bookmark repository when saving the file.
-(add-hook 'after-save-hook 'bm-buffer-save)
-;; Restore bookmarks when buffer is reverted.
-(add-hook 'after-revert-hook 'bm-buffer-restore)
+(condition-case err
+    (progn
+      (setq bm-restore-repository-on-load t)
+      (require 'bm)
+      (setq-default bm-buffer-persistence t)
+      ;; Restoring bookmarks when on file find.
+      (add-hook 'find-file-hooks 'bm-buffer-restore)
+      ;; Saving bookmark data on killing a buffer
+      (add-hook 'kill-buffer-hook 'bm-buffer-save)
+      ;; Saving the repository to file when on exit.
+      ;; kill-buffer-hook is not called when emacs is killed, so we
+      ;; must save all bookmarks first.  Ignore errors, so that Emacs
+      ;; doesn't become unkillable.
+      (add-hook 'kill-emacs-hook
+                '(lambda nil (condition-case nil
+                                 (progn
+                                   (bm-buffer-save-all)
+                                   (bm-repository-save)))))
+      ;; Update bookmark repository when saving the file.
+      (add-hook 'after-save-hook 'bm-buffer-save)
+      ;; Restore bookmarks when buffer is reverted.
+      (add-hook 'after-revert-hook 'bm-buffer-restore))
+  (error
+   (message "Cannot load bm %s" (cdr err))))
 
+(message "here we are")
 ;; Gives us marker-visit-next and marker-visit-prev
-(require 'marker-visit)
+(condition-case err
+    (progn
+      (require 'marker-visit))
+  (error
+   (message "Cannot load marker-visit %s" (cdr err))))
+
