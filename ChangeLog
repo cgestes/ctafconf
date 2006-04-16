@@ -6,7 +6,8 @@
 	* ct-installconf : create perso/* directory before calling ct-profile
 	* globalenv : $SHELL should be set by the shell: unset it
 	* globalenv, alias : which => \which (bash which suck)
-
+	* ct-profile : dont kill process when user dont want to modify a value (intregration with ct-installconf)
+	
 2006-04-14 CTAF <>
 	* ct-installconf : choice between "install all" "ask for each" "choose in a list" method to install pkg
 	* ssft.sh : check if the frontend select is good, else choose a good one

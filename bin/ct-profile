@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Sep 25 21:51:34 2005 GESTES Cedric
-## Last update Fri Apr 14 20:59:59 2006 GESTES Cedric
+## Last update Sat Apr 15 23:10:32 2006 
 ##
 ##CTAFCONF
 
@@ -139,7 +139,7 @@ echo "using frontend: $SSFT_FRONTEND, you could change it with ct-profile"
 if [ -f ~/.ctafconf/perso/user-profile ]; then
     SSFT_DEFAULT=no
     if ! ssft_yesno "you already have a configuration file" "`showctafconf`"; then
-        exit
+        return
     fi
 fi
 
