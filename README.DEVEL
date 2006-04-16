@@ -31,3 +31,15 @@ export al=val
 alias al=val
 var=val
 
+
+--trap a signal
+_trap_kill ()
+{
+trap "" KILL EXIT QUIT INT TERM
+echo killing $pid
+kill $pid
+sleep 3
+sync
+exit 0
+}
+trap _trap_kill KILL EXIT QUIT INT TERM

@@ -5,7 +5,7 @@
 ## Login   <goctaf@gmail.com>
 ##
 ## Started on  Fri Sep 30 22:17:33 2005 GESTES Cedric
-## Last update Sat Apr 15 23:06:29 2006 GESTES Cedric
+## Last update Sun Apr 16 02:52:07 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -55,8 +55,8 @@ env_set REALNAME "$ctafconf_name"
 
 #used by man, ..
 env_set PAGER "more"
-\which less >/dev/null && env_set PAGER "less"
-\which most >/dev/null && env_set PAGER "most"
+null_which less && env_set PAGER "less"
+null_which most && env_set PAGER "most"
 
 
 env_set EADNULLCMD $PAGER
@@ -73,10 +73,9 @@ env_set LESS "-cex3M"
 #text editor in console mode (for cvs, svn)
 env_set VISUAL "emacs"
 env_set EDITOR "emacs"
-\which vi >/dev/null && env_set VISUAL "vi"
-\which vi >/dev/null && env_set EDITOR "vi"
-\which nano >/dev/null && env_set VISUAL "nano"
-\which nano >/dev/null && env_set EDITOR "nano"
+null_which vi   && env_set VISUAL "vi"   && env_set EDITOR "vi"
+null_which vim  && env_set VISUAL "vim"   && env_set EDITOR "vim"
+null_which nano && env_set VISUAL "nano" && env_set EDITOR "nano"
 
 
 

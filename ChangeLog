@@ -1,3 +1,7 @@
+2006-04-16 CTAF <>
+	* ctaftools.sh : null_which => which without output
+	* globalenv, alias : which => null_which (works in more case, I hope all)
+
 2006-04-15 CTAF <>
 	* emacs : alt+left, alt+right change buffer, shift sucked
 	* ssft.sh : use $PAGER, set it if unset

@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Fri Sep 30 22:17:52 2005 GESTES Cedric
-## Last update Sat Apr 15 23:06:47 2006 GESTES Cedric
+## Last update Sun Apr 16 02:45:59 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -41,14 +41,14 @@ alias_set todo 'grep -n -a -s TODO * 2> /dev/null'
 
 #default alias_set for firefox and thunderbird
 
-\which mozilla-firefox >/dev/null && alias_set ff 'mozilla-firefox'
-\which firefox >/dev/null && alias_set ff 'firefox'
+null_which mozilla-firefox && alias_set ff 'mozilla-firefox'
+null_which firefox && alias_set ff 'firefox'
 
-\which mozilla-firefox >/dev/null&& alias_set cf 'mozilla-firefox -chrome chrome://conkeror/content'
-\which firefox >/dev/null && alias_set cf 'firefox -chrome chrome://conkeror/content'
+null_which mozilla-firefox && alias_set cf 'mozilla-firefox -chrome chrome://conkeror/content'
+null_which firefox && alias_set cf 'firefox -chrome chrome://conkeror/content'
 
-\which mozilla-thunderbird >/dev/null && alias_set tb 'mozilla-thunderbird'
-\which thunderbird >/dev/null && alias_set tb 'thunderbird'
+null_which mozilla-thunderbird && alias_set tb 'mozilla-thunderbird'
+null_which thunderbird && alias_set tb 'thunderbird'
 
 
 #wget recursif
