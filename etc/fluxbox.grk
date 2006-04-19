@@ -6,7 +6,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Tue Apr 11 12:32:11 2006 GESTES Cedric
-## Last update Tue Apr 11 23:34:04 2006 GESTES Cedric
+## Last update Sun Apr 16 03:59:23 2006 GESTES Cedric
 ##
 
 #--function
@@ -50,9 +50,9 @@ fluxbox_description()
 #1 = not installed
 fluxbox_is_installed()
 {
-    grk_testdir ~/.fluxbox &&
-    grk_testfile etc/fluxbox/init ~/.fluxbox/init
-    return $?
+  grk_testdir ~/.fluxbox &&
+  grk_testfile etc/fluxbox/init ~/.fluxbox/init
+  return $?
 }
 
 #install this package is fluxbox_is_installed return "not installed"
@@ -60,16 +60,17 @@ fluxbox_is_installed()
 #1 = not installed
 fluxbox_install()
 {
-    grk_dir ~/.fluxbox fluxbox
-    grk_file etc/fluxbox/init ~/.fluxbox/init
-    return 0
+  echo "fluxbox"
+  grk_dir ~/.fluxbox fluxbox
+  grk_file etc/fluxbox/init ~/.fluxbox/init
+  return 0
 }
 
 #uninstall file install with fluxbox_install
 fluxbox_uninstall()
 {
-    grk_undir ~/.fluxbox
-    return 0
+  grk_undir ~/.fluxbox fluxbox
+  return 0
 }
 
 #this function is always called when you call ct-installconf
@@ -77,7 +78,8 @@ fluxbox_uninstall()
 #put all .mine there
 fluxbox_alwaysinstall()
 {
-    #grk_mine kshrc
-    #nothing to do
-    return 0
+  echo "flux"
+  grk_mine fbmenu
+  #nothing to do
+  return 0
 }

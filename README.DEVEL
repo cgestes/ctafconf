@@ -1,11 +1,19 @@
-===========================================================
-GUIDELINE:
-all file in ctafconf/etc must be static (user should not edit them, program should not add file into)
-all file in ctafconf/perso must not be overwritten and are user specific
+GUIDELINE
 
 ===========================================================
-POSIX
---sh
+FILES:
+all files in .ctafconf/etc must be static (user should not edit them, program should not add file into)
+all binary files should be in .ctafconf/bin
+all files in .ctafconf/perso must not be overwritten and are user specific
+
+===========================================================
+SHELL POSIX:
+always quote string and variable to avoid problem with string containing space
+
+!!bash output which error on stderr
+
+--sh---- (ksh, zsh, bash)
+#syntax
 if cmp -s $SRCFILE $FILE; then
 fi
 export al=val
@@ -13,33 +21,56 @@ alias al=val
 var=val
 source
 
---tcsh
+#catch a signal
+_trap_kill ()
+{
+  exit 0
+}
+trap _trap_kill INT #KILL EXIT QUIT INT TERM
+
+#exit from sourced or standalone script
+#sourced or standalone
+return 2>/dev/null
+exit
+
+--tcsh--
+#syntax
 if ( -x file ) echo cool
 setenv al val
 alias al val
 set var val
 
---ksh
-export al=val
-alias al=val
-var=val
 
---zsh
-if cmp -s $SRCFILE $FILE; then
-fi
-export al=val
-alias al=val
-var=val
+===========================================================
+MINE:
+all .mine should be in etc/mine
+they should contains configuration user can tweak
 
+===========================================================
+PACKAGE:
+all .grk should be in etc/
+they contains installation instruction for a package
 
---trap a signal
-_trap_kill ()
-{
-trap "" KILL EXIT QUIT INT TERM
-echo killing $pid
-kill $pid
-sleep 3
-sync
-exit 0
-}
-trap _trap_kill KILL EXIT QUIT INT TERM
+current variable/functions to define are (replace pkgname with the name of the file):
+pkgname_name='name of the package' (usefull??)
+
+#description of the package
+pkgname_description
+
+#is this package installed?
+#0 = installed
+#1 = not installed
+pkgname_is_installed
+
+#install this package is pkgname_is_installed return "not installed"
+#0 = installed
+#1 = not installed
+pkgname_install
+
+#uninstall file installed with pkgname_install
+pkgname_uninstall
+
+#this function is always called when you call ct-installconf
+#dont affected by pkgname_uninstall
+#put all .mine there, and stuff for upgrade
+pkgname_alwaysinstall

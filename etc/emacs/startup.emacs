@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Sat Apr 15 04:41:18 2006 GESTES Cedric
+;; Last update Mon Apr 17 21:02:01 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: STARTUP.EMACS")
 
@@ -84,7 +84,11 @@
 ;;  - dired colored
 ;;  - man page size
 ;;  - php-mode/html/css
-
+;;  - emacs: in console (ctrl+backspace, disable ring bell) (enable vt102 in xterm,..)
+;;  - emacs: ctrl-qqch => replace the current line , with the current buffer
+;;  - transparent (use console backcolor)
+;;  - kill char from cur to begin
+;;  - /???/ Emacs autoresize at start conflicts with wm app properties save (use .mine to customize the beahavour)
 ;;
 ;;easy emacs:
 ;;Ctrl-/         Bounce         Move from the beginning to the end or

@@ -29,7 +29,7 @@ session.screen0.toolbar.onhead:	0
 session.screen0.toolbar.layer:	AboveDock
 session.screen0.toolbar.placement:	TopCenter
 session.screen0.toolbar.widthPercent:	80
-session.screen0.windowScrollAction:	
+session.screen0.windowScrollAction:
 session.screen0.tabFocusModel:	SloppyTabFocus
 session.screen0.edgeSnapThreshold:	10
 session.screen0.windowPlacement:	RowSmartPlacement
@@ -42,9 +42,9 @@ session.screen0.rootCommand:	~/.ctafconf/bin/ct-set-bg
 session.screen0.focusModel:	ClickFocus
 session.screen0.showwindowposition:	true
 session.screen0.menuDelayClose:	0
-session.screen0.workspaces:	5
+session.screen0.workspaces:	4
 session.screen0.menuDelay:	0
-session.screen0.windowMenu:	
+session.screen0.windowMenu:
 session.screen0.workspacewarping:	true
 session.screen0.autoRaise:	true
 session.screen0.sloppywindowgrouping:	true
@@ -56,12 +56,12 @@ session.screen0.fullMaximization:	true
 session.screen0.followModel:	Ignore
 session.screen0.colPlacementDirection:	TopToBottom
 session.screen0.opaqueMove:	true
-session.screen0.workspaceNames:	One,Two,Net,Mule,Vide,
+session.screen0.workspaceNames:	One,Two,Three,Four
 session.screen0.decorateTransient:	true
 session.screen0.focusLastWindow:	true
 session.screen0.antialias:	true
-session.titlebar.left:	Stick 
-session.titlebar.right:	Minimize Maximize Close 
+session.titlebar.left:	Stick
+session.titlebar.right:	Minimize Maximize Close
 session.tabPadding:	1
 session.styleFile:	~/.ctafconf/etc/fluxbox/styles/ctaf
 session.focusTabMinWidth:	0

@@ -1,6 +1,15 @@
+2006-04-17 CTAF <>
+	* globalenv : change less option (dont exit on eof, better scrolling, some hilight)
+	* ct-installconf, ct-profile : add trap, to correct termcap shit
+	* ct-profile : return dont work in standalone mode (return, then exit)
 2006-04-16 CTAF <>
 	* ctaftools.sh : null_which => which without output
 	* globalenv, alias : which => null_which (works in more case, I hope all)
+	* ssft.sh : dont load if already loaded
+	* emacs : works under native windows version
+	* fbmenu.mine : fluxbox user-menu
+	* ssft.sh : bug in ssft_check_frontend : correct frontend with dialog
+	* ct-profile : quote variable to avoid problem with space
 
 2006-04-15 CTAF <>
 	* emacs : alt+left, alt+right change buffer, shift sucked
@@ -11,7 +20,7 @@
 	* globalenv : $SHELL should be set by the shell: unset it
 	* globalenv, alias : which => \which (bash which suck)
 	* ct-profile : dont kill process when user dont want to modify a value (intregration with ct-installconf)
-	
+
 2006-04-14 CTAF <>
 	* ct-installconf : choice between "install all" "ask for each" "choose in a list" method to install pkg
 	* ssft.sh : check if the frontend select is good, else choose a good one

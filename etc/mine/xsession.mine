@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Mon Mar 27 05:32:00 2006 GESTES Cedric
-## Last update Sat Apr 15 23:25:47 2006 GESTES Cedric
+## Last update Sun Apr 16 04:28:31 2006 GESTES Cedric
 ##
 #CTAFCONF
 #You can personalize this file, it will never be modified by the ctafconf
@@ -13,7 +13,7 @@
 #----------HELP----------
 # use $ctafconf_wm to know the windows manager
 #
-# use continue, to quit this script
+# use return, to quit this script
 #
 # use exit after launching a windows manager to prevent
 # the ctafconf's xsession from launching another windows manager
@@ -22,7 +22,7 @@
 #------------------------
 
 #if ! [ -f ~/.fvwmrc ]; then
-#  continue
+#  return
 #fi
 
 #if which fvwm >/dev/null 2>/dev/null; then

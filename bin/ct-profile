@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Sep 25 21:51:34 2005 GESTES Cedric
-## Last update Sat Apr 15 23:10:32 2006 
+## Last update Mon Apr 17 20:44:02 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -17,6 +17,15 @@
 # fi
 
 #we use ssft
+
+#catch a signal, else termcaps shit
+_trap_kill ()
+{
+  echo killing
+  exit 0
+}
+trap _trap_kill INT
+
 
 export SSFT_FRONTEND="text"
 . ~/.ctafconf/etc/shell/ssft.sh
@@ -131,7 +140,7 @@ if [ -f ~/.ctafconf/perso/user-profile ]; then
 fi
 
 
-export SSFT_FRONTEND=$(getvaldef $ctafconf_interface "text")
+export SSFT_FRONTEND=$(getvaldef "$ctafconf_interface" "text")
 
 echo "using frontend: $SSFT_FRONTEND, you could change it with ct-profile"
 
@@ -139,15 +148,17 @@ echo "using frontend: $SSFT_FRONTEND, you could change it with ct-profile"
 if [ -f ~/.ctafconf/perso/user-profile ]; then
     SSFT_DEFAULT=no
     if ! ssft_yesno "you already have a configuration file" "`showctafconf`"; then
-        return
+        #sourced or standalone
+        return 2>/dev/null
+        exit 0
     fi
 fi
 
 
-ctafconf_interface=$(getvaldef $ctafconf_interface "text")
+ctafconf_interface=$(getvaldef "$ctafconf_interface" "text")
 SSFT_DEFAULT=$ctafconf_interface
 if ssft_select_single "Interface for the ctafconf" "choose a graphic one from 'zenity'(gnome) or 'kdialog'(kde) or choose a console one from 'dialog' (ncurse) or 'text'. I recommand 'DIALOG'" zenity kdialog dialog text; then
-    ctafconf_interface=$(getvaldef $SSFT_RESULT $ctafconf_interface)
+    ctafconf_interface=$(getvaldef "$SSFT_RESULT" "$ctafconf_interface")
 fi
 export SSFT_FRONTEND=$ctafconf_interface
 
@@ -155,7 +166,7 @@ export SSFT_FRONTEND=$ctafconf_interface
 
 SSFT_DEFAULT=$ctafconf_name
 if ssft_read_string "Complete Name" "enter your complete Name"; then
-    ctafconf_name=$(getvaldef $SSFT_RESULT $ctafconf_name)
+    ctafconf_name=$(getvaldef "$SSFT_RESULT" "$ctafconf_name")
 fi
 
 
@@ -163,7 +174,7 @@ fi
 
 SSFT_DEFAULT=$ctafconf_mail
 if ssft_read_string "Unix Email" "enter your Unix Email"; then
-    ctafconf_mail=$(getvaldef $SSFT_RESULT $ctafconf_mail)
+    ctafconf_mail=$(getvaldef "$SSFT_RESULT" "$ctafconf_mail")
 fi
 
 
@@ -171,10 +182,10 @@ echo `enumwallpp`
 
 ancIFS=$IFS
 IFS="/"
-ctafconf_wallpaper=$(getvaldef $ctafconf_wallpaper 'ctafconf-psycho.jpg' )
+ctafconf_wallpaper=$(getvaldef "$ctafconf_wallpaper" 'ctafconf-psycho.jpg' )
 SSFT_DEFAULT=$ctafconf_wallpaper
 if ssft_select_single "Wallpaper" "choose your wallpaper from the list" `enumwallpp`; then
-  ctafconf_wallpaper=$(getvaldef $SSFT_RESULT $ctafconf_wallpaper )
+  ctafconf_wallpaper=$(getvaldef "$SSFT_RESULT" "$ctafconf_wallpaper" )
 fi
 IFS=$ancIFS
 
@@ -183,7 +194,7 @@ IFS=$ancIFS
 
 SSFT_DEFAULT=$ctafconf_config
 if ssft_select_single "Distribution" "Choose your distribution" debian gentoo freebsd epita other; then
-  ctafconf_config=$(getvaldef $SSFT_RESULT $ctafconf_config)
+  ctafconf_config=$(getvaldef "$SSFT_RESULT" "$ctafconf_config")
   if [ "x$ctafconf_config" = xother ] ; then
     ctafconf_config=""
   fi
@@ -195,7 +206,7 @@ fi
 
 SSFT_DEFAULT=$ctafconf_sudo
 if ssft_select_single "sudo command" "Choose your sudo command, choose empty if your are root, or if you don't want to install the ctafconf for gdm/kdm" "empty" "sudo" "su root -c"; then
-    ctafconf_sudo=$(getvaldef $SSFT_RESULT $ctafconf_sudo )
+    ctafconf_sudo=$(getvaldef "$SSFT_RESULT" "$ctafconf_sudo" )
     if [ "x$ctafconf_sudo" = xempty ] ; then
         ctafconf_sudo=""
     fi
@@ -206,19 +217,19 @@ fi
 
 
 
-ctafconf_zprompt=$(getvaldef $ctafconf_zprompt 'ctaf' )
+ctafconf_zprompt=$(getvaldef "$ctafconf_zprompt" 'ctaf' )
 SSFT_DEFAULT=$ctafconf_zprompt
 if ssft_select_single "Zsh prompt" "Choose your zshprompt (another may be available (test with prompt command in zsh)" ctaf adam1 adam2 bart zefram fade redhat suse walters bigfade clint elite elite2 fire off olivier; then
-    ctafconf_zprompt=$(getvaldef $SSFT_RESULT $ctafconf_zprompt )
+    ctafconf_zprompt=$(getvaldef "$SSFT_RESULT" "$ctafconf_zprompt" )
 fi
 
 
 
 
-ctafconf_wm=$(getvaldef $ctafconf_wm 'fluxbox' )
+ctafconf_wm=$(getvaldef "$ctafconf_wm" 'fluxbox' )
 SSFT_DEFAULT=$ctafconf_wm
 if ssft_select_single "Window Manager" "Choose your wm from the list" fluxbox gnome kde xfce4 e16 term; then
-    ctafconf_wm=$(getvaldef $SSFT_RESULT $ctafconf_wm )
+    ctafconf_wm=$(getvaldef "$SSFT_RESULT" "$ctafconf_wm" )
 fi
 
 

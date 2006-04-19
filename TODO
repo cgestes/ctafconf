@@ -1,15 +1,24 @@
+##################PLANNING
+V0.4.0:
+- do todo emacs config
+- enhance .mine file
+
+V0.3.0:
+- alwaysinstall should always be called !!!
+- ssft: $PAGER suck with most and less (we should type enter)
+- gnome-setting, do gnome_is_installed :
+  copie gconf.dump file somewhere at install and test with current
+
+##################TODO
 NEEDED:
 - test with dash (posix shell, or busybox)
 - cleanup: personnal info (sshe, sshep (put in perso/bin))
 - conky then torsmo..
-- diff .mine file /?/
 - define default program: navigateur/mail reader/term/pager/.../EDITOR/..
 - if user-profile and user-profile.csh exist ask which param to modify
 - test if it work with space in /home/ct af/ for example
 - specify interface in argument to ct-profile, ct-install, ...
 - add help for ct-profile, ct-install (for interface)
-- remove header when doing diff/remove header from *.mine
-- split ctaftools.sh => shelltools.{zsh,tcsh,ksh,bash} define a which without output, define color
 
 DOCUMENTATION:
 - emacs: README.EMACS, install just emacs, just test emacsconf, ..
@@ -26,14 +35,16 @@ MINE:
 - emacs size (set/unset)
 - macro for xsession [launch_wm, launch_app, test_wm] (launch_app after a sleep after launch_wm)
 - .mine for fluxbox user-menu
+- diff .mine file /?/
 
 SSFT:
 - read -e at epita
+- trap c-c then reset (avoid fucking shit at screen)
 
 CTAFCONF:
+- ramdom wm
 - uninstall with revert to date (choose from all previous file)
 - ramdom wallpaper (wallpp = ramdom, ramdomperso)
-- use sabayon for gnome-conf/ff-conf
 - 4 distrib: tinyemacs, emacs (with ecb, ilisp, ..), tinyctafconf, ctafconf (with ecb, ilisp, ..)
 - makefile (download ecb, ilisp, ..)?, ct-update (update ctafconf from sf svn)
 - ct-add-wallpaper: ask if we should change the wallpaper now
@@ -50,17 +61,12 @@ SHELL
 - zsh: bindkey => "^Xf" => firefox, "^Xt" thunderbird ...
 
 EMACS ## SEE .ctafconf/etc/emacs/startup.emacs ##
-- emacs: in console (ctrl+backspace, disable ring bell) (enable vt102 in xterm,..)
-- emacs: ctrl-qqch => replace the current line , with the current buffer
-- transparent (use console backcolor)
-- kill char from cur to begin
-- /???/ Emacs autoresize at start conflicts with wm app properties save (use .mine to customize the beahavour)
 
 ENLIGHTENMENT
 - Enhance integration with ctafconf(wallpapers/bindkeys/E16-Gnome)
 
-
 BONUS:
+- use sabayon for gnome-conf/ff-conf
 - ct-repo/ct-ssh : use dialog/gdialog? (one lib exists, find it, use it (ssft))
 - a gnome terminal that scroll like quake3 console using one hotkey
 - compiler for some configuration file ( emacs, fluxbox, etc..)

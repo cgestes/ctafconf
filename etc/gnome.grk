@@ -6,7 +6,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Tue Apr 11 12:32:11 2006 GESTES Cedric
-## Last update Tue Apr 11 23:06:04 2006 GESTES Cedric
+## Last update Mon Apr 17 20:59:42 2006 GESTES Cedric
 ##
 
 #--function
@@ -40,6 +40,15 @@ gnome_name='gnome'
 gnome_description()
 {
     echo "This package contains configuration file for gnome"
+    echo "It set global keybindings to change workspace"
+    echo "It set gnome-terminal configuration"
+    echo "It set the gnome wallpaper"
+    echo "Setting metacity workspace shortcut:"
+    echo "<Alt>F1 Workspace 1         <Alt>F2 Workspace 2"
+    echo "<Alt>F3 Workspace 3         <Alt>F4 Workspace 4"
+    echo "Setting metacity window shortcut:"
+    echo "<Control><Alt>f fullscreen  <Control><Alt>m maximized"
+    echo "<Control><Alt>w move        <Control><Alt>x resize"
 }
 
 
@@ -70,9 +79,6 @@ gnome_install()
       gconftool-2 --type=string -s /desktop/gnome/background/picture_options "stretched"
 
       #metacity workspace
-      echo "Setting metacity workspace shortcut:"
-      echo "<Alt>F1 Workspace 1         <Alt>F2 Workspace 2"
-      echo "<Alt>F3 Workspace 3         <Alt>F4 Workspace 4"
       gconftool-2 --dump /apps/metacity/global_keybindings > ~/.ctafconf/perso/previous/globalkeybindings-prev-$date.gconf
       gconftool-2 --dump /apps/metacity/global_keybindings > ~/.ctafconf/perso/previous/globalkeybindings-previous.gconf
       gconftool-2 --type string --set /apps/metacity/global_keybindings/switch_to_workspace_1 "<Alt>F1"
@@ -81,9 +87,6 @@ gnome_install()
       gconftool-2 --type string --set /apps/metacity/global_keybindings/switch_to_workspace_4 "<Alt>F4"
 
       #metacity window
-      echo "Setting metacity window shortcut:"
-      echo "<Control><Alt>f fullscreen  <Control><Alt>m maximized"
-      echo "<Control><Alt>w move        <Control><Alt>x resize"
       gconftool-2 --dump /apps/metacity/window_keybindings > ~/.ctafconf/perso/previous/windowkeybindings-previous.gconf
       gconftool-2 --dump /apps/metacity/window_keybindings > ~/.ctafconf/perso/previous/windowkeybindings-prev-$date.gconf
       gconftool-2 --type string --set /apps/metacity/window_keybindings/toggle_fullscreen "<Control><Alt>f"
@@ -113,8 +116,6 @@ gnome_install()
       gconftool-2 --load="$gfile"
 #      gfile=~/.ctafconf/etc/gconf/metacity-window
 #      gconftool-2 --load="$gfile"
-      echo "### to revert gconf settings launch gconftool-2 --load=FILE      ###"
-      echo "### where FILE is one file from .ctafconf/perso/previous/*.gconf ###"
     fi
     return 0
 }

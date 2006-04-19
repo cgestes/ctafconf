@@ -21,6 +21,15 @@
 ## Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##
 
+#catch a signal, else termcaps shit
+_trap_kill ()
+{
+  echo killing
+  exit 0
+}
+trap _trap_kill INT
+
+
 pkg_description()
 {
     local name=$1
@@ -179,6 +188,7 @@ fi
 if [ x$insmethod = xall ] ; then
     ls -1 ~/.ctafconf/etc | grep ".grk$" | while read line; do
         name=`echo $line | sed -e s/.grk//`
+        echo installing $name
         grk_install $name
     done
 fi

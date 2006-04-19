@@ -7,52 +7,11 @@
   [exec] (Nautilus) {~/.ctafconf/bin/ct-launch exec "nautilus --no-desktop"}
   [exec] (xKill) {xkill}
 
-  [submenu] (Net)
-    [exec] (Gaim) {~/.ctafconf/bin/ct-launch exec "gaim"}
-    [exec] (Firefox) {~/.ctafconf/bin/ct-launch ff}
-    [exec] (Thunderbird) {~/.ctafconf/bin/ct-launch tb}
-    [exec] (Amsn) {~/.ctafconf/bin/ct-launch exec "amsn"}
-    [exec] (Amule) {~/.ctafconf/bin/ct-launch exec "amule"}
-    [exec] (NoSoucy) {sudo killall NoSoucy;NoSoucy-0.3c/NoSoucy}
-    [exec] (Kmail) {~/.ctafconf/bin/ct-launch exec "kmail"}
-    [exec] (Dillo) {~/.ctafconf/bin/ct-launch exec "dillo"}
-  [end]
-
-  [submenu] (Jeux)
-    [exec] (quake3) {quake3}
-    [exec] (chromium) {chromium}
-    [exec] (TuxRacer) {tuxracer}
-    [exec] (supertux) {supertux}
-    [exec] (tuxkart) {tuxkart}
-    [exec] (toppler) {toppler}
-    [exec] (bzflag) {bzflag}
-    [exec] (jumpnbump) {jumpnbump -fullscreen}
-    [exec] (lbreakout2) {lbreakout2}
-    [exec] (neverball) {neverball}
-  [end]
-
-  [submenu] (Misc)
-    [exec] (XmmS) {xmms}
-    [exec] (caltos) {kcalc}
-    [exec] (Sound Level) {kmix}
-  [end]
-
-  [submenu] (Conf)
-    [exec] (Synaptics) {~/.ctafconf/bin/ct-launch sudo synaptic}
-    [exec] (Network) {~/.ctafconf/bin/ct-launch exec network-admin}
-    [exec] (Boot) {~/.ctafconf/bin/ct-launch exec boot-admin}
-    [exec] (Time) {~/.ctafconf/bin/ct-launch exec time-admin}
-    [exec] (Users) {~/.ctafconf/bin/ct-launch exec users-admin}
-    [exec] (keyboad) {gnome-keyboard-properties}
-    [exec] (Aterm ROOT) {aterm -C -cr red -bw 0 -trsb +tr -name "aterm" -title "SHell ROOT" -e su}
-    [exec] (Eterm incrust) {Eterm -x 0 --trans --buttonbar 0 --scrollbar=off -f orange&}
-    [exec] (emacs fluxbox-menu) {emacs ~/.ctafconf/etc/fluxbox/menu-general}
-  [end]
-
   [submenu] (Session)
     [exec] (New login in another X server) {gdmflexiserver}
     [exec] (New login in a nested window) {gdmflexiserver -n}
   [end]
+
     [submenu] (fluxbox menu)
       [config] (Configure)
       [submenu] (System Styles) {Choose a style...}

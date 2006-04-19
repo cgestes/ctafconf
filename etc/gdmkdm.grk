@@ -6,7 +6,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Tue Apr 11 12:32:11 2006 GESTES Cedric
-## Last update Wed Apr 12 06:41:24 2006 GESTES Cedric
+## Last update Mon Apr 17 20:57:36 2006 GESTES Cedric
 ##
 
 #--function
@@ -40,6 +40,8 @@ gdmkdm_name='gdmkdm'
 gdmkdm_description()
 {
     echo "This package contains configuration file for gdm and kdm"
+    echo "It allow you to login using ctafconf session"
+    echo "It use the window manager and wallpaper you choose"
 }
 
 

@@ -27,6 +27,10 @@
 # Gettext Support #
 # =============== #
 
+#dont load if already loaded
+if [ x$SSFT_LOADED = xyes ]; then
+  return
+fi
 # Try to load the real gettext.sh functions or define fake ones
 # if [ -n "`which gettext.sh 2> /dev/null`" ]; then
 #   # ZSH fix, set NOFUNCTIONARGZERO before loading
@@ -40,13 +44,14 @@
 #     set +o NOFUNCTIONARGZERO
 #   fi
 # else
-  gettext() { printf "%s" "$1"; }
-  eval_gettext() { eval `echo printf \"%s\" \"$1\"`; }
-  ngettext() { [ "$3" -eq "1" ] && printf "%s" "$1" || printf "%s" "$2"; }
-  eval_ngettext() {
-    [ "$3" -eq "1" ] && _l_str="$1" || _l_str="$2";
-    eval `echo printf \"%s\" \"$_l_str\"`;
-  }
+
+gettext() { printf "%s" "$1"; }
+eval_gettext() { eval `echo printf \"%s\" \"$1\"`; }
+ngettext() { [ "$3" -eq "1" ] && printf "%s" "$1" || printf "%s" "$2"; }
+eval_ngettext() {
+  [ "$3" -eq "1" ] && _l_str="$1" || _l_str="$2";
+  eval `echo printf \"%s\" \"$_l_str\"`;
+}
 #fi
 
 if ! which $PAGER >/dev/null 2>/dev/null; then
@@ -137,29 +142,29 @@ ssft_check_frontend()
       SSFT_FRONTEND=`ssft_choose_frontend $SSFT_FRONTEND`
     fi
     if  [ x$SSFT_FRONTEND = xdialog ] ; then
-	if [ -x "`which $SSFT_FRONTEND`" ]; then
-	    SSFT_FRONTEND=text
-	fi
+	    if ! [ -x "`which $SSFT_FRONTEND`" ]; then
+	      SSFT_FRONTEND=text
+	    fi
     fi
     if  [ x$SSFT_FRONTEND = xzenity ] ||
-        [ x$SSFT_FRONTEND = xkdialog ] ; then
-	if ! [ -x "`which $SSFT_FRONTEND`" ]; then
-	    SSFT_FRONTEND=`ssft_choose_frontend graphic`
-	fi
+      [ x$SSFT_FRONTEND = xkdialog ] ; then
+	    if ! [ -x "`which $SSFT_FRONTEND`" ]; then
+	      SSFT_FRONTEND=`ssft_choose_frontend graphic`
+	    fi
     fi
 
     #no display, no graphic frontend
     if ! [ -n "$DISPLAY" ]; then
-        if [ x$SSFT_FRONTEND = xkdialog ] || [ x$SSFT_FRONTEND = xzenity ]; then
-            SSFT_FRONTEND=`ssft_choose_frontend`
-        fi
+      if [ x$SSFT_FRONTEND = xkdialog ] || [ x$SSFT_FRONTEND = xzenity ]; then
+        SSFT_FRONTEND=`ssft_choose_frontend`
+      fi
     fi
     if  [ x$SSFT_FRONTEND != xzenity ] &&
-        [ x$SSFT_FRONTEND != xkdialog ] &&
-        [ x$SSFT_FRONTEND != xdialog ] &&
-        [ x$SSFT_FRONTEND != xtext ] &&
-        [ x$SSFT_FRONTEND != xnoninteractive ] ; then
-         SSFT_FRONTEND=`ssft_choose_frontend`
+      [ x$SSFT_FRONTEND != xkdialog ] &&
+      [ x$SSFT_FRONTEND != xdialog ] &&
+      [ x$SSFT_FRONTEND != xtext ] &&
+      [ x$SSFT_FRONTEND != xnoninteractive ] ; then
+      SSFT_FRONTEND=`ssft_choose_frontend`
     fi
 }
 
@@ -1107,6 +1112,8 @@ ssft_show_file() {
   esac
   return 0
 }
+
+SSFT_LOADED=yes
 
 # ------
 # SVN Id: $Id: ssft.sh 65 2006-03-20 16:18:21Z sto $
