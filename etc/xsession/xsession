@@ -5,9 +5,11 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Mon Sep 26 02:37:56 2005 GESTES Cedric
-## Last update Tue Apr 11 20:13:16 2006 GESTES Cedric
+## Last update Thu Apr 20 22:52:36 2006 GESTES Cedric
 ##
 ##CTAFCONF
+
+. ~/.ctafconf/etc/shlib/xsession.sh
 
 #refuse all connection to xserver except for localhost
 xhost -

@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 00:57:16 2006 GESTES Cedric
-;; Last update Sun Apr 16 03:41:30 2006 
+;; Last update Wed Apr 19 23:38:43 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: MODE.EMACS")
 
@@ -161,7 +161,6 @@
   (error
    (message "Cannot load bm %s" (cdr err))))
 
-(message "here we are")
 ;; Gives us marker-visit-next and marker-visit-prev
 (condition-case err
     (progn
