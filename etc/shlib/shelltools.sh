@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Wed Oct 12 00:20:30 2005 GESTES Cedric
-## Last update Sun Apr 16 02:47:21 2006 GESTES Cedric
+## Last update Fri Apr 21 02:33:24 2006 cedric gestes
 ##
 ##CTAFCONF
 ###
@@ -118,6 +118,7 @@ alias alias_unset 'unalias'
 alias var_set 'set \!:1=\!:2'
 alias var_unset 'unset \!:1'
 alias null_which 'which \!* >&/dev/null'
+
 # alias ift 'if ( { test \!* } ) then'
 # alias iftelse 'echo else; else'
 # alias iftend 'echo endif;endif'

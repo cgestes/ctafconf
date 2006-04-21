@@ -1,3 +1,6 @@
+2006-04-21 CTAF <>
+	* ct-date : bug at epita (with date +%-d)
+
 2006-04-20 CTAF <>
 	* shlib : new directory with all shell tools
 	* xsession.sh : new shell lib, differ application lanching

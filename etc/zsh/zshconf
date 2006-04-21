@@ -5,7 +5,7 @@
 ## Login   <gestes_c@epita.fr>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 GESTES Cedric
-## Last update Tue Apr 11 12:22:41 2006 GESTES Cedric
+## Last update Fri Apr 21 02:30:08 2006 cedric gestes
 ##
 ##CTAFCONF
 
@@ -128,17 +128,17 @@ if [ x$plateforme != "xSunOS" ]; then
 # line doesn't match something in the history, adding a key performs
 # standard completion - though editing in the middle is liable to delete
 # the rest of the line.
-autoload -U incremental-complete-word
-autoload -U predict-on
-zle -N predict-on
-zle -N predict-off
-zle -N incremental-complete-word
+  autoload -U incremental-complete-word
+  autoload -U predict-on
+  zle -N predict-on
+  zle -N predict-off
+  zle -N incremental-complete-word
 
 #predict-on
 
-bindkey '^Xi' incremental-complete-word
-bindkey '^Xp' predict-on
-bindkey '^X^P' predict-off
+  bindkey '^Xi' incremental-complete-word
+  bindkey '^Xp' predict-on
+  bindkey '^X^P' predict-off
 #bindkey "^X^Z" predict-on
 #bindkey "^Z" predict-off
 
