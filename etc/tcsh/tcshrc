@@ -155,9 +155,10 @@ bindkey "^[q" keyboard-quit
 #unset usr_cwd         # cleanup
 
 
-if ( -f ~/.ctafconf/etc/tcsh/tcshprompt ) source ~/.ctafconf/etc/tcsh/tcshprompt
 
 if ( -f ~/.ctafconf/etc/shell/globalenv ) source ~/.ctafconf/etc/shell/globalenv csh
+
+if ( -f ~/.ctafconf/etc/tcsh/tcshprompt ) source ~/.ctafconf/etc/tcsh/tcshprompt
 
 if ( -f ~/.ctafconf/etc/shell/alias ) source ~/.ctafconf/etc/shell/alias
 

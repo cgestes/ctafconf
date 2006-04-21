@@ -2,6 +2,7 @@
 	* ct-date : bug at epita (with date +%-d)
 	* grepr : exclude svn match (.svn-base)
 	* *.grk : move all package file in etc/grk
+	* tcshrc : whoami was not found (path error on solaris9)
 
 2006-04-20 CTAF <>
 	* shlib : new directory with all shell tools
