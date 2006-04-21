@@ -1,7 +1,17 @@
+2006-04-20 CTAF <>
+	* shlib : new directory with all shell tools
+	* xsession.sh : new shell lib, differ application lanching
+	* xsession, xsession.mine : use xsession.sh
+	* shelltools.sh : rename ctaftools.sh to shelltools.sh
+
+2006-04-19 CTAF <>
+	* mode.emacs : ensure good load even if one .el fail (condition case)
+
 2006-04-17 CTAF <>
 	* globalenv : change less option (dont exit on eof, better scrolling, some hilight)
 	* ct-installconf, ct-profile : add trap, to correct termcap shit
 	* ct-profile : return dont work in standalone mode (return, then exit)
+
 2006-04-16 CTAF <>
 	* ctaftools.sh : null_which => which without output
 	* globalenv, alias : which => null_which (works in more case, I hope all)

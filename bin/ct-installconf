@@ -70,6 +70,13 @@ pkg_alwaysinstall()
     return $?
 }
 
+pkg_source()
+{
+  local name=$1
+
+  . ~/.ctafconf/etc/"$name".grk
+}
+
 #0 installed
 #1 already installed
 #2 failed
@@ -145,10 +152,12 @@ if ! [ -d ~/.ctafconf/ ] ; then
 fi
 
 #install tools
-. ~/.ctafconf/etc/shell/grktools.sh
-#shellscript frontend
-. ~/.ctafconf/etc/shell/ssft.sh
+. ~/.ctafconf/etc/shlib/grktools.sh
 
+#shellscript frontend
+. ~/.ctafconf/etc/shlib/ssft.sh
+
+#create default directory
 grk_dir ~/.ctafconf/perso
 grk_dir ~/.ctafconf/perso/semantic
 grk_dir ~/.ctafconf/perso/ssh
@@ -169,13 +178,14 @@ fi
 . ~/.ctafconf/perso/user-profile
 
 
-
 export SSFT_FRONTEND=$ctafconf_interface
+
 
 
 SSFT_DEFAULT=ask
 ssft_select_single "Select one installation method" "'All' install every package, 'Ask' ask your before each package, and 'Choice' let you select packages you want in a list" all ask choice
 insmethod=$SSFT_RESULT
+
 ###ASK
 if [ x$insmethod = xask ] ; then
     ls -1 ~/.ctafconf/etc | grep ".grk$" | while read line; do
@@ -199,6 +209,3 @@ if [ x$insmethod = xchoice ] ; then
     ssft_select_multiple "Install" "Select packages you want to install" `ls -1 ~/.ctafconf/etc | grep ".grk$" | sed -e s/.grk//`
     grk_install_list $SSFT_RESULT
 fi
-
-
-

@@ -1,11 +1,11 @@
 #!/bin/sh
-## ct-save-ctafconf for ctafconf in /home/ctaf/.ctafconf
+## ct-add-ctafconf for ctafconf in /home/ctaf/.ctafconf/bin
 ##
 ## Made by GESTES Cedric
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Tue Oct  4 03:04:18 2005 GESTES Cedric
-## Last update Fri Apr 14 20:54:12 2006 GESTES Cedric
+## Last update Thu Apr 20 23:00:19 2006 GESTES Cedric
 ##
 #CTAFCONF
 
@@ -13,13 +13,14 @@ if [ $# -gt 0 ]; then
   wallpp=$@
   echo "add wallpaper $wallpp"
   echo "Use ct-profile or ct-installconf to modify your current wallpaper"
-  cp "$wallpp" ~/.ctafconf/perso/wallpaper/
 else
-  . ~/.ctafconf/etc/shell/ssft.sh
+  . ~/.ctafconf/etc/shlib/ssft.sh
   SSFT_FRONTEND=graphic
 
   if ssft_file_selection "Select the wallpaper you want"; then
-    cp "$SSFT_RESULT" ~/.ctafconf/perso/wallpaper/
+    wallpp="$SSFT_RESULT"
   fi
-  exit
 fi
+
+cp "$wallpp" ~/.ctafconf/perso/wallpaper/
+

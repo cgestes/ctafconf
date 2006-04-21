@@ -1,17 +1,38 @@
-GUIDELINE
+===========================================================
+===========================================================
+########################GUIDELINE##########################
+===========================================================
+===========================================================
+
+
 
 ===========================================================
 FILES:
+===========================================================
 all files in .ctafconf/etc must be static (user should not edit them, program should not add file into)
 all binary files should be in .ctafconf/bin
 all files in .ctafconf/perso must not be overwritten and are user specific
 
+
+
 ===========================================================
 SHELL POSIX:
-always quote string and variable to avoid problem with string containing space
+===========================================================
+######################
+Global advise:
+- always quote string and variable to avoid problem with string containing space
+- use shell lib
 
-!!bash output which error on stderr
+######################
+--shell lib
+ssft.sh       : interface for zenity, kdialog, dialog or read
+shelltools.sh : portable function between bash,ksh,tcsh, and zsh
+                set_env, set_var, null_which (which without output), ...
+xsession.sh   : delay application launching
+grktools.sh   : file operation tools, copyfile, linkfile, restorefile
+                make file operation with backup, usefull for installation
 
+######################
 --sh---- (ksh, zsh, bash)
 #syntax
 if cmp -s $SRCFILE $FILE; then
@@ -33,6 +54,7 @@ trap _trap_kill INT #KILL EXIT QUIT INT TERM
 return 2>/dev/null
 exit
 
+######################
 --tcsh--
 #syntax
 if ( -x file ) echo cool
@@ -43,11 +65,16 @@ set var val
 
 ===========================================================
 MINE:
+===========================================================
 all .mine should be in etc/mine
 they should contains configuration user can tweak
 
+
+
+
 ===========================================================
 PACKAGE:
+===========================================================
 all .grk should be in etc/
 they contains installation instruction for a package
 
@@ -74,3 +101,40 @@ pkgname_uninstall
 #dont affected by pkgname_uninstall
 #put all .mine there, and stuff for upgrade
 pkgname_alwaysinstall
+
+
+===========================================================
+CUSTOM VAR:
+===========================================================
+ctafconf (user-profile):
+- wm
+- wallpaper
+- config
+- interface
+- sudo (ct-sudo)
+
+shell (shell-profile):
+- zshprompt
+- email
+- name
+- proxy
+- pager
+- editor
+- screen at startup
+
+fluxbox:
+- style
+
+e16:
+- style
+
+emacs (emacs-profile):
+- size
+- ilisp
+- cedet
+- ecb
+- doxy
+- ...
+
+ct-ssh/ct-repo:
+ssh_gate

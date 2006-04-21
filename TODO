@@ -1,7 +1,15 @@
 ##################PLANNING
+V0.6.0:
+- documentation
+- website
+
+V0.5.0:
+- split version (tiny, complete, windows-emacs, ...)
+
 V0.4.0:
 - do todo emacs config
 - enhance .mine file
+- support uninstall
 
 V0.3.0:
 - alwaysinstall should always be called !!!
@@ -11,14 +19,10 @@ V0.3.0:
 
 ##################TODO
 NEEDED:
-- test with dash (posix shell, or busybox)
-- cleanup: personnal info (sshe, sshep (put in perso/bin))
-- conky then torsmo..
 - define default program: navigateur/mail reader/term/pager/.../EDITOR/..
 - if user-profile and user-profile.csh exist ask which param to modify
-- test if it work with space in /home/ct af/ for example
-- specify interface in argument to ct-profile, ct-install, ...
-- add help for ct-profile, ct-install (for interface)
+- specify interface in argument to ct-profile, ct-installconf, ...
+- add help for ct-profile, ct-installconf (for interface)
 
 DOCUMENTATION:
 - emacs: README.EMACS, install just emacs, just test emacsconf, ..
@@ -28,31 +32,32 @@ DOCUMENTATION:
 - revert gconf setting
 - what is in perso
 - coding style/general guide line
+- install emacs conf under native windows
+
+CT-REPO/CT-SSH:
+- cleanup: personnal info (sshe) => ssh_forward
+- ct-repo/ct-ssh : use dialog/gdialog? (one lib exists, find it, use it (ssft))
 
 MINE:
 - screen at shell startup
 - ecb/cedet/ilisp/doxyemacs
 - emacs size (set/unset)
-- macro for xsession [launch_wm, launch_app, test_wm] (launch_app after a sleep after launch_wm)
-- .mine for fluxbox user-menu
-- diff .mine file /?/
+- diff .mine file /?/ (use diff3)
 
 SSFT:
 - read -e at epita
-- trap c-c then reset (avoid fucking shit at screen)
+- use ssft for ctssh, ctrepo
 
 CTAFCONF:
 - ramdom wm
 - uninstall with revert to date (choose from all previous file)
 - ramdom wallpaper (wallpp = ramdom, ramdomperso)
-- 4 distrib: tinyemacs, emacs (with ecb, ilisp, ..), tinyctafconf, ctafconf (with ecb, ilisp, ..)
 - makefile (download ecb, ilisp, ..)?, ct-update (update ctafconf from sf svn)
-- ct-add-wallpaper: ask if we should change the wallpaper now
-- support win version of emacs
+- ct-add-wallpaper : ask if we should change the wallpaper now
+- ct-add-wallpaper : dont everwrite if a file with the same name already exist
 
-SHELL
+SHELL:
 - screen : fichier de conf std (3 windows), automatiquement lance?, keys to browse history and to change term
-- use ssft for ct-installconf, ctssh, ctrepo
 - completion de zsh (cursor like in hh)
   see http://www.die.net/doc/linux/man/man1/zshcontrib.1.html for zsh
 - kbd mapping (azerty, qwerty, dvorak) (shell/X) (Xdefault binding for term)
@@ -60,29 +65,26 @@ SHELL
 - ctafconf.sh => add color for all term (CT_RED,CT_YELLOW,..) and for prompt
 - zsh: bindkey => "^Xf" => firefox, "^Xt" thunderbird ...
 
-EMACS ## SEE .ctafconf/etc/emacs/startup.emacs ##
+EMACS: ## SEE .ctafconf/etc/emacs/startup.emacs ##
 
-ENLIGHTENMENT
+ENLIGHTENMENT:
 - Enhance integration with ctafconf(wallpapers/bindkeys/E16-Gnome)
 
 BONUS:
 - use sabayon for gnome-conf/ff-conf
-- ct-repo/ct-ssh : use dialog/gdialog? (one lib exists, find it, use it (ssft))
 - a gnome terminal that scroll like quake3 console using one hotkey
 - compiler for some configuration file ( emacs, fluxbox, etc..)
 - use gid and uid with mount command (maybe do a ct-mount)
 - kde, gnome (taskbar, etc), ff extension, blackbox, openbox, fvwm
 - debian package
+- xml/xslt + pygtk interface
+- test with dash (posix shell, or busybox)
+- 4 distrib: tinyemacs, emacs (with ecb, ilisp, ..), tinyctafconf, ctafconf (with ecb, ilisp, ..)
+- conky then torsmo..
+- test if it work with space in /home/ct af/ for example
 
 
---
-compiled files?:
-fluxbox/init (style)
-fluxbox/menu ?
-xbindkeys (?)
-
-
--- DONE --
+##################ALREADY DONE
 - put all previous file in .ctafconf/perso/previous
 - one directory with all .mine?
 - visual,editor,shell => emacs else nano,else ..
@@ -112,3 +114,7 @@ xbindkeys (?)
 - default value for yesno (impossible for zenity nor kdialog)
 - default window size for ssft
 - which >/dev/null 2>/dev/null (find a solution, bash in cygwin)
+- support win version of emacs
+- trap c-c then reset (avoid fucking shit at screen)
+- .mine for fluxbox user-menu
+- macro for xsession [launch_wm, launch_app, test_wm] (launch_app after a sleep after launch_wm)

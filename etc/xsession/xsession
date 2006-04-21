@@ -5,9 +5,13 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Mon Sep 26 02:37:56 2005 GESTES Cedric
-## Last update Thu Apr 20 22:52:36 2006 GESTES Cedric
+## Last update Thu Apr 20 23:21:41 2006 GESTES Cedric
 ##
 ##CTAFCONF
+
+#test_wm
+#launch_app add app to launch list
+#launch_wm
 
 . ~/.ctafconf/etc/shlib/xsession.sh
 
@@ -19,75 +23,75 @@ xhost +localhost
 xrdb -merge ~/.ctafconf/etc/xsession/Xdefaults
 
 if [ -f ~/.ctafconf/perso/user-profile ] ; then
-    . ~/.ctafconf/perso/user-profile
+  . ~/.ctafconf/perso/user-profile
 fi
 
-if [ x$ctafconf_wm = xterm ]; then
-    #appel bloquant
-    exec ~/.ctafconf/bin/ct-launch term
+if test_wm term ; then
+  #appel bloquant
+  launch_wm ~/.ctafconf/bin/ct-launch term
 fi
 
-if [ x$ctafconf_wm != xgnome && x$ctafconf_wm != xe16 ] ; then
-#set the wallpaper
-    ~/.ctafconf/bin/ct-set-bg
+if test_wm gnome && test_wm e16 ; then
+  #set the wallpaper
+  ~/.ctafconf/bin/ct-set-bg
 fi
 
 #personal startup file
 if [ -f ~/.ctafconf/perso/xsession.mine ]; then
-    source ~/.ctafconf/perso/xsession.mine
+  source ~/.ctafconf/perso/xsession.mine
 fi
 
 ########################### LAUNCHING WM ###########################
 #Lauch gnome (appel bloquant)
-if [ x$ctafconf_wm = xgnome ]; then
+if test_wm gnome ; then
   if which gnome-session >/dev/null 2>/dev/null; then
-    exec gnome-session
+    launch_wm gnome-session
   fi
 else
-#launch the gnome setting daemon (for font, gconf, ...) after gnome-session
-#cause gnome-session launch it
+  #launch the gnome setting daemon (for font, gconf, ...) after gnome-session
+  #cause gnome-session launch it
   if which gnome-settings-daemon >/dev/null 2>/dev/null; then
-    gnome-settings-daemon&
+    launch_app gnome-settings-daemon
   fi
 fi
 
 
 #lauch kde
-if [ x$ctafconf_wm = xkde ]; then
+if test_wm kde ; then
     if which startkde >/dev/null 2>/dev/null; then
-    exec startkde
+    launch_wm startkde
     fi
 fi
 
 #lauch xfce4
-if [ x$ctafconf_wm = xxfce4 ]; then
+if test_wm xfce4 ; then
   if which startxfce4 >/dev/null 2>/dev/null; then
-    exec startxfce4
+    launch_wm startxfce4
   fi
 fi
 
 
 #fluxbox
-if [ x$ctafconf_wm = xfluxbox ]; then
+if test_wm fluxbox ; then
   if which startfluxbox >/dev/null 2>/dev/null; then
-    exec startfluxbox
+    launch_wm startfluxbox
   fi
 fi
 
 #Enlightenment 16
-if [ x$ctafconf_wm = xe16 ]; then
-    if which enlightenment >/dev/null 2>/dev/null; then
-        exec starte16
-    fi
+if test_wm e16 ; then
+  if which enlightenment >/dev/null 2>/dev/null; then
+    launch_wm starte16
+  fi
 fi
 
 #anothers wm
 if which $ctafconf_wm >/dev/null 2>/dev/null ; then
-    exec $ctafconf_wm
+  launch_wm $ctafconf_wm
 fi
 
 #term
-exec ~/.ctafconf/bin/ct-launch term
+launch_wm ~/.ctafconf/bin/ct-launch term
 
 # curr_wm=$ctafconf_wm
 # echo $ctafconf_wm >~/.ctafconf/current_wm

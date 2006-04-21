@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Sep 25 21:51:34 2005 GESTES Cedric
-## Last update Mon Apr 17 20:44:02 2006 GESTES Cedric
+## Last update Thu Apr 20 23:00:07 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -28,7 +28,7 @@ trap _trap_kill INT
 
 
 export SSFT_FRONTEND="text"
-. ~/.ctafconf/etc/shell/ssft.sh
+. ~/.ctafconf/etc/shlib/ssft.sh
 
 
 #ctafconf user profile file (don't use quote to expand ~)
