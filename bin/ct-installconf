@@ -21,6 +21,8 @@
 ## Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##
 
+grkdir=~/.ctafconf/etc/grk
+
 #catch a signal, else termcaps shit
 _trap_kill ()
 {
@@ -32,49 +34,49 @@ trap _trap_kill INT
 
 pkg_description()
 {
-    local name=$1
+  local name=$@
 
-    eval $name"_description"
-    return $?
+  eval $name"_description"
+  return $?
 }
 
 pkg_is_installed()
 {
-    local name=$1
+  local name=$@
 
-    eval $name"_is_installed"
-    return $?
+  eval $name"_is_installed"
+  return $?
 }
 
 pkg_install()
 {
-    local name=$1
+  local name=$@
 
-    eval $name"_install"
-    return $?
+  eval $name"_install"
+  return $?
 }
 
 pkg_uninstall()
 {
-    local name=$1
+  local name=$@
 
-    eval $name"_uninstall"
-    return $?
+  eval $name"_uninstall"
+  return $?
 }
 
 pkg_alwaysinstall()
 {
-    local name=$1
+  local name=$@
 
-    eval $name"_alwaysinstall"
-    return $?
+  eval $name"_alwaysinstall"
+  return $?
 }
 
 pkg_source()
 {
-  local name=$1
+  local name=$@
 
-  . ~/.ctafconf/etc/"$name".grk
+  . $grkdir/"$name".grk
 }
 
 #0 installed
@@ -82,64 +84,64 @@ pkg_source()
 #2 failed
 grk_install()
 {
-    local name
-    name=$1
-    local ret
-    . ~/.ctafconf/etc/"$name".grk
+  local name
+  name=$1
+  local ret
+  pkg_source $name
 
-    if pkg_is_installed $name; then
-        ret=1
+  if pkg_is_installed $name; then
+    ret=1
+  else
+    if pkg_install $name; then
+      ret=0
     else
-        if pkg_install $name; then
-            ret=0
-        else
-            ret=2
-        fi
+      ret=2
     fi
-    if ! pkg_alwaysinstall $name ; then
-        ret=2
-    fi
-    return $ret
+  fi
+  if ! pkg_alwaysinstall $name ; then
+    ret=2
+  fi
+  return $ret
 }
 
 grk_ask_install()
 {
-    name=$1
+  name=$1
 
-    . ~/.ctafconf/etc/"$name".grk
-    if ! pkg_is_installed $name; then
-      if ssft_yesno "Do you want to install $name" "`pkg_description $name`"; then
-        echo "Ask: $name"
-      fi
+  pkg_source $name
+  if ! pkg_is_installed $name; then
+    if ssft_yesno "Do you want to install $name" "`pkg_description $name`"; then
+      echo "Ask: $name"
     fi
+  fi
 }
 
 grk_install_list()
 {
-    list=$@
-    for i in $list; do
-        grk_install $i
-        ret=$?
-        if [ x$ret = x0 ]; then
-            echo "Package installed: $i"
-        elif [ x$ret = x1 ]; then
-            echo "Package already installed: $i"
-        else
-            echo "## Package installation failed: $i ##"
-        fi
-    done
+  list=$@
+  for i in $list; do
+    grk_install $i
+    ret=$?
+    if [ x$ret = x0 ]; then
+      echo "Package installed: $i"
+    elif [ x$ret = x1 ]; then
+      echo "Package already installed: $i"
+    else
+      echo "## Package installation failed: $i ##"
+    fi
+  done
 }
 
 
 grk_installed_list()
 {
-    ls -1 ~/.ctafconf/etc | grep ".grk$" | while read line; do
-        name=`echo $line | sed -e s/.grk//`
-        . ~/.ctafconf/etc/"$name".grk
-        if pkg_is_installed $name >/dev/null; then
-            echo "$name"
-        fi
-    done
+  ls -1 $grkdir | grep ".grk$" | while read line; do
+    name=`echo $line | sed -e s/.grk//`
+    pkg_source $name
+    if pkg_is_installed $name >/dev/null; then
+      echo "$name"
+    fi
+  done
 }
 
 #############################################################################
@@ -169,7 +171,6 @@ grk_dir ~/.ctafconf/perso/previous
 #launch profile manager
 . ~/.ctafconf/bin/ct-profile
 
-
 if ! [ -f ~/.ctafconf/perso/user-profile ] ; then
   echo "Can't find ~/.ctafconf/perso/user-profile directory"
   echo "Aborting, execute ct-profile, or relauch install"
@@ -177,9 +178,7 @@ if ! [ -f ~/.ctafconf/perso/user-profile ] ; then
 fi
 . ~/.ctafconf/perso/user-profile
 
-
 export SSFT_FRONTEND=$ctafconf_interface
-
 
 
 SSFT_DEFAULT=ask
@@ -188,24 +187,26 @@ insmethod=$SSFT_RESULT
 
 ###ASK
 if [ x$insmethod = xask ] ; then
-    ls -1 ~/.ctafconf/etc | grep ".grk$" | while read line; do
-        name=`echo $line | sed -e s/.grk//`
-        grk_ask_install $name
-    done
+  ls -1 $grkdir | grep ".grk$" | while read line; do
+    name=`echo $line | sed -e s/.grk//`
+    grk_ask_install $name
+  done
 fi
 
 ###ALL
 if [ x$insmethod = xall ] ; then
-    ls -1 ~/.ctafconf/etc | grep ".grk$" | while read line; do
-        name=`echo $line | sed -e s/.grk//`
-        echo installing $name
-        grk_install $name
-    done
+  ls -1 $grkdir | grep ".grk$" | while read line; do
+    name=`echo $line | sed -e s/.grk//`
+    echo installing $name
+    grk_install $name
+  done
 fi
 
 ###CHOICE
 if [ x$insmethod = xchoice ] ; then
-    SSFT_DEFAULT=`grk_installed_list`
-    ssft_select_multiple "Install" "Select packages you want to install" `ls -1 ~/.ctafconf/etc | grep ".grk$" | sed -e s/.grk//`
-    grk_install_list $SSFT_RESULT
+  SSFT_DEFAULT=`grk_installed_list`
+  ssft_select_multiple "Install" "Select packages you want to install" `ls -1 ~/.ctafconf/etc | grep ".grk$" | sed -e s/.grk//`
+  grk_install_list $SSFT_RESULT
 fi
+
+

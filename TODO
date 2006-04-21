@@ -20,7 +20,6 @@ V0.3.0:
 ##################TODO
 NEEDED:
 - define default program: navigateur/mail reader/term/pager/.../EDITOR/..
-- if user-profile and user-profile.csh exist ask which param to modify
 - specify interface in argument to ct-profile, ct-installconf, ...
 - add help for ct-profile, ct-installconf (for interface)
 
@@ -45,7 +44,6 @@ MINE:
 - diff .mine file /?/ (use diff3)
 
 SSFT:
-- read -e at epita
 - use ssft for ctssh, ctrepo
 
 CTAFCONF:
@@ -54,7 +52,7 @@ CTAFCONF:
 - ramdom wallpaper (wallpp = ramdom, ramdomperso)
 - makefile (download ecb, ilisp, ..)?, ct-update (update ctafconf from sf svn)
 - ct-add-wallpaper : ask if we should change the wallpaper now
-- ct-add-wallpaper : dont everwrite if a file with the same name already exist
+- ct-add-wallpaper : dont overwrite if a file with the same name already exist
 
 SHELL:
 - screen : fichier de conf std (3 windows), automatiquement lance?, keys to browse history and to change term
@@ -64,6 +62,7 @@ SHELL:
 - epita: zsh color sur systemes != netBsd
 - ctafconf.sh => add color for all term (CT_RED,CT_YELLOW,..) and for prompt
 - zsh: bindkey => "^Xf" => firefox, "^Xt" thunderbird ...
+- works on solaris 9
 
 EMACS: ## SEE .ctafconf/etc/emacs/startup.emacs ##
 
@@ -71,6 +70,7 @@ ENLIGHTENMENT:
 - Enhance integration with ctafconf(wallpapers/bindkeys/E16-Gnome)
 
 BONUS:
+- if user-profile and user-profile.csh exist ask which param to modify
 - use sabayon for gnome-conf/ff-conf
 - a gnome terminal that scroll like quake3 console using one hotkey
 - compiler for some configuration file ( emacs, fluxbox, etc..)
@@ -118,3 +118,4 @@ BONUS:
 - trap c-c then reset (avoid fucking shit at screen)
 - .mine for fluxbox user-menu
 - macro for xsession [launch_wm, launch_app, test_wm] (launch_app after a sleep after launch_wm)
+- ssft: read -e at epita

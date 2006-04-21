@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Oct  2 07:23:17 2005 GESTES Cedric
-## Last update Sat Apr  1 02:22:55 2006 GESTES Cedric
+## Last update Fri Apr 21 03:57:19 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -64,8 +64,9 @@ rpurge_cvs ()
 }
 
 #recursive grep with filename and line number
+#exclude svn
 grepr ()
 {
   arg=$@
-  grep -r -n -H $arg .
+  grep -r -n -H $arg . | grep -v ".svn-base:"
 }
