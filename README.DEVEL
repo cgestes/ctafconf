@@ -114,6 +114,10 @@ ctafconf (user-profile):
 - interface
 - sudo (ct-sudo)
 
+defaultapp (for menus):
+- webnavigator
+- mailclient
+
 shell (shell-profile):
 - zshprompt
 - email
@@ -124,7 +128,7 @@ shell (shell-profile):
 - screen at startup
 
 fluxbox:
-- style
+- style (init file)
 
 e16:
 - style

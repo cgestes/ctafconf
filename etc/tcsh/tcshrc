@@ -70,7 +70,7 @@ set listflags   = 'A'
 set watch       = (0 nobody nobody)
 set who         = "%n(`whoami`) has %a %l from %M"
 
-unset {histfile,dirsfile,autologout,implicitcd,notify,tperiod}
+unset {histfile,dirsfile,autologout,notify,tperiod} #implicitcd,
 
 #######################
 # ##### ALIASES ##### #

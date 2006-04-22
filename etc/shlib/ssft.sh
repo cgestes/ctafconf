@@ -54,10 +54,10 @@ eval_ngettext() {
 }
 #fi
 
-if ! which $PAGER >/dev/null 2>/dev/null; then
-  export PAGER="more"
-  which less >/dev/null 2>/dev/null && export PAGER="less"
-  which most >/dev/null 2>/dev/null && export PAGER="most"
+ssft_pager="more"
+if ! which $ssft_pager >/dev/null 2>/dev/null; then
+  which less >/dev/null 2>/dev/null && ssft_pager="less"
+  which most >/dev/null 2>/dev/null && ssft_pager="most"
 fi
 
 
@@ -744,7 +744,7 @@ ssft_select_multiple() {
         _l_count=$(( $_l_count + 1 ))
 	_l_ss="$(echo "$_l_selected_items" | cut -b $_l_count)"
         printf " (%s) %2s. %s\n" "$_l_ss" "$_l_count" "$_l_item"
-      done | more
+      done | ssft_pager
       echo ""
       printf "%s: " "$_l_PROMPT_STR"
       read $readparam _l_option
@@ -924,7 +924,7 @@ ssft_select_single() {
 	        _l_selected=" "
 	      fi
         printf "%s %2s. %s\n" "$_l_selected" "$_l_count" "$_l_item"
-      done | $PAGER #more
+      done | $ssft_pager #more
       echo ""
       printf "%s: " "$_l_PROMPT_STR"
       read $readparam _l_option
@@ -1110,7 +1110,7 @@ ssft_show_file() {
   ;;
   text)
     ssft_print_text_title "$_l_title"
-    more "$_l_file"
+    $ssft_pager "$_l_file"
     echo ""
   ;;
   *)

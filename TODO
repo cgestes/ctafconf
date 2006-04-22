@@ -11,11 +11,9 @@ V0.4.0:
 - enhance .mine file
 - support uninstall
 
-V0.3.0:
-- alwaysinstall should always be called !!!
-- ssft: $PAGER suck with most and less (we should type enter)
-- gnome-setting, do gnome_is_installed :
-  copie gconf.dump file somewhere at install and test with current
+V0.3.1:
+- ctrepo/ctssh
+- ramdom wm/ramdom wallpp (second modulo)
 
 ##################TODO
 NEEDED:
@@ -63,6 +61,8 @@ SHELL:
 - ctafconf.sh => add color for all term (CT_RED,CT_YELLOW,..) and for prompt
 - zsh: bindkey => "^Xf" => firefox, "^Xt" thunderbird ...
 - works on solaris 9
+- path on tcsh (see .login)
+- path only when necessary
 
 EMACS: ## SEE .ctafconf/etc/emacs/startup.emacs ##
 
@@ -119,3 +119,7 @@ BONUS:
 - .mine for fluxbox user-menu
 - macro for xsession [launch_wm, launch_app, test_wm] (launch_app after a sleep after launch_wm)
 - ssft: read -e at epita
+- ssft: $PAGER suck with most and less (we should type enter)
+- alwaysinstall should always be called !!!
+- gnome-setting, do gnome_is_installed :
+  copie gconf.dump file somewhere at install and test with current

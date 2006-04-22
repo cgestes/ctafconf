@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Mon Apr 17 21:02:01 2006 GESTES Cedric
+;; Last update Fri Apr 21 05:16:56 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: STARTUP.EMACS")
 
@@ -89,6 +89,8 @@
 ;;  - transparent (use console backcolor)
 ;;  - kill char from cur to begin
 ;;  - /???/ Emacs autoresize at start conflicts with wm app properties save (use .mine to customize the beahavour)
+;;  - file-open (Error in post-command-hook: (wrong-type-argument sequencep t))
+;;  - prev/next mark
 ;;
 ;;easy emacs:
 ;;Ctrl-/         Bounce         Move from the beginning to the end or

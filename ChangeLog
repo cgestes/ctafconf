@@ -1,8 +1,16 @@
+2006-04-22 CTAF <>
+	* ssft.sh : use more as pager if present
+	* ct-installconf : ask works
+	* ct-installconf : new item menu: information, to describe a pkg
+	* ct-installconf : alwaysinstall are alwaysintalled
+	* gnome.grk : test_install works
+
 2006-04-21 CTAF <>
 	* ct-date : bug at epita (with date +%-d)
 	* grepr : exclude svn match (.svn-base)
 	* *.grk : move all package file in etc/grk
 	* tcshrc : whoami was not found (path error on solaris9)
+	* tcshrc : implicitcd
 
 2006-04-20 CTAF <>
 	* shlib : new directory with all shell tools
@@ -14,7 +22,7 @@
 	* mode.emacs : ensure good load even if one .el fail (condition case)
 
 2006-04-17 CTAF <>
-	* globalenv : change less option (dont exit on eof, better scrolling, some hilight)
+	* globalenv : change less option (dont exit on eof, better scrolling, some highlight)
 	* ct-installconf, ct-profile : add trap, to correct termcap shit
 	* ct-profile : return dont work in standalone mode (return, then exit)
 

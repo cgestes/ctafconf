@@ -6,7 +6,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Tue Apr 11 12:32:11 2006 GESTES Cedric
-## Last update Mon Apr 17 20:59:42 2006 GESTES Cedric
+## Last update Sat Apr 22 19:04:07 2006 GESTES Cedric
 ##
 
 #--function
@@ -51,13 +51,23 @@ gnome_description()
     echo "<Control><Alt>w move        <Control><Alt>x resize"
 }
 
-
 #is this package installed?
 #0 = installed
 #1 = not installed
 gnome_is_installed()
 {
+  if ! which gconftool-2 >/dev/null 2>/dev/null; then
     return 1
+  fi
+  [ x`gconftool-2 --get /apps/metacity/global_keybindings/switch_to_workspace_1` = x"<Alt>F1" ] &&
+  [ x`gconftool-2 --get /apps/metacity/global_keybindings/switch_to_workspace_2` = x"<Alt>F2" ] &&
+  [ x`gconftool-2 --get /apps/metacity/global_keybindings/switch_to_workspace_3` = x"<Alt>F3" ] &&
+  [ x`gconftool-2 --get /apps/metacity/global_keybindings/switch_to_workspace_4` = x"<Alt>F4" ] &&
+  [ x`gconftool-2 --get /apps/metacity/window_keybindings/toggle_fullscreen` =  x"<Control><Alt>f" ] &&
+  [ x`gconftool-2 --get /apps/metacity/window_keybindings/toggle_maximized` =  x"<Control><Alt>m" ] &&
+  [ x`gconftool-2 --get /apps/metacity/window_keybindings/begin_move` =  x"<Control><Alt>w" ] &&
+  [ x`gconftool-2 --get /apps/metacity/window_keybindings/begin_resize` =  x"<Control><Alt>x" ]
+  return $?
 }
 
 #install this package is gnome_is_installed return "not installed"
@@ -120,7 +130,7 @@ gnome_install()
     return 0
 }
 
-#uninstall file install with gnome_install
+#uninstall file installed with gnome_install
 gnome_uninstall()
 {
     return 0
