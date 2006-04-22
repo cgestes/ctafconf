@@ -4,6 +4,9 @@
 	* ct-installconf : new item menu: information, to describe a pkg
 	* ct-installconf : alwaysinstall are alwaysintalled
 	* gnome.grk : test_install works
+	* ct-set-bg : ramdom | ramdomperso work
+	* ct-profile : support ramdom/ramdomperso
+	* xsession : call ct-set-bg when wm=gnome
 
 2006-04-21 CTAF <>
 	* ct-date : bug at epita (with date +%-d)

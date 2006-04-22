@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Sep 25 21:51:34 2005 GESTES Cedric
-## Last update Thu Apr 20 23:00:07 2006 GESTES Cedric
+## Last update Sat Apr 22 21:07:15 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -73,6 +73,7 @@ shownewconf()
 #enum all wallpaper
 enumwallpp()
 {
+  echo -n "ramdom/ramdomperso/"
   ls -1 ~/.ctafconf/etc/wallpaper 2>/dev/null | while read line; do
       echo -n "$line"/
   done
@@ -184,7 +185,7 @@ ancIFS=$IFS
 IFS="/"
 ctafconf_wallpaper=$(getvaldef "$ctafconf_wallpaper" 'ctafconf-psycho.jpg' )
 SSFT_DEFAULT=$ctafconf_wallpaper
-if ssft_select_single "Wallpaper" "choose your wallpaper from the list" `enumwallpp`; then
+if ssft_select_single "Wallpaper" "choose your wallpaper from the list (ramdom choose a wallpaper from etc/wallpaper and perso/wallpaper, ramdomperso choose a wallpaper just from perso/wallpaper" `enumwallpp`; then
   ctafconf_wallpaper=$(getvaldef "$SSFT_RESULT" "$ctafconf_wallpaper" )
 fi
 IFS=$ancIFS

@@ -5,7 +5,7 @@
 ## Login   <root@epita.fr>
 ##
 ## Started on  Fri Feb 18 16:13:08 2005 root
-## Last update Fri Mar 31 20:55:38 2006 GESTES Cedric
+## Last update Sat Apr 22 21:10:33 2006 GESTES Cedric
 ##
 ##ORIGINALY FROM CTAFCONF
 
@@ -26,34 +26,55 @@ if ! [ -f ~/.ctafconf/perso/user-profile ]; then
 fi
 . ~/.ctafconf/perso/user-profile
 
-wallpp=~/.ctafconf/etc/wallpaper/$ctafconf_wallpaper
-wallpp2=~/.ctafconf/perso/wallpaper/$ctafconf_wallpaper
-if [ -f $wallpp2 ]; then
-  wallpp=$wallpp2
+if [ x$ctafconf_wallpaper != xramdom ] ; then
+  sz=`ls -1 ~/.ctafconf/etc/wallpaper 2>/dev/null | wc -l`
+  sz2=`ls -1 ~/.ctafconf/perso/wallpaper 2>/dev/null | wc -l`
+  szall=$(( $sz + $sz2 ))
+  pos=$(( `date +%s` % $szall + 1 ))
+
+  if [ $pos -gt $sz ]; then
+    pos=$(( $pos - $sz ))
+    wallpp=`ls -1 ~/.ctafconf/perso/wallpaper/ | tail -$pos | head -1`
+    wallpp=~/.ctafconf/perso/wallpaper/$wallpp
+  else
+    wallpp=`ls -1 ~/.ctafconf/etc/wallpaper/ | tail -$pos | head -1`
+    wallpp=~/.ctafconf/etc/wallpaper/$wallpp
+  fi
+
+elif [ x$ctafconf_wallpaper != xramdomperso ]; then
+  sz=`ls -1 ~/.ctafconf/perso/wallpaper 2>/dev/null | wc -l`
+  pos=$(( `date +%s` % $sz + 1 ))
+  wallpp=`ls -1 ~/.ctafconf/perso/wallpaper/ | tail -$pos | head -1`
+  wallpp=~/.ctafconf/perso/wallpaper/$wallpp
+
+else
+  wallpp=~/.ctafconf/etc/wallpaper/$ctafconf_wallpaper
+  wallpp2=~/.ctafconf/perso/wallpaper/$ctafconf_wallpaper
+  if [ -f $wallpp2 ]; then
+    wallpp=$wallpp2
+  fi
 fi
 
-
-
-# if [ which gconftool-2 > /dev/null 2> /dev/null ] ; then
-#     gconftool-2 -s /desktop/gnome/background/picture_filename $wallpp
-#     gconftool-2 -s /desktop/gnome/background/picture_options stretched
-# fi
+if [ x$ctafconf_wm = xgnome ]; then
+  if which gconftool-2 > /dev/null 2> /dev/null ; then
+    echo "#### CTAFCONF: using gconftool-2"
+    gconftool-2 --type=string -s /desktop/gnome/background/picture_filename $wallpp
+    gconftool-2 --type=string -s /desktop/gnome/background/picture_options stretched
+  fi
+  exit 0
+fi
 
 if [ `which "Esetroot" >/dev/null 2>/dev/null; echo $?;` -eq 0 ]; then
   echo "#### CTAFCONF: using Esetroot"
   Esetroot -scale $wallpp;
-  exit 0
-fi
 
-if [ `which "fbsetbg" >/dev/null 2>/dev/null; echo $?;` -eq 0 ]; then
+elif [ `which "fbsetbg" >/dev/null 2>/dev/null; echo $?;` -eq 0 ]; then
   echo "#### CTAFCONF: using fbsetbg"
   fbsetbg -u xv $wallpp;
-  #fbsetroot -f $wallpp;
-  exit 0
-fi
-if ! [ `which "xsetroot" >/dev/null 2>/dev/null; echo $?;` -eq 0 ]; then
-#elif which "xsetroot"; then
+
+elif ! [ `which "xsetroot" >/dev/null 2>/dev/null; echo $?;` -eq 0 ]; then
   echo "#### CTAFCONF: using xsetroot"
   xsetroot -solid black
-  exit 0
 fi
+
+exit 0

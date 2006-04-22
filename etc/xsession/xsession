@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Mon Sep 26 02:37:56 2005 GESTES Cedric
-## Last update Thu Apr 20 23:21:41 2006 GESTES Cedric
+## Last update Sat Apr 22 21:05:39 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -31,7 +31,7 @@ if test_wm term ; then
   launch_wm ~/.ctafconf/bin/ct-launch term
 fi
 
-if test_wm gnome && test_wm e16 ; then
+if test_wm e16 ; then
   #set the wallpaper
   ~/.ctafconf/bin/ct-set-bg
 fi
