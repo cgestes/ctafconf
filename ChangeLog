@@ -1,4 +1,4 @@
-2006-04-24 CTAF <>
+2006-04-24 CTAF <> -- 0.3.0
 	* ct-set-bg : bug with gnome
 	* xsession.sh : launch app in the right order
 	* xsession.sh : bug with app launching (use eval to load more than one app by line)
