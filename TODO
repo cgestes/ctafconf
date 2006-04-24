@@ -16,11 +16,6 @@ V0.3.1:
 - ramdom wm/ramdom wallpp (second modulo)
 
 ##################TODO
-NEEDED:
-- define default program: navigateur/mail reader/term/pager/.../EDITOR/..
-- specify interface in argument to ct-profile, ct-installconf, ...
-- add help for ct-profile, ct-installconf (for interface)
-
 DOCUMENTATION:
 - emacs: README.EMACS, install just emacs, just test emacsconf, ..
 - svn: checkout from svn, update
@@ -42,15 +37,15 @@ MINE:
 - diff .mine file /?/ (use diff3)
 
 SSFT:
-- use ssft for ctssh, ctrepo
 
 CTAFCONF:
 - ramdom wm
 - uninstall with revert to date (choose from all previous file)
-- ramdom wallpaper (wallpp = ramdom, ramdomperso)
-- makefile (download ecb, ilisp, ..)?, ct-update (update ctafconf from sf svn)
 - ct-add-wallpaper : ask if we should change the wallpaper now
 - ct-add-wallpaper : dont overwrite if a file with the same name already exist
+- define default program: navigateur/mail reader/term/pager/.../EDITOR/..
+- specify interface in argument to ct-profile, ct-installconf, ...
+- add help for ct-profile, ct-installconf (for interface)
 
 SHELL:
 - screen : fichier de conf std (3 windows), automatiquement lance?, keys to browse history and to change term
@@ -58,7 +53,7 @@ SHELL:
   see http://www.die.net/doc/linux/man/man1/zshcontrib.1.html for zsh
 - kbd mapping (azerty, qwerty, dvorak) (shell/X) (Xdefault binding for term)
 - epita: zsh color sur systemes != netBsd
-- ctafconf.sh => add color for all term (CT_RED,CT_YELLOW,..) and for prompt
+- shellconf.sh => add color for all term (CT_RED,CT_YELLOW,..) and for prompt
 - zsh: bindkey => "^Xf" => firefox, "^Xt" thunderbird ...
 - works on solaris 9
 - path on tcsh (see .login)
@@ -123,3 +118,5 @@ BONUS:
 - alwaysinstall should always be called !!!
 - gnome-setting, do gnome_is_installed :
   copie gconf.dump file somewhere at install and test with current
+- ramdom wallpaper (wallpp = ramdom, ramdomperso)
+- noneed: makefile (download ecb, ilisp, ..)?, ct-update (update ctafconf from sf svn)

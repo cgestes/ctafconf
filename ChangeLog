@@ -1,3 +1,9 @@
+2006-04-24 CTAF <>
+	* ct-set-bg : bug with gnome
+	* xsession.sh : launch app in the right order
+	* xsession.sh : bug with app launching (use eval to load more than one app by line)
+	* alias : ct-log => show ctafconf.log
+
 2006-04-22 CTAF <>
 	* ssft.sh : use more as pager if present
 	* ct-installconf : ask works
@@ -7,6 +13,7 @@
 	* ct-set-bg : ramdom | ramdomperso work
 	* ct-profile : support ramdom/ramdomperso
 	* xsession : call ct-set-bg when wm=gnome
+	* perso/ctafconf.log : ctafconf log
 
 2006-04-21 CTAF <>
 	* ct-date : bug at epita (with date +%-d)

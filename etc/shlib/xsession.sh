@@ -30,37 +30,44 @@ apparray[0]=0
 #then the wm
 launch_wm ()
 {
+  echo STARTING LAUNCHING WM: $@ >>~/.ctafconf/perso/ctafconf.log
   (
-    i=1
+    i=${apparray[0]}
 
     sleep 1
     echo number of application to launch: ${apparray[0]}
 
-    while test $i -le ${apparray[0]} ; do
-      echo LAUNCHING APP: ${apparray[$i]}
-      ${apparray[$i]} &
-      i=$(( $i + 1 ))
+    while test $i -ge 1 ; do
+      echo LAUNCHING APP: "${apparray[$i]}" >>~/.ctafconf/perso/ctafconf.log
+      eval ${apparray[$i]} &
+#      echo LAUNCHED APP: "${apparray[$i]}" >>~/.ctafconf/perso/ctafconf.log
+      i=$(( $i - 1 ))
     done
   )&
+  echo LAUNCHING WM: $@ >>~/.ctafconf/perso/ctafconf.log
   exec $@
 }
 
 #append one application to the launch list
 launch_app ()
 {
-  app=$@
+  app="$@"
   i=${apparray[0]}
   i=$(( $i + 1 ))
 
   apparray[0]=$i
-  apparray[$i]=$app
+  apparray[$i]="$app"
 }
 
 #test if current wm
 test_wm ()
 {
-  wm=$@
+  local wm=$@
+  local ret=0
 
-  test x$ctafconf_wm = x$wm
-  return $?
+  echo -n "test_wm $@ = " >>~/.ctafconf/perso/ctafconf.log
+  [ x$ctafconf_wm = x$wm ]
+  ret=$?
+  echo "$ret" >>~/.ctafconf/perso/ctafconf.log
+  return $ret
 }

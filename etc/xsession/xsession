@@ -5,13 +5,15 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Mon Sep 26 02:37:56 2005 GESTES Cedric
-## Last update Sat Apr 22 21:05:39 2006 GESTES Cedric
+## Last update Mon Apr 24 02:16:51 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
 #test_wm
 #launch_app add app to launch list
 #launch_wm
+
+mv ~/.ctafconf/perso/ctafconf.log ~/.ctafconf/perso/ctafconf.log.1
 
 . ~/.ctafconf/etc/shlib/xsession.sh
 
@@ -31,9 +33,11 @@ if test_wm term ; then
   launch_wm ~/.ctafconf/bin/ct-launch term
 fi
 
-if test_wm e16 ; then
+if ! test_wm e16 ; then
   #set the wallpaper
-  ~/.ctafconf/bin/ct-set-bg
+  echo "add wallpp" >>~/.ctafconf/perso/ctafconf.log
+  #launch_app "sleep 5;" ~/.ctafconf/bin/ct-set-bg
+  launch_app ~/.ctafconf/bin/ct-set-bg
 fi
 
 #personal startup file

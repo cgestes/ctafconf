@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Fri Sep 30 22:17:52 2005 GESTES Cedric
-## Last update Sun Apr 16 02:45:59 2006 GESTES Cedric
+## Last update Mon Apr 24 02:04:36 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -120,6 +120,9 @@ alias_set l 'ls -F --color=tty'
 alias_set ll 'ls -lF --color=tty'
 alias_set la 'ls -lAF --color=tty'
 alias_set lg 'ls -F --color=tty | grep'
+
+#ctafconf log
+alias_set ct-log "$PAGER ~/.ctafconf/perso/ctafconf.log"
 
 ###UNUSED UN-USEFULL###
 #alias_set reports "w3m http://www.lrde.epita.fr/~akim/compil/reports.html"
