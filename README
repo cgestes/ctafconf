@@ -8,10 +8,9 @@ untar in your home directory.
 > tar xvzf ctafconf-DATE.tgz
 > cd .ctafconf
 
-this script save our old config file, install the new config file,
-set gnome options, install the ctafconf for xdm/gdm/kdm if wanted
-parameter possible (for interface): | dialog | gdialog | kdialog | conread
-
+#choose a graphical interface (zenity or kdialog)
+#or a console one (dialog with ncurse, or text)
+#I recommand and use dialog
 > ./ctafconf-install
 
 If you only want emacs:
@@ -19,13 +18,14 @@ ln -s ~/.ctafconf/etc/emacs/emacs ~/.emacs
 or add to your own ~/.emacs:
 (load-file "~/.ctafconf/etc/emacs/emacs")
 
-------------------EMACS ADD-ONS---------
+---------------------------EMACS ADD-ONS-------------------------------
 pour emacs:
 recuperer au choix sur le web:
-cedet           (outils pour le developpement, completion automatique, meilleur coloration, ...)
-ilisp           (lisp interactif)
-ecb             (IDE pour emacs, basé sur cedet)
-doxyemacs       (commentaire doxygen)
+- cedet     : outils pour le developpement, completion automatique,
+              meilleur coloration, ...
+- ilisp     : lisp interactif
+- ecb       : IDE pour emacs, basé sur cedet
+- doxyemacs : commentaire doxygen
 
 les decompresser dans ~/.ctafconf/etc/emacs/site-lisp
 renommer ecb-* en ecb, cedet-* en cedet, doxymacs-* en doxymacs, pareil pour ilisp
@@ -41,18 +41,21 @@ compiler chaque projet:
 
 
 ---------------------------RECOMMANDED SOFTWARE------------------------
-most            : to get color with man
-xbindkeys       : to specify global keyboard shortcut
-conky or torsmo : to draw information on your desktop
-xarg, awk       : for ssft, needed for installation
+most                      : pager enabling color with man
+xbindkeys                 : to specify global keyboard shortcut
+conky or torsmo           : to draw information on your desktop
+xarg, awk, sed, grep      : for ssft, needed for installation
+zenity, kdialog or dialog : for ssft (add graphical interface to the installer)
+
 
 ---------------------------UNINSTALL-----------------------------------
 !!highly experimental!! (use at your own risk)
 ct-uninstall : don't work at all!!
 
+
 ---------------------------REINSTALL/UPDATE----------------------------
-overwrite ~/.ctafconf with the new tarball.
-relauch ~/.ctafconf/ctafconf-install
+wait for version 0.4.0 !!!
+
 
 ---------------------------HELP----------------------------------------
 It's a good framework to create our own personnal configuration
@@ -62,25 +65,10 @@ ct-installconf : reinstall la ctafconf (et l'install aussi qd mm!)
 ct-repo : admin your repository (svn and cvs)
 ct-ssh : admin your ssh connexion
 ct-help : a litle help about the ctafconf command
+ct-date : console date reminder, usefull to remenber your gran'mother birthday
 ct-socks : set your socks password (mostly for epita)
 
 visit http://www.noshell.info for more information/help about the ctafconf
-
----------------------------FILES---------------------------------------
-.ctafconf/perso/user-profile      : user configuration modified by ct-profile
-.ctafconf/perso/user-profile.csh  : user configuration modified by ct-profile used by csh term
-.ctafconf/perso/user-profile.mine : static information (module to install, path)
-
----------------------------FOLDERS-------------------------------------
-.ctafconf                       root directory
-.ctafconf/etc                   contain all configuration files
-.ctafconf/bin                   ct-profile, ct-installconf, ctssh, ctrepo, ...
-.ctafconf/perso                 user specific configuration files
-
-.ctafconf/perso/bin             user binary
-.ctafconf/perso/semantic        semantic cache file (for emacs, when cedet is installed)
-.ctafconf/perso/previous        all file replaced by the ctafconf
-.ctafconf/perso/wallpaper       user wallpaper (ct-add-wallpaper to add one)
 
 
 ---------------------------Credits---------------------------

@@ -5,14 +5,22 @@
 ===========================================================
 
 
-
 ===========================================================
-FILES:
+FILES AND FOLDERS:
 ===========================================================
-all files in .ctafconf/etc must be static (user should not edit them, program should not add file into)
-all binary files should be in .ctafconf/bin
-all files in .ctafconf/perso must not be overwritten and are user specific
+- all files in .ctafconf/etc must be static (user should not edit them, program should not add file into)
+- all binary files should be in .ctafconf/bin
+- all files in .ctafconf/perso must not be overwritten and are user specific
 
+.ctafconf                       root directory
+.ctafconf/etc                   contain all configuration files
+.ctafconf/bin                   ct-profile, ct-installconf, ctssh, ctrepo, ...
+
+.ctafconf/perso                 user specific configuration files
+.ctafconf/perso/bin             user binary
+.ctafconf/perso/semantic        semantic cache file (for emacs, when cedet is installed)
+.ctafconf/perso/previous        all file replaced by the ctafconf
+.ctafconf/perso/wallpaper       user wallpaper (ct-add-wallpaper to add one)
 
 
 ===========================================================

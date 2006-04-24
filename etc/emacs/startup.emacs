@@ -5,14 +5,13 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Fri Apr 21 05:16:56 2006 GESTES Cedric
+;; Last update Mon Apr 24 05:41:05 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: STARTUP.EMACS")
 
 ;; Change startup message...
 (defcustom hinitial-scratch-message (purecopy "\
 ;; CTAFCONF Emacs (www.noshell.info) -- for more help: M-x ct-help
-;; to compile this conf 'emacs -batch -l ~/.ctafconf/etc/emacs/compile_conf.el'
 ;; you need, cedet, semantic and ilisp installed in .ctafconf/etc/emacs/site-lisp
 ;;
 ;; [S-left]     previous buffer         [S-right]       next buffer
@@ -91,12 +90,13 @@
 ;;  - /???/ Emacs autoresize at start conflicts with wm app properties save (use .mine to customize the beahavour)
 ;;  - file-open (Error in post-command-hook: (wrong-type-argument sequencep t))
 ;;  - prev/next mark
+;;  - support compile this conf 'emacs -batch -l ~/.ctafconf/etc/emacs/compile_conf.el'
 ;;
 ;;easy emacs:
-;;Ctrl-/         Bounce         Move from the beginning to the end or
-;;               Expression     from the end to the beginning of a
-;;                              balanced expression, such as one enclosed
-;;                              by () [] or {}
+;;Ctrl-/          Bounce         Move from the beginning to the end or
+;;                Expression     from the end to the beginning of a
+;;                               balanced expression, such as one enclosed
+;;                               by () [] or {}
 ;;backspace kill the selection, shift up and down => selection
 ;; Ctrl-F5        Character      Duplicate the character from the line
 ;;                Above          above, and move one character forward.

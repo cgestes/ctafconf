@@ -36,9 +36,13 @@ MINE:
 - emacs size (set/unset)
 - diff .mine file /?/ (use diff3)
 
+CT-DATE:
+- use ssft, add to xsession?
+
 SSFT:
 
 CTAFCONF:
+- remove useless stuff (ctafconf_config) (see how to manage ls at epita that's all)
 - ramdom wm
 - uninstall with revert to date (choose from all previous file)
 - ct-add-wallpaper : ask if we should change the wallpaper now
