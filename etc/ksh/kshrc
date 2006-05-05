@@ -5,12 +5,14 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Thu Oct  6 04:55:46 2005 GESTES Cedric
-## Last update Fri Mar 31 19:36:29 2006 GESTES Cedric
+## Last update Fri May  5 17:27:10 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
 # skip remaining setup if shell non-interactive
 [[ -o interactive ]] || return 0
+[ a$HOST = agate-ssh ] && return 0
+
 echo -n "shell: ksh, "
 cat ~/.ctafconf/etc/shell/motd
 

@@ -21,16 +21,51 @@
 ## Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##
 
+
 #declare apparray as an array
 declare -a apparray
 #number of application
 apparray[0]=0
 
+#catch a signal, else termcaps shit
+_trap_kill ()
+{
+#  trap "" INT TERM KILL
+  echo "killing --$@--" >>~/.ctafconf/perso/ctafconf.log
+}
+
+trap _trap_kill INT TERM KILL
+
+loop_wm()
+{
+  local curr_wm=$ctafconf_wm
+#  local pid_to_kill=$1
+  local fwm=~/.ctafconf/perso/current_wm.$DISPLAY
+  local fwmpid=~/.ctafconf/perso/wm_pid
+
+  echo $ctafconf_wm >$fwm
+  echo "ENTERING XSESSION LOOP" >>~/.ctafconf/perso/ctafconf.log
+
+  while [ x = x ] ; do
+    if ! [ x`cat $fwm` = x$curr_wm ]; then
+#      killall -g wm.sh
+      #fucking kill builtin, use real one
+      echo "IN DA LOOP" >>~/.ctafconf/perso/ctafconf.log
+      curr_wm=`cat $fwm`
+      /bin/kill -- `cat $fwmpid`
+      xterm
+    fi
+    sleep 1
+    echo "LOOP --$wm_pid--" >>~/.ctafconf/perso/ctafconf.log
+  done
+  echo "EXIT FROM XSESSION LOOP" >>~/.ctafconf/perso/ctafconf.log
+}
+
 #launch delayed application
 #then the wm
 launch_wm ()
 {
-  echo STARTING LAUNCHING WM: $@ >>~/.ctafconf/perso/ctafconf.log
+  echo "STARTING LAUNCHING WM: $@" >>~/.ctafconf/perso/ctafconf.log
   (
     i=${apparray[0]}
 
@@ -40,12 +75,26 @@ launch_wm ()
     while test $i -ge 1 ; do
       echo LAUNCHING APP: "${apparray[$i]}" >>~/.ctafconf/perso/ctafconf.log
       eval ${apparray[$i]} &
-#      echo LAUNCHED APP: "${apparray[$i]}" >>~/.ctafconf/perso/ctafconf.log
       i=$(( $i - 1 ))
     done
   )&
   echo LAUNCHING WM: $@ >>~/.ctafconf/perso/ctafconf.log
-  exec $@
+  #(exec ~/wm.sh "$@" & echo $)&
+  pidpid=$!
+  {
+    eval ~/wm.sh "$@"
+    wm_pid=$!
+    echo WMPID: $wm_pid >>~/.ctafconf/perso/ctafconf.log
+    wait $wm_pid
+    echo WMPID: $wm_pid >>~/.ctafconf/perso/ctafconf.log
+    if [ x$killing_wm = x$wm_pid ]; then
+      echo BYEBYE, SHUTDOWN: $@ >>~/.ctafconf/perso/ctafconf.log
+      kill $pidpid
+      exit
+    fi
+  }&
+  loop_wm
+  echo BYEBYE, SHOULD NOT BE THERE: $@ >>~/.ctafconf/perso/ctafconf.log
 }
 
 #append one application to the launch list

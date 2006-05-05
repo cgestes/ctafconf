@@ -225,6 +225,6 @@ grk_mine ()
 #     fi
 
 #   else
-    ssft_display_message "Change in user-specific file" "The file $src.mine have been updated upstream. You should compare ~/.ctafconf/etc/mine/$src.mine and your's ~/.ctafconf/perso/$src.mine"
+#    ssft_display_message "Change in user-specific file" "The file $src.mine have been updated upstream. You should compare ~/.ctafconf/etc/mine/$src.mine and your's ~/.ctafconf/perso/$src.mine"
 #  fi
 }

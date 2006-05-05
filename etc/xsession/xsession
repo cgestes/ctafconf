@@ -5,13 +5,16 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Mon Sep 26 02:37:56 2005 GESTES Cedric
-## Last update Mon Apr 24 02:16:51 2006 GESTES Cedric
+## Last update Thu Apr 27 02:41:51 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
 #test_wm
 #launch_app add app to launch list
 #launch_wm
+#don't relaunch a wm before, the loop (protect with one var)
+
+
 
 mv ~/.ctafconf/perso/ctafconf.log ~/.ctafconf/perso/ctafconf.log.1
 
@@ -28,16 +31,15 @@ if [ -f ~/.ctafconf/perso/user-profile ] ; then
   . ~/.ctafconf/perso/user-profile
 fi
 
+if ! test_wm e16 ; then
+  #set the wallpaper
+  #launch_app "sleep 5;" ~/.ctafconf/bin/ct-set-bg
+  launch_app ~/.ctafconf/bin/ct-set-bg
+fi
+
 if test_wm term ; then
   #appel bloquant
   launch_wm ~/.ctafconf/bin/ct-launch term
-fi
-
-if ! test_wm e16 ; then
-  #set the wallpaper
-  echo "add wallpp" >>~/.ctafconf/perso/ctafconf.log
-  #launch_app "sleep 5;" ~/.ctafconf/bin/ct-set-bg
-  launch_app ~/.ctafconf/bin/ct-set-bg
 fi
 
 #personal startup file
@@ -59,7 +61,6 @@ else
   fi
 fi
 
-
 #lauch kde
 if test_wm kde ; then
     if which startkde >/dev/null 2>/dev/null; then
@@ -73,7 +74,6 @@ if test_wm xfce4 ; then
     launch_wm startxfce4
   fi
 fi
-
 
 #fluxbox
 if test_wm fluxbox ; then
@@ -90,19 +90,11 @@ if test_wm e16 ; then
 fi
 
 #anothers wm
-if which $ctafconf_wm >/dev/null 2>/dev/null ; then
-  launch_wm $ctafconf_wm
-fi
+#if which $ctafconf_wm >/dev/null 2>/dev/null ; then
+#  launch_wm $ctafconf_wm
+#fi
 
 #term
-launch_wm ~/.ctafconf/bin/ct-launch term
+#launch_wm ~/.ctafconf/bin/ct-launch term
 
-# curr_wm=$ctafconf_wm
-# echo $ctafconf_wm >~/.ctafconf/current_wm
 
-# while ; do
-#     if ! [ x`cat ~/.ctafconf/current_wm` = x$curr_wm ]; then
-#         xterm
-#         sleep 2
-#     fi
-# done

@@ -5,12 +5,12 @@
 ## Login   <gestes_c@epita.fr>
 ##
 ## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
-## Last update Fri Mar 31 19:36:17 2006 GESTES Cedric
+## Last update Fri May  5 17:25:27 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
 # Shell is non-interactive.  Be done now
-if [[ $- != *i* ]]; then
+if [[ $- != *i* ]] || [ a$HOST = agate-ssh ]; then
     return
 fi
 echo -n "shell: zsh, "

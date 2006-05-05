@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Oct  9 22:15:03 2005 GESTES Cedric
-## Last update Thu Mar 23 02:55:47 2006 GESTES Cedric
+## Last update Thu Apr 27 06:09:57 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -43,11 +43,11 @@ fi
 #firefox
 if [ x$param = xff ]; then
   if which firefox 2>/dev/null >/dev/null; then
-    `which firefox`
+    exec firefox
     exit
   fi
   if which mozilla-firefox >/dev/null 2>/dev/null ; then
-     `which mozilla-firefox`
+     exec mozilla-firefox
      exit
   fi
 fi
@@ -55,34 +55,42 @@ fi
 #thunderbird
 if [ x$param = xtb ]; then
   if which mozilla-thunderbird >/dev/null 2>/dev/null ; then
-      `which mozilla-thunderbird`
+      exec mozilla-thunderbird
       exit
   fi
 
   if which thunderbird 2>/dev/null >/dev/null ; then
-      `which thunderbird`
+      exec thunderbird
       exit
   fi
 fi
+
 
 #term
 if [ x$param = xterm ] || [ x$param = xtermrev ] ; then
   [ x$param = xterm ] && termparam="-fg white -bg black"
   [ x$param = xtermrev ] && termparam="-fg black -bg white"
   if which gnome-terminal >/dev/null 2>/dev/null ; then
-      `which gnome-terminal`
+      exec gnome-terminal
       exit
   fi
   if which Eterm >/dev/null 2>/dev/null ; then
-      `which Eterm --trans --buttonbar 0 --scrollbar=off -O --shade 75`
+      exec Eterm --trans --buttonbar 0 --scrollbar=off -O --shade 75
       exit
   fi
   if which aterm >/dev/null 2>/dev/null ; then
-      `which aterm $termparam`
+      exec aterm $termparam
       exit
   fi
   if which xterm >/dev/null 2>/dev/null ; then
-      `which xterm $termparam`
+      exec xterm $termparam
       exit
   fi
 fi
+
+if [ x$param = xwm ] && [ x=$param2 != x ]; then
+  gnome) exec gnome-session;;
+  fluxbox) exec startfluxbox ;;
+  *) echo bad parameter >&2 ;;
+done
+esac

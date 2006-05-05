@@ -1,3 +1,9 @@
+2006-05-05 CTAF <>
+	* shell : dont load rc and env on gate-ssh (avoid epita "close compte")
+
+2006-04-25 CTAF <>
+	* ct-set-bg : support kde
+
 2006-04-24 CTAF <> -- 0.3.0
 	* ct-set-bg : bug with gnome
 	* xsession.sh : launch app in the right order
