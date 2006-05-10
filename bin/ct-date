@@ -1,11 +1,11 @@
-#!/bin/sh
+#!/bin/sh -e
 ## ct-date for ctafconf in /home/ctaf/.ctafconf/etc/shell
 ##
 ## Made by GESTES Cedric
 ## Login   <goctaf@gmail.com>
 ##
 ## Started on  Fri Mar 31 19:54:39 2006 GESTES Cedric
-## Last update Fri Apr 21 02:15:56 2006 cedric gestes
+## Last update Tue May  9 21:22:21 2006 GESTES Cedric
 ##
 ##use: http://www.intuitive.com/wicked/showscript.cgi?030-agenda.sh
 ##use: http://aplawrence.com/Bofcusm/1455.html
@@ -40,7 +40,10 @@ agendafile="$HOME/.ctafconf/perso/reminder"
 tomorrow()
 {
     local next=$1
-    day=$(( `date +%d` + $next ))
+
+    day=`date +%d`
+    day=`denormanumber $day`
+    day=$(( $day + $next ))
     month=`date +%m`
     year=`date +%Y`
     set `cal $month $year`
@@ -87,6 +90,18 @@ normalize()
   # return string with first char uppercase, next two lowercase
   echo -n $1 | cut -c1  | tr '[[:lower:]]' '[[:upper:]]'
   echo  $1 | cut -c2-3| tr '[[:upper:]]' '[[:lower:]]'
+}
+
+denormanumber()
+{
+  local num=$1
+
+  first=`echo $num | cut -c1`
+  if [ x$first = x0 ]; then
+    echo $num | cut -c2-
+  else
+    echo $num
+  fi
 }
 
 normanumber()

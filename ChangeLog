@@ -1,3 +1,11 @@
+2006-05-09 CTAF <>
+	* ct-date : bug with $((08)), now use denormanumber
+	* emacs : hightlight current line
+	* emacs : show buffer name in the window title
+	* emacs : show trailing white space
+	* emacs : wb-line-number : display line number on the left of each line
+	* emacs : show shorcut for the last executed command if available
+
 2006-05-05 CTAF <>
 	* shell : dont load rc and env on gate-ssh (avoid epita "close compte")
 

@@ -31,6 +31,7 @@ Global advise:
 - always quote string and variable to avoid problem with string containing space
 - use shell lib
 - $(( 1 + 2 )) dont work on sun (jsh)
+- $(( 077 )) = 63  , USE: $(( [10]077)) = 77 (find a solution)
 
 ######################
 --shell lib
@@ -134,6 +135,7 @@ shell (shell-profile):
 - pager
 - editor
 - screen at startup
+- host to ban (restricted host)
 
 fluxbox:
 - style (init file)

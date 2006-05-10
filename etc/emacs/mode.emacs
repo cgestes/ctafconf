@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 00:57:16 2006 GESTES Cedric
-;; Last update Wed Apr 19 23:38:43 2006 GESTES Cedric
+;; Last update Tue May  9 23:05:21 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: MODE.EMACS")
 
@@ -168,3 +168,51 @@
   (error
    (message "Cannot load marker-visit %s" (cdr err))))
 
+;;highlight current line
+(hl-line-mode)
+
+;;line number
+(condition-case err
+    (progn
+      (require 'wb-line-number))
+  (error
+   (message "Cannot load wb-line-number %s" (cdr err))))
+
+
+
+;; (autoload 'html-helper-mode "html-helper-mode" "Yay HTML" t)
+;;                     (load-library "hhm-config")
+;;                     (setq auto-mode-alist (cons '("\\.html$" . html-helper-mode) auto-mode-alist))
+;;                     (setq auto-mode-alist (cons '("\\.asp$" . html-helper-mode) auto-mode-alist))
+;;                     (setq auto-mode-alist (cons '("\\.phtml$" . html-helper-mode) auto-mode-alist))
+
+;; (defun easymacs-folding ()
+
+;;   (require 'hideshow)
+;;   (require 'outline)
+;;   (require 'fold-dwim)
+
+;;   (autoload 'speedbar-frame-mode "speedbar" "Popup a speedbar frame" t)
+;;   (autoload 'speedbar-get-focus "speedbar" "Jump to speedbar frame" t)
+
+;;   ;; Search in comments as well as "code"
+;;   (setq hs-isearch-open t)
+;;   (setq hs-hide-comments-when-hiding-all t)
+;;   (setq hs-allow-nesting t)
+
+;;   (defun imenu-or-not ()
+;;     "Try to add an imenu when we visit a file, catch and nil if
+;; the mode doesn't support imenu."
+;;     (condition-case nil
+;; 	(imenu-add-menubar-index)
+;;       (error nil)))
+;;   (add-to-list 'find-file-hooks 'imenu-or-not)
+
+;;   (setq imenu-max-items 50
+;;         imenu-scanning-message nil)
+;;   ;;Get rid of an annoying error
+;;   (defun imenu-progress-message (prevpos &optional relpos reverse)
+;;        ())
+
+;;   )
+;; (easymacs-folding)

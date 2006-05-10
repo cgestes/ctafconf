@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Mon Apr 24 05:41:05 2006 GESTES Cedric
+;; Last update Tue May  9 21:57:48 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: STARTUP.EMACS")
 
@@ -47,6 +47,8 @@
 ;; c-c c-k char mode
 ;; c-c c-c control-c in a term (interrupt)
 
+;; m-x wb-line-number-toggle (toggle line number on the left)
+;;
 ;; emacs default keybinding
 ;; c-x c-e :evaluate elisp expression
 ;; c-x 4 a :add one entry to the ChangeLog
@@ -76,7 +78,7 @@
 ;;  - truncate line
 ;;  - working directory for gdb/compile
 ;;  - switch key for group of windows in ecb
-;;  - doxyemacs (auto comment, with good param)
+;;  - doxymacs (auto comment, with good param)
 ;;  - kill-word, kill-ring,..
 ;;  - svn
 ;;  - bookmark, folding

@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:13:33 2006 GESTES Cedric
-;; Last update Fri Apr 14 05:52:25 2006 GESTES Cedric
+;; Last update Tue May  9 22:07:31 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: SETTINGS.EMACS")
 
@@ -173,6 +173,20 @@
 ;;0 is the default for the linux console
 (normal-erase-is-backspace-mode 0)
 
+;; Displaying buffer's name on titlebar
+(setq frame-title-format
+      '(buffer-file-name "Emacs: %b (%f)" "Emacs: %b"))
+
+;;; Display an ugly color when there is some space before EOL
+(setq show-trailing-whitespace t)
+(setq-default show-trailing-whitespace t)
+
+;;show shorcut for the last executed command if available
+(setq teach-extended-commands-p t)
+
+; make scripts executable upon saving
+(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
+
 ;;;;;;STYLE;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;color
 (set-face-background   'modeline "black")
@@ -189,6 +203,5 @@
         (foreground-color . "MediumPurple2")
         (background-color . "black")))
 )
-
 
 
