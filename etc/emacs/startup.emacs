@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Tue May  9 21:57:48 2006 GESTES Cedric
+;; Last update Thu May 11 20:31:47 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: STARTUP.EMACS")
 
@@ -93,6 +93,7 @@
 ;;  - file-open (Error in post-command-hook: (wrong-type-argument sequencep t))
 ;;  - prev/next mark
 ;;  - support compile this conf 'emacs -batch -l ~/.ctafconf/etc/emacs/compile_conf.el'
+;;  - size of debugger windows, dont send focus to this windows (lisp)
 ;;
 ;;easy emacs:
 ;;Ctrl-/          Bounce         Move from the beginning to the end or

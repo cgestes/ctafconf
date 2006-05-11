@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:13:33 2006 GESTES Cedric
-;; Last update Tue May  9 22:07:31 2006 GESTES Cedric
+;; Last update Thu May 11 20:21:27 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: SETTINGS.EMACS")
 
@@ -186,22 +186,4 @@
 
 ; make scripts executable upon saving
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
-
-;;;;;;STYLE;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;color
-(set-face-background   'modeline "black")
-(set-face-foreground   'modeline "steelblue3")
-(set-face-background   'scroll-bar "#0050C5")
-(set-face-foreground   'scroll-bar "#0050C5")
-
-;;test si on est en graphique
-(if window-system
-    (setq default-frame-alist
-      '((width . 80) (height . 30)
-        (cursor-color . "yellow")
-        (cursor-type . box)
-        (foreground-color . "MediumPurple2")
-        (background-color . "black")))
-)
-
 

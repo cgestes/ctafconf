@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:14:21 2006 GESTES Cedric
-;; Last update Mon Mar 27 11:04:09 2006 GESTES Cedric
+;; Last update Thu May 11 20:36:07 2006 GESTES Cedric
 ;;
 
 (message "ctafconf loading: PROG.EMACS")
@@ -145,7 +145,6 @@
       (global-semantic-highlight-edits-mode 1)
       (global-semantic-stickyfunc-mode 1)
 
-      (global-highlight-changes 1)
       (setq semanticdb-default-save-directory "~/.ctafconf/perso/semantic")
       ;;(global-set-key "\C-SPC" 'semantic-complete-analyze-inline)
       ;; This turns on modes that aid in grammar writing and semantic tool
@@ -156,6 +155,10 @@
   (error
    (message "Cannot load CEDET %s" (cdr err))))
 
+;; (global-highlight-changes 1)
+;; (highlight-changes-rotate-faces)
+;; (setq highlight-changes-colours
+;;   '("yellow" "magenta" "blue" "maroon" "firebrick" "green4" "DarkOrchid"))
 
 
 (condition-case err

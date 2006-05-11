@@ -5,26 +5,9 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 00:58:57 2006 GESTES Cedric
-;; Last update Thu Mar  2 06:07:03 2006 root
+;; Last update Thu May 11 21:05:48 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: FUNCTIONS.EMACS")
-
-(defun devenv()
-  (interactive)
-  (split-window-vertically 55)
-  (find-file "ChangeLog")
-  (split-window-horizontally)
-  (other-window 2)
-  (split-window-horizontally)
-  (other-window 1)
-  (ansi-term "/bin/sh")
-  (other-window 1)
-  (find-file "main.cc")
-  ;;on active l'auto-scrolling ohorizontal:
-  (hscroll-global-mode)
-  ;;on lance la speedar
-  (speedbar)
-  )
 
 (defun jl-kill-region ()
   "if the mark is not active kill the current word \

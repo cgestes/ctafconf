@@ -1,5 +1,6 @@
 2006-05-11 CTAF <>
 	* color.emacs : new file for emacs color theme
+	* emacs : remove hightlight change => text tend to be unreadeable
 
 2006-05-09 CTAF <>
 	* ct-date : bug with $((08)), now use denormanumber
