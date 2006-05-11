@@ -46,6 +46,8 @@
 (safe-load "~/.ctafconf/etc/emacs/menu.emacs")
 ;;test
 ;;(safe-load "~/.ctafconf/etc/emacs/test.emacs")
+;;color
+(safe-load "~/.ctafconf/etc/emacs/color.emacs")
 
 
 

@@ -1,0 +1,112 @@
+;;
+;; color.emacs for GRK in /home/ctaf/.ctafconf/etc/emacs
+;;
+;; Made by GESTES Cedric
+;; Login   <ctaf@epita.fr>
+;;
+;; Started on  Thu May 11 19:53:25 2006 GESTES Cedric
+;; Last update Thu May 11 19:56:14 2006 GESTES Cedric
+;;
+;; source: http://blog.pettomato.com/content/site-lisp/.emacs
+
+(defvar running-on-windows (memq system-type '(windows-nt cygwin)))
+(defvar running-on-linux (not running-on-windows))
+(defvar running-on-x (eq window-system 'x))
+
+(defun console-color-theme()
+  "A console scheme"
+	(interactive "")
+  (setq default-frame-alist
+        '((foreground-color . "white")
+          (background-color . "black")
+					(background-mode  . dark)))
+  (set-cursor-color "green")
+  (set-mouse-color "white")
+  (custom-set-faces
+   '(default														 ((t (:background "black"		:foreground "white" ))))
+   '(cursor														 ((t (:background "white"		:foreground "black" ))))
+   '(highlight													 ((t (:background "yellow"  :foreground "black"))))
+   '(region														 ((t (:background "blue"		:foreground "white"))))
+   '(isearch														 ((t (:background "blue"    :foreground "white"))))
+   '(trailing-whitespace								 ((t (:background "blue"))))
+   '(font-lock-comment-face             ((t (:foreground "red"))))
+   '(font-lock-function-name-face       ((t (:foreground "orange"))))
+   '(font-lock-builtin-face             ((t (:foreground "magenta"))))
+   '(font-lock-string-face              ((t (:foreground "green"))))
+   '(font-lock-constant-face            ((t (:foreground "cyan"))))
+   '(font-lock-keyword-face             ((t (:foreground "yellow"))))
+   '(font-lock-type-face                ((t (:foreground "green"))))
+   '(font-lock-variable-name-face       ((t (:foreground "blue"))))
+   '(font-lock-warning-face						 ((t (:foreground "red"))))))
+
+(defun x-color-theme()
+  "A color scheme"
+  (interactive "")
+  ;;	(set-face-font 'default "-*-proggycleancp-*-*-*-*-*-*-*-*-*-*-*-*")
+  (setq default-frame-alist
+        '((background-mode  . dark)
+					(top . 2)
+					(left . 2)
+					(unsplittable)
+					(modeline . t)
+					(width . 141)
+					(height . 54)
+					(name . "")
+					(display-type . color)
+					(scroll-bar-width)
+					(cursor-type . box)
+;;					(auto-lower)
+;;					(auto-raise)
+					(title)
+;;					(buffer-predicate)
+					(tool-bar-lines . 0)
+					(menu-bar-lines . 0)
+					(scroll-bar-background . "grey75")
+					(scroll-bar-foreground)
+					(line-spacing)
+					(screen-gamma)
+					(border-color . "black")
+					(cursor-color . "#7ac470")
+					(mouse-color . "white")
+					(background-color . "#000000")
+					(foreground-color . "#f0f0f0")
+					(vertical-scroll-bars)
+					(internal-border-width . 1)
+					(border-width . 2)
+					(font . "-windows-ProggyCleanCP-medium-r-normal-sans-13-80-96-96-c-70-iso8859-1")))
+  ;;  (set-cursor-color "green")
+  ;;  (set-mouse-color "white")
+	(let ((black "#000000")
+				(red "#a35757")
+				(green "#7ac470")
+				(yellow "#dfe14e")
+				(orange "#ef6d22")
+				(blue "#5083b2")
+				(magenta "#b781ac")
+				(cyan "#b0b5d2")
+				(white "#f0f0f0"))
+		(custom-set-faces
+		 `(default														((t (:background ,black		:foreground ,white ))))
+		 `(cursor														  ((t (:background ,green		:foreground ,black ))))
+		 `(highlight													((t (:background ,yellow   :foreground ,black))))
+		 `(region														  ((t (:background ,blue			:foreground ,white))))
+		 `(isearch														((t (:background ,blue			:foreground ,white))))
+		 `(trailing-whitespace								((t (:background ,blue))))
+		 `(font-lock-comment-face             ((t (:foreground ,red))))
+		 `(font-lock-function-name-face       ((t (:foreground ,orange))))
+		 `(font-lock-builtin-face             ((t (:foreground ,magenta))))
+		 `(font-lock-string-face              ((t (:foreground ,green))))
+		 `(font-lock-constant-face            ((t (:foreground ,cyan))))
+		 `(font-lock-keyword-face             ((t (:foreground ,yellow))))
+		 `(font-lock-type-face                ((t (:foreground ,green))))
+		 `(font-lock-variable-name-face       ((t (:foreground ,blue))))
+		 `(font-lock-warning-face						  ((t (:foreground ,red))))
+		 `(hi-blue														((t (:foreground ,blue))))
+		 `(hi-green														((t (:foreground ,green))))
+		 `(hi-yellow													((t (:foreground ,yellow))))
+		 `(hi-red-b														((t (:foreground ,red))))
+		 `(hi-pink														((t (:foreground ,magenta)))))))
+
+(if running-on-x
+		(x-color-theme)
+	(console-color-theme))
