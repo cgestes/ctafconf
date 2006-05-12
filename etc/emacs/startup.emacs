@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Thu May 11 20:31:47 2006 GESTES Cedric
+;; Last update Fri May 12 04:03:15 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: STARTUP.EMACS")
 
@@ -24,17 +24,17 @@
 ;; [F5]         terminal                [S-F5]          speedbar
 ;; [F6]         togle bookmark          [S/C-F6]        next/prev bookmark
 ;; [M-F6]       next mark               [C-M-F6]        prev mark (made with C-space)
-;; [F7]		SpeedBar
-;; [F8]		Compile                 [S-F8]          debug
+;; [F7]		      next error              [S-F7]          previous error
+;; [F8]		Compile                       [S-F8]          debug
 ;; [F9]		Reindent current-file
 ;; [F10]	Reindent a Directory
 ;; [F11]	show ecb (code browser) [S-F11]         hide ecb (code browser)
 ;; [F12][A-Pup]	scroll-other-window     [S-F12][A-Pdown]scroll-other-window-down
 ;; [S-SPC]      inline completion
-;; M-s          Recall last kbd macro, C-x ( record, C-x ) stop recording
+;; M-s          Recall last kbd macro, 'C-x (' record, 'C-x )' stop recording
 ;; M-l          Goto-line
 ;; C-return     Box-mode selection
-;; C--		undo
+;; C-_		undo
 ;; C-c r	revert buffer
 ;; M-x dos2unix	convert a Dos format to unix format
 ;; M-x setget to create {set,get}_var function (on the line)
@@ -53,6 +53,11 @@
 ;; c-x c-e :evaluate elisp expression
 ;; c-x 4 a :add one entry to the ChangeLog
 
+;; DEBUG/COMPILATION
+;; c-up / c-down in gdb cycle through history
+;; c-x SPC to set a break point in a source file
+;; c-c c-c to send a INT signal (a simple c-c in fact)
+
 ;; DOXYEMACS
 ;; C-c d ? will look up documentation for the symbol under the point.
 ;; C-c d r will rescan your Doxygen tags file.
@@ -66,6 +71,8 @@
 ;;LEARN one key:
 ;;M-x global-set-key
 ;;C-x ESC ESC (affiche la commande precedente nikel chrome)
+
+;; quit emacs backtrace : q
 
 ;; when opening file [C-UP], [C-DOWN] move up and down into the history
 ;; to get the standart open file [C-x f] then [C-f]
@@ -90,7 +97,6 @@
 ;;  - transparent (use console backcolor)
 ;;  - kill char from cur to begin
 ;;  - /???/ Emacs autoresize at start conflicts with wm app properties save (use .mine to customize the beahavour)
-;;  - file-open (Error in post-command-hook: (wrong-type-argument sequencep t))
 ;;  - prev/next mark
 ;;  - support compile this conf 'emacs -batch -l ~/.ctafconf/etc/emacs/compile_conf.el'
 ;;  - size of debugger windows, dont send focus to this windows (lisp)

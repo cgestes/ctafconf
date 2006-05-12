@@ -26,6 +26,14 @@
 			  "~/.ctafconf/etc/emacs/site-lisp/sieve/") load-path))
 
 
+;;debug those file on error
+(setq debug-on-error t)
+;;;;This sets garbage collection to hundred times of the default.
+;;;;Supposedly significantly speeds up startup time. (Seems to work
+;;;;for me,  but my computer is pretty modern. Disable if you are on
+;;;;anything less than 1 ghz).
+(setq gc-cons-threshold 50000000)
+
 (load-file "~/.ctafconf/etc/emacs/site-lisp/safe-load.el")
 
 ;;startup message

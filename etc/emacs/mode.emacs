@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 00:57:16 2006 GESTES Cedric
-;; Last update Tue May  9 23:05:21 2006 GESTES Cedric
+;; Last update Fri May 12 02:40:21 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: MODE.EMACS")
 
@@ -178,6 +178,16 @@
   (error
    (message "Cannot load wb-line-number %s" (cdr err))))
 
+
+;;;SavePlace- this puts the cursor in the last place you editted
+;;;a particular file. This is very useful for large files.
+(condition-case err
+    (progn
+      (require 'saveplace)
+      (setq-default save-place t)
+      )
+  (error
+   (message "Cannot load saveplace %s" (cdr err))))
 
 
 ;; (autoload 'html-helper-mode "html-helper-mode" "Yay HTML" t)
