@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:16:47 2006 GESTES Cedric
-;; Last update Sat Apr 15 04:40:15 2006 GESTES Cedric
+;; Last update Fri May 12 23:12:30 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: BINDINGS.EMACS")
 ;;(global-unset-key "\M-[")
@@ -27,6 +27,7 @@
 (global-set-key [C-mouse-5] 'up-a-lot)
 
 (defalias 'switch-to-next-buffer 'bury-buffer)
+
 (defun switch-to-previous-buffer ()
   "Switches to previous buffer"
   (interactive)
@@ -41,6 +42,8 @@
 
 (global-set-key [M-right]       'my-previous-buffer)
 (global-set-key [M-left]        'my-next-buffer)
+
+(global-set-key "\M-l" 'goto-line)
 
 ;;(global-set-key [CS-right]       'my-previous-buffer)
 ;;(global-set-key [CS-left]        'my-next-buffer)
@@ -69,9 +72,6 @@
 (global-set-key [C-kp-delete] 'kill-word)
 (global-set-key [C-backward-delete-char] 'backward-kill-word)
 
-;;;;CLAVIER
-(global-set-key "\C-c\C-z" 'zlock)
-
 ;;changement de buffer ac ctrl+tab
 (global-set-key [(control tab)] 'other-window)
 
@@ -97,6 +97,7 @@
 (global-set-key [f3] 'query-replace)
 (global-set-key [(shift f3)] 'replace-string)
 (global-set-key [f15] 'replace-string)
+(global-set-key [(control f3)]   'occur)
 
 (global-set-key [f4] 'comment-region)
 (global-set-key [(shift f4)] 'uncomment-region)
@@ -110,30 +111,34 @@
 (global-set-key [(shift f6)] 'bm-next)
 (global-set-key [f18] 'bm-next)
 (global-set-key [(control f6)] 'bm-previous)
-(global-set-key [(alt f6)] 'marker-visit-next)
-(global-set-key [(alt control f6)] 'marker-visit-prev)
 
-;;(global-set-key [f6] 'comment-region)
-;;(global-set-key [(shift f6)] 'uncomment-region)
-;;(global-set-key [f18] 'uncomment-region)
-(global-set-key [f7] 'next-error)
-(global-set-key [(shift f7)] 'previous-error)
-(global-set-key [(f19)] 'previous-error)
+(global-set-key [(f7)] 'marker-visit-next)
+(global-set-key [(shift f7)] 'marker-visit-prev)
+(global-set-key [(f19)] 'marker-visit-prev)
 
-;;(global-set-key [f7] 'comment-region)
-;;(global-set-key [(shift f7)] 'uncomment-region)
-;;(global-set-key [f19] 'uncomment-region)
-
-(global-set-key [f8] 'compile)
+(global-set-key [f8] 'mode-compile)
 (global-set-key [(shift f8)] 'gdb)
 (global-set-key [f20] 'gdb)
+
+(global-set-key [f9] 'next-error)
+(global-set-key [(shift f9)] 'previous-error)
+(global-set-key [(f21)] 'previous-error)
+
+;;;;;; F7: Folding
+
+(global-set-key (kbd "<f10>")       'fold-dwim-toggle)
+(global-set-key (kbd "<S-f10>")     'fold-dwim-hide-all)
+(global-set-key (kbd "<S-C-f10>")   'fold-dwim-show-all)
+;;(global-set-key (kbd "<C-f10>")     'outline-next-visible-heading)
+;;(global-set-key (kbd "<S-C-f10>")   'outline-previous-visible-heading)
+
 
 (global-set-key [(f12)] '(lambda() (interactive) (scroll-other-window -1)))
 (global-set-key [(shift f12)] '(lambda() (interactive) (scroll-other-window 1)))
 (global-set-key [(f24)] '(lambda() (interactive) (scroll-other-window 1)))
 (global-set-key [(control backspace)] 'join-line)
-;;goto line= alt+l
-(global-set-key "\M-l" 'goto-line)
+
+
 
 
 ;;(global-set-key [(C-b)] 'electric-buffer-list)
@@ -162,11 +167,3 @@
 (global-set-key [(alt left)] 'cycle-buffer-backward)
 (global-set-key [(alt shift right)] 'cycle-buffer-permissive)
 (global-set-key [(alt shift left)] 'cycle-buffer-backward-permissive)
-
-
-
-;;--------------------------------------------------------------------
-;; support de mon clavier en mode console
-(set-terminal-coding-system 'iso-8859-15-unix)
-(set-keyboard-coding-system 'iso-8859-15-unix)
-(set-language-environment 'Latin-1)

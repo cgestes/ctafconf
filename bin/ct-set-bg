@@ -5,7 +5,7 @@
 ## Login   <root@epita.fr>
 ##
 ## Started on  Fri Feb 18 16:13:08 2005 root
-## Last update Tue Apr 25 04:14:47 2006 GESTES Cedric
+## Last update Sat May 13 16:42:28 2006 GESTES Cedric
 ##
 ##ORIGINALY FROM CTAFCONF
 
@@ -26,7 +26,7 @@ if ! [ -f ~/.ctafconf/perso/user-profile ]; then
 fi
 . ~/.ctafconf/perso/user-profile
 
-if [ x$ctafconf_wallpaper != xramdom ] ; then
+if [ x$ctafconf_wallpaper = xramdom ] ; then
   sz=`ls -1 ~/.ctafconf/etc/wallpaper 2>/dev/null | wc -l`
   sz2=`ls -1 ~/.ctafconf/perso/wallpaper 2>/dev/null | wc -l`
   szall=$(( $sz + $sz2 ))
@@ -41,7 +41,7 @@ if [ x$ctafconf_wallpaper != xramdom ] ; then
     wallpp=~/.ctafconf/etc/wallpaper/$wallpp
   fi
 
-elif [ x$ctafconf_wallpaper != xramdomperso ]; then
+elif [ x$ctafconf_wallpaper = xramdomperso ]; then
   sz=`ls -1 ~/.ctafconf/perso/wallpaper 2>/dev/null | wc -l`
   pos=$(( `date +%s` % $sz + 1 ))
   wallpp=`ls -1 ~/.ctafconf/perso/wallpaper/ | tail -$pos | head -1`

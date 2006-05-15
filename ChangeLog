@@ -1,3 +1,18 @@
+2006-05-14 CTAF <>
+	* xsession : experimental random xsession
+	* xsession : experimental change wm on the fly
+	* emacs : when saving, make file executable if it should be
+
+2006-05-12 CTAF <>
+	* emacs : gdb enhancement
+	* emacs : save cursor position in files
+	* emacs : rebind some bindings (F7)
+	* emacs : enable folding (f10)
+	* emacs : add color-theme
+	* emacs : add setnu-mode (line number on the left fringe)
+	* emacs : autofill comment with " *" when in /* */
+	* emacs : better help
+
 2006-05-11 CTAF <>
 	* color.emacs : new file for emacs color theme
 	* emacs : remove hightlight change => text tend to be unreadeable
@@ -8,10 +23,10 @@
 	* emacs : show buffer name in the window title
 	* emacs : show trailing white space
 	* emacs : wb-line-number : display line number on the left of each line
-	* emacs : show shorcut for the last executed command if available
+	* emacs : show shortcut for the last executed command if available
 
 2006-05-05 CTAF <>
-	* shell : dont load rc and env on gate-ssh (avoid epita "close compte")
+	* shell : dont load *rc and *env on gate-ssh (avoid epita "close compte")
 
 2006-04-25 CTAF <>
 	* ct-set-bg : support kde

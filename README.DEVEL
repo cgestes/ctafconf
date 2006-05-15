@@ -170,3 +170,18 @@ alt+f4          : switch to desktop 4
 
 alt+click gauche : move
 alt+click droit  : resize
+
+
+===========================================================
+EMACS:
+===========================================================
+emacs                   : global configuration file
+bindings.emacs          : global keybindings
+misc.emacs              : not very usefull think
+settings.emacs          : emacs settings
+color.emacs             : emacs color theme
+functions.emacs         : emacs functions
+mode.emacs              : autoload mode
+menu.emacs              : emacs menu
+prog.emacs              : specific think for programmation
+startup.emacs           : startup message and help

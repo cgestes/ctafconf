@@ -13,7 +13,6 @@ V0.4.0:
 
 V0.3.1:
 - ctrepo/ctssh
-- ramdom wm/ramdom wallpp (second modulo)
 
 ##################TODO
 DOCUMENTATION:
@@ -42,13 +41,12 @@ MINE:
 
 CT-DATE:
 - use ssft, add to xsession?
-- $ (( 08 )) don't work
 
 SSFT:
 
 CTAFCONF:
 - remove useless stuff (ctafconf_config) (see how to manage ls at epita that's all)
-- ramdom wm
+- ramdom wm profile
 - uninstall with revert to date (choose from all previous file)
 - ct-add-wallpaper : ask if we should change the wallpaper now
 - ct-add-wallpaper : dont overwrite if a file with the same name already exist
@@ -145,3 +143,5 @@ BONUS:
 - ramdom wallpaper (wallpp = ramdom, ramdomperso)
 - noneed: makefile (download ecb, ilisp, ..)?, ct-update (update ctafconf from sf svn)
 - DONT LOAD FUD on gate.epita.fr
+- ct-date $ (( 08 )) don't work
+- ramdom wm/ramdom wallpp (second modulo)

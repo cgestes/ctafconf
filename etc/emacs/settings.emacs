@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:13:33 2006 GESTES Cedric
-;; Last update Fri May 12 02:44:41 2006 GESTES Cedric
+;; Last update Sun May 14 23:31:59 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: SETTINGS.EMACS")
 
@@ -142,6 +142,7 @@
 (xterm-mouse-mode 0)
 
 ;;show matching parenthese
+(setq show-paren-delay 0)
 (show-paren-mode 1)
 
 
@@ -187,3 +188,8 @@
 ; make scripts executable upon saving
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 
+;;--------------------------------------------------------------------
+;; support de mon clavier en mode console
+(set-terminal-coding-system 'iso-8859-15-unix)
+(set-keyboard-coding-system 'iso-8859-15-unix)
+(set-language-environment 'Latin-1)

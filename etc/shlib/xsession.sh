@@ -21,6 +21,9 @@
 ## Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##
 
+fwm=~/.ctafconf/perso/current_wm$DISPLAY
+fwmpid=~/.ctafconf/perso/wm_pid$DISPLAY
+fwmpidtokill=~/.ctafconf/perso/wm_pid_to_kill$DISPLAY
 
 #declare apparray as an array
 declare -a apparray
@@ -39,21 +42,19 @@ trap _trap_kill INT TERM KILL
 loop_wm()
 {
   local curr_wm=$ctafconf_wm
-#  local pid_to_kill=$1
-  local fwm=~/.ctafconf/perso/current_wm.$DISPLAY
-  local fwmpid=~/.ctafconf/perso/wm_pid
 
   echo $ctafconf_wm >$fwm
   echo "ENTERING XSESSION LOOP" >>~/.ctafconf/perso/ctafconf.log
 
   while [ x = x ] ; do
     if ! [ x`cat $fwm` = x$curr_wm ]; then
-#      killall -g wm.sh
-      #fucking kill builtin, use real one
       echo "IN DA LOOP" >>~/.ctafconf/perso/ctafconf.log
       curr_wm=`cat $fwm`
+      cp $fwmpid $fwmpidtokill
+      #fucking kill builtin, use real one
       /bin/kill -- `cat $fwmpid`
-      xterm
+      exec_wm $curr_wm&
+      #aterm
     fi
     sleep 1
     echo "LOOP --$wm_pid--" >>~/.ctafconf/perso/ctafconf.log
@@ -61,11 +62,30 @@ loop_wm()
   echo "EXIT FROM XSESSION LOOP" >>~/.ctafconf/perso/ctafconf.log
 }
 
-#launch delayed application
-#then the wm
-launch_wm ()
+exec_wm ()
 {
-  echo "STARTING LAUNCHING WM: $@" >>~/.ctafconf/perso/ctafconf.log
+  local wm=$1
+  local wmfct
+
+   pidpid=$!
+   if [ x$wm = xrandom ]; then
+     sz=`cat ~/.ctafconf/perso/wmlist | wc -l`
+     pos=$(( `date +%s` % $sz + 1 ))
+     wm=`cat ~/.ctafconf/perso/wmlist | tail -$pos | head -1`
+   fi
+   wmfct=`cat ~/.ctafconf/etc/xsession/wmlist | grep "^$wm" | cut -d ! -f 2`
+
+   ~/.ctafconf/etc/xsession/wm.sh $wmfct
+  if [ x`cat $fwmpid` != x`cat $fwmpidtokill` ]; then
+    echo BYEBYE, SHUTDOWN: $@ >>~/.ctafconf/perso/ctafconf.log
+    kill $pidpid
+    exit
+  fi
+}
+
+exec_app()
+{
+  echo "STARTING LAUNCHING APPS" >>~/.ctafconf/perso/ctafconf.log
   (
     i=${apparray[0]}
 
@@ -78,27 +98,31 @@ launch_wm ()
       i=$(( $i - 1 ))
     done
   )&
-  echo LAUNCHING WM: $@ >>~/.ctafconf/perso/ctafconf.log
-  #(exec ~/wm.sh "$@" & echo $)&
-  pidpid=$!
-  {
-    eval ~/wm.sh "$@"
-    wm_pid=$!
-    echo WMPID: $wm_pid >>~/.ctafconf/perso/ctafconf.log
-    wait $wm_pid
-    echo WMPID: $wm_pid >>~/.ctafconf/perso/ctafconf.log
-    if [ x$killing_wm = x$wm_pid ]; then
-      echo BYEBYE, SHUTDOWN: $@ >>~/.ctafconf/perso/ctafconf.log
-      kill $pidpid
-      exit
-    fi
-  }&
+  ct_log APPS LAUNCHED
+}
+
+
+
+#(((((((EXPORTED FUNCTION)))))))
+
+ct_log()
+{
+  echo $@ >>~/.ctafconf/perso/ctafconf.log
+}
+
+#launch delayed application
+#then the wm
+launch_wm()
+{
+  ct_log LAUNCHING WM
+  exec_app
+  exec_wm $ctafconf_wm &
   loop_wm
-  echo BYEBYE, SHOULD NOT BE THERE: $@ >>~/.ctafconf/perso/ctafconf.log
+  ct_log BYEBYE, WE SHOULD NOT BE THERE
 }
 
 #append one application to the launch list
-launch_app ()
+launch_app()
 {
   app="$@"
   i=${apparray[0]}
@@ -114,9 +138,9 @@ test_wm ()
   local wm=$@
   local ret=0
 
-  echo -n "test_wm $@ = " >>~/.ctafconf/perso/ctafconf.log
+  ct_log -n "test_wm $@ = "
   [ x$ctafconf_wm = x$wm ]
   ret=$?
-  echo "$ret" >>~/.ctafconf/perso/ctafconf.log
+  ct_log $ret
   return $ret
 }

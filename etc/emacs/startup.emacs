@@ -5,128 +5,128 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Fri May 12 04:03:15 2006 GESTES Cedric
+;; Last update Sun May 14 23:58:16 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: STARTUP.EMACS")
 
 ;; Change startup message...
 (defcustom hinitial-scratch-message (purecopy "\
-;; CTAFCONF Emacs (www.noshell.info) -- for more help: M-x ct-help
-;; you need, cedet, semantic and ilisp installed in .ctafconf/etc/emacs/site-lisp
+;; CTAFCONF Emacs (http://grk.sourceforce.net)
+;; you need: cedet, semantic, ecb, ilisp and doxymacs
+;; installed in .ctafconf/etc/emacs/site-lisp
 ;;
-;; [S-left]     previous buffer         [S-right]       next buffer
-;; [C-TAB]      change window           [C-c C-z]       zlock
-;; [C-backspace]join-line               [C-b ]          buffer list
+;;===GLOBAL KEYBINDING===
 ;; [F1]         SHOW THIS HELP          [S-F1]          man
 ;; [F2]         check norme (epita)     [S-F2]          xterm-mouse on/off
 ;; [F3]         query-replace           [S-F3]          replace-string
+;; [C-F3]       list all occurence
 ;; [F4]         comment-region          [S-F4]          uncomment-region
 ;; [F5]         terminal                [S-F5]          speedbar
 ;; [F6]         togle bookmark          [S/C-F6]        next/prev bookmark
-;; [M-F6]       next mark               [C-M-F6]        prev mark (made with C-space)
-;; [F7]		      next error              [S-F7]          previous error
-;; [F8]		Compile                       [S-F8]          debug
-;; [F9]		Reindent current-file
-;; [F10]	Reindent a Directory
-;; [F11]	show ecb (code browser) [S-F11]         hide ecb (code browser)
+;; [F7]         next mark               [S-F7]          prev mark (made with C-space)
+;; [F8]		      Compile                 [S-F8]          debug
+;; [F9]		      next error              [S-F9]          previous error
+;; [F10]        Hide/Show one block     [S-F10]         hide all block
+;; [C-S-F10]    SHow all block
+;; [F11]	show ecb (code browser)       [S-F11]         hide ecb (code browser)
 ;; [F12][A-Pup]	scroll-other-window     [S-F12][A-Pdown]scroll-other-window-down
-;; [S-SPC]      inline completion
-;; M-s          Recall last kbd macro, 'C-x (' record, 'C-x )' stop recording
-;; M-l          Goto-line
-;; C-return     Box-mode selection
-;; C-_		undo
-;; C-c r	revert buffer
-;; M-x dos2unix	convert a Dos format to unix format
-;; M-x setget to create {set,get}_var function (on the line)
-;;?? M-x counter-reinitialize to give the parameters for counter
-;;?? M-x counter-insert to use the counter
-;; M-y yank cycle previous buffer (C-y then M-y ... M-y till the previous yank you want)
 ;;
-;; mode-term:
-;; c-c c-j line mode
-;; c-c c-k char mode
-;; c-c c-c control-c in a term (interrupt)
-
-;; m-x wb-line-number-toggle (toggle line number on the left)
+;;===FILE/BUFFER OPERATION===
+;; - [c-x f] open one file
+;;   when opening file [C-UP], [C-DOWN] move up and down into the history
+;;   to get the standard open file [C-x f] then [C-f]
+;;   (usefull to open new file with a name shorter than one already existing)
+;; - [M-left]     previous buffer
+;; - [M-right]       next buffer
+;; - [C-TAB]      change window
 ;;
-;; emacs default keybinding
-;; c-x c-e :evaluate elisp expression
-;; c-x 4 a :add one entry to the ChangeLog
+;;===EDITION===
+;; - shift up/down begin a selection, backspace kill the selection, like a normal editor
+;;   in fact selection works like in a normal editor
+;; - M-x dos2unix	convert a Dos format to unix format
+;; - C-return     Box-mode selection (square selection)
+;; - M-s          Recall last kbd macro, 'C-x (' record, 'C-x )' stop recording
+;; - M-l          Goto-line
+;; - M-x goto-char
+;; - C-_		undo
+;; - C-c r	revert buffer
+;; - M-y yank cycle previous buffer (C-y then M-y ... M-y till the previous yank you want)
+;;
+;;===PROGRAMMATION===
+;; - m-x setnu-mode (toggle line number on the left)
+;; - [S-SPC]      inline completion
+;; - M-x setget to create {set,get}_var function (on the line)
+;; - c-x 4 a :add one entry to the ChangeLog
+;; - DOXYEMACS
+;;   C-c d ? will look up documentation for the symbol under the point.
+;;   C-c d r will rescan your Doxygen tags file.
+;;   C-c d f will insert a Doxygen comment for the next function.
+;;   C-c d i will insert a Doxygen comment for the current file.
+;;   C-c d ; will insert a Doxygen comment for a member variable on the current line (like M-;).
+;;   C-c d m will insert a blank multi-line Doxygen comment.
+;;   C-c d s will insert a blank single-line Doxygen comment.
+;;   -c d @ will insert grouping comments around the current region.
+;;
+;;===DEBUG(S-F8)/COMPILATION(F8)===
+;; - c-up / c-down in gdb cycle through history
+;; - c-x SPC to set a break point in a source file
+;; - c-c c-c to send a INT signal (a simple c-c in fact)
+;; - c-x c-e :evaluate elisp expression
+;; - q : quit emacs backtrace (when debugging lisp)
+;;
+;;===TERMINAL(F5)===
+;; - c-c c-j line mode
+;; - c-c c-k char mode
+;; - c-c c-c control-c in a term (interrupt)
+;;
+;;===COLOR THEME===
+;; - m-x load-library RET color-theme RET
+;; - m-x color-theme-select (change color theme for the session)
+;;   use d for description, i for install the theme for the rest of the session
+;;   theme I like: comedia,  white on black, cheap golden road, ramamgalahy (email underlined)
+;;   taminmanderson
+;;
+;;===MISC/ELISP PROGRAMMING===
+;; - learn one key:
+;;   M-x global-set-key
+;;   C-x ESC ESC (affiche la commande precedente nikel chrome)
+;;
 
-;; DEBUG/COMPILATION
-;; c-up / c-down in gdb cycle through history
-;; c-x SPC to set a break point in a source file
-;; c-c c-c to send a INT signal (a simple c-c in fact)
-
-;; DOXYEMACS
-;; C-c d ? will look up documentation for the symbol under the point.
-;; C-c d r will rescan your Doxygen tags file.
-;; C-c d f will insert a Doxygen comment for the next function.
-;; C-c d i will insert a Doxygen comment for the current file.
-;; C-c d ; will insert a Doxygen comment for a member variable on the current line (like M-;).
-;; C-c d m will insert a blank multi-line Doxygen comment.
-;; C-c d s will insert a blank single-line Doxygen comment.
-;; C-c d @ will insert grouping comments around the current region.
-
-;;LEARN one key:
-;;M-x global-set-key
-;;C-x ESC ESC (affiche la commande precedente nikel chrome)
-
-;; quit emacs backtrace : q
-
-;; when opening file [C-UP], [C-DOWN] move up and down into the history
-;; to get the standart open file [C-x f] then [C-f]
-;; (usefull to open new file with a name shorter than one already existing)
 ;; === TODO ===
 ;;  - shortcut: kill one line
+;;  - kill char from cur to begin
 ;;  - c/c++ mode (epita indentation)
 ;;  - kill space til one word
-;;  - list all functions of one file
 ;;  - truncate line
 ;;  - working directory for gdb/compile
 ;;  - switch key for group of windows in ecb
-;;  - doxymacs (auto comment, with good param)
 ;;  - kill-word, kill-ring,..
+;;  - debug / show debug windows
 ;;  - svn
-;;  - bookmark, folding
 ;;  - dired colored
 ;;  - man page size
 ;;  - php-mode/html/css
 ;;  - emacs: in console (ctrl+backspace, disable ring bell) (enable vt102 in xterm,..)
 ;;  - emacs: ctrl-qqch => replace the current line , with the current buffer
 ;;  - transparent (use console backcolor)
-;;  - kill char from cur to begin
 ;;  - /???/ Emacs autoresize at start conflicts with wm app properties save (use .mine to customize the beahavour)
-;;  - prev/next mark
 ;;  - support compile this conf 'emacs -batch -l ~/.ctafconf/etc/emacs/compile_conf.el'
 ;;  - size of debugger windows, dont send focus to this windows (lisp)
+;;  - ilisp don't work on emacs-snapshot
+;;  - turn on semantic-tag-decoration-on-protected-member, semantic-tag-decoration-on-private-member
+;;  KBD: (don't work in console (tty))
+;;  C-SPC,
 ;;
 ;;easy emacs:
 ;;Ctrl-/          Bounce         Move from the beginning to the end or
 ;;                Expression     from the end to the beginning of a
 ;;                               balanced expression, such as one enclosed
 ;;                               by () [] or {}
-;;backspace kill the selection, shift up and down => selection
 ;; Ctrl-F5        Character      Duplicate the character from the line
 ;;                Above          above, and move one character forward.
 
 ;; Shft-Ctrl-F5   Character      Duplicate the character from the line
 ;;                Below          below, and move one character forward.
-;; F7             Toggle Fold    If on a closed fold, open it; else close
-;;                               the fold at the cursor
-;; Alt-F7         Fold All       Hide all folds in the file or selected
-;;                               region.
-;; Shft-Alt-F7    Unfold All     Show all folds in the file or selected
-;;                               region.
-;; Ctrl-F7        Next Heading   Go to the next heading in the file (only
-;;                               for file-types where that is meaningful).
-;; Shft-Ctrl-F7   Previous       Go to the previous heading in the file.
-;;                Heading
-
-;;  === DOC ===
-;;  see: http://www.dur.ac.uk/p.j.heslin/Software/Emacs/Easymacs
-;;  =programming=
-;;  =installing ecb,semantic, cedet, ilisp, doxymacs=
 ") "Initial message displayed in *scratch* buffer at startup.
 If this is nil, no message will be displayed."
   :type 'string)

@@ -5,11 +5,14 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 05:39:19 2006 GESTES Cedric
-;; Last update Mon Jan 16 07:26:20 2006 GESTES Cedric
+;; Last update Fri May 12 21:50:49 2006 GESTES Cedric
 ;;
 
 
 (require 'menu-bar)
+
+;; organized buffer menu
+(msb-mode 1)
 
 ;; add entry to menu-bar:
 (defvar menu-bar-jj-menu (make-sparse-keymap "ctafconf"))

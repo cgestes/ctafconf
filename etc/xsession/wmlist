@@ -1,0 +1,18 @@
+##
+## wmlist for GRK in /home/ctaf/.ctafconf
+##
+## Made by GESTES Cedric
+## Login   <ctaf@epita.fr>
+##
+## Started on  Sun May 14 20:36:17 2006 GESTES Cedric
+## Last update Sun May 14 22:08:02 2006 GESTES Cedric
+##
+
+fluxbox!startfluxbox
+gnome!gnome-session
+kde!startkde
+xfce4!startxfce4
+e16!starte16
+term!gnome-terminal
+aterm!~/.ctafconf/bin/ct-launch term
+

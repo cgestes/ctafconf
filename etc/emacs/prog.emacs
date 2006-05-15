@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:14:21 2006 GESTES Cedric
-;; Last update Thu May 11 20:36:07 2006 GESTES Cedric
+;; Last update Sun May 14 23:33:04 2006 GESTES Cedric
 ;;
 
 (message "ctafconf loading: PROG.EMACS")
@@ -14,71 +14,10 @@
 (load "std.el")
 (load "std_comment.el")
 
-;;CTYPE ;;;;;;;;;;;;;;;;;;;;;;;
-;;permet de mettre en couleur les types persos:
-;;(require 'ctypes nil t)
-;;(setq ctypes-write-types-at-exit t)
-;;(ctypes-read-file nil nil t t)
-;;(ctypes-auto-parse-mode 1)
-
-;;scanne le dossier courant a la recherche de nouveau type
-;;(lambda()
-;;  (interactive)
-;;  (ctypes-dir "."))
-
-;;CPARSE ;;;;;;;;;;;;;;;;;;;;;;;
-;;activation de cparse: c en anglais, mais tt est dit ..
-;; (require 'cparse nil t)
-;; ;;(setq load-path (cons "~/cparse" load-path))
-;; (autoload 'cparse-listparts "cparse"
-;;   "List all the parts in the current buffer in another buffer." t)
-;; (autoload 'cparse-open-on-line "cparse"
-;;   "Grab the object under the cursor and find it's definition." t)
-;; (autoload 'cpc-insert-function-comment "cpcomment"
-;;   "Starting at pnt, look for a function definition.  If the definition
-;; exists, parse for the name, else, fill everything in as null.  Then
-;; insert the variable cpc-function-comment, and fill in the %s with the
-;; parts determined.
-;; If the comment already exists, this function will try to update only
-;; the HISTORY part." t)
-;; (autoload 'cpc-insert-new-file-header "cpcomment"
-;;   "Insert a new comment describing this function based on the format
-;; in the variable cpc-file-comment.  It is a string with sformat tokens
-;; for major parts.  Optional HEADER is the header to use for the cpr
-;; token" t)
-;; (autoload 'cpr-store-in-header "cproto"
-;;   "Grab the header from current position, load in the header file, and
-;; make any needed substitutions to update the header file.  If the
-;; function is static, then create needed stuff in this c file for the
-;; prototype." t)
-
-;; fold source file (semantic-tag-folding.el) need keybinding
-;;(require 'semantic-tag-folding)
-;;(global-semantic-tag-folding-mode t)
-
-;; (defvar c-mode-map)
-;; ;; encore kkes key binding pour utiliser cparse..
-;; (defun cparse-setup-keybindings ()
-;;   (define-key c-mode-map "\C-cp" 'cparse-listparts)
-;;   (define-key c-mode-map "\C-co" 'cparse-open-on-line)
-;;   (define-key c-mode-map "\C-cf" 'cpc-insert-new-file-header)
-;;   (define-key c-mode-map "\C-c\C-h" 'cpr-store-in-header)
-;;   (define-key c-mode-map "\C-c\C-d" 'cpr-insert-function-comment)
-;;   )
-
-;; (add-hook 'c-mode-common-hook 'cparse-setup-keybindings)
-
-;;test it
-;;(add-hook c++-mode-hook 'cparse-setup-keybindings)
-
 ;; Compilation Options
 (setq compile-command "make -k")
-;;(setq compilation-window-height 20)
-  ;; little compilation window
+;; little compilation window
 (setq compilation-window-height 9)
-;;CWARN (for old emacs i think)
-;;(require 'cwarn)
-;;(global-cwarn-mode 1)
 
 ;; Auto launch the modes auto-newline et hungry-delete-key
 ;;; `auto-newline' goto to the next and indent automaticaly for '{', '}'and ';'
@@ -111,10 +50,6 @@
 ;;(autoload 'nuke-trailing-whitespace "whitespace" nil t)
 (add-hook 'write-file-hooks 'delete-trailing-whitespace)
 
-;;shell indentation = 2 (bash script)
-;;(setq sh-indent 2)
-;;(setq sh-indent-comment t)
-
 ;; easy commenting out of lines
 (autoload 'comment-out-region "comment" nil t)
 
@@ -124,33 +59,17 @@
       ;;(setq semantic-load-turn-useful-things-on t)
       (setq semantic-load-turn-everything-on t)
       (load-file "~/.ctafconf/etc/emacs/site-lisp/cedet/common/cedet.el")
-      ;; Enabling various SEMANTIC minor modes.  See semantic/INSTALL for more ideas.
-      ;; Select one of the following:
-      ;; * This is the default.  Enables the database and idle reparse engines
-      ;;(semantic-load-enable-minimum-features)
-      ;; * This enables some tools useful for coding, such as summary mode
-      ;;   imenu support, and the semantic navigator
-      ;;(semantic-load-enable-code-helpers)
-      ;; * This enables even more coding tools such as the nascent intellisense mode
-      ;;   decoration mode, and stickyfunc mode (plus regular code helpers)
-      ;; (semantic-load-enable-guady-code-helpers)
       ;; * This turns on which-func support (Plus all other code helpers)
       (semantic-load-enable-excessive-code-helpers)
-      ;;S-SPC
+      ;;S-SPC for autocompletion
       (global-set-key '[33554464] 'semantic-complete-analyze-inline)
-      (global-semantic-show-unmatched-syntax-mode 0)
       (global-semantic-show-parser-state-mode 1)
       (global-semantic-decoration-mode 1)
-      (global-semantic-idle-completions-mode 1)
-      (global-semantic-highlight-edits-mode 1)
+      ;;(global-semantic-idle-completions-mode 1)
+      ;;(global-semantic-highlight-edits-mode 1)
+      ;;(global-semantic-show-unmatched-syntax-mode 0)
       (global-semantic-stickyfunc-mode 1)
-
       (setq semanticdb-default-save-directory "~/.ctafconf/perso/semantic")
-      ;;(global-set-key "\C-SPC" 'semantic-complete-analyze-inline)
-      ;; This turns on modes that aid in grammar writing and semantic tool
-      ;; development.  It does not enable any other features such as code
-      ;; helpers above.
-      ;; (semantic-load-enable-semantic-debugging-helpers)
       )
   (error
    (message "Cannot load CEDET %s" (cdr err))))
@@ -172,15 +91,17 @@
    (message "Cannot load ecb %s" (cdr err))))
 
 
+;;DOXYMACS;;;;;;;;;;;;;;;;;;;;;;;;;
 (condition-case err
-    (require 'doxymacs);; in your .emacs  file.
-    (add-hook 'c-mode-common-hook'doxymacs-mode)
-    (defun my-doxymacs-font-lock-hook ()
-      (if (or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
-          (doxymacs-font-lock)))
-    (add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook)
-	  (error
-     (message "Cannot load doxyemacs %s" (cdr err))))
+    (progn
+      (require 'doxymacs);; in your .emacs  file.
+      (add-hook 'c-mode-common-hook'doxymacs-mode)
+      (defun my-doxymacs-font-lock-hook ()
+        (if (or (eq major-mode 'c-mode) (eq major-mode 'c++-mode))
+            (doxymacs-font-lock)))
+      (add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook))
+  (error
+   (message "Cannot load doxyemacs %s" (cdr err))))
 
 
 ;;ilisp mode;;;;;;;;;;;;;;;;;;;;;;;
@@ -197,10 +118,10 @@
           (setq lisp-mode-hook '(lambda () (require 'ilisp)
                                   (local-set-key "\C-c" 'eval-defun-lisp)))
           ;;pas de popup, scrollauto de la fenetre ilisp
-            (setq ilisp-mode-hook '(lambda ()
-                                     (setq lisp-no-popper t)
-                                     (setq comint-always-scroll t)))
-            (require 'ilisp)))
+          (setq ilisp-mode-hook '(lambda ()
+                                   (setq lisp-no-popper t)
+                                   (setq comint-always-scroll t)))
+          (require 'ilisp)))
   (error
    (message "Cannot load ilisp %s" (cdr err))))
 
@@ -212,3 +133,16 @@
 (setq interpreter-mode-alist
       (cons '("python" . python-mode)
             interpreter-mode-alist))
+
+;;autoappend * when in /* */ comment
+(autoload 'blockcomment-mode "block-comm" "" t)
+(autoload 'turn-on-blockcomment-mode "block-comm" "" t)
+(add-hook 'c-mode-hook 'turn-on-blockcomment-mode)
+(add-hook 'c++-mode-hook 'turn-on-blockcomment-mode)
+
+(condition-case err
+    (progn
+      (require 'mode-compile)
+      )
+	  (error
+     (message "Cannot load mode-compile %s" (cdr err))))

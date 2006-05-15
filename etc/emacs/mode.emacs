@@ -5,38 +5,36 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 00:57:16 2006 GESTES Cedric
-;; Last update Fri May 12 02:40:21 2006 GESTES Cedric
+;; Last update Sun May 14 23:33:05 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: MODE.EMACS")
 
 ;;file extension mode
 (setq auto-mode-alist
       (append
-	'(
-	  ("\\.txt$" . text-mode)
-	  ("\\.dat$" . text-mode)
-	  ("\\.pas$" . pascal-mode)
-	  ("\\.java$" . c-mode)
-	  ("\\.doc$" . plain-tex-mode)
-	  ("\\.bib$" . bibtex-mode)
-	  ("\\.bst$" . bst-mode)
-	  (".emacs$" . emacs-lisp-mode)
-	  ("emacs*" . emacs-lisp-mode)
-	  ("*emacs$" . emacs-lisp-mode)
-	  ("\\.tcsh*" . csh-mode)
-          ("\\.[ly]$" . c-mode) ;; bison/flex
-          ("\\.Xdefaults$"    . xrdb-mode)
-          ("\\.Xenvironment$" . xrdb-mode)
-          ("\\.Xresources$"   . xrdb-mode)
-          ("\\.css$" . html-mode)
-          ("\\.cfm$" . html-mode)
-          ("\\.ml\\w?" . tuareg-mode)
-          ("\\.adb\\'" . ada-mode)
-          ("\\.ads\\'" . ada-mode)
-          ("\\.e\\'" . eiffel-mode)
-	  )
-	auto-mode-alist)
-      )
+       '(
+         ("\\.txt$" . text-mode)
+         ("\\.dat$" . text-mode)
+         ("\\.pas$" . pascal-mode)
+         ("\\.java$" . c-mode)
+         ("\\.doc$" . plain-tex-mode)
+         ("\\.bib$" . bibtex-mode)
+         ("\\.bst$" . bst-mode)
+         (".emacs$" . emacs-lisp-mode)
+         ("emacs*" . emacs-lisp-mode)
+         ("*emacs$" . emacs-lisp-mode)
+         ("\\.tcsh*" . csh-mode)
+         ("\\.[ly]$" . c-mode) ;; bison/flex
+         ("\\.Xdefaults$"    . xrdb-mode)
+         ("\\.Xenvironment$" . xrdb-mode)
+         ("\\.Xresources$"   . xrdb-mode)
+         ("\\.css$" . html-mode)
+         ("\\.cfm$" . html-mode)
+         ("\\.ml\\w?" . tuareg-mode)
+         ("\\.adb\\'" . ada-mode)
+         ("\\.ads\\'" . ada-mode)
+         ("\\.e\\'" . eiffel-mode)
+         ) auto-mode-alist))
 
 (condition-case err
     (progn
@@ -90,10 +88,10 @@
 (require 'auto-template "auto-template.el")
 
 ;;; bubble-buffer
-(when (require 'bubble-buffer nil t)
-  (global-set-key [f11] 'bubble-buffer-next)
-  (global-set-key [(shift f11)] 'bubble-buffer-previous)
-(setq bubble-buffer-omit-regexp "\\(^ .+$\\|\\*Messages\\*\\|*compilation\\*\\|\\*.+output\\*$\\|\\*TeX Help\\*$\\|\\*vc-diff\\*\\|\\*Occur\\*\\|\\*grep\\*\\|\\*cvs-diff\\*\\|\\*modelsim\\*\\)"))
+;; (when (require 'bubble-buffer nil t)
+;;   (global-set-key [f11] 'bubble-buffer-next)
+;;   (global-set-key [(shift f11)] 'bubble-buffer-previous)
+;; (setq bubble-buffer-omit-regexp "\\(^ .+$\\|\\*Messages\\*\\|*compilation\\*\\|\\*.+output\\*$\\|\\*TeX Help\\*$\\|\\*vc-diff\\*\\|\\*Occur\\*\\|\\*grep\\*\\|\\*cvs-diff\\*\\|\\*modelsim\\*\\)"))
 
 
 (when (require 'ibuffer "ibuffer" t)
@@ -169,14 +167,10 @@
    (message "Cannot load marker-visit %s" (cdr err))))
 
 ;;highlight current line
-(hl-line-mode)
+;;(hl-line-mode)
 
-;;line number
-(condition-case err
-    (progn
-      (require 'wb-line-number))
-  (error
-   (message "Cannot load wb-line-number %s" (cdr err))))
+;; setnu (Show line numbers)
+(autoload 'setnu-mode "setnu+" "Line Numbers." t)
 
 
 ;;;SavePlace- this puts the cursor in the last place you editted
@@ -196,33 +190,47 @@
 ;;                     (setq auto-mode-alist (cons '("\\.asp$" . html-helper-mode) auto-mode-alist))
 ;;                     (setq auto-mode-alist (cons '("\\.phtml$" . html-helper-mode) auto-mode-alist))
 
-;; (defun easymacs-folding ()
 
-;;   (require 'hideshow)
-;;   (require 'outline)
-;;   (require 'fold-dwim)
+;;EMACSFOLDING
+(condition-case err
 
-;;   (autoload 'speedbar-frame-mode "speedbar" "Popup a speedbar frame" t)
-;;   (autoload 'speedbar-get-focus "speedbar" "Jump to speedbar frame" t)
+    (progn
+      (require 'hideshow)
+      (require 'outline)
+      (require 'fold-dwim)
 
-;;   ;; Search in comments as well as "code"
-;;   (setq hs-isearch-open t)
-;;   (setq hs-hide-comments-when-hiding-all t)
-;;   (setq hs-allow-nesting t)
+      ;;use folding or outline when programming
+      (mapcar '(lambda (hook)
+                 (add-hook hook
+                           '(lambda () (progn (hs-minor-mode 1)))))
+              '(c-mode-hook
+                c++-mode-hook
+                sh-mode-hook
+                java-mode-hook
+                css-mode-hook
+                php-mode-hook
+                ))
 
-;;   (defun imenu-or-not ()
-;;     "Try to add an imenu when we visit a file, catch and nil if
-;; the mode doesn't support imenu."
-;;     (condition-case nil
-;; 	(imenu-add-menubar-index)
-;;       (error nil)))
-;;   (add-to-list 'find-file-hooks 'imenu-or-not)
+      (mapcar '(lambda (hook)
+                 (add-hook hook
+                           '(lambda () (progn (outline-minor-mode)))))
+              '(emacs-lisp-mode-hook
+                perl-mode-hook
+                python-mode-hook
+                lisp-mode-hook
+                ))
 
-;;   (setq imenu-max-items 50
-;;         imenu-scanning-message nil)
-;;   ;;Get rid of an annoying error
-;;   (defun imenu-progress-message (prevpos &optional relpos reverse)
-;;        ())
+       ;; Search in comments as well as "code"
+      (setq hs-isearch-open t)
+      (setq hs-hide-comments-when-hiding-all t)
+      (setq hs-allow-nesting t)
 
-;;   )
-;; (easymacs-folding)
+      ;; Expand any hidden blocks on goto-line
+      (defadvice goto-line (after expand-after-goto-line
+                                  activate compile)
+        "hideshow-expand affected block when using goto-line in a collapsed buffer"
+        (save-excursion
+          (hs-show-block)))
+      )
+  (error
+   (message "Cannot load folding %s" (cdr err))))

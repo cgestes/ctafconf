@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Mon Sep 26 02:37:56 2005 GESTES Cedric
-## Last update Thu Apr 27 02:41:51 2006 GESTES Cedric
+## Last update Mon May 15 01:55:56 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -31,15 +31,16 @@ if [ -f ~/.ctafconf/perso/user-profile ] ; then
   . ~/.ctafconf/perso/user-profile
 fi
 
-if ! test_wm e16 ; then
-  #set the wallpaper
-  #launch_app "sleep 5;" ~/.ctafconf/bin/ct-set-bg
-  launch_app ~/.ctafconf/bin/ct-set-bg
-fi
+#if ! test_wm e16 ; then
+#fi
+#set the wallpaper
+launch_app ~/.ctafconf/bin/ct-set-bg
+
 
 if test_wm term ; then
   #appel bloquant
-  launch_wm ~/.ctafconf/bin/ct-launch term
+  ct_log TERM WM
+  launch_wm
 fi
 
 #personal startup file
@@ -49,11 +50,7 @@ fi
 
 ########################### LAUNCHING WM ###########################
 #Lauch gnome (appel bloquant)
-if test_wm gnome ; then
-  if which gnome-session >/dev/null 2>/dev/null; then
-    launch_wm gnome-session
-  fi
-else
+if ! test_wm gnome ; then
   #launch the gnome setting daemon (for font, gconf, ...) after gnome-session
   #cause gnome-session launch it
   if which gnome-settings-daemon >/dev/null 2>/dev/null; then
@@ -61,40 +58,5 @@ else
   fi
 fi
 
-#lauch kde
-if test_wm kde ; then
-    if which startkde >/dev/null 2>/dev/null; then
-    launch_wm startkde
-    fi
-fi
-
-#lauch xfce4
-if test_wm xfce4 ; then
-  if which startxfce4 >/dev/null 2>/dev/null; then
-    launch_wm startxfce4
-  fi
-fi
-
-#fluxbox
-if test_wm fluxbox ; then
-  if which startfluxbox >/dev/null 2>/dev/null; then
-    launch_wm startfluxbox
-  fi
-fi
-
-#Enlightenment 16
-if test_wm e16 ; then
-  if which enlightenment >/dev/null 2>/dev/null; then
-    launch_wm starte16
-  fi
-fi
-
-#anothers wm
-#if which $ctafconf_wm >/dev/null 2>/dev/null ; then
-#  launch_wm $ctafconf_wm
-#fi
-
-#term
-#launch_wm ~/.ctafconf/bin/ct-launch term
-
-
+#lauch the window manager
+launch_wm

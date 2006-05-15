@@ -15,6 +15,9 @@ untar in your home directory.
 
 If you only want emacs:
 ln -s ~/.ctafconf/etc/emacs/emacs ~/.emacs
+mkdir ~/.ctafconf/perso
+mkdir ~/.ctafconf/perso/semantic
+
 or add to your own ~/.emacs:
 (load-file "~/.ctafconf/etc/emacs/emacs")
 
