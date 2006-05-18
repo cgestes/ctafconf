@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 05:39:19 2006 GESTES Cedric
-;; Last update Fri May 12 21:50:49 2006 GESTES Cedric
+;; Last update Thu May 18 03:52:44 2006 GESTES Cedric
 ;;
 
 
@@ -36,3 +36,44 @@
 ;;(provide 'menu)
 
 ;;; menu.el ends here
+(require 'generic-menu)
+(require 'generic-dl)
+
+(defun grk-menu-buffer (val)
+  "grk buffer menu"
+  (message "buffer menu %S" val)
+  )
+
+(defun grk-menu-prog (val)
+  "grk menu"
+  (gm-quit)
+  (if (equal val "function list")
+      (progn
+        (gm-quit)
+        (dl-popup)))
+  (if (equal val "compile")
+      (compile))
+  (if (equal val "debug")
+      (debug))
+  )
+
+(defun grk-menu (val)
+  "grk menu"
+  (gm-quit)
+  (if (equal val "buffer")
+      (gm-popup :elements '("prout")
+                :select-callback (lambda (val)
+                                   (grk-menu-buffer val))))
+  (if (equal val "prog")
+      (gm-popup :elements '("function list" "compile" "debug")
+                :select-callback (lambda (val)
+                                   (grk-menu-prog val))))
+  (if (equal val "misc")
+      (message "You hace selected: %S" val))
+  )
+
+
+(gm-popup :elements '("buffer" "prog" "misc")
+          :select-callback (lambda (val)
+                             (grk-menu val)))
+

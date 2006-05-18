@@ -32,6 +32,7 @@ CT-REPO/CT-SSH:
 
 CT-SET-BG:
 - support wmsetbg, feh, hsetroot, chbg or xsri
+- support xfce, support kde
 
 MINE:
 - screen at shell startup
@@ -67,6 +68,9 @@ var_description
 var_file (needed?)
 var_type (emacs,csh,sh)
 - grk-emacs, grk-shell, grk-x11 (expose all configuration file on the web)
+
+XSESSION:
+- learn how to kill, gnome, kde, xfce4 and maybe e16
 
 SHELL:
 - screen : fichier de conf std (3 windows), automatiquement lance?, keys to browse history and to change term

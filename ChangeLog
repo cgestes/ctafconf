@@ -1,3 +1,15 @@
+2006-05-18 CTAF <>
+	* generic-menu.el : allow for menu buffer
+	* generic-dl.el : menu buffer, with all function name of the current buffer
+	* emacs : new menu with all function and configuration
+
+2006-05-16 CTAF <>
+	* xsession : allow stopping the current wm normaly
+	* xsession : shutdown gnome in a clean way
+	* ct-switch-wm : allow to change the current wm on the fly
+	* emacs : remove show trailing white space
+	* ct-switch-wm : you cant specifie the wm in argument
+
 2006-05-14 CTAF <>
 	* xsession : experimental random xsession
 	* xsession : experimental change wm on the fly

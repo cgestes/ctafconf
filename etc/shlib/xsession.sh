@@ -33,27 +33,33 @@ apparray[0]=0
 #catch a signal, else termcaps shit
 _trap_kill ()
 {
-#  trap "" INT TERM KILL
-  echo "killing --$@--" >>~/.ctafconf/perso/ctafconf.log
+  trap "" INT TERM KILL
+  ct_log "TRAP KILL --$@--"
 }
 
 trap _trap_kill INT TERM KILL
 
 loop_wm()
 {
-  local curr_wm=$ctafconf_wm
+  local running_wm=""
+  local wm=""
 
+  rm -rf $fwmpid $fwmpidtokill 2>/dev/null
   echo $ctafconf_wm >$fwm
-  echo "ENTERING XSESSION LOOP" >>~/.ctafconf/perso/ctafconf.log
-
+  ct_log "ENTERING XSESSION LOOP" >>~/.ctafconf/perso/ctafconf.log
   while [ x = x ] ; do
-    if ! [ x`cat $fwm` = x$curr_wm ]; then
-      echo "IN DA LOOP" >>~/.ctafconf/perso/ctafconf.log
-      curr_wm=`cat $fwm`
-      cp $fwmpid $fwmpidtokill
-      #fucking kill builtin, use real one
-      /bin/kill -- `cat $fwmpid`
-      exec_wm $curr_wm&
+    if ! [ x`cat $fwm` = x$running_wm ]; then
+      ct_log "IN THE LOOP: x`cat $fwm` = x$running_wm"
+      if [ -f $fwmpid ]; then
+        cp $fwmpid $fwmpidtokill
+        #fucking kill builtin, use real one
+        kill_wm "$running_wm" `cat $fwmpid`
+        rm -rf $fwmpid $fwmpidtokill 2>/dev/null
+      fi
+      #exec_wm $curr_wm&
+      running_wm=`cat $fwm`
+      running_wm=`extract_wm $running_wm`
+      exec_wm $! $running_wm &
       #aterm
     fi
     sleep 1
@@ -62,23 +68,53 @@ loop_wm()
   echo "EXIT FROM XSESSION LOOP" >>~/.ctafconf/perso/ctafconf.log
 }
 
-exec_wm ()
+kill_wm()
 {
   local wm=$1
-  local wmfct
+  local pid=$2
 
-   pidpid=$!
-   if [ x$wm = xrandom ]; then
-     sz=`cat ~/.ctafconf/perso/wmlist | wc -l`
-     pos=$(( `date +%s` % $sz + 1 ))
-     wm=`cat ~/.ctafconf/perso/wmlist | tail -$pos | head -1`
-   fi
-   wmfct=`cat ~/.ctafconf/etc/xsession/wmlist | grep "^$wm" | cut -d ! -f 2`
+  case $wm in
+    gnome)
+      ct_log "KILL_WM: KILLING GNOME (gnome-session-save)"
+      gnome-session-save --kill 2>~/.ctafconf/perso/error.log;;
+    xfce4)
+      ct_log "KILL_WM: KILLING XFCE4 (xfce4-session-logout)"
+      xfce4-session-logout ;;
+    "")
+      ct_log "KILL_WM: NO WM TO KILL" ;;
+    *)
+      ct_log "KILL_WM: KILLING ($wm) : ($pid)"
+      kill $pid;;
+  esac
+}
 
+#return the wm to launch
+extract_wm()
+{
+  local wm=$1
+
+  if [ x$wm = xrandom ]; then
+    sz=`cat ~/.ctafconf/perso/wmlist | wc -l`
+    pos=$(( `date +%s` % $sz + 1 ))
+    wm=`cat ~/.ctafconf/perso/wmlist | tail -$pos | head -1`
+  fi
+  ct_log EXTRACTED WM: $wm
+  echo $wm >$fwm
+  echo $wm
+}
+
+exec_wm ()
+{
+  local pidpid=$1
+  local wm=$2
+  local wmfct=""
+
+   #pidpid=$!
+  wmfct=`cat ~/.ctafconf/etc/xsession/wmlist | grep "^$wm" | cut -d ! -f 2`
    ~/.ctafconf/etc/xsession/wm.sh $wmfct
   if [ x`cat $fwmpid` != x`cat $fwmpidtokill` ]; then
     echo BYEBYE, SHUTDOWN: $@ >>~/.ctafconf/perso/ctafconf.log
-    kill $pidpid
+    /bin/kill $pidpid
     exit
   fi
 }
@@ -90,10 +126,10 @@ exec_app()
     i=${apparray[0]}
 
     sleep 1
-    echo number of application to launch: ${apparray[0]}
+    ct_log number of application to launch: ${apparray[0]}
 
     while test $i -ge 1 ; do
-      echo LAUNCHING APP: "${apparray[$i]}" >>~/.ctafconf/perso/ctafconf.log
+      ct_log LAUNCHING APP: "${apparray[$i]}"
       eval ${apparray[$i]} &
       i=$(( $i - 1 ))
     done
@@ -116,7 +152,6 @@ launch_wm()
 {
   ct_log LAUNCHING WM
   exec_app
-  exec_wm $ctafconf_wm &
   loop_wm
   ct_log BYEBYE, WE SHOULD NOT BE THERE
 }

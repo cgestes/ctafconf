@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:13:33 2006 GESTES Cedric
-;; Last update Sun May 14 23:31:59 2006 GESTES Cedric
+;; Last update Tue May 16 06:14:48 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: SETTINGS.EMACS")
 
@@ -179,8 +179,8 @@
       '(buffer-file-name "Emacs: %b (%f)" "Emacs: %b"))
 
 ;;; Display an ugly color when there is some space before EOL
-(setq show-trailing-whitespace t)
-(setq-default show-trailing-whitespace t)
+;;(setq show-trailing-whitespace t)
+;;(setq-default show-trailing-whitespace t)
 
 ;;show shorcut for the last executed command if available
 (setq teach-extended-commands-p t)
