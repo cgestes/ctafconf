@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Sat May 20 03:53:27 2006 GESTES Cedric
+;; Last update Sat May 20 10:58:43 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: STARTUP.EMACS")
 
@@ -115,6 +115,8 @@
 ;;  - ilisp don't work on emacs-snapshot
 ;;  - turn on semantic-tag-decoration-on-protected-member, semantic-tag-decoration-on-private-member
 ;;  - remove this fucking bell
+;;  - folding: use semantic-folding if available, else outline, or hideshow
+
 ;;  KBD: (don't work in console (tty))
 ;;  C-SPC,
 ;;

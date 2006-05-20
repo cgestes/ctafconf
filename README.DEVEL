@@ -155,6 +155,22 @@ ct-ssh/ct-repo:
 ssh_gate
 
 
+---
+- ct-profile edit *.ctprofile , each .ctprofile describe :
+  - variable
+  - the output file
+  - the output method (sh, emacs, csh, ..)
+- ct-profile arg:
+  - askall
+  - test if var are def
+var_type (yesno, singlechoice, multichoice, text)
+var_separator #defined by the type
+var_value (value separate by separator)
+var_description
+var_file (needed?)
+var_type (emacs,csh,sh)
+
+
 ===========================================================
 KEYBOARD:
 ===========================================================

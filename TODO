@@ -55,24 +55,12 @@ CTAFCONF:
 - define default program: navigateur/mail reader/term/pager/.../EDITOR/..
 - specify interface in argument to ct-profile, ct-installconf, ...
 - add help for ct-profile, ct-installconf (for interface)
-- ct-profile edit *.ctprofile , each .ctprofile describe :
-  - variable
-  - the output file
-  - the output method (sh, emacs, csh, ..)
-- ct-profile arg:
-  - askall
-  - test if var are def
-var_type (yesno, singlechoice, multichoice, text)
-var_separator #defined by the type
-var_value (value separate by separator)
-var_description
-var_file (needed?)
-var_type (emacs,csh,sh)
 - grk-emacs, grk-shell, grk-x11 (expose all configuration file on the web)
 
 XSESSION:
 - learn how to kill, gnome, kde, xfce4 and maybe e16
 - when wm=ramdom, test_wm does'nt work
+- test if the wm exist
 
 SHELL:
 - screen : fichier de conf std (3 windows), automatiquement lance?, keys to browse history and to change term
