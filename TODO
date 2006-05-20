@@ -25,6 +25,7 @@ DOCUMENTATION:
 - coding style/general guide line
 - install emacs conf under native windows
 - doxyemacs => doxymacs
+- swf : install/change wm, change term,..
 
 CT-REPO/CT-SSH:
 - cleanup: personnal info (sshe) => ssh_forward
@@ -71,6 +72,7 @@ var_type (emacs,csh,sh)
 
 XSESSION:
 - learn how to kill, gnome, kde, xfce4 and maybe e16
+- when wm=ramdom, test_wm does'nt work
 
 SHELL:
 - screen : fichier de conf std (3 windows), automatiquement lance?, keys to browse history and to change term

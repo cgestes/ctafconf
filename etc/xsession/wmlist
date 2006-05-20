@@ -5,14 +5,13 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun May 14 20:36:17 2006 GESTES Cedric
-## Last update Sun May 14 22:08:02 2006 GESTES Cedric
+## Last update Sat May 20 02:59:35 2006 GESTES Cedric
 ##
 
 fluxbox!startfluxbox
 gnome!gnome-session
 kde!startkde
-xfce4!startxfce4
+xfce4!xfce4-session
 e16!starte16
 term!gnome-terminal
 aterm!~/.ctafconf/bin/ct-launch term
-

@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 05:39:19 2006 GESTES Cedric
-;; Last update Thu May 18 03:52:44 2006 GESTES Cedric
+;; Last update Thu May 18 03:59:55 2006 GESTES Cedric
 ;;
 
 
@@ -73,7 +73,7 @@
   )
 
 
-(gm-popup :elements '("buffer" "prog" "misc")
-          :select-callback (lambda (val)
-                             (grk-menu val)))
+;; (gm-popup :elements '("buffer" "prog" "misc")
+;;           :select-callback (lambda (val)
+;;                              (grk-menu val)))
 

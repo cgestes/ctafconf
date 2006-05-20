@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:13:33 2006 GESTES Cedric
-;; Last update Tue May 16 06:14:48 2006 GESTES Cedric
+;; Last update Sat May 20 04:47:42 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: SETTINGS.EMACS")
 
@@ -188,6 +188,8 @@
 ; make scripts executable upon saving
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 
+;; indiquate buffer boundaries on the left fringe
+(setq-default indicate-buffer-boundaries (quote left))
 ;;--------------------------------------------------------------------
 ;; support de mon clavier en mode console
 (set-terminal-coding-system 'iso-8859-15-unix)

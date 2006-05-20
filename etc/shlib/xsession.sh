@@ -41,9 +41,11 @@ trap _trap_kill INT TERM KILL
 
 loop_wm()
 {
-  local running_wm=""
-  local wm=""
+  local running_wm
+  local wm
 
+  running_wm=""
+  wm=""
   rm -rf $fwmpid $fwmpidtokill 2>/dev/null
   echo $ctafconf_wm >$fwm
   ct_log "ENTERING XSESSION LOOP" >>~/.ctafconf/perso/ctafconf.log
@@ -54,7 +56,6 @@ loop_wm()
         cp $fwmpid $fwmpidtokill
         #fucking kill builtin, use real one
         kill_wm "$running_wm" `cat $fwmpid`
-        rm -rf $fwmpid $fwmpidtokill 2>/dev/null
       fi
       #exec_wm $curr_wm&
       running_wm=`cat $fwm`
@@ -73,13 +74,14 @@ kill_wm()
   local wm=$1
   local pid=$2
 
+#  export DISPLAY=":0.0"
   case $wm in
     gnome)
       ct_log "KILL_WM: KILLING GNOME (gnome-session-save)"
-      gnome-session-save --kill 2>~/.ctafconf/perso/error.log;;
+      gnome-session-save --kill 2>~/.ctafconf/perso/error.log ;;
     xfce4)
       ct_log "KILL_WM: KILLING XFCE4 (xfce4-session-logout)"
-      xfce4-session-logout ;;
+      xfce4-session-logout 2>~/.ctafconf/perso/error.log ;;
     "")
       ct_log "KILL_WM: NO WM TO KILL" ;;
     *)
@@ -113,8 +115,8 @@ exec_wm ()
   wmfct=`cat ~/.ctafconf/etc/xsession/wmlist | grep "^$wm" | cut -d ! -f 2`
    ~/.ctafconf/etc/xsession/wm.sh $wmfct
   if [ x`cat $fwmpid` != x`cat $fwmpidtokill` ]; then
-    echo BYEBYE, SHUTDOWN: $@ >>~/.ctafconf/perso/ctafconf.log
-    /bin/kill $pidpid
+    echo "BYEBYE, SHUTDOWN (x`cat $fwmpid` != x`cat $fwmpidtokill`) $@" >>~/.ctafconf/perso/ctafconf.log
+    kill $pidpid
     exit
   fi
 }
