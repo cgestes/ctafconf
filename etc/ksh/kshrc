@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Thu Oct  6 04:55:46 2005 GESTES Cedric
-## Last update Fri May  5 17:27:10 2006 GESTES Cedric
+## Last update Sat May 20 10:21:28 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -22,6 +22,8 @@ cat ~/.ctafconf/etc/shell/motd
 # turn on command line editing mode
 set -o emacs
 #set -o vi-tabcomplete   # tab filename completion ON!
+
+set nobeep
 
 alias source=.
 

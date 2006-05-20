@@ -66,7 +66,7 @@ set inputmode   = insert
 set matchbeep   = ambiguous
 set promptchars = '$#'
 set listflags   = 'A'
-
+set nobeep
 set watch       = (0 nobody nobody)
 set who         = "%n(`whoami`) has %a %l from %M"
 

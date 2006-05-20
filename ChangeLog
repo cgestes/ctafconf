@@ -2,6 +2,8 @@
 	* xsession : support kdeinit
 	* xsession : stability improvement
 	* emacs : indicate buffer boundary on the left fringe
+	* shell : disable annoying bell
+	* shelltools.sh : null_cmd (redirect output to /dev/null)
 
 2006-05-18 CTAF <>
 	* generic-menu.el : allow for menu buffer

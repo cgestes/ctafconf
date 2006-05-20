@@ -5,7 +5,7 @@
 ## Login   <gestes_c@epita.fr>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 GESTES Cedric
-## Last update Fri Apr 21 02:30:08 2006 cedric gestes
+## Last update Sat May 20 10:18:45 2006 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -26,8 +26,10 @@ bindkey -s '^T' 'uptime\n'
 
 #limit core 0
 #disable beep
-set b 0 0 0
-set b off
+#set b 0 0 0
+#set b off
+
+
 ###################
 ## Options Settings (man zshoptions)
 ###################
@@ -35,6 +37,7 @@ setopt correct                 # spelling correction
 setopt autocd                  # change to dirs without cd
 
 setopt nobeep #disable beep in zsh
+
 setopt extended_glob
 
 setopt autopushd	      # automatically append dirs to the push/pop list

@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Fri Sep 30 22:08:35 2005 GESTES Cedric
-## Last update Sat May 20 03:26:25 2006 GESTES Cedric
+## Last update Sat May 20 10:11:02 2006 GESTES Cedric
 ##
 #!/bin/sh
 
@@ -25,6 +25,8 @@ cat ~/.ctafconf/etc/shell/motd
 # http://cnswww.cns.cwru.edu/~chet/bash/FAQ (E11)
 shopt -s checkwinsize
 
+#no bell
+set bell-style none
 # Set colorful PS1 only on colorful terminals.
 # dircolors --print-database uses its own built-in database
 # instead of using /etc/DIR_COLORS.  Try to use the external file

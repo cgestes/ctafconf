@@ -30,7 +30,7 @@ SHELL POSIX:
 Global advise:
 - always quote string and variable to avoid problem with string containing space
 - use shell lib
-- $(( 1 + 2 )) dont work on sun (jsh)
+- $(( 1 + 2 )) dont work on sun (jsh), use expr
 - $(( 077 )) = 63
 
 ######################

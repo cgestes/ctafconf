@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Wed Oct 12 00:20:30 2005 GESTES Cedric
-## Last update Fri Apr 21 02:33:24 2006 cedric gestes
+## Last update Sat May 20 10:32:28 2006 GESTES Cedric
 ##
 ##CTAFCONF
 ###
@@ -97,6 +97,10 @@ null_which() {
   return $?
 }
 
+null_cmd() {
+  eval $@ >/dev/null 2>/dev/null
+}
+
 return
 
 csh_functions:
@@ -118,7 +122,7 @@ alias alias_unset 'unalias'
 alias var_set 'set \!:1=\!:2'
 alias var_unset 'unset \!:1'
 alias null_which 'which \!* >&/dev/null'
-
+alias null_cmd 'eval \!* >&/dev/null'
 # alias ift 'if ( { test \!* } ) then'
 # alias iftelse 'echo else; else'
 # alias iftend 'echo endif;endif'
