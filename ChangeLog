@@ -1,3 +1,6 @@
+2006-05-21 CTAF <>
+	* xsession : remove wm changing, not complete enought
+
 2006-05-20 CTAF <>
 	* xsession : support kdeinit
 	* xsession : stability improvement

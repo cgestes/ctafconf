@@ -25,70 +25,13 @@ fwm=~/.ctafconf/perso/current_wm$DISPLAY
 fwmpid=~/.ctafconf/perso/wm_pid$DISPLAY
 fwmpidtokill=~/.ctafconf/perso/wm_pid_to_kill$DISPLAY
 
+
 #declare apparray as an array
 declare -a apparray
 #number of application
 apparray[0]=0
 
-#catch a signal, else termcaps shit
-_trap_kill ()
-{
-  trap "" INT TERM KILL
-  ct_log "TRAP KILL --$@--"
-}
 
-trap _trap_kill INT TERM KILL
-
-loop_wm()
-{
-  local running_wm
-  local wm
-
-  running_wm=""
-  wm=""
-  rm -rf $fwmpid $fwmpidtokill 2>/dev/null
-  echo $ctafconf_wm >$fwm
-  ct_log "ENTERING XSESSION LOOP" >>~/.ctafconf/perso/ctafconf.log
-  while [ x = x ] ; do
-    if ! [ x`cat $fwm` = x$running_wm ]; then
-      ct_log "IN THE LOOP: x`cat $fwm` = x$running_wm"
-      if [ -f $fwmpid ]; then
-        cp $fwmpid $fwmpidtokill
-        #fucking kill builtin, use real one
-        kill_wm "$running_wm" `cat $fwmpid`
-      fi
-      #exec_wm $curr_wm&
-      running_wm=`cat $fwm`
-      running_wm=`extract_wm $running_wm`
-      exec_wm $! $running_wm &
-      #aterm
-    fi
-    sleep 1
-    echo "LOOP --$wm_pid--" >>~/.ctafconf/perso/ctafconf.log
-  done
-  echo "EXIT FROM XSESSION LOOP" >>~/.ctafconf/perso/ctafconf.log
-}
-
-kill_wm()
-{
-  local wm=$1
-  local pid=$2
-
-#  export DISPLAY=":0.0"
-  case $wm in
-    gnome)
-      ct_log "KILL_WM: KILLING GNOME (gnome-session-save)"
-      gnome-session-save --kill 2>~/.ctafconf/perso/error.log ;;
-    xfce4)
-      ct_log "KILL_WM: KILLING XFCE4 (xfce4-session-logout)"
-      xfce4-session-logout 2>~/.ctafconf/perso/error.log ;;
-    "")
-      ct_log "KILL_WM: NO WM TO KILL" ;;
-    *)
-      ct_log "KILL_WM: KILLING ($wm) : ($pid)"
-      kill $pid;;
-  esac
-}
 
 #return the wm to launch
 extract_wm()
@@ -140,7 +83,6 @@ exec_app()
 }
 
 
-
 #(((((((EXPORTED FUNCTION)))))))
 
 ct_log()
@@ -154,7 +96,9 @@ launch_wm()
 {
   ct_log LAUNCHING WM
   exec_app
-  loop_wm
+#  loop_wm
+  ctafconf_wm=`extract_wm $ctafconf_wm`
+  exec_wm $! $ctafconf_wm #&
   ct_log BYEBYE, WE SHOULD NOT BE THERE
 }
 
@@ -175,9 +119,71 @@ test_wm ()
   local wm=$@
   local ret=0
 
-  ct_log -n "test_wm $@ = "
+  ctafconf_wm=`extract_wm $ctafconf_wm`
+  ct_log -n "test_wm ($ctafconf_wm = $@) => "
   [ x$ctafconf_wm = x$wm ]
   ret=$?
   ct_log $ret
   return $ret
 }
+
+
+# #catch a signal, else termcaps shit
+# _trap_kill ()
+# {
+#   trap "" INT TERM KILL
+#   ct_log "TRAP KILL --$@--"
+# }
+
+# trap _trap_kill INT TERM KILL
+
+# loop_wm()
+# {
+#   local running_wm
+#   local wm
+
+#   running_wm=""
+#   wm=""
+#   rm -rf $fwmpid $fwmpidtokill 2>/dev/null
+#   echo $ctafconf_wm >$fwm
+#   ct_log "ENTERING XSESSION LOOP" >>~/.ctafconf/perso/ctafconf.log
+#   while [ x = x ] ; do
+#     if ! [ x`cat $fwm` = x$running_wm ]; then
+#       ct_log "IN THE LOOP: x`cat $fwm` = x$running_wm"
+#       if [ -f $fwmpid ]; then
+#         cp $fwmpid $fwmpidtokill
+#         #fucking kill builtin, use real one
+#         kill_wm "$running_wm" `cat $fwmpid`
+#       fi
+#       #exec_wm $curr_wm&
+#       running_wm=`cat $fwm`
+#       running_wm=`extract_wm $running_wm`
+#       exec_wm $! $running_wm &
+#       #aterm
+#     fi
+#     sleep 1
+#     echo "LOOP --$wm_pid--" >>~/.ctafconf/perso/ctafconf.log
+#   done
+#   echo "EXIT FROM XSESSION LOOP" >>~/.ctafconf/perso/ctafconf.log
+# }
+
+# kill_wm()
+# {
+#   local wm=$1
+#   local pid=$2
+
+#   export DISPLAY=":0.0"
+#   case $wm in
+#     gnome)
+#       ct_log "KILL_WM: KILLING GNOME (gnome-session-save)"
+#       gnome-session-save --kill 2>~/.ctafconf/perso/error.log ;;
+#     xfce4)
+#       ct_log "KILL_WM: KILLING XFCE4 (xfce4-session-logout)"
+#       xfce4-session-logout 2>~/.ctafconf/perso/error.log ;;
+#     "")
+#       ct_log "KILL_WM: NO WM TO KILL" ;;
+#     *)
+#       ct_log "KILL_WM: KILLING ($wm) : ($pid)"
+#       kill $pid;;
+#   esac
+# }
