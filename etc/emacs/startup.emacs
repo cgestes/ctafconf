@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Sat May 20 10:58:43 2006 GESTES Cedric
+;; Last update Sun May 21 12:35:21 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: STARTUP.EMACS")
 
@@ -39,6 +39,11 @@
 ;; - [M-left]     previous buffer
 ;; - [M-right]       next buffer
 ;; - [C-TAB]      change window
+;;
+;;===MINIBUFFER===
+;; when you do: M-x, C-x b, etc..
+;; - C-n : next element in the history
+;; - C-p : previous element in the history
 ;;
 ;;===EDITION===
 ;; - shift up/down begin a selection, backspace kill the selection, like a normal editor

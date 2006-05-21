@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 00:57:16 2006 GESTES Cedric
-;; Last update Sun May 14 23:33:05 2006 GESTES Cedric
+;; Last update Sun May 21 12:59:27 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: MODE.EMACS")
 
@@ -234,3 +234,10 @@
       )
   (error
    (message "Cannot load folding %s" (cdr err))))
+
+;;cicles through element in M-x, C-x f, etc...
+(require 'icicles)
+(setq icicle-reminder-prompt-flag 0
+      icicle-arrows-respect-completion-type-flag t)
+
+(icicle-mode)
