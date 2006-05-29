@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:14:21 2006 GESTES Cedric
-;; Last update Sun May 14 23:33:04 2006 GESTES Cedric
+;; Last update Sun May 21 13:51:10 2006 GESTES Cedric
 ;;
 
 (message "ctafconf loading: PROG.EMACS")
@@ -146,3 +146,6 @@
       )
 	  (error
      (message "Cannot load mode-compile %s" (cdr err))))
+
+;;for debbugging
+(require 'gdb-ui t)

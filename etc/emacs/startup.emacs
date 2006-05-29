@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Sun May 21 12:35:21 2006 GESTES Cedric
+;; Last update Mon May 29 03:17:25 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: STARTUP.EMACS")
 
@@ -55,7 +55,11 @@
 ;; - M-x goto-char
 ;; - C-_		undo
 ;; - C-c r	revert buffer
-;; - M-y yank cycle previous buffer (C-y then M-y ... M-y till the previous yank you want)
+;; - M-y choose from previous copied string (browse kill-ring)
+;; - home/end :
+;;   - press 1 time: begin/end of the line
+;;   - press 2 time: top/bottom of the window
+;;   - press 3 time: begin/end of the buffer
 ;;
 ;;===PROGRAMMATION===
 ;; - m-x setnu-mode (toggle line number on the left)

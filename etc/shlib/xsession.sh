@@ -38,6 +38,7 @@ extract_wm()
 {
   local wm=$1
 
+  ct_log EXTRACTING WM: $wm
   if [ x$wm = xrandom ]; then
     sz=`cat ~/.ctafconf/perso/wmlist | wc -l`
     pos=$(( `date +%s` % $sz + 1 ))

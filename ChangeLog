@@ -1,6 +1,11 @@
+2006-05-29 CTAFF<>
+	* emacs : M-x => browse-kill-ring
+
 2006-05-21 CTAF <> -- 0.3.1
 	* xsession : remove wm changing, not complete enought
 	* emacs : icicle => M-x, C-x f, ...
+	* emacs : include gdb-ui for a better debugging experience
+	* emacs : pc-keys: better home and end keybindings
 
 2006-05-20 CTAF <>
 	* xsession : support kdeinit
