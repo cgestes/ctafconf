@@ -1,5 +1,10 @@
-2006-05-29 CTAFF<>
+2006-05-30 CTAF <>
+	* emacs : remove some bug in prog.emacs, mode.emacs and misc.emacs
+
+2006-05-29 CTAF <>
 	* emacs : M-x => browse-kill-ring
+	* emacs : use generic, generic-x for unix configuration file
+	* emacs : support flymake in makefile template
 
 2006-05-21 CTAF <> -- 0.3.1
 	* xsession : remove wm changing, not complete enought

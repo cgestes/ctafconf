@@ -43,6 +43,9 @@ MINE:
 
 CT-DATE:
 - use ssft, add to xsession?
+- add support for TODO
+- add remove (from a list)
+- add event that remove themthelve
 
 SSFT:
 

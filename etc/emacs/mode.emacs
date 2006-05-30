@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 00:57:16 2006 GESTES Cedric
-;; Last update Mon May 29 03:15:45 2006 GESTES Cedric
+;; Last update Tue May 30 14:51:09 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: MODE.EMACS")
 
@@ -193,7 +193,6 @@
 
 ;;EMACSFOLDING
 (condition-case err
-
     (progn
       (require 'hideshow)
       (require 'outline)
@@ -236,12 +235,22 @@
    (message "Cannot load folding %s" (cdr err))))
 
 ;;cicles through element in M-x, C-x f, etc...
-(require 'icicles t)
-(setq icicle-reminder-prompt-flag 0
-      icicle-arrows-respect-completion-type-flag t)
-(icicle-mode)
+(condition-case err
+    (progn
+      (require 'icicles)
+      (setq icicle-reminder-prompt-flag 0
+            icicle-arrows-respect-completion-type-flag t)
+      (icicle-mode t)
+      )
+  (error
+   (message "Cannot load folding %s" (cdr err))))
 
 ;; better home and end keybindings
-(require 'pc-keys t)
+(require 'pc-keys)
 
-(require 'kill-ring-mode t)
+(require 'browse-kill-ring)
+
+
+;;for lot's of unix configuration file, fstab, ...
+(require 'generic)
+(require 'generic-x)

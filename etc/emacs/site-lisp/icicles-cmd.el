@@ -2693,7 +2693,7 @@ duration of `icicle-buffer'."
 
 
 
-
+
 ;;; Commands to be used mainly at top level  . . . . . . . .
 
 

@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Mon May 29 03:17:25 2006 GESTES Cedric
+;; Last update Mon May 29 16:06:49 2006 GESTES Cedric
 ;;
 (message "ctafconf loading: STARTUP.EMACS")
 
@@ -33,7 +33,8 @@
 ;;
 ;;===FILE/BUFFER OPERATION===
 ;; - [c-x f] open one file
-;;   when opening file [C-UP], [C-DOWN] move up and down into the history
+;;   when opening file [M-UP], [M-DOWN] move into the directory history
+;;   when opening file [M-LEFT], [M-RIGHT] move up into the file history
 ;;   to get the standard open file [C-x f] then [C-f]
 ;;   (usefull to open new file with a name shorter than one already existing)
 ;; - [M-left]     previous buffer
@@ -120,12 +121,12 @@
 ;;  - transparent (use console backcolor)
 ;;  - /???/ Emacs autoresize at start conflicts with wm app properties save (use .mine to customize the beahavour)
 ;;  - support compile this conf 'emacs -batch -l ~/.ctafconf/etc/emacs/compile_conf.el'
-;;  - size of debugger windows, dont send focus to this windows (lisp)
 ;;  - ilisp don't work on emacs-snapshot
 ;;  - turn on semantic-tag-decoration-on-protected-member, semantic-tag-decoration-on-private-member
 ;;  - remove this fucking bell
 ;;  - folding: use semantic-folding if available, else outline, or hideshow
-
+;;  - flymake (check-syntax rule in makefile), flyspell
+;;  - EMACRO
 ;;  KBD: (don't work in console (tty))
 ;;  C-SPC,
 ;;

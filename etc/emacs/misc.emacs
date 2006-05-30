@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:12:29 2006 GESTES Cedric
-;; Last update Sun May 14 23:33:07 2006 GESTES Cedric
+;; Last update Tue May 30 14:44:37 2006 GESTES Cedric
 ;;
 ;;screensaver
 (message "ctafconf loading: MISC.EMACS")
@@ -15,6 +15,5 @@
   (require 'zone)
   (setq zone-idle 300)
   (zone-when-idle 300))
-;; (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
-(defun
-(add-hook 'zone-mode-hook '
+
+
