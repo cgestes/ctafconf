@@ -77,7 +77,7 @@ SHELL:
 - path on tcsh (see .login)
 - path only when necessary
 - var => dangerous host (gate, ...)
-
+- define SHELL else gdircolors fails
 EMACS: ## SEE .ctafconf/etc/emacs/startup.emacs ##
 
 ENLIGHTENMENT:

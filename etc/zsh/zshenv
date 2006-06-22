@@ -5,7 +5,7 @@
 ## Login   <gestes_c@epita.fr>
 ##
 ## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
-## Last update Thu Jun 22 17:29:03 2006 cedric gestes
+## Last update Fri Jun 23 01:21:35 2006 cedric gestes
 ##
 ##CTAFCONF
 
@@ -20,6 +20,8 @@ export SAVEHIST=1000
 export BLOCK_SIZE=human-readable
 # depth of the directory history
 DIRSTACKSIZE=30
+
+export SHELL=`which zsh`
 
 #show who login and who logout on the system
 export WATCHFMT="%n has %a %l from %M"
