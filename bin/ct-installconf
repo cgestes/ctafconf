@@ -132,12 +132,16 @@ grk_install_all()
 #install just those who need, ask for them
 grk_install_ask()
 {
+	echo "this is bugged, use choice instead"
+	return;
+	#ssft_yesno inside a while read doesnt work
   ls -1 $grkdir | grep ".grk$" | while read line; do
     name=`echo $line | sed -e s/.grk//`
     pkg_source $name
     if ! pkg_is_installed $name; then
       if ssft_yesno "Do you want to install $name" "`pkg_description $name`"; then
-        pkg_install $name
+        #pkg_install $name
+        echo "installed"
       fi
     fi
     pkg_alwaysinstall $name
@@ -208,7 +212,7 @@ fi
 export SSFT_FRONTEND=$ctafconf_interface
 
 
-SSFT_DEFAULT=ask
+SSFT_DEFAULT=choice
 ssft_select_single "Select one installation method" "'All' install every package, 'Ask' ask your before each package, and 'Choice' let you select packages you want in a list. If you want information about a package chouse 'information'" all ask choice information
 insmethod=$SSFT_RESULT
 

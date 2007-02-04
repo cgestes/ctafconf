@@ -1,5 +1,8 @@
 2007-02-04 CTAF <>
 	* shell : include colormake, binding for m,ma,etc.. use it :-)
+	* ctafconf : ctafconf-install works !! (no more bug with ask, nor with choice)
+	* ssft : bug with read
+	* emacs : fixed a bug, emacs start faster
 
 2006-05-30 CTAF <>
 	* emacs : remove some bug in prog.emacs, mode.emacs and misc.emacs

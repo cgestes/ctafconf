@@ -1,58 +1,61 @@
+##TODO ANNOTATION
+- todo
++ done
+s started
+
 ##################PLANNING
 V0.6.0:
-- documentation
-- website
+  - documentation
+  - website
 
 V0.5.0:
-- split version (tiny, complete, windows-emacs, ...)
+  - split version (tiny, complete, windows-emacs, ...)
 
 V0.4.0:
-- do todo emacs config
-- enhance .mine file
-- support uninstall
+  - do todo emacs config
+  - enhance .mine file
+  - support uninstall
+  - ctrepo/ctssh
 
-V0.3.1:
-- ctrepo/ctssh
-
-###URGENT###
-  - integrate colormake, use it in the ctafconf everywhere (m, ma, etc...)
+V0.3.1: goal: rock stable
+  + integrate colormake, use it in the ctafconf everywhere (m, ma, etc...)
   - revert to a safe xsession
-  - find the bug in the installation
-  - remove fucking stuff from emacs
+  + find the bug in the installation
+  s remove fucking stuff from emacs
   - remove config specific file (epita)
 
 ##################TODO
 DOCUMENTATION:
-- emacs: README.EMACS, install just emacs, just test emacsconf, ..
-- svn: checkout from svn, update
-- DOCUMENTATION (rescue session shortcut) (single session log)
-- enhance ct-help
-- revert gconf setting
-- what is in perso
-- coding style/general guide line
-- install emacs conf under native windows
-- doxyemacs => doxymacs
-- swf : install/change wm, change term,..
+  - emacs: README.EMACS, install just emacs, just test emacsconf, ..
+  - svn: checkout from svn, update
+  - DOCUMENTATION (rescue session shortcut) (single session log)
+  - enhance ct-help
+  - revert gconf setting
+  - what is in perso
+  - coding style/general guide line
+  - install emacs conf under native windows
+  - doxyemacs => doxymacs
+  - swf : install/change wm, change term,..
 
 CT-REPO/CT-SSH:
-- cleanup: personnal info (sshe) => ssh_forward
-- ct-repo/ct-ssh : use dialog/gdialog? (one lib exists, find it, use it (ssft))
+  - cleanup: personnal info (sshe) => ssh_forward
+  - ct-repo/ct-ssh : use ssft
 
 CT-SET-BG:
-- support wmsetbg, feh, hsetroot, chbg or xsri
-- support xfce, support kde
+  - support wmsetbg, feh, hsetroot, chbg or xsri
+  - support xfce, support kde
 
 MINE:
-- screen at shell startup
-- ecb/cedet/ilisp/doxyemacs
-- emacs size (set/unset)
-- diff .mine file /?/ (use diff3)
+  - screen at shell startup
+  - ecb/cedet/ilisp/doxyemacs
+  - emacs size (set/unset)
+  - diff .mine file /?/ (use diff3)
 
 CT-DATE:
-- use ssft, add to xsession?
-- add support for TODO
-- add remove (from a list)
-- add event that remove themthelve
+  - use ssft, add to xsession?
+  - add support for TODO
+  - add remove (from a list)
+  - add event that remove themthelve
 
 SSFT:
 
@@ -88,21 +91,21 @@ SHELL:
 EMACS: ## SEE .ctafconf/etc/emacs/startup.emacs ##
 
 ENLIGHTENMENT:
-- Enhance integration with ctafconf(wallpapers/bindkeys/E16-Gnome)
+  - Enhance integration with ctafconf(wallpapers/bindkeys/E16-Gnome)
 
 BONUS:
-- if user-profile and user-profile.csh exist ask which param to modify
-- use sabayon for gnome-conf/ff-conf
-- a gnome terminal that scroll like quake3 console using one hotkey
-- compiler for some configuration file ( emacs, fluxbox, etc..)
-- use gid and uid with mount command (maybe do a ct-mount)
-- kde, gnome (taskbar, etc), ff extension, blackbox, openbox, fvwm
-- debian package
-- xml/xslt + pygtk interface
-- test with dash (posix shell, or busybox)
-- 4 distrib: tinyemacs, emacs (with ecb, ilisp, ..), tinyctafconf, ctafconf (with ecb, ilisp, ..)
-- conky then torsmo..
-- test if it work with space in /home/ct af/ for example
+  - if user-profile and user-profile.csh exist ask which param to modify
+  - use sabayon for gnome-conf/ff-conf
+  - a gnome terminal that scroll like quake3 console using one hotkey
+  - compiler for some configuration file ( emacs, fluxbox, etc..)
+  - use gid and uid with mount command (maybe do a ct-mount)
+  - kde, gnome (taskbar, etc), ff extension, blackbox, openbox, fvwm
+  - debian package
+  - xml/xslt + pygtk interface
+  - test with dash (posix shell, or busybox)
+  - 4 distrib: tinyemacs, emacs (with ecb, ilisp, ..), tinyctafconf, ctafconf (with ecb, ilisp, ..)
+  - conky then torsmo..
+  - test if it work with space in /home/ct af/ for example
 
 
 ##################ALREADY DONE

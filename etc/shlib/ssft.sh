@@ -62,10 +62,10 @@ fi
 
 
 readparam=
-echo test_bob | read -e testbob >/dev/null 2>/dev/null;
-if [ x$? = x0 ]; then
-  readparam="-e"
-fi
+#echo test_bob | read -e testbob >/dev/null 2>/dev/null;
+#if [ x$? = x0 ]; then
+#  readparam="-e"
+#fi
 
 
 # ============ #
@@ -255,7 +255,7 @@ ssft_display_message() {
     echo "$_l_message"
     echo ""
     printf "%s" "$_l_CONTINUE_MSG"
-    read $readparam _l_foo
+    read _l_foo
     echo ""
   ;;
   *)
@@ -309,7 +309,7 @@ ssft_display_error() {
     echo "$_l_message" >&2
     echo ""
     printf "%s" "$_l_CONTINUE_MSG"
-    read $readparam _l_foo
+    read _l_foo
     echo "" >&2
   ;;
   *)
@@ -376,7 +376,7 @@ ssft_file_selection() {
   text)
     ssft_print_text_title "$_l_title"
     printf "%s: " "$_l_FNAME_STR"
-    read $readparam _l_fpath
+    read _l_fpath
     echo ""
   ;;
   *)
@@ -414,7 +414,7 @@ ssft_progress_bar() {
   # Read values
   case "$SSFT_FRONTEND" in
   zenity)
-    while read $readparam _l_line; do
+    while read _l_line; do
       echo "$_l_line" | sed -e '/^[0-9][0-9]*$/! {
         s/^/# /g;
       };'
@@ -430,7 +430,7 @@ ssft_progress_bar() {
     }' $_l_kdpbdc);
     rm -f "$_l_kdpbdc"
     dcop $DCOPREF ProgressDialog setAutoClose true
-    while read $readparam _l_line; do
+    while read _l_line; do
       _l_percent="`echo $_l_line | sed -n -e '/^[0-9][0-9]*/ {
         p;
       };'`"
@@ -440,7 +440,7 @@ ssft_progress_bar() {
 	        dcop $DCOPREF ProgressDialog setProgress "$_l_percent" 2> /dev/null;
       fi
     done
-    while read $readparam _l_line; do
+    while read _l_line; do
       _l_percent="`echo $_l_line | sed -n -e '/^[0-9][0-9]*/ {
         p;
       };'`"
@@ -453,7 +453,7 @@ ssft_progress_bar() {
     done
   ;;
   dialog)
-    while read $readparam _l_line; do
+    while read _l_line; do
       echo "$_l_line" | sed -e '/^[0-9][0-9]*$/! {
         s/^\(.*\)$/XXX\n\1\nXXX/;
       };'
@@ -461,7 +461,7 @@ ssft_progress_bar() {
   ;;
   text|*)
     ssft_print_text_title "$_l_title"
-    while read $readparam _l_line; do
+    while read _l_line; do
       _l_percent="`echo $_l_line | sed -n -e '/^[0-9][0-9]*/ {
         p;
       };'`"
@@ -532,7 +532,7 @@ ssft_read_string() {
     fi
     ssft_print_text_title "$_l_title"
     printf "%s$_l_DEFAULT_STR: " "$_l_question"
-    read $readparam _l_string
+    read _l_string
     if [ -z "$_l_string" ]; then
       _l_string="$_l_default"
     fi
@@ -591,7 +591,7 @@ ssft_read_password() {
     printf "%s: " "$_l_question"
     _l_old_stty_mode=`stty -g`
     stty -echo
-    read $readparam _l_string
+    read _l_string
     stty "$_l_old_stty_mode"
     echo ""
   ;;
@@ -655,7 +655,7 @@ ssft_select_multiple() {
     _l_zitems="";
     _l_out="";
     for _l_item in "$@"; do
-      _l_selected=$( echo "$_l_default" | while read $readparam _l_line; do
+      _l_selected=$( echo "$_l_default" | while read _l_line; do
           if [ "$_l_item" = "$_l_line" ]; then echo "TRUE"; break; fi
         done
       )
@@ -680,7 +680,7 @@ ssft_select_multiple() {
     _l_zitems="";
     _l_out="";
     for _l_item in "$@"; do
-      _l_selected=$( echo "$_l_default" | while read $readparam _l_line; do
+      _l_selected=$( echo "$_l_default" | while read _l_line; do
           if [ "$_l_item" = "$_l_line" ]; then echo "on"; break; fi
         done
       )
@@ -701,7 +701,7 @@ ssft_select_multiple() {
   dialog)
     _l_ditems="";
     for _l_item in "$@"; do
-      _l_selected=$( echo "$_l_default" | while read $readparam _l_line; do
+      _l_selected=$( echo "$_l_default" | while read _l_line; do
           if [ "$_l_item" = "$_l_line" ]; then echo "on"; break; fi
         done )
       if [ -z "$_l_selected" ]; then
@@ -724,7 +724,7 @@ ssft_select_multiple() {
     _l_ss=""
     _l_count=0;
     for _l_item in "$@"; do
-      _l_selected=$( echo "$_l_default" | while read $readparam _l_line; do
+      _l_selected=$( echo "$_l_default" | while read _l_line; do
           if [ "$_l_item" = "$_l_line" ]; then echo "x"; break; fi
         done
       )
@@ -744,10 +744,10 @@ ssft_select_multiple() {
         _l_count=$(( $_l_count + 1 ))
 	_l_ss="$(echo "$_l_selected_items" | cut -b $_l_count)"
         printf " (%s) %2s. %s\n" "$_l_ss" "$_l_count" "$_l_item"
-      done | ssft_pager
+      done | $ssft_pager
       echo ""
       printf "%s: " "$_l_PROMPT_STR"
-      read $readparam _l_option
+      read _l_option
       _l_option=$(echo $_l_option \
         | sed -n -e '/^[[:space:]]*[0-9][0-9]*[[:space:]]*$/ {
             s/[^0-9]//g;
@@ -927,7 +927,7 @@ ssft_select_single() {
       done | $ssft_pager #more
       echo ""
       printf "%s: " "$_l_PROMPT_STR"
-      read $readparam _l_option
+      read _l_option
       if [ -n "$_l_default" ] && [ "$_l_option" = "" ]; then
 	_l_string="$_l_default"
 	_l_ret=0
@@ -1042,26 +1042,27 @@ ssft_yesno() {
   ;;
   text)
     ssft_print_text_title "$_l_title"
-    while true; do
-      printf "%s [%s|%s|%s]: " "$_l_question" "$_l_YES_STR" "$_l_NO_STR" \
-                               "$_l_CANCEL_STR"
-      read $readparam _l_rep
+    printf "%s [%s|%s|%s]: " "$_l_question" "$_l_YES_STR" "$_l_NO_STR" \
+                           "$_l_CANCEL_STR"
+    while read _l_rep ; do
       _l_yes_rep=`echo ${_l_YES_STR} | grep -i "^$_l_rep"`
       _l_no_rep=`echo ${_l_NO_STR} | grep -i "^$_l_rep"`
       _l_cancel_rep=`echo ${_l_CANCEL_STR} | grep -i "^$_l_rep"`
       if [ -n "$_l_yes_rep" ] && [ -z "$_l_no_rep" ] \
         && [ -z "$_l_cancel_rep" ]; then
         _l_ret=0;
-	break;
+				break;
       elif [ -z "$_l_yes_rep" ] && [ -n "$_l_no_rep" ] \
         && [ -z "$_l_cancel_rep" ]; then
         _l_ret=1;
-	break;
+				break;
       elif [ -z "$_l_yes_rep" ] && [ -z "$_l_no_rep" ] \
         && [ -n "$_l_cancel_rep" ]; then
         _l_ret=255;
-	break;
+				break;
       fi
+      printf "%s [%s|%s|%s]: " "$_l_question" "$_l_YES_STR" "$_l_NO_STR" \
+                             "$_l_CANCEL_STR"
     done
     echo ""
   ;;
