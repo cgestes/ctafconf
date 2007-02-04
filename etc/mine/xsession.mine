@@ -36,9 +36,9 @@ if which xbindkeys >/dev/null 2>/dev/null; then
 fi
 
 #gaim
-if which gaim >/dev/null 2>/dev/null; then
-  launch_app gaim
-fi
+#if which gaim >/dev/null 2>/dev/null; then
+#  launch_app gaim
+#fi
 
 #launch special stuff for fluxbox
 if test_wm fluxbox ; then

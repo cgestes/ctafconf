@@ -14,6 +14,13 @@ V0.4.0:
 V0.3.1:
 - ctrepo/ctssh
 
+###URGENT###
+  - integrate colormake, use it in the ctafconf everywhere (m, ma, etc...)
+  - revert to a safe xsession
+  - find the bug in the installation
+  - remove fucking stuff from emacs
+  - remove config specific file (epita)
+
 ##################TODO
 DOCUMENTATION:
 - emacs: README.EMACS, install just emacs, just test emacsconf, ..
