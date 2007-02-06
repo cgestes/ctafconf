@@ -85,20 +85,15 @@ while (<>)
 	#svn up
 	$thisline =~ s/^(C)\s\s*(.*)/$col_conflict$1onflict: $col_file$2/x;
 	$thisline =~   s/^(U)\s\s*(.*)/$col_update$1pdated : $col_file$2/x;
-	$thisline =~   s/^(G)\s\s*(.*)/$col_fusion$1 Merged: $col_file$2/x;
+	$thisline =~   s/^(P)\s\s*(.*)/$col_update$1Updated: $col_file$2/x;
 	$thisline =~    s/^(A)\s\s*(.*)/$col_added$1dded   : $col_file$2/x;
-	$thisline =~  s/^(D)\s\s*(.*)/$col_deleted$1eleted : $col_file$2/x;
-
-	#svn status
-	$thisline =~ s/^(\~)\s\s*(.*)/$col_conflict$1       : $col_file$2/x;
+	$thisline =~  s/^(R)\s\s*(.*)/$col_deleted$1emoved : $col_file$2/x;
 	$thisline =~   s/^(\?)\s\s*(.*)/$col_file$1       : $col_file$2/x;
-	$thisline =~   s/^(\!)\s\s*(.*)/$col_conflict$1       : $col_file$2/x;
 	$thisline =~    s/^(M)\s\s*(.*)/$col_update$1odified: $col_file$2/x;
-	$thisline =~    s/^(R)\s\s*(.*)/$col_update$1eplaced: $col_file$2/x;
-	$thisline =~    s/^(X)\s\s*(.*)/$col_fusion$1       : $col_file$2/x;
-	$thisline =~    s/^(I)\s\s*(.*)/$col_file$1gnored : $col_file$2/x;
 
-	#svn diff
+
+
+	#cvs diff
 	$thisline =~   s/^(\+.*)/$col_purple$1$col_file/x;
 	$thisline =~   s/^(-.*)/$col_yellow$1$col_file/x;
 	$thisline =~   s/^(@@.*)/$col_blue$1$col_file/x;
