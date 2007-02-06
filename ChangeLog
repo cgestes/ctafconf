@@ -4,6 +4,8 @@
 	* ctafconf : no more ctafconf_config
 	* ctafconf : no more ctafconf_sudo
 	* colorsvn : yalla!
+	* emacs : bug with gdb-ui
+	* emacs : cua everywhere
 
 2007-02-05 CTAF <>
 	* colormake : handle fucking libtool

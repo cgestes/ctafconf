@@ -18,16 +18,13 @@ V0.4.0:
   - ctrepo / ctssh
 
 V0.3.1: goal: rock stable
-  + integrate colormake, use it in the ctafconf everywhere (m, ma, etc...)
-  s revert to a safe xsession
-  + find the bug in the installation
-  + remove fucking stuff from emacs
-  s remove config specific file (epita)
-  - nasty bug with emacs-places
   s color everythink: svn, cvs, apt-get, man, wget (change the perl script, so we dont need a warper)(ensure perl is installed too)
   s remove session for gdm and sudo, put instruction to install it, if wanted
+  - nasty bug with emacs-places
   - documentation, on usefull feature
   - dependency checkout at startup (sed, grep, perl, etc..)
+  - warper arround the shell (to use in #!~/.ctafconf/bin/shell bash)
+    colormake, colorsvn, xsession maybe
 
 ##################TODO
 DOCUMENTATION:
@@ -158,3 +155,8 @@ BONUS:
 - DONT LOAD FUD on gate.epita.fr
 - ct-date $ (( 08 )) don't work
 - ramdom wm/ramdom wallpp (second modulo)
++ integrate colormake, use it in the ctafconf everywhere (m, ma, etc...)
++ find the bug in the installation
++ remove fucking stuff from emacs
++ revert to a safe xsession
++ remove config specific file (epita)
