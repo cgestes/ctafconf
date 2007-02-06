@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 ##
 ## xsession.sh
 ## Login : <ctaf@localhost.localdomain>
