@@ -133,7 +133,7 @@ grk_install_all()
 grk_install_ask()
 {
 	echo "this is bugged, use choice instead"
-	return;
+	exit
 	#ssft_yesno inside a while read doesnt work
   ls -1 $grkdir | grep ".grk$" | while read line; do
     name=`echo $line | sed -e s/.grk//`

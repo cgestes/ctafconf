@@ -62,6 +62,7 @@ env_set PAGER "more"
 null_which less && env_set PAGER "less"
 null_which most && env_set PAGER "most"
 
+env_set LASH_START_SERVER=/usr/bin/lashd
 
 env_set EADNULLCMD $PAGER
 env_set EMAIL "$ctafconf_mail"

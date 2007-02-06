@@ -3,6 +3,7 @@
 	* emacs : improved load time
 	* ctafconf : no more ctafconf_config
 	* ctafconf : no more ctafconf_sudo
+	* colorsvn : yalla!
 
 2007-02-05 CTAF <>
 	* colormake : handle fucking libtool
@@ -13,6 +14,9 @@
 	* ctafconf : ctafconf-install works !! (no more bug with ask, nor with choice)
 	* ssft : bug with read
 	* emacs : fixed a bug, emacs start faster
+
+2006-17-06 CTAF <>
+	* alias : svndiff (svn diff without whitespace, tab, and blankline differences)
 
 2006-05-30 CTAF <>
 	* emacs : remove some bug in prog.emacs, mode.emacs and misc.emacs

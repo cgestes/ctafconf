@@ -15,7 +15,7 @@ V0.4.0:
   - do todo emacs config
   - enhance .mine file
   - support uninstall
-  - ctrepo/ctssh
+  - ctrepo / ctssh
 
 V0.3.1: goal: rock stable
   + integrate colormake, use it in the ctafconf everywhere (m, ma, etc...)
@@ -24,9 +24,10 @@ V0.3.1: goal: rock stable
   + remove fucking stuff from emacs
   s remove config specific file (epita)
   - nasty bug with emacs-places
-  s color everythink: svn, cvs, apt-get, man, wget
+  s color everythink: svn, cvs, apt-get, man, wget (change the perl script, so we dont need a warper)(ensure perl is installed too)
   s remove session for gdm and sudo, put instruction to install it, if wanted
   - documentation, on usefull feature
+  - dependency checkout at startup (sed, grep, perl, etc..)
 
 ##################TODO
 DOCUMENTATION:
@@ -78,6 +79,7 @@ XSESSION:
 - learn how to kill, gnome, kde, xfce4 and maybe e16
 - when wm=ramdom, test_wm does'nt work
 - test if the wm exist
+- install ctafconf.desktop in /usr/share/xsession
 
 SHELL:
 - screen : fichier de conf std (3 windows), automatiquement lance?, keys to browse history and to change term

@@ -229,7 +229,7 @@ fi
 
 ctafconf_wm=$(getvaldef "$ctafconf_wm" 'fluxbox' )
 SSFT_DEFAULT=$ctafconf_wm
-if ssft_select_single "Window Manager" "Choose your wm from the list" random fluxbox gnome kde xfce4 e16 term; then
+if ssft_select_single "Window Manager" "Choose your wm from the list" fluxbox gnome kde xfce4 e16 term aterm beryl; then
     ctafconf_wm=$(getvaldef "$SSFT_RESULT" "$ctafconf_wm" )
 fi
 

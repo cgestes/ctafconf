@@ -20,6 +20,7 @@
 #   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 #
 
+
 # Some useful color codes, see end of file for more.
 #
 $col_ltgray =       "\033[37m";
@@ -142,4 +143,6 @@ print $col_norm;
 #    'cyan'      => "\033[36m",
 #    'white'     => "\033[37m",
 #    'darkgray'  => "\033[30m");
+
+
 

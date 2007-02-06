@@ -15,3 +15,4 @@ xfce4!xfce4-session
 e16!starte16
 term!gnome-terminal
 aterm!~/.ctafconf/bin/ct-launch term
+beryl!beryl-manager
