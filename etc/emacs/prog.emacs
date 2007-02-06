@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:14:21 2006 GESTES Cedric
-;; Last update Tue May 30 14:49:53 2006 GESTES Cedric
+;; Last update Tue Feb  6 06:31:59 2007 GESTES Cedric
 ;;
 
 (message "ctafconf loading: PROG.EMACS")
@@ -13,6 +13,10 @@
 ;;epita header
 (load "std.el")
 (load "std_comment.el")
+
+;;auto-template for .cc, .c, .h, .hh, ...
+(setq auto-template-dir "~/.ctafconf/etc/emacs/templates/")
+(require 'auto-template "auto-template.el")
 
 ;; Compilation Options
 (setq compile-command "make -k")
@@ -149,3 +153,38 @@
 
 ;;for debbugging
 (require 'gdb-ui)
+
+
+(condition-case err
+    (progn
+      (load "~/.ctafconf/etc/emacs/site-lisp/sieve/sieve")
+      (add-to-list 'auto-mode-alist '("\\.siv$" . sieve-mode))
+      (add-to-list 'auto-mode-alist '("\\.sieve$" . sieve-mode)))
+(error
+ (message "Cannot load sieve %s" (cdr err))))
+
+(condition-case err
+    (progn
+      (require 'tiger nil t)
+      (add-to-list 'auto-mode-alist '("\\.tig$" . tiger-mode)))
+  (error
+   (message "Cannot load tiger %s" (cdr err))))
+
+;;tuareg-mode CAML
+(condition-case err
+    (progn
+;;      (require 'tuareg nil t)
+      (autoload 'tuareg-mode "tuareg" "Major mode for editing Caml code" t)
+      (autoload 'camldebug "camldebug" "Run the Caml debugger" t)
+      (if (and (boundp 'window-system) window-system)
+          (if (string-match "XEmacs" emacs-version)
+              (require 'sym-lock)
+            (require 'font-lock))))
+  (error
+   (message "Cannot load tuareg %s" (cdr err))))
+
+;;editer les fichiers eiffel
+(autoload 'eiffel-mode "eiffel-mode" "Major mode for Eiffel programs" t)
+
+;;editer les fichiers ada
+(autoload 'ada-mode "ada-mode" "Major mode for Ada programs" t)

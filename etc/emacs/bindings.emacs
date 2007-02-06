@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:16:47 2006 GESTES Cedric
-;; Last update Mon May 29 03:16:51 2006 GESTES Cedric
+;; Last update Tue Feb  6 06:05:48 2007 GESTES Cedric
 ;;
 (message "ctafconf loading: BINDINGS.EMACS")
 ;;(global-unset-key "\M-[")
@@ -26,13 +26,13 @@
 (global-set-key [C-mouse-4] 'down-a-lot)
 (global-set-key [C-mouse-5] 'up-a-lot)
 
-(defalias 'switch-to-next-buffer 'bury-buffer)
+;; (defalias 'switch-to-next-buffer 'bury-buffer)
 
-(defun switch-to-previous-buffer ()
-  "Switches to previous buffer"
-  (interactive)
-  (switch-to-buffer (nth (- (length (buffer-list)) 1) (buffer-list)))
-)
+;; (defun switch-to-previous-buffer ()
+;;   "Switches to previous buffer"
+;;   (interactive)
+;;   (switch-to-buffer (nth (- (length (buffer-list)) 1) (buffer-list)))
+;; )
 
 ;; (global-set-key [S-right]       'switch-to-previous-buffer)
 ;; (global-set-key [S-left]        'switch-to-next-buffer)
@@ -53,7 +53,6 @@
 ;;(global-set-key [S-left]        'prev-buffer)
 
 
-
 ;; M-x pc-bindings-mode sets up bindings compatible with many PC editors. In particular, Delete and its variants delete forward instead of backward. Use Backspace to delete backward.
 ;; C-Backspace kills backward a word (as C-Delete normally would).
 ;; M-Backspace does undo.
@@ -63,8 +62,6 @@
 ;;use shift + left/right to select something
 ;;(pc-selection-mode)
 
-(global-set-key "\C-x\C-b" 'ido-switch-buffer)
-(global-set-key "\C-xb" 'electric-buffer-list)
 (global-set-key [delete] 'delete-char)
 (global-set-key [kp-delete] 'delete-char)
 (global-set-key [backward-delete-char] 'backward-delete-char)
@@ -140,7 +137,6 @@
 
 
 
-
 ;;(global-set-key [(C-b)] 'electric-buffer-list)
 
 ;;BROKEN
@@ -154,19 +150,20 @@
 ;; (global-set-key "%" 'match-paren)
 ;;(global-set-key [(f11)] 'describe-function-at-point)
 ;;(global-set-key [(f12)] 'describe-variable-at-point)
-;; buffer cycling
-(autoload 'cycle-buffer "cycle-buffer" "Cycle forward." t)
-(autoload 'cycle-buffer-backward "cycle-buffer" "Cycle backward." t)
-(autoload 'cycle-buffer-permissive "cycle-buffer" "Cycle forward allowing *buffers*." t)
-(autoload 'cycle-buffer-backward-permissive "cycle-buffer"
-  "Cycle backward allowing *buffers*." t)
-(autoload 'cycle-buffer-toggle-interesting "cycle-buffer"
-  "Toggle if this buffer will be considered." t)
 
-(global-set-key [(alt right)] 'cycle-buffer)
-(global-set-key [(alt left)] 'cycle-buffer-backward)
-(global-set-key [(alt shift right)] 'cycle-buffer-permissive)
-(global-set-key [(alt shift left)] 'cycle-buffer-backward-permissive)
+;; buffer cycling
+;; (autoload 'cycle-buffer "cycle-buffer" "Cycle forward." t)
+;; (autoload 'cycle-buffer-backward "cycle-buffer" "Cycle backward." t)
+;; (autoload 'cycle-buffer-permissive "cycle-buffer" "Cycle forward allowing *buffers*." t)
+;; (autoload 'cycle-buffer-backward-permissive "cycle-buffer"
+;;   "Cycle backward allowing *buffers*." t)
+;; (autoload 'cycle-buffer-toggle-interesting "cycle-buffer"
+;;   "Toggle if this buffer will be considered." t)
+
+;; (global-set-key [(alt right)] 'cycle-buffer)
+;; (global-set-key [(alt left)] 'cycle-buffer-backward)
+;; (global-set-key [(alt shift right)] 'cycle-buffer-permissive)
+;; (global-set-key [(alt shift left)] 'cycle-buffer-backward-permissive)
 
 
 (global-set-key (kbd "M-y") 'browse-kill-ring)

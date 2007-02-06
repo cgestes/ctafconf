@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 00:57:16 2006 GESTES Cedric
-;; Last update Tue May 30 14:51:09 2006 GESTES Cedric
+;; Last update Tue Feb  6 06:32:04 2007 GESTES Cedric
 ;;
 (message "ctafconf loading: MODE.EMACS")
 
@@ -36,74 +36,58 @@
          ("\\.e\\'" . eiffel-mode)
          ) auto-mode-alist))
 
-(condition-case err
-    (progn
-      (load "~/.ctafconf/etc/emacs/site-lisp/sieve/sieve")
-      (add-to-list 'auto-mode-alist '("\\.siv$" . sieve-mode))
-      (add-to-list 'auto-mode-alist '("\\.sieve$" . sieve-mode)))
-(error
- (message "Cannot load sieve %s" (cdr err))))
 
+;;cicles through element in M-x, C-x f, etc...
 (condition-case err
     (progn
-      (require 'tiger nil t)
-      (add-to-list 'auto-mode-alist '("\\.tig$" . tiger-mode)))
+      (require 'icicles)
+      (setq icicle-reminder-prompt-flag 0
+            icicle-arrows-respect-completion-type-flag t)
+      (icicle-mode t)
+      )
   (error
-   (message "Cannot load tiger %s" (cdr err))))
-
-;;tuareg-mode CAML
-(condition-case err
-    (progn
-;;      (require 'tuareg nil t)
-      (autoload 'tuareg-mode "tuareg" "Major mode for editing Caml code" t)
-      (autoload 'camldebug "camldebug" "Run the Caml debugger" t)
-      (if (and (boundp 'window-system) window-system)
-          (if (string-match "XEmacs" emacs-version)
-              (require 'sym-lock)
-            (require 'font-lock))))
-  (error
-   (message "Cannot load tuareg %s" (cdr err))))
-
-;;editer les fichiers eiffel
-(autoload 'eiffel-mode "eiffel-mode" "Major mode for Eiffel programs" t)
-
-;;editer les fichiers ada
-(autoload 'ada-mode "ada-mode" "Major mode for Ada programs" t)
+   (message "Cannot load icicles %s" (cdr err))))
 
 ;;IDO MODE
+;;IDO for find-file, and others
 (condition-case err
     (progn
-      (when (require 'ido nil t)
-        ;;IDO for find-file, and others
-        (ido-mode t))
-      ;;IDO for switching between buffers
-      ;;need to be after ido-mode
-      (iswitchb-mode 1))
+      (require 'ido nil t)
+      (ido-mode t)
+      (global-set-key "\C-x\C-b" 'ido-switch-buffer)
+      )
   (error
    (message "Cannot load ido %s" (cdr err))))
-;;;//IDO MODE
 
-;;auto-template for .cc, .c, .h, .hh, ...
-(setq auto-template-dir "~/.ctafconf/etc/emacs/templates/")
-(require 'auto-template "auto-template.el")
+;;;;dont know!
+;; (condition-case err
+;;     (progn
+;;       (when (require 'ibuffer "ibuffer" t)
+;; 	(setq ibuffer-shrink-to-minimum-size t)
+;; 	;;(setq ibuffer-always-show-last-buffer ':nomini)
+;; 	(setq ibuffer-always-show-last-buffer nil)
+;; 	(setq ibuffer-sorting-mode 'recency)
+;; 	(setq ibuffer-use-header-line t)
+;; 	(setq ibuffer-formats '((mark modified read-only " " (name 30 30)
+;; 				      " " (size 6 -1) " " (mode 16 16) " " filename)
+;; 				(mark " " (name 30 -1) " " filename)))
+;; 	(define-key ibuffer-mode-map (kbd "#") 'ibuffer-switch-format))
+;;         ;;need to be after ido-mode
+;;         (iswitchb-mode 1)
+;;       )
+;;   (error
+;;    (message "Cannot load ibuffer %s" (cdr err))))
 
-;;; bubble-buffer
-;; (when (require 'bubble-buffer nil t)
-;;   (global-set-key [f11] 'bubble-buffer-next)
-;;   (global-set-key [(shift f11)] 'bubble-buffer-previous)
-;; (setq bubble-buffer-omit-regexp "\\(^ .+$\\|\\*Messages\\*\\|*compilation\\*\\|\\*.+output\\*$\\|\\*TeX Help\\*$\\|\\*vc-diff\\*\\|\\*Occur\\*\\|\\*grep\\*\\|\\*cvs-diff\\*\\|\\*modelsim\\*\\)"))
 
+(global-set-key "\C-xb" 'electric-buffer-list)
 
-(when (require 'ibuffer "ibuffer" t)
-  (setq ibuffer-shrink-to-minimum-size t)
-  ;;(setq ibuffer-always-show-last-buffer ':nomini)
-  (setq ibuffer-always-show-last-buffer nil)
-  (setq ibuffer-sorting-mode 'recency)
-  (setq ibuffer-use-header-line t)
-  (setq ibuffer-formats '((mark modified read-only " " (name 30 30)
-                                " " (size 6 -1) " " (mode 16 16) " " filename)
-                          (mark " " (name 30 -1) " " filename)))
-  (define-key ibuffer-mode-map (kbd "#") 'ibuffer-switch-format))
+;; better home and end keybindings
+;;(condition-case err
+;;    (progn
+;;      (require 'pc-keys)
+;;      )
+;;  (error
+;;   (message "Cannot load pc-keys %s" (cdr err))))
 
 
 ;; indent =, <, ... in cmode
@@ -118,6 +102,9 @@
 ;; (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 
 
+;; this mode let you use emacs with the "modern editor bindings"
+;; shift + left|right|up|down to make a selection
+;; ctrl x, ctrl v, ctrl c
 (condition-case err
     (progn
       ;;C-return => selection mode
@@ -169,8 +156,14 @@
 ;;highlight current line
 ;;(hl-line-mode)
 
-;; setnu (Show line numbers)
-(autoload 'setnu-mode "setnu+" "Line Numbers." t)
+(condition-case err
+    (progn
+      ;; setnu (Show line numbers)
+      (autoload 'setnu-mode "setnu+" "Line Numbers." t)
+      )
+  (error
+   (message "Cannot autoload setnu-mode %s" (cdr err))))
+
 
 
 ;;;SavePlace- this puts the cursor in the last place you editted
@@ -234,23 +227,23 @@
   (error
    (message "Cannot load folding %s" (cdr err))))
 
-;;cicles through element in M-x, C-x f, etc...
+
 (condition-case err
     (progn
-      (require 'icicles)
-      (setq icicle-reminder-prompt-flag 0
-            icicle-arrows-respect-completion-type-flag t)
-      (icicle-mode t)
+      (require 'browse-kill-ring)
       )
   (error
-   (message "Cannot load folding %s" (cdr err))))
+   (message "Cannot load browse-kill-ring %s" (cdr err))))
 
-;; better home and end keybindings
-(require 'pc-keys)
+(condition-case err
+    (progn
+      ;;for lot's of unix configuration file, fstab, ...
+      (require 'generic)
+      (require 'generic-x)
+      )
+  (error
+   (message "Cannot load generic %s" (cdr err))))
 
-(require 'browse-kill-ring)
 
 
-;;for lot's of unix configuration file, fstab, ...
-(require 'generic)
-(require 'generic-x)
+

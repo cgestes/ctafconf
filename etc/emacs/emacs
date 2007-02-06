@@ -36,6 +36,9 @@
 
 (load-file "~/.ctafconf/etc/emacs/site-lisp/safe-load.el")
 
+(safe-load "~/.ctafconf/etc/emacs/color.emacs")
+(safe-load "~/.ctafconf/etc/emacs/settings.emacs")
+
 ;;startup message
 (safe-load "~/.ctafconf/etc/emacs/startup.emacs")
 ;;mode (ada,tuareg, ido, autotemplate,..)
@@ -47,16 +50,14 @@
 ;;cparse, cpcomment, cwarn, cedet, ecb, semantic
 (safe-load "~/.ctafconf/etc/emacs/prog.emacs")
 ;;emacs settings
-(safe-load "~/.ctafconf/etc/emacs/settings.emacs")
+
 ;;keys bindings
 (safe-load "~/.ctafconf/etc/emacs/bindings.emacs")
 ;;menu
 (safe-load "~/.ctafconf/etc/emacs/menu.emacs")
 ;;test
-(safe-load "~/.ctafconf/etc/emacs/test.emacs")
+;;(safe-load "~/.ctafconf/etc/emacs/test.emacs")
 ;;color
-(safe-load "~/.ctafconf/etc/emacs/color.emacs")
-
 
 
 ;;personal settings
@@ -67,7 +68,6 @@
 
 ;;print debug info
 (safe-load-check)
-
 
 
 ;; (custom-set-faces

@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Mon May 29 16:06:49 2006 GESTES Cedric
+;; Last update Tue Feb  6 06:15:09 2007 GESTES Cedric
 ;;
 (message "ctafconf loading: STARTUP.EMACS")
 
@@ -102,6 +102,16 @@
 ;;   C-x ESC ESC (affiche la commande precedente nikel chrome)
 ;;
 
+;; === TODO - URGENT ===
+;;  - increase the startup time
+;;  - remove bugs
+;;  - the emacs place case
+;;  - jump through code and file under cursor
+;;  - remove elisp error, or make them not invading
+;;  - add a file, with var do enable/disable functionnality (ecb, ilisp, cedet, etc..)
+;;  - provide a very basic conf, and load functionality at runtime (menu)
+;;  - display menu in x
+;;
 ;; === TODO ===
 ;;  - shortcut: kill one line
 ;;  - kill char from cur to begin

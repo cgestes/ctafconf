@@ -4,7 +4,7 @@
 #
 # Copyright: (C) 1999, Bjarni R. Einarsson <bre@netverjar.is>
 #                      http://bre.klaki.net/
-# 
+#
 #   This program is free software; you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
 #   the Free Software Foundation; either version 2 of the License, or
@@ -57,13 +57,13 @@ $| = 1;
 while (<>)
 {
 	$orgline = $thisline = $_;
-	
+
 	# Remove multiple spaces
 	$thisline =~ s/  \+/ /g;
-	
+
 	# Truncate lines.
 	# I suppose this is bad, but it's better than what less does!
-	if ($cols >= 0) 
+	if ($cols >= 0)
 	{
 	    $thisline =~ s/^(.{$cols}).....*(.{15})$/$1 .. $2/;
 	}
@@ -73,10 +73,17 @@ while (<>)
 	{
 		$in = 'make';
 	}
-	elsif ($thisline =~ s/^(\s*(g?cc|(g|c)\+\+).*)$/$col_gcc$1$col_norm/) 
+	elsif ($thisline =~ s/^(\s*(g?cc|(g|c)\+\+).*)$/$col_gcc$1$col_norm/)
 	{
 		$in = 'gcc';
 	}
+#CTAF EXTENSION
+#check for a if, fucking libtool
+	elsif ($thisline =~ s/^(\.*(libtool\s)*.*(g?cc|(g|c)\+\+).*)$/$col_gcc$1$col_norm/)
+	{
+		$in = 'gcc';
+	}
+#CTAF EXTENSION
 	elsif ($thisline =~ /^(\s*\(|\[|a(r|wk)|c(p|d|h(mod|own))|do(ne)?|e(cho|lse)|f(ind|or)|i(f|nstall)|mv|perl|r(anlib|m(dir)?)|s(e(d|t)|trip)|tar)\s+/)
 	{
 		$in = $1;
@@ -88,7 +95,7 @@ while (<>)
 		if (($thisline !~ /[,:]$/) && ($thisline !~ /warning/))
 		{
 			# error?
-			if ($cols >= 0) 
+			if ($cols >= 0)
 			{
 				# Retruncate line, because we are about to insert "Error:".
 				my $c = $cols - length($tag_error);
@@ -103,21 +110,21 @@ while (<>)
 			# warning
 			$thisline =~ s|(warning:\s+)(.*)$|$1$col_warning$2|;
 		}
-		
+
 		# In file included from main.cpp:38:
-		# main.cpp: In function int main(...)': 
+		# main.cpp: In function int main(...)':
 		$thisline =~ s/(In f(unction|ile))/$col_trace$1/x;
 
 		# /blah/blah/blah.cpp:123:
 		$thisline =~ s|^([^:]+)|$col_filename$1$col_default|;
 		$thisline =~ s|:(\d+)([:,])|:$col_linenum$1$col_default$2|;
 	}
-	
-	if ($thisline !~ /^\s+/) 
+
+	if ($thisline !~ /^\s+/)
 	{
 		print $col_norm, $col_default;
-	}	
-	print $thisline;	
+	}
+	print $thisline;
 }
 
 print $col_norm;
