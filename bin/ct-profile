@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Sep 25 21:51:34 2005 GESTES Cedric
-## Last update Sun May 14 22:40:11 2006 GESTES Cedric
+## Last update Tue Feb  6 08:04:32 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -39,9 +39,9 @@ showconf()
 {
   echo "name      : $ctafconf_name"
   echo "mail      : $ctafconf_mail"
-  echo "config    : $ctafconf_config"
+#  echo "config    : $ctafconf_config"
   echo "wallpp    : $ctafconf_wallpaper"
-  echo "sudo      : $ctafconf_sudo"
+#  echo "sudo      : $ctafconf_sudo"
   echo "zprompt   : $ctafconf_zprompt"
   echo "wm        : $ctafconf_wm"
   echo "interface : $ctafconf_interface"
@@ -108,9 +108,9 @@ savectafconf()
   echo "" >> $savefile
   echo "$setcmd ctafconf_name='$ctafconf_name'" >> $savefile
   echo "$setcmd ctafconf_mail='$ctafconf_mail'" >> $savefile
-  echo "$setcmd ctafconf_config='$ctafconf_config'" >> $savefile
+#  echo "$setcmd ctafconf_config='$ctafconf_config'" >> $savefile
   echo "$setcmd ctafconf_wallpaper='$ctafconf_wallpaper'" >> $savefile
-  echo "$setcmd ctafconf_sudo='$ctafconf_sudo'" >> $savefile
+#  echo "$setcmd ctafconf_sudo='$ctafconf_sudo'" >> $savefile
   echo "$setcmd ctafconf_zprompt='$ctafconf_zprompt'" >> $savefile
   echo "$setcmd ctafconf_wm='$ctafconf_wm'" >> $savefile
   echo "$setcmd ctafconf_interface='$ctafconf_interface'" >> $savefile
@@ -193,26 +193,26 @@ IFS=$ancIFS
 
 
 
-SSFT_DEFAULT=$ctafconf_config
-if ssft_select_single "Distribution" "Choose your distribution" debian gentoo freebsd epita other; then
-  ctafconf_config=$(getvaldef "$SSFT_RESULT" "$ctafconf_config")
-  if [ "x$ctafconf_config" = xother ] ; then
-    ctafconf_config=""
-  fi
-fi
+# SSFT_DEFAULT=$ctafconf_config
+# if ssft_select_single "Distribution" "Choose your distribution" debian gentoo freebsd epita other; then
+#   ctafconf_config=$(getvaldef "$SSFT_RESULT" "$ctafconf_config")
+#   if [ "x$ctafconf_config" = xother ] ; then
+#     ctafconf_config=""
+#   fi
+# fi
 
 
 
 
 
-SSFT_DEFAULT=$ctafconf_sudo
-if ssft_select_single "sudo command" "Choose your sudo command, choose empty if your are root, or if you don't want to install the ctafconf for gdm/kdm" "empty" "sudo" "su root -c"; then
-    ctafconf_sudo=$(getvaldef "$SSFT_RESULT" "$ctafconf_sudo" )
-    if [ "x$ctafconf_sudo" = xempty ] ; then
-        ctafconf_sudo=""
-    fi
+# SSFT_DEFAULT=$ctafconf_sudo
+# if ssft_select_single "sudo command" "Choose your sudo command, choose empty if your are root, or if you don't want to install the ctafconf for gdm/kdm" "empty" "sudo" "su root -c"; then
+#     ctafconf_sudo=$(getvaldef "$SSFT_RESULT" "$ctafconf_sudo" )
+#     if [ "x$ctafconf_sudo" = xempty ] ; then
+#         ctafconf_sudo=""
+#     fi
 
-fi
+# fi
 
 
 

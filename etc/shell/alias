@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Fri Sep 30 22:17:52 2005 GESTES Cedric
-## Last update Tue Feb  6 07:16:14 2007 cedric gestes
+## Last update Tue Feb  6 08:05:44 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -111,16 +111,16 @@ alias_set ct-vnc 'xvnc4viewer'
 alias_set ls 'ls -F --color=tty'
 
 #sourcing plateform spécifik
-test x$ctafconf_config != x && test -f ~/.ctafconf/etc/shell/alias.$ctafconf_config && source ~/.ctafconf/etc/shell/alias.$ctafconf_config
+#test x$ctafconf_config != x && test -f ~/.ctafconf/etc/shell/alias.$ctafconf_config && source ~/.ctafconf/etc/shell/alias.$ctafconf_config
 
 
 #AFTER HERE
 #PLATFORM SPECIFIC STUFF IS USED
 
-#alias_set l 'ls -F --color=tty'
-#alias_set ll 'ls -lF --color=tty'
-#alias_set la 'ls -lAF --color=tty'
-#alias_set lg 'ls -F --color=tty | grep'
+alias_set l 'ls -F --color=tty'
+alias_set ll 'ls -lF --color=tty'
+alias_set la 'ls -lAF --color=tty'
+alias_set lg 'ls -F --color=tty | grep'
 
 #ctafconf log
 alias_set ct-log "$PAGER ~/.ctafconf/perso/ctafconf.log"

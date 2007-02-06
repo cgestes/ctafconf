@@ -1,6 +1,8 @@
-2007-02-05 CTAF <>
+2007-02-06 CTAF <>
 	* emacs : removed zone mode (you already miss me)
 	* emacs : improved load time
+	* ctafconf : no more ctafconf_config
+	* ctafconf : no more ctafconf_sudo
 
 2007-02-05 CTAF <>
 	* colormake : handle fucking libtool

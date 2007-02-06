@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Oct  9 22:15:03 2005 GESTES Cedric
-## Last update Thu Apr 27 06:09:57 2006 GESTES Cedric
+## Last update Tue Feb  6 08:10:39 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -22,14 +22,14 @@ errorcantfind ()
   #how to notify user, we cant find one program? (xdialog?)
 }
 
-if [ x$param = xsudo ] && ! [ x$param2 = x ] ; then
-  if [ x$ctafconf_sudo = x ]; then
-    $param2
-  else
-    $ctafconf_sudo $param2
-  fi
-  exit
-fi
+# if [ x$param = xsudo ] && ! [ x$param2 = x ] ; then
+#   if [ x$ctafconf_sudo = x ]; then
+#     $param2
+#   else
+#     $ctafconf_sudo $param2
+#   fi
+#   exit
+# fi
 
 if [ x$param = xexec ] && ! [ x$param2 = x ] ; then
   if which $param2 >/dev/null 2>/dev/null ; then

@@ -1,11 +1,11 @@
-#!/bin/zsh
+#!/bin/sh
 ## xsession for xsession in /home/ctaf/.ctafconf/etc/xsession
 ##
 ## Made by GESTES Cedric
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Mon Sep 26 02:37:56 2005 GESTES Cedric
-## Last update Fri Sep  1 12:10:03 2006 cedric gestes
+## Last update Tue Feb  6 07:59:19 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -69,3 +69,4 @@ fi
 
 #lauch the window manager
 launch_wm
+

@@ -19,13 +19,13 @@ V0.4.0:
 
 V0.3.1: goal: rock stable
   + integrate colormake, use it in the ctafconf everywhere (m, ma, etc...)
-  - revert to a safe xsession
+  s revert to a safe xsession
   + find the bug in the installation
   + remove fucking stuff from emacs
-  - remove config specific file (epita)
-  + nasty bug with emacs-places
+  s remove config specific file (epita)
+  - nasty bug with emacs-places
   s color everythink: svn, cvs, apt-get, man, wget
-  - remove session for gdm and sudo, put instruction to install it, if wanted
+  s remove session for gdm and sudo, put instruction to install it, if wanted
   - documentation, on usefull feature
 
 ##################TODO

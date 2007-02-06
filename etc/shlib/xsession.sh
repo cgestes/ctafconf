@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 ##
 ## xsession.sh
 ## Login : <ctaf@localhost.localdomain>
@@ -21,15 +21,15 @@
 ## Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##
 
-fwm=~/.ctafconf/perso/current_wm$DISPLAY
-fwmpid=~/.ctafconf/perso/wm_pid$DISPLAY
-fwmpidtokill=~/.ctafconf/perso/wm_pid_to_kill$DISPLAY
+#fwm=~/.ctafconf/perso/current_wm$DISPLAY
+#fwmpid=~/.ctafconf/perso/wm_pid$DISPLAY
+#fwmpidtokill=~/.ctafconf/perso/wm_pid_to_kill$DISPLAY
 
 
 #declare apparray as an array
-declare -a apparray
+#declare -a apparray
 #number of application
-apparray[0]=0
+app_array_count=0
 
 
 
@@ -51,38 +51,32 @@ extract_wm()
 
 exec_wm ()
 {
-  local pidpid=$1
   local wm=$2
   local wmfct=""
 
-   #pidpid=$!
   wmfct=`cat ~/.ctafconf/etc/xsession/wmlist | grep "^$wm" | cut -d ! -f 2`
-   ~/.ctafconf/etc/xsession/wm.sh $wmfct
-  if [ x`cat $fwmpid` != x`cat $fwmpidtokill` ]; then
-    echo "BYEBYE, SHUTDOWN (x`cat $fwmpid` != x`cat $fwmpidtokill`) $@" >>~/.ctafconf/perso/ctafconf.log
-    kill $pidpid
-    exit
-  fi
+  exec $wmfct
 }
 
 exec_app()
 {
   echo "STARTING LAUNCHING APPS" >>~/.ctafconf/perso/ctafconf.log
   (
-    i=${apparray[0]}
+    local i=1
+    local cmd=''
 
     sleep 1
-    ct_log number of application to launch: ${apparray[0]}
+    ct_log number of application to launch: $i
 
-    while test $i -ge 1 ; do
-      ct_log LAUNCHING APP: "${apparray[$i]}"
-      eval ${apparray[$i]} &
-      i=$(( $i - 1 ))
+    while test $i -le $app_array_count ; do
+      ct_log LAUNCHING APP: $(eval echo "$"apparray_$i)
+      cmd=$(eval echo "$"apparray_$i)
+      eval $cmd &
+      i=$(( $i + 1 ))
     done
   )&
   ct_log APPS LAUNCHED
 }
-
 
 #(((((((EXPORTED FUNCTION)))))))
 
@@ -99,7 +93,7 @@ launch_wm()
   exec_app
 #  loop_wm
   ctafconf_wm=`extract_wm $ctafconf_wm`
-  exec_wm $! $ctafconf_wm #&
+  exec_wm $ctafconf_wm #&
   ct_log BYEBYE, WE SHOULD NOT BE THERE
 }
 
@@ -107,11 +101,8 @@ launch_wm()
 launch_app()
 {
   app="$@"
-  i=${apparray[0]}
-  i=$(( $i + 1 ))
-
-  apparray[0]=$i
-  apparray[$i]="$app"
+  app_array_count=$(( $app_array_count + 1 ))
+  eval "apparray_$app_array_count='$app'"
 }
 
 #test if current wm
@@ -127,64 +118,3 @@ test_wm ()
   ct_log $ret
   return $ret
 }
-
-
-# #catch a signal, else termcaps shit
-# _trap_kill ()
-# {
-#   trap "" INT TERM KILL
-#   ct_log "TRAP KILL --$@--"
-# }
-
-# trap _trap_kill INT TERM KILL
-
-# loop_wm()
-# {
-#   local running_wm
-#   local wm
-
-#   running_wm=""
-#   wm=""
-#   rm -rf $fwmpid $fwmpidtokill 2>/dev/null
-#   echo $ctafconf_wm >$fwm
-#   ct_log "ENTERING XSESSION LOOP" >>~/.ctafconf/perso/ctafconf.log
-#   while [ x = x ] ; do
-#     if ! [ x`cat $fwm` = x$running_wm ]; then
-#       ct_log "IN THE LOOP: x`cat $fwm` = x$running_wm"
-#       if [ -f $fwmpid ]; then
-#         cp $fwmpid $fwmpidtokill
-#         #fucking kill builtin, use real one
-#         kill_wm "$running_wm" `cat $fwmpid`
-#       fi
-#       #exec_wm $curr_wm&
-#       running_wm=`cat $fwm`
-#       running_wm=`extract_wm $running_wm`
-#       exec_wm $! $running_wm &
-#       #aterm
-#     fi
-#     sleep 1
-#     echo "LOOP --$wm_pid--" >>~/.ctafconf/perso/ctafconf.log
-#   done
-#   echo "EXIT FROM XSESSION LOOP" >>~/.ctafconf/perso/ctafconf.log
-# }
-
-# kill_wm()
-# {
-#   local wm=$1
-#   local pid=$2
-
-#   export DISPLAY=":0.0"
-#   case $wm in
-#     gnome)
-#       ct_log "KILL_WM: KILLING GNOME (gnome-session-save)"
-#       gnome-session-save --kill 2>~/.ctafconf/perso/error.log ;;
-#     xfce4)
-#       ct_log "KILL_WM: KILLING XFCE4 (xfce4-session-logout)"
-#       xfce4-session-logout 2>~/.ctafconf/perso/error.log ;;
-#     "")
-#       ct_log "KILL_WM: NO WM TO KILL" ;;
-#     *)
-#       ct_log "KILL_WM: KILLING ($wm) : ($pid)"
-#       kill $pid;;
-#   esac
-# }

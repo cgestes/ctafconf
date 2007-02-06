@@ -96,28 +96,29 @@ grk_link ()
 
 grk_sudofile ()
 {
-  local src=$1
-  local dst=$2
-  local name=$3
+  echo "Warning grk_sudofile not implemented"
+#   local src=$1
+#   local dst=$2
+#   local name=$3
 
-  #not a symlink, same file
-  if ! [ -h $dst ] && diff $dst $grk_etc/$src >/dev/null 2>/dev/null; then
-      return
-  fi
-  if [ -f $dst ]; then
-      if ! [ x$name = x ]; then
-          [ x$grk_debug = xyes ] && echo "grk_sudofile: Backup $name"
-          $ctafconf_sudo rm -rf  $grk_backup/$name-previous 2>/dev/null
-          $ctafconf_sudo cp $dst $grk_backup/$name-previous 2>/dev/null
-          $ctafconf_sudo mv $dst $grk_backup/$name-prev-$date 2>/dev/null
-      fi
-  fi
-  #remove symlink
-  if [ -h $dst ]; then
-      $ctafconf_sudo rm -rf $dst 2>/dev/null
-  fi
-  [ x$grk_debug = xyes ] && echo "Sudo Copying: $src in $dst"
-  $ctafconf_sudo cp $grk_etc/$src $dst 2>/dev/null
+#   #not a symlink, same file
+#   if ! [ -h $dst ] && diff $dst $grk_etc/$src >/dev/null 2>/dev/null; then
+#       return
+#   fi
+#   if [ -f $dst ]; then
+#       if ! [ x$name = x ]; then
+#           [ x$grk_debug = xyes ] && echo "grk_sudofile: Backup $name"
+#           $ctafconf_sudo rm -rf  $grk_backup/$name-previous 2>/dev/null
+#           $ctafconf_sudo cp $dst $grk_backup/$name-previous 2>/dev/null
+#           $ctafconf_sudo mv $dst $grk_backup/$name-prev-$date 2>/dev/null
+#       fi
+#   fi
+#   #remove symlink
+#   if [ -h $dst ]; then
+#       $ctafconf_sudo rm -rf $dst 2>/dev/null
+#   fi
+#   [ x$grk_debug = xyes ] && echo "Sudo Copying: $src in $dst"
+#   $ctafconf_sudo cp $grk_etc/$src $dst 2>/dev/null
 }
 
 #install .mine
