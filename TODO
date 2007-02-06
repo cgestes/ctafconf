@@ -25,6 +25,7 @@ V0.3.1: goal: rock stable
   - dependency checkout at startup (sed, grep, perl, etc..)
   - warper arround the shell (to use in #!~/.ctafconf/bin/shell bash)
     colormake, colorsvn, xsession maybe
+  - use gls at epita (dont alias ls)
 
 ##################TODO
 DOCUMENTATION:
