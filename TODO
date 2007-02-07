@@ -26,6 +26,7 @@ V0.3.1: goal: rock stable
   - warper arround the shell (to use in #!~/.ctafconf/bin/shell bash)
     colormake, colorsvn, xsession maybe
   - use gls at epita (dont alias ls)
+  - stall stuff from http://www.console-colors.de (colorizer)
 
 ##################TODO
 DOCUMENTATION:
