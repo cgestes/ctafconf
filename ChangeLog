@@ -3,6 +3,7 @@
 	* emacs : huge speed up at startup time
 	* emacs : new file: emacs.config that contains global configuration
 	* emacs : cleanup, remove some files
+	* emacs : never display menu-bar on windows
 
 2007-02-06 CTAF <>
 	* emacs : removed zone mode (you already miss me)

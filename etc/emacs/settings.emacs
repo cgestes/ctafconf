@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:13:33 2006 GESTES Cedric
-;; Last update Thu Feb  8 23:00:47 2007 GESTES Cedric
+;; Last update Fri Feb  9 00:02:42 2007 GESTES Cedric
 ;;
 (message ".")
 (message "ctafconf loading: SETTINGS.EMACS")
@@ -48,8 +48,11 @@
 ;;coloration syntaxique
 (global-font-lock-mode 1)
 
+(defvar running-on-windows (memq system-type '(windows-nt cygwin)))
+(defvar running-on-linux (not running-on-windows))
+(defvar running-on-x (eq window-system 'x))
 ;;suppression du menu
-(if enable-menu-bar
+(if (and enable-menu-bar (or running-on-x running-on-windows))
     (menu-bar-mode 1)
   (menu-bar-mode 0))
 
