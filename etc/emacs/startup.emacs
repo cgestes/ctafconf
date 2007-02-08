@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Thu Feb  8 23:44:16 2007 GESTES Cedric
+;; Last update Thu Feb  8 23:51:33 2007 GESTES Cedric
 ;;
 (message ".")
 (message "ctafconf loading: STARTUP.EMACS")
@@ -13,8 +13,8 @@
 ;; Change startup message...
 (defcustom hinitial-scratch-message (purecopy "\
 ;; CTAFCONF Emacs (http://grk.sourceforce.net)
-;; you need: cedet, semantic, ecb, ilisp and doxymacs
-;; installed in .ctafconf/etc/emacs/site-lisp
+;; you could add: cedet, semantic, ecb, ilisp
+;; in .ctafconf/etc/emacs/site-lisp
 ;;
 ;;===GLOBAL KEYBINDING===
 ;; [F1]         SHOW THIS HELP          [S-F1]          man
