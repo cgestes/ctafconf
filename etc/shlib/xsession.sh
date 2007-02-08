@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 ##
 ## xsession.sh
 ## Login : <ctaf@localhost.localdomain>
