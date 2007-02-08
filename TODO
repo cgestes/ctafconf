@@ -16,17 +16,18 @@ V0.4.0:
   - enhance .mine file
   - support uninstall
   - ctrepo / ctssh
+  - dependency checkout at startup (sed, grep, perl, etc..)
+  - documentation, on usefull feature
 
 V0.3.1: goal: rock stable
-  s color everythink: svn, cvs, apt-get, man, wget (change the perl script, so we dont need a warper)(ensure perl is installed too)
+  s color everythink: apt-get, man, wget (change the perl script, so we dont need a warper)(ensure perl is installed too)
+    add safe alias svn_nocolor, cvs_nocolorn make_nocolor, gmake_nocolor
   s remove session for gdm and sudo, put instruction to install it, if wanted
   - nasty bug with emacs-places
-  - documentation, on usefull feature
-  - dependency checkout at startup (sed, grep, perl, etc..)
   - warper arround the shell (to use in #!~/.ctafconf/bin/shell bash)
     colormake, colorsvn, xsession maybe
   - use gls at epita (dont alias ls)
-  - stall stuff from http://www.console-colors.de (colorizer)
+  - use /usr/bin/env perl|bash ...
 
 ##################TODO
 DOCUMENTATION:
@@ -64,7 +65,6 @@ CT-DATE:
 SSFT:
 
 CTAFCONF:
-- remove useless stuff (ctafconf_config) (see how to manage ls at epita that's all)
 - ramdom wm profile
 - uninstall with revert to date (choose from all previous file)
 - ct-add-wallpaper : ask if we should change the wallpaper now
@@ -75,7 +75,6 @@ CTAFCONF:
 - grk-emacs, grk-shell, grk-x11 (expose all configuration file on the web)
 
 XSESSION:
-- learn how to kill, gnome, kde, xfce4 and maybe e16
 - when wm=ramdom, test_wm does'nt work
 - test if the wm exist
 - install ctafconf.desktop in /usr/share/xsession
@@ -98,6 +97,14 @@ EMACS: ## SEE .ctafconf/etc/emacs/startup.emacs ##
 ENLIGHTENMENT:
   - Enhance integration with ctafconf(wallpapers/bindkeys/E16-Gnome)
 
+
+
+
+
+
+
+
+
 BONUS:
   - if user-profile and user-profile.csh exist ask which param to modify
   - use sabayon for gnome-conf/ff-conf
@@ -111,6 +118,19 @@ BONUS:
   - 4 distrib: tinyemacs, emacs (with ecb, ilisp, ..), tinyctafconf, ctafconf (with ecb, ilisp, ..)
   - conky then torsmo..
   - test if it work with space in /home/ct af/ for example
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ##################ALREADY DONE
@@ -162,3 +182,4 @@ BONUS:
 + remove fucking stuff from emacs
 + revert to a safe xsession
 + remove config specific file (epita)
+- remove useless stuff (ctafconf_config) (see how to manage ls at epita that's all)

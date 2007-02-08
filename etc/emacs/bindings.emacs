@@ -5,8 +5,9 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:16:47 2006 GESTES Cedric
-;; Last update Tue Feb  6 06:05:48 2007 GESTES Cedric
+;; Last update Thu Feb  8 23:41:16 2007 GESTES Cedric
 ;;
+(message ".")
 (message "ctafconf loading: BINDINGS.EMACS")
 ;;(global-unset-key "\M-[")
 
@@ -26,31 +27,10 @@
 (global-set-key [C-mouse-4] 'down-a-lot)
 (global-set-key [C-mouse-5] 'up-a-lot)
 
-;; (defalias 'switch-to-next-buffer 'bury-buffer)
 
-;; (defun switch-to-previous-buffer ()
-;;   "Switches to previous buffer"
-;;   (interactive)
-;;   (switch-to-buffer (nth (- (length (buffer-list)) 1) (buffer-list)))
-;; )
-
-;; (global-set-key [S-right]       'switch-to-previous-buffer)
-;; (global-set-key [S-left]        'switch-to-next-buffer)
-
-;; (global-set-key [CS-right]       'switch-to-previous-buffer)
-;; (global-set-key [CS-left]        'switch-to-next-buffer)
 
 (global-set-key [M-right]       'my-previous-buffer)
 (global-set-key [M-left]        'my-next-buffer)
-
-(global-set-key "\M-l" 'goto-line)
-
-;;(global-set-key [CS-right]       'my-previous-buffer)
-;;(global-set-key [CS-left]        'my-next-buffer)
-
-;;emacs22 way
-;;(global-set-key [S-right]       'next-buffer)
-;;(global-set-key [S-left]        'prev-buffer)
 
 
 ;; M-x pc-bindings-mode sets up bindings compatible with many PC editors. In particular, Delete and its variants delete forward instead of backward. Use Backspace to delete backward.
@@ -61,7 +41,6 @@
 ;;(pc-bindings-mode)
 ;;use shift + left/right to select something
 ;;(pc-selection-mode)
-
 (global-set-key [delete] 'delete-char)
 (global-set-key [kp-delete] 'delete-char)
 (global-set-key [backward-delete-char] 'backward-delete-char)
@@ -75,7 +54,12 @@
 ;;appelle la derniere macro enregistré
 (global-set-key "\M-s" 'call-last-kbd-macro)
 (global-set-key "\C-z" 'call-last-kbd-macro)
-;;(global-set-key "\s-s" 'call-last-kbd-macro)
+;;rotate the though the kill ring
+(global-set-key (kbd "M-y") 'browse-kill-ring)
+(global-set-key "\M-l" 'goto-line)
+
+
+
 
 (global-set-key [f1] (lambda ()
                        (interactive)
@@ -136,34 +120,3 @@
 (global-set-key [(control backspace)] 'join-line)
 
 
-
-;;(global-set-key [(C-b)] 'electric-buffer-list)
-
-;;BROKEN
-;; (defun match-paren (arg)
-;;   "Go to the matching parenthesis if on parenthesis otherwise insert %."
-;;   (interactive "p")
-;;   (cond ((looking-at "\\s\(") (forward-list 1) (backward-char 1))
-;;         ((and (looking-at "\\s\)") (inside (point)))
-;;          (forward-char 1) (backward-list 1))
-;;         (t (self-insert-command (or arg 1)))))
-;; (global-set-key "%" 'match-paren)
-;;(global-set-key [(f11)] 'describe-function-at-point)
-;;(global-set-key [(f12)] 'describe-variable-at-point)
-
-;; buffer cycling
-;; (autoload 'cycle-buffer "cycle-buffer" "Cycle forward." t)
-;; (autoload 'cycle-buffer-backward "cycle-buffer" "Cycle backward." t)
-;; (autoload 'cycle-buffer-permissive "cycle-buffer" "Cycle forward allowing *buffers*." t)
-;; (autoload 'cycle-buffer-backward-permissive "cycle-buffer"
-;;   "Cycle backward allowing *buffers*." t)
-;; (autoload 'cycle-buffer-toggle-interesting "cycle-buffer"
-;;   "Toggle if this buffer will be considered." t)
-
-;; (global-set-key [(alt right)] 'cycle-buffer)
-;; (global-set-key [(alt left)] 'cycle-buffer-backward)
-;; (global-set-key [(alt shift right)] 'cycle-buffer-permissive)
-;; (global-set-key [(alt shift left)] 'cycle-buffer-backward-permissive)
-
-
-(global-set-key (kbd "M-y") 'browse-kill-ring)

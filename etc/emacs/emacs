@@ -34,30 +34,39 @@
 ;;;;anything less than 1 ghz).
 (setq gc-cons-threshold 50000000)
 
+
 (load-file "~/.ctafconf/etc/emacs/site-lisp/safe-load.el")
 
+;;configuration file
+(safe-load "~/.ctafconf/etc/emacs/emacs.config")
+
 (safe-load "~/.ctafconf/etc/emacs/color.emacs")
+
+;;emacs settings
 (safe-load "~/.ctafconf/etc/emacs/settings.emacs")
 
 ;;startup message
 (safe-load "~/.ctafconf/etc/emacs/startup.emacs")
+
 ;;mode (ada,tuareg, ido, autotemplate,..)
 (safe-load "~/.ctafconf/etc/emacs/mode.emacs")
+
 ;;usefull functions
 (safe-load "~/.ctafconf/etc/emacs/functions.emacs")
+
 ;;screensaver,
-(safe-load "~/.ctafconf/etc/emacs/misc.emacs")
+;;(safe-load "~/.ctafconf/etc/emacs/misc.emacs")
+
 ;;cparse, cpcomment, cwarn, cedet, ecb, semantic
 (safe-load "~/.ctafconf/etc/emacs/prog.emacs")
-;;emacs settings
 
 ;;keys bindings
 (safe-load "~/.ctafconf/etc/emacs/bindings.emacs")
+
 ;;menu
 (safe-load "~/.ctafconf/etc/emacs/menu.emacs")
 ;;test
 ;;(safe-load "~/.ctafconf/etc/emacs/test.emacs")
-;;color
 
 
 ;;personal settings
@@ -69,23 +78,6 @@
 ;;print debug info
 (safe-load-check)
 
-
-;; (custom-set-faces
-;;   ;; custom-set-faces was added by Custom -- don't edit or cut/paste it!
-;;   ;; Your init file should contain only one such instance.
-;; ;;		:foreground "thistle3"
-;;  '(default ((t (:background "black"
-;; 		:foreground "white"
-;; 		:inverse-video nil
-;; 		:box nil
-;; 		:strike-through nil
-;; 		:overline nil
-;; 		:underline nil
-;; 		:slant normal
-;; 		:weight normal
-;; 		:height 125
-;; 		:width normal
-;; 		:family "misc-fixed")))))
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom -- don't edit or cut/paste it!

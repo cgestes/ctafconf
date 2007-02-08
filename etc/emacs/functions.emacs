@@ -5,40 +5,10 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 00:58:57 2006 GESTES Cedric
-;; Last update Thu May 11 21:05:48 2006 GESTES Cedric
+;; Last update Thu Feb  8 23:40:08 2007 GESTES Cedric
 ;;
+(message ".")
 (message "ctafconf loading: FUNCTIONS.EMACS")
-
-(defun jl-kill-region ()
-  "if the mark is not active kill the current word \
-  or if the mark is active kill the active region"
-  (interactive)
-  (if (equal mark-active t)
-    (kill-region (region-beginning) (region-end))
-    (progn
-      (search-backward " ")
-      (kill-word 1)
-      (insert " "))
-    )
-  )
-
-
-;;; some functions
-(defun push-line ()
-  "Select current line, push onto kill ring."
-  (interactive)
-  (save-excursion
-    (copy-region-as-kill (re-search-backward "^") (re-search-forward "$"))))
-(global-set-key "\C-cp" 'push-line)
-
-(defun push-rest-of-line ()
-  "Select text from point to end of current line, push onto kill ring."
-  (interactive)
-  (save-excursion
-    (copy-region-as-kill (point) (re-search-forward "$"))))
-
-(global-set-key "\C-ck" 'push-rest-of-line)
-(global-set-key "\C-w"  'jl-kill-region)
 
 
 ;;;;FONCTIONS
@@ -86,3 +56,36 @@
                                val)))
       (setq entry (1- entry)))
     (switch-to-buffer val)))
+
+
+
+;; (defun jl-kill-region ()
+;;   "if the mark is not active kill the current word \
+;;   or if the mark is active kill the active region"
+;;   (interactive)
+;;   (if (equal mark-active t)
+;;     (kill-region (region-beginning) (region-end))
+;;     (progn
+;;       (search-backward " ")
+;;       (kill-word 1)
+;;       (insert " "))
+;;     )
+;;   )
+
+;; ;;; some functions
+;; (defun push-line ()
+;;   "Select current line, push onto kill ring."
+;;   (interactive)
+;;   (save-excursion
+;;     (copy-region-as-kill (re-search-backward "^") (re-search-forward "$"))))
+
+
+;; (defun push-rest-of-line ()
+;;   "Select text from point to end of current line, push onto kill ring."
+;;   (interactive)
+;;   (save-excursion
+;;     (copy-region-as-kill (point) (re-search-forward "$"))))
+;; ;;special kill
+;; (global-set-key "\C-ck" 'push-rest-of-line)
+;; (global-set-key "\C-w"  'jl-kill-region)
+;; (global-set-key "\C-cp" 'push-line)

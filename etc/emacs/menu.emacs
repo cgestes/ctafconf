@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 05:39:19 2006 GESTES Cedric
-;; Last update Sun May 21 04:17:46 2006 GESTES Cedric
+;; Last update Thu Feb  8 23:30:46 2007 GESTES Cedric
 ;;
 
 
@@ -15,22 +15,22 @@
 (msb-mode 1)
 
 ;; add entry to menu-bar:
-(defvar menu-bar-jj-menu (make-sparse-keymap "ctafconf"))
-(define-key global-map [menu-bar ctafconf] (cons "ctafconf" menu-bar-jj-menu))
+(defvar ctafconf-menu (make-sparse-keymap "ctafconf"))
+(define-key global-map [menu-bar ctafconf] (cons "ctafconf" ctafconf-menu))
 
 ;; Menu entries (the numbers [item-NN] don't affect the order):
 ;;
 ;; First entry here is lowest in menu.
-(define-key menu-bar-jj-menu [item-01]
+(define-key ctafconf-menu [item-01]
   '("start ecb" . ecb-activate))
 
-(define-key menu-bar-jj-menu [item-02]
+(define-key ctafconf-menu [item-02]
   '("stop ecb" . ecb-deactivate))
 
-(define-key menu-bar-jj-menu [item-03]
+(define-key ctafconf-menu [item-03]
   '("compile" . compile))
 
-(define-key menu-bar-jj-menu [item-04]
+(define-key ctafconf-menu [item-04]
   '("htmlize buffer" . htmlize-buffer))
 
 ;;(provide 'menu)

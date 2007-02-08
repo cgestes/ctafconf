@@ -5,8 +5,9 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Tue Feb  6 06:15:09 2007 GESTES Cedric
+;; Last update Thu Feb  8 23:44:16 2007 GESTES Cedric
 ;;
+(message ".")
 (message "ctafconf loading: STARTUP.EMACS")
 
 ;; Change startup message...
@@ -82,7 +83,6 @@
 ;; - c-x SPC to set a break point in a source file
 ;; - c-c c-c to send a INT signal (a simple c-c in fact)
 ;; - c-x c-e :evaluate elisp expression
-;; - q : quit emacs backtrace (when debugging lisp)
 ;;
 ;;===TERMINAL(F5)===
 ;; - c-c c-j line mode
@@ -96,21 +96,28 @@
 ;;   theme I like: comedia,  white on black, cheap golden road, ramamgalahy (email underlined)
 ;;   taminmanderson
 ;;
-;;===MISC/ELISP PROGRAMMING===
+;;===ELISP PROGRAMMING/DEBUGGING===
 ;; - learn one key:
 ;;   M-x global-set-key
 ;;   C-x ESC ESC (affiche la commande precedente nikel chrome)
+;; IN THE ELISP DEBUGGER:
+;; - q : quit emacs backtrace (when debugging lisp)
+;; - e : evaluate an expression
+;; - d : step through code one step at a time
+;; - c : continue the computation
 ;;
 
 ;; === TODO - URGENT ===
-;;  - increase the startup time
-;;  - remove bugs
+;;  + increase the startup time
+;;  s remove bugs
 ;;  - the emacs place case
 ;;  - jump through code and file under cursor
-;;  - remove elisp error, or make them not invading
-;;  - add a file, with var do enable/disable functionnality (ecb, ilisp, cedet, etc..)
-;;  - provide a very basic conf, and load functionality at runtime (menu)
-;;  - display menu in x
+;;  + remove elisp error, or make them not invading
+;;  s add a file, with var do enable/disable functionnality (ecb, ilisp, cedet, etc..)
+;;  s provide a very basic conf, and load functionality at runtime (menu)
+;;  + display menu in x
+;;  s use doxymacs
+;;  - ido: remove global file find (or something like that)
 ;;
 ;; === TODO ===
 ;;  - shortcut: kill one line

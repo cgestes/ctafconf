@@ -5,10 +5,10 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Thu May 11 19:53:25 2006 GESTES Cedric
-;; Last update Tue Feb  6 06:29:12 2007 GESTES Cedric
+;; Last update Tue Feb  6 17:15:23 2007 GESTES Cedric
 ;;
 ;; source: http://blog.pettomato.com/content/site-lisp/.emacs
-
+(message ".")
 (message "ctafconf loading: COLOR.EMACS")
 
 (defvar running-on-windows (memq system-type '(windows-nt cygwin)))

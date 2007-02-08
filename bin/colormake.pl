@@ -43,8 +43,8 @@ $col_filename =     $col_brown;
 $col_linenum =      $col_cyan;
 $col_trace =        $col_brown;
 $col_warning =      $col_green;
-$tag_error =        "Error: ";
-$col_error =        $tag_error . $col_brown . $col_brighten;
+#$tag_error =        "Error: ";
+$col_error =        $col_brown . $col_brighten;
 $error_highlight =  $col_brighten;
 
 # Get size of terminal

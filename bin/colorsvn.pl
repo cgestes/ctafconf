@@ -91,12 +91,12 @@ while (<>)
 
 	#svn status
 	$thisline =~ s/^(\~)\s\s*(.*)/$col_conflict$1       : $col_file$2/x;
-	$thisline =~   s/^(\?)\s\s*(.*)/$col_file$1       : $col_file$2/x;
-	$thisline =~   s/^(\!)\s\s*(.*)/$col_conflict$1       : $col_file$2/x;
+	$thisline =~     s/^(\?)\s\s*(.*)/$col_file$1       : $col_file$2/x;
+	$thisline =~ s/^(\!)\s\s*(.*)/$col_conflict$1       : $col_file$2/x;
 	$thisline =~    s/^(M)\s\s*(.*)/$col_update$1odified: $col_file$2/x;
 	$thisline =~    s/^(R)\s\s*(.*)/$col_update$1eplaced: $col_file$2/x;
 	$thisline =~    s/^(X)\s\s*(.*)/$col_fusion$1       : $col_file$2/x;
-	$thisline =~    s/^(I)\s\s*(.*)/$col_file$1gnored : $col_file$2/x;
+	$thisline =~      s/^(I)\s\s*(.*)/$col_file$1gnored : $col_file$2/x;
 
 	#svn diff
 	$thisline =~   s/^(\+.*)/$col_purple$1$col_file/x;
@@ -104,10 +104,10 @@ while (<>)
 	$thisline =~   s/^(@@.*)/$col_blue$1$col_file/x;
 
 
-	#if ($thisline !~ /^\s+/)
-	#{
-		#print $col_norm, $col_default;
-	#}
+	if ($thisline !~ /^\s+/)
+	{
+		print $col_norm, $col_default;
+	}
 	print $thisline;
 }
 

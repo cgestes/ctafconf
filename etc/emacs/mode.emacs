@@ -5,8 +5,9 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 00:57:16 2006 GESTES Cedric
-;; Last update Tue Feb  6 06:32:04 2007 GESTES Cedric
+;; Last update Thu Feb  8 23:47:57 2007 GESTES Cedric
 ;;
+(message ".")
 (message "ctafconf loading: MODE.EMACS")
 
 ;;file extension mode
@@ -37,17 +38,6 @@
          ) auto-mode-alist))
 
 
-;;cicles through element in M-x, C-x f, etc...
-(condition-case err
-    (progn
-      (require 'icicles)
-      (setq icicle-reminder-prompt-flag 0
-            icicle-arrows-respect-completion-type-flag t)
-      (icicle-mode t)
-      )
-  (error
-   (message "Cannot load icicles %s" (cdr err))))
-
 ;;IDO MODE
 ;;IDO for find-file, and others
 (condition-case err
@@ -59,48 +49,7 @@
   (error
    (message "Cannot load ido %s" (cdr err))))
 
-;;;;dont know!
-;; (condition-case err
-;;     (progn
-;;       (when (require 'ibuffer "ibuffer" t)
-;; 	(setq ibuffer-shrink-to-minimum-size t)
-;; 	;;(setq ibuffer-always-show-last-buffer ':nomini)
-;; 	(setq ibuffer-always-show-last-buffer nil)
-;; 	(setq ibuffer-sorting-mode 'recency)
-;; 	(setq ibuffer-use-header-line t)
-;; 	(setq ibuffer-formats '((mark modified read-only " " (name 30 30)
-;; 				      " " (size 6 -1) " " (mode 16 16) " " filename)
-;; 				(mark " " (name 30 -1) " " filename)))
-;; 	(define-key ibuffer-mode-map (kbd "#") 'ibuffer-switch-format))
-;;         ;;need to be after ido-mode
-;;         (iswitchb-mode 1)
-;;       )
-;;   (error
-;;    (message "Cannot load ibuffer %s" (cdr err))))
-
-
 (global-set-key "\C-xb" 'electric-buffer-list)
-
-;; better home and end keybindings
-;;(condition-case err
-;;    (progn
-;;      (require 'pc-keys)
-;;      )
-;;  (error
-;;   (message "Cannot load pc-keys %s" (cdr err))))
-
-
-;; indent =, <, ... in cmode
-;;(require 'smart-operator)
-;; (defun my-c-mode-common-hook()
-;;   (smart-insert-operator-hook)
-;;
-;;   (local-unset-key (kbd "."))
-;;   (local-unset-key (kbd ":"))
-;;   (local-set-key (kbd "*") 'c-electric-star))
-;;
-;; (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
-
 
 ;; this mode let you use emacs with the "modern editor bindings"
 ;; shift + left|right|up|down to make a selection
@@ -146,12 +95,14 @@
   (error
    (message "Cannot load bm %s" (cdr err))))
 
+
 ;; Gives us marker-visit-next and marker-visit-prev
 (condition-case err
     (progn
       (require 'marker-visit))
   (error
    (message "Cannot load marker-visit %s" (cdr err))))
+
 
 ;;highlight current line
 ;;(hl-line-mode)
@@ -168,20 +119,14 @@
 
 ;;;SavePlace- this puts the cursor in the last place you editted
 ;;;a particular file. This is very useful for large files.
-(condition-case err
-    (progn
-      (require 'saveplace)
-      (setq-default save-place t)
-      )
-  (error
-   (message "Cannot load saveplace %s" (cdr err))))
-
-
-;; (autoload 'html-helper-mode "html-helper-mode" "Yay HTML" t)
-;;                     (load-library "hhm-config")
-;;                     (setq auto-mode-alist (cons '("\\.html$" . html-helper-mode) auto-mode-alist))
-;;                     (setq auto-mode-alist (cons '("\\.asp$" . html-helper-mode) auto-mode-alist))
-;;                     (setq auto-mode-alist (cons '("\\.phtml$" . html-helper-mode) auto-mode-alist))
+;; REENABLE WHEN LESS MY SHELL CONF WILL BE LESS BUGGY (root write in /home/ctaf/.emacs-place)
+;; (condition-case err
+;;     (progn
+;;       (require 'saveplace)
+;;       (setq-default save-place t)
+;;       )
+;;   (error
+;;    (message "Cannot load saveplace %s" (cdr err))))
 
 
 ;;EMACSFOLDING
@@ -245,5 +190,17 @@
    (message "Cannot load generic %s" (cdr err))))
 
 
+;;screensaver
+(if enable-zone
+    (condition-case err
+        (progn
+          (when (>= emacs-major-version 21)
+            (require 'zone)
+            (setq zone-idle 300)
+            (zone-when-idle 300))
+          )
+      (error
+       (message "Cannot load zone-mode %s" (cdr err))))
+  )
 
 
