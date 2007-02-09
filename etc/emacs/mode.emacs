@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 00:57:16 2006 GESTES Cedric
-;; Last update Thu Feb  8 23:47:57 2007 GESTES Cedric
+;; Last update Fri Feb  9 03:31:28 2007 GESTES Cedric
 ;;
 (message ".")
 (message "ctafconf loading: MODE.EMACS")
@@ -179,6 +179,14 @@
       )
   (error
    (message "Cannot load browse-kill-ring %s" (cdr err))))
+
+(condition-case err
+    (progn
+      ;;for lot's of unix configuration file, fstab, ...
+      (require 'pc-keys)
+      )
+  (error
+   (message "Cannot load pc-keys %s" (cdr err))))
 
 (condition-case err
     (progn

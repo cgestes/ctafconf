@@ -5,9 +5,20 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 05:39:19 2006 GESTES Cedric
-;; Last update Thu Feb  8 23:30:46 2007 GESTES Cedric
+;; Last update Fri Feb  9 03:37:21 2007 GESTES Cedric
 ;;
 
+;;
+;;CTAFCONF
+;;  display the help
+;;  edit your personnal setting
+;;  load ilisp
+;;  load cedet
+;;  load ecb
+;;PROG
+;;  add doxymacs headers
+;;  add doxymacs function headers
+;;  htmlize buffer
 
 (require 'menu-bar)
 

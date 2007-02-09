@@ -18,16 +18,13 @@ V0.4.0:
   - ctrepo / ctssh
   - dependency checkout at startup (sed, grep, perl, etc..)
   - documentation, on usefull feature
+  - document how to customize emacs (with emacs.config)
 
 V0.3.1: goal: rock stable
-  s color everythink: apt-get, man, wget (change the perl script, so we dont need a warper)(ensure perl is installed too)
-    add safe alias svn_nocolor, cvs_nocolorn make_nocolor, gmake_nocolor
-  s remove session for gdm and sudo, put instruction to install it, if wanted
   - nasty bug with emacs-places
-  - warper arround the shell (to use in #!~/.ctafconf/bin/shell bash)
-    colormake, colorsvn, xsession maybe
   - use gls at epita (dont alias ls)
-  - use /usr/bin/env perl|bash ...
+subgoal
+  s color everythink: apt-get, man, wget (change the perl script, so we dont need a warper)(ensure perl is installed too)
 
 ##################TODO
 DOCUMENTATION:
@@ -183,3 +180,4 @@ BONUS:
 + revert to a safe xsession
 + remove config specific file (epita)
 - remove useless stuff (ctafconf_config) (see how to manage ls at epita that's all)
++ remove session for gdm and sudo, put instruction to install it, if wanted

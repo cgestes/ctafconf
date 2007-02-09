@@ -1,4 +1,9 @@
 2007-02-08 CTAF <>
+	* alias : new alias using color: gmake, make
+	* alias : new "default" alias: (svn|cvs|make|gmake)_real
+	* emacs : press home and end more than once, then you will see :-)
+
+2007-02-08 CTAF <>
 	* emacs : commited a fix for qt c++
 	* emacs : huge speed up at startup time
 	* emacs : new file: emacs.config that contains global configuration

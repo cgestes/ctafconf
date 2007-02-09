@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Thu Feb  8 23:51:33 2007 GESTES Cedric
+;; Last update Fri Feb  9 03:41:24 2007 GESTES Cedric
 ;;
 (message ".")
 (message "ctafconf loading: STARTUP.EMACS")
@@ -108,18 +108,13 @@
 ;;
 
 ;; === TODO - URGENT ===
-;;  + increase the startup time
-;;  s remove bugs
-;;  - the emacs place case
 ;;  - jump through code and file under cursor
-;;  + remove elisp error, or make them not invading
-;;  s add a file, with var do enable/disable functionnality (ecb, ilisp, cedet, etc..)
 ;;  s provide a very basic conf, and load functionality at runtime (menu)
-;;  + display menu in x
 ;;  s use doxymacs
 ;;  - ido: remove global file find (or something like that)
 ;;
 ;; === TODO ===
+;;  - re-enable saveplace
 ;;  - shortcut: kill one line
 ;;  - kill char from cur to begin
 ;;  - c/c++ mode (epita indentation)

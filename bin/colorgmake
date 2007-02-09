@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
 #CTAFCONF, GPL, etc...
-
-
-svn "$@" 2>&1 | ~/.ctafconf/bin/colorsvn.pl
+gmake "$@" 2>&1 | ~/.ctafconf/bin/colormake.pl
 exit ${PIPESTATUS[0]}
