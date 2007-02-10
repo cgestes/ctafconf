@@ -1,4 +1,8 @@
-2007-02-08 CTAF <>
+2007-02-10 CTAF <>
+	* bin : moved each unusefull bin to bin/misc
+	* globalenv : remove LASH_START_SERVER, not needed and buggy
+
+2007-02-09 CTAF <>
 	* alias : new alias using color: gmake, make
 	* alias : new "default" alias: (svn|cvs|make|gmake)_real
 	* emacs : press home and end more than once, then you will see :-)

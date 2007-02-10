@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Fri Feb  9 03:41:24 2007 GESTES Cedric
+;; Last update Fri Feb  9 18:44:53 2007 GESTES Cedric
 ;;
 (message ".")
 (message "ctafconf loading: STARTUP.EMACS")
@@ -108,10 +108,10 @@
 ;;
 
 ;; === TODO - URGENT ===
-;;  - jump through code and file under cursor
 ;;  s provide a very basic conf, and load functionality at runtime (menu)
 ;;  s use doxymacs
 ;;  - ido: remove global file find (or something like that)
+;;  - html/dtd/php
 ;;
 ;; === TODO ===
 ;;  - re-enable saveplace
@@ -121,7 +121,6 @@
 ;;  - kill space til one word
 ;;  - truncate line
 ;;  - working directory for gdb/compile
-;;  - switch key for group of windows in ecb
 ;;  - kill-word, kill-ring,..
 ;;  - debug / show debug windows
 ;;  - svn
@@ -130,14 +129,10 @@
 ;;  - php-mode/html/css
 ;;  - emacs: in console (ctrl+backspace, disable ring bell) (enable vt102 in xterm,..)
 ;;  - emacs: ctrl-qqch => replace the current line , with the current buffer
-;;  - transparent (use console backcolor)
-;;  - /???/ Emacs autoresize at start conflicts with wm app properties save (use .mine to customize the beahavour)
 ;;  - support compile this conf 'emacs -batch -l ~/.ctafconf/etc/emacs/compile_conf.el'
 ;;  - ilisp don't work on emacs-snapshot
 ;;  - turn on semantic-tag-decoration-on-protected-member, semantic-tag-decoration-on-private-member
-;;  - remove this fucking bell
 ;;  - folding: use semantic-folding if available, else outline, or hideshow
-;;  - flymake (check-syntax rule in makefile), flyspell
 ;;  - EMACRO
 ;;  KBD: (don't work in console (tty))
 ;;  C-SPC,

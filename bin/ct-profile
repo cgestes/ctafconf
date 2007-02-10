@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Sep 25 21:51:34 2005 GESTES Cedric
-## Last update Tue Feb  6 08:04:32 2007 GESTES Cedric
+## Last update Fri Feb  9 18:46:00 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -39,9 +39,7 @@ showconf()
 {
   echo "name      : $ctafconf_name"
   echo "mail      : $ctafconf_mail"
-#  echo "config    : $ctafconf_config"
   echo "wallpp    : $ctafconf_wallpaper"
-#  echo "sudo      : $ctafconf_sudo"
   echo "zprompt   : $ctafconf_zprompt"
   echo "wm        : $ctafconf_wm"
   echo "interface : $ctafconf_interface"

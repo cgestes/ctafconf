@@ -4,14 +4,14 @@
 s started
 
 ##################PLANNING
-V0.6.0:
+V1.3.0:
   - documentation
   - website
 
-V0.5.0:
+V1.2.0:
   - split version (tiny, complete, windows-emacs, ...)
 
-V0.4.0:
+V1.1.0:
   - do todo emacs config
   - enhance .mine file
   - support uninstall
@@ -19,12 +19,12 @@ V0.4.0:
   - dependency checkout at startup (sed, grep, perl, etc..)
   - documentation, on usefull feature
   - document how to customize emacs (with emacs.config)
+  s color everythink: apt-get, man, wget (change the perl script, so we dont need a warper)(ensure perl is installed too)
 
-V0.3.1: goal: rock stable
+V1.0.42: goal: rock stable
   - nasty bug with emacs-places
   - use gls at epita (dont alias ls)
-subgoal
-  s color everythink: apt-get, man, wget (change the perl script, so we dont need a warper)(ensure perl is installed too)
+  - define $HOME, like it should do, to avoid saveplace pb
 
 ##################TODO
 DOCUMENTATION:
