@@ -51,10 +51,11 @@ extract_wm()
 
 exec_wm ()
 {
-  local wm=$2
+  local wm=$1
   local wmfct=""
 
   wmfct=`cat ~/.ctafconf/etc/xsession/wmlist | grep "^$wm" | cut -d ! -f 2`
+  ct_log 'final exec: ' $wmfct
   exec $wmfct
 }
 
@@ -93,7 +94,8 @@ launch_wm()
   exec_app
 #  loop_wm
   ctafconf_wm=`extract_wm $ctafconf_wm`
-  exec_wm $ctafconf_wm #&
+  ct_log launching: $ctafconf_wm
+  exec_wm $ctafconf_wm
   ct_log BYEBYE, WE SHOULD NOT BE THERE
 }
 

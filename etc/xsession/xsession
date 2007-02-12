@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Mon Sep 26 02:37:56 2005 GESTES Cedric
-## Last update Fri Feb  9 00:06:37 2007 GESTES Cedric
+## Last update Mon Feb 12 16:22:10 2007 cedric gestes
 ##
 ##CTAFCONF
 
@@ -70,3 +70,5 @@ fi
 #lauch the window manager
 launch_wm
 
+
+exec xterm

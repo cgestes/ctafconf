@@ -1,3 +1,6 @@
+2007-02-12 CTAF <>
+	* xsession : wors at epita
+
 2007-02-10 CTAF <>
 	* bin : moved each unusefull bin to bin/misc
 	* globalenv : remove LASH_START_SERVER, not needed and buggy
@@ -36,7 +39,10 @@
 	* ssft : bug with read
 	* emacs : fixed a bug, emacs start faster
 
-2006-17-06 CTAF <>
+2006-09-01 CTAF <>
+	* xsession : working at epita (#!/bin/zsh)
+
+2006-06-17 CTAF <>
 	* alias : svndiff (svn diff without whitespace, tab, and blankline differences)
 
 2006-05-30 CTAF <>
