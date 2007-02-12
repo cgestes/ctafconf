@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Fri Sep 30 22:17:52 2005 GESTES Cedric
-## Last update Fri Feb  9 03:26:02 2007 GESTES Cedric
+## Last update Mon Feb 12 18:30:17 2007 cedric gestes
 
 ##
 ##CTAFCONF
@@ -33,7 +33,7 @@ alias_set m '~/.ctafconf/bin/colormake'
 alias_set md '~/.ctafconf/bin/colormake distclean'
 alias_set ma '~/.ctafconf/bin/colormake clean all'
 alias_set mac '~/.ctafconf/bin/colormake clean all check'
-alias_set gm '~/.ctafconf/bin/gcolormake'
+alias_set gm '~/.ctafconf/bin/colorgmake'
 alias_set mm '~/.ctafconf/bin/colormake |& less'
 alias_set make_mute "~/.ctafconf/bin/colormake 1>/dev/null"
 alias_set fixme 'grep -n -a -s FIXME * 2> /dev/null'
