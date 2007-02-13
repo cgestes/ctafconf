@@ -20,14 +20,10 @@ V1.1.0:
   - documentation, on usefull feature
   - document how to customize emacs (with emacs.config)
   - test on freebsd/netbsd/openbsd/cygwin/windows
-  s color everythink: apt-get, man, wget (change the perl script, so we dont need a warper)(ensure perl is installed too)
+  s color everythink: grepr apt-get, man, wget (change the perl script, so we dont need a warper)(ensure perl is installed too)
 
 V1.0.42: goal: rock stable
-  - nasty bug with emacs-places
   - use gls at epita (dont alias ls)
-  - define $HOME, like it should do, to avoid saveplace pb
-  - color grepr
-  - changement de buffer (touche gfauche/droite)
   - mine emacs.config
   - remove interface from profile, pass them in argument if wanted
 
@@ -54,7 +50,6 @@ CT-SET-BG:
 
 MINE:
   - screen at shell startup
-  - ecb/cedet/ilisp/doxyemacs
   - emacs size (set/unset)
   - diff .mine file /?/ (use diff3)
 
@@ -66,32 +61,32 @@ CT-DATE:
 SSFT:
 
 CTAFCONF:
-- ramdom wm profile
-- uninstall with revert to date (choose from all previous file)
-- ct-add-wallpaper : ask if we should change the wallpaper now
-- ct-add-wallpaper : dont overwrite if a file with the same name already exist
-- define default program: navigateur/mail reader/term/pager/.../EDITOR/..
-- specify interface in argument to ct-profile, ct-installconf, ...
-  add help for ct-profile, ct-installconf (for interface)
+  - ramdom wm profile
+  - uninstall with revert to date (choose from all previous file)
+  - ct-add-wallpaper : ask if we should change the wallpaper now
+  - ct-add-wallpaper : dont overwrite if a file with the same name already exist
+  - define default program: navigateur/mail reader/term/pager/.../EDITOR/..
+  - specify interface in argument to ct-profile, ct-installconf, ...
+    add help for ct-profile, ct-installconf (for interface)
 
 XSESSION:
-- when wm=ramdom, test_wm does'nt work
-  test if the wm exist
+  - when wm=ramdom, test_wm does'nt work
+    test if the wm exist
 
 SHELL:
-- screen : fichier de conf std (3 windows), automatiquement lance?, keys to browse history and to change term
-- completion de zsh (cursor like in hh)
+  - screen : fichier de conf std (3 windows), automatiquement lance?, keys to browse history and to change term
+  - completion de zsh (cursor like in hh)
   see http://www.die.net/doc/linux/man/man1/zshcontrib.1.html for zsh
-- kbd mapping (azerty, qwerty, dvorak) (shell/X) (Xdefault binding for term)
-- epita: zsh color sur systemes != netBsd
-- shellconf.sh => add color for all term (CT_RED,CT_YELLOW,..) and for prompt
-- path on tcsh (see .login)
-- var => dangerous host (gate, ...)
+  - kbd mapping (azerty, qwerty, dvorak) (shell/X) (Xdefault binding for term)
+  - epita: zsh color sur systemes != netBsd
+  - shellconf.sh => add color for all term (CT_RED,CT_YELLOW,..) and for prompt
+  - path on tcsh (see .login)
+  - var => dangerous host (gate, ...)
 
 EMACS: ## SEE .ctafconf/etc/emacs/startup.emacs ##
 
 ENLIGHTENMENT:
-  - Enhance integration with ctafconf(wallpapers/bindkeys/E16-Gnome)
+  - Enhance integration with ctafconf(wallpapers/bindkeys/E16-Gnome) (gsetroot)
 
 BONUS:
   - if user-profile and user-profile.csh exist ask which param to modify
