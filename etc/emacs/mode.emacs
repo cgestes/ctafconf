@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 00:57:16 2006 GESTES Cedric
-;; Last update Tue Feb 13 05:36:15 2007 gestes cedric
+;; Last update Tue Feb 13 06:44:16 2007 cedric gestes
 ;;
 (message ".")
 (message "ctafconf loading: MODE.EMACS")
@@ -49,6 +49,11 @@
       )
   (error
    (message "Cannot load ido %s" (cdr err))))
+
+;;disable iswitchb
+(if (iswitchb-mode t)
+    (iswitchb-mode (not t))
+    )
 
 (global-set-key "\C-xb" 'electric-buffer-list)
 
