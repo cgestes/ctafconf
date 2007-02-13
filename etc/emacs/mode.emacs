@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 00:57:16 2006 GESTES Cedric
-;; Last update Fri Feb  9 03:31:28 2007 GESTES Cedric
+;; Last update Tue Feb 13 05:36:15 2007 gestes cedric
 ;;
 (message ".")
 (message "ctafconf loading: MODE.EMACS")
@@ -45,6 +45,7 @@
       (require 'ido nil t)
       (ido-mode t)
       (global-set-key "\C-x\C-b" 'ido-switch-buffer)
+      (setq ido-auto-merge-work-directories-length -1)
       )
   (error
    (message "Cannot load ido %s" (cdr err))))

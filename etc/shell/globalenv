@@ -5,7 +5,7 @@
 ## Login   <goctaf@gmail.com>
 ##
 ## Started on  Fri Sep 30 22:17:33 2005 GESTES Cedric
-## Last update Mon Feb 12 18:27:56 2007 cedric gestes
+## Last update Tue Feb 13 05:37:27 2007 gestes cedric
 ##
 ##CTAFCONF
 
@@ -75,11 +75,12 @@ env_set DEBEMAIL "$ctafconf_mail"
 env_set LESS "-Qcwx2Mz-3"
 
 #text editor in console mode (for cvs, svn)
-env_set VISUAL "emacs"
-env_set EDITOR "emacs"
+env_set VISUAL "nano"
+env_set EDITOR "nano"
 null_which vi   && env_set VISUAL "vi"   && env_set EDITOR "vi"
 null_which vim  && env_set VISUAL "vim"   && env_set EDITOR "vim"
 null_which nano && env_set VISUAL "nano" && env_set EDITOR "nano"
+null_which emacs && env_set VISUAL "emacs" && env_set EDITOR "emacs"
 
 
 

@@ -5,7 +5,7 @@
 ## Login   <gestes_c@epita.fr>
 ##
 ## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
-## Last update Sat Apr  1 15:41:35 2006 GESTES Cedric
+## Last update Tue Feb 13 01:09:34 2007 gestes cedric
 ##
 ##CTAFCONF
 
@@ -50,9 +50,9 @@ PROMPT='$PR_MAGENTA%(!.%SROOT%s.$PR_WHITE%n$PR_YELLOW)@$PR_LIGHT_GREEN%m$PR_MAGE
  [%(?.$PR_WHITE$?.$PR_RED% err $?)$PR_MAGENTA]\
  [$PR_BLUE%~$PR_MAGENTA]$PR_WHITE\
 
-z$PR_GREEN%(!.#.$)$PR_WHITE '
+z$PR_GREEN%(!.#.$)$PR_LIGHT_WHITE '
 
-RPROMPT="[$PR_CYAN%D $PR_GREEN%T$PR_WHITE]"
+RPROMPT="[$PR_CYAN%D $PR_GREEN%T$PR_LIGHT_WHITE]"
 
 PS2=''
 }

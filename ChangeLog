@@ -1,7 +1,17 @@
+2007-02-13 CTAF <>
+	* ct-profile : remove one bug with wallpaper
+	* emacs : tab = 8 space
+	* shell : alias on ls removed
+	* globalenv : EDITOR/VISUAL = emacs by default
+	* emacs : remove std.el : correct the backspace problem
+	* emacs : correct a bug with ido
+	* zsh : white is now really white, not grey
+	* xsession : remove some bug, always default to a terminal
+
 2007-02-12 CTAF <>
 	* xsession : wors at epita
 	* alias : gm works
-	* env : add acu path
+
 
 2007-02-10 CTAF <>
 	* bin : moved each unusefull bin to bin/misc

@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:13:33 2006 GESTES Cedric
-;; Last update Fri Feb  9 00:02:42 2007 GESTES Cedric
+;; Last update Mon Feb 12 23:44:24 2007 gestes cedric
 ;;
 (message ".")
 (message "ctafconf loading: SETTINGS.EMACS")
@@ -20,7 +20,7 @@
 
 ;; Distance between tab stops (for display of tab characters), in columns.
 ;; Automatically becomes buffer-local when set in any fashion.
-(setq default-tab-width 2)
+(setq default-tab-width 8)
 (setq sh-indentation 2)
 (setq sh-indent-for-then 0)
 (setq csh-indent 2)

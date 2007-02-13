@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Mon Sep 26 02:37:56 2005 GESTES Cedric
-## Last update Mon Feb 12 16:22:10 2007 cedric gestes
+## Last update Tue Feb 13 05:38:09 2007 gestes cedric
 ##
 ##CTAFCONF
 
@@ -70,5 +70,5 @@ fi
 #lauch the window manager
 launch_wm
 
-
+which gnome-terminal && exec gnome-terminal
 exec xterm

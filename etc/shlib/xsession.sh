@@ -45,7 +45,6 @@ extract_wm()
     wm=`cat ~/.ctafconf/perso/wmlist | tail -$pos | head -1`
   fi
   ct_log EXTRACTED WM: $wm
-  echo $wm >$fwm
   echo $wm
 }
 
@@ -55,8 +54,9 @@ exec_wm ()
   local wmfct=""
 
   wmfct=`cat ~/.ctafconf/etc/xsession/wmlist | grep "^$wm" | cut -d ! -f 2`
-  ct_log 'final exec: ' $wmfct
-  exec $wmfct
+  echo "lanching: $wmfct"
+  which $wmfct && exec $wmfct
+
 }
 
 exec_app()

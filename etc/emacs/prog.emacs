@@ -11,7 +11,8 @@
 (message "ctafconf loading: PROG.EMACS")
 
 ;;EPITA STUFF
-(load "std.el")
+;;that stuff suck
+;;(load "std.el")
 (load "std_comment.el")
 (load-file "~/.ctafconf/etc/emacs/site-lisp/echeck.el")
 (load-file "~/.ctafconf/etc/emacs/site-lisp/norme.el")

@@ -30,7 +30,7 @@ $col_blue =         "\033[34m";
 $col_purple =       "\033[35m";
 $col_cyan =         "\033[36m";
 $col_ltgray =       "\033[37m";
-$col_norm =	        "\033[00m";
+$col_norm =	    "\033[00m";
 $col_background =   "\033[07m";
 $col_brighten =     "\033[01m";
 $col_underline =    "\033[04m";
@@ -57,7 +57,7 @@ $col_added =          $col_brown;
 $col_conflict =       $col_red;
 $col_deleted =        $col_brown;
 $col_fusion =         $col_blue;
-$col_file =           $col_norm . $col_brighten;
+$col_file =           $col_norm;
 $tag_error =          "Error: ";
 $col_error =          $tag_error . $col_brown . $col_brighten;
 $error_highlight =    $col_brighten;
@@ -99,6 +99,9 @@ while (<>)
 	$thisline =~      s/^(I)\s\s*(.*)/$col_file$1gnored : $col_file$2/x;
 
 	#svn diff
+	$thisline =~   s/^(\Index.*)/$col_yellow$col_brighten$1$col_file/x;
+	$thisline =~   s/^(\===.*)/$col_yellow$col_brighten$1$col_file/x;
+
 	$thisline =~   s/^(\+.*)/$col_purple$1$col_file/x;
 	$thisline =~   s/^(-.*)/$col_yellow$1$col_file/x;
 	$thisline =~   s/^(@@.*)/$col_blue$1$col_file/x;
