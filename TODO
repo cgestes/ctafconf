@@ -26,6 +26,7 @@ V1.0.42: goal: rock stable
   - nasty bug with emacs-places
   - use gls at epita (dont alias ls)
   - define $HOME, like it should do, to avoid saveplace pb
+  - color grepr
   - changement de buffer (touche gfauche/droite)
   - mine emacs.config
   - remove interface from profile, pass them in argument if wanted
