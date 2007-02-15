@@ -23,7 +23,6 @@ V1.1.0:
   s color everythink: grepr apt-get, man, wget (change the perl script, so we dont need a warper)(ensure perl is installed too)
 
 V1.0.42: goal: rock stable
-  - use gls at epita (dont alias ls)
   - mine emacs.config
   - remove interface from profile, pass them in argument if wanted
 
