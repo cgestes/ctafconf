@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Thu Feb 15 18:57:12 2007 GESTES Cedric
+;; Last update Thu Feb 15 19:12:25 2007 GESTES Cedric
 ;;
 (message ".")
 (message "ctafconf loading: STARTUP.EMACS")
@@ -110,6 +110,7 @@
 ;;
 ;;
 ;; === TODO ===
+;;  - my-rev/my-next buffer work hazardously
 ;;  - copy doesnt work in some case in console
 ;;  - html/dtd/php
 ;;  - re-enable saveplace

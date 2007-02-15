@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Thu May 11 19:53:25 2006 GESTES Cedric
-;; Last update Thu Feb 15 18:39:53 2007 GESTES Cedric
+;; Last update Thu Feb 15 19:02:52 2007 GESTES Cedric
 ;;
 ;; source: http://blog.pettomato.com/content/site-lisp/.emacs
 (message ".")
@@ -155,5 +155,4 @@
 (set-face-foreground   'modeline "steelblue3")
 (set-face-background   'scroll-bar "#0050C5")
 (set-face-foreground   'scroll-bar "#0050C5")
-
 

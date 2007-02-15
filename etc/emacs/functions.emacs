@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 00:58:57 2006 GESTES Cedric
-;; Last update Thu Feb 15 18:39:47 2007 GESTES Cedric
+;; Last update Thu Feb 15 19:12:00 2007 GESTES Cedric
 ;;
 (message ".")
 (message "ctafconf loading: FUNCTIONS.EMACS")
@@ -43,6 +43,12 @@
   "Cycle to the previous buffer with keyboard."
   (interactive)
   (bury-buffer))
+
+;; (defun next-buffer ()
+;;   "Go to the buffer which is at the end of the buffer-list.
+;;    This is the symmetric of burry-buffer."
+;;   (interactive)
+;;   (switch-to-buffer (nth (- (length (buffer-list)) 1) (buffer-list))))
 
 (defun my-next-buffer ()
   "Cycle to the next buffer with keyboard."
