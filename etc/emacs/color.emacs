@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Thu May 11 19:53:25 2006 GESTES Cedric
-;; Last update Tue Feb  6 17:15:23 2007 GESTES Cedric
+;; Last update Thu Feb 15 05:38:57 2007 GESTES Cedric
 ;;
 ;; source: http://blog.pettomato.com/content/site-lisp/.emacs
 (message ".")
@@ -100,8 +100,57 @@
      `(hi-pink														((t (:foreground ,magenta)))))))
 
 
+(defun happy-coder-color-theme()
+  "A color scheme"
+  (interactive "")
+
+  ;; couleur de fond en noir et caracteres en blanc
+  (set-background-color "Black")
+  (set-foreground-color "White")
+
+  (custom-set-faces
+   ;; custom-set-faces was added by Custom -- don't edit or cut/paste it!
+   ;; Your init file should contain only one such instance.
+   ;;'(background "blue")
+   '(trailing-whitespace ((t (:background "cyan"))))
+   '(font-lock-builtin-face ((((class color) (background dark)) (:foreground "Turquoise"))))
+   '(font-lock-comment-face ((t (:foreground "MediumAquamarine"))))
+   '(font-lock-constant-face ((((class color) (background dark)) (:bold t :foreground "DarkOrchid"))))
+   '(font-lock-doc-string-face ((t (:foreground "green2"))))
+   '(font-lock-function-name-face ((t (:foreground "SkyBlue"))))
+   '(font-lock-keyword-face ((t (:bold t :foreground "CornflowerBlue"))))
+   '(font-lock-preprocessor-face ((t (:italic nil :foreground "CornFlowerBlue"))))
+   '(font-lock-reference-face ((t (:foreground "DodgerBlue2"))))
+   '(font-lock-string-face ((t (:foreground "lime green"))))
+   '(font-lock-type-face ((t (:foreground "#9290ff"))))
+   '(font-lock-variable-name-face ((t (:foreground "PaleGreen"))))
+   '(font-lock-warning-face ((((class color) (background dark)) (:foreground "yellow" :background "red"))))
+   '(highlight ((t (:background "CornflowerBlue"))))
+   '(list-mode-item-selected ((t (:background "gold"))))
+   '(makefile-space-face ((t (:background "wheat"))))
+   '(modeline ((t (:background "Navy"))))
+   '(paren-match ((t (:background "darkseagreen4"))))
+   '(region ((t (:background "DarkSlateBlue"))))
+   '(show-paren-match-face ((t (:foreground "black" :background "wheat"))))
+   '(show-paren-mismatch-face ((((class color)) (:foreground "white" :background "red"))))
+   '(speedbar-button-face ((((class color) (background dark)) (:foreground "green4"))))
+   '(speedbar-directory-face ((((class color) (background dark)) (:foreground "khaki"))))
+   '(speedbar-file-face ((((class color) (background dark)) (:foreground "cyan"))))
+   '(speedbar-tag-face ((((class color) (background dark)) (:foreground "Springgreen"))))
+   '(vhdl-speedbar-architecture-selected-face ((((class color) (background dark)) (:underline t :foreground "Blue"))))
+   '(vhdl-speedbar-entity-face ((((class color) (background dark)) (:foreground "darkGreen"))))
+   '(vhdl-speedbar-entity-selected-face ((((class color) (background dark)) (:underline t :foreground "darkGreen"))))
+   '(vhdl-speedbar-package-face ((((class color) (background dark)) (:foreground "black"))))
+   '(vhdl-speedbar-package-selected-face ((((class color) (background dark)) (:underline t :foreground "black"))))
+   '(widget-field-face ((((class grayscale color) (background light)) (:background "DarkBlue")))))
+  )
 ;;;;;;STYLE;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;color
+(happy-coder-color-theme)
+;; (if running-on-x
+;;     (x-color-theme)
+;;   (console-color-theme))
+
 (set-face-background   'modeline "black")
 (set-face-foreground   'modeline "steelblue3")
 (set-face-background   'scroll-bar "#0050C5")
@@ -117,8 +166,4 @@
 ;;        (background-color . "black")))
 ;;)
 
-
-(if running-on-x
-    (x-color-theme)
-  (console-color-theme))
 

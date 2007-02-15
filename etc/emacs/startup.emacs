@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Fri Feb  9 18:44:53 2007 GESTES Cedric
+;; Last update Thu Feb 15 05:40:10 2007 GESTES Cedric
 ;;
 (message ".")
 (message "ctafconf loading: STARTUP.EMACS")
@@ -112,6 +112,7 @@
 ;;  s use doxymacs
 ;;  - ido: remove global file find (or something like that)
 ;;  - html/dtd/php
+;;  - menu: resize: 80x25
 ;;
 ;; === TODO ===
 ;;  - re-enable saveplace
