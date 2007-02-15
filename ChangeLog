@@ -1,3 +1,6 @@
+2007-02-14 CTAF <>
+	* ct-profile : only two config possible: normal/epita
+
 2007-02-13 CTAF <>
 	* ct-profile : remove one bug with wallpaper
 	* emacs : tab = 8 space

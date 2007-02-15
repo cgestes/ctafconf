@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Sep 25 21:51:34 2005 GESTES Cedric
-## Last update Thu Feb 15 01:34:52 2007 cedric gestes
+## Last update Thu Feb 15 01:39:06 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -154,14 +154,12 @@ if [ -f ~/.ctafconf/perso/user-profile ]; then
     fi
 fi
 
-
 ctafconf_interface=$(getvaldef "$ctafconf_interface" "text")
 SSFT_DEFAULT=$ctafconf_interface
 if ssft_select_single "Interface for the ctafconf" "choose a graphic one from 'zenity'(gnome) or 'kdialog'(kde) or choose a console one from 'dialog' (ncurse) or 'text'. I recommand 'DIALOG'" zenity kdialog dialog text; then
     ctafconf_interface=$(getvaldef "$SSFT_RESULT" "$ctafconf_interface")
 fi
 export SSFT_FRONTEND=$ctafconf_interface
-
 
 
 SSFT_DEFAULT=$ctafconf_name
@@ -192,12 +190,10 @@ IFS=$ancIFS
 
 
 
+ctafconf_config=$(getvaldef "$ctafconf_config" "normal")
 SSFT_DEFAULT=$ctafconf_config
 if ssft_select_single "Configuration" "Choose your configuration (use default if you dont know)" default epita ; then
    ctafconf_config=$(getvaldef "$SSFT_RESULT" "$ctafconf_config")
-#   if [ "x$ctafconf_config" = xother ] ; then
-#     ctafconf_config=""
-#   fi
 fi
 
 
