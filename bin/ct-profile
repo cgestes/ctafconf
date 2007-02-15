@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Sep 25 21:51:34 2005 GESTES Cedric
-## Last update Thu Feb 15 01:39:06 2007 GESTES Cedric
+## Last update Thu Feb 15 16:57:10 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -27,7 +27,7 @@ _trap_kill ()
 trap _trap_kill INT
 
 
-export SSFT_FRONTEND="text"
+export SSFT_FRONTEND="console"
 . ~/.ctafconf/etc/shlib/ssft.sh
 
 
@@ -43,7 +43,7 @@ showconf()
   echo "zprompt   : $ctafconf_zprompt"
   echo "wm        : $ctafconf_wm"
   echo "config    : $ctafconf_config"
-  echo "interface : $ctafconf_interface"
+#  echo "interface : $ctafconf_interface"
 }
 
 #show the ctafconf
@@ -112,7 +112,7 @@ savectafconf()
 #  echo "$setcmd ctafconf_sudo='$ctafconf_sudo'" >> $savefile
   echo "$setcmd ctafconf_zprompt='$ctafconf_zprompt'" >> $savefile
   echo "$setcmd ctafconf_wm='$ctafconf_wm'" >> $savefile
-  echo "$setcmd ctafconf_interface='$ctafconf_interface'" >> $savefile
+#  echo "$setcmd ctafconf_interface='$ctafconf_interface'" >> $savefile
 
   echo "your new configuration has been saved"
   echo "you should LOGOUT to reload the new configuration"
@@ -140,7 +140,7 @@ if [ -f ~/.ctafconf/perso/user-profile ]; then
 fi
 
 
-export SSFT_FRONTEND=$(getvaldef "$ctafconf_interface" "text")
+#export SSFT_FRONTEND=$(getvaldef "$ctafconf_interface" "text")
 
 echo "using frontend: $SSFT_FRONTEND, you could change it with ct-profile"
 
@@ -154,12 +154,12 @@ if [ -f ~/.ctafconf/perso/user-profile ]; then
     fi
 fi
 
-ctafconf_interface=$(getvaldef "$ctafconf_interface" "text")
-SSFT_DEFAULT=$ctafconf_interface
-if ssft_select_single "Interface for the ctafconf" "choose a graphic one from 'zenity'(gnome) or 'kdialog'(kde) or choose a console one from 'dialog' (ncurse) or 'text'. I recommand 'DIALOG'" zenity kdialog dialog text; then
-    ctafconf_interface=$(getvaldef "$SSFT_RESULT" "$ctafconf_interface")
-fi
-export SSFT_FRONTEND=$ctafconf_interface
+# ctafconf_interface=$(getvaldef "$ctafconf_interface" "text")
+# SSFT_DEFAULT=$ctafconf_interface
+# if ssft_select_single "Interface for the ctafconf" "choose a graphic one from 'zenity'(gnome) or 'kdialog'(kde) or choose a console one from 'dialog' (ncurse) or 'text'. I recommand 'DIALOG'" zenity kdialog dialog text; then
+#     ctafconf_interface=$(getvaldef "$SSFT_RESULT" "$ctafconf_interface")
+# fi
+# export SSFT_FRONTEND=$ctafconf_interface
 
 
 SSFT_DEFAULT=$ctafconf_name

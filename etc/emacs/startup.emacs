@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Thu Feb 15 05:40:10 2007 GESTES Cedric
+;; Last update Thu Feb 15 18:57:12 2007 GESTES Cedric
 ;;
 (message ".")
 (message "ctafconf loading: STARTUP.EMACS")
@@ -25,11 +25,11 @@
 ;; [F5]         terminal                [S-F5]          speedbar
 ;; [F6]         togle bookmark          [S/C-F6]        next/prev bookmark
 ;; [F7]         next mark               [S-F7]          prev mark (made with C-space)
-;; [F8]		      Compile                 [S-F8]          debug
-;; [F9]		      next error              [S-F9]          previous error
+;; [F8]		Compile                 [S-F8]          debug
+;; [F9]		next error              [S-F9]          previous error
 ;; [F10]        Hide/Show one block     [S-F10]         hide all block
-;; [C-S-F10]    SHow all block
-;; [F11]	show ecb (code browser)       [S-F11]         hide ecb (code browser)
+;; [C-S-F10]    Show all block
+;; [F11]	show ecb (code browser) [S-F11]         hide ecb (code browser)
 ;; [F12][A-Pup]	scroll-other-window     [S-F12][A-Pdown]scroll-other-window-down
 ;;
 ;;===FILE/BUFFER OPERATION===
@@ -97,6 +97,8 @@
 ;;   taminmanderson
 ;;
 ;;===ELISP PROGRAMMING/DEBUGGING===
+;; emacs --debug-init
+;; emacs -Q (load an empty emacs without using config file)
 ;; - learn one key:
 ;;   M-x global-set-key
 ;;   C-x ESC ESC (affiche la commande precedente nikel chrome)
@@ -106,15 +108,10 @@
 ;; - d : step through code one step at a time
 ;; - c : continue the computation
 ;;
-
-;; === TODO - URGENT ===
-;;  s provide a very basic conf, and load functionality at runtime (menu)
-;;  s use doxymacs
-;;  - ido: remove global file find (or something like that)
-;;  - html/dtd/php
-;;  - menu: resize: 80x25
 ;;
 ;; === TODO ===
+;;  - copy doesnt work in some case in console
+;;  - html/dtd/php
 ;;  - re-enable saveplace
 ;;  - shortcut: kill one line
 ;;  - kill char from cur to begin
@@ -134,20 +131,7 @@
 ;;  - ilisp don't work on emacs-snapshot
 ;;  - turn on semantic-tag-decoration-on-protected-member, semantic-tag-decoration-on-private-member
 ;;  - folding: use semantic-folding if available, else outline, or hideshow
-;;  - EMACRO
-;;  KBD: (don't work in console (tty))
-;;  C-SPC,
 ;;
-;;easy emacs:
-;;Ctrl-/          Bounce         Move from the beginning to the end or
-;;                Expression     from the end to the beginning of a
-;;                               balanced expression, such as one enclosed
-;;                               by () [] or {}
-;; Ctrl-F5        Character      Duplicate the character from the line
-;;                Above          above, and move one character forward.
-
-;; Shft-Ctrl-F5   Character      Duplicate the character from the line
-;;                Below          below, and move one character forward.
 ") "Initial message displayed in *scratch* buffer at startup.
 If this is nil, no message will be displayed."
   :type 'string)

@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 00:57:16 2006 GESTES Cedric
-;; Last update Tue Feb 13 06:44:16 2007 cedric gestes
+;; Last update Thu Feb 15 18:09:35 2007 GESTES Cedric
 ;;
 (message ".")
 (message "ctafconf loading: MODE.EMACS")
@@ -205,7 +205,7 @@
 
 
 ;;screensaver
-(if enable-zone
+(defun ctafconf-zone()
     (condition-case err
         (progn
           (when (>= emacs-major-version 21)
@@ -217,4 +217,6 @@
        (message "Cannot load zone-mode %s" (cdr err))))
   )
 
+(if enable-zone
+    (ctafconf-zone))
 

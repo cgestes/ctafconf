@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Thu May 11 19:53:25 2006 GESTES Cedric
-;; Last update Thu Feb 15 05:38:57 2007 GESTES Cedric
+;; Last update Thu Feb 15 18:39:53 2007 GESTES Cedric
 ;;
 ;; source: http://blog.pettomato.com/content/site-lisp/.emacs
 (message ".")
@@ -111,7 +111,7 @@
   (custom-set-faces
    ;; custom-set-faces was added by Custom -- don't edit or cut/paste it!
    ;; Your init file should contain only one such instance.
-   ;;'(background "blue")
+   '(background "blue")
    '(trailing-whitespace ((t (:background "cyan"))))
    '(font-lock-builtin-face ((((class color) (background dark)) (:foreground "Turquoise"))))
    '(font-lock-comment-face ((t (:foreground "MediumAquamarine"))))
@@ -128,7 +128,7 @@
    '(highlight ((t (:background "CornflowerBlue"))))
    '(list-mode-item-selected ((t (:background "gold"))))
    '(makefile-space-face ((t (:background "wheat"))))
-   '(modeline ((t (:background "Navy"))))
+;;   '(modeline ((t (:background "Navy"))))
    '(paren-match ((t (:background "darkseagreen4"))))
    '(region ((t (:background "DarkSlateBlue"))))
    '(show-paren-match-face ((t (:foreground "black" :background "wheat"))))
@@ -155,15 +155,5 @@
 (set-face-foreground   'modeline "steelblue3")
 (set-face-background   'scroll-bar "#0050C5")
 (set-face-foreground   'scroll-bar "#0050C5")
-
-;;test si on est en graphique
-;;(if window-system
-;;    (setq default-frame-alist
-;;      '((width . 80) (height . 30)
-;;        (cursor-color . "yellow")
-;;        (cursor-type . box)
-;;        (foreground-color . "MediumPurple2")
-;;        (background-color . "black")))
-;;)
 
 

@@ -209,7 +209,7 @@ if ! [ -f ~/.ctafconf/perso/user-profile ] ; then
 fi
 . ~/.ctafconf/perso/user-profile
 
-export SSFT_FRONTEND=$ctafconf_interface
+export SSFT_FRONTEND=console
 
 
 SSFT_DEFAULT=choice

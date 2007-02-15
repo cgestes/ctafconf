@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:14:21 2006 GESTES Cedric
-;; Last update Thu Feb  8 23:41:08 2007 GESTES Cedric
+;; Last update Thu Feb 15 18:18:59 2007 GESTES Cedric
 ;;
 (message ".")
 (message "ctafconf loading: PROG.EMACS")
@@ -73,7 +73,7 @@
 
 
 ;;ilisp mode;;;;;;;;;;;;;;;;;;;;;;;
-(if enable-ilisp
+(defun ctafconf-ilisp()
     (condition-case err
         (if (file-exists-p "~/.ctafconf/etc/emacs/site-lisp/ilisp/ilisp.el")
             (progn
@@ -94,6 +94,9 @@
       (error
        (message "Cannot load ilisp %s" (cdr err))))
   )
+(if enable-ilisp
+    (ctafconf-ilisp))
+
 
 ;;Python
 (autoload 'python-mode "python-mode" "Python editing mode." t)
@@ -192,8 +195,9 @@
 
 
 ;;provide ecb
-(if enable-ecb
-    (condition-case err
+
+(defun ctafconf-ecb ()
+  (condition-case err
         (progn
           (setq ecb-auto-activate t)
           (setq ecb-tip-of-the-day nil)
@@ -203,3 +207,6 @@
       (error
        (message "Cannot load ecb %s" (cdr err))))
   )
+
+(if enable-ecb
+    (ctafconf-ecb))

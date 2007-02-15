@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 05:39:19 2006 GESTES Cedric
-;; Last update Fri Feb  9 03:37:21 2007 GESTES Cedric
+;; Last update Thu Feb 15 18:56:00 2007 GESTES Cedric
 ;;
 
 ;;
@@ -20,72 +20,47 @@
 ;;  add doxymacs function headers
 ;;  htmlize buffer
 
-(require 'menu-bar)
+;; (require 'menu-bar)
+(message ".")
+(message "ctafconf loading: SETTINGS.EMACS")
 
-;; organized buffer menu
+;; ;; organized buffer menu
 (msb-mode 1)
 
-;; add entry to menu-bar:
-(defvar ctafconf-menu (make-sparse-keymap "ctafconf"))
-(define-key global-map [menu-bar ctafconf] (cons "ctafconf" ctafconf-menu))
+(condition-case err
+    (progn
+      (require 'easymenu)
+      (interactive)
+      (easy-menu-add-item nil nil '("CtafConf"))
+      (easy-menu-add-item nil '("CtafConf")
+                          '("Load component"
+                            ["Zone Screensaver" (ctafconf-zone) t]
+                            ["Ilisp" (ctafconf-ilisp) t]
+                            ["Cedet" (ctafconf-cedet) t]
+                            ["ECB" (ctafconf-ecb) t]
+                            ))
 
-;; Menu entries (the numbers [item-NN] don't affect the order):
-;;
-;; First entry here is lowest in menu.
-(define-key ctafconf-menu [item-01]
-  '("start ecb" . ecb-activate))
+      (easy-menu-add-item nil '("CtafConf")
+                          '("Prog"
+                            ["Add doxygen file comment" (doxymacs-insert-file-comment) t]
+                            ["Add doxygen function comment" (doxymacs-insert-function-comment) t]
+                            ["Add doxygen member header" (doxymacs-insert-member-comment) t]
+                            "-"
+;;                            ["htmlize buffer" my-function t]
+                            ))
 
-(define-key ctafconf-menu [item-02]
-  '("stop ecb" . ecb-deactivate))
+      (easy-menu-add-item nil '("CtafConf")
+                          '("Misc"
+                            ["Resize emacs to 80x25" (ctafconf-resize-80x25) t]
+                            ))
+      (easy-menu-add-item nil '("CtafConf") '("-"))
+      (easy-menu-add-item nil '("CtafConf")
+                          '["CtafConf help" (lambda ()
+                                               (interactive)
+                                               (switch-to-buffer "*scratch*")
+                                               (ctafconf-help))]
+                                               )
 
-(define-key ctafconf-menu [item-03]
-  '("compile" . compile))
-
-(define-key ctafconf-menu [item-04]
-  '("htmlize buffer" . htmlize-buffer))
-
-;;(provide 'menu)
-
-;;; menu.el ends here
-(require 'generic-menu)
-(require 'generic-dl)
-
-(defun grk-menu-buffer (val)
-  "grk buffer menu"
-  (message "buffer menu %S" val)
-  )
-
-(defun grk-menu-prog (val)
-  "grk menu"
-  (gm-quit)
-  (if (equal val "function list")
-      (progn
-        (gm-quit)
-        (dl-popup)))
-  (if (equal val "compile")
-      (compile))
-  (if (equal val "debug")
-      (debug))
-  )
-
-(defun grk-menu (val)
-  "grk menu"
-  (gm-quit)
-  (if (equal val "buffer")
-      (gm-popup :elements '("prout")
-                :select-callback (lambda (val)
-                                   (grk-menu-buffer val))))
-  (if (equal val "prog")
-      (gm-popup :elements '("function list" "compile" "debug")
-                :select-callback (lambda (val)
-                                   (grk-menu-prog val))))
-  (if (equal val "misc")
-      (message "You hace selected: %S" val))
-  )
-
-
-(defun grk-menu ()
- (gm-popup :elements '("buffer" "prog" "misc")
-           :select-callback (lambda (val)
-                              (grk-menu val)))
- )
+      )
+  (error
+   (message "Cannot load easymenu %s" (cdr err))))

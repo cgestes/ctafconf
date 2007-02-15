@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 00:58:57 2006 GESTES Cedric
-;; Last update Thu Feb  8 23:40:08 2007 GESTES Cedric
+;; Last update Thu Feb 15 18:39:47 2007 GESTES Cedric
 ;;
 (message ".")
 (message "ctafconf loading: FUNCTIONS.EMACS")
@@ -56,6 +56,20 @@
                                val)))
       (setq entry (1- entry)))
     (switch-to-buffer val)))
+
+
+;;test si on est en graphique
+;; from command line: emacs -g 80x40
+(defun ctafconf-resize-80x25()
+  "resize the terminal"
+  (if window-system
+      (progn
+        (interactive)
+        (set-frame-width (selected-frame) 80)
+        (set-frame-height (selected-frame) 27)
+        )
+    )
+  )
 
 
 

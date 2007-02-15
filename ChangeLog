@@ -1,5 +1,9 @@
 2007-02-15 CTAF <>
 	* env : globalenv become env, added env.epita
+	* emacs : removed emacs.mine, added emacs-pre.mine emacs-post.mine
+	* ct-installconf, ct-profile : no more ctafconf_interface, use only console
+	* emacs : little tweak to the color scheme
+	* emacs : better CtafConf menu
 
 2007-02-14 CTAF <>
 	* ct-profile : only two config possible: normal/epita
