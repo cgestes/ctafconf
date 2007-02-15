@@ -156,7 +156,7 @@ bindkey "^[q" keyboard-quit
 
 
 
-if ( -f ~/.ctafconf/etc/shell/globalenv ) source ~/.ctafconf/etc/shell/globalenv csh
+if ( -f ~/.ctafconf/etc/shell/env ) source ~/.ctafconf/etc/shell/env csh
 
 if ( -f ~/.ctafconf/etc/tcsh/tcshprompt ) source ~/.ctafconf/etc/tcsh/tcshprompt
 

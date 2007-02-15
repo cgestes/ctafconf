@@ -25,6 +25,7 @@ V1.1.0:
 V1.0.42: goal: rock stable
   - mine emacs.config
   - remove interface from profile, pass them in argument if wanted
+  - bug with choise and ct-install (install only those ready, it could be the contrary)
 
 ##################TODO
 DOCUMENTATION:

@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Thu Oct  6 04:55:46 2005 GESTES Cedric
-## Last update Sat May 20 10:21:28 2006 GESTES Cedric
+## Last update Thu Feb 15 05:21:43 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -31,8 +31,8 @@ if [ -f ~/.ctafconf/etc/ksh/kshprompt ]; then
     . ~/.ctafconf/etc/ksh/kshprompt
 fi
 
-if [ -f ~/.ctafconf/etc/shell/globalenv ]; then
-    . ~/.ctafconf/etc/shell/globalenv sh
+if [ -f ~/.ctafconf/etc/shell/env ]; then
+    . ~/.ctafconf/etc/shell/env sh
 fi
 
 if [ -f ~/.ctafconf/etc/shell/alias ]; then
