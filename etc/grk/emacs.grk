@@ -6,7 +6,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Tue Apr 11 12:32:11 2006 GESTES Cedric
-## Last update Tue Apr 11 22:38:18 2006 GESTES Cedric
+## Last update Thu Feb 15 16:50:39 2007 GESTES Cedric
 ##
 
 #--function
@@ -76,6 +76,7 @@ emacs_uninstall()
 emacs_alwaysinstall()
 {
     #nothing to do
-    grk_mine emacs
+    grk_mine emacs-pre
+    grk_mine emacs-post
     return 0
 }
