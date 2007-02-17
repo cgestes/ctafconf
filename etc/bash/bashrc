@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Fri Sep 30 22:08:35 2005 GESTES Cedric
-## Last update Sat Feb 17 01:47:28 2007 GESTES Cedric
+## Last update Sat Feb 17 02:19:45 2007 GESTES Cedric
 ##
 #!/bin/sh
 
@@ -13,6 +13,7 @@ if [[ $- != *i* ]] || [ a$HOST = agate-ssh ]; then
 	# Shell is non-interactive.  Be done now
 	return
 fi
+cat ~/.ctafconf/VERSION
 echo -n "shell: bash, "
 cat ~/.ctafconf/etc/shell/motd
 

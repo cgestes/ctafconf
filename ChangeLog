@@ -3,6 +3,8 @@
 	* xbindkeys : removed
 	* gdm, kdm : removed from install
 	* alias : remove old file: alias.{gentoo,debian,freebsd}
+	* colormake : less color
+	* colorgrepr : added
 
 2007-02-15 CTAF <>
 	* env : globalenv become env, added env.epita

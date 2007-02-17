@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Thu Oct  6 04:55:46 2005 GESTES Cedric
-## Last update Thu Feb 15 05:21:43 2007 GESTES Cedric
+## Last update Sat Feb 17 02:20:04 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -13,6 +13,7 @@
 [[ -o interactive ]] || return 0
 [ a$HOST = agate-ssh ] && return 0
 
+cat ~/.ctafconf/VERSION
 echo -n "shell: ksh, "
 cat ~/.ctafconf/etc/shell/motd
 

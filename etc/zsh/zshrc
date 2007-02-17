@@ -5,7 +5,7 @@
 ## Login   <gestes_c@epita.fr>
 ##
 ## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
-## Last update Fri May  5 17:25:27 2006 GESTES Cedric
+## Last update Sat Feb 17 02:19:03 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -13,6 +13,7 @@
 if [[ $- != *i* ]] || [ a$HOST = agate-ssh ]; then
     return
 fi
+cat ~/.ctafconf/VERSION
 echo -n "shell: zsh, "
 cat ~/.ctafconf/etc/shell/motd
 
