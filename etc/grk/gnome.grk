@@ -6,7 +6,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Tue Apr 11 12:32:11 2006 GESTES Cedric
-## Last update Sat Apr 22 19:04:07 2006 GESTES Cedric
+## Last update Sat Feb 17 01:35:33 2007 GESTES Cedric
 ##
 
 #--function
@@ -127,6 +127,12 @@ gnome_install()
 #      gfile=~/.ctafconf/etc/gconf/metacity-window
 #      gconftool-2 --load="$gfile"
     fi
+    echo "Setting metacity workspace shortcut:"
+    echo "<Alt>F1 Workspace 1         <Alt>F2 Workspace 2"
+    echo "<Alt>F3 Workspace 3         <Alt>F4 Workspace 4"
+    echo "Setting metacity window shortcut:"
+    echo "<Control><Alt>f fullscreen  <Control><Alt>m maximized"
+    echo "<Control><Alt>w move        <Control><Alt>x resize"
     return 0
 }
 

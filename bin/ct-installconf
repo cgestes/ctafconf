@@ -151,7 +151,7 @@ grk_install_ask()
 grk_install_choice()
 {
   SSFT_DEFAULT=`grk_installed_list`
-  ssft_select_multiple "Install" "Select packages you want to install" `ls -1 $grkdir | grep ".grk$" | sed -e s/.grk//`
+  ssft_select_multiple "Install" "Select packages you want to install (already installed package are selected)" `ls -1 $grkdir | grep ".grk$" | sed -e s/.grk//`
 
   ls -1 $grkdir | grep ".grk$" | while read line; do
     name=`echo $line | sed -e s/.grk//`
@@ -209,29 +209,31 @@ if ! [ -f ~/.ctafconf/perso/user-profile ] ; then
 fi
 . ~/.ctafconf/perso/user-profile
 
+
 export SSFT_FRONTEND=console
 
+grk_install_choice
 
-SSFT_DEFAULT=choice
-ssft_select_single "Select one installation method" "'All' install every package, 'Ask' ask your before each package, and 'Choice' let you select packages you want in a list. If you want information about a package chouse 'information'" all ask choice information
-insmethod=$SSFT_RESULT
+# SSFT_DEFAULT=choice
+# ssft_select_single "Select one installation method" "'All' install every package, 'Ask' ask your before each package, and 'Choice' let you select packages you want in a list. If you want information about a package chouse 'information'" all ask choice information
+# insmethod=$SSFT_RESULT
 
-###ASK
-if [ x$insmethod = xask ] ; then
-  grk_install_ask
-fi
+# ###ASK
+# if [ x$insmethod = xask ] ; then
+#   grk_install_ask
+# fi
 
-###ALL
-if [ x$insmethod = xall ] ; then
-  grk_install_all
-fi
+# ###ALL
+# if [ x$insmethod = xall ] ; then
+#   grk_install_all
+# fi
 
-###CHOICE
-if [ x$insmethod = xchoice ] ; then
-  grk_install_choice
-fi
+# ###CHOICE
+# if [ x$insmethod = xchoice ] ; then
+#  grk_install_choice
+# fi
 
-if [ x$insmethod = xinformation ] ; then
-  grk_help
-fi
+# if [ x$insmethod = xinformation ] ; then
+#   grk_help
+# fi
 

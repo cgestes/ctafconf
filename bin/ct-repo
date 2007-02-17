@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Mon Sep 26 04:19:16 2005 GESTES Cedric
-## Last update Thu Apr 20 22:11:19 2006 GESTES Cedric
+## Last update Sat Feb 17 02:04:50 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -16,10 +16,10 @@ cmd=$3
 readparam=""
 repodir=~/.ctafconf/perso/repos
 
-echo test_bob | read -e testbob >/dev/null 2>/dev/null;
-if [ x$? = x0 ]; then
-  readparam="-e"
-fi
+# echo test_bob | read -e testbob >/dev/null 2>/dev/null;
+# if [ x$? = x0 ]; then
+#   readparam="-e"
+# fi
 
 repo_list ()
 {
@@ -274,7 +274,6 @@ if [ x$# = x0 ] ||
   echo " --add, -a, add"
   echo "    : add a new repository"
   echo " --update-files : update files in ~/.ctafconf/ssh"
-  echo " --dtest : dialog test interface"
   exit 1
 fi
 
@@ -310,11 +309,4 @@ fi
 if [ x$action = 'x--update-files' ] ; then
   repo_updatefiles
   exit 0
-fi
-
-if [ x$action = 'x--dtest' ]; then
-  rep=$(zenity --title "ctrepo -- Choose your repository:" --file-selection --filename=$repodir/ctafconf.svn 2>/dev/null)
-  echo "repo: $rep"
-  act=$(zenity --title "ctrepo -- Choose one action:" )
-  echo "action: $rep"
 fi

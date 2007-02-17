@@ -172,7 +172,7 @@ grk_mine ()
   src=$1
   name=$2
 
-  echo "mine: $src -- $name"
+  [ x$grk_debug = xyes ] && echo "mine: $src -- $name"
   if ! [ -f ~/.ctafconf/perso/"$src".mine ]; then
     cp ~/.ctafconf/etc/mine/$src.mine ~/.ctafconf/perso
     cp ~/.ctafconf/etc/mine/$src.mine ~/.ctafconf/perso/previous

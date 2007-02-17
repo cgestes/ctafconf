@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Fri Sep 30 22:08:35 2005 GESTES Cedric
-## Last update Thu Feb 15 05:21:08 2007 GESTES Cedric
+## Last update Sat Feb 17 01:47:28 2007 GESTES Cedric
 ##
 #!/bin/sh
 
@@ -31,31 +31,31 @@ set bell-style none
 # dircolors --print-database uses its own built-in database
 # instead of using /etc/DIR_COLORS.  Try to use the external file
 # first to take advantage of user additions.
-use_color=false
-safe_term=${TERM//[^[:alnum:]]/.}	# sanitize TERM
+# use_color=false
+# safe_term=${TERM//[^[:alnum:]]/.}	# sanitize TERM
 
-if [[ -f /etc/DIR_COLORS ]]; then
-	grep -q "^TERM ${safe_term}" /etc/DIR_COLORS && use_color=true
-elif dircolors --print-database 2>/dev/null | grep -q "^TERM ${safe_term}"; then
-	use_color=true
-elif gdircolors --print-database 2>/dev/null | grep -q "^TERM ${safe_term}"; then
-	use_color=true
-fi
+# if [[ -f /etc/DIR_COLORS ]]; then
+# 	grep -q "^TERM ${safe_term}" /etc/DIR_COLORS && use_color=true
+# elif dircolors --print-database 2>/dev/null | grep -q "^TERM ${safe_term}"; then
+# 	use_color=true
+# elif gdircolors --print-database 2>/dev/null | grep -q "^TERM ${safe_term}"; then
+# 	use_color=true
+# fi
 
-if ${use_color}; then
-   	if [[ $EUID == 0 ]]; then
-		PS1='\[\033[01;31m\]\h \[\033[01;34m\]\W \$ \[\033[00m\]'
-	else
-		PS1='\[\033[01;32m\]\u@\h \[\033[01;34m\]\w \$ \[\033[00m\]'
-	fi
-else
-	if [[ $EUID == 0 ]]; then
-		# show root@ when we don't have colors
-		PS1='\u@\h \W \$ '
-	else
-		PS1='\u@\h \w \$ '
-	fi
-fi
+# if ${use_color}; then
+#    	if [[ $EUID == 0 ]]; then
+# 		PS1='\[\033[01;31m\]\h \[\033[01;34m\]\W \$ \[\033[00m\]'
+# 	else
+# 		PS1='\[\033[01;32m\]\u@\h \[\033[01;34m\]\w \$ \[\033[00m\]'
+# 	fi
+# else
+# 	if [[ $EUID == 0 ]]; then
+# 		# show root@ when we don't have colors
+# 		PS1='\u@\h \W \$ '
+# 	else
+# 		PS1='\u@\h \w \$ '
+# 	fi
+# fi
 
 [ -f ~/.ctafconf/etc/shell/env ] && . ~/.ctafconf/etc/shell/env sh
 

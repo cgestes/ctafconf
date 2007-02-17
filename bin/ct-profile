@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Sep 25 21:51:34 2005 GESTES Cedric
-## Last update Thu Feb 15 16:57:10 2007 GESTES Cedric
+## Last update Sat Feb 17 00:59:20 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -142,7 +142,7 @@ fi
 
 #export SSFT_FRONTEND=$(getvaldef "$ctafconf_interface" "text")
 
-echo "using frontend: $SSFT_FRONTEND, you could change it with ct-profile"
+#echo "using frontend: $SSFT_FRONTEND, you could change it with ct-profile"
 
 
 if [ -f ~/.ctafconf/perso/user-profile ]; then

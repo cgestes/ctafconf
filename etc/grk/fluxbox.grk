@@ -6,7 +6,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Tue Apr 11 12:32:11 2006 GESTES Cedric
-## Last update Sun Apr 16 03:59:23 2006 GESTES Cedric
+## Last update Sat Feb 17 00:54:58 2007 GESTES Cedric
 ##
 
 #--function
@@ -60,7 +60,6 @@ fluxbox_is_installed()
 #1 = not installed
 fluxbox_install()
 {
-  echo "fluxbox"
   grk_dir ~/.fluxbox fluxbox
   grk_file etc/fluxbox/init ~/.fluxbox/init
   return 0
@@ -78,7 +77,6 @@ fluxbox_uninstall()
 #put all .mine there
 fluxbox_alwaysinstall()
 {
-  echo "flux"
   grk_mine fbmenu
   #nothing to do
   return 0

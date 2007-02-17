@@ -8,9 +8,6 @@ untar in your home directory.
 > tar xvzf ctafconf-DATE.tgz
 > cd .ctafconf
 
-#choose a graphical interface (zenity or kdialog)
-#or a console one (dialog with ncurse, or text)
-#I recommand and use dialog
 > ./ctafconf-install
 
 If you only want emacs:

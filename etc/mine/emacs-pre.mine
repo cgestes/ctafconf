@@ -8,16 +8,16 @@
 ;;(defvar enable-functionnality nil)
 
 ;;display the menu bar
-(defvar enable-menu-bar t)
+;;(defvar enable-menu-bar t)
 
 ;;enable/disable the zone screensaver
-(defvar enable-zone nil)
+;;(defvar enable-zone nil)
 
 ;;enable/disable the cedet environnement
-(defvar enable-cedet nil)
+;;(defvar enable-cedet nil)
 
 ;;enable/disable the ecb ide
-(defvar enable-ecb nil)
+;;(defvar enable-ecb nil)
 
 ;;enable/disable ilisp
-(defvar enable-ilisp nil)
+;;(defvar enable-ilisp nil)

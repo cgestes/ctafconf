@@ -5,7 +5,7 @@
 ## Login   <gestes_c@epita.fr>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 GESTES Cedric
-## Last update Fri Jun 23 01:21:39 2006 cedric gestes
+## Last update Sat Feb 17 01:49:16 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -98,11 +98,11 @@ fignore=(.o .c~ .pro)
 ##################
 #if [ -f $HOME/.dircolorsrc ]; then
 
-if which gdircolors >/dev/null 2>/dev/null; then
-  eval `gdircolors`
-elif which dircolors >/dev/null 2>/dev/null; then
-  eval `dircolors`
-fi
+# if which gdircolors >/dev/null 2>/dev/null; then
+#   eval `gdircolors`
+# elif which dircolors >/dev/null 2>/dev/null; then
+#   eval `dircolors`
+# fi
 
 ##############################
 ## Plugins autoload && bindkey

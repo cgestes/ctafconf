@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Mon Sep 26 04:19:16 2005 GESTES Cedric
-## Last update Thu Apr 20 22:03:05 2006 GESTES Cedric
+## Last update Sat Feb 17 02:09:21 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -13,11 +13,11 @@ action=$1
 fname=$2
 sshdir=~/.ctafconf/perso/ssh
 
-readparam=""
-echo test_bob | read -e testbob >/dev/null 2>/dev/null;
-if [ x$? = x0 ]; then
-readparam="-e"
-fi
+# readparam=""
+# echo test_bob | read -e testbob >/dev/null 2>/dev/null;
+# if [ x$? = x0 ]; then
+# readparam="-e"
+# fi
 
 ssh_params=
 
@@ -58,11 +58,10 @@ ssh_connect ()
   local command;
   local desc;
 
-  echo $fname
   if [ -f $sshdir/"$fname".ssh ] ; then
 	  . $sshdir/"$fname".ssh
-	  echo "connection  : ssh $user@$server $command"
-	  echo "description : $desc"
+	  echo "$fname: ssh $ssh_params $user@$server $command"
+#	  echo "description : $desc"
 	  ssh $ssh_params $user@$server $command
   else
 	  echo "can't find your ssh file in $sshdir"
@@ -121,17 +120,11 @@ if [ x$# = x0 ] ||
    [ x$action = 'x--help' ] ; then
     echo "ct-ssh [option] <sshName>"
     echo "Actions possible: "
-    echo " --help, -h, help"
-    echo "    : display this help"
-    echo " --list, -l, list"
-    echo "    : list all repositoy"
-    echo " --checkout, -c, co <reponame>"
-    echo "    : checkout the repository in the current directory"
-    echo " --add, -a, add"
-    echo "    : add a new repository"
-    echo " --update-files"
-    echo "    : update all the file in ~/.ctafconf/ssh"
-    echo " x, -x, -X : compressed X forwarding"
+    echo " --help, -h, help     : display this help"
+    echo " --list, -l, list     : list all repositoy"
+    echo " --add, -a, add       : add a new repository"
+    echo " --update-files       : update all the file in ~/.ctafconf/ssh"
+    echo " x, -x, -X            : compressed X forwarding"
     exit 1
 fi
 

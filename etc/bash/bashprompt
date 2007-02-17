@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Fri Sep 30 23:28:35 2005 GESTES Cedric
-## Last update Thu Oct  6 05:43:00 2005 GESTES Cedric
+## Last update Sat Feb 17 01:44:34 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -52,30 +52,30 @@ STRUCT_MODE="$ESC[${DULL};${FG_RED};${BG_BLACK}m"
 
 function prompt_command
 {
-    ret=$?
-	#Don't show the whole path if it's too long; this function from the HOWTO
-	#How many characters of the $PWD should be kept
-	local pwdmaxlen=28
-	#Indicator that there has been directory truncation:
-	local trunc_symbol=".../"
-	if [ ${#PWD} -gt $pwdmaxlen ]
-	then
-		local pwdoffset=$(( ${#PWD} - $pwdmaxlen ))
-		newPWD="${trunc_symbol}${PWD:$pwdoffset:$pwdmaxlen}"
-	else
-		newPWD=${PWD}
-	fi
-	#Show the username and host (with colors defined above)
-	echo -n -e "$USER_MODE$USER$HOST_MODE@"
-	echo -n `hostname`
-	#Show the current directory (or most of it), and say how many files
-	#are in it and how big they are
-	if [ x$ret = x0 ]; then
-	    echo -n -e "$CPU_MODE [$NORM_MODE$ret$CPU_MODE] ["
-	else
-	    echo -n -e "$CPU_MODE [$JOB_MODE$ret$CPU_MODE] ["
-	fi
-	echo -e "$DIR_MODE$newPWD$CPU_MODE] $NORM_MODE"
+  ret=$?
+  #Don't show the whole path if it's too long; this function from the HOWTO
+  #How many characters of the $PWD should be kept
+  local pwdmaxlen=28
+  #Indicator that there has been directory truncation:
+  local trunc_symbol=".../"
+  if [ ${#PWD} -gt $pwdmaxlen ]
+  then
+    local pwdoffset=$(( ${#PWD} - $pwdmaxlen ))
+    newPWD="${trunc_symbol}${PWD:$pwdoffset:$pwdmaxlen}"
+  else
+    newPWD=${PWD}
+  fi
+  #Show the username and host (with colors defined above)
+  echo -n -e "$USER_MODE$USER$HOST_MODE@"
+  echo -n `hostname`
+  #Show the current directory (or most of it), and say how many files
+  #are in it and how big they are
+  if [ x$ret = x0 ]; then
+    echo -n -e "$CPU_MODE [$NORM_MODE$ret$CPU_MODE] ["
+  else
+    echo -n -e "$CPU_MODE [$JOB_MODE$ret$CPU_MODE] ["
+  fi
+  echo -e "$DIR_MODE$newPWD$CPU_MODE] $NORM_MODE"
 }
 
 #
