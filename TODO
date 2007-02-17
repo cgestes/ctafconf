@@ -1,32 +1,20 @@
-##TODO ANNOTATION
-- todo
-+ done
-s started
-
-##################PLANNING
-V1.3.0:
-  - documentation
-  - website
-
-V1.2.0:
-  - split version (tiny, complete, windows-emacs, ...)
+########################################
+##############  ROADMAP  ###############
+########################################
 
 V1.1.0:
-  - do todo emacs config
-  - enhance .mine file
   - support uninstall
-  - ctrepo / ctssh
-  - dependency checkout at startup (sed, grep, perl, etc..)
-  - documentation, on usefull feature
-  - document how to customize emacs (with emacs.config)
-  - test on freebsd/netbsd/openbsd/cygwin/windows
-  s color everythink: grepr apt-get, man, wget (change the perl script, so we dont need a warper)(ensure perl is installed too)
+  - ct-repo/ct-ssh/ct-date : use ssft
 
 V1.0.42: goal: rock stable
-  - emacs : setq replace custom-set for the color scheme
-  - remove xbindkeys
+  - colormake : replace white by grey for unuseful stuff
+  - dependency checkout at startup (sed, grep, perl, etc..)
+  - test on freebsd/netbsd/openbsd/cygwin/windows
 
-##################TODO
+
+########################################
+###############  TODO  #################
+########################################
 DOCUMENTATION:
   - emacs: README.EMACS, install just emacs, just test emacsconf, ..
   - svn: checkout from svn, update
@@ -40,7 +28,7 @@ DOCUMENTATION:
   - swf : install/change wm, change term,..
 
 CT-REPO/CT-SSH:
-  - cleanup: personnal info (sshe) => ssh_forward
+  - cleanup: personnal info (sshe) => ssh_forward (for repo at school)
   - ct-repo/ct-ssh : use ssft
 
 CT-SET-BG:
@@ -48,7 +36,6 @@ CT-SET-BG:
   - support xfce, support kde
 
 MINE:
-  - screen at shell startup
   - emacs size (set/unset)
   - diff .mine file /?/ (use diff3)
 
@@ -60,7 +47,6 @@ CT-DATE:
 SSFT:
 
 CTAFCONF:
-  - ramdom wm profile
   - uninstall with revert to date (choose from all previous file)
   - ct-add-wallpaper : ask if we should change the wallpaper now
   - ct-add-wallpaper : dont overwrite if a file with the same name already exist
@@ -69,18 +55,9 @@ CTAFCONF:
     add help for ct-profile, ct-installconf (for interface)
 
 XSESSION:
-  - when wm=ramdom, test_wm does'nt work
-    test if the wm exist
 
 SHELL:
-  - screen : fichier de conf std (3 windows), automatiquement lance?, keys to browse history and to change term
-  - completion de zsh (cursor like in hh)
-  see http://www.die.net/doc/linux/man/man1/zshcontrib.1.html for zsh
-  - kbd mapping (azerty, qwerty, dvorak) (shell/X) (Xdefault binding for term)
-  - epita: zsh color sur systemes != netBsd
   - shellconf.sh => add color for all term (CT_RED,CT_YELLOW,..) and for prompt
-  - path on tcsh (see .login)
-  - var => dangerous host (gate, ...)
 
 EMACS: ## SEE .ctafconf/etc/emacs/startup.emacs ##
 
@@ -93,69 +70,3 @@ BONUS:
   - test with dash (posix shell, or busybox)
   - conky then torsmo..
   - test if it work with space in /home/ct af/ for example
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-##################ALREADY DONE
-- put all previous file in .ctafconf/perso/previous
-- one directory with all .mine?
-- visual,editor,shell => emacs else nano,else ..
-- date reminder, who show event when lauching a shell
-- save previous gconf value before applying gnomesetting (ct-install) (using -prev-date)
-- appli launched by default in perso (ctafconf/perso/startup) (moved to xsession.mine)
-- remove user and group and home directory from ct-profile (not usefull)
-- grepr : directory not needed (use .)
-- top : top mem / top cpu nothing else
-- epita specific (sshe, socksify, ..)
-- basic e16 integration
-- use ct-launch for term/firefox/thunderbird ...
-- install: create ~/.enligtenment, and links only necessary files.., else some shit goes into .ctafconf/etc/enlightenment wich should'nt change.
-- remove keys and menu links (not used?)
-- remove ctafconf_sudo (why do we need it?) just ask to use sudo or su -c when installing gdm/kdm or define ct-sudo?
-- packagized configurations : separated dirs with : pack_install, pack_conf [--edit|--view], pack_uninstall
-                            :           why not using make for the toplevel package management(conf compilation)?
-- problem with permission (read only on .enlightenment, .background)
-- testfile test if not a symlink
-- copy instead of linking => after that, ct-installconf always reinstall
-- ssft: check if the frontend exist, else default to another
-- remove I10N (desactivated)
-- save installed .mine in perso/previous/mine, to allow a good diff
-- ask when installing: ask|all|choice
-- Support uninstall for enlightenment
-- tab = 2 in bash-mode
-- default value for yesno (impossible for zenity nor kdialog)
-- default window size for ssft
-- which >/dev/null 2>/dev/null (find a solution, bash in cygwin)
-- support win version of emacs
-- trap c-c then reset (avoid fucking shit at screen)
-- .mine for fluxbox user-menu
-- macro for xsession [launch_wm, launch_app, test_wm] (launch_app after a sleep after launch_wm)
-- ssft: read -e at epita
-- ssft: $PAGER suck with most and less (we should type enter)
-- alwaysinstall should always be called !!!
-- gnome-setting, do gnome_is_installed :
-  copie gconf.dump file somewhere at install and test with current
-- ramdom wallpaper (wallpp = ramdom, ramdomperso)
-- noneed: makefile (download ecb, ilisp, ..)?, ct-update (update ctafconf from sf svn)
-- DONT LOAD FUD on gate.epita.fr
-- ct-date $ (( 08 )) don't work
-- ramdom wm/ramdom wallpp (second modulo)
-+ integrate colormake, use it in the ctafconf everywhere (m, ma, etc...)
-+ find the bug in the installation
-+ remove fucking stuff from emacs
-+ revert to a safe xsession
-+ remove config specific file (epita)
-- remove useless stuff (ctafconf_config) (see how to manage ls at epita that's all)
-+ remove session for gdm and sudo, put instruction to install it, if wanted
