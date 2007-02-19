@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-#CTAFCONF, GPL, etc...
-
-
-svn "$@" 2>&1 | ~/.ctafconf/bin/colorsvn.pl
-exit ${PIPESTATUS[0]}

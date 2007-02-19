@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-#CTAFCONF, GPL, etc...
-gmake "$@" 2>&1 | ~/.ctafconf/bin/colormake.pl
-exit ${PIPESTATUS[0]}

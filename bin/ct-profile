@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Sep 25 21:51:34 2005 GESTES Cedric
-## Last update Sat Feb 17 00:59:20 2007 GESTES Cedric
+## Last update Mon Feb 19 06:42:19 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -27,7 +27,6 @@ _trap_kill ()
 trap _trap_kill INT
 
 
-export SSFT_FRONTEND="console"
 . ~/.ctafconf/etc/shlib/ssft.sh
 
 
@@ -139,6 +138,7 @@ if [ -f ~/.ctafconf/perso/user-profile ]; then
     . ~/.ctafconf/perso/user-profile
 fi
 
+export SSFT_FRONTEND="text"
 
 #export SSFT_FRONTEND=$(getvaldef "$ctafconf_interface" "text")
 

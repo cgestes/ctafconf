@@ -8,7 +8,6 @@ V1.1.0:
 
 V1.0.42: goal: rock stable
   - colormake : replace white by grey for unuseful stuff
-  - dependency checkout at startup (sed, grep, perl, etc..)
   - test on freebsd/netbsd/openbsd/cygwin/windows
 
 

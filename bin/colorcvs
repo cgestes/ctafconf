@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-#CTAFCONF, GPL, etc...
-cvs "$@" 2>&1 | ~/.ctafconf/bin/colorcvs.pl
-exit ${PIPESTATUS[0]}

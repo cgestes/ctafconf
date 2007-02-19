@@ -119,6 +119,17 @@ grk_installed_list()
   done
 }
 
+grk_not_installed_list()
+{
+  ls -1 $grkdir | grep ".grk$" | while read line; do
+    name=`echo $line | sed -e s/.grk//`
+    pkg_source $name
+    if ! pkg_is_installed $name >/dev/null; then
+      echo "$name"
+    fi
+  done
+}
+
 #install all pkg
 grk_install_all()
 {
@@ -132,9 +143,9 @@ grk_install_all()
 #install just those who need, ask for them
 grk_install_ask()
 {
-	echo "this is bugged, use choice instead"
-	exit
-	#ssft_yesno inside a while read doesnt work
+  echo "this is bugged, use choice instead"
+  exit
+  #ssft_yesno inside a while read doesnt work
   ls -1 $grkdir | grep ".grk$" | while read line; do
     name=`echo $line | sed -e s/.grk//`
     pkg_source $name
@@ -150,8 +161,10 @@ grk_install_ask()
 
 grk_install_choice()
 {
-  SSFT_DEFAULT=`grk_installed_list`
-  ssft_select_multiple "Install" "Select packages you want to install (already installed package are selected)" `ls -1 $grkdir | grep ".grk$" | sed -e s/.grk//`
+  SSFT_DEFAULT=`grk_not_installed_list`
+  ssft_select_multiple "Install" \
+                       "Select packages you want to install (package selected are not installed or could be upgraded)" \
+                       `ls -1 $grkdir | grep ".grk$" | sed -e s/.grk//`
 
   ls -1 $grkdir | grep ".grk$" | while read line; do
     name=`echo $line | sed -e s/.grk//`
@@ -166,14 +179,31 @@ grk_install_choice()
 grk_help()
 {
   echo "help"
-  ssft_select_single "Package description" "Select packages you want help for" `ls -1 $grkdir | grep ".grk$" | sed -e s/.grk//`
+  ssft_select_single "Package description" \
+                     "Select packages you want help for" \
+                     `ls -1 $grkdir | grep ".grk$" | sed -e s/.grk//`
   name=$SSFT_RESULT
   pkg_source $name
   ssft_display_message "$name description" "`pkg_description $name`"
 }
 
 
-
+check_app()
+{
+  local app="$1"
+  local comment="$2"
+  if ! which $app 2>/dev/null >/dev/null ; then
+    echo ""
+    echo "# WARNING ############################################"
+    echo "ct-installconf: Can't find the command '$app' on your system !!!!"
+    echo "--"
+    echo $comment
+    echo "Press a key to continue..."
+    read app
+    return 1
+  fi
+  return 0
+}
 
 #############################################################################
 ##START
@@ -210,7 +240,18 @@ fi
 . ~/.ctafconf/perso/user-profile
 
 
-export SSFT_FRONTEND=console
+export SSFT_FRONTEND=text
+
+check_app "env" "env allow colormake/gmake/svn/cvs to work."
+check_app "bash" "bash is needed for colormake/gmake/svn/cvs"
+check_app "zsh" "With zsh you will get a better shell although this is optional"
+check_app "perl" "needed for colormake/gmake/svn/cvs"
+check_app "sed" "needed by lot of shell script"
+check_app "awk" "needed by lot of shell script"
+check_app "xargs" "needed by lot of shell script"
+check_app "diff" "needed by lot of shell script"
+check_app "cut" "needed by lot of shell script"
+check_app "cal" "needed by lot ct-date to display reminding events"
 
 grk_install_choice
 

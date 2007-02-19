@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+#CTAFCONF, GPL, etc...
+app="$1"
+#shift
+param="$@"
+
+echo "app  : $app"
+echo "param: $param"
+if ! which perl 2>/dev/null >/dev/null ; then
+  $app "$param"
+else
+  "$@" 2>&1 | ~/.ctafconf/bin/color$app.pl
+fi
+
+exit ${PIPESTATUS[0]}
