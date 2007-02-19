@@ -5,7 +5,7 @@
 ## Login   <gestes_c@epita.fr>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 root
-## Last update Thu Feb 15 01:31:25 2007 cedric gestes
+## Last update Mon Feb 19 08:11:32 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -16,8 +16,8 @@
 
 #test x`uname` = xNetBSD && alias_set ls '/u/dp/public/arch/i386-NetBSD/bin/gnu-ls -F --color=tty'
 
-test x`uname` = xNetBSD && alias_unset ll && alias_set ll 'gls -F --color=tty -la'
-test x`uname` = xNetBSD && alias_unset la && alias_set la 'gls -F --color=tty -a'
+test x`uname` = xNetBSD && alias_unset ll && alias_set ll 'gls -F --color=tty -l'
+test x`uname` = xNetBSD && alias_unset la && alias_set la 'gls -F --color=tty -la'
 test x`uname` = xNetBSD && alias_unset l && alias_set l 'gls -F --color=tty -a'
 test x`uname` = xNetBSD && alias_unset lg && alias_set lg 'gls -F --color=tty | grep'
 
