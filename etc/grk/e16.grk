@@ -6,7 +6,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Tue Apr 11 12:32:11 2006 GESTES Cedric
-## Last update Tue Apr 11 23:33:23 2006 GESTES Cedric
+## Last update Mon Feb 19 07:33:45 2007 GESTES Cedric
 ##
 
 #--function
@@ -38,10 +38,7 @@ e16_name='e16'
 
 #description
 e16_description()
-{
-    echo "This package contains configuration file for e16"
-    echo "It a powerfull window manager (clickodrome)"
-}
+
 
 
 #is this package installed?
@@ -58,17 +55,17 @@ e16_is_installed()
     return $?
 }
 
-#install this package is e16_is_installed return "not installed"
+#install this package if e16_is_installed return "not installed"
 #0 = installed
 #1 = not installed
 e16_install()
 {
-    grk_dir ~/.enlightenment e16
+    grk_dir ~/.enlightenment e16 &&
     #no backup til now
-    grk_dir ~/.enlightenment/backgrounds
-    grk_file etc/e16/user_theme.cfg ~/.enlightenment/user_theme.cfg
-    grk_file etc/e16/file.menu ~/.enlightenment/file.menu
-    grk_link perso/wallpaper ~/.enlightenment/backgrounds/persowallpp
+    grk_dir ~/.enlightenment/backgrounds &&
+    grk_file etc/e16/user_theme.cfg ~/.enlightenment/user_theme.cfg &&
+    grk_file etc/e16/file.menu ~/.enlightenment/file.menu &&
+    grk_link perso/wallpaper ~/.enlightenment/backgrounds/persowallpp &&
     grk_link etc/wallpaper ~/.enlightenment/backgrounds/ctafconfwallpp
     return 0
 }

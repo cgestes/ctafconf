@@ -90,6 +90,7 @@ grk_link ()
           mv $dst $grk_backup/"$name"-prev-"$date" 2>/dev/null
       fi
       [ x$grk_debug = xyes ] && echo "Linking: $dst -> $src"
+      rm -rf $dst 2>/dev/null
       ln -s $grk_etc/$src $dst
   fi
 }
