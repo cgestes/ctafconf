@@ -6,7 +6,7 @@
 	* sshft : use more if possible (its better than less on some system, for what we need)
 	* less : changed option (removed clear whole screen), it work better with ct-installconf
 	* grktools.sh : overwrite existing symlink
-	* colorwarper : more portable, depend only on sh not bash
+
 
 2007-02-16 CTAF <>
 	* ct-installconf, ct-profile : cleaner output

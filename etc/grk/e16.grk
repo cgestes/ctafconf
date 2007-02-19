@@ -6,7 +6,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Tue Apr 11 12:32:11 2006 GESTES Cedric
-## Last update Mon Feb 19 07:41:41 2007 GESTES Cedric
+## Last update Mon Feb 19 08:00:08 2007 GESTES Cedric
 ##
 
 #--function
@@ -38,6 +38,10 @@ e16_name='e16'
 
 #description
 e16_description()
+{
+  echo "This package contains configuration file for e16"
+  echo "It a powerfull window manager (clickodrome)"
+}
 
 
 
@@ -46,13 +50,13 @@ e16_description()
 #1 = not installed
 e16_is_installed()
 {
-    grk_testdir ~/.enlightenment &&
-    grk_testdir ~/.enlightenment/backgrounds &&
-    grk_testfile etc/e16/user_theme.cfg ~/.enlightenment/user_theme.cfg &&
-    grk_testfile etc/e16/file.menu ~/.enlightenment/file.menu &&
-    grk_testlink perso/wallpaper ~/.enlightenment/backgrounds/persowallpp &&
-    grk_testlink etc/wallpaper ~/.enlightenment/backgrounds/ctafconfwallpp
-    return $?
+  grk_testdir ~/.enlightenment &&
+  grk_testdir ~/.enlightenment/backgrounds &&
+  grk_testfile etc/e16/user_theme.cfg ~/.enlightenment/user_theme.cfg &&
+  grk_testfile etc/e16/file.menu ~/.enlightenment/file.menu &&
+  grk_testlink perso/wallpaper ~/.enlightenment/backgrounds/persowallpp &&
+  grk_testlink etc/wallpaper ~/.enlightenment/backgrounds/ctafconfwallpp
+  return $?
 }
 
 #install this package if e16_is_installed return "not installed"
@@ -60,21 +64,21 @@ e16_is_installed()
 #1 = not installed
 e16_install()
 {
-    grk_dir ~/.enlightenment e16
+  grk_dir ~/.enlightenment e16
     #no backup til now
-    grk_dir ~/.enlightenment/backgrounds
-    grk_file etc/e16/user_theme.cfg ~/.enlightenment/user_theme.cfg
-    grk_file etc/e16/file.menu ~/.enlightenment/file.menu
-    grk_link perso/wallpaper ~/.enlightenment/backgrounds/persowallpp
-    grk_link etc/wallpaper ~/.enlightenment/backgrounds/ctafconfwallpp
-    return 0
+  grk_dir ~/.enlightenment/backgrounds
+  grk_file etc/e16/user_theme.cfg ~/.enlightenment/user_theme.cfg
+  grk_file etc/e16/file.menu ~/.enlightenment/file.menu
+  grk_link perso/wallpaper ~/.enlightenment/backgrounds/persowallpp
+  grk_link etc/wallpaper ~/.enlightenment/backgrounds/ctafconfwallpp
+  return 0
 }
 
 #uninstall file install with e16_install
 e16_uninstall()
 {
-    grk_undir ~/.enlightenment e16
-    return 0
+  grk_undir ~/.enlightenment e16
+  return 0
 }
 
 #this function is always called when you call ct-installconf
@@ -84,5 +88,5 @@ e16_alwaysinstall()
 {
     #grk_mine kshrc
     #nothing to do
-    return 0
+  return 0
 }
