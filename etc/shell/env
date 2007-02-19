@@ -5,7 +5,7 @@
 ## Login   <goctaf@gmail.com>
 ##
 ## Started on  Fri Sep 30 22:17:33 2005 GESTES Cedric
-## Last update Thu Feb 15 05:24:47 2007 GESTES Cedric
+## Last update Mon Feb 19 07:19:24 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -64,7 +64,7 @@ env_set MAIL "/var/mail/$USER"
 env_set DEBEMAIL "$ctafconf_mail"
 
 #option for less
-env_set LESS "-Qcwx2Mz-3"
+env_set LESS "-Qwx2Mz-3"
 
 #text editor in console mode (for cvs, svn)
 env_set VISUAL "nano"

@@ -56,10 +56,8 @@ eval_ngettext() {
 
 ssft_pager="more"
 if ! which $ssft_pager >/dev/null 2>/dev/null; then
-  echo "plop"
   which less >/dev/null 2>/dev/null && ssft_pager="less"
   which most >/dev/null 2>/dev/null && ssft_pager="most"
-  which most >/dev/null 2>/dev/null && ssft_pager="more"
 fi
 
 
