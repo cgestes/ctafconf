@@ -181,12 +181,12 @@ grk_mine ()
   fi
 
   #same file
-  if diff -u ~/.ctafconf/etc/mine/"$src".mine ~/.ctafconf/perso/"$src".mine >/dev/null ; then
+  if diff -u ~/.ctafconf/etc/mine/"$src".mine ~/.ctafconf/perso/"$src".mine 2>/dev/null >/dev/null ; then
     return
   fi
 
   #user have not modified the file
-  if diff -u ~/.ctafconf/perso/previous/"$src".mine ~/.ctafconf/perso/"$src".mine >/dev/null; then
+  if diff -u ~/.ctafconf/perso/previous/"$src".mine ~/.ctafconf/perso/"$src".mine 2>/dev/null >/dev/null; then
     cp ~/.ctafconf/etc/mine/"$src".mine ~/.ctafconf/perso/"$src".mine
     return
   fi
