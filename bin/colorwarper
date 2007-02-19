@@ -1,11 +1,11 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #CTAFCONF, GPL, etc...
 app="$1"
 
 if ! which perl 2>/dev/null >/dev/null ; then
   "$@"
 else
-  "$@" 2>&1 | ~/.ctafconf/bin/color$app.pl
+  "$@" 2>&1 | ret=$? | ~/.ctafconf/bin/color$app.pl
 fi
 
-exit ${PIPESTATUS[0]}
+exit $ret
