@@ -10,7 +10,7 @@ V1.0.42: goal: rock stable
   - colormake : replace white by grey for unuseful stuff
   - test on freebsd/netbsd/openbsd/cygwin/windows
   - copy doesnt work in console at school (disable cua in some case?)
-
+  - install .xdefaults if none present in ~/
 
 ########################################
 ###############  TODO  #################
