@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Thu May 11 19:53:25 2006 GESTES Cedric
-;; Last update Thu Feb 15 21:12:43 2007 GESTES Cedric
+;; Last update Mon Mar 12 19:43:13 2007 GESTES Cedric
 ;;
 ;; source: http://blog.pettomato.com/content/site-lisp/.emacs
 (message ".")
@@ -111,9 +111,22 @@
   "A color scheme"
   (interactive "")
 
+  (setq default-frame-alist
+        '((background-mode  . dark)
+          (display-type . color)
+          (cursor-type . box)
+          ;;(scroll-bar-background . "grey75")
+          ;;(scroll-bar-foreground)
+          (border-color . "black")
+          (cursor-color . "#7ac470")
+          (mouse-color . "white")
+;;          (background-color . "#000000")
+;;          (foreground-color . "#f0f0f0")
+          ))
+
   ;; couleur de fond en noir et caracteres en blanc
-  (set-background-color "Black")
-  (set-foreground-color "White")
+   (set-background-color "Black")
+   (set-foreground-color "White")
 
   (custom-set-faces
    ;; custom-set-faces was added by Custom -- don't edit or cut/paste it!
@@ -166,6 +179,8 @@
 (set-face-foreground   'modeline "steelblue3")
 (set-face-background   'scroll-bar "#0050C5")
 (set-face-foreground   'scroll-bar "#0050C5")
+
+
 ;; to save your color theme:
 ;; (require 'color-theme)
 ;; color-theme-print
