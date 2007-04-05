@@ -34,7 +34,7 @@ alias_set ma '~/.ctafconf/bin/colorwarper make clean all'
 alias_set mac '~/.ctafconf/bin/colorwarper make clean all check'
 alias_set gm '~/.ctafconf/bin/colorwarper gmake'
 alias_set mm '~/.ctafconf/bin/colorwarper make |& less'
-alias_set make_mute "~/.ctafconf/bin/colormake 1>/dev/null"
+alias_set make_mute "~/.ctafconf/bin/colorwarper 1>/dev/null"
 alias_set fixme 'grep -n -a -s FIXME * 2> /dev/null'
 alias_set todo 'grep -n -a -s TODO * 2> /dev/null'
 alias_set svndiff 'svn diff --diff-cmd `which diff` -x "-w -E -u -B -b"'

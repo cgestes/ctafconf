@@ -2,8 +2,14 @@
 #CTAFCONF, GPL, etc...
 app="$1"
 
+if ! which $app 2>/dev/null >/dev/null ; then
+  echo "colorwarper: error: can't find: $app"
+  exit 1;
+fi
 
 if ! which perl 2>/dev/null >/dev/null ; then
+  echo "colorwarper: warning: can't find perl!!"
+  echo "colorwarper: continuing without coloring output"
   "$@"
 else
   "$@" 2>&1 | ~/.ctafconf/bin/color$app.pl

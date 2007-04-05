@@ -1,3 +1,6 @@
+2007-04-05 CTAF <>
+	* colorwarper : warn when application is not found on the system
+
 2007-03-12 CTAF <>
 	* emacs : remove a bug with c++ coloration
 	* emacs : bug corrected: cursor disapeer on emacs21
