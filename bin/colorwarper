@@ -12,7 +12,11 @@ if ! which perl 2>/dev/null >/dev/null ; then
   echo "colorwarper: continuing without coloring output"
   "$@"
 else
-  "$@" 2>&1 | ~/.ctafconf/bin/color$app.pl
+  if [ x"$app" = xgmake ]; then
+    "$@" 2>&1 | ~/.ctafconf/bin/colormake.pl
+  else
+    "$@" 2>&1 | ~/.ctafconf/bin/color$app.pl
+  fi
 fi
 
 exit ${PIPESTATUS[0]}

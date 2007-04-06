@@ -2,7 +2,10 @@
                   +--       CTAFCONF       --+
                    --+-- -- -- -- -- -- --+--
 
----------------------------INSTALL-------------------------------------
+===========================================================
+INSTALL/UPDATE
+===========================================================
+--Install the ctafconf, or update it (you should run ctafconf-install too)
 untar in your home directory.
 > cd ~
 > tar xvzf ctafconf-DATE.tgz
@@ -10,6 +13,8 @@ untar in your home directory.
 
 > ./ctafconf-install
 
+
+--Emacs without the ctafconf
 If you only want emacs:
 ln -s ~/.ctafconf/etc/emacs/emacs ~/.emacs
 mkdir ~/.ctafconf/perso
@@ -18,7 +23,10 @@ mkdir ~/.ctafconf/perso/semantic
 or add to your own ~/.emacs:
 (load-file "~/.ctafconf/etc/emacs/emacs")
 
----------------------------EMACS ADD-ONS-------------------------------
+
+===========================================================
+EMACS ADD-ONS
+===========================================================
 pour emacs:
 recuperer au choix sur le web:
 - cedet     : outils pour le developpement, completion automatique,
@@ -40,24 +48,45 @@ compiler chaque projet:
  (pour compiler avec une autre version d'emacs: make EMACS=emacs21)
 
 
----------------------------RECOMMANDED SOFTWARE------------------------
-most                      : pager enabling color with man
+===========================================================
+RECOMMANDED SOFTWARE
+===========================================================
+with fluxbox:
 xbindkeys                 : to specify global keyboard shortcut
 conky or torsmo           : to draw information on your desktop
-xarg, awk, sed, grep      : for ssft, needed for installation
-zenity, kdialog or dialog : for ssft (add graphical interface to the installer)
+
+in console:
+most                      : pager enabling color with man
+grepr, rpurge             : grep recursif, netoyage de fichier tmp (~,..)
+zsh                       : the best shell ever!!! with completion on everythink
 
 
----------------------------UNINSTALL-----------------------------------
-!!highly experimental!! (use at your own risk)
-ct-uninstall : don't work at all!!
+===========================================================
+KEYBOARD SHORTCUT (gnome and fluxbox)
+===========================================================
+ctrl+alt+m      : toggle maximize
+ctrl+alt+t      : toggle decoration
+ctrl+alt+c      : close
+ctrl+alt+k      : kill
+ctrl+alt+f      : toggle fullscreen
+alt+f1          : switch to desktop 1
+alt+f2          : switch to desktop 2
+alt+f3          : switch to desktop 3
+alt+f4          : switch to desktop 4
+
+alt+click gauche : move
+alt+click droit  : resize
 
 
----------------------------REINSTALL/UPDATE----------------------------
-wait for version 0.4.0 !!!
+===========================================================
+UNINSTALL
+===========================================================
+You will never want to uninstall, after you tried the ctafconf
 
 
----------------------------HELP----------------------------------------
+===========================================================
+HELP
+===========================================================
 It's a good framework to create our own personnal configuration
 
 ct-profile : configure your ctafconf profile (wallpaper, wm, mail, etc..)
@@ -71,15 +100,21 @@ ct-socks : set your socks password (mostly for epita)
 visit http://www.noshell.info for more information/help about the ctafconf
 
 
----------------------------Credits---------------------------
+===========================================================
+Credits
+===========================================================
 Some of thoses configurations files have been collected, modified
 and enhanced from a lot's of files from differents places.
 thanks for all people who put there config on the web.
 --
 thanks for Sergio Talens-Oliag <sto@debian.org> for his ssft library
+thanks for all people I 'stolen' GPL code ;-)
 
----------------------------About---------------------------
-Cedric GESTES (goctaf@gmail.com)
+
+===========================================================
+About
+===========================================================
+Cedric GESTES (ctaf42@gmail.com)
 http://www.sf.net/projects/grk
 http://grk.sf.net
 http://www.ctaf.free.fr

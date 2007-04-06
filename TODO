@@ -9,8 +9,9 @@ V1.1.0:
 V1.0.42: goal: rock stable
   - colormake : replace white by grey for unuseful stuff
   - test on freebsd/netbsd/openbsd/cygwin/windows
-  - copy doesnt work in console at school (disable cua in some case?)
+  - emacs: copy doesnt work in console at school (disable cua in some case?)
   - install .xdefaults if none present in ~/
+  - detect if the ctafconf-install need to be launched
 
 ########################################
 ###############  TODO  #################
@@ -26,6 +27,7 @@ DOCUMENTATION:
   - install emacs conf under native windows
   - doxyemacs => doxymacs
   - swf : install/change wm, change term,..
+  - A MAN PAGE
 
 CT-REPO/CT-SSH:
   - cleanup: personnal info (sshe) => ssh_forward (for repo at school)
