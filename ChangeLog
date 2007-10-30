@@ -3,11 +3,15 @@
 	* ls : support ls under macosx
 	* ls : added color for ls under *bsd/osx
 
+2007-10-20 CTAF <>
+	* colormake : support french
+	* emacs : support sconscript
+
 2007-10-18 CTAF <>
 	* ct-set-bg : removed set bg for gnome/kde
 	* sudo: always change dir to ~ (avoid bug when doing sudo emacs for ex)
 
-2007-04-21 CTAF <>
+2007-04-21 CTAF <> 0.1.43
 	* colorgaim.pl : color gaim log
 
 2007-04-06 CTAF <>

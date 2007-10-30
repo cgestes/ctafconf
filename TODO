@@ -35,7 +35,7 @@ CT-REPO/CT-SSH:
 
 CT-SET-BG:
   - support wmsetbg, feh, hsetroot, chbg or xsri
-  - support xfce, support kde
+  - support xfce
 
 MINE:
   - emacs size (set/unset)

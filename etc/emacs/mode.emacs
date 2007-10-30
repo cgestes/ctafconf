@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 00:57:16 2006 GESTES Cedric
-;; Last update Thu Feb 15 20:26:51 2007 GESTES Cedric
+;; Last update Mon Jun 25 20:48:00 2007 GESTES Cedric
 ;;
 (message ".")
 (message "ctafconf loading: MODE.EMACS")
@@ -29,6 +29,8 @@
          ("\\.Xdefaults$"    . xrdb-mode)
          ("\\.Xenvironment$" . xrdb-mode)
          ("\\.Xresources$"   . xrdb-mode)
+         ("\\SConscript$"   . python-mode)
+         ("\\SConstruct$"   . python-mode)
          ("\\.css$" . html-mode)
          ("\\.cfm$" . html-mode)
          ("\\.ml\\w?" . tuareg-mode)
