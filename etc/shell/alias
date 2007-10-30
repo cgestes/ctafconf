@@ -119,6 +119,7 @@ alias_set ct-vnc 'xvnc4viewer'
 #never alias ls
 #alias_set ls 'ls -F --color=tty'
 
+alias_set sudo_real '`which sudo`'
 alias_set sudo 'sudo -H'
 
 
@@ -129,6 +130,9 @@ alias_set l 'ls -F --color=tty'
 alias_set ll 'ls -lF --color=tty'
 alias_set la 'ls -lAF --color=tty'
 alias_set lg 'ls -F --color=tty | grep'
+
+#different plateform test
+test x`uname` = xDarwin && test -f ~/.ctafconf/etc/shell/alias.darwin && source ~/.ctafconf/etc/shell/alias.darwin
 
 #sourcing plateform spécifik
 test x$ctafconf_config != x && test -f ~/.ctafconf/etc/shell/alias.$ctafconf_config && source ~/.ctafconf/etc/shell/alias.$ctafconf_config

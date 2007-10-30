@@ -1,3 +1,8 @@
+2007-10-30 CTAF <>
+	* sudo_real : failsafe sudo
+	* ls : support ls under macosx
+	* ls : added color for ls under *bsd/osx
+
 2007-10-18 CTAF <>
 	* ct-set-bg : removed set bg for gnome/kde
 	* sudo: always change dir to ~ (avoid bug when doing sudo emacs for ex)
