@@ -132,7 +132,7 @@ alias_set la 'ls -lAF --color=tty'
 alias_set lg 'ls -F --color=tty | grep'
 
 #different plateform test
-test x`uname` = xDarwin && test -f ~/.ctafconf/etc/shell/alias.darwin && source ~/.ctafconf/etc/shell/alias.darwin
+test -f ~/.ctafconf/etc/shell/alias.`uname` && source ~/.ctafconf/etc/shell/alias.`uname`
 
 #sourcing plateform spécifik
 test x$ctafconf_config != x && test -f ~/.ctafconf/etc/shell/alias.$ctafconf_config && source ~/.ctafconf/etc/shell/alias.$ctafconf_config

@@ -1,0 +1,26 @@
+#!/bin/sh
+## alias.epita for ctafconf in /ctaf/conf/ctafconf/zsh
+##
+## Made by gestes_c
+## Login   <gestes_c@epita.fr>
+##
+## Started on  Fri Feb 18 01:52:43 2005 root
+## Last update Tue Oct 30 03:39:10 2007 CTAF
+##
+##CTAFCONF
+
+#neededvar: sh_aliaseq, sh_sh ,sh_csh
+###################
+## commands aliases
+###################
+
+#test x`uname` = xNetBSD && alias_set ls '/u/dp/public/arch/i386-NetBSD/bin/gnu-ls -F --color=tty'
+
+
+alias_unset ll && alias_set ll 'ls -FlG'
+alias_unset la && alias_set la 'ls -FlaG'
+alias_unset l && alias_set l 'ls -FaG'
+alias_unset lg && alias_set lg 'ls -FG | grep'
+
+#alias mandp$sh_aliaseq'man -M "`cat /u/dp/public/etc/dp_manpath 2>/dev/null`"'
+

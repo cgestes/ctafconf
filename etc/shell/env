@@ -5,7 +5,7 @@
 ## Login   <goctaf@gmail.com>
 ##
 ## Started on  Fri Sep 30 22:17:33 2005 GESTES Cedric
-## Last update Tue Oct 30 04:14:10 2007 CTAF
+## Last update Tue Oct 30 04:47:13 2007 CTAF
 ##
 ##CTAFCONF
 
@@ -58,7 +58,8 @@ null_which most && env_set PAGER "most"
 
 env_set EADNULLCMD $PAGER
 env_set EMAIL "$ctafconf_mail"
-env_set MAIL "/var/mail/$USER"
+
+#env_set MAIL "/var/mail/$USER"
 
 #for debian
 env_set DEBEMAIL "$ctafconf_mail"
@@ -85,5 +86,8 @@ test -d ~/.ctafconf/bin && env_set PATH "$PATH":"$HOME"/.ctafconf/bin
 test -d ~/.ctafconf/perso/bin && env_set PATH "$PATH":"$HOME"/.ctafconf/perso/bin
 env_set PATH "$PATH":.
 
+#different plateform test
+test -f ~/.ctafconf/etc/shell/env.`uname` && source ~/.ctafconf/etc/shell/env.`uname`
+
 #sourcing plateform spécifik
-#test x$ctafconf_config != x && test -f ~/.ctafconf/etc/shell/env.$ctafconf_config && source ~/.ctafconf/etc/shell/env.$ctafconf_config
+test x$ctafconf_config != x && test -f ~/.ctafconf/etc/shell/env.$ctafconf_config && source ~/.ctafconf/etc/shell/env.$ctafconf_config

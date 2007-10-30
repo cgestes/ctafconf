@@ -2,6 +2,8 @@
 	* sudo_real : failsafe sudo
 	* ls : support ls under macosx
 	* ls : added color for ls under *bsd/osx
+	* env : removed MAIL from env
+	* env/alias : more generic way to source env/alias specific file
 
 2007-10-20 CTAF <>
 	* colormake : support french
