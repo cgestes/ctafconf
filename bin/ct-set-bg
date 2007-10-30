@@ -5,7 +5,7 @@
 ## Login   <root@epita.fr>
 ##
 ## Started on  Fri Feb 18 16:13:08 2005 root
-## Last update Sat May 13 16:42:28 2006 GESTES Cedric
+## Last update Thu Oct 18 14:22:38 2007 GESTES Cedric
 ##
 ##ORIGINALY FROM CTAFCONF
 
@@ -57,20 +57,20 @@ fi
 
 #GNOME
 if [ x$ctafconf_wm = xgnome ]; then
-  if which gconftool-2 > /dev/null 2> /dev/null ; then
-    echo "#### CTAFCONF: using gconftool-2"
-    gconftool-2 --type=string -s /desktop/gnome/background/picture_filename $wallpp
-    gconftool-2 --type=string -s /desktop/gnome/background/picture_options stretched
-  fi
+#   if which gconftool-2 > /dev/null 2> /dev/null ; then
+#     echo "#### CTAFCONF: using gconftool-2"
+#     gconftool-2 --type=string -s /desktop/gnome/background/picture_filename $wallpp
+#     gconftool-2 --type=string -s /desktop/gnome/background/picture_options stretched
+#   fi
   exit 0
 fi
 
 #KDE
 if [ x$ctafconf_wm = xkde ]; then
-  if which dcop > /dev/null 2> /dev/null ; then
-    echo "#### CTAFCONF: using dcop"
-    dcop kdesktop KBackgroundIface setWallpaper $wallpp  6
-  fi
+#   if which dcop > /dev/null 2> /dev/null ; then
+#     echo "#### CTAFCONF: using dcop"
+#     dcop kdesktop KBackgroundIface setWallpaper $wallpp  6
+#   fi
   exit 0
 fi
 

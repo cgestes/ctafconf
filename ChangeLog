@@ -1,3 +1,7 @@
+2007-10-18 CTAF <>
+	* ct-set-bg : removed set bg for gnome/kde
+	* sudo: always change dir to ~ (avoid bug when doing sudo emacs for ex)
+
 2007-04-21 CTAF <>
 	* colorgaim.pl : color gaim log
 

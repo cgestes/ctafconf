@@ -119,7 +119,7 @@ alias_set ct-vnc 'xvnc4viewer'
 #never alias ls
 #alias_set ls 'ls -F --color=tty'
 
-
+alias_set sudo 'sudo -H'
 
 
 #AFTER HERE
