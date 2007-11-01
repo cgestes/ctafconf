@@ -5,9 +5,10 @@
 ## Login   <root@epita.fr>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 root
-## Last update Thu Oct 13 06:19:19 2005 cedric gestes
+## Last update Thu Nov  1 09:56:12 2007 GESTES Cedric
 ##
 ##CTAFCONF
+
 
 #source global alias
 [ -f ~/.ctafconf/etc/shell/alias ] && . ~/.ctafconf/etc/shell/alias

@@ -5,9 +5,11 @@
 ## Login   <gestes_c@epita.fr>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 GESTES Cedric
-## Last update Thu Oct 18 14:36:58 2007 GESTES Cedric
+## Last update Thu Nov  1 09:58:35 2007 GESTES Cedric
 ##
 ##CTAFCONF
+
+
 
 #umask 022;
 #emacs binddings: ctrl-e(end) ctrl-a(begin of line)
@@ -16,8 +18,10 @@
 #LISTMAX=0    # Only ask if line would scroll off screen
 LISTMAX=1000  # "Never" ask
 
+#emacs style
 bindkey -e
 
+#example to bind a key to a command (ctrl+t)
 bindkey -s '^T' 'uptime\n'
 
 #append the path of a command
@@ -108,6 +112,8 @@ fignore=(.o .c~ .pro)
 ## Plugins autoload && bindkey
 ##############################
 autoload mere zed zfinit
+
+
 
 plateforme=`uname -s`
 #ca marche pas sur sun
@@ -231,3 +237,7 @@ if [ x$plateforme != "xSunOS" ]; then
   zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 fi
+
+#after compinit
+#dont want which to report alias
+disable builtin which

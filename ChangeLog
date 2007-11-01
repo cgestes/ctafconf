@@ -1,3 +1,6 @@
+2007-10-31 CTAF <>
+	* zsh : which: use the system one
+
 2007-10-30 CTAF <>
 	* sudo_real : failsafe sudo
 	* ls : support ls under macosx
