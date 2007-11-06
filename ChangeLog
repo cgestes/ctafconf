@@ -1,3 +1,9 @@
+2007-11-06 CTAF <>
+	* zsh : bug: disable only which builtin
+
+2007-11-01 CTAF <>
+	* env : support fink (/sw/bin)
+
 2007-10-31 CTAF <>
 	* zsh : which: use the system one
 
