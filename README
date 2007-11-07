@@ -16,20 +16,21 @@ untar in your home directory.
 
 --Emacs without the ctafconf
 If you only want emacs:
-ln -s ~/.ctafconf/etc/emacs/emacs ~/.emacs
-mkdir ~/.ctafconf/perso
-mkdir ~/.ctafconf/perso/semantic
+  - select only emacs when installing.
 
-or add to your own ~/.emacs:
-(load-file "~/.ctafconf/etc/emacs/emacs")
+  - the geek way (without using the installer)
+    mkdir ~/.ctafconf/perso
+    mkdir ~/.ctafconf/perso/semantic
+    echo "(load-file \"~/.ctafconf/etc/emacs/emacs\")" >> ~/.emacs
 
 
 ===========================================================
 EMACS ADD-ONS
 ===========================================================
 pour emacs:
+!!! ces outils ne sont pas necessaire a un bon fonctionnement d'emacs et le ralentisse beaucoup !!!
 recuperer au choix sur le web:
-- cedet     : outils pour le developpement, completion automatique,
+- cedet     : outils pour le developpement, meilleur completion automatique,
               meilleur coloration, ...
 - ilisp     : lisp interactif
 - ecb       : IDE pour emacs, basé sur cedet
@@ -57,7 +58,6 @@ conky or torsmo           : to draw information on your desktop
 
 in console:
 most                      : pager enabling color with man
-grepr, rpurge             : grep recursif, netoyage de fichier tmp (~,..)
 zsh                       : the best shell ever!!! with completion on everythink
 
 
@@ -96,6 +96,7 @@ ct-ssh : admin your ssh connexion
 ct-help : a litle help about the ctafconf command
 ct-date : console date reminder, usefull to remenber your gran'mother birthday
 ct-socks : set your socks password (mostly for epita)
+grepr, rpurge             : grep recursif, netoyage de fichier tmp (~,..)
 
 visit http://www.noshell.info for more information/help about the ctafconf
 

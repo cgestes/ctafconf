@@ -1,3 +1,6 @@
+2007-11-07 CTAF <>
+	* emacs : remove emacs.elc when installing
+
 2007-11-06 CTAF <>
 	* zsh : bug: disable only which builtin
 

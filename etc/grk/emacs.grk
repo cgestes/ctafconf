@@ -6,7 +6,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Tue Apr 11 12:32:11 2006 GESTES Cedric
-## Last update Thu Feb 15 16:50:39 2007 GESTES Cedric
+## Last update Wed Nov  7 23:27:59 2007 cedric gestes
 ##
 
 #--function
@@ -59,6 +59,7 @@ emacs_is_installed()
 #1 = not installed
 emacs_install()
 {
+    rm -rf ~/.emacs.elc >/dev/null 2>/dev/null
     grk_file etc/emacs/emacs ~/.emacs emacs
     return 0
 }
