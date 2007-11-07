@@ -73,3 +73,13 @@ BONUS:
   - test with dash (posix shell, or busybox)
   - conky then torsmo..
   - test if it work with space in /home/ct af/ for example
+
+
+
+alias ssh : si vous utilisez souvent ssh, vous pouvez créer
+des alias dans le fichier ~/.ssh/config
+ Host alias
+    HostName le_hostname
+    User le_user
+Avec ceci, un ssh le_user@le_hostname se transforme en
+ssh alias
