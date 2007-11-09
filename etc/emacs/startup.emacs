@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Thu Feb 15 20:26:49 2007 GESTES Cedric
+;; Last update Fri Nov  9 18:13:14 2007 GESTES Cedric
 ;;
 (message ".")
 (message "ctafconf loading: STARTUP.EMACS")
@@ -77,6 +77,11 @@
 ;;   C-c d m will insert a blank multi-line Doxygen comment.
 ;;   C-c d s will insert a blank single-line Doxygen comment.
 ;;   -c d @ will insert grouping comments around the current region.
+;;===EPITA===
+;;   C-c h   update-std-header
+;;   C-c C-d do_insert_time
+;;   C-c C-h std-file-header
+
 ;;
 ;;===DEBUG(S-F8)/COMPILATION(F8)===
 ;; - c-up / c-down in gdb cycle through history
