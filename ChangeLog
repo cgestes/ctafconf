@@ -1,5 +1,6 @@
 2007-11-09 CTAF <>
 	* emacs : help: added shortcut for epita c header
+	* emacs : updated epita emacs files, added php-mode
 
 2007-11-08 CTAF <>
 	* emacs : template for cpp (same as cc)

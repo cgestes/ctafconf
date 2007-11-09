@@ -1,19 +1,25 @@
 ;;
 ;; StdComment.el for Emacs in ~/Emacs
-;; 
+;;
 ;; Made by Frederic Denis
 ;; Login   <fred@epita.fr>
-;; 
+;;
 ;; Started on  Thu Sep  9 23:34:05 1993 Frederic Denis
-;; Last update Thu Aug 15 13:19:32 2002 Charlie Root
+;; Last update Fri Nov  9 18:28:12 2007 cedric gestes
 ;;
 ;; Based on Comment routines by Isaac
 ;;
 
-(if (file-exists-p "/usr/school/etc/emacs/php-mode.el")
-    (load-file "/usr/school/etc/emacs/php-mode.el"))
+;; (if (file-exists-p "/usr/school/etc/emacs/php-mode.el")
+;;     (load-file "/usr/school/etc/emacs/php-mode.el"))
 
-(add-to-list 'auto-mode-alist (cons "\\.php[0-9]*$" 'php-mode))
+
+;;from std
+(defun do_insert_time ()
+  (interactive)
+ (insert-string (current-time-string)))
+(set-variable 'c-argdecl-indent   0)
+;;from std
 
 (global-set-key "h" 'update-std-header)
 (global-set-key	"" 'do_insert_time)
@@ -31,7 +37,7 @@
       header-in		" in "
       domaine-name	"epitech.net")
 (if (setq user-nickname (getenv "USER_NICKNAME"))
-    t 
+    t
   (setq user-nickname (user-full-name))
 )
 
@@ -99,7 +105,7 @@
           (goto-char (point-min))
           (if (search-forward header-last nil t)
               (progn
-;               (delete-region (point-at-bol) (point-at-eol))                                                                                                                   
+;               (delete-region (point-at-bol) (point-at-eol))
                 (delete-region
                  (progn (beginning-of-line) (point))
                  (progn (end-of-line) (point)))
@@ -199,7 +205,7 @@
 		  (beginning-of-line)
 		  (insert-string (std-get 'cs))
 		  (end-of-line)
-		  (insert-string (std-get 'ce))))))))) 
+		  (insert-string (std-get 'ce)))))))))
   ;;  (indent-according-to-mode)
   (indent-for-tab-command)
   (next-line 1))

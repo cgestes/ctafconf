@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:14:21 2006 GESTES Cedric
-;; Last update Mon Mar 12 19:25:02 2007 GESTES Cedric
+;; Last update Fri Nov  9 18:31:51 2007 cedric gestes
 ;;
 (message ".")
 (message "ctafconf loading: PROG.EMACS")
@@ -13,9 +13,18 @@
 ;;EPITA STUFF
 ;;that stuff suck
 ;;(load "std.el")
-(load "std_comment.el")
+(load-file "~/.ctafconf/etc/emacs/site-lisp/ept/std_comment.el")
 (load-file "~/.ctafconf/etc/emacs/site-lisp/echeck.el")
 (load-file "~/.ctafconf/etc/emacs/site-lisp/norme.el")
+
+;;php
+(add-to-list 'auto-mode-alist (cons "\\.php[0-9]*$" 'php-mode))
+(condition-case err
+    (progn
+      (load-file "~/.ctafconf/etc/emacs/site-lisp/ept/php-mode.el"))
+  (error
+   (message "Cannot load php-mode %s" (cdr err)))
+  )
 
 ;;auto-template for .cc, .c, .h, .hh, ...
 (setq auto-template-dir "~/.ctafconf/etc/emacs/templates/")
