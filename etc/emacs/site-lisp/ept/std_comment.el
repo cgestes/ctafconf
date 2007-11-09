@@ -1,14 +1,19 @@
 ;;
 ;; StdComment.el for Emacs in ~/Emacs
-;;
+;; 
 ;; Made by Frederic Denis
 ;; Login   <fred@epita.fr>
-;;
+;; 
 ;; Started on  Thu Sep  9 23:34:05 1993 Frederic Denis
-;; Last update Wed Apr  5 17:51:00 2006 GESTES Cedric
+;; Last update Thu Aug 15 13:19:32 2002 Charlie Root
 ;;
 ;; Based on Comment routines by Isaac
 ;;
+
+(if (file-exists-p "/usr/school/etc/emacs/php-mode.el")
+    (load-file "/usr/school/etc/emacs/php-mode.el"))
+
+(add-to-list 'auto-mode-alist (cons "\\.php[0-9]*$" 'php-mode))
 
 (global-set-key "h" 'update-std-header)
 (global-set-key	"" 'do_insert_time)
@@ -24,9 +29,9 @@
       header-last	"Last update "
       header-for	" for "
       header-in		" in "
-      domaine-name	"epita.fr")
+      domaine-name	"epitech.net")
 (if (setq user-nickname (getenv "USER_NICKNAME"))
-    t
+    t 
   (setq user-nickname (user-full-name))
 )
 
@@ -45,24 +50,27 @@
       std-text-alist            '( (cs . "##") (cc . "## ") (ce . "##") )
       std-fundamental-alist     '( (cs . "  ") (cc . "   ") (ce . "  ") )
       std-html-alist            '( (cs . "<!--") (cc . "  -- ") (ce . "-->"))
+      std-php-alist		'( (cs . "#!/usr/local/bin/php\n<?php") (cc . "// ")(ce . "//"))
       std-nroff-alist           '( (cs . "\\\"") (cc . "\\\" ") (ce . "\\\""))
-      std-sscript-alist         '( (cs . "#!/bin/sh")  (cc . "## ") (ce . "##") )
-      std-perl-alist            '( (cs . "#!/usr/bin/perl -w")  (cc . "## ")(ce . "##") )
-      std-cperl-alist           '( (cs . "#!/usr/bin/perl -w")  (cc . "## ")(ce . "##") )
+      std-sscript-alist         '( (cs . "#!/bin/sh")  (cc . "## ") (ce . "##"))
+      std-perl-alist            '( (cs . "#!/usr/local/bin/perl -w")  (cc . "## ")(ce . "##"))
+      std-cperl-alist           '( (cs . "#!/usr/local/bin/perl -w")  (cc . "## ")(ce . "##"))
       )
 
 
 (setq std-modes-alist '(("C"                    . std-c-alist)
+			("C/l"                  . std-c-alist)
                         ("CSS"                  . std-c-alist)
                         ("PoV"                  . std-pov-alist)
                         ("C++"                  . std-cpp-alist)
+                        ("C++/l"                . std-cpp-alist)
                         ("Lisp"                 . std-lisp-alist)
                         ("Lisp Interaction"     . std-lisp-alist)
                         ("Emacs-Lisp"           . std-lisp-alist)
                         ("Fundamental"          . std-fundamental-alist)
                         ("Shell-script"         . std-sscript-alist)
                         ("Makefile"             . std-makefile-alist)
-                        ("GNUmakefile"          . std-makefile-alist)
+                        ("BSDmakefile"          . std-makefile-alist)
                         ("Perl"                 . std-cperl-alist)
                         ("CPerl"                . std-cperl-alist)
                         ("xdefault"             . std-xdefault-alist)
@@ -71,6 +79,7 @@
                         ("Pascal"               . stdp-ascal-alist)
                         ("Text"                 . std-text-alist)
                         ("HTML"                 . std-html-alist)
+			("PHP"                 . std-php-alist)
                         ("Nroff"                . std-nroff-alist)
                         ("TeX"                  . std-latex-alist)
                         ("LaTeX"                . std-latex-alist))
@@ -90,7 +99,7 @@
           (goto-char (point-min))
           (if (search-forward header-last nil t)
               (progn
-;               (delete-region (point-at-bol) (point-at-eol))
+;               (delete-region (point-at-bol) (point-at-eol))                                                                                                                   
                 (delete-region
                  (progn (beginning-of-line) (point))
                  (progn (end-of-line) (point)))
@@ -190,7 +199,7 @@
 		  (beginning-of-line)
 		  (insert-string (std-get 'cs))
 		  (end-of-line)
-		  (insert-string (std-get 'ce)))))))))
+		  (insert-string (std-get 'ce))))))))) 
   ;;  (indent-according-to-mode)
   (indent-for-tab-command)
   (next-line 1))
