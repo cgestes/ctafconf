@@ -1,3 +1,10 @@
+!mouse actions added by fluxbox-update_configs
+OnDesktop Mouse1 :hideMenus
+OnDesktop Mouse2 :workspaceMenu
+OnDesktop Mouse3 :rootMenu
+OnDesktop Mouse4 :nextWorkspace
+OnDesktop Mouse5 :prevWorkspace
+
 # Fichier généré par FluxConf
 #Mod1 = alt
 #Mod4 = Win
@@ -26,3 +33,4 @@ Control Mod1 d :VerticalIncrement
 Control Mod1 z :VerticalDecrement
 #Ctrl+alt+< = shutdown!
 #Control Mod1 < :ExecCommand echo sudo shutdown -h now "Fluxbox: CTAFed SHUTDOWN"
+

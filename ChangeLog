@@ -1,3 +1,8 @@
+2007-11-21 CTAF <>
+	* emacs : invert F12 and S-F12 to scroll up and down in the other window
+	* ct-ssh : frontend for .ssh/config
+	* ct-ssh : use ssft
+
 2007-11-09 CTAF <>
 	* emacs : help: added shortcut for epita c header
 	* emacs : updated epita emacs files, added php-mode

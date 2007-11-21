@@ -2,16 +2,20 @@
 ## ct-ssh for ct-ssh in /home/ctaf/.ctafconf/bin
 ##
 ## Made by GESTES Cedric
-## Login   <ctaf@epita.fr>
+## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Mon Sep 26 04:19:16 2005 GESTES Cedric
-## Last update Sat Feb 17 02:09:21 2007 GESTES Cedric
+## Last update Wed Nov 21 09:00:25 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
+#shellscript frontend
+. ~/.ctafconf/etc/shlib/ssft.sh
+
+SSFT_FRONTEND=console
 action=$1
 fname=$2
-sshdir=~/.ctafconf/perso/ssh
+sshconfig=~/.ssh/config
 
 # readparam=""
 # echo test_bob | read -e testbob >/dev/null 2>/dev/null;
@@ -23,49 +27,27 @@ ssh_params=
 
 ssh_list ()
 {
-  for i in $(ls $sshdir) ; do
-    echo $i
-  done
-}
-
-ssh_updatefiles ()
-{
-  local name;
-  local server;
-  local user;
-  local command;
-  local desc;
-
-  for i in $(ls $sshdir | grep ".ssh") ; do
-    . $sshdir/$i
-
-    echo "updating: $sshdir/$i"
-    filename=$sshdir/$i
-    echo "#CTAFCONF" >$filename
-    echo "#ctssh" >>$filename
-    echo "" >>$filename
-    echo "server=\"$server\"" >>$filename
-    echo "user=\"$user\"" >>$filename
-    echo "command=\"$command\"" >>$filename
-    echo "desc=\"$desc\"" >>$filename
-  done
+  grep "Host " $sshconfig
 }
 
 ssh_connect ()
 {
-  local server;
-  local user;
-  local command;
-  local desc;
+  ssh $sshparam $fname
+}
 
-  if [ -f $sshdir/"$fname".ssh ] ; then
-	  . $sshdir/"$fname".ssh
-	  echo "$fname: ssh $ssh_params $user@$server $command"
-#	  echo "description : $desc"
-	  ssh $ssh_params $user@$server $command
-  else
-	  echo "can't find your ssh file in $sshdir"
-  fi
+#return val if set, or default
+getvaldef()
+{
+    local val
+    local def
+
+    val=$1
+    def=$2
+    if [ "x$val" = x ] ; then
+        echo $def
+    else
+        echo $val
+    fi
 }
 
 ssh_add ()
@@ -74,45 +56,57 @@ ssh_add ()
     local server;
     local user;
     local command;
-    local desc;
+    local port;
 
-    echo "adding a new ssh file (in ~/.ctafconf/ssh)"
-    echo "Enter the name of the new ssh file"
-    echo -n "name ?"
-    read $readparam name
-    if [ -f $name".ssh" ] ; then
-	echo "This name already exist for one of your ssh files, Exiting"
-	exit 1
+    if ssft_read_string "new ssh alias name" "Enter the name of the new ssh alias, it will be added to ~/.ssh/config"; then
+      name="$SSFT_RESULT";
+    else
+      return;
     fi
 
-    echo ""
-    echo "Enter the server name"
-    echo "localhost ssh.sourceforge.net ssh.epita.fr"
-    echo -n "server ?"
-    read $readparam server
+#     echo -n "name ?"
+#     read $readparam name
+#     if [ -f $name".ssh" ] ; then
+# 	echo "This name already exist for one of your ssh files, Exiting"
+# 	exit 1
+#     fi
 
-    echo ""
-    echo "Enter one username"
-    echo -n "user ?"
-    read $readparam user
+    if ssft_read_string "ssh server name" "Enter the name of the new server (ex: ssh.sf.net, ssh.epita.fr, localhost)"; then
+      server="$SSFT_RESULT";
+    else
+      return;
+    fi
 
-    echo "If you want, you can specify one command."
-    echo "eg: /bin/zsh , /usr/bin/screen , .."
-    echo -n "Command ?"
-    read $readparam command
+    SSFT_DEFAULT=22
+    if ssft_read_string "ssh server port" "Enter the port you want to use to connect to the server [default=22]"; then
+      port=$(getvaldef "$SSFT_RESULT" $SSFT_DEFAULT);
+    else
+      return;
+    fi
 
-    echo ""
-    echo -n "Enter one description (avoid using \")?"
-    read $readparam desc
+    SSFT_DEFAULT=$USER
+    if ssft_read_string "ssh username" "Enter the username you want to use to login on the server [default=$USER]"; then
+      user=$(getvaldef "$SSFT_RESULT" $SSFT_DEFAULT);
+    else
+      return;
+    fi
 
-    filename=$sshdir/"$name".ssh
-    echo "#CTAFCONF" >$filename
-    echo "#ctssh" >>$filename
-    echo "" >>$filename
-    echo "server=\"$server\"" >>$filename
-    echo "user=\"$user\"" >>$filename
-    echo "command=\"$command\"" >>$filename
-    echo "desc=\"$desc\"" >>$filename
+    SSFT_DEFAULT=""
+    if ssft_read_string "ssh command" "If you want, you can specify a command that will be executed on the remote server after you logon (ex ssh agla, /usr/bin/zsh, ...)"; then
+      command=$SSFT_RESULT;
+    else
+      return;
+    fi
+
+    echo "" >>$sshconfig
+    echo "# Added by ct-ssh from the ctafconf" >>$sshconfig
+    echo "Host $name" >>$sshconfig
+    echo "  HostName $server" >>$sshconfig
+    echo "  Port $port" >>$sshconfig
+    echo "  User $user" >>$sshconfig
+    echo "  PermitLocalCommand yes">>$sshconfig
+    echo "  LocalCommand $command" >>$sshconfig
+    ssft_display_message "Success" "Alias successfully added to ~/.ssh/config"
 }
 
 if [ x$# = x0 ] ||
@@ -123,7 +117,6 @@ if [ x$# = x0 ] ||
     echo " --help, -h, help     : display this help"
     echo " --list, -l, list     : list all repositoy"
     echo " --add, -a, add       : add a new repository"
-    echo " --update-files       : update all the file in ~/.ctafconf/ssh"
     echo " x, -x, -X            : compressed X forwarding"
     exit 1
 fi
@@ -140,11 +133,6 @@ fi
 if [ x$action = "x-X" ] || [ x$action = "x-x" ] || [ x$action = "xx" ] ; then
   ssh_params="-X -C"
   ssh_connect
-  exit 0
-fi
-
-if [ x$action = 'x--update-files' ] ; then
-  ssh_updatefiles
   exit 0
 fi
 

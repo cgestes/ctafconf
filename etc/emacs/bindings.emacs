@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:16:47 2006 GESTES Cedric
-;; Last update Thu Feb  8 23:41:16 2007 GESTES Cedric
+;; Last update Wed Nov 21 08:26:00 2007 GESTES Cedric
 ;;
 (message ".")
 (message "ctafconf loading: BINDINGS.EMACS")
@@ -114,9 +114,10 @@
 ;;(global-set-key (kbd "<S-C-f10>")   'outline-previous-visible-heading)
 
 
-(global-set-key [(f12)] '(lambda() (interactive) (scroll-other-window -1)))
-(global-set-key [(shift f12)] '(lambda() (interactive) (scroll-other-window 1)))
-(global-set-key [(f24)] '(lambda() (interactive) (scroll-other-window 1)))
+(global-set-key [(f12)] '(lambda() (interactive) (scroll-other-window 1)))
+(global-set-key [(shift f12)] '(lambda() (interactive) (scroll-other-window -1)))
+(global-set-key [(f24)] '(lambda() (interactive) (scroll-other-window -1)))
+
 (global-set-key [(control backspace)] 'join-line)
 
 
