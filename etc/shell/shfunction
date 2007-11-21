@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Oct  2 07:23:17 2005 GESTES Cedric
-## Last update Sat Feb 17 03:57:40 2007 GESTES Cedric
+## Last update Wed Nov 21 09:44:19 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -69,4 +69,32 @@ grepr ()
 {
   arg=$@
   grep -r -n -H $arg . | grep -v "/.svn/" | grep -v ".svn-base:" | grep -v "^grep:" | ~/.ctafconf/bin/colorgrepr.pl 2>/dev/null
+}
+
+#recursive replace all occurence by another in all file of the current folder
+replacer ()
+{
+  local arg1=$1
+  local arg2=$2
+
+  recurse . | grep 'file:' | while read file; do
+    perl -pi.bak -e 's/$arg1/$arg2/' $file
+  done
+}
+
+recurse ()
+{
+  local arg="$1"
+  local i=""
+  local fn=""
+
+  ls $arg 2>/dev/null | while read i; do
+    fn=$arg/$i
+    if [ -d $fn ]; then
+      echo "dir: $fn";
+      recurse $fn;
+    elif [ -f $fn ]; then
+      echo "file: $fn";
+    fi;
+  done;
 }

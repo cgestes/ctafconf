@@ -32,7 +32,7 @@ DOCUMENTATION:
 
 CT-REPO/CT-SSH:
   - cleanup: personnal info (sshe) => ssh_forward (for repo at school)
-  - ct-repo/ct-ssh : use ssft
+  - ct-repo : use ssft
 
 CT-SET-BG:
   - support wmsetbg, feh, hsetroot, chbg or xsri
@@ -74,12 +74,3 @@ BONUS:
   - conky then torsmo..
   - test if it work with space in /home/ct af/ for example
 
-
-
-alias ssh : si vous utilisez souvent ssh, vous pouvez créer
-des alias dans le fichier ~/.ssh/config
- Host alias
-    HostName le_hostname
-    User le_user
-Avec ceci, un ssh le_user@le_hostname se transforme en
-ssh alias

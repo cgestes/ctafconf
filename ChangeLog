@@ -2,6 +2,8 @@
 	* emacs : invert F12 and S-F12 to scroll up and down in the other window
 	* ct-ssh : frontend for .ssh/config
 	* ct-ssh : use ssft
+	* replacer : replace all occurence of arg1 by arg2 in all file of the folder
+	* recurse : display all file and folder recursively
 
 2007-11-09 CTAF <>
 	* emacs : help: added shortcut for epita c header
