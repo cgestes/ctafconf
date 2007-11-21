@@ -16,9 +16,9 @@
 
 
 
-mv ~/.ctafconf/perso/ctafconf.log ~/.ctafconf/perso/ctafconf.log.1
+mv ~/.config/ctafconf/perso/ctafconf.log ~/.config/ctafconf/perso/ctafconf.log.1
 
-. ~/.ctafconf/etc/shlib/xsession.sh
+. ~/.config/ctafconf/etc/shlib/xsession.sh
 
 #refuse all connection to xserver except for localhost
 xhost -
@@ -28,16 +28,16 @@ xhost +localhost
 xset b off
 
 #merge setting for x application (xterm,aterm,..)
-xrdb -merge ~/.ctafconf/etc/xsession/Xdefaults
+xrdb -merge ~/.config/ctafconf/etc/xsession/Xdefaults
 
-if [ -f ~/.ctafconf/perso/user-profile ] ; then
-  . ~/.ctafconf/perso/user-profile
+if [ -f ~/.config/ctafconf/perso/user-profile ] ; then
+  . ~/.config/ctafconf/perso/user-profile
 fi
 
 #if ! test_wm e16 ; then
 #fi
 #set the wallpaper
-launch_app ~/.ctafconf/bin/ct-set-bg
+launch_app ~/.config/ctafconf/bin/ct-set-bg
 
 
 if test_wm term ; then
@@ -48,8 +48,8 @@ if test_wm term ; then
 fi
 
 #personal startup file
-if [ -f ~/.ctafconf/perso/xsession.mine ]; then
-  source ~/.ctafconf/perso/xsession.mine
+if [ -f ~/.config/ctafconf/perso/xsession.mine ]; then
+  source ~/.config/ctafconf/perso/xsession.mine
 fi
 
 ########################### LAUNCHING WM ###########################

@@ -12,7 +12,7 @@
 
 # cd ~
 # filetotar=
-# for i in `ls ~/.ctafconf/etc/mine/` ; do
+# for i in `ls ~/.config/ctafconf/etc/mine/` ; do
 #     i=.$i
 #     if [ x$i = xuser-profile.mine ] ; then
 # 	continue
@@ -21,13 +21,13 @@
 # 	      filetotar="$filetotar $i"
 #     fi
 # done
-# if [ -f ~/.ctafconf/perso/user-profile.mine ]; then
+# if [ -f ~/.config/ctafconf/perso/user-profile.mine ]; then
 #     i=".ctafconf/perso/user-profile.mine"
 #     filetotar="$filetotar $i"
 # fi
 
 # tar --exclude ".svn" --exclude "user-profile" -cvzf ct-mineconf-`id -u -n`-`uname -n`-`date "+%Y%m%d"`.tgz -- $filetotar
 
-tar --exclude ".svn" -cvzf ct-personalfile-`id -u -n`-`uname -n`-`date "+%Y%m%d"`.tgz ~/.ctafconf/perso
+tar --exclude ".svn" -cvzf ct-personalfile-`id -u -n`-`uname -n`-`date "+%Y%m%d"`.tgz ~/.config/ctafconf/perso
 
 echo "tarball of the ctafconf: " ~/ct-personalfile-`id -u -n`-`uname -n`-`date "+%Y%m%d"`.tgz

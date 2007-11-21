@@ -13,21 +13,21 @@
 ;;EPITA STUFF
 ;;that stuff suck
 ;;(load "std.el")
-(load-file "~/.ctafconf/etc/emacs/site-lisp/ept/std_comment.el")
-(load-file "~/.ctafconf/etc/emacs/site-lisp/echeck.el")
-(load-file "~/.ctafconf/etc/emacs/site-lisp/norme.el")
+(load-file "~/.config/ctafconf/etc/emacs/site-lisp/ept/std_comment.el")
+(load-file "~/.config/ctafconf/etc/emacs/site-lisp/echeck.el")
+(load-file "~/.config/ctafconf/etc/emacs/site-lisp/norme.el")
 
 ;;php
 (add-to-list 'auto-mode-alist (cons "\\.php[0-9]*$" 'php-mode))
 (condition-case err
     (progn
-      (load-file "~/.ctafconf/etc/emacs/site-lisp/ept/php-mode.el"))
+      (load-file "~/.config/ctafconf/etc/emacs/site-lisp/ept/php-mode.el"))
   (error
    (message "Cannot load php-mode %s" (cdr err)))
   )
 
 ;;auto-template for .cc, .c, .h, .hh, ...
-(setq auto-template-dir "~/.ctafconf/etc/emacs/templates/")
+(setq auto-template-dir "~/.config/ctafconf/etc/emacs/templates/")
 (require 'auto-template "auto-template.el")
 
 ;; Compilation Options
@@ -84,7 +84,7 @@
 ;;ilisp mode;;;;;;;;;;;;;;;;;;;;;;;
 (defun ctafconf-ilisp()
     (condition-case err
-        (if (file-exists-p "~/.ctafconf/etc/emacs/site-lisp/ilisp/ilisp.el")
+        (if (file-exists-p "~/.config/ctafconf/etc/emacs/site-lisp/ilisp/ilisp.el")
             (progn
               ;;support extension file
               (set-default 'auto-mode-alist
@@ -136,7 +136,7 @@
 ;;provide the sieve mode
 (condition-case err
     (progn
-      (load "~/.ctafconf/etc/emacs/site-lisp/sieve/sieve")
+      (load "~/.config/ctafconf/etc/emacs/site-lisp/sieve/sieve")
       (add-to-list 'auto-mode-alist '("\\.siv$" . sieve-mode))
       (add-to-list 'auto-mode-alist '("\\.sieve$" . sieve-mode)))
 (error
@@ -176,7 +176,7 @@
         (progn
           ;;(setq semantic-load-turn-useful-things-on t)
           (setq semantic-load-turn-everything-on t)
-          (load-file "~/.ctafconf/etc/emacs/site-lisp/cedet/common/cedet.el")
+          (load-file "~/.config/ctafconf/etc/emacs/site-lisp/cedet/common/cedet.el")
           ;; * This turns on which-func support (Plus all other code helpers)
           (semantic-load-enable-excessive-code-helpers)
           ;;S-SPC for autocompletion
@@ -184,7 +184,7 @@
           (global-semantic-show-parser-state-mode 1)
           (global-semantic-decoration-mode 1)
           (global-semantic-stickyfunc-mode 1)
-          (setq semanticdb-default-save-directory "~/.ctafconf/perso/semantic")
+          (setq semanticdb-default-save-directory "~/.config/ctafconf/perso/semantic")
           ;;(global-semantic-idle-completions-mode 1)
           ;;(global-semantic-highlight-edits-mode 1)
           ;;(global-semantic-show-unmatched-syntax-mode 0)

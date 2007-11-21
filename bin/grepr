@@ -15,7 +15,7 @@
 grepr ()
 {
   arg=$@
-  grep -r -n -H $arg . | grep -v "/.svn/" | grep -v ".svn-base:" | grep -v "^grep:" | ~/.ctafconf/bin/colorgrepr.pl 2>/dev/null
+  grep -r -n -H $arg . | grep -v "/.svn/" | grep -v ".svn-base:" | grep -v "^grep:" | ~/.config/ctafconf/bin/colorgrepr.pl 2>/dev/null
 }
 
 grepr $@

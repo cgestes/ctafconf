@@ -1,5 +1,5 @@
 ;;
-;; mode.emacs for ctafconf in ~/.ctafconf/etc/emacs/mode.emacs
+;; mode.emacs for ctafconf in ~/.config/ctafconf/etc/emacs/mode.emacs
 ;;
 ;; Made by GESTES Cedric
 ;; Login   <ctaf@epita.fr>

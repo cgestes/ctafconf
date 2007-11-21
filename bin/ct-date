@@ -5,13 +5,13 @@
 ## Login   <goctaf@gmail.com>
 ##
 ## Started on  Fri Mar 31 19:54:39 2006 GESTES Cedric
-## Last update Tue May  9 21:22:21 2006 GESTES Cedric
+## Last update Wed Nov 21 10:51:38 2007 GESTES Cedric
 ##
 ##use: http://www.intuitive.com/wicked/showscript.cgi?030-agenda.sh
 ##use: http://aplawrence.com/Bofcusm/1455.html
 ##CTAFCONF
 
-agendafile="$HOME/.ctafconf/perso/reminder"
+agendafile=~/.config/ctafconf/perso/reminder
 
 #max one month
 # yesterday()
@@ -254,14 +254,14 @@ fi
 
 if [ $# -gt 0 ]; then
     echo "usage ct-date [add] [list]"
-    echo "edit ~/.ctafconf/perso/reminder to remove one date"
+    echo "edit ~/.config/ctafconf/perso/reminder to remove one date"
     exit 1
 fi
 
 if [ ! -e $agendafile ] ; then
   echo "You don't seem to have an .ctafconf/perso/reminder file." >&2
   echo "To remedy this, please use 'ct-date add' to add events" >&2
-  echo "or simply 'touch ~/.ctafconf/perso/reminder'"
+  echo "or simply 'touch ~/.config/ctafconf/perso/reminder'"
   echo "if you dont want to use the date reminder" >&2
   exit 1
 fi

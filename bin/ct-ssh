@@ -10,7 +10,7 @@
 ##CTAFCONF
 
 #shellscript frontend
-. ~/.ctafconf/etc/shlib/ssft.sh
+. ~/.config/ctafconf/etc/shlib/ssft.sh
 
 SSFT_FRONTEND=console
 action=$1

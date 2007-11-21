@@ -20,9 +20,9 @@ If you only want emacs:
   - select only emacs when installing.
 
   - the geek way (without using the installer)
-    mkdir ~/.ctafconf/perso
-    mkdir ~/.ctafconf/perso/semantic
-    echo "(load-file \"~/.ctafconf/etc/emacs/emacs\")" >> ~/.emacs
+    mkdir ~/.config/ctafconf/perso
+    mkdir ~/.config/ctafconf/perso/semantic
+    echo "(load-file \"~/.config/ctafconf/etc/emacs/emacs\")" >> ~/.emacs
 
 
 ===========================================================
@@ -37,7 +37,7 @@ recuperer au choix sur le web:
 - ecb       : IDE pour emacs, basé sur cedet
 - doxyemacs : commentaire doxygen
 
-les decompresser dans ~/.ctafconf/etc/emacs/site-lisp
+les decompresser dans ~/.config/ctafconf/etc/emacs/site-lisp
 renommer ecb-* en ecb, cedet-* en cedet, doxymacs-* en doxymacs, pareil pour ilisp
 afin d'avoir ecb,cedet,ilisp et doxymacs comme repertoire dans site-lisp
 

@@ -19,37 +19,37 @@
 ##PORVIDE USER INFO TO ALL CTAFCONF
 ##
 
-if ! [ -f ~/.ctafconf/perso/user-profile ]; then
-  echo "Can't find your ~/.ctafconf/perso/user-profile"
+if ! [ -f ~/.config/ctafconf/perso/user-profile ]; then
+  echo "Can't find your ~/.config/ctafconf/perso/user-profile"
   echo "you should reinstall env with ctafconf-install"
   exit 1
 fi
-. ~/.ctafconf/perso/user-profile
+. ~/.config/ctafconf/perso/user-profile
 
 if [ x$ctafconf_wallpaper = xramdom ] ; then
-  sz=`ls -1 ~/.ctafconf/etc/wallpaper 2>/dev/null | wc -l`
-  sz2=`ls -1 ~/.ctafconf/perso/wallpaper 2>/dev/null | wc -l`
+  sz=`ls -1 ~/.config/ctafconf/etc/wallpaper 2>/dev/null | wc -l`
+  sz2=`ls -1 ~/.config/ctafconf/perso/wallpaper 2>/dev/null | wc -l`
   szall=$(( $sz + $sz2 ))
   pos=$(( `date +%s` % $szall + 1 ))
 
   if [ $pos -gt $sz ]; then
     pos=$(( $pos - $sz ))
-    wallpp=`ls -1 ~/.ctafconf/perso/wallpaper/ | tail -$pos | head -1`
-    wallpp=~/.ctafconf/perso/wallpaper/$wallpp
+    wallpp=`ls -1 ~/.config/ctafconf/perso/wallpaper/ | tail -$pos | head -1`
+    wallpp=~/.config/ctafconf/perso/wallpaper/$wallpp
   else
-    wallpp=`ls -1 ~/.ctafconf/etc/wallpaper/ | tail -$pos | head -1`
-    wallpp=~/.ctafconf/etc/wallpaper/$wallpp
+    wallpp=`ls -1 ~/.config/ctafconf/etc/wallpaper/ | tail -$pos | head -1`
+    wallpp=~/.config/ctafconf/etc/wallpaper/$wallpp
   fi
 
 elif [ x$ctafconf_wallpaper = xramdomperso ]; then
-  sz=`ls -1 ~/.ctafconf/perso/wallpaper 2>/dev/null | wc -l`
+  sz=`ls -1 ~/.config/ctafconf/perso/wallpaper 2>/dev/null | wc -l`
   pos=$(( `date +%s` % $sz + 1 ))
-  wallpp=`ls -1 ~/.ctafconf/perso/wallpaper/ | tail -$pos | head -1`
-  wallpp=~/.ctafconf/perso/wallpaper/$wallpp
+  wallpp=`ls -1 ~/.config/ctafconf/perso/wallpaper/ | tail -$pos | head -1`
+  wallpp=~/.config/ctafconf/perso/wallpaper/$wallpp
 
 else
-  wallpp=~/.ctafconf/etc/wallpaper/$ctafconf_wallpaper
-  wallpp2=~/.ctafconf/perso/wallpaper/$ctafconf_wallpaper
+  wallpp=~/.config/ctafconf/etc/wallpaper/$ctafconf_wallpaper
+  wallpp2=~/.config/ctafconf/perso/wallpaper/$ctafconf_wallpaper
   if [ -f $wallpp2 ]; then
     wallpp=$wallpp2
   fi

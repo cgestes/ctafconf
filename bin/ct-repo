@@ -14,7 +14,7 @@ repo=$2
 cmd=$3
 
 readparam=""
-repodir=~/.ctafconf/perso/repos
+repodir=~/.config/ctafconf/perso/repos
 
 # echo test_bob | read -e testbob >/dev/null 2>/dev/null;
 # if [ x$? = x0 ]; then
@@ -273,7 +273,7 @@ if [ x$# = x0 ] ||
   echo "    : set environnement variable for cvs (CVS_RSH, CVSROOT) and svn (SVN_RSH)"
   echo " --add, -a, add"
   echo "    : add a new repository"
-  echo " --update-files : update files in ~/.ctafconf/ssh"
+  echo " --update-files : update files in ~/.config/ctafconf/ssh"
   exit 1
 fi
 

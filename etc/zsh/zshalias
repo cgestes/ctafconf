@@ -11,7 +11,7 @@
 
 
 #source global alias
-[ -f ~/.ctafconf/etc/shell/alias ] && . ~/.ctafconf/etc/shell/alias
+[ -f ~/.config/ctafconf/etc/shell/alias ] && . ~/.config/ctafconf/etc/shell/alias
 
 #remove autocorrect on those commands:
 alias mv='nocorrect mv'

@@ -13,9 +13,9 @@ if ! which perl 2>/dev/null >/dev/null ; then
   "$@"
 else
   if [ x"$app" = xgmake ]; then
-    "$@" 2>&1 | ~/.ctafconf/bin/colormake.pl
+    "$@" 2>&1 | ~/.config/ctafconf/bin/colormake.pl
   else
-    "$@" 2>&1 | ~/.ctafconf/bin/color$app.pl
+    "$@" 2>&1 | ~/.config/ctafconf/bin/color$app.pl
   fi
 fi
 

@@ -1,5 +1,5 @@
 ;;
-;; .emacs for ctafconf in ~/.ctafconf/etc/emacs/emacs
+;; .emacs for ctafconf in ~/.config/ctafconf/etc/emacs/emacs
 ;;
 ;; Made by Cedric GESTES
 ;; Login   <gestes_c@epita.fr>
@@ -18,12 +18,12 @@
 ;;http://www.emacswiki.org
 
 ;;;PATH and .el file
-(setq load-path (nconc '( "~/.ctafconf/etc/emacs/site-lisp/"
-			  "~/.ctafconf/etc/emacs/site-lisp/ilisp/"
-			  "~/.ctafconf/etc/emacs/site-lisp/ecb/"
-			  "~/.ctafconf/etc/emacs/site-lisp/tuareg/"
-			  "~/.ctafconf/etc/emacs/site-lisp/doxymacs/lisp"
-			  "~/.ctafconf/etc/emacs/site-lisp/sieve/") load-path))
+(setq load-path (nconc '( "~/.config/ctafconf/etc/emacs/site-lisp/"
+			  "~/.config/ctafconf/etc/emacs/site-lisp/ilisp/"
+			  "~/.config/ctafconf/etc/emacs/site-lisp/ecb/"
+			  "~/.config/ctafconf/etc/emacs/site-lisp/tuareg/"
+			  "~/.config/ctafconf/etc/emacs/site-lisp/doxymacs/lisp"
+			  "~/.config/ctafconf/etc/emacs/site-lisp/sieve/") load-path))
 
 
 ;;debug those file on error
@@ -35,48 +35,48 @@
 (setq gc-cons-threshold 50000000)
 
 
-(load-file "~/.ctafconf/etc/emacs/site-lisp/safe-load.el")
+(load-file "~/.config/ctafconf/etc/emacs/site-lisp/safe-load.el")
 
 ;;configuration file
-(safe-load "~/.ctafconf/etc/emacs/emacs.config")
+(safe-load "~/.config/ctafconf/etc/emacs/emacs.config")
 
-(if (file-exists-p "~/.ctafconf/perso/emacs-pre.mine")
-    (safe-load "~/.ctafconf/perso/emacs-pre.mine"))
+(if (file-exists-p "~/.config/ctafconf/perso/emacs-pre.mine")
+    (safe-load "~/.config/ctafconf/perso/emacs-pre.mine"))
 
-(safe-load "~/.ctafconf/etc/emacs/color.emacs")
+(safe-load "~/.config/ctafconf/etc/emacs/color.emacs")
 
 ;;emacs settings
-(safe-load "~/.ctafconf/etc/emacs/settings.emacs")
+(safe-load "~/.config/ctafconf/etc/emacs/settings.emacs")
 
 ;;startup message
-(safe-load "~/.ctafconf/etc/emacs/startup.emacs")
+(safe-load "~/.config/ctafconf/etc/emacs/startup.emacs")
 
 ;;mode (ada,tuareg, ido, autotemplate,..)
-(safe-load "~/.ctafconf/etc/emacs/mode.emacs")
+(safe-load "~/.config/ctafconf/etc/emacs/mode.emacs")
 
 ;;usefull functions
-(safe-load "~/.ctafconf/etc/emacs/functions.emacs")
+(safe-load "~/.config/ctafconf/etc/emacs/functions.emacs")
 
 ;;screensaver,
-;;(safe-load "~/.ctafconf/etc/emacs/misc.emacs")
+;;(safe-load "~/.config/ctafconf/etc/emacs/misc.emacs")
 
 ;;cparse, cpcomment, cwarn, cedet, ecb, semantic
-(safe-load "~/.ctafconf/etc/emacs/prog.emacs")
+(safe-load "~/.config/ctafconf/etc/emacs/prog.emacs")
 
 ;;keys bindings
-(safe-load "~/.ctafconf/etc/emacs/bindings.emacs")
+(safe-load "~/.config/ctafconf/etc/emacs/bindings.emacs")
 
 ;;menu
-(safe-load "~/.ctafconf/etc/emacs/menu.emacs")
+(safe-load "~/.config/ctafconf/etc/emacs/menu.emacs")
 ;;test
-;;(safe-load "~/.ctafconf/etc/emacs/test.emacs")
+;;(safe-load "~/.config/ctafconf/etc/emacs/test.emacs")
 
 
 ;;personal settings
 (if (file-exists-p "~/.myemacs")
     (safe-load "~/.myemacs"))
-(if (file-exists-p "~/.ctafconf/perso/emacs-post.mine")
-    (safe-load "~/.ctafconf/perso/emacs-post.mine"))
+(if (file-exists-p "~/.config/ctafconf/perso/emacs-post.mine")
+    (safe-load "~/.config/ctafconf/perso/emacs-post.mine"))
 
 ;;print debug info
 (safe-load-check)

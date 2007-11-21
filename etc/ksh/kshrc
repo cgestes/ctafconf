@@ -13,12 +13,12 @@
 [[ -o interactive ]] || return 0
 [ a$HOST = agate-ssh ] && return 0
 
-cat ~/.ctafconf/VERSION
+cat ~/.config/ctafconf/VERSION
 echo -n "shell: ksh, "
-cat ~/.ctafconf/etc/shell/motd
+cat ~/.config/ctafconf/etc/shell/motd
 
 #date reminder
-~/.ctafconf/bin/ct-date
+~/.config/ctafconf/bin/ct-date
 
 # turn on command line editing mode
 set -o emacs
@@ -28,18 +28,18 @@ set nobeep
 
 alias source=.
 
-if [ -f ~/.ctafconf/etc/ksh/kshprompt ]; then
-    . ~/.ctafconf/etc/ksh/kshprompt
+if [ -f ~/.config/ctafconf/etc/ksh/kshprompt ]; then
+    . ~/.config/ctafconf/etc/ksh/kshprompt
 fi
 
-if [ -f ~/.ctafconf/etc/shell/env ]; then
-    . ~/.ctafconf/etc/shell/env sh
+if [ -f ~/.config/ctafconf/etc/shell/env ]; then
+    . ~/.config/ctafconf/etc/shell/env sh
 fi
 
-if [ -f ~/.ctafconf/etc/shell/alias ]; then
-    . ~/.ctafconf/etc/shell/alias
+if [ -f ~/.config/ctafconf/etc/shell/alias ]; then
+    . ~/.config/ctafconf/etc/shell/alias
 fi
 
-if [ -f ~/.ctafconf/perso/kshrc.mine ]; then
-    . ~/.ctafconf/perso/kshrc.mine
+if [ -f ~/.config/ctafconf/perso/kshrc.mine ]; then
+    . ~/.config/ctafconf/perso/kshrc.mine
 fi

@@ -132,7 +132,7 @@
 ;;  - php-mode/html/css
 ;;  - emacs: in console (ctrl+backspace, disable ring bell) (enable vt102 in xterm,..)
 ;;  - emacs: ctrl-qqch => replace the current line , with the current buffer
-;;  - support compile this conf 'emacs -batch -l ~/.ctafconf/etc/emacs/compile_conf.el'
+;;  - support compile this conf 'emacs -batch -l ~/.config/ctafconf/etc/emacs/compile_conf.el'
 ;;  - ilisp don't work on emacs-snapshot
 ;;  - turn on semantic-tag-decoration-on-protected-member, semantic-tag-decoration-on-private-member
 ;;  - folding: use semantic-folding if available, else outline, or hideshow

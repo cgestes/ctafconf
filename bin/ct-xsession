@@ -11,8 +11,8 @@
 ##this script should be in /bin or /usr/bin or /usr/local/bin
 
 #this script is launched by gdm (maybe kdm)
-if [ -f ~/.ctafconf/etc/xsession/xsession ]; then
-  ~/.ctafconf/etc/xsession/xsession
+if [ -f ~/.config/ctafconf/etc/xsession/xsession ]; then
+  ~/.config/ctafconf/etc/xsession/xsession
 else
   xterm
 fi

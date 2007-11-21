@@ -6,6 +6,7 @@
 	* recurse : display all file and/or folder recursively
 	* shfunction : removed, functions added as program in bin (grepr, recurse, ...)
 	* ctafconf-install, -configuration, -uninstall: symlink removed
+	* moved .ctafconf to .config/ctafconf (freedesktop compliant)
 
 2007-11-09 CTAF <>
 	* emacs : help: added shortcut for epita c header
@@ -349,7 +350,7 @@
 	* ct-installconf : all overwritten file are now saved in .ctafconf/perso/previous
 	* ct-save-mine : updated, compress .ctafconf/perso
 	* ct-remove-backup : removed, no needed anymore
-	* globalenv : add ~/.ctafconf/perso/bin to $PATH
+	* globalenv : add ~/.config/ctafconf/perso/bin to $PATH
 	* vimrc : simple configuration file for vim (coloration, folding, ...)
 	* ct-add-wallpaper : bug if .ctafconf/perso/wallpaper doesnt exist
 	* ct-installconf : .mine are alwais installed if they don't exist
@@ -466,7 +467,7 @@
 	  .ctafconf/etc/{emacs,shell,..}
 
 2005-10-03 CTAF <>
-	* add : ~/.ctafconf/user-profile.mine : static setting's
+	* add : ~/.config/ctafconf/user-profile.mine : static setting's
 	* add : ct-save-mine (backup personal configuration file)
 	* add : .zshrc.mine , .emacs.mine , .zshenv.mine, .tcsh.mine, .bashrc.mine, .xsession.mine
 	* mod : ct-installconf : readonly on ctafconf files (linked in ~)
@@ -512,7 +513,7 @@
 	* add : gdialog/kdialog/dialog/read comme interface pour l'installation (cool!)
 
 2005-09-26 CTAF <>
-	* add : repository manager : ct-repo (repo info in ~/.ctafconf/repos)
+	* add : repository manager : ct-repo (repo info in ~/.config/ctafconf/repos)
 	* add : ctafconf_wm : choisi le desktop utilise (gnome, fluxbox, ...)
 	* add : ct-xsession, ctafconf.desktop : utiliser par gdm et kdm
 	* add : no more different xsession
@@ -522,7 +523,7 @@
 	* add : ct-remove-backup to remove backup of your file (doesnt remove -previous)
 	* mod : change wallpaper for gnome
 	* add : ct-profile => edite le fichier de configuration de la ctafconf
-	* rem : remove directory : ~/.ctafconf/profile
+	* rem : remove directory : ~/.config/ctafconf/profile
 	* add : ctafconf_zprompt : define the zsh prompt you use
 	* add : ct-save-firefox, ct-save-thunderbird
 
@@ -592,7 +593,7 @@
 	* mod : $PATH to include ctafbin and bin
 	* mod : zshenv,zshalias (link to .debian, .freebsd,..)
 	* mod : ls
-	* mod : wallpaper are in ~/.ctafconf/env/wallpaper
+	* mod : wallpaper are in ~/.config/ctafconf/env/wallpaper
 	* mod : ct-info
 
 2005-06-03 CTAF <>

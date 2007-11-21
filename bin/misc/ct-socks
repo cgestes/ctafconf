@@ -10,7 +10,7 @@
 
 echo "This program set your socks password"
 echo "He write it in CLEAR in ~/.socks"
-echo "socks server varenv could be configured in ~/.ctafconf/etc/shell/globalenv"
+echo "socks server varenv could be configured in ~/.config/ctafconf/etc/shell/globalenv"
 
 #te=$( cat ~/.socks 2>/dev/null)
 echo -n "pleaze enter your socks password :"

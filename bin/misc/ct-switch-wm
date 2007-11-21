@@ -8,7 +8,7 @@
 ## Last update Tue May 16 23:23:48 2006 GESTES Cedric
 ##
 
-. ~/.ctafconf/etc/shlib/ssft.sh
+. ~/.config/ctafconf/etc/shlib/ssft.sh
 
 
 if [ $# -ge 1 ]; then
@@ -20,6 +20,6 @@ else
   fi
 fi
 
-echo $wm >~/.ctafconf/perso/current_wm$DISPLAY
-echo $wm >~/.ctafconf/perso/current_wm:0
+echo $wm >~/.config/ctafconf/perso/current_wm$DISPLAY
+echo $wm >~/.config/ctafconf/perso/current_wm:0
 

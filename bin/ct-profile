@@ -27,12 +27,12 @@ _trap_kill ()
 trap _trap_kill INT
 
 
-. ~/.ctafconf/etc/shlib/ssft.sh
+. ~/.config/ctafconf/etc/shlib/ssft.sh
 
 
 #ctafconf user profile file (don't use quote to expand ~)
-savefile=~/.ctafconf/perso/user-profile
-bakfile=~/.ctafconf/perso/previous/user-profile
+savefile=~/.config/ctafconf/perso/user-profile
+bakfile=~/.config/ctafconf/perso/previous/user-profile
 
 showconf()
 {
@@ -72,11 +72,11 @@ shownewconf()
 enumwallpp()
 {
   echo -n "ramdom/ramdomperso/"
-  ls -1 ~/.ctafconf/etc/wallpaper 2>/dev/null | while read line; do
+  ls -1 ~/.config/ctafconf/etc/wallpaper 2>/dev/null | while read line; do
       echo -n "$line"/
   done
 
-  ls -1 ~/.ctafconf/perso/wallpaper 2>/dev/null | while read line; do
+  ls -1 ~/.config/ctafconf/perso/wallpaper 2>/dev/null | while read line; do
       echo -n "$line"/
   done
 }
@@ -134,8 +134,8 @@ getvaldef()
 
 
 ##START##
-if [ -f ~/.ctafconf/perso/user-profile ]; then
-    . ~/.ctafconf/perso/user-profile
+if [ -f ~/.config/ctafconf/perso/user-profile ]; then
+    . ~/.config/ctafconf/perso/user-profile
 fi
 
 export SSFT_FRONTEND="text"
@@ -145,7 +145,7 @@ export SSFT_FRONTEND="text"
 #echo "using frontend: $SSFT_FRONTEND, you could change it with ct-profile"
 
 
-if [ -f ~/.ctafconf/perso/user-profile ]; then
+if [ -f ~/.config/ctafconf/perso/user-profile ]; then
     SSFT_DEFAULT=no
     if ! ssft_yesno "you already have a configuration file" "`showctafconf`"; then
         #sourced or standalone

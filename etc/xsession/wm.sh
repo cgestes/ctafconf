@@ -32,15 +32,15 @@
 param=$@
 #eval "exec -a grkwm $param"
 #read
-#exec $param ; #echo "$!" >~/.ctafconf/perso/wm_pid )&
-#echo $! >~/.ctafconf/perso/wm_pid
-echo "Lanching wm:" $param >>~/.ctafconf/perso/ctafconf.log
+#exec $param ; #echo "$!" >~/.config/ctafconf/perso/wm_pid )&
+#echo $! >~/.config/ctafconf/perso/wm_pid
+echo "Lanching wm:" $param >>~/.config/ctafconf/perso/ctafconf.log
 eval "$param &" ;
 childpid=$!
-echo "$childpid" >~/.ctafconf/perso/wm_pid$DISPLAY
+echo "$childpid" >~/.config/ctafconf/perso/wm_pid$DISPLAY
 
 sleep 1
-echo "waiting for wm:" $param >>~/.ctafconf/perso/ctafconf.log
+echo "waiting for wm:" $param >>~/.config/ctafconf/perso/ctafconf.log
 wait $childpid
-echo "after waited wm:" $param >>~/.ctafconf/perso/ctafconf.log
+echo "after waited wm:" $param >>~/.config/ctafconf/perso/ctafconf.log
 #kill -- -$pid

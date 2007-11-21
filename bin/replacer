@@ -1,15 +1,15 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 ## shfunction for ctafconf in /home/ctaf/.ctafconf
 ##
 ## Made by GESTES Cedric
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Oct  2 07:23:17 2005 GESTES Cedric
-## Last update Wed Nov 21 10:19:31 2007 GESTES Cedric
+## Last update Wed Nov 21 10:37:23 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
-$action=$1
+action=$1
 
 #recursive replace all occurence by another in all file of the current folder
 replacer ()
@@ -18,6 +18,7 @@ replacer ()
   local arg2=$2
 
   recurse_file . | grep -v 'replace.bak' | while read file; do
+    echo "replacing in file: $file"
     perl -pi.replace.bak -e "$action" "$file"
   done
 }
@@ -40,10 +41,19 @@ recurse_file ()
 }
 
 if [ x$action = x-h ] || [ x$action = x ] ; then
-  echo "usage: replacer perlregexp"
-  echo "example to replace foo by bar: replacer s/foo/bar/"
-  echo "or                           : replacer s!foo!bar!"
-  exit 1
+  echo "usage: replacer [clean] perlregexp"
+  echo ""
+  echo "replacer create .replace.bak for each file it modify"
+  echo "when you are sure your modification are good, you can remove this file with:"
+  echo "> replacer clean"
+  echo ""
+  echo "example to replace foo by bar: replacer s/foo/bar/g"
+  echo "or                           : replacer s-foo-bar-g"
+  exit 0
+elif [ x$action = xclean ] ; then
+  rm -rf ***/*.replace.bak
+  echo "directory clean up (all backup removed)"
+  exit 0
 fi
 
 replacer .

@@ -13,7 +13,7 @@ param=$1
 param2=$2
 
 ctafconf_sudo=
-source ~/.ctafconf/perso/user-profile >/dev/null 2>/dev/null
+source ~/.config/ctafconf/perso/user-profile >/dev/null 2>/dev/null
 
 errorcantfind ()
 {

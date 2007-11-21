@@ -14,7 +14,7 @@ if [ $# -gt 0 ]; then
   echo "add wallpaper $wallpp"
   echo "Use ct-profile or ct-installconf to modify your current wallpaper"
 else
-  . ~/.ctafconf/etc/shlib/ssft.sh
+  . ~/.config/ctafconf/etc/shlib/ssft.sh
   SSFT_FRONTEND=graphic
 
   if ssft_file_selection "Select the wallpaper you want"; then
@@ -22,5 +22,5 @@ else
   fi
 fi
 
-cp "$wallpp" ~/.ctafconf/perso/wallpaper/
+cp "$wallpp" ~/.config/ctafconf/perso/wallpaper/
 

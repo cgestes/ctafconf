@@ -9,12 +9,12 @@
 if ($?prompt && a$HOST != agate-ssh) then
 
 
-cat ~/.ctafconf/VERSION
+cat ~/.config/ctafconf/VERSION
 echo -n "shell: tcsh, "
-cat ~/.ctafconf/etc/shell/motd
+cat ~/.config/ctafconf/etc/shell/motd
 
 #date reminder
-~/.ctafconf/bin/ct-date
+~/.config/ctafconf/bin/ct-date
 
 umask 022
 
@@ -158,12 +158,12 @@ bindkey "^[q" keyboard-quit
 
 
 
-if ( -f ~/.ctafconf/etc/shell/env ) source ~/.ctafconf/etc/shell/env csh
+if ( -f ~/.config/ctafconf/etc/shell/env ) source ~/.config/ctafconf/etc/shell/env csh
 
-if ( -f ~/.ctafconf/etc/tcsh/tcshprompt ) source ~/.ctafconf/etc/tcsh/tcshprompt
+if ( -f ~/.config/ctafconf/etc/tcsh/tcshprompt ) source ~/.config/ctafconf/etc/tcsh/tcshprompt
 
-if ( -f ~/.ctafconf/etc/shell/alias ) source ~/.ctafconf/etc/shell/alias
+if ( -f ~/.config/ctafconf/etc/shell/alias ) source ~/.config/ctafconf/etc/shell/alias
 
-if ( -f ~/.ctafconf/perso/tcshrc.mine ) source ~/.ctafconf/perso/tcshrc.mine
+if ( -f ~/.config/ctafconf/perso/tcshrc.mine ) source ~/.config/ctafconf/perso/tcshrc.mine
 
 endif

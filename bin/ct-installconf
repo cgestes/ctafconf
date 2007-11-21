@@ -21,7 +21,7 @@
 ## Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##
 
-grkdir=~/.ctafconf/etc/grk
+grkdir=~/.config/ctafconf/etc/grk
 
 #catch a signal, else termcaps shit
 _trap_kill ()
@@ -208,36 +208,36 @@ check_app()
 #############################################################################
 ##START
 #############################################################################
-if ! [ -d ~/.ctafconf/ ] ; then
-  echo "Can't find ~/.ctafconf directory"
-  echo "Aborting, verify that you have untar the archive into your home directory"
+if ! [ -d ~/.config/ctafconf/ ] ; then
+  echo "Can't find ~/.config/ctafconf directory"
+  echo "Aborting, you should put the ctafconf folder of your tarball into ~/.config"
   exit
 fi
 
 #install tools
-. ~/.ctafconf/etc/shlib/grktools.sh
+. ~/.config/ctafconf/etc/shlib/grktools.sh
 
 #shellscript frontend
-. ~/.ctafconf/etc/shlib/ssft.sh
+. ~/.config/ctafconf/etc/shlib/ssft.sh
 
 #create default directory
-grk_dir ~/.ctafconf/perso
-grk_dir ~/.ctafconf/perso/semantic
-grk_dir ~/.ctafconf/perso/ssh
-grk_dir ~/.ctafconf/perso/repos
-grk_dir ~/.ctafconf/perso/wallpaper
-grk_dir ~/.ctafconf/perso/bin
-grk_dir ~/.ctafconf/perso/previous
+grk_dir ~/.config/ctafconf/perso
+grk_dir ~/.config/ctafconf/perso/semantic
+grk_dir ~/.config/ctafconf/perso/ssh
+grk_dir ~/.config/ctafconf/perso/repos
+grk_dir ~/.config/ctafconf/perso/wallpaper
+grk_dir ~/.config/ctafconf/perso/bin
+grk_dir ~/.config/ctafconf/perso/previous
 
 #launch profile manager
-. ~/.ctafconf/bin/ct-profile
+. ~/.config/ctafconf/bin/ct-profile
 
-if ! [ -f ~/.ctafconf/perso/user-profile ] ; then
-  echo "Can't find ~/.ctafconf/perso/user-profile directory"
+if ! [ -f ~/.config/ctafconf/perso/user-profile ] ; then
+  echo "Can't find ~/.config/ctafconf/perso/user-profile directory"
   echo "Aborting, execute ct-profile, or relauch install"
   exit
 fi
-. ~/.ctafconf/perso/user-profile
+. ~/.config/ctafconf/perso/user-profile
 
 
 export SSFT_FRONTEND=text

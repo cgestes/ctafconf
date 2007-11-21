@@ -14,28 +14,28 @@ if [[ $- != *i* ]] || [ a$HOST = agate-ssh ]; then
     return
 fi
 
-cat ~/.ctafconf/VERSION
+cat ~/.config/ctafconf/VERSION
 echo -n "shell: zsh, "
-cat ~/.ctafconf/etc/shell/motd
+cat ~/.config/ctafconf/etc/shell/motd
 
 #date reminder
-~/.ctafconf/bin/ct-date
+~/.config/ctafconf/bin/ct-date
 
 #alias
-. ~/.ctafconf/etc/zsh/zshalias
+. ~/.config/ctafconf/etc/zsh/zshalias
 
 #General config
-. ~/.ctafconf/etc/zsh/zshconf
+. ~/.config/ctafconf/etc/zsh/zshconf
 
 #Prompt
 if [ x$ctafconf_zprompt = x ] || [ x$ctafconf_zprompt = xctaf ] ; then
-    source ~/.ctafconf/etc/zsh/zshprompt
+    source ~/.config/ctafconf/etc/zsh/zshprompt
 else
     autoload -U promptinit
     promptinit
     prompt $ctafconf_zprompt
 fi
 
-if [ -f ~/.ctafconf/perso/zshrc.mine ]; then
-    source ~/.ctafconf/perso/zshrc.mine
+if [ -f ~/.config/ctafconf/perso/zshrc.mine ]; then
+    source ~/.config/ctafconf/perso/zshrc.mine
 fi

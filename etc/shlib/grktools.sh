@@ -21,9 +21,9 @@
 ## Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##
 
-grk_backup=~/.ctafconf/perso/previous
-grk_etc=~/.ctafconf
-grk_minedir=~/.ctafconf/perso
+grk_backup=~/.config/ctafconf/perso/previous
+grk_etc=~/.config/ctafconf
+grk_minedir=~/.config/ctafconf/perso
 grk_debug=no
 
 #0 good
@@ -161,7 +161,7 @@ grk_dir ()
           [ x$grk_debug = xyes ] && echo "grk_dir: Backup $name"
           rm -rf $grk_backup/"$name"-previous 2>/dev/null
           cp -r $dst $grk_backup/"$name"-previous 2>/dev/null
-          mv $dst ~/.ctafconf/perso/previous/"$name"-prev-"$date" 2>/dev/null
+          mv $dst ~/.config/ctafconf/perso/previous/"$name"-prev-"$date" 2>/dev/null
       fi
   fi
   [ x$grk_debug = xyes ] && echo "Creating directory: $src"
@@ -174,59 +174,59 @@ grk_mine ()
   name=$2
 
   [ x$grk_debug = xyes ] && echo "mine: $src -- $name"
-  if ! [ -f ~/.ctafconf/perso/"$src".mine ]; then
-    cp ~/.ctafconf/etc/mine/$src.mine ~/.ctafconf/perso
-    cp ~/.ctafconf/etc/mine/$src.mine ~/.ctafconf/perso/previous
+  if ! [ -f ~/.config/ctafconf/perso/"$src".mine ]; then
+    cp ~/.config/ctafconf/etc/mine/$src.mine ~/.config/ctafconf/perso
+    cp ~/.config/ctafconf/etc/mine/$src.mine ~/.config/ctafconf/perso/previous
     return
   fi
 
   #same file
-  if diff -u ~/.ctafconf/etc/mine/"$src".mine ~/.ctafconf/perso/"$src".mine 2>/dev/null >/dev/null ; then
+  if diff -u ~/.config/ctafconf/etc/mine/"$src".mine ~/.config/ctafconf/perso/"$src".mine 2>/dev/null >/dev/null ; then
     return
   fi
 
   #user have not modified the file
-  if diff -u ~/.ctafconf/perso/previous/"$src".mine ~/.ctafconf/perso/"$src".mine 2>/dev/null >/dev/null; then
-    cp ~/.ctafconf/etc/mine/"$src".mine ~/.ctafconf/perso/"$src".mine
+  if diff -u ~/.config/ctafconf/perso/previous/"$src".mine ~/.config/ctafconf/perso/"$src".mine 2>/dev/null >/dev/null; then
+    cp ~/.config/ctafconf/etc/mine/"$src".mine ~/.config/ctafconf/perso/"$src".mine
     return
   fi
 
-#   tmp_patch=~/.ctafconf/perso/.tmp1
-#   tmp_f1=~/.ctafconf/perso/.tmp2
-#   tmp_f2=~/.ctafconf/perso/.tmp3
-#   tmp_diff=~/.ctafconf/perso/.tmp4
+#   tmp_patch=~/.config/ctafconf/perso/.tmp1
+#   tmp_f1=~/.config/ctafconf/perso/.tmp2
+#   tmp_f2=~/.config/ctafconf/perso/.tmp3
+#   tmp_diff=~/.config/ctafconf/perso/.tmp4
 
 #   #dest file
-#   if [ -f ~/.ctafconf/perso/previous/"$src".mine ]; then
+#   if [ -f ~/.config/ctafconf/perso/previous/"$src".mine ]; then
 
 #     #diff between 2 upstream version, then patch
-#     cp ~/.ctafconf/perso/previous/"$src".mine $tmp_f1
-#     cp ~/.ctafconf/etc/mine/"$src".mine $tmp_f2
+#     cp ~/.config/ctafconf/perso/previous/"$src".mine $tmp_f1
+#     cp ~/.config/ctafconf/etc/mine/"$src".mine $tmp_f2
 
-#     cp ~/.ctafconf/perso/$src.mine $tmp_patch 2>/dev/null
+#     cp ~/.config/ctafconf/perso/$src.mine $tmp_patch 2>/dev/null
 #     diff -c $tmp_f1 $tmp_f2 >$tmp_diff
 
 #     if ! cat $tmp_diff | patch -c -f $tmp_patch 2>/dev/null; then
 #       echo "patch dont suceeded"
 #       #diff between previous and user version, then patch new upstream
-#       cp ~/.ctafconf/perso/previous/"$src".mine $tmp_f1
-#       cp ~/.ctafconf/perso/"$src".mine $tmp_f2
+#       cp ~/.config/ctafconf/perso/previous/"$src".mine $tmp_f1
+#       cp ~/.config/ctafconf/perso/"$src".mine $tmp_f2
 
-#       cp ~/.ctafconf/etc/mine/$src.mine $tmp_patch 2>/dev/null
+#       cp ~/.config/ctafconf/etc/mine/$src.mine $tmp_patch 2>/dev/null
 #       diff -c $tmp_f1 $tmp_f2 >$tmp_diff
 #       if ! cat $tmp_diff | patch -c -f $tmp_patch 2>/dev/null; then
 #         echo "patch dont suceeded"
 #       fi
 #     fi
 #     patchfile="`echo 'You have modified '$src'.mine, do you want to apply the current diff to '$src'.mine (I think yes)?;'`"
-#     patchfile=$patchfile`diff -c ~/.ctafconf/perso/$src.mine $tmp_patch`
+#     patchfile=$patchfile`diff -c ~/.config/ctafconf/perso/$src.mine $tmp_patch`
 
 #     if ssft_yesno "Change in user file detected" "$patchfile"; then
 #       echo "patchinggg"
-#       #cat $tmp_diff | patch -b -u ~/.ctafconf/perso/"$src".mine
+#       #cat $tmp_diff | patch -b -u ~/.config/ctafconf/perso/"$src".mine
 #     fi
 
 #   else
-#    ssft_display_message "Change in user-specific file" "The file $src.mine have been updated upstream. You should compare ~/.ctafconf/etc/mine/$src.mine and your's ~/.ctafconf/perso/$src.mine"
+#    ssft_display_message "Change in user-specific file" "The file $src.mine have been updated upstream. You should compare ~/.config/ctafconf/etc/mine/$src.mine and your's ~/.config/ctafconf/perso/$src.mine"
 #  fi
 }

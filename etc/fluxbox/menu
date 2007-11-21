@@ -1,4 +1,4 @@
 [begin] (  CTAFBox  )
-  [include] (~/.ctafconf/perso/fbmenu.mine)
-  [include] (~/.ctafconf/etc/fluxbox/menu-general)
+  [include] (~/.config/ctafconf/perso/fbmenu.mine)
+  [include] (~/.config/ctafconf/etc/fluxbox/menu-general)
 [end]

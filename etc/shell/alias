@@ -28,23 +28,23 @@ alias_set - 'pushd -1'
 #############################
 alias_set c './configure'
 alias_set a './autogen.sh'
-alias_set m '~/.ctafconf/bin/colorwarper make'
-alias_set md '~/.ctafconf/bin/colorwarper make distclean'
-alias_set ma '~/.ctafconf/bin/colorwarper make clean all'
-alias_set mac '~/.ctafconf/bin/colorwarper make clean all check'
-alias_set gm '~/.ctafconf/bin/colorwarper gmake'
-alias_set mm '~/.ctafconf/bin/colorwarper make |& less'
-alias_set make_mute "~/.ctafconf/bin/colorwarper make 1>/dev/null"
+alias_set m '~/.config/ctafconf/bin/colorwarper make'
+alias_set md '~/.config/ctafconf/bin/colorwarper make distclean'
+alias_set ma '~/.config/ctafconf/bin/colorwarper make clean all'
+alias_set mac '~/.config/ctafconf/bin/colorwarper make clean all check'
+alias_set gm '~/.config/ctafconf/bin/colorwarper gmake'
+alias_set mm '~/.config/ctafconf/bin/colorwarper make |& less'
+alias_set make_mute "~/.config/ctafconf/bin/colorwarper make 1>/dev/null"
 alias_set fixme 'grep -n -a -s FIXME * 2> /dev/null'
 alias_set todo 'grep -n -a -s TODO * 2> /dev/null'
 alias_set svndiff 'svn diff --diff-cmd `which diff` -x "-w -E -u -B -b"'
 alias_set svn_real '`which svn`'
-alias_set svn '~/.ctafconf/bin/colorwarper svn'
+alias_set svn '~/.config/ctafconf/bin/colorwarper svn'
 alias_set cvs_real '`which svn`'
-alias_set cvs '~/.ctafconf/bin/colorwarper cvs'
-alias_set make '~/.ctafconf/bin/colorwarper make'
+alias_set cvs '~/.config/ctafconf/bin/colorwarper cvs'
+alias_set make '~/.config/ctafconf/bin/colorwarper make'
 alias_set make_real '`which make`'
-alias_set gmake '~/.ctafconf/bin/colorwarper gmake'
+alias_set gmake '~/.config/ctafconf/bin/colorwarper gmake'
 alias_set gmake_real '`which gmake`'
 #alias_set make 'gmake'
 
@@ -132,13 +132,13 @@ alias_set la 'ls -lAF --color=tty'
 alias_set lg 'ls -F --color=tty | grep'
 
 #different plateform test
-test -f ~/.ctafconf/etc/shell/alias.`uname` && source ~/.ctafconf/etc/shell/alias.`uname`
+test -f ~/.config/ctafconf/etc/shell/alias.`uname` && source ~/.config/ctafconf/etc/shell/alias.`uname`
 
 #sourcing plateform spécifik
-test x$ctafconf_config != x && test -f ~/.ctafconf/etc/shell/alias.$ctafconf_config && source ~/.ctafconf/etc/shell/alias.$ctafconf_config
+test x$ctafconf_config != x && test -f ~/.config/ctafconf/etc/shell/alias.$ctafconf_config && source ~/.config/ctafconf/etc/shell/alias.$ctafconf_config
 
 #ctafconf log
-alias_set ct-log "$PAGER ~/.ctafconf/perso/ctafconf.log"
+alias_set ct-log "$PAGER ~/.config/ctafconf/perso/ctafconf.log"
 
 ###UNUSED UN-USEFULL###
 #alias_set reports "w3m http://www.lrde.epita.fr/~akim/compil/reports.html"

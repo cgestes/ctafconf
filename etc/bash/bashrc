@@ -13,12 +13,12 @@ if [[ $- != *i* ]] || [ a$HOST = agate-ssh ]; then
 	# Shell is non-interactive.  Be done now
 	return
 fi
-cat ~/.ctafconf/VERSION
+cat ~/.config/ctafconf/VERSION
 echo -n "shell: bash, "
-cat ~/.ctafconf/etc/shell/motd
+cat ~/.config/ctafconf/etc/shell/motd
 
 #date reminder
-~/.ctafconf/bin/ct-date
+~/.config/ctafconf/bin/ct-date
 
 # Bash won't get SIGWINCH if another process is in the foreground.
 # Enable checkwinsize so that bash will check the terminal size when
@@ -58,11 +58,11 @@ set bell-style none
 # 	fi
 # fi
 
-[ -f ~/.ctafconf/etc/shell/env ] && . ~/.ctafconf/etc/shell/env sh
+[ -f ~/.config/ctafconf/etc/shell/env ] && . ~/.config/ctafconf/etc/shell/env sh
 
-[ -f ~/.ctafconf/etc/shell/alias ] && . ~/.ctafconf/etc/shell/alias
+[ -f ~/.config/ctafconf/etc/shell/alias ] && . ~/.config/ctafconf/etc/shell/alias
 
-[ -f ~/.ctafconf/etc/bash/bashprompt ] && . ~/.ctafconf/etc/bash/bashprompt
+[ -f ~/.config/ctafconf/etc/bash/bashprompt ] && . ~/.config/ctafconf/etc/bash/bashprompt
 
-[ -f ~/.ctafconf/perso/bashrc.mine ] && ~/.ctafconf/perso/bashrc.mine
+[ -f ~/.config/ctafconf/perso/bashrc.mine ] && ~/.config/ctafconf/perso/bashrc.mine
 

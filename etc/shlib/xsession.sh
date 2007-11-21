@@ -21,9 +21,9 @@
 ## Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##
 
-#fwm=~/.ctafconf/perso/current_wm$DISPLAY
-#fwmpid=~/.ctafconf/perso/wm_pid$DISPLAY
-#fwmpidtokill=~/.ctafconf/perso/wm_pid_to_kill$DISPLAY
+#fwm=~/.config/ctafconf/perso/current_wm$DISPLAY
+#fwmpid=~/.config/ctafconf/perso/wm_pid$DISPLAY
+#fwmpidtokill=~/.config/ctafconf/perso/wm_pid_to_kill$DISPLAY
 
 
 #declare apparray as an array
@@ -40,9 +40,9 @@ extract_wm()
 
   ct_log EXTRACTING WM: $wm
   if [ x$wm = xrandom ]; then
-    sz=`cat ~/.ctafconf/perso/wmlist | wc -l`
+    sz=`cat ~/.config/ctafconf/perso/wmlist | wc -l`
     pos=$(( `date +%s` % $sz + 1 ))
-    wm=`cat ~/.ctafconf/perso/wmlist | tail -$pos | head -1`
+    wm=`cat ~/.config/ctafconf/perso/wmlist | tail -$pos | head -1`
   fi
   ct_log EXTRACTED WM: $wm
   echo $wm
@@ -53,7 +53,7 @@ exec_wm ()
   local wm=$1
   local wmfct=""
 
-  wmfct=`cat ~/.ctafconf/etc/xsession/wmlist | grep "^$wm" | cut -d ! -f 2`
+  wmfct=`cat ~/.config/ctafconf/etc/xsession/wmlist | grep "^$wm" | cut -d ! -f 2`
   echo "lanching: $wmfct"
   which $wmfct && exec $wmfct
 
@@ -61,7 +61,7 @@ exec_wm ()
 
 exec_app()
 {
-  echo "STARTING LAUNCHING APPS" >>~/.ctafconf/perso/ctafconf.log
+  echo "STARTING LAUNCHING APPS" >>~/.config/ctafconf/perso/ctafconf.log
   (
     local i=1
     local cmd=''
@@ -83,7 +83,7 @@ exec_app()
 
 ct_log()
 {
-  echo $@ >>~/.ctafconf/perso/ctafconf.log
+  echo $@ >>~/.config/ctafconf/perso/ctafconf.log
 }
 
 #launch delayed application
