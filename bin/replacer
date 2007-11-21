@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Oct  2 07:23:17 2005 GESTES Cedric
-## Last update Wed Nov 21 09:44:19 2007 GESTES Cedric
+## Last update Wed Nov 21 10:00:24 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -77,11 +77,12 @@ replacer ()
   local arg1=$1
   local arg2=$2
 
-  recurse . | grep 'file:' | while read file; do
-    perl -pi.bak -e 's/$arg1/$arg2/' $file
+  recurse_file . | grep -v 'replace.bak' | while read file; do
+    perl -pi.replace.bak -e 's/$arg1/$arg2/' $file
   done
 }
 
+#display all file and folder recursively
 recurse ()
 {
   local arg="$1"
@@ -91,10 +92,41 @@ recurse ()
   ls $arg 2>/dev/null | while read i; do
     fn=$arg/$i
     if [ -d $fn ]; then
-      echo "dir: $fn";
+      echo "folder: $fn";
       recurse $fn;
     elif [ -f $fn ]; then
       echo "file: $fn";
+    fi;
+  done;
+}
+
+recurse_file ()
+{
+  local arg="$1"
+  local i=""
+  local fn=""
+
+  ls $arg 2>/dev/null | while read i; do
+    fn=$arg/$i
+    if [ -d $fn ]; then
+      recurse_file $fn;
+    elif [ -f $fn ]; then
+      echo "$fn";
+    fi;
+  done;
+}
+
+recurse_folder ()
+{
+  local arg="$1"
+  local i=""
+  local fn=""
+
+  ls $arg 2>/dev/null | while read i; do
+    fn=$arg/$i
+    if [ -d $fn ]; then
+      echo "$fn";
+      recurse_folder $fn;
     fi;
   done;
 }

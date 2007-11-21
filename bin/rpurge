@@ -1,0 +1,25 @@
+#!/usr/bin/env zsh
+## shfunction for ctafconf in /home/ctaf/.ctafconf
+##
+## Made by GESTES Cedric
+## Login   <ctaf@epita.fr>
+##
+## Started on  Sun Oct  2 07:23:17 2005 GESTES Cedric
+## Last update Wed Nov 21 10:08:42 2007 GESTES Cedric
+##
+##CTAFCONF
+
+
+#recursive purge
+rpurge ()
+{
+ (echo removing: ***/*\~) 2>/dev/null
+ (rm -f ***/*\~) 2>/dev/null;
+ (echo ***/\.*\~) 2>/dev/null
+ (rm -f ***/\.*\~) 2>/dev/null;
+ (echo ***/\#*\#) 2>/dev/null
+ (rm -f ***/\#*\#) 2>/dev/null;
+ echo "directory recursively purged";
+}
+
+rpurge

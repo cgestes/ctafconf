@@ -3,7 +3,8 @@
 	* ct-ssh : frontend for .ssh/config
 	* ct-ssh : use ssft
 	* replacer : replace all occurence of arg1 by arg2 in all file of the folder
-	* recurse : display all file and folder recursively
+	* recurse : display all file and/or folder recursively
+	* shfunction : removed, functions added as program in bin (grepr, recurse, ...)
 
 2007-11-09 CTAF <>
 	* emacs : help: added shortcut for epita c header

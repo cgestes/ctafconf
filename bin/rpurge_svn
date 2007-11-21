@@ -1,0 +1,21 @@
+#!/usr/bin/env zsh
+## shfunction for ctafconf in /home/ctaf/.ctafconf
+##
+## Made by GESTES Cedric
+## Login   <ctaf@epita.fr>
+##
+## Started on  Sun Oct  2 07:23:17 2005 GESTES Cedric
+## Last update Wed Nov 21 10:10:25 2007 GESTES Cedric
+##
+##CTAFCONF
+
+
+#purge .svn and .cvs
+rpurge_svn ()
+{
+ (echo removing: ***/\.svn) 2>/dev/null;
+ (rm -rf ***/\.svn) 2>/dev/null;
+ echo "svn directory recursively purged";
+}
+
+rpurge_svn

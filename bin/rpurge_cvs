@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+## shfunction for ctafconf in /home/ctaf/.ctafconf
+##
+## Made by GESTES Cedric
+## Login   <ctaf@epita.fr>
+##
+## Started on  Sun Oct  2 07:23:17 2005 GESTES Cedric
+## Last update Wed Nov 21 10:11:39 2007 GESTES Cedric
+##
+##CTAFCONF
+
+
+rpurge_cvs ()
+{
+ (echo removing: ***/\.cvs ***/CVS) 2>/dev/null
+ (rm -rf ***/\.cvs ***/CVS) 2>/dev/null;
+ echo "cvs directory recursively purged";
+}
+
+rpurge_cvs

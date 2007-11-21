@@ -5,7 +5,7 @@
 ## Login   <gestes_c@epita.fr>
 ##
 ## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
-## Last update Wed Nov  7 23:37:14 2007 cedric gestes
+## Last update Wed Nov 21 10:13:01 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -26,8 +26,6 @@ cat ~/.ctafconf/etc/shell/motd
 
 #General config
 . ~/.ctafconf/etc/zsh/zshconf
-
-. ~/.ctafconf/etc/shell/shfunction
 
 #Prompt
 if [ x$ctafconf_zprompt = x ] || [ x$ctafconf_zprompt = xctaf ] ; then
