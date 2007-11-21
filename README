@@ -7,11 +7,12 @@ INSTALL/UPDATE
 ===========================================================
 --Install the ctafconf, or update it (you should run ctafconf-install too)
 untar in your home directory.
-> cd ~
+> mkdir .config
+> cd .config
 > tar xvzf ctafconf-DATE.tgz
-> cd .ctafconf
+> cd ctafconf/bin
 
-> ./ctafconf-install
+> ./ct-install
 
 
 --Emacs without the ctafconf

@@ -5,71 +5,11 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Oct  2 07:23:17 2005 GESTES Cedric
-## Last update Wed Nov 21 10:00:24 2007 GESTES Cedric
+## Last update Wed Nov 21 10:19:31 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
-
-#mkdir then cd
-mkdcd ()
-{
- mkdir $1 && cd $1
-}
-
-#purge file in a dir
-purge ()
-{
- (echo removing: *\~) 2>/dev/null
- (rm -f *\~) 2>/dev/null;
- (echo \.*\~) 2>/dev/null
- (rm -f \.*\~) 2>/dev/null;
- (echo \#*\#) 2>/dev/null
- (rm -f \#*\#) 2>/dev/null;
- echo "directory purged";
-}
-
-#recursive purge
-rpurge ()
-{
- (echo removing: ***/*\~) 2>/dev/null
- (rm -f ***/*\~) 2>/dev/null;
- (echo ***/\.*\~) 2>/dev/null
- (rm -f ***/\.*\~) 2>/dev/null;
- (echo ***/\#*\#) 2>/dev/null
- (rm -f ***/\#*\#) 2>/dev/null;
- echo "directory recursively purged";
-}
-
-#recursive purge
-rpurge_clean ()
-{
- (echo removing: ***/*\.o) 2>/dev/null
- (rm -f ***/*\.o) 2>/dev/null;
- echo "directory recursively purged";
-}
-
-#purge .svn and .cvs
-rpurge_svn ()
-{
- (echo removing: ***/\.svn) 2>/dev/null;
- (rm -rf ***/\.svn) 2>/dev/null;
- echo "svn directory recursively purged";
-}
-
-rpurge_cvs ()
-{
- (echo removing: ***/\.cvs ***/CVS) 2>/dev/null
- (rm -rf ***/\.cvs ***/CVS) 2>/dev/null;
- echo "cvs directory recursively purged";
-}
-
-#recursive grep with filename and line number
-#exclude svn
-grepr ()
-{
-  arg=$@
-  grep -r -n -H $arg . | grep -v "/.svn/" | grep -v ".svn-base:" | grep -v "^grep:" | ~/.ctafconf/bin/colorgrepr.pl 2>/dev/null
-}
+$action=$1
 
 #recursive replace all occurence by another in all file of the current folder
 replacer ()
@@ -78,27 +18,10 @@ replacer ()
   local arg2=$2
 
   recurse_file . | grep -v 'replace.bak' | while read file; do
-    perl -pi.replace.bak -e 's/$arg1/$arg2/' $file
+    perl -pi.replace.bak -e "$action" "$file"
   done
 }
 
-#display all file and folder recursively
-recurse ()
-{
-  local arg="$1"
-  local i=""
-  local fn=""
-
-  ls $arg 2>/dev/null | while read i; do
-    fn=$arg/$i
-    if [ -d $fn ]; then
-      echo "folder: $fn";
-      recurse $fn;
-    elif [ -f $fn ]; then
-      echo "file: $fn";
-    fi;
-  done;
-}
 
 recurse_file ()
 {
@@ -116,17 +39,11 @@ recurse_file ()
   done;
 }
 
-recurse_folder ()
-{
-  local arg="$1"
-  local i=""
-  local fn=""
+if [ x$action = x-h ] || [ x$action = x ] ; then
+  echo "usage: replacer perlregexp"
+  echo "example to replace foo by bar: replacer s/foo/bar/"
+  echo "or                           : replacer s!foo!bar!"
+  exit 1
+fi
 
-  ls $arg 2>/dev/null | while read i; do
-    fn=$arg/$i
-    if [ -d $fn ]; then
-      echo "$fn";
-      recurse_folder $fn;
-    fi;
-  done;
-}
+replacer .

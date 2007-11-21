@@ -5,6 +5,7 @@
 	* replacer : replace all occurence of arg1 by arg2 in all file of the folder
 	* recurse : display all file and/or folder recursively
 	* shfunction : removed, functions added as program in bin (grepr, recurse, ...)
+	* ctafconf-install, -configuration, -uninstall: symlink removed
 
 2007-11-09 CTAF <>
 	* emacs : help: added shortcut for epita c header
