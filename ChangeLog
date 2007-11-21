@@ -7,6 +7,7 @@
 	* shfunction : removed, functions added as program in bin (grepr, recurse, ...)
 	* ctafconf-install, -configuration, -uninstall: symlink removed
 	* moved .ctafconf to .config/ctafconf (freedesktop compliant)
+	* updated README and ct-help
 
 2007-11-09 CTAF <>
 	* emacs : help: added shortcut for epita c header

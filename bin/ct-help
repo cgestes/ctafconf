@@ -5,15 +5,14 @@
 ## Login   <gestes_c@epita.fr>
 ##
 ## Started on  Mon Aug 15 01:30:05 2005 GESTES Cedric
-## Last update Mon Mar 27 03:00:10 2006 GESTES Cedric
+## Last update Wed Nov 21 11:15:41 2007 GESTES Cedric
 ##
 #FROM CTAFCONF
 #display help
 
 topic=$1
 
-
-if [ x$topic = "xconsole" ]; then
+# if [ x$topic = "xconsole" ]; then
     echo "--directory-------"
     echo "+ : next directory"
     echo "- : previous directory"
@@ -27,13 +26,14 @@ if [ x$topic = "xconsole" ]; then
     echo "gm : gmake"
     echo "ma : make clean all"
     echo "mac : make clean all check"
-    echo "fixme : affiche tous les FIXME de tous les fichiers du repertoire"
-    echo "todo : affiche tous les TODO de tous les fichiers du repertoire"
+    echo "fixme : display every FIXME of each file of the current directory"
+    echo "todo : display every TODO of each file of the current directory"
     echo "purge : remove fuckin file (~* #*)"
     echo "rpurge : recursive purge"
     echo "rpurge_clean : remove object files (.o)"
     echo "rpurge_svn : recursive purge svn file"
     echo "rpurge_cvs : recursive purge cvs file"
+    echo "replacer : recursive find and replace in each file of a folder"
     echo ""
     echo "--logiciel--------"
     echo "e : emacs"
@@ -45,10 +45,6 @@ if [ x$topic = "xconsole" ]; then
     echo "wgetr_localhtml : wget recursif + reecriture des url en local"
     echo ""
     echo "--divers----------"
-    echo "most : processus prenant le plus de proc"
-    echo "ct-esdonoff : toggle esd on and off"
-    echo "sshe : ssh epita (sshe agla)"
-    echo "sshep : ssh epita"
     echo "ct-profile : modify your profile configuration"
     echo "ct-installconf : install the ctafconf or update it"
     echo "ct-addwallpaper : add a new wallpaper into .ctafconf/perso/wallpaper"
@@ -57,15 +53,15 @@ if [ x$topic = "xconsole" ]; then
     echo "ct-save-firefox : save your firefox profile"
     echo "ct-save-thunderbird : save your thunderbird profile"
     echo "ct-repo : admin your repository (svn and cvs)"
-    echo "ct-ssh : admin your ssh connection"
+    echo "ct-ssh : define alias for ssh host"
     echo "ct-socks : set your socks password"
     echo "ct-remove-backup : remove *-prev-date file in your home directory"
     echo "ct-proxy : configure wget"
-elif [ x$topic = xepita ]; then
-    echo "epita stuff"
-else
-    echo "Choose one topic from:"
-    echo "console, epita, zshkeyboard, emacs, customization"
-fi
+# elif [ x$topic = xepita ]; then
+#     echo "epita stuff"
+# else
+#     echo "Choose one topic from:"
+#     echo "console, epita, zshkeyboard, emacs, customization"
+# fi
 
 

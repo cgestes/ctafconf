@@ -2,27 +2,60 @@
                   +--       CTAFCONF       --+
                    --+-- -- -- -- -- -- --+--
 
+
+
 ===========================================================
-INSTALL/UPDATE
+INSTALL
 ===========================================================
---Install the ctafconf, or update it (you should run ctafconf-install too)
-untar in your home directory.
+the ctafconf install all its file in .config/ctafconf. The installer will ask you which software you want to install configuration for
+
+there is two way to install the ctafconf, the first one using svn is better as it allow you to update it easily :
+>mkdir .config
+>cd .config
+>svn co https://grk.svn.sf.net/svnroot/grk ctafconf
+>cd ctafconf/bin
+>./ct-installconf
+
+the second way is more traditional, you download the tarball from the website and unpack it in .config
 > mkdir .config
 > cd .config
 > tar xvzf ctafconf-DATE.tgz
 > cd ctafconf/bin
+> ./ct-installconf
 
-> ./ct-install
 
 
---Emacs without the ctafconf
-If you only want emacs:
-  - select only emacs when installing.
+===========================================================
+UPDATE
+===========================================================
 
-  - the geek way (without using the installer)
-    mkdir ~/.config/ctafconf/perso
-    mkdir ~/.config/ctafconf/perso/semantic
-    echo "(load-file \"~/.config/ctafconf/etc/emacs/emacs\")" >> ~/.emacs
+###########################  WARNING  ###########################
+#### ALWAYS RUN ct-installconf AFTER UPDATING the ctafconf   ####
+###########################  WARNING  ###########################
+
+update the ctafconf with svn (if you used the first method to install)
+>cd .config/ctafconf
+>svn up
+>./bin/ct-installconf
+
+using a newer tarball:
+unpack the tarball in .config
+>cd .config/
+>tar xvzf ctafconf-DATE.tgz
+> cd ctafconf/bin
+> ./ct-installconf
+
+
+==========================================================
+INSTALL FOR EMACS ONLY
+==========================================================
+do everything described in the INSTALL section, but select only emacs
+
+
+if you are paranoid, and dont trust the install script:
+>mkdir ~/.config/ctafconf/perso
+>mkdir ~/.config/ctafconf/perso/semantic
+>echo "(load-file \"~/.config/ctafconf/etc/emacs/emacs\")" >> ~/.emacs
 
 
 ===========================================================
@@ -59,7 +92,7 @@ conky or torsmo           : to draw information on your desktop
 
 in console:
 most                      : pager enabling color with man
-zsh                       : the best shell ever!!! with completion on everythink
+zsh                       : the best shell ever!!! with completion on everything
 
 
 ===========================================================
@@ -93,11 +126,12 @@ It's a good framework to create our own personnal configuration
 ct-profile : configure your ctafconf profile (wallpaper, wm, mail, etc..)
 ct-installconf : reinstall la ctafconf (et l'install aussi qd mm!)
 ct-repo : admin your repository (svn and cvs)
-ct-ssh : admin your ssh connexion
+ct-ssh : create alias for ssh host
 ct-help : a litle help about the ctafconf command
 ct-date : console date reminder, usefull to remenber your gran'mother birthday
 ct-socks : set your socks password (mostly for epita)
-grepr, rpurge             : grep recursif, netoyage de fichier tmp (~,..)
+grepr, rpurge : grep recursif, netoyage de fichier tmp (~,..)
+replacer : recursive find and replace in all files in the current folder
 
 visit http://www.noshell.info for more information/help about the ctafconf
 
