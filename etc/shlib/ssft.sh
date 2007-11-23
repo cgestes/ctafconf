@@ -34,14 +34,14 @@ fi
 
 #generate a temp file
 #remove it when the script quit
-if which tempfile ; then
+if which tempfile >/dev/null 2>/dev/null; then
   tempfile=$(tempfile);
 else
   tempfile=/tmp/test$$
 fi
 
 #-o is not posix compliant
-if echo bob | xargs -o; then
+if echo " " | xargs -o 2>/dev/null; then
   xarg='xargs -o'
 else
   xarg='xargs'
