@@ -5,10 +5,12 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Sep 25 21:51:34 2005 GESTES Cedric
-## Last update Wed Nov 21 09:01:34 2007 GESTES Cedric
+## Last update Fri Nov 23 07:17:02 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
+
+mode=$1
 #parameter for read
 # readparam=""
 # echo test_bob | read -e testbob >/dev/null 2>/dev/null;
@@ -138,7 +140,19 @@ if [ -f ~/.config/ctafconf/perso/user-profile ]; then
     . ~/.config/ctafconf/perso/user-profile
 fi
 
-export SSFT_FRONTEND="text"
+if [ x$mode = x-h ] || [ x$mode = x--help ] ; then
+  echo "usage: ct-profile [mode]"
+  echo "console mode could be: console, dialog, text"
+  echo "graphic mode could be: graphic, zenity, kdialog"
+  echo "if you have problem with the default mode use text"
+  exit 0
+fi
+
+if [ x$mode = x ]; then
+  export SSFT_FRONTEND="console"
+else
+  export SSFT_FRONTEND="$mode"
+fi
 
 #export SSFT_FRONTEND=$(getvaldef "$ctafconf_interface" "text")
 

@@ -7,7 +7,8 @@
 ===========================================================
 INSTALL
 ===========================================================
-the ctafconf install all its file in .config/ctafconf. The installer will ask you which software you want to install configuration for
+the ctafconf install all its file in .config/ctafconf. The installer will ask you which software you want to install configuration for.
+/!\ if you have display problem with ct-profile or ct-installconf try 'ct-profile text' or 'ct-installconf text' or other mode see ct-installconf -h for more information/!\
 
 there is two way to install the ctafconf, the first one using svn is better as it allow you to update it easily :
 >mkdir .config

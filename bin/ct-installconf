@@ -21,6 +21,9 @@
 ## Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##
 
+
+mode=$1
+
 grkdir=~/.config/ctafconf/etc/grk
 
 #catch a signal, else termcaps shit
@@ -193,13 +196,9 @@ check_app()
   local app="$1"
   local comment="$2"
   if ! which $app 2>/dev/null >/dev/null ; then
-    echo ""
-    echo "# WARNING ############################################"
-    echo "ct-installconf: Can't find the command '$app' on your system !!!!"
-    echo "--"
-    echo $comment
-    echo "Press a key to continue..."
-    read app
+    msg="ct-installconf: Can't find the command '$app' on your system !!!!
+$comment"
+    ssft_display_message "WARNING" "$msg"
     return 1
   fi
   return 0
@@ -233,25 +232,38 @@ grk_dir ~/.config/ctafconf/perso/previous
 . ~/.config/ctafconf/bin/ct-profile
 
 if ! [ -f ~/.config/ctafconf/perso/user-profile ] ; then
-  echo "Can't find ~/.config/ctafconf/perso/user-profile directory"
-  echo "Aborting, execute ct-profile, or relauch install"
+  ssft_display_message "ERROR" "Can't find ~/.config/ctafconf/perso/user-profile directory
+Aborting, execute ct-profile, or relauch install"
   exit
 fi
 . ~/.config/ctafconf/perso/user-profile
 
 
-export SSFT_FRONTEND=text
+if [ x$mode = x-h ] || [ x$mode = x--help ] ; then
+  echo "usage: ct-installconf [mode]"
+  echo "console mode could be: console, dialog, text"
+  echo "graphic mode could be: graphic, zenity, kdialog"
+  echo "if you have problem with the default mode use text"
+  exit 0
+fi
+
+if [ x$mode = x ]; then
+  export SSFT_FRONTEND="console"
+else
+  export SSFT_FRONTEND="$mode"
+fi
 
 check_app "env" "env allow colormake/gmake/svn/cvs to work."
 check_app "bash" "bash is needed for colormake/gmake/svn/cvs"
 check_app "zsh" "With zsh you will get a better shell although this is optional"
-check_app "perl" "needed for colormake/gmake/svn/cvs"
-check_app "sed" "needed by lot of shell script"
-check_app "awk" "needed by lot of shell script"
-check_app "xargs" "needed by lot of shell script"
-check_app "diff" "needed by lot of shell script"
-check_app "cut" "needed by lot of shell script"
-check_app "cal" "needed by lot ct-date to display reminding events"
+check_app "perl" "perl is needed for colormake/gmake/svn/cvs"
+check_app "sed" "sed is needed by lot of shell script"
+check_app "awk" "awk is needed by lot of shell script"
+check_app "xargs" "xargs is needed by lot of shell script"
+check_app "diff" "diff is needed by lot of shell script"
+check_app "cut" "cut is needed by lot of shell script"
+check_app "cal" "cal is needed by lot ct-date to display reminding events"
+check_app "most" "most replace less, better pager, it allow man page coloration"
 
 grk_install_choice
 
