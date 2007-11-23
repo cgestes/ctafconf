@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Sep 25 21:51:34 2005 GESTES Cedric
-## Last update Fri Nov 23 07:17:02 2007 GESTES Cedric
+## Last update Fri Nov 23 07:22:44 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -153,6 +153,8 @@ if [ x$mode = x ]; then
 else
   export SSFT_FRONTEND="$mode"
 fi
+
+echo "using mode: $SSFT_FRONTEND, try -h for help about mode, or if that one crash!"
 
 #export SSFT_FRONTEND=$(getvaldef "$ctafconf_interface" "text")
 
