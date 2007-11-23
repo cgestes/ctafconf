@@ -34,7 +34,8 @@ fi
 
 #generate a temp file
 #remove it when the script quit
-tempfile=`tempfile 2>/dev/null` || tempfile=/tmp/test$$
+tempfile=`tempfile 2>/dev/null` 2>/dev/null || tempfile=/tmp/test$$
+
 trap "rm -f $tempfile" 0 1 2 5 15
 
 # Try to load the real gettext.sh functions or define fake ones
