@@ -1,6 +1,7 @@
 2007-11-23 CTAF <>
 	* fn : find name, script encapsulating find . -name
 	* emacs : template replace GPLv2 by GPLv3
+	* ct-ssh : bug: empty command doesnt work
 
 2007-11-21 CTAF <>
 	* emacs : invert F12 and S-F12 to scroll up and down in the other window

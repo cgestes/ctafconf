@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Mon Sep 26 04:19:16 2005 GESTES Cedric
-## Last update Wed Nov 21 09:00:25 2007 GESTES Cedric
+## Last update Fri Nov 23 05:42:50 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -27,7 +27,7 @@ ssh_params=
 
 ssh_list ()
 {
-  grep "Host " $sshconfig
+  grep "Host " $sshconfig | cut
 }
 
 ssh_connect ()
@@ -94,8 +94,6 @@ ssh_add ()
     SSFT_DEFAULT=""
     if ssft_read_string "ssh command" "If you want, you can specify a command that will be executed on the remote server after you logon (ex ssh agla, /usr/bin/zsh, ...)"; then
       command=$SSFT_RESULT;
-    else
-      return;
     fi
 
     echo "" >>$sshconfig
@@ -104,8 +102,10 @@ ssh_add ()
     echo "  HostName $server" >>$sshconfig
     echo "  Port $port" >>$sshconfig
     echo "  User $user" >>$sshconfig
-    echo "  PermitLocalCommand yes">>$sshconfig
-    echo "  LocalCommand $command" >>$sshconfig
+    if [ x$command != x ]; then
+      echo "  PermitLocalCommand yes">>$sshconfig
+      echo "  LocalCommand $command" >>$sshconfig
+    fi
     ssft_display_message "Success" "Alias successfully added to ~/.ssh/config"
 }
 
