@@ -30,6 +30,11 @@ DOCUMENTATION:
   - swf : install/change wm, change term,..
   - A MAN PAGE
 
+REPLACER:
+  - compute change into .replace.bak
+  - display diff between real file and .replace.bak
+  - if notest is passed apply change
+
 CT-REPO/CT-SSH:
   - cleanup: personnal info (sshe) => ssh_forward (for repo at school)
   - ct-repo : use ssft
