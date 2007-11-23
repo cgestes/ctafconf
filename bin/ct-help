@@ -5,7 +5,7 @@
 ## Login   <gestes_c@epita.fr>
 ##
 ## Started on  Mon Aug 15 01:30:05 2005 GESTES Cedric
-## Last update Wed Nov 21 11:29:11 2007 GESTES Cedric
+## Last update Fri Nov 23 04:44:20 2007 GESTES Cedric
 ##
 #FROM CTAFCONF
 #display help
@@ -34,6 +34,7 @@ topic=$1
     echo "rpurge_svn : recursive purge svn file"
     echo "rpurge_cvs : recursive purge cvs file"
     echo "replacer : recursive find and replace in each file of a folder"
+    echo "fn : find name, search for a filename in the current folder"
     echo ""
     echo "--logiciel--------"
     echo "e : emacs"
