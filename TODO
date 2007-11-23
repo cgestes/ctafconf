@@ -7,12 +7,9 @@ V1.1.0:
   - ct-repo/ct-date : use ssft
 
 V1.0.44: goal: rock stable
-  - shell: define global color var to use in all other script (and prompt)
   - colormake : replace white by grey for unuseful stuff
   - test on freebsd/netbsd/openbsd/cygwin/windows/osx
-  - emacs: copy doesnt work in console at school (disable cua in some case?)
   - install .xdefaults if none present in ~/
-  - detect if the ctafconf-install need to be launched
 
 ########################################
 ###############  TODO  #################
@@ -48,6 +45,7 @@ MINE:
   - diff .mine file /?/ (use diff3)
 
 CT-DATE:
+  - add color
   - add support for TODO
   - add remove (from a list)
   - add event that remove themthelve
@@ -59,8 +57,6 @@ CTAFCONF:
   - ct-add-wallpaper : ask if we should change the wallpaper now
   - ct-add-wallpaper : dont overwrite if a file with the same name already exist
   - define default program: navigateur/mail reader/term/pager/.../EDITOR/..
-  - specify interface in argument to ct-profile, ct-installconf, ...
-    add help for ct-profile, ct-installconf (for interface)
 
 XSESSION:
 
@@ -69,13 +65,9 @@ SHELL:
 
 EMACS: ## SEE .ctafconf/etc/emacs/startup.emacs ##
 
-ENLIGHTENMENT:
-  - Enhance integration with ctafconf(wallpapers/bindkeys/E16-Gnome) (gsetroot)
-
 BONUS:
   - if user-profile and user-profile.csh exist ask which param to modify
   - use sabayon for gnome-conf/ff-conf
-  - test with dash (posix shell, or busybox)
   - conky then torsmo..
   - test if it work with space in /home/ct af/ for example
 
