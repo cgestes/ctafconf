@@ -34,10 +34,13 @@ fi
 
 #generate a temp file
 #remove it when the script quit
-tempfile=`tempfile 2>/dev/null` 2>/dev/null || tempfile=/tmp/test$$
+if which tempfile ; then
+  tempfile=$(tempfile);
+else
+  tempfile=/tmp/test$$
+fi
 
 trap "rm -f $tempfile" 0 1 2 5 15
-
 # Try to load the real gettext.sh functions or define fake ones
 # if [ -n "`which gettext.sh 2> /dev/null`" ]; then
 #   # ZSH fix, set NOFUNCTIONARGZERO before loading
@@ -282,7 +285,7 @@ ssft_display_message() {
 ssft_display_error() {
   # MENU strings
   ssft_set_textdomain
-  _l_CONTINUE_MSG="`gettext "Press ENTER to CONTINUE"`"
+  _l_CONTINUE_MSG="`gettext 'Press ENTER to CONTINUE'`"
   ssft_reset_textdomain
 
   # Local variables
@@ -353,7 +356,7 @@ ssft_display_emsg(){
 ssft_file_selection() {
   # MENU strings
   ssft_set_textdomain
-  _l_FNAME_STR="`gettext "Filename"`"
+  _l_FNAME_STR="`gettext 'Filename'`"
   ssft_reset_textdomain
 
   # Local variables
@@ -1045,8 +1048,13 @@ ssft_yesno() {
   ;;
   dialog)
           if [ x$_l_default = xno ]; then
-              dialog --title "$_l_title" --defaultno --yesno "$_l_question" 20 70 2> /dev/null;
+              if dialog -h | grep defaultno >/dev/null 2>/dev/null; then
+                dialog --title "$_l_title" --defaultno --yesno "$_l_question" 20 70 2> /dev/null;
+              else
+                dialog --title "$_l_title" --yesno "$_l_question" 20 70 no 2> /dev/null;
+              fi
               _l_ret=$?
+
           else
               dialog --title "$_l_title" --yesno "$_l_question" 20 70 2> /dev/null;
               _l_ret=$?
