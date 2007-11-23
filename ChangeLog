@@ -7,6 +7,7 @@
 	* ct-installconf : complete support of ssft
 	* ct-installconf/ct-profile : default ssft to console, not text
 	* ct-installconf/ct-profile : argument to change mode
+	* shell : mail notification work at epita
 
 2007-11-21 CTAF <>
 	* emacs : invert F12 and S-F12 to scroll up and down in the other window
