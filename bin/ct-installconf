@@ -253,7 +253,7 @@ else
   export SSFT_FRONTEND="$mode"
 fi
 
-echo "using mode: $SSFT_FRONTEND, try -h for help about mode, or if that one crash!"
+echo "using mode: $SSFT_FRONTEND, try -h for help about mode, or if that one doesnt work"
 
 check_app "env" "env allow colormake/gmake/svn/cvs to work."
 check_app "bash" "bash is needed for colormake/gmake/svn/cvs"
