@@ -31,6 +31,12 @@
 if [ x$SSFT_LOADED = xyes ]; then
   return
 fi
+
+#generate a temp file
+#remove it when the script quit
+tempfile=`tempfile 2>/dev/null` || tempfile=/tmp/test$$
+trap "rm -f $tempfile" 0 1 2 5 15
+
 # Try to load the real gettext.sh functions or define fake ones
 # if [ -n "`which gettext.sh 2> /dev/null`" ]; then
 #   # ZSH fix, set NOFUNCTIONARGZERO before loading
@@ -248,7 +254,7 @@ ssft_display_message() {
     kdialog --title "$_l_title" --msgbox "$_l_message" 2> /dev/null;
   ;;
   dialog)
-    dialog --stdout --title "$_l_title" --msgbox "$_l_message" 20 70;
+    dialog --title "$_l_title" --msgbox "$_l_message" 20 70  2> /dev/null;
   ;;
   text)
     ssft_print_text_title "$_l_title"
@@ -302,7 +308,7 @@ ssft_display_error() {
     kdialog --title "$_l_title" --error "$_l_message" 2> /dev/null;
   ;;
   dialog)
-    dialog --stdout --title "$_l_title" --msgbox "$_l_message" 20 70;
+    dialog --title "$_l_title" --msgbox "$_l_message" 20 70 2> /dev/null;
   ;;
   text)
     ssft_print_text_title "$_l_title" >&2
@@ -371,7 +377,8 @@ ssft_file_selection() {
     _l_fpath=$( kdialog --title "$_l_title" --getopenfilename "`pwd`" "*" 2> /dev/null);
   ;;
   dialog)
-    _l_fpath=$( dialog --stdout --title "$_l_title" --fselect "`pwd`" 20 70 );
+    dialog --title "$_l_title" --fselect "`pwd`" 20 70 2> $tempfile;
+    _l_fpath=$( cat $tempfile );
   ;;
   text)
     ssft_print_text_title "$_l_title"
@@ -457,7 +464,7 @@ ssft_progress_bar() {
       echo "$_l_line" | sed -e '/^[0-9][0-9]*$/! {
         s/^\(.*\)$/XXX\n\1\nXXX/;
       };'
-    done | dialog --stdout --title "$_l_title" --gauge "" 20 70 $_l_percent;
+    done | dialog --title "$_l_title" --gauge "" 20 70 $_l_percent 2> /dev/null;
   ;;
   text|*)
     ssft_print_text_title "$_l_title"
@@ -521,8 +528,9 @@ ssft_read_string() {
                  "$_l_default");
   ;;
   dialog)
-    _l_string=$( dialog --stdout --title "$_l_title" --inputbox \
-                 "$_l_question" 20 70 "$_l_default");
+    dialog --title "$_l_title" --inputbox \
+                 "$_l_question" 20 70 "$_l_default" 2> $tempfile;
+    _l_string=$( cat $tempfile );
   ;;
   text)
     if [ -n "$_l_default" ]; then
@@ -584,7 +592,8 @@ ssft_read_password() {
     _l_string=$( kdialog --title "$_l_title" --password "$_l_question" )
   ;;
   dialog)
-    _l_string=$( dialog --stdout --insecure --title "$_l_title" --passwordbox "$_l_question" 20 70 )
+    dialog --insecure --title "$_l_title" --passwordbox "$_l_question" 20 70 2> $tempfile
+    _l_string=$( cat $tempfile );
   ;;
   text)
     ssft_print_text_title "$_l_title"
@@ -713,9 +722,10 @@ ssft_select_multiple() {
         _l_ditems="$_l_ditems '$_l_item' '' $_l_selected"
       fi
     done
-    _l_out=$( echo "$_l_ditems" \
-      | xargs dialog --stdout --title "$_l_title" \
-      --checklist "$_l_question" 20 70 5 2> /dev/null );
+      echo "$_l_ditems" \
+      | xargs dialog --title "$_l_title" \
+      --checklist "$_l_question" 20 70 5 2> $tempfile;
+    _l_out=$( cat $tempfile );
     _l_string=$(echo $_l_out | sed -e 's/^"//; s/"$//; s/" "/\n/g;');
   ;;
   text)
@@ -903,9 +913,10 @@ ssft_select_single() {
         _l_ditems="$_l_ditems '$_l_item' '' $_l_selected"
       fi
     done
-    _l_out=$( echo "$_l_ditems" \
-      | xargs dialog --stdout --title "$_l_title" \
-      --radiolist "$_l_question" 20 70 5 2> /dev/null );
+      echo "$_l_ditems" \
+      | xargs dialog --title "$_l_title" \
+      --radiolist "$_l_question" 20 70 5 2> $tempfile;
+    _l_out=$( cat $tempfile );
     _l_string=$(echo $_l_out | sed -e 's/^"//; s/"$//; s/" "/\n/g;');
   ;;
   text)
@@ -1033,10 +1044,10 @@ ssft_yesno() {
   ;;
   dialog)
           if [ x$_l_default = xno ]; then
-              dialog --stdout --title "$_l_title" --defaultno --yesno "$_l_question" 20 70;
+              dialog --title "$_l_title" --defaultno --yesno "$_l_question" 20 70 2> /dev/null;
               _l_ret=$?
           else
-              dialog --stdout --title "$_l_title" --yesno "$_l_question" 20 70;
+              dialog --title "$_l_title" --yesno "$_l_question" 20 70 2> /dev/null;
               _l_ret=$?
           fi
   ;;
@@ -1107,7 +1118,7 @@ ssft_show_file() {
     kdialog --title "$_l_title" --textbox "$_l_file" 2> /dev/null;
   ;;
   dialog)
-    dialog --stdout --title "$_l_title" --textbox "$_l_file" 20 70;
+    dialog --title "$_l_title" --textbox "$_l_file" 20 70 2> /dev/null;
   ;;
   text)
     ssft_print_text_title "$_l_title"
