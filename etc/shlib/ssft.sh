@@ -682,7 +682,7 @@ ssft_select_multiple() {
       fi
     done
     _l_out=$(echo "$_l_zitems" \
-      | xargs zenity --title "$_l_title" --list --checklist --text "$_l_question" \
+      | xargs -o zenity --title "$_l_title" --list --checklist --text "$_l_question" \
       --column "" --column "$_l_OPTIONS_STR" 2> /dev/null)
     _l_string=$(echo $_l_out | sed -n -e '/^..*$/ {
       s/|/\n/g;
@@ -707,7 +707,7 @@ ssft_select_multiple() {
       fi
     done
     _l_out=$(echo "$_l_zitems" \
-      | xargs kdialog --title "$_l_title" --checklist "$_l_question" \
+      | xargs  -o kdialog --title "$_l_title" --checklist "$_l_question" \
         2> /dev/null)
     _l_string=$(echo $_l_out | sed -e 's/^"//; s/"$//; s/" "/\n/g;');
   ;;
@@ -727,7 +727,7 @@ ssft_select_multiple() {
       fi
     done
       echo "$_l_ditems" \
-      | xargs dialog --title "$_l_title" \
+      | xargs  -o dialog --title "$_l_title" \
       --checklist "$_l_question" 20 70 5 2> $tempfile;
     _l_out=$( cat $tempfile );
     _l_string=$(echo $_l_out | sed -e 's/^"//; s/"$//; s/" "/\n/g;');
@@ -880,7 +880,7 @@ ssft_select_single() {
       fi
     done
     _l_string=$(echo "$_l_zitems" \
-      | xargs zenity --title "$_l_title" --list --radiolist --text "$_l_question" \
+      | xargs  -o zenity --title "$_l_title" --list --radiolist --text "$_l_question" \
       --column "" --column "$_l_OPTIONS_STR" 2> /dev/null)
   ;;
   kdialog)
@@ -899,7 +899,7 @@ ssft_select_single() {
       fi
     done
     _l_out=$(echo "$_l_zitems" \
-      | xargs kdialog --title "$_l_title" --radiolist "$_l_question" \
+      | xargs -o  kdialog --title "$_l_title" --radiolist "$_l_question" \
         2> /dev/null)
     _l_string=$(echo $_l_out | sed -e 's/^"//; s/"$//; s/" "/\n/g;');
   ;;
@@ -918,7 +918,7 @@ ssft_select_single() {
       fi
     done
       echo "$_l_ditems" \
-      | xargs dialog --title "$_l_title" \
+      | xargs -o  dialog --title "$_l_title" \
       --radiolist "$_l_question" 20 70 5 2> $tempfile;
     _l_out=$( cat $tempfile );
     _l_string=$(echo $_l_out | sed -e 's/^"//; s/"$//; s/" "/\n/g;');
