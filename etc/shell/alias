@@ -126,10 +126,13 @@ alias_set sudo 'sudo -H'
 #AFTER HERE
 #PLATFORM SPECIFIC STUFF IS USED
 
-alias_set l 'ls -F --color=tty'
-alias_set ll 'ls -lF --color=tty'
-alias_set la 'ls -lAF --color=tty'
-alias_set lg 'ls -F --color=tty | grep'
+alias_set l 'ls -F --color=auto'
+alias_set ll 'ls -lF --color=auto'
+alias_set la 'ls -lAF --color=auto'
+alias_set lg 'ls -F --color=auto | grep'
+
+alias_set grep 'grep --color=auto'
+alias_set grep_real '`which grep`'
 
 #different plateform test
 test -f ~/.config/ctafconf/etc/shell/alias.`uname` && source ~/.config/ctafconf/etc/shell/alias.`uname`

@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Oct  2 07:23:17 2005 GESTES Cedric
-## Last update Wed Nov 21 10:06:15 2007 GESTES Cedric
+## Last update Fri Nov 23 06:41:40 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -15,7 +15,7 @@
 grepr ()
 {
   arg=$@
-  grep -r -n -H $arg . | grep -v "/.svn/" | grep -v ".svn-base:" | grep -v "^grep:" | ~/.config/ctafconf/bin/colorgrepr.pl 2>/dev/null
+  grep --color=always -r -n -H $arg . | grep -v "/.svn/" | grep -v ".svn-base:" | grep -v "^grep:" | ~/.config/ctafconf/bin/colorgrepr.pl 2>/dev/null
 }
 
 grepr $@

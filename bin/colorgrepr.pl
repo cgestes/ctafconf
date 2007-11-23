@@ -41,7 +41,7 @@ $col_blink = 	    "\033[05m";
 
 # Customize colors here...
 #
-$col_default =      $col_norm . $col_brighten;
+$col_default =      $col_norm; # . $col_brighten;
 $col_gcc =          $col_brigthen . $col_purple ;
 $col_make =         $col_brighten . $col_cyan;
 $col_filename =     $col_brighten . $col_brown;
