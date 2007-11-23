@@ -5,7 +5,7 @@
 ## Login   <gestes_c@epita.fr>
 ##
 ## Started on  Mon Aug 15 01:30:05 2005 GESTES Cedric
-## Last update Wed Nov 21 11:15:41 2007 GESTES Cedric
+## Last update Wed Nov 21 11:29:11 2007 GESTES Cedric
 ##
 #FROM CTAFCONF
 #display help
@@ -47,11 +47,7 @@ topic=$1
     echo "--divers----------"
     echo "ct-profile : modify your profile configuration"
     echo "ct-installconf : install the ctafconf or update it"
-    echo "ct-addwallpaper : add a new wallpaper into .ctafconf/perso/wallpaper"
-    echo "ct-save-ssh : save your ssh configuration"
-    echo "ct-save-gaim : save your gaim profile"
-    echo "ct-save-firefox : save your firefox profile"
-    echo "ct-save-thunderbird : save your thunderbird profile"
+    echo "ct-addwallpaper : add a new wallpaper into .config/ctafconf/perso/wallpaper"
     echo "ct-repo : admin your repository (svn and cvs)"
     echo "ct-ssh : define alias for ssh host"
     echo "ct-socks : set your socks password"

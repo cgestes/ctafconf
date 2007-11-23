@@ -4,15 +4,15 @@
 
 V1.1.0:
   - support uninstall
-  - ct-repo/ct-ssh/ct-date : use ssft
+  - ct-repo/ct-date : use ssft
 
-V1.0.42: goal: rock stable
+V1.0.44: goal: rock stable
+  - shell: define global color var to use in all other script (and prompt)
   - colormake : replace white by grey for unuseful stuff
   - test on freebsd/netbsd/openbsd/cygwin/windows/osx
   - emacs: copy doesnt work in console at school (disable cua in some case?)
   - install .xdefaults if none present in ~/
   - detect if the ctafconf-install need to be launched
-  - xsession/xinitrc try and see
 
 ########################################
 ###############  TODO  #################

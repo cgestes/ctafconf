@@ -5,7 +5,7 @@
 ## Login   <goctaf@gmail.com>
 ##
 ## Started on  Fri Mar 31 19:54:39 2006 GESTES Cedric
-## Last update Wed Nov 21 10:51:38 2007 GESTES Cedric
+## Last update Wed Nov 21 11:28:02 2007 GESTES Cedric
 ##
 ##use: http://www.intuitive.com/wicked/showscript.cgi?030-agenda.sh
 ##use: http://aplawrence.com/Bofcusm/1455.html
@@ -259,10 +259,8 @@ if [ $# -gt 0 ]; then
 fi
 
 if [ ! -e $agendafile ] ; then
-  echo "You don't seem to have an .ctafconf/perso/reminder file." >&2
-  echo "To remedy this, please use 'ct-date add' to add events" >&2
-  echo "or simply 'touch ~/.config/ctafconf/perso/reminder'"
-  echo "if you dont want to use the date reminder" >&2
+  echo "ct-date: no '~/.config/ctafconf/perso/reminder' file found" >&2
+  echo "use ct-date to add events or create that empty file to remove the warning" >&2
   exit 1
 fi
 
