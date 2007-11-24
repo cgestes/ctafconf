@@ -5,7 +5,7 @@
 ## Login   <root@epita.fr>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 root
-## Last update Thu Nov  1 09:56:12 2007 GESTES Cedric
+## Last update Sat Nov 24 07:58:17 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -19,6 +19,8 @@ alias cd='nocorrect cd'
 alias cp='nocorrect cp'
 alias mkdir='nocorrect mkdir'
 alias man='nocorrect man'
-alias find='noglob find'
 alias gcc='nocorrect gcc'
 alias mkdir='nocorrect mkdir'
+
+#no pattern matching (*, etc are not replaced) on those commands:
+alias find='noglob find'

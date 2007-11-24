@@ -142,6 +142,7 @@ test x$ctafconf_config != x && test -f ~/.config/ctafconf/etc/shell/alias.$ctafc
 
 #ctafconf log
 alias_set ct-log "$PAGER ~/.config/ctafconf/perso/ctafconf.log"
+alias_set ct-env ". ~/.config/ctafconf/bin/ct-env"
 
 ###UNUSED UN-USEFULL###
 #alias_set reports "w3m http://www.lrde.epita.fr/~akim/compil/reports.html"

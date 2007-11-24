@@ -233,7 +233,8 @@ grk_dir ~/.config/ctafconf/perso/previous
 
 if ! [ -f ~/.config/ctafconf/perso/user-profile ] ; then
   ssft_display_message "ERROR" "Can't find ~/.config/ctafconf/perso/user-profile directory
-Aborting, execute ct-profile, or relauch install"
+Aborting, execute ct-profile, or relauch install
+PS: the default location of the ctafconf changed from .ctafconf to .config/ctafconf, you may have to do mkdir .config; mv ~/.ctafconf ~/.config/ctafconf and then call ./.config/ctafconf/bin/ct-installconf in order to make it work again"
   exit
 fi
 . ~/.config/ctafconf/perso/user-profile
@@ -266,6 +267,7 @@ check_app "diff" "diff is needed by lot of shell script"
 check_app "cut" "cut is needed by lot of shell script"
 check_app "cal" "cal is needed by lot ct-date to display reminding events"
 check_app "most" "most replace less, better pager, it allow man page coloration"
+check_app "dialog" "dialog allow script to use a window system in console, it could be used in all ctafconf program"
 
 grk_install_choice
 

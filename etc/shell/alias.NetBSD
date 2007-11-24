@@ -1,0 +1,20 @@
+#!/bin/sh
+## alias.epita for ctafconf in /ctaf/conf/ctafconf/zsh
+##
+## Made by gestes_c
+## Login   <gestes_c@epita.fr>
+##
+## Started on  Fri Feb 18 01:52:43 2005 root
+## Last update Fri Nov 23 22:48:16 2007 GESTES Cedric
+##
+##CTAFCONF
+
+###################
+## commands aliases
+###################
+
+alias_unset ll && alias_set ll 'gls -F --color=tty -l'
+alias_unset la && alias_set la 'gls -F --color=tty -la'
+alias_unset l && alias_set l 'gls -F --color=tty -a'
+alias_unset lg && alias_set lg 'gls -F --color=tty | grep'
+

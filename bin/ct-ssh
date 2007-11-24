@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Mon Sep 26 04:19:16 2005 GESTES Cedric
-## Last update Fri Nov 23 16:28:21 2007 GESTES Cedric
+## Last update Fri Nov 23 16:35:48 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -93,16 +93,15 @@ ssh_add ()
 
     SSFT_DEFAULT=""
     if ssft_read_string "ssh command" "If you want, you can specify a command that will be executed on the remote server after you logon (ex ssh agla, /usr/bin/zsh, ...)"; then
-      command=$SSFT_RESULT;
+      command="$SSFT_RESULT";
     fi
-
     echo "" >>$sshconfig
     echo "# Added by ct-ssh from the ctafconf" >>$sshconfig
     echo "Host $name" >>$sshconfig
     echo "  HostName $server" >>$sshconfig
     echo "  Port $port" >>$sshconfig
     echo "  User $user" >>$sshconfig
-    if [ x$command != x ]; then
+    if [ "x$command" != x ]; then
       echo "  PermitLocalCommand yes">>$sshconfig
       echo "  LocalCommand $command" >>$sshconfig
     fi

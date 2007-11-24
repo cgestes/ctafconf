@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Wed Oct 12 00:20:30 2005 GESTES Cedric
-## Last update Sat May 20 10:32:28 2006 GESTES Cedric
+## Last update Sat Nov 24 07:31:27 2007 GESTES Cedric
 ##
 ##CTAFCONF
 ###
@@ -26,22 +26,6 @@
 # var_set var value
 # var_unset var
 
-# arg_get var num
-# arg_getall var
-# arg_getinterval var numdeb numfin
-
-# ift type fichier 'action1 \\
-# action2; action3; \\
-# action4'
-
-# ifeq string1 string2 'action'
-# ifne string1 string2 'action'
-# ifwhich program 'action'
-# ifnwhich program 'action'
-
-# for_int var deb fin 'action'
-# for_list var 'list elt2 elt3' 'action'
-
 #######################
 test x$1 = xcsh && goto csh_functions
 
@@ -55,7 +39,7 @@ env_unset() {
 }
 
 env_append() {
-  eval $1=\${$1:+\$$1${2:+:}}\$2 export $1
+  eval $1=\${$1:+\$$1${2:+:}}\$2 export $1;
 }
 
 env_prepend() {
@@ -85,12 +69,6 @@ var_set() {
 var_unset() {
   unset "$1"
 }
-
-# ift() {
-#   if [ $1 ] ; then
-#     eval $2
-#   fi
-# }
 
 null_which() {
   which $1 >/dev/null 2>/dev/null
@@ -123,8 +101,5 @@ alias var_set 'set \!:1=\!:2'
 alias var_unset 'unset \!:1'
 alias null_which 'which \!* >&/dev/null'
 alias null_cmd 'eval \!* >&/dev/null'
-# alias ift 'if ( { test \!* } ) then'
-# alias iftelse 'echo else; else'
-# alias iftend 'echo endif;endif'
 
 

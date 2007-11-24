@@ -6,7 +6,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Tue Apr 11 12:32:11 2006 GESTES Cedric
-## Last update Wed Apr 12 06:41:41 2006 GESTES Cedric
+## Last update Sat Nov 24 08:37:25 2007 GESTES Cedric
 ##
 
 #--function
@@ -75,6 +75,9 @@ xsession_uninstall()
 xsession_alwaysinstall()
 {
     #nothing to do
-    grk_mine xsession
-    return 0
+#   if ! [ -f ~/.Xdefaults ]; then
+#     grk_file etc/xsession/Xdefaults ~/.Xdefaults Xdefaults
+#   fi
+  grk_mine xsession
+  return 0
 }
