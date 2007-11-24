@@ -28,18 +28,17 @@ dir=~/.config/ctafconf/perso/env
 
 . ~/.config/ctafconf/etc/shlib/ssft.sh
 
+#list active file
 env_list_active()
 {
   local i
 
-  ancdir=$(pwd)
-  cd $dir
   ls $dir 2>/dev/null | grep '.env$' | while read i; do
     echo $i
   done | sed -e "s/.env//" 2>/dev/null;
-  cd $ancdir
 }
 
+#list all, included sysenv files
 env_list()
 {
   local i
@@ -55,7 +54,7 @@ env_list()
 
 env_update()
 {
-  for i in $dir/*.env; do
+  ls $dir 2>/dev/null | grep '.env$' | while read i; do
     . $i
   done;
   ssft_display_message 'ct-env' "your environment have been updated, relaunch your terminal to get your new environment.
@@ -79,7 +78,9 @@ env_add()
 env_select()
 {
   SSFT_DEFAULT=`env_list_active`
-  ssft_select_multiple ct-env "enable/disable environment (warning: cancel doesnt work, its the same as OK)" `env_list`;
+  ssft_select_multiple ct-env "enable/disable environment (warning: cancel doesnt work, its the same as OK)
+PS: .sys file, are provided by the ctafconf and are update when you call ct-installconf
+" `env_list`;
 
   env_list | while read line; do
     if echo $SSFT_RESULT | grep $line >/dev/null 2>/dev/null; then
@@ -123,7 +124,9 @@ env_edit()
 {
   local edenv;
 
-  ssft_select_single ct-env "choose the environment you want to edit" `env_list`
+  ssft_select_single ct-env "choose the environment you want to edit
+PS: .sys environment, are provided by the ctafconf and are update when you call ct-installconf
+" `env_list`
   edenv=$SSFT_RESULT
   if [ -f "$dir/$edenv.env" ]; then
     $EDITOR "$dir/$edenv.env";

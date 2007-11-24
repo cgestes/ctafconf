@@ -5,14 +5,16 @@
 ## Login   <gestes_c@epita.fr>
 ##
 ## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
-## Last update Thu Feb 15 05:20:43 2007 GESTES Cedric
+## Last update Sat Nov 24 12:55:40 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
+if [[ $- != *i* ]] || [ a$HOST = agate-ssh ]; then
+    return
+fi
 
 #include global environment
 [ -f ~/.config/ctafconf/etc/shell/env ] && . ~/.config/ctafconf/etc/shell/env sh
-
 
 export HISTSIZE=1000
 export HISTFILE=~/.zshhistory

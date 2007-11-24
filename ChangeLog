@@ -1,5 +1,9 @@
 2007-11-24 CTAF <>
 	* ct-env : new program to manage your environment
+	* zshenv : dont execute if non interactive or on forbiden host
+	* mom.pl : merge'o'matic
+	* env.sys: new folder etc/shell/env.sys for system provided env
+	* env : use the new environment
 
 2007-11-23 CTAF <>
 	* fn : find name, script encapsulating find . -name

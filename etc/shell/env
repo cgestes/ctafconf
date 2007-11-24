@@ -5,7 +5,7 @@
 ## Login   <goctaf@gmail.com>
 ##
 ## Started on  Fri Sep 30 22:17:33 2005 GESTES Cedric
-## Last update Sat Nov 24 08:13:49 2007 GESTES Cedric
+## Last update Sat Nov 24 12:56:53 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -93,4 +93,4 @@ test -f ~/.config/ctafconf/etc/shell/env.`uname` && source ~/.config/ctafconf/et
 #sourcing plateform spécifik
 test x$ctafconf_config != x && test -f ~/.config/ctafconf/etc/shell/env.$ctafconf_config && source ~/.config/ctafconf/etc/shell/env.$ctafconf_config
 
-source ~/.config/ctafconf/perso/env/*.env
+ls ~/.config/ctafconf/perso/env | grep ".env$" && source ~/.config/ctafconf/perso/env/*.env

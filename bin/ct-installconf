@@ -204,6 +204,32 @@ $comment"
   return 0
 }
 
+#env merge'o'matic
+env_mom()
+{
+  dirsys=~/.config/ctafconf/etc/shell/env.sys
+  dirusr=~/.config/ctafconf/perso/env
+  local tmp;
+  if ! [ -d $dirusr ]; then
+    mkdir $dirusr >/dev/null 2>/dev/null
+  fi
+  ls $dirsys/ | grep ".sys.env$" | while read fn; do
+    if [ -f $dirusr/$fn ]; then
+      tmp=$dirusr/$fn".tmp";
+      mv $dirusr/$fn $tmp
+      ~/.config/ctafconf/bin/mom.pl $dirsys/$fn $tmp >$dirusr/$fn
+      rm $tmp
+    elif [ -f $dirusr/$fn.disable ]; then
+      tmp=$dirusr/$fn".disable.tmp";
+      mv $dirusr/$fn".disable" $tmp
+      ~/.config/ctafconf/bin/mom.pl $dirsys/$fn $tmp >$dirusr/$fn".disable"
+      rm $tmp
+    else
+      cp $dirsys/$fn $dirusr/$fn.disable
+    fi
+  done;
+}
+
 #############################################################################
 ##START
 #############################################################################
@@ -268,6 +294,8 @@ check_app "cut" "cut is needed by lot of shell script"
 check_app "cal" "cal is needed by lot ct-date to display reminding events"
 check_app "most" "most replace less, better pager, it allow man page coloration"
 check_app "dialog" "dialog allow script to use a window system in console, it could be used in all ctafconf program"
+
+env_mom
 
 grk_install_choice
 
