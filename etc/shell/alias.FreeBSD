@@ -5,7 +5,7 @@
 ## Login   <gestes_c@epita.fr>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 root
-## Last update Wed Nov  7 23:57:31 2007 cedric gestes
+## Last update Sat Nov 24 08:43:19 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -14,13 +14,8 @@
 ## commands aliases
 ###################
 
-#test x`uname` = xNetBSD && alias_set ls '/u/dp/public/arch/i386-NetBSD/bin/gnu-ls -F --color=tty'
-
-
 alias_unset ll && alias_set ll 'ls -FlG'
 alias_unset la && alias_set la 'ls -FlaG'
 alias_unset l && alias_set l 'ls -FaG'
 alias_unset lg && alias_set lg 'ls -FG | grep'
-
-#alias mandp$sh_aliaseq'man -M "`cat /u/dp/public/etc/dp_manpath 2>/dev/null`"'
 

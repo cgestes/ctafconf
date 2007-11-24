@@ -5,7 +5,7 @@
 ## Login   <gestes_c@epita.fr>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 root
-## Last update Fri Nov 23 22:48:16 2007 GESTES Cedric
+## Last update Sat Nov 24 08:43:33 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -13,8 +13,13 @@
 ## commands aliases
 ###################
 
-alias_unset ll && alias_set ll 'gls -F --color=tty -l'
-alias_unset la && alias_set la 'gls -F --color=tty -la'
-alias_unset l && alias_set l 'gls -F --color=tty -a'
-alias_unset lg && alias_set lg 'gls -F --color=tty | grep'
+alias_unset ll && alias_set ll 'ls -FlG'
+alias_unset la && alias_set la 'ls -FlaG'
+alias_unset l && alias_set l 'ls -FaG'
+alias_unset lg && alias_set lg 'ls -FG | grep'
+
+# alias_unset ll && alias_set ll 'gls -F --color=tty -l'
+# alias_unset la && alias_set la 'gls -F --color=tty -la'
+# alias_unset l && alias_set l 'gls -F --color=tty -a'
+# alias_unset lg && alias_set lg 'gls -F --color=tty | grep'
 

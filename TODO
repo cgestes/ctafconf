@@ -14,3 +14,14 @@ V1.0.44: goal: rock stable
 ###############  TODO  #################
 ########################################
 see the bug tracker at www.sf.net/projects/grk
+
+
+ct-env:
+  - copy etc/env/sys/*.env in perso/env/*.env.sys[.disable]
+  - dont allow .env.sys to be edited
+  - source .env.sys before .env
+  - if user want to edit, .env.sys should be copied to .env
+  - avoid ct-env to bring all it's context into the env (cause .)
+    => split ct-env in two part, one that source, one that do the rest
+
+allow to edit the list of blocked machine (gate-epita, ...)
