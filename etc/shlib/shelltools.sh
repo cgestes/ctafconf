@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Wed Oct 12 00:20:30 2005 GESTES Cedric
-## Last update Sat Nov 24 07:31:27 2007 GESTES Cedric
+## Last update Tue Nov 27 19:12:11 2007 GESTES Cedric
 ##
 ##CTAFCONF
 ###
@@ -63,7 +63,8 @@ alias_unset() {
 }
 
 var_set() {
-  eval "$1=$2"
+  eval $1=\${$1-\$2};
+#  eval "$1=$2"
 }
 
 var_unset() {

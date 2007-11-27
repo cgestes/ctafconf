@@ -1,3 +1,11 @@
+2007-11-27 CTAF <>
+	* ct-installconf : bug filename with space
+	* ct-env : bug with filename containing space
+	* http proxy.sys.env : system env for proxy (wget, apt-get,..)
+	* tsocks.sys.env : system env for tsocks
+	* epita.sys.env : system env, to be used at epita
+	* rtems.sys.env : system env for rtems
+
 2007-11-24 CTAF <>
 	* ct-env : new program to manage your environment
 	* zshenv : dont execute if non interactive or on forbiden host

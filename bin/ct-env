@@ -54,13 +54,17 @@ env_list()
 
 env_update()
 {
+  ancIFS=$IFS
+  IFS="
+"
   ls $dir 2>/dev/null | grep '.env$' | while read i; do
-    . $i
+    . $dir/$i
   done;
   ssft_display_message 'ct-env' "your environment have been updated, relaunch your terminal to get your new environment.
 
 Active environment:
 `env_list_active`"
+  IFS=$ancIFS
 }
 
 env_add()
@@ -70,29 +74,36 @@ env_add()
   if ssft_read_string "New environment" "enter the name of the new environment you want to create?"; then
     envname="$SSFT_RESULT"
   fi
-  cp ~/.config/ctafconf/etc/mine/env.mine $dir/$envname.env
-  $EDITOR $dir/$envname.env
+  cp ~/.config/ctafconf/etc/mine/env.mine "$dir/$envname.env"
+  $EDITOR "$dir/$envname.env"
   env_update
 }
 
 env_select()
 {
+  ancIFS=$IFS
+  IFS="
+"
+
   SSFT_DEFAULT=`env_list_active`
   ssft_select_multiple ct-env "enable/disable environment (warning: cancel doesnt work, its the same as OK)
 PS: .sys file, are provided by the ctafconf and are update when you call ct-installconf
 " `env_list`;
 
+
   env_list | while read line; do
-    if echo $SSFT_RESULT | grep $line >/dev/null 2>/dev/null; then
-      if ! env_test_enable $line; then
-        env_enable $line
+    if echo $SSFT_RESULT | grep "^""$line""$" >/dev/null 2>/dev/null; then
+      if ! env_test_enable "$line"; then
+        env_enable "$line"
       fi
     else
-      if ! env_test_disable $line; then
-        env_disable $line
+      if ! env_test_disable "$line"; then
+        env_disable "$line"
       fi
     fi
   done
+
+  IFS=$ancIFS
   env_update
 }
 
@@ -108,21 +119,24 @@ env_test_disable()
 
 env_enable()
 {
-  local nm=$1
+  local nm=$@
   echo "env enable: $nm";
-  mv $dir/$nm.env.disable $dir/$nm.env >/dev/null 2>/dev/null
+  mv "$dir/$nm.env.disable" "$dir/$nm.env" >/dev/null 2>/dev/null
 }
 
 env_disable()
 {
-  local nm=$1
-  echo "env disable: $1";
-  mv $dir/$nm.env $dir/$nm.env.disable >/dev/null 2>/dev/null
+  local nm=$@
+  echo "env disable: $nm";
+  mv "$dir/$nm.env" "$dir/$nm.env.disable" >/dev/null 2>/dev/null
 }
 
 env_edit()
 {
   local edenv;
+  ancIFS=$IFS
+  IFS="
+"
 
   ssft_select_single ct-env "choose the environment you want to edit
 PS: .sys environment, are provided by the ctafconf and are update when you call ct-installconf
@@ -134,9 +148,11 @@ PS: .sys environment, are provided by the ctafconf and are update when you call 
     $EDITOR "$dir/$edenv.env.disable";
 
     if ssft_yesno ct-env "$edenv: This environment is disable, do you want to enable it?"; then
-      env_enable $edenv
+      env_enable "$edenv"
     fi
   fi
+  IFS=$ancIFS
+
   env_update
 }
 
@@ -171,5 +187,4 @@ while ssft_select_single ct-env "What do you want to do?" "update you environmen
     env_edit
   fi
 done;
-
 

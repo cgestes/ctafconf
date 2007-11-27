@@ -34,8 +34,6 @@ $take2=0;
 open (FH1,$ARGV[0]) or die "Can't open $ARGV[0]: $!\n";
 open (FH2,$ARGV[1]) or die "Can't open $ARGV[1]: $!\n";
 
-print "$ARGV[0]\n";
-print "$ARGV[1]\n";
 while (<FH1>) {
     $thisline = $_;
     if ($thisline =~ /$begpattern/) {

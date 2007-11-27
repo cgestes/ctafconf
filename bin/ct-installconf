@@ -210,22 +210,22 @@ env_mom()
   dirsys=~/.config/ctafconf/etc/shell/env.sys
   dirusr=~/.config/ctafconf/perso/env
   local tmp;
-  if ! [ -d $dirusr ]; then
-    mkdir $dirusr >/dev/null 2>/dev/null
+  if ! [ -d "$dirusr" ]; then
+    mkdir "$dirusr" >/dev/null 2>/dev/null
   fi
   ls $dirsys/ | grep ".sys.env$" | while read fn; do
-    if [ -f $dirusr/$fn ]; then
-      tmp=$dirusr/$fn".tmp";
-      mv $dirusr/$fn $tmp
-      ~/.config/ctafconf/bin/mom.pl $dirsys/$fn $tmp >$dirusr/$fn
-      rm $tmp
-    elif [ -f $dirusr/$fn.disable ]; then
-      tmp=$dirusr/$fn".disable.tmp";
-      mv $dirusr/$fn".disable" $tmp
-      ~/.config/ctafconf/bin/mom.pl $dirsys/$fn $tmp >$dirusr/$fn".disable"
-      rm $tmp
+    if [ -f "$dirusr/$fn" ]; then
+      tmp="$dirusr/$fn.tmp";
+      mv "$dirusr/$fn" "$tmp"
+      ~/.config/ctafconf/bin/mom.pl "$dirsys/$fn" "$tmp" > "$dirusr/$fn"
+      rm "$tmp"
+    elif [ -f "$dirusr/$fn.disable" ]; then
+      tmp="$dirusr/$fn.disable.tmp";
+      mv "$dirusr/$fn.disable" "$tmp"
+      ~/.config/ctafconf/bin/mom.pl "$dirsys/$fn" "$tmp" > "$dirusr/$fn.disable"
+      rm "$tmp"
     else
-      cp $dirsys/$fn $dirusr/$fn.disable
+      cp "$dirsys/$fn" "$dirusr/$fn.disable"
     fi
   done;
 }
