@@ -18,6 +18,12 @@ see the bug tracker at www.sf.net/projects/grk
 
 ct-env:
   - remove env.epita, update ct-profile to use env
+  - bug with cancel and dialog in enable/disable
+  - dont source all the application
+  -
+
+DOC:
+  - ct-env : one page on the wiki (each pages: ct-env, ct-installconf, programming, console)
 
 allow to edit the list of blocked machine (gate-epita, ...)
 

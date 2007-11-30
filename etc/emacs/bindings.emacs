@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 01:16:47 2006 GESTES Cedric
-;; Last update Wed Nov 21 08:26:00 2007 GESTES Cedric
+;; Last update Fri Nov 30 02:00:23 2007 GESTES Cedric
 ;;
 (message ".")
 (message "ctafconf loading: BINDINGS.EMACS")
@@ -29,8 +29,8 @@
 
 
 
-(global-set-key [M-right]       'my-previous-buffer)
-(global-set-key [M-left]        'my-next-buffer)
+(global-set-key [M-left]       'my-previous-buffer)
+(global-set-key [M-right]        'my-next-buffer)
 
 
 ;; M-x pc-bindings-mode sets up bindings compatible with many PC editors. In particular, Delete and its variants delete forward instead of backward. Use Backspace to delete backward.

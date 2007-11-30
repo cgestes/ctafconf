@@ -1,3 +1,8 @@
+2007-11-30 CTAF <>
+	* emacs : inverted alt+(left/right), not it's more intuitive
+	* fn : findr (rename)
+
+
 2007-11-27 CTAF <>
 	* ct-installconf : bug filename with space
 	* ct-env : bug with filename containing space
