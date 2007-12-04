@@ -157,10 +157,17 @@ bindkey "^[q" keyboard-quit
 #unset usr_cwd         # cleanup
 
 
+if ( -f ~/.config/ctafconf/etc/tcsh/tcshprompt ) source ~/.config/ctafconf/etc/tcsh/tcshprompt
 
 if ( -f ~/.config/ctafconf/etc/shell/env ) source ~/.config/ctafconf/etc/shell/env csh
 
-if ( -f ~/.config/ctafconf/etc/tcsh/tcshprompt ) source ~/.config/ctafconf/etc/tcsh/tcshprompt
+ls ~/.config/ctafconf/perso/env | null_cmd grep '.env$'
+if ( ! $? ) then
+  foreach f ( ~/.config/ctafconf/perso/env/*.env )
+    source $f;
+  end
+endif
+
 
 if ( -f ~/.config/ctafconf/etc/shell/alias ) source ~/.config/ctafconf/etc/shell/alias
 

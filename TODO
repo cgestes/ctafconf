@@ -20,7 +20,8 @@ ct-env:
   - remove env.epita, update ct-profile to use env
   - bug with cancel and dialog in enable/disable
   - dont source all the application
-  -
+  - source env only for the session
+  - bug : dont work from tcsh
 
 DOC:
   - ct-env : one page on the wiki (each pages: ct-env, ct-installconf, programming, console)

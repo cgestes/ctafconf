@@ -1,3 +1,7 @@
+2007-12-04 CTAF <>
+	* shelltools: corrected bug with tcsh and null_cmd
+	* shell: source ct-env files directly from each shell not from env
+
 2007-11-30 CTAF <>
 	* emacs : inverted alt+(left/right), not it's more intuitive
 	* fn : findr (rename)

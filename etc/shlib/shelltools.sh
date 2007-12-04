@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Wed Oct 12 00:20:30 2005 GESTES Cedric
-## Last update Tue Nov 27 19:12:11 2007 GESTES Cedric
+## Last update Tue Dec  4 12:03:25 2007 GESTES Cedric
 ##
 ##CTAFCONF
 ###
@@ -101,6 +101,6 @@ alias alias_unset 'unalias'
 alias var_set 'set \!:1=\!:2'
 alias var_unset 'unset \!:1'
 alias null_which 'which \!* >&/dev/null'
-alias null_cmd 'eval \!* >&/dev/null'
+alias null_cmd '\!* >&/dev/null'
 
 

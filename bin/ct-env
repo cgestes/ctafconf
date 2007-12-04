@@ -22,7 +22,7 @@
 ##
 
 
-action=$1
+ctenvact=$1
 
 dir=~/.config/ctafconf/perso/env
 
@@ -156,21 +156,21 @@ PS: .sys environment, are provided by the ctafconf and are update when you call 
   env_update
 }
 
-if [ "x$action" = "x-h" ] || [ "x$action" = "x--help" ]; then
+if [ "x$ctenvact" = "x-h" ] || [ "x$ctenvact" = "x--help" ]; then
   echo "usage: ct-env"
   echo "this allow you to have different env at the same time"
   return;
 fi;
 
-if [ "x$action" = "x-u" ] || [ "x$action" = "xupdate" ] ; then
+if [ "x$ctenvact" = "x-u" ] || [ "x$ctenvact" = "xupdate" ] ; then
   env_list
   return;
 fi
 
-if [ x$action = x ]; then
+if [ x$ctenvact = x ]; then
   export SSFT_FRONTEND="console"
 else
-  export SSFT_FRONTEND="$action"
+  export SSFT_FRONTEND="$ctenvact"
 fi
 
 echo "using mode: $SSFT_FRONTEND, try -h for help about mode, or if that one doesnt work"

@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Thu Oct  6 04:55:46 2005 GESTES Cedric
-## Last update Thu Oct 18 14:34:08 2007 GESTES Cedric
+## Last update Tue Dec  4 12:10:30 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -35,6 +35,9 @@ fi
 if [ -f ~/.config/ctafconf/etc/shell/env ]; then
     . ~/.config/ctafconf/etc/shell/env sh
 fi
+
+ls ~/.config/ctafconf/perso/env | null_cmd grep '.env$' && source ~/.config/ctafconf/perso/env/*.env
+
 
 if [ -f ~/.config/ctafconf/etc/shell/alias ]; then
     . ~/.config/ctafconf/etc/shell/alias
