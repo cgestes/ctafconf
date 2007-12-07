@@ -76,7 +76,7 @@
 2007-10-20 CTAF <>
 	* colormake : support french
 	* emacs : support sconscript
-
+	
 2007-10-18 CTAF <>
 	* ct-set-bg : removed set bg for gnome/kde
 	* sudo: always change dir to ~ (avoid bug when doing sudo emacs for ex)

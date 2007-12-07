@@ -8,7 +8,6 @@
 #ne rien faire si on est pas en mode interactif TODO
 if ($?prompt && a$HOST != agate-ssh) then
 
-
 cat ~/.config/ctafconf/VERSION
 echo -n "shell: tcsh, "
 cat ~/.config/ctafconf/etc/shell/motd
