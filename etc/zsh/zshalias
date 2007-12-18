@@ -5,7 +5,7 @@
 ## Login   <root@epita.fr>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 root
-## Last update Sat Nov 24 07:58:17 2007 GESTES Cedric
+## Last update Tue Dec 11 22:48:05 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -24,3 +24,4 @@ alias mkdir='nocorrect mkdir'
 
 #no pattern matching (*, etc are not replaced) on those commands:
 alias find='noglob find'
+alias zmv='noglob zmv'

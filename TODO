@@ -30,3 +30,5 @@ allow to edit the list of blocked machine (gate-epita, ...)
 
 write version to an other file, and detect when ct-installconf need to be called
 
+
+zshconpletion : make and configure = m and c

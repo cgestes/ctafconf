@@ -5,7 +5,7 @@
 ;; Login   <ctaf@epita.fr>
 ;;
 ;; Started on  Mon Jan 16 00:57:16 2006 GESTES Cedric
-;; Last update Mon Jun 25 20:48:00 2007 GESTES Cedric
+;; Last update Tue Dec 18 12:45:05 2007 GESTES Cedric
 ;;
 (message ".")
 (message "ctafconf loading: MODE.EMACS")
@@ -187,6 +187,14 @@
       )
   (error
    (message "Cannot load browse-kill-ring %s" (cdr err))))
+
+(condition-case err
+    (progn
+      (require 'tabbar)
+      (tabbar-mode t)
+      )
+  (error
+   (message "Cannot load tabbar %s" (cdr err))))
 
 (condition-case err
     (progn

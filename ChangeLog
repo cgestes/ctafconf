@@ -1,3 +1,10 @@
+2007-12-18 CTAF <>
+	* emacs : added tabbar mode
+
+2007-12-11 CTAF <>
+	* zsh : noglob for zmv
+	        (you can avoid quote for argument, it less error prone)
+
 2007-12-04 CTAF <>
 	* shelltools: corrected bug with tcsh and null_cmd
 	* shell: source ct-env files directly from each shell not from env
@@ -5,7 +12,6 @@
 2007-11-30 CTAF <>
 	* emacs : inverted alt+(left/right), not it's more intuitive
 	* fn : findr (rename)
-
 
 2007-11-27 CTAF <>
 	* ct-installconf : bug filename with space
@@ -76,7 +82,7 @@
 2007-10-20 CTAF <>
 	* colormake : support french
 	* emacs : support sconscript
-	
+
 2007-10-18 CTAF <>
 	* ct-set-bg : removed set bg for gnome/kde
 	* sudo: always change dir to ~ (avoid bug when doing sudo emacs for ex)
