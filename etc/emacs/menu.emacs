@@ -2,7 +2,7 @@
 ;; menu.emacs for ctafconf in /home/ctaf/.ctafconf/etc/emacs/site-lisp
 ;;
 ;; Made by GESTES Cedric
-;; Login   <ctaf@epita.fr>
+;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 05:39:19 2006 GESTES Cedric
 ;; Last update Thu Feb 15 18:56:00 2007 GESTES Cedric

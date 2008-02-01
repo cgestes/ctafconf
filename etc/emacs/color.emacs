@@ -2,7 +2,7 @@
 ;; color.emacs for GRK in /home/ctaf/.ctafconf/etc/emacs
 ;;
 ;; Made by GESTES Cedric
-;; Login   <ctaf@epita.fr>
+;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Thu May 11 19:53:25 2006 GESTES Cedric
 ;; Last update Mon Mar 12 19:43:13 2007 GESTES Cedric

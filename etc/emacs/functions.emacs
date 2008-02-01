@@ -2,7 +2,7 @@
 ;; functions.emacs for ctafconf in /home/ctaf/
 ;;
 ;; Made by GESTES Cedric
-;; Login   <ctaf@epita.fr>
+;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 00:58:57 2006 GESTES Cedric
 ;; Last update Thu Feb 15 19:12:00 2007 GESTES Cedric

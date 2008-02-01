@@ -2,7 +2,7 @@
 ## ctaftools.sh for ctafconf in /home/ctaf/gterm/gnome-terminal-2.10.0/src
 ##
 ## Made by GESTES Cedric
-## Login   <ctaf@epita.fr>
+## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Wed Oct 12 00:20:30 2005 GESTES Cedric
 ## Last update Tue Dec  4 12:03:25 2007 GESTES Cedric

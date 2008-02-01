@@ -2,7 +2,7 @@
 ;; startup.emacs for ctafconf in /home/ctaf/IBC/batail_s-ibc2
 ;;
 ;; Made by GESTES Cedric
-;; Login   <ctaf@epita.fr>
+;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
 ;; Last update Fri Nov  9 18:13:14 2007 GESTES Cedric

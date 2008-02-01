@@ -2,7 +2,7 @@
 ;; mode.emacs for ctafconf in ~/.config/ctafconf/etc/emacs/mode.emacs
 ;;
 ;; Made by GESTES Cedric
-;; Login   <ctaf@epita.fr>
+;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 00:57:16 2006 GESTES Cedric
 ;; Last update Tue Dec 18 12:45:05 2007 GESTES Cedric
