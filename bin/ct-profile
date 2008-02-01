@@ -5,7 +5,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Sun Sep 25 21:51:34 2005 GESTES Cedric
-## Last update Fri Nov 23 08:05:27 2007 GESTES Cedric
+## Last update Fri Feb  1 01:35:27 2008 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -240,7 +240,7 @@ fi
 
 ctafconf_wm=$(getvaldef "$ctafconf_wm" 'fluxbox' )
 SSFT_DEFAULT=$ctafconf_wm
-if ssft_select_single "Window Manager" "Choose your wm from the list" fluxbox gnome kde xfce4 e16 term aterm beryl; then
+if ssft_select_single "Window Manager" "Choose your wm from the list (if you use gdm or kdm you should not care)" fluxbox gnome kde xfce4 e16 term aterm beryl; then
     ctafconf_wm=$(getvaldef "$SSFT_RESULT" "$ctafconf_wm" )
 fi
 

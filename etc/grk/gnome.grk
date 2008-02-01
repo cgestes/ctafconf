@@ -6,7 +6,7 @@
 ## Login   <ctaf@epita.fr>
 ##
 ## Started on  Tue Apr 11 12:32:11 2006 GESTES Cedric
-## Last update Sat Feb 17 01:35:33 2007 GESTES Cedric
+## Last update Fri Feb  1 01:36:06 2008 Cedric GESTES
 ##
 
 #--function
@@ -83,10 +83,10 @@ gnome_install()
     fi
     echo "Setting wallpaper for gnome: $ctafconf_wallpaper"
     if which gconftool-2 > /dev/null 2> /dev/null ; then
-      gconftool-2 --dump /desktop/gnome/background > ~/.config/ctafconf/perso/previous/background-prev-$date.gconf
-      gconftool-2 --dump /desktop/gnome/background > ~/.config/ctafconf/perso/previous/background-previous.gconf
-      gconftool-2 --type=string -s /desktop/gnome/background/picture_filename "$wallpp"
-      gconftool-2 --type=string -s /desktop/gnome/background/picture_options "stretched"
+#       gconftool-2 --dump /desktop/gnome/background > ~/.config/ctafconf/perso/previous/background-prev-$date.gconf
+#       gconftool-2 --dump /desktop/gnome/background > ~/.config/ctafconf/perso/previous/background-previous.gconf
+#       gconftool-2 --type=string -s /desktop/gnome/background/picture_filename "$wallpp"
+#       gconftool-2 --type=string -s /desktop/gnome/background/picture_options "stretched"
 
       #metacity workspace
       gconftool-2 --dump /apps/metacity/global_keybindings > ~/.config/ctafconf/perso/previous/globalkeybindings-prev-$date.gconf
