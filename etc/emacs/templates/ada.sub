@@ -2,6 +2,7 @@
 "@INCLUDE-NAME@"    (concat (substring tpl-file-name 0 -1) "h")
 "@USER-LOGIN@"      tpl-user-login
 "@USER-NAME@"       tpl-user-name
+"@USER-MAIL@"	tpl-user-mail
 "@DATE-STAMP@"      tpl-date-stamp
 "@HOST@"            tpl-host
 "@Id@"              (concat () "Id")

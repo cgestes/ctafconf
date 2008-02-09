@@ -3,7 +3,10 @@
 -- Login : <@USER-LOGIN@@@HOST@>
 -- Started on  @DATE-STAMP@ @USER-NAME@
 -- $@Id@$
--- 
+--
+-- Author(s):
+--  - @USER-NAME@ <@USER-MAIL@>
+--
 -- Copyright (C) @YEAR@ @USER-NAME@
 -- This program is free software; you can redistribute it and/or modify
 -- it under the terms of the GNU General Public License as published by
