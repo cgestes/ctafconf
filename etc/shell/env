@@ -5,7 +5,7 @@
 ## Login   <goctaf@gmail.com>
 ##
 ## Started on  Fri Sep 30 22:17:33 2005 GESTES Cedric
-## Last update Tue Dec  4 12:08:41 2007 GESTES Cedric
+## Last update Fri Feb  8 09:42:30 2008 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -37,19 +37,12 @@ env_set LS_COLORS 'no=00:fi=00:di=0;33:ln=01;36:pi=40;33:so=01;35:bd=40;33;01:cd
 env_set CLICOLOR 1
 env_set LSCOLORS 'dxgxfxexcxegedabagacad'
 
-#env_set LANG=ja_JP.eucJP
-#env_set LC_CTYPE $LANG
-#env_set LC_ALL $LANG
-#env_set XMODIFIERS "@im kinput2" #for japanese input
-
-#specify proxy (for apt, )
-#env_set http_proxy  ''#http://localhost:3128/
-#env_set ftp_proxy  ''#http://localhost:3128/
-#env_set no_proxy "epita.fr,epita.net"
-
-
 env_set FULLNAME "$ctafconf_name"
 env_set REALNAME "$ctafconf_name"
+
+env_set EMAIL "$ctafconf_mail"
+#for debian
+env_set DEBEMAIL "$ctafconf_mail"
 
 #used by man, ..
 env_set PAGER "more"
@@ -58,12 +51,6 @@ null_which most && env_set PAGER "most"
 
 
 env_set EADNULLCMD $PAGER
-env_set EMAIL "$ctafconf_mail"
-
-#env_set MAIL "/var/mail/$USER"
-
-#for debian
-env_set DEBEMAIL "$ctafconf_mail"
 
 #option for less
 env_set LESS "-Qwx2Mz-3"

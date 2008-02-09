@@ -1,3 +1,7 @@
+2008-02-09 CTAF <>
+	* emacs : better template with author(s)
+	* emacs : better Makefile template with pkg-config support
+
 2008-02-01 CTAF <>
 	* never change the gnome wallpaper
 

@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 01:14:21 2006 GESTES Cedric
-;; Last update Fri Nov  9 18:31:51 2007 cedric gestes
+;; Last update Fri Feb  1 11:08:20 2008 Cedric GESTES
 ;;
 (message ".")
 (message "ctafconf loading: PROG.EMACS")
@@ -175,15 +175,18 @@
     (condition-case err
         (progn
           ;;(setq semantic-load-turn-useful-things-on t)
-          (setq semantic-load-turn-everything-on t)
+          ;;(setq semantic-load-turn-everything-on t)
           (load-file "~/.config/ctafconf/etc/emacs/site-lisp/cedet/common/cedet.el")
           ;; * This turns on which-func support (Plus all other code helpers)
           (semantic-load-enable-excessive-code-helpers)
+	  ;; (semantic-load-enable-guady-code-helpers)
+
           ;;S-SPC for autocompletion
           (global-set-key '[33554464] 'semantic-complete-analyze-inline)
-          (global-semantic-show-parser-state-mode 1)
+;;          (global-semantic-show-parser-state-mode 1)
           (global-semantic-decoration-mode 1)
-          (global-semantic-stickyfunc-mode 1)
+          ;;display a bar with the function name the cursor is in
+;;          (global-semantic-stickyfunc-mode 1)
           (setq semanticdb-default-save-directory "~/.config/ctafconf/perso/semantic")
           ;;(global-semantic-idle-completions-mode 1)
           ;;(global-semantic-highlight-edits-mode 1)

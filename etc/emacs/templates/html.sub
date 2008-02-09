@@ -1,7 +1,7 @@
 "@FILE-NAME@"       tpl-file-name
 "@USER-LOGIN@"      tpl-user-login
 "@USER-NAME@"       tpl-user-name
-"@USER-MAIL@"	tpl-user-mail
+"@USER-MAIL@"	    tpl-user-mail
 "@DATE-STAMP@"      tpl-date-stamp
 "@HOST@"            tpl-host
 "@Id@"              (concat () "Id")

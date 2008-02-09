@@ -2,6 +2,7 @@
 
 ;;this file define the functionnality you want to see in your emacs
 
+;;WARNING USE SETQ NOT DEFVAR
 ;; to enable a functionnality
 ;;(defvar enable-functionnality t)
 ;; to disable it
@@ -14,7 +15,7 @@
 ;;(defvar enable-zone nil)
 
 ;;enable/disable the cedet environnement
-;;(defvar enable-cedet nil)
+;;(setq enable-cedet nil)
 
 ;;enable/disable the ecb ide
 ;;(defvar enable-ecb nil)

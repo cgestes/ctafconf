@@ -29,6 +29,7 @@
 NAME 	=		# Name of executable file
 SRC	=		# List of *.c
 INCL  	=		# List of *.h
+
 ################
 # Optional add #
 ################
@@ -36,6 +37,12 @@ IPATH   = -I.           # path of include file
 OBJOPT  = -O2 -Wall -Wstrict-prototypes       # option for obj
 EXEOPT  = -O2 -Wall -Wstrict-prototypes       # option for exe (-lefence ...)
 LPATH   = -L.           # path for librairies ...
+
+#######################
+# OPTIONAL PKG-CONFIG #
+#######################
+#PKG_CFLAGS = `pkg-config --cflags gtk+-2.0`
+#PKG_LIBS   = `pkg-config --libs gtk+-2.0`
 
 #####################
 # Macro Definitions #
@@ -50,8 +57,8 @@ COMP	= gzip -9v
 UNCOMP	= gzip -df
 STRIP	= strip
 
-CFLAGS  = $(OBJOPT) $(IPATH)
-LDFLAGS = $(EXEOPT) $(LPATH)
+CFLAGS  = $(OBJOPT) $(IPATH) $(PKG_CFLAGS)
+LDFLAGS = $(EXEOPT) $(LPATH) $(PKG_LIBS)
 
 .SUFFIXES: .h.Z .c.Z .h.gz .c.gz .c.z .h.z
 

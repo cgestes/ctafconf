@@ -26,6 +26,10 @@ ct-env:
 DOC:
   - ct-env : one page on the wiki (each pages: ct-env, ct-installconf, programming, console)
 
+
+make ct-profile optionnal
+xrdb -merge and xset b off => async in env
+
 allow to edit the list of blocked machine (gate-epita, ...)
 
 write version to an other file, and detect when ct-installconf need to be called
