@@ -15,7 +15,6 @@ V1.0.44: goal: rock stable
 ########################################
 see the bug tracker at www.sf.net/projects/grk
 
-
 ct-env:
   - remove env.epita, update ct-profile to use env
   - bug with cancel and dialog in enable/disable
@@ -26,13 +25,6 @@ ct-env:
 DOC:
   - ct-env : one page on the wiki (each pages: ct-env, ct-installconf, programming, console)
 
-
-make ct-profile optionnal
-xrdb -merge and xset b off => async in env
+add a xsession: guess for the default user-profile (X should always work), remove xsession/startx from default install
 
 allow to edit the list of blocked machine (gate-epita, ...)
-
-write version to an other file, and detect when ct-installconf need to be called
-
-
-zshconpletion : make and configure = m and c

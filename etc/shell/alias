@@ -27,7 +27,7 @@ alias_set - 'pushd -1'
 #COMPILATION ALIAS_SET
 #############################
 alias_set c './configure'
-alias_set a './autogen.sh'
+alias_set a 'autoreconf -isvf'
 alias_set m '~/.config/ctafconf/bin/colorwarper make'
 alias_set md '~/.config/ctafconf/bin/colorwarper make distclean'
 alias_set ma '~/.config/ctafconf/bin/colorwarper make clean all'
@@ -137,8 +137,8 @@ alias_set grep_real '`which grep`'
 #different plateform test
 test -f ~/.config/ctafconf/etc/shell/alias.`uname` && source ~/.config/ctafconf/etc/shell/alias.`uname`
 
-#sourcing plateform spécifik
-test x$ctafconf_config != x && test -f ~/.config/ctafconf/etc/shell/alias.$ctafconf_config && source ~/.config/ctafconf/etc/shell/alias.$ctafconf_config
+# #sourcing plateform spécifik
+# test x$ctafconf_config != x && test -f ~/.config/ctafconf/etc/shell/alias.$ctafconf_config && source ~/.config/ctafconf/etc/shell/alias.$ctafconf_config
 
 #ctafconf log
 alias_set ct-log "$PAGER ~/.config/ctafconf/perso/ctafconf.log"

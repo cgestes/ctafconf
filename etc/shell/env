@@ -5,7 +5,7 @@
 ## Login   <goctaf@gmail.com>
 ##
 ## Started on  Fri Sep 30 22:17:33 2005 GESTES Cedric
-## Last update Fri Feb  8 09:42:30 2008 Cedric GESTES
+## Last update Sun Feb 10 13:21:49 2008 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -17,9 +17,15 @@ var_set param $1
 
 
 #source user profile
-test x$param = "xsh"  && test -f ~/.config/ctafconf/perso/user-profile && . ~/.config/ctafconf/perso/user-profile
-test x$param = "xcsh" && test -f ~/.config/ctafconf/perso/user-profile.csh && source ~/.config/ctafconf/perso/user-profile.csh
+test -f ~/.config/ctafconf/perso/user-profile && . ~/.config/ctafconf/perso/user-profile
 
+~/.config/ctafconf/bin/ct-updateconf
+
+#fucking annoying bell
+null_cmd xset b off&
+
+#merge setting for x application (xterm,aterm,..)
+null_cmd xrdb -merge ~/.config/ctafconf/etc/xsession/Xdefaults&
 
 #remove fucking bell
 null_cmd setterm -blength 0
@@ -69,6 +75,7 @@ env_set CVS_RSH "ssh"
 
 #SETTING PATH
 test -d /usr/sbin && env_set PATH "$PATH":/usr/sbin
+test -d /usr/local/bin && env_set PATH "$PATH":/usr/local/bin
 test -d /sbin && env_set PATH "$PATH":/sbin
 test -d ~/.config/ctafconf/bin && env_set PATH "$PATH":"$HOME"/.config/ctafconf/bin
 test -d ~/.config/ctafconf/perso/bin && env_set PATH "$PATH":"$HOME"/.config/ctafconf/perso/bin
@@ -77,6 +84,6 @@ env_set PATH "$PATH":.
 #different plateform test
 test -f ~/.config/ctafconf/etc/shell/env.`uname` && source ~/.config/ctafconf/etc/shell/env.`uname`
 
-#sourcing plateform spécifik
-test x$ctafconf_config != x && test -f ~/.config/ctafconf/etc/shell/env.$ctafconf_config && source ~/.config/ctafconf/etc/shell/env.$ctafconf_config
+# #sourcing plateform spécifik
+# test x$ctafconf_config != x && test -f ~/.config/ctafconf/etc/shell/env.$ctafconf_config && source ~/.config/ctafconf/etc/shell/env.$ctafconf_config
 

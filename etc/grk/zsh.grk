@@ -6,7 +6,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Tue Apr 11 12:32:11 2006 GESTES Cedric
-## Last update Tue Apr 11 23:33:36 2006 GESTES Cedric
+## Last update Sun Feb 10 12:15:45 2008 GESTES Cedric
 ##
 
 #--function
@@ -68,6 +68,7 @@ zsh_install()
 #uninstall file install with zsh_install
 zsh_uninstall()
 {
+    grk_unfile ~/.zshenv zshenv
     grk_unfile ~/.zshrc zshrc
     return 0
 }

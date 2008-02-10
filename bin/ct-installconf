@@ -122,57 +122,41 @@ grk_installed_list()
   done
 }
 
+pkg_is_backlisted()
+{
+  local pkgname=$1
+
+  echo $ctafconf_backlist | grep $pkgname >/dev/null 2>/dev/null
+  return $?
+}
+
 grk_not_installed_list()
 {
   ls -1 $grkdir | grep ".grk$" | while read line; do
     name=`echo $line | sed -e s/.grk//`
     pkg_source $name
-    if ! pkg_is_installed $name >/dev/null; then
+    if ! pkg_is_backlisted $name && ! pkg_is_installed $name >/dev/null; then
       echo "$name"
     fi
   done
 }
 
-#install all pkg
+grk_package_list()
+{
+  ls -1 $grkdir | grep ".grk$" | while read line; do
+    name=`echo $line | sed -e s/.grk//`
+    pkg_source $name
+    if ! pkg_is_backlisted $name >/dev/null; then
+      echo "$name"
+    fi
+  done
+}
 grk_install_all()
 {
   ls -1 $grkdir | grep ".grk$" | while read line; do
     name=`echo $line | sed -e s/.grk//`
-    pkg_source "$name"
-    grk_install "$name" yes
-  done
-}
-
-#install just those who need, ask for them
-grk_install_ask()
-{
-  echo "this is bugged, use choice instead"
-  exit
-  #ssft_yesno inside a while read doesnt work
-  ls -1 $grkdir | grep ".grk$" | while read line; do
-    name=`echo $line | sed -e s/.grk//`
     pkg_source $name
-    if ! pkg_is_installed $name; then
-      if ssft_yesno "Do you want to install $name" "`pkg_description $name`"; then
-        #pkg_install $name
-        echo "installed"
-      fi
-    fi
-    pkg_alwaysinstall $name
-  done
-}
-
-grk_install_choice()
-{
-  SSFT_DEFAULT=`grk_not_installed_list`
-  ssft_select_multiple "Install" \
-                       "Select packages you want to install (package selected are not installed or could be upgraded)" \
-                       `ls -1 $grkdir | grep ".grk$" | sed -e s/.grk//`
-
-  ls -1 $grkdir | grep ".grk$" | while read line; do
-    name=`echo $line | sed -e s/.grk//`
-    pkg_source $name
-    if echo $SSFT_RESULT | grep $name >/dev/null 2>/dev/null; then
+    if ! pkg_is_backlisted $name >/dev/null 2>/dev/null; then
       pkg_install $name
     fi
     pkg_alwaysinstall $name
@@ -245,6 +229,10 @@ fi
 #shellscript frontend
 . ~/.config/ctafconf/etc/shlib/ssft.sh
 
+#shell tools
+. ~/.config/ctafconf/etc/shlib/shelltools.sh sh
+
+
 #create default directory
 grk_dir ~/.config/ctafconf/perso
 grk_dir ~/.config/ctafconf/perso/semantic
@@ -254,17 +242,22 @@ grk_dir ~/.config/ctafconf/perso/wallpaper
 grk_dir ~/.config/ctafconf/perso/bin
 grk_dir ~/.config/ctafconf/perso/previous
 
-#launch profile manager
-. ~/.config/ctafconf/bin/ct-profile
-
 if ! [ -f ~/.config/ctafconf/perso/user-profile ] ; then
-  ssft_display_message "ERROR" "Can't find ~/.config/ctafconf/perso/user-profile directory
-Aborting, execute ct-profile, or relauch install
-PS: the default location of the ctafconf changed from .ctafconf to .config/ctafconf, you may have to do mkdir .config; mv ~/.ctafconf ~/.config/ctafconf and then call ./.config/ctafconf/bin/ct-installconf in order to make it work again"
-  exit
+  cp ~/.config/ctafconf/etc/mine/user-profile.mine ~/.config/ctafconf/perso/user-profile
 fi
+
 . ~/.config/ctafconf/perso/user-profile
 
+if ! [ -f ~/.config/ctafconf/perso/wallpaper.jpg ] ; then
+  cp ~/.config/ctafconf/etc/wallpaper/ctafconf-psycho.jpg ~/.config/ctafconf/perso/wallpaper.jpg
+fi
+
+if [ x$mode = xupdate ] ; then
+  env_mom
+  grk_install_all
+  cp ~/.config/ctafconf/VERSION ~/.config/ctafconf/perso/VERSION-INSTALLED
+  exit 0
+fi
 
 if [ x$mode = x-h ] || [ x$mode = x--help ] ; then
   echo "usage: ct-installconf [mode]"
@@ -284,7 +277,7 @@ echo "using mode: $SSFT_FRONTEND, try -h for help about mode, or if that one doe
 
 check_app "env" "env allow colormake/gmake/svn/cvs to work."
 check_app "bash" "bash is needed for colormake/gmake/svn/cvs"
-check_app "zsh" "With zsh you will get a better shell although this is optional"
+check_app "zsh" "With zsh you will get a better shell(better completion) although this is optional"
 check_app "perl" "perl is needed for colormake/gmake/svn/cvs"
 check_app "sed" "sed is needed by lot of shell script"
 check_app "awk" "awk is needed by lot of shell script"
@@ -297,28 +290,10 @@ check_app "dialog" "dialog allow script to use a window system in console, it co
 
 env_mom
 
-grk_install_choice
+grk_install_all
 
-# SSFT_DEFAULT=choice
-# ssft_select_single "Select one installation method" "'All' install every package, 'Ask' ask your before each package, and 'Choice' let you select packages you want in a list. If you want information about a package chouse 'information'" all ask choice information
-# insmethod=$SSFT_RESULT
+cp ~/.config/ctafconf/VERSION ~/.config/ctafconf/perso/VERSION-INSTALLED
 
-# ###ASK
-# if [ x$insmethod = xask ] ; then
-#   grk_install_ask
-# fi
-
-# ###ALL
-# if [ x$insmethod = xall ] ; then
-#   grk_install_all
-# fi
-
-# ###CHOICE
-# if [ x$insmethod = xchoice ] ; then
-#  grk_install_choice
-# fi
-
-# if [ x$insmethod = xinformation ] ; then
-#   grk_help
-# fi
-
+msg="You can change some setting's using ct-profile (for example your zsh prompt, the email used in newly create files in emacs)
+If do not run gdm/kdm, you may want support for xsession/startx, you should remove xsession from the backlist with ct-profile"
+ssft_display_message "Information" "$msg"

@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 GESTES Cedric
-## Last update Fri Dec  7 16:05:15 2007 GESTES Cedric
+## Last update Sun Feb 10 13:19:52 2008 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -50,9 +50,7 @@ setopt pushd_silent	      # don't tell me about automatic pushd
 setopt pushd_to_home	      # use $HOME when no arguments specified
 setopt pushd_ignoredups	      # ignore duplicates
 
-setopt hist_ignore_dups
 setopt auto_list
-
 setopt auto_param_keys
 
 setopt auto_param_slash #auto add slash when completing path
@@ -68,9 +66,7 @@ setopt mail_warning
 setopt magic_equal_subst
 setopt numericglobsort
 
-
 #setopt menu_complete		#jump thrue menus
-
 
 setopt automenu			# don't cycle completions
 #setopt cdablevars              # avoid the need for an explicit $
@@ -84,7 +80,8 @@ setopt completeinword          # not just at the end
 setopt no_alwaystoend             # when complete from middle, move cursor
 
 #setopt nopromptcr       # don't add \r which overwrites cmd output with no \n
-setopt hist_expire_dups_first  #no dups in history
+setopt no_hist_expire_dups_first  #no dups in history
+setopt no_hist_ignore_dups
 setopt hist_verify              # when using ! cmds, confirm first
 setopt interactivecomments     # date # comment will work
 #setopt recexact                # recognise exact, ambiguous matches
@@ -157,7 +154,9 @@ if [ x$plateforme != "xSunOS" ]; then
   zle -N insert-files
   compinit -u
   #use --help to complete some cmd (df , ..)
-  compdef _gnu_generic df svn
+  compdef _gnu_generic df
+  compdef _make m ma md mm gm mac make_mute make_real
+  compdef _configure c
 
   zstyle ':completion:*' format '%{[32m%}-=> %{[01m%}%d%{[0m%}'
   zstyle ':completion:*' auto-description 'specify: %d'

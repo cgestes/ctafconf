@@ -6,7 +6,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Tue Apr 11 12:32:11 2006 GESTES Cedric
-## Last update Fri Feb  1 01:36:06 2008 Cedric GESTES
+## Last update Sun Feb 10 11:48:21 2008 GESTES Cedric
 ##
 
 #--function
@@ -43,9 +43,9 @@ gnome_description()
     echo "It set global keybindings to change workspace"
     echo "It set gnome-terminal configuration"
     echo "It set the gnome wallpaper"
-    echo "Setting metacity workspace shortcut:"
-    echo "<Alt>F1 Workspace 1         <Alt>F2 Workspace 2"
-    echo "<Alt>F3 Workspace 3         <Alt>F4 Workspace 4"
+#     echo "Setting metacity workspace shortcut:"
+#     echo "<Alt>F1 Workspace 1         <Alt>F2 Workspace 2"
+#     echo "<Alt>F3 Workspace 3         <Alt>F4 Workspace 4"
     echo "Setting metacity window shortcut:"
     echo "<Control><Alt>f fullscreen  <Control><Alt>m maximized"
     echo "<Control><Alt>w move        <Control><Alt>x resize"
@@ -59,10 +59,10 @@ gnome_is_installed()
   if ! which gconftool-2 >/dev/null 2>/dev/null; then
     return 1
   fi
-  [ x`gconftool-2 --get /apps/metacity/global_keybindings/switch_to_workspace_1` = x"<Alt>F1" ] &&
-  [ x`gconftool-2 --get /apps/metacity/global_keybindings/switch_to_workspace_2` = x"<Alt>F2" ] &&
-  [ x`gconftool-2 --get /apps/metacity/global_keybindings/switch_to_workspace_3` = x"<Alt>F3" ] &&
-  [ x`gconftool-2 --get /apps/metacity/global_keybindings/switch_to_workspace_4` = x"<Alt>F4" ] &&
+#   [ x`gconftool-2 --get /apps/metacity/global_keybindings/switch_to_workspace_1` = x"<Alt>F1" ] &&
+#   [ x`gconftool-2 --get /apps/metacity/global_keybindings/switch_to_workspace_2` = x"<Alt>F2" ] &&
+#   [ x`gconftool-2 --get /apps/metacity/global_keybindings/switch_to_workspace_3` = x"<Alt>F3" ] &&
+#   [ x`gconftool-2 --get /apps/metacity/global_keybindings/switch_to_workspace_4` = x"<Alt>F4" ] &&
   [ x`gconftool-2 --get /apps/metacity/window_keybindings/toggle_fullscreen` =  x"<Control><Alt>f" ] &&
   [ x`gconftool-2 --get /apps/metacity/window_keybindings/toggle_maximized` =  x"<Control><Alt>m" ] &&
   [ x`gconftool-2 --get /apps/metacity/window_keybindings/begin_move` =  x"<Control><Alt>w" ] &&
@@ -75,26 +75,15 @@ gnome_is_installed()
 #1 = not installed
 gnome_install()
 {
-    #setting background for gnome
-    wallpp=~/.config/ctafconf/etc/wallpaper/$ctafconf_wallpaper
-    wallpp2=~/.config/ctafconf/perso/wallpaper/$ctafconf_wallpaper
-    if [ -f $wallpp2 ]; then
-        wallpp=$wallpp2
-    fi
-    echo "Setting wallpaper for gnome: $ctafconf_wallpaper"
     if which gconftool-2 > /dev/null 2> /dev/null ; then
-#       gconftool-2 --dump /desktop/gnome/background > ~/.config/ctafconf/perso/previous/background-prev-$date.gconf
-#       gconftool-2 --dump /desktop/gnome/background > ~/.config/ctafconf/perso/previous/background-previous.gconf
-#       gconftool-2 --type=string -s /desktop/gnome/background/picture_filename "$wallpp"
-#       gconftool-2 --type=string -s /desktop/gnome/background/picture_options "stretched"
 
-      #metacity workspace
-      gconftool-2 --dump /apps/metacity/global_keybindings > ~/.config/ctafconf/perso/previous/globalkeybindings-prev-$date.gconf
-      gconftool-2 --dump /apps/metacity/global_keybindings > ~/.config/ctafconf/perso/previous/globalkeybindings-previous.gconf
-      gconftool-2 --type string --set /apps/metacity/global_keybindings/switch_to_workspace_1 "<Alt>F1"
-      gconftool-2 --type string --set /apps/metacity/global_keybindings/switch_to_workspace_2 "<Alt>F2"
-      gconftool-2 --type string --set /apps/metacity/global_keybindings/switch_to_workspace_3 "<Alt>F3"
-      gconftool-2 --type string --set /apps/metacity/global_keybindings/switch_to_workspace_4 "<Alt>F4"
+#       #metacity workspace
+#       gconftool-2 --dump /apps/metacity/global_keybindings > ~/.config/ctafconf/perso/previous/globalkeybindings-prev-$date.gconf
+#       gconftool-2 --dump /apps/metacity/global_keybindings > ~/.config/ctafconf/perso/previous/globalkeybindings-previous.gconf
+#       gconftool-2 --type string --set /apps/metacity/global_keybindings/switch_to_workspace_1 "<Alt>F1"
+#       gconftool-2 --type string --set /apps/metacity/global_keybindings/switch_to_workspace_2 "<Alt>F2"
+#       gconftool-2 --type string --set /apps/metacity/global_keybindings/switch_to_workspace_3 "<Alt>F3"
+#       gconftool-2 --type string --set /apps/metacity/global_keybindings/switch_to_workspace_4 "<Alt>F4"
 
       #metacity window
       gconftool-2 --dump /apps/metacity/window_keybindings > ~/.config/ctafconf/perso/previous/windowkeybindings-previous.gconf
@@ -104,32 +93,17 @@ gnome_install()
       gconftool-2 --type string --set /apps/metacity/window_keybindings/begin_move "<Control><Alt>w"
       gconftool-2 --type string --set /apps/metacity/window_keybindings/begin_resize "<Control><Alt>x"
 
-      gconftool-2 --dump /apps/panel > ~/.config/ctafconf/perso/previous/panel-previous.gconf
-      gconftool-2 --dump /desktop/gnome/interface > ~/.config/ctafconf/perso/previous/gnome-interface-previous.gconf
-      gconftool-2 --dump /apps/gnome-terminal > ~/.config/ctafconf/perso/previous/gnome-terminal-previous.gconf
-      gconftool-2 --dump /apps/metacity/general > ~/.config/ctafconf/perso/previous/metacity-window-previous.gconf
-
-      #gnone-panel-bar
-      gconftool-2 --dump /apps/panel > ~/.config/ctafconf/perso/previous/panel-prev-$date.gconf
-      #gnome style
-      gconftool-2 --dump /desktop/gnome/interface > ~/.config/ctafconf/perso/previous/gnome-interface-prev-$date.gconf
       #gnome-terminal profile
+      gconftool-2 --dump /apps/gnome-terminal > ~/.config/ctafconf/perso/previous/gnome-terminal-previous.gconf
       gconftool-2 --dump /apps/gnome-terminal > ~/.config/ctafconf/perso/previous/gnome-terminal-prev-$date.gconf
-      #metacity theme
-      gconftool-2 --dump /apps/metacity/general > ~/.config/ctafconf/perso/previous/metacity-window-prev-$date.gconf
 
-#      gfile=~/.config/ctafconf/etc/gconf/panel
-#      gconftool-2 --load="$gfile"
-#      gfile=~/.config/ctafconf/etc/gconf/gnome-interface
-#      gconftool-2 --load="$gfile"
       gfile=~/.config/ctafconf/etc/gnome/gnome-terminal
       gconftool-2 --load="$gfile"
-#      gfile=~/.config/ctafconf/etc/gconf/metacity-window
-#      gconftool-2 --load="$gfile"
+
     fi
-    echo "Setting metacity workspace shortcut:"
-    echo "<Alt>F1 Workspace 1         <Alt>F2 Workspace 2"
-    echo "<Alt>F3 Workspace 3         <Alt>F4 Workspace 4"
+#     echo "Setting metacity workspace shortcut:"
+#     echo "<Alt>F1 Workspace 1         <Alt>F2 Workspace 2"
+#     echo "<Alt>F3 Workspace 3         <Alt>F4 Workspace 4"
     echo "Setting metacity window shortcut:"
     echo "<Control><Alt>f fullscreen  <Control><Alt>m maximized"
     echo "<Control><Alt>w move        <Control><Alt>x resize"

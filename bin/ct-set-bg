@@ -1,76 +1,24 @@
-#!/bin/zsh
+#!/bin/sh
 ## ctafinfo.sh for ctafconf in /ctaf/conf
 ##
 ## Made by root
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 18 16:13:08 2005 root
-## Last update Thu Oct 18 14:22:38 2007 GESTES Cedric
+## Last update Sun Feb 10 11:51:04 2008 GESTES Cedric
 ##
-##ORIGINALY FROM CTAFCONF
+##MADE FORM CTAFCONF
 
-##if ! [ $# -eq 1 ]; then
-##  echo "usage: ct-set-bg <wallpaper.image>"
-##  exit
-##fi
-##
 
-##
-##PORVIDE USER INFO TO ALL CTAFCONF
-##
-
-if ! [ -f ~/.config/ctafconf/perso/user-profile ]; then
-  echo "Can't find your ~/.config/ctafconf/perso/user-profile"
-  echo "you should reinstall env with ctafconf-install"
-  exit 1
-fi
-. ~/.config/ctafconf/perso/user-profile
-
-if [ x$ctafconf_wallpaper = xramdom ] ; then
-  sz=`ls -1 ~/.config/ctafconf/etc/wallpaper 2>/dev/null | wc -l`
-  sz2=`ls -1 ~/.config/ctafconf/perso/wallpaper 2>/dev/null | wc -l`
-  szall=$(( $sz + $sz2 ))
-  pos=$(( `date +%s` % $szall + 1 ))
-
-  if [ $pos -gt $sz ]; then
-    pos=$(( $pos - $sz ))
-    wallpp=`ls -1 ~/.config/ctafconf/perso/wallpaper/ | tail -$pos | head -1`
-    wallpp=~/.config/ctafconf/perso/wallpaper/$wallpp
-  else
-    wallpp=`ls -1 ~/.config/ctafconf/etc/wallpaper/ | tail -$pos | head -1`
-    wallpp=~/.config/ctafconf/etc/wallpaper/$wallpp
-  fi
-
-elif [ x$ctafconf_wallpaper = xramdomperso ]; then
-  sz=`ls -1 ~/.config/ctafconf/perso/wallpaper 2>/dev/null | wc -l`
-  pos=$(( `date +%s` % $sz + 1 ))
-  wallpp=`ls -1 ~/.config/ctafconf/perso/wallpaper/ | tail -$pos | head -1`
-  wallpp=~/.config/ctafconf/perso/wallpaper/$wallpp
-
-else
-  wallpp=~/.config/ctafconf/etc/wallpaper/$ctafconf_wallpaper
-  wallpp2=~/.config/ctafconf/perso/wallpaper/$ctafconf_wallpaper
-  if [ -f $wallpp2 ]; then
-    wallpp=$wallpp2
-  fi
-fi
+wallpp=~/.config/ctafconf/perso/wallpaper.jpg
 
 #GNOME
 if [ x$ctafconf_wm = xgnome ]; then
-#   if which gconftool-2 > /dev/null 2> /dev/null ; then
-#     echo "#### CTAFCONF: using gconftool-2"
-#     gconftool-2 --type=string -s /desktop/gnome/background/picture_filename $wallpp
-#     gconftool-2 --type=string -s /desktop/gnome/background/picture_options stretched
-#   fi
   exit 0
 fi
 
 #KDE
 if [ x$ctafconf_wm = xkde ]; then
-#   if which dcop > /dev/null 2> /dev/null ; then
-#     echo "#### CTAFCONF: using dcop"
-#     dcop kdesktop KBackgroundIface setWallpaper $wallpp  6
-#   fi
   exit 0
 fi
 

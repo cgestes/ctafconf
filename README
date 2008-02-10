@@ -7,8 +7,12 @@
 ===========================================================
 INSTALL
 ===========================================================
-the ctafconf install all its file in .config/ctafconf. The installer will ask you which software you want to install configuration for.
-/!\ if you have display problem with ct-profile or ct-installconf try 'ct-profile text' or 'ct-installconf text' or other mode see ct-installconf -h for more information/!\
+the ctafconf install all its file in .config/ctafconf.
+If you dont want to install everything you can backlist package using ct-profile prior to ct-installconf
+
+/!\
+  if you have display problem with ct-profile or ct-installconf try 'ct-profile text' or 'ct-installconf text' or other mode see ct-installconf -h for more information
+/!\
 
 there is two way to install the ctafconf, the first one using svn is better as it allow you to update it easily :
 >mkdir .config
@@ -30,22 +34,16 @@ the second way is more traditional, you download the tarball from the website an
 UPDATE
 ===========================================================
 
-###########################  WARNING  ###########################
-#### ALWAYS RUN ct-installconf AFTER UPDATING the ctafconf   ####
-###########################  WARNING  ###########################
-
 update the ctafconf with svn (if you used the first method to install)
 >cd .config/ctafconf
 >svn up
->./bin/ct-installconf
 
 using a newer tarball:
 unpack the tarball in .config
 >cd .config/
 >tar xvzf ctafconf-DATE.tgz
-> cd ctafconf/bin
-> ./ct-installconf
 
+That's all, you dont need to call ct-installconf or ct-updateconf, it's automatic
 
 ==========================================================
 INSTALL FOR EMACS ONLY

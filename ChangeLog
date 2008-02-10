@@ -1,16 +1,32 @@
+2008-02-10 CTAF <>
+	* ct-profile : remove ctafconf_config, for epita use ct-env
+	* alias : a = autoreconf -isvf
+	* zsh : completion for m, ma, mac, make_real, c
+	* ct-installconf : dont ask anything
+	* ct-updateconf : autoupdate the ctafconf
+	* ct-profile : added backlist for ctafconf package
+	* ct-installconf : merged xsession and xinitrc
+	* wallpaper : removed from ct-profile, put your wallpaper in:
+	  ~/.config/ctafconf/perso/wallpaper.jpg
+	* ct-add-wallpp : removed
+	* env : only one user-profile, optional
+	* zsh : noglob for replacer
+	* zsh : dont expire duplicate entry in the log
+	* emacs : M-(left,right,up,down): navigate through buffer (using tabbar)
+
 2008-02-09 CTAF <>
 	* emacs : better template with author(s)
 	* emacs : better Makefile template with pkg-config support
 
 2008-02-01 CTAF <>
-	* never change the gnome wallpaper
+	* gnome : never change the gnome wallpaper
 
 2007-12-18 CTAF <>
 	* emacs : added tabbar mode
 
 2007-12-11 CTAF <>
 	* zsh : noglob for zmv
-	        (you can avoid quote for argument, it less error prone)
+	        (you can avoid quote for argument, it's less error prone)
 
 2007-12-04 CTAF <>
 	* shelltools: corrected bug with tcsh and null_cmd
