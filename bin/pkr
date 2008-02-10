@@ -1,0 +1,427 @@
+#!/bin/bash
+#Usage
+printusage()
+{
+	echo Usage:
+	echo $0 options arguments
+	echo Options
+	echo -e -p\\tPacking mode.
+	echo -e \\tFirst argument is the directory whose content will be packed.
+	echo -e \\t"Note the directory itself won't be part of the archive."
+	echo -e \\tSecond argument is the archive, or simply the archive format.
+	echo -e \\tex.:\\t$0 -p Foobar Foobar.tar.gz
+	echo -e \\t\\t$0 -p Foobar .tar.gz 
+	echo -e -u\\tUnpacking mode.
+	echo -e \\tLast argument is the directory to unpack to.
+	echo -e \\t"If omited, it will be deduced from the respective archives' names."
+	echo -e \\tPrevious ones are archives to unpack.
+	echo -e \\tex.:\\t$0 -u Foobar.tar.gz
+	echo -e \\t\\t$0 -u Foobar.tar.gz Foobar
+	echo -e \\t\\t$0 -u Foo.tar.gz Bar.tar.bz2
+	echo -e \\t\\t$0 -u Foo.tar.gz Bar.tar.bz2 Foobar
+	echo -e -r\\tRepacking mode.
+	echo -e \\tRepack all arguments but the last to the last.
+	echo -e \\tYou can specify an archive format as a last argument, complete name
+	echo -e \\twill be deduced from the first argument.	
+	echo -e \\tex.:\\t$0 -r Foo.tar.gz Bar.tar.bz2 Foobar.rar
+	echo -e \\t\\t$0 -r Foo.tar.gz Bar.tar.bz2 .rar
+	echo -e -l\\tList all available formats on your system.
+	echo -e -P\\tPreserve the archive. When unpacking, if the archive only contains
+	echo -e \\tone file/archive, it is moved to the parent directory, and the original
+	echo -e \\tdirectory is removed. Use this option to prevent this operation.
+	echo -e -h\\tPrint this help.
+	exit
+}
+if [ -z "$1" ];then
+	printusage
+fi
+#Defining options
+listflag=
+preserveflag=
+unpackflag=
+packflag=
+repackflag=
+while getopts lhPrupp: name;do
+	case $name in
+	h)	printusage;;
+	l)	listflag=1;;
+	u)	unpackflag=1;;
+	r)	repackflag=1;;
+	p)	packflag=1;;
+	P)	preserveflag=1;;
+	[?])  	printusage
+		exit 2;;
+	esac
+done
+shift $(($OPTIND - 1))
+#Defining common functions
+checkreq()
+{
+	for i in "$@"; do
+		if [ -z "$(which $i 2> /dev/null)" ];then
+			echo Could not find the required command \"$i\".
+			exit
+		fi
+	done
+}
+#Unpack
+unpack()
+{
+	#Isolate archives from directories
+	while [ -n "$1" ];do
+		echo "$1">> /tmp/pkr-$$/archives
+		shift
+	done
+	if [ ! -f "$(tail -n1 /tmp/pkr-$$/archives)" ];then
+		tail -n1 /tmp/pkr-$$/archives > /tmp/pkr-$$/dir
+		head -n -1 /tmp/pkr-$$/archives > /tmp/pkr-$$/archives2
+		mv /tmp/pkr-$$/archives2 /tmp/pkr-$$/archives
+	fi
+	cat /tmp/pkr-$$/archives | while read ARCH; do
+		if [ ! -f "$ARCH" ];then
+			echo Could not find $ARCH.
+			exit
+		fi
+	done
+	#Defining common functions
+	deducedir()
+	{
+		if [ -n "$(cat /tmp/pkr-$$/dir 2> /dev/null)" ];then
+			DIR="`cat /tmp/pkr-$$/dir 2> /dev/null`"
+		else
+			DIR="`echo $ARCH | sed s/$S//g`"
+		fi
+		mkdir -p "$DIR" &> /dev/null
+	}
+	checkifonefile()
+	{
+	if [ -z "$preserveflag" ];then
+		find "$1" -maxdepth 1 > /tmp/pkr-$$/unpack
+		if [ "$(head -n2 /tmp/pkr-$$/unpack)" = "$(tail -n2 /tmp/pkr-$$/unpack)" ];then
+			cd "$(dirname "$1")"
+			mv "$(basename "$1")" "$(basename "$1")-tmp-$$"
+			cd "$(basename "$1")-tmp-$$"
+			mv  * ../
+			cd ../
+			rm -r "$(basename "$1")-tmp-$$"
+			cd "$WD"
+		fi
+	fi
+	}
+	WD="$(pwd)"
+	uniq /tmp/pkr-$$/archives | while read ARCH; do
+		case "$ARCH" in
+			*.tar.gz)
+				checkreq tar
+				S=".tar.gz"
+				deducedir "$ARCH"
+				echo -n Unpacking \"$ARCH\" to \"$DIR\"... 
+				tar -zxf "$ARCH" -C "$DIR" 1> /dev/null
+				checkifonefile "$DIR"
+				if [ ! "$?" = "0" ];then echo Failed.; else echo Done.; fi
+			;;
+			*.tgz)
+				checkreq tar
+				S=".tgz"
+				deducedir "$ARCH"
+				echo -n Unpacking \"$ARCH\" to \"$DIR\"... 
+				tar -zxf "$ARCH" -C "$DIR" 1> /dev/null
+				checkifonefile "$DIR"
+				if [ ! "$?" = "0" ];then echo Failed.; else echo Done.; fi
+			;;
+			*.tar.bz2)
+				checkreq tar
+				S=".tar.bz2"
+				deducedir "$ARCH"
+				echo -n Unpacking \"$ARCH\" to \"$DIR\"... 
+				tar -jxf "$ARCH" -C "$DIR" 1> /dev/null
+				checkifonefile "$DIR"
+				if [ ! "$?" = "0" ];then echo Failed.; else echo Done.; fi
+			;;
+			*.tar.bzip2)
+				checkreq tar
+				S=".tar.bzip2"
+				deducedir "$ARCH"
+				echo -n Unpacking \"$ARCH\" to \"$DIR\"... 
+				tar -jxf "$ARCH" -C "$DIR" 1> /dev/null
+				checkifonefile "$DIR"
+				if [ ! "$?" = "0" ];then echo Failed.; else echo Done.; fi
+			;;
+			*.zip)
+				checkreq unzip
+				S=".zip"
+				deducedir "$ARCH"
+				echo -n Unpacking \"$ARCH\" to \"$DIR\"... 
+				unzip "$ARCH" -d "$DIR" 1> /dev/null
+				checkifonefile "$DIR"
+				if [ ! "$?" = "0" ];then echo Failed.; else echo Done.; fi
+			;;
+			*.rpm)
+				checkreq cpio rpm2cpio tar
+				S=".rpm"
+				deducedir "$ARCH"
+				echo -n Unpacking \"$ARCH\" to \"$DIR\"... 
+				rpm2cpio "$ARCH" > "/tmp/pkr-$$/unrpm.cpio"
+				cd "$DIR"
+				cpio --make-directories --no-absolute-filenames -iI /tmp/pkr-$$/unrpm.cpio > /dev/null 2>&1
+				rm /tmp/pkr-$$/unrpm.cpio
+				tar -jxvf *.tar.bz2  &> /dev/null
+				rm *.tar.bz2  &> /dev/null
+				checkifonefile "$DIR"
+				if [ ! "$?" = "0" ];then echo Failed.; else echo Done.; fi
+			;;
+			*.tar)
+				checkreq tar
+				S=".tar"
+				deducedir "$ARCH"
+				echo -n Unpacking \"$ARCH\" to \"$DIR\"... 
+				tar -xf "$ARCH" -C "$DIR" 1> /dev/null
+				checkifonefile "$DIR"
+				if [ ! "$?" = "0" ];then echo Failed.; else echo Done.; fi
+			;;
+			*.bz2)
+				checkreq bunzip2
+				S=".bz2"
+				deducedir "$ARCH"
+				echo -n Unpacking \"$ARCH\" to \"$DIR\"... 
+				cp "$ARCH" "$ARCH".bak
+				mkdir -p "$DIR"
+				cp "$ARCH" "$DIR" &> /dev/null
+				bunzip2 "$DIR/$ARCH"
+				mv "$ARCH".bak "$ARCH"
+				checkifonefile "$DIR"
+				if [ ! "$?" = "0" ];then echo Failed.; else echo Done.; fi
+			;;
+			*.gz)
+				checkreq gunzip
+				S=".gz"
+				deducedir "$ARCH"
+				echo -n Unpacking \"$ARCH\" to \"$DIR\"... 
+				cp "$ARCH" "$ARCH".bak
+				mkdir -p "$DIR"
+				cp "$ARCH" "$DIR" &> /dev/null
+				gunzip "$DIR/$ARCH"
+				mv "$ARCH".bak "$ARCH"
+				checkifonefile "$DIR"
+				if [ ! "$?" = "0" ];then echo Failed.; else echo Done.; fi
+			;;
+			*.rar)
+				checkreq rar
+				S=".rar"
+				deducedir "$ARCH"
+				echo -n Unpacking \"$ARCH\" to \"$DIR\"... 
+				rar xy "$ARCH" "$DIR" 1> /dev/null
+				checkifonefile "$DIR"
+				if [ ! "$?" = "0" ];then echo Failed.; else echo Done.; fi
+			;;
+			*.deb)
+				checkreq ar tar
+				S=".deb"
+				deducedir "$ARCH"
+				echo -n Unpacking \"$ARCH\" to \"$DIR\"... 
+				mkdir -p "$DIR"
+				cd "$DIR"
+				if [ "$(echo ${DIR:0:1})" = "/" ];then
+					ar x "$ARCH" 1> /dev/null
+				else
+					ar x "$WD/$ARCH" 1> /dev/null
+				fi
+				ar x "$ARCH" 1> /dev/null
+				tar -xzf data.tar.gz
+				tar -xzf control.tar.gz
+				rm data.tar.gz
+				rm control.tar.gz
+				checkifonefile "$DIR"
+				if [ ! "$?" = "0" ];then echo Failed.; else echo Done.; fi
+			;;
+			*.lzm)
+				checkreq unsquashfs
+				S=".lzm"
+				deducedir "$ARCH"
+				PATH=.:$(dirname $0):/usr/lib:$PATH
+				. liblinuxlive || exit 1
+				echo -n Unpacking \"$ARCH\" to \"$DIR\"... 
+				unsquashfs -f -dest "$DIR" "$ARCH" > /dev/null
+				checkifonefile "$DIR"
+				if [ ! "$?" = "0" ];then echo Failed.; else echo Done.; fi
+			;;
+			*.mo)
+				checkreq unsquashfs
+				S=".mo"
+				deducedir "$ARCH"
+				PATH=.:$(dirname $0):/usr/lib:$PATH
+				. liblinuxlive || exit 1
+				echo -n Unpacking \"$ARCH\" to \"$DIR\"... 
+				unsquashfs -f -dest "$DIR" "$ARCH" >/dev/null
+				checkifonefile "$DIR"
+				if [ ! "$?" = "0" ];then echo Failed.; else echo Done.; fi
+			;;
+			*.7z)
+				checkreq 7z
+				S=".7z"
+				deducedir "$ARCH"
+				echo -n Unpacking \"$ARCH\" to \"$DIR\"... 
+				7z x -o"$DIR" "$ARCH" 1> /dev/null
+				checkifonefile "$DIR"
+				if [ ! "$?" = "0" ];then echo Failed.; else echo Done.; fi
+			;;
+			*) echo "\"$ARCH\" is not a known archive, skipping. " ;;
+		esac
+		cd "$WD"
+	done
+	rm /tmp/pkr-$$/dir /tmp/pkr-$$/archives /tmp/pkr-$$/unpack &> /dev/null
+}
+#Pack
+pack()
+{
+	if [ ! -e "$1" ];then
+		echo Could not find $1.
+		exit
+	fi
+	if [ -z "$2" ];then
+		echo You must specify a destination archive, or an archive format.
+		exit
+	fi
+	if [ -z "$(echo "$2" | sed s/".tar.gz"//g | sed s/".tar.bz2"//g | sed s/".tar"//g | sed s/".tgz"//g | sed s/".zip"//g | sed s/".rar"//g | sed s/".lzm"//g | sed s/".mo"//g | sed s/".tar.bzip2"//g )" ];then
+		NAME="$1$2"
+	else
+		NAME="$2"
+	fi
+	WD="`pwd`"
+	case "$2" in
+		*.tar.gz|*.tgz)
+			checkreq tar
+			cd "$1"
+			echo -n Packing \"$1\" to \"$NAME\"...
+			tar -zcf "$(basename "$NAME")" * 1> /dev/null
+			cd "$WD"
+			mv "$1/$(basename "$NAME")" "$NAME" &> /dev/null
+			if [ ! "$?" = "0" ];then echo Failed.; else echo Done.; fi
+		;;
+		*.tar.bz2|*.tar.bzip2)
+			checkreq tar
+			cd "$1"
+			echo -n Packing \"$1\" to \"$NAME\"...
+			tar -jcf "$(basename "$NAME")" * 1> /dev/null
+			cd "$WD"
+			mv "$1/$(basename "$NAME")" "$NAME" &> /dev/null
+			if [ ! "$?" = "0" ];then echo Failed.; else echo Done.; fi
+		;;
+		*.zip)
+			checkreq zip
+			cd "$1"
+			echo -n Packing \"$1\" to \"$NAME\"...
+			zip -r "$(basename "$NAME")" * 1> /dev/null
+			cd "$WD"
+			mv "$1/$(basename "$NAME")" "$NAME" &> /dev/null
+			if [ ! "$?" = "0" ];then echo Failed.; else echo Done.; fi
+		;;
+		*.tar)
+			checkreq tar
+			cd "$1"
+			echo -n Packing \"$1\" to \"$NAME\"...
+			tar -cf "$(basename "$NAME")" * 1> /dev/null
+			cd "$WD"
+			mv "$1/$(basename "$NAME")" "$NAME" &> /dev/null
+			if [ ! "$?" = "0" ];then echo Failed.; else echo Done.; fi
+		;;
+		*.rar)
+			checkreq rar
+			cd "$1"
+			echo -n Packing \"$1\" to \"$NAME\"...
+			rar a "$(basename "$NAME")" * 1> /dev/null
+			cd "$WD"
+			mv "$1/$(basename "$NAME")" "$NAME" &> /dev/null
+			if [ ! "$?" = "0" ];then echo Failed.; else echo Done.; fi
+		;;
+		*.lzm|*.mo)
+			checkreq mksquashfs 
+			echo -n Packing \"$1\" to \"$NAME\"...
+			PATH=.:$(dirname $0):/usr/lib:$PATH
+			. liblinuxlive || exit 1
+			rm -f "$NAME"
+			create_module "$1" "$NAME"
+			if [ $? != 0 ]; then echo "error building compressed image"; exit 1; fi
+			if [ ! "$?" = "0" ];then echo Failed.; else echo Done.; fi
+		;;
+		*.7z)
+			checkreq 7z
+			cd "$1"
+			echo -n Packing \"$1\" to \"$NAME\"...
+			7z a "$(basename "$NAME")" * 1> /dev/null
+			cd "$WD"
+			mv "$1/$(basename "$NAME")" "$NAME" &> /dev/null
+			if [ ! "$?" = "0" ];then echo Failed.; else echo Done.; fi
+		;;
+		*) echo "$2 - not a known archive, skipping. " ;;
+	esac
+}
+repack()
+{
+	ORIGARCH="$1"
+	rm -rf /tmp/pkr-$$/repack
+	while [ -n "$1" ];do
+			echo "$1">> /tmp/pkr-$$/archives
+		shift
+	done
+	DEST="`tail -n1 /tmp/pkr-$$/archives`"
+	head -n -1 /tmp/pkr-$$/archives > /tmp/pkr-$$/archives2
+	mv /tmp/pkr-$$/archives2 /tmp/pkr-$$/archives
+	cat /tmp/pkr-$$/archives | while read ARCH; do
+		if [ ! -f "$ARCH" ];then
+			echo Could not find $ARCH.
+			exit
+		fi
+		unpack "$ARCH" "/tmp/pkr-$$/repack"
+	done
+	if [ -z "$(echo "$DEST" | sed s/".tar.gz"//g | sed s/".tar.bz2"//g | sed s/".tar"//g | sed s/".tgz"//g | sed s/".zip"//g | sed s/".rar"//g | sed s/".lzm"//g | sed s/".mo"//g | sed s/".tar.bzip2"//g )" ];then
+		DEST="$(echo $ORIGARCH | sed s/".tar.gz"//g | sed s/".tar.bz2"//g | sed s/".tar"//g | sed s/".tgz"//g | sed s/".zip"//g | sed s/".rar"//g | sed s/".lzm"//g | sed s/".mo"//g | sed s/".tar.bzip2"//g)$DEST"
+	else
+		DEST="$DEST"
+	fi
+	echo $DEST
+	pack /tmp/pkr-$$/repack "$DEST"
+}
+mkdir /tmp/pkr-$$
+if [ -n "$listflag" ];then
+	if [ -z "$(checkreq tar)" ];then
+		echo ".tar"
+		echo ".tar.gz"
+		echo ".tar.bz2"
+		echo ".tar.bzip2"
+		echo ".tgz"
+	fi
+	if [ -z "$(checkreq zip)" ];then
+		echo ".zip"
+	fi
+	if [ -z "$(checkreq rar)" ];then
+		echo ".rar"
+	fi
+	if [ -z "$(checkreq mksquashfs)" ];then
+		echo ".mo"
+		echo ".lzm"
+	fi
+	if [ -z "$(checkreq 7z)" ];then
+		echo ".7z"
+	fi
+	if [ -z "$(checkreq cpio rpm2cpio tar)" ];then
+		echo ".rpm"
+	fi
+	if [ -z "$(checkreq bunzip2)" ];then
+		echo ".bz2"
+	fi
+	if [ -z "$(checkreq gunzip)" ];then
+		echo ".gz"
+	fi
+	if [ -z "$(checkreq ar tar)" ];then
+		echo ".deb"
+	fi
+elif [ -n "$unpackflag" ];then
+	unpack $@
+elif [ -n "$packflag" ];then
+	pack $@
+elif [ -n "$repackflag" ];then
+	preserveflag=1
+	repack $@
+fi
+rm -rf /tmp/pkr-$$
