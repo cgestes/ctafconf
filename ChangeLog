@@ -1,3 +1,6 @@
+2008-02-11 CTAF <> -- 0.1.45
+	* replacer : safer
+
 2008-02-10 CTAF <>
 	* ct-profile : remove ctafconf_config, for epita use ct-env
 	* alias : a = autoreconf -isvf

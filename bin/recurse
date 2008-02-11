@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Sun Oct  2 07:23:17 2005 GESTES Cedric
-## Last update Wed Nov 21 10:04:44 2007 GESTES Cedric
+## Last update Sun Feb 10 23:49:51 2008 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -20,12 +20,12 @@ recurse ()
   local i=""
   local fn=""
 
-  ls $arg 2>/dev/null | while read i; do
-    fn=$arg/$i
-    if [ -d $fn ]; then
+  ls "$arg" 2>/dev/null | while read i; do
+    fn="$arg/$i"
+    if [ -d "$fn" ]; then
       echo "$fn";
-      recurse $fn;
-    elif [ -f $fn ]; then
+      recurse "$fn";
+    elif [ -f "$fn" ]; then
       echo "$fn";
     fi;
   done;
@@ -37,11 +37,11 @@ recurse_file ()
   local i=""
   local fn=""
 
-  ls $arg 2>/dev/null | while read i; do
-    fn=$arg/$i
-    if [ -d $fn ]; then
-      recurse_file $fn;
-    elif [ -f $fn ]; then
+  ls "$arg" 2>/dev/null | while read i; do
+    fn="$arg/$i"
+    if [ -d "$fn" ]; then
+      recurse_file "$fn";
+    elif [ -f "$fn" ]; then
       echo "$fn";
     fi;
   done;
@@ -53,11 +53,11 @@ recurse_folder ()
   local i=""
   local fn=""
 
-  ls $arg 2>/dev/null | while read i; do
-    fn=$arg/$i
-    if [ -d $fn ]; then
+  ls "$arg" 2>/dev/null | while read i; do
+    fn="$arg/$i"
+    if [ -d "$fn" ]; then
       echo "$fn";
-      recurse_folder $fn;
+      recurse_folder "$fn";
     fi;
   done;
 }

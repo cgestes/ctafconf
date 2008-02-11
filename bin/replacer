@@ -5,21 +5,53 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Sun Oct  2 07:23:17 2005 GESTES Cedric
-## Last update Wed Nov 21 10:37:23 2007 GESTES Cedric
+## Last update Mon Feb 11 01:02:50 2008 GESTES Cedric
 ##
 ##CTAFCONF
 
 action=$1
+action2=$2
 
 #recursive replace all occurence by another in all file of the current folder
 replacer ()
 {
-  local arg1=$1
-  local arg2=$2
+  local ext1=".9pl9.replacer.bak"
 
-  recurse_file . | grep -v 'replace.bak' | while read file; do
-    echo "replacing in file: $file"
-    perl -pi.replace.bak -e "$action" "$file"
+  recurse_file . | grep -v "$ext1" | while read file; do
+
+    if ! perl -pi"$ext1" -e "$action2" "$file" ; then
+      exit 1;
+    fi
+    if ! diff -q "$file$ext1" "$file" >/dev/null 2>/dev/null ; then
+      echo "replacing in file: $file"
+    else
+      #no change we remove the backup
+      rm "$file$ext1"
+    fi
+  done
+}
+
+
+#recursive replace all occurence by another in all file of the current folder
+replacer_dry ()
+{
+  local ext1=".orig"
+  local ext2=".9pl9.changed"
+
+  recurse_file . | grep -v "$ext1" | grep -v "$ext2" | while read file; do
+    cp "$file" "$file$ext2"
+    if ! perl -pi"$ext1" -e "$action" "$file$ext2" >/dev/null; then
+      rm "$file$ext2"
+      rm "$file$ext2$ext1"
+      exit 1;
+    fi
+
+    #are the file different?
+    if ! diff -q "$file$ext2$ext1" "$file$ext2" >/dev/null 2>/dev/null ; then
+      diff -U 0 "$file$ext2$ext1" "$file$ext2" | ~/.config/ctafconf/bin/colorsvn.pl
+    fi
+    rm "$file$ext2"
+    rm "$file$ext2$ext1"
   done
 }
 
@@ -30,30 +62,36 @@ recurse_file ()
   local i=""
   local fn=""
 
-  ls $arg 2>/dev/null | while read i; do
-    fn=$arg/$i
-    if [ -d $fn ]; then
-      recurse_file $fn;
-    elif [ -f $fn ]; then
+  ls "$arg" 2>/dev/null | while read i; do
+    fn="$arg/$i"
+    if [ -d "$fn" ]; then
+      recurse_file "$fn";
+    elif [ -f "$fn" ]; then
       echo "$fn";
     fi;
   done;
 }
 
 if [ x$action = x-h ] || [ x$action = x ] ; then
-  echo "usage: replacer [clean] perlregexp"
+  echo "usage: replacer [--clean][--go] perlregexp"
   echo ""
-  echo "replacer create .replace.bak for each file it modify"
-  echo "when you are sure your modification are good, you can remove this file with:"
-  echo "> replacer clean"
+  echo "replacer create .9pl9.replacer.bak for each file it modify"
+  echo "when you are sure your modification are good, call replacer with --go"
+  echo "to cleanup backup file run:"
+  echo "> replacer --clean"
   echo ""
   echo "example to replace foo by bar: replacer s/foo/bar/g"
   echo "or                           : replacer s-foo-bar-g"
+  echo "or (case insensitive)        : replacer s/foo/bar/gi"
   exit 0
-elif [ x$action = xclean ] ; then
-  rm -rf ***/*.replace.bak
+elif [ x$action = x--clean ] ; then
+  rm -rf "***/*.9pl9.replacer.bak"
   echo "directory clean up (all backup removed)"
   exit 0
+elif [ x$action = x--go ] ; then
+  replacer
+  exit 0
+else
+  replacer_dry
 fi
 
-replacer .

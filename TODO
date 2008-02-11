@@ -25,6 +25,9 @@ ct-env:
 DOC:
   - ct-env : one page on the wiki (each pages: ct-env, ct-installconf, programming, console)
 
-add a xsession: guess for the default user-profile (X should always work), remove xsession/startx from default install
+  - add a xsession: guess for the default user-profile (X should always work), remove xsession/startx from default install
 
-allow to edit the list of blocked machine (gate-epita, ...)
+  - allow to edit the list of blocked machine (gate-epita, ...)
+  - gui to edit (profile, emacs config, env)
+
+
