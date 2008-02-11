@@ -7,7 +7,6 @@ V1.1.0:
   - ct-repo/ct-date : use ssft
 
 V1.0.44: goal: rock stable
-  - colormake : replace white by grey for unuseful stuff
   - test on freebsd/netbsd/openbsd/cygwin/windows/osx
 
 ########################################

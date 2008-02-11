@@ -102,6 +102,9 @@ while (<>)
 	$thisline =~   s/^(\Index.*)/$col_yellow$col_brighten$1$col_file/x;
 	$thisline =~   s/^(\===.*)/$col_yellow$col_brighten$1$col_file/x;
 
+	$thisline =~   s/^(\-\-\-.*)/$col_yellow$col_brighten$1$col_file/x;
+	$thisline =~   s/^(\+\+\+.*)/$col_yellow$col_brighten$1$col_file/x;
+
 	$thisline =~   s/^(\+.*)/$col_purple$1$col_file/x;
 	$thisline =~   s/^(-.*)/$col_yellow$1$col_file/x;
 	$thisline =~   s/^(@@.*)/$col_blue$1$col_file/x;

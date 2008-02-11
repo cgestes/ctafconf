@@ -1,5 +1,6 @@
-2008-02-11 CTAF <> -- 0.1.45
+2008-02-11 CTAF <> -- 1.0.45
 	* replacer : safer
+	* colorsvn : header (filename) are yellow (used by replacer)
 
 2008-02-10 CTAF <>
 	* ct-profile : remove ctafconf_config, for epita use ct-env
@@ -113,7 +114,7 @@
 	* ct-set-bg : removed set bg for gnome/kde
 	* sudo: always change dir to ~ (avoid bug when doing sudo emacs for ex)
 
-2007-04-21 CTAF <> 0.1.43
+2007-04-21 CTAF <> 1.0.43
 	* colorgaim.pl : color gaim log
 
 2007-04-06 CTAF <>
@@ -136,7 +137,6 @@
 	* less : changed option (removed clear whole screen), it work better with ct-installconf
 	* grktools.sh : overwrite existing symlink
 	* ct-installconf : no more diff error
-
 
 2007-02-16 CTAF <>
 	* ct-installconf, ct-profile : cleaner output
