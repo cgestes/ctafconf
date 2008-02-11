@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 01:14:21 2006 GESTES Cedric
-;; Last update Fri Feb  1 11:08:20 2008 Cedric GESTES
+;; Last update Mon Feb 11 23:54:27 2008 GESTES Cedric
 ;;
 (message ".")
 (message "ctafconf loading: PROG.EMACS")
@@ -41,6 +41,13 @@
 (condition-case err
     (progn
       (require 'cc-mode)
+      (setq c-basic-offset 2)
+      (setq c-comment-only-line-offset 0)
+      (setq c-offsets-alist '((statement-block-intro . +)
+                               (substatement-open . 0)
+                               (substatement-label . 0)
+                               (label . 0)
+                               (statement-cont . +)))
 ;;      (setq c-C++-access-key "\\<\\(slots\\|signals\\|private\\|protected\\|public\\)\\>[ \t]*[(slots\\|signals)]*[ \t]*:")
 ;;      (font-lock-add-keywords 'c++-mode '(("\\<\\(Q_OBJECT\\|public slots\\|public signals\\|private slots\\|private signals\\|protected slots\\|protected signals\\)\\>" . font-lock-constant-face)))
       )

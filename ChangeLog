@@ -1,3 +1,6 @@
+2008-02-11 CTAF <>
+	* emacs : better indentation
+
 2008-02-11 CTAF <> -- 1.0.45
 	* replacer : safer
 	* colorsvn : header (filename) are yellow (used by replacer)

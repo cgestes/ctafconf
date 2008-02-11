@@ -30,3 +30,5 @@ DOC:
   - gui to edit (profile, emacs config, env)
 
 
+===>
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2; tab-width: 2 -*- */
