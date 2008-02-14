@@ -183,7 +183,8 @@
         (progn
           ;;(setq semantic-load-turn-useful-things-on t)
           ;;(setq semantic-load-turn-everything-on t)
-          (load-file "~/.config/ctafconf/etc/emacs/site-lisp/cedet/common/cedet.el")
+          ;;(load-file "~/.config/ctafconf/etc/emacs/site-lisp/cedet/common/cedet.el")
+	  (load-file "~/src/cedet/common/cedet.el")
           ;; * This turns on which-func support (Plus all other code helpers)
           (semantic-load-enable-excessive-code-helpers)
 	  ;; (semantic-load-enable-guady-code-helpers)

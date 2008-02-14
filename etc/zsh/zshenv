@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
-## Last update Tue Dec  4 12:09:01 2007 GESTES Cedric
+## Last update Wed Feb 13 20:30:59 2008 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -13,10 +13,17 @@ if [[ $- != *i* ]] || [ a$HOST = agate-ssh ]; then
     return
 fi
 
+# #disable notification for jobs temporary
+# setopt no_monitor
+
 #include global environment
 [ -f ~/.config/ctafconf/etc/shell/env ] && . ~/.config/ctafconf/etc/shell/env sh
 
 ls ~/.config/ctafconf/perso/env | null_cmd grep '.env$' && source ~/.config/ctafconf/perso/env/*.env
+
+# #enable notification for jobs
+# setopt monitor
+
 
 export HISTSIZE=1000
 export HISTFILE=~/.zshhistory

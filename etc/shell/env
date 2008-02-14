@@ -5,7 +5,7 @@
 ## Login   <goctaf@gmail.com>
 ##
 ## Started on  Fri Sep 30 22:17:33 2005 GESTES Cedric
-## Last update Sun Feb 10 13:21:49 2008 GESTES Cedric
+## Last update Wed Feb 13 20:31:24 2008 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -19,13 +19,8 @@ var_set param $1
 #source user profile
 test -f ~/.config/ctafconf/perso/user-profile && . ~/.config/ctafconf/perso/user-profile
 
+#update the ctafconf if VERSION has changed
 ~/.config/ctafconf/bin/ct-updateconf
-
-#fucking annoying bell
-null_cmd xset b off&
-
-#merge setting for x application (xterm,aterm,..)
-null_cmd xrdb -merge ~/.config/ctafconf/etc/xsession/Xdefaults&
 
 #remove fucking bell
 null_cmd setterm -blength 0
