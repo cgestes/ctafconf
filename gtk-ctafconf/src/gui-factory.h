@@ -26,12 +26,28 @@
 #ifndef   	GUI_FACTORY_H_
 # define   	GUI_FACTORY_H_
 
+#include <gtkmm.h>
 #include <gtkmm/notebook.h>
 #include <string.h>
 #include <vector>
+
+//Tree model columns:
+class ComboModelColumns : public Gtk::TreeModel::ColumnRecord {
+ public:
+  ComboModelColumns() {
+    add(m_col_name);
+    add(m_col_active);
+  }
+  Gtk::TreeModelColumn<Glib::ustring> m_col_name;
+  Gtk::TreeModelColumn<bool> m_col_active;
+};
+
+
 class GuiFactory
 {
  public:
+  typedef std::vector<std::string> StringVector;
+
   GuiFactory(Gtk::Notebook &notebook);
 
   void add_frame(const std::string &name);
@@ -39,14 +55,20 @@ class GuiFactory
   void add_string(const std::string &name,
                   const std::string &def = "");
 
+  void add_checkbox(const std::string &name, bool def);
+
   void add_int(const std::string &name);
 
   void add_singlechoice(const std::string &name,
-                        const std::vector<std::string> &values,
+                        const StringVector &values,
                         const std::string &def = "");
 
   void add_multichoice(const std::string &name,
-                       const std::vector<std::pair<std::string, bool> > &list);
+                       const StringVector &values,
+                       const StringVector &defaults);
+
+ protected:
+  Gtk::HBox *add_box_with_label(const std::string &name);
 
  protected:
   Gtk::Notebook &m_notebook;

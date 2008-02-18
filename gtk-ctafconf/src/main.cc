@@ -22,7 +22,6 @@
  * 	Boston, MA  02110-1301, USA.
  */
 
-#include <libglademm/xml.h>
 #include <gtkmm.h>
 #include <iostream>
 
@@ -33,10 +32,6 @@
 #endif
 
 
-/* For testing propose use the local (not installed) glade file */
-/* #define GLADE_FILE PACKAGE_DATA_DIR"/gtk-ctafconf/glade/gtk-ctafconf.glade" */
-#define GLADE_FILE "gtk-ctafconf.glade"
-
 int
 main (int argc, char *argv[])
 {
@@ -44,23 +39,33 @@ main (int argc, char *argv[])
 	Gtk::Window dialog;
 	Gtk::Notebook notebook;
 	GuiFactory gui_factory(notebook);
-	ConfigParserCtafconf cp_ctafconf(gui_factory);
-	ConfigParserEmacs cp_emacs(gui_factory);
+/* 	ConfigParserCtafconf cp_ctafconf(gui_factory); */
+/* 	ConfigParserEmacs cp_emacs(gui_factory); */
 
 	dialog.add(notebook);
+	dialog.set_default_size(640, 480);
 
-	cp_ctafconf.load("user-profile.ct-tpl");
-	cp_emacs.load("emacs.ct-tpl");
+/* 	cp_ctafconf.load("user-profile.ct-tpl"); */
+/* 	cp_emacs.load("emacs.ct-tpl"); */
 
 	gui_factory.add_frame("bob");
 	gui_factory.add_string("str1", "blabla");
 	gui_factory.add_string("str2");
+
 	std::vector<std::string> strings;
 	strings.push_back("tata");
 	strings.push_back("toto");
 	strings.push_back("titi");
-	gui_factory.add_singlechoice("combotext", strings, "tata");
+	gui_factory.add_singlechoice("combotext", strings, "titi");
+
+	std::vector<std::string> strings2;
+	strings2.push_back("tata");
+	strings2.push_back("titi");
+
 	gui_factory.add_frame("bob2");
+
+	gui_factory.add_multichoice("tree", strings, strings2);
+	gui_factory.add_checkbox("str2", 1);
 
 	dialog.show_all();
 	kit.run(dialog);

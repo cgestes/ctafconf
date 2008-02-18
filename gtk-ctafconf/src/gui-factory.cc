@@ -36,11 +36,25 @@ GuiFactory::GuiFactory(Gtk::Notebook &notebook)
     m_current_page(0){
 }
 
+/*
+ * add a hbox and a label
+ * used by all other function
+ */
+Gtk::HBox *GuiFactory::add_box_with_label(const std::string &name)
+{
+  HBox *hbox = new HBox(1);
+  Label *lbl = new Label(name);
+
+  if (!m_current_page)
+    return hbox;
+  m_current_page->pack_start(*hbox, PACK_SHRINK, 3);
+  lbl->set_alignment(Gtk::ALIGN_LEFT, Gtk::ALIGN_CENTER);
+  hbox->pack_start(*lbl);
+  return hbox;
+}
 
 void GuiFactory::add_frame(const string &name)
 {
-  std::cerr << "adding a page: " << name << endl;
-
   //create a new vbox for the page
   m_current_page = new Gtk::VBox();
 
@@ -50,34 +64,83 @@ void GuiFactory::add_frame(const string &name)
 
 void GuiFactory::add_string(const std::string &name, const std::string &def)
 {
-  HBox *hbox = new HBox();
+  HBox *hbox;
   Entry *entry = new Entry();
-  Label *lbl = new Label(name);
 
-  std::cerr << "adding a string: " << name << endl;
-
-  if (!m_current_page)
-    return;
-  m_current_page->pack_start(*hbox);
-  hbox->pack_start(*lbl);
-
+  hbox = add_box_with_label(name);
   entry->set_text(def);
   hbox->pack_start(*entry);
 }
+
+void GuiFactory::add_checkbox(const std::string &name, bool def)
+{
+  HBox *hbox;
+  CheckButton *btn = new CheckButton();
+
+  std::cerr << "adding a string: " << name << endl;
+
+  btn->set_active(def);
+  hbox = add_box_with_label(name);
+  hbox->pack_start(*btn);
+}
+
 
 void GuiFactory::add_singlechoice(const std::string &name,
                                   const std::vector<std::string> &values,
                                   const std::string &def /*= ""*/)
 {
-  HBox *hbox = new HBox();
+  HBox *hbox;
   Label *lbl = new Label(name);
-  ComboBox *combo = new ComboBox();
+  ComboBoxText *combo = new ComboBoxText();
+  StringVector::const_iterator it = values.begin();
 
-  if (!m_current_page)
-    return;
-  m_current_page->pack_start(*hbox);
-  hbox->pack_start(*lbl);
+  for (;it != values.end();++it) {
+    combo->append_text(*it);
+  }
+  combo->set_active_text(def);
+
+  hbox = add_box_with_label(name);
   hbox->pack_start(*combo);
+}
 
+/*
+ * Gtk::TreeModel::iterator iter = m_Combo.get_active();
+if(iter)
+{
+  Gtk::TreeModel::Row row = *iter;
+
+  //Get the data for the selected row, using our knowledge
+  //of the tree model:
+  int id = row[m_Columns.m_col_id];
+ *
+ */
+void GuiFactory::add_multichoice(const std::string &name,
+                                 const std::vector<std::string> &values,
+                                 const std::vector<std::string> &defaults)
+{
+  HBox *hbox;
+  TreeView *tv = new TreeView();
+  ComboModelColumns *m_Columns = new ComboModelColumns();
+  Glib::RefPtr<Gtk::ListStore> m_refTreeModel;
+  Gtk::TreeModel::Row row;
+  StringVector::const_iterator it = values.begin();
+  StringVector::const_iterator p;
+
+  m_refTreeModel = Gtk::ListStore::create(*m_Columns);
+  tv->set_model(m_refTreeModel);
+
+  tv->append_column_editable("", m_Columns->m_col_active);
+  tv->append_column("Name", m_Columns->m_col_name);
+
+  for (;it != values.end();++it) {
+    row = *(m_refTreeModel->append());
+    row[m_Columns->m_col_name] = *it;
+
+    p = find(defaults.begin(), defaults.end(), *it);
+    row[m_Columns->m_col_active] = p != defaults.end();
+  }
+
+  hbox = add_box_with_label(name);
+  hbox->pack_start(*tv);
 }
 

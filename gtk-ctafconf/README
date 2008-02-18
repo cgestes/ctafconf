@@ -1,0 +1,6 @@
+to install this program:
+
+autoreconf -isvf
+./configure
+make
+sudo make install
