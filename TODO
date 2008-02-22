@@ -30,5 +30,9 @@ DOC:
   - gui to edit (profile, emacs config, env)
 
 
+bug: export VISUAL=nano; svn ci
+remove: gnome kbd
+
+
 ===>
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2; tab-width: 2 -*- */
