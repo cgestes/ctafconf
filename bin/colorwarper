@@ -11,10 +11,10 @@ fi
 if ! which perl 2>/dev/null >/dev/null ; then
   echo "colorwarper: warning: can't find perl!!"
   echo "colorwarper: continuing without coloring output"
-  $arg
+  "$@"
 else
   if [ x"$app" = xgmake ]; then
-    "$arg" 2>&1 | ~/.config/ctafconf/bin/colormake.pl
+    "$@" 2>&1 | ~/.config/ctafconf/bin/colormake.pl
   elif [ x"$app" = xsvn ] || [ x"$app" = xcvs ]; then
     for i in $@; do
       if [ x$i = xci ] || [ x$i = xcommit ]; then
@@ -22,9 +22,9 @@ else
         exit $?
       fi
     done;
-    "$arg" 2>&1 | ~/.config/ctafconf/bin/color$app.pl
+    "$@" 2>&1 | ~/.config/ctafconf/bin/color$app.pl
   else
-    "$arg" 2>&1 | ~/.config/ctafconf/bin/color$app.pl
+    "$@" 2>&1 | ~/.config/ctafconf/bin/color$app.pl
   fi
 fi
 
