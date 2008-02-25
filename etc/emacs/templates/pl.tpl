@@ -1,3 +1,4 @@
+#!/usr/bin/env perl -w
 ##
 ## @FILE-NAME@
 ## Login : <@USER-LOGIN@@@HOST@>

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 #CTAFCONF, GPL, etc...
 app="$1"
+arg=$@
 
 if ! which $app 2>/dev/null >/dev/null ; then
   echo "colorwarper: error: can't find: $app"
@@ -10,12 +11,20 @@ fi
 if ! which perl 2>/dev/null >/dev/null ; then
   echo "colorwarper: warning: can't find perl!!"
   echo "colorwarper: continuing without coloring output"
-  "$@"
+  $arg
 else
   if [ x"$app" = xgmake ]; then
-    "$@" 2>&1 | ~/.config/ctafconf/bin/colormake.pl
+    "$arg" 2>&1 | ~/.config/ctafconf/bin/colormake.pl
+  elif [ x"$app" = xsvn ] || [ x"$app" = xcvs ]; then
+    for i in $@; do
+      if [ x$i = xci ] || [ x$i = xcommit ]; then
+        "$@"
+        exit $?
+      fi
+    done;
+    "$arg" 2>&1 | ~/.config/ctafconf/bin/color$app.pl
   else
-    "$@" 2>&1 | ~/.config/ctafconf/bin/color$app.pl
+    "$arg" 2>&1 | ~/.config/ctafconf/bin/color$app.pl
   fi
 fi
 

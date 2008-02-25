@@ -1,3 +1,8 @@
+2008-02-25 CTAF  <ctaf42@gmail.com>
+	* etc/grk/gnome.grk: removed shortkey for metacity
+	* emacs: perl template begin with #!/usr/bin/env perl
+	* colorsvn/colorcvs
+
 2008-02-13 CTAF <>
 	* new ct-newuser : configure the ctafconf for a new user from the system install
 	* new ct-autostart : startup file, launched at X startup

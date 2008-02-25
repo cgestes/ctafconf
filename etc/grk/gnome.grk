@@ -6,7 +6,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Tue Apr 11 12:32:11 2006 GESTES Cedric
-## Last update Sun Feb 10 11:48:21 2008 GESTES Cedric
+## Last update Mon Feb 25 23:58:31 2008 Cedric GESTES
 ##
 
 #--function
@@ -63,10 +63,11 @@ gnome_is_installed()
 #   [ x`gconftool-2 --get /apps/metacity/global_keybindings/switch_to_workspace_2` = x"<Alt>F2" ] &&
 #   [ x`gconftool-2 --get /apps/metacity/global_keybindings/switch_to_workspace_3` = x"<Alt>F3" ] &&
 #   [ x`gconftool-2 --get /apps/metacity/global_keybindings/switch_to_workspace_4` = x"<Alt>F4" ] &&
-  [ x`gconftool-2 --get /apps/metacity/window_keybindings/toggle_fullscreen` =  x"<Control><Alt>f" ] &&
-  [ x`gconftool-2 --get /apps/metacity/window_keybindings/toggle_maximized` =  x"<Control><Alt>m" ] &&
-  [ x`gconftool-2 --get /apps/metacity/window_keybindings/begin_move` =  x"<Control><Alt>w" ] &&
-  [ x`gconftool-2 --get /apps/metacity/window_keybindings/begin_resize` =  x"<Control><Alt>x" ]
+#   [ x`gconftool-2 --get /apps/metacity/window_keybindings/toggle_fullscreen` =  x"<Control><Alt>f" ] &&
+#   [ x`gconftool-2 --get /apps/metacity/window_keybindings/toggle_maximized` =  x"<Control><Alt>m" ] &&
+#   [ x`gconftool-2 --get /apps/metacity/window_keybindings/begin_move` =  x"<Control><Alt>w" ] &&
+#   [ x`gconftool-2 --get /apps/metacity/window_keybindings/begin_resize` =  x"<Control><Alt>x" ]
+  return 0
   return $?
 }
 
@@ -86,12 +87,12 @@ gnome_install()
 #       gconftool-2 --type string --set /apps/metacity/global_keybindings/switch_to_workspace_4 "<Alt>F4"
 
       #metacity window
-      gconftool-2 --dump /apps/metacity/window_keybindings > ~/.config/ctafconf/perso/previous/windowkeybindings-previous.gconf
-      gconftool-2 --dump /apps/metacity/window_keybindings > ~/.config/ctafconf/perso/previous/windowkeybindings-prev-$date.gconf
-      gconftool-2 --type string --set /apps/metacity/window_keybindings/toggle_fullscreen "<Control><Alt>f"
-      gconftool-2 --type string --set /apps/metacity/window_keybindings/toggle_maximized "<Control><Alt>m"
-      gconftool-2 --type string --set /apps/metacity/window_keybindings/begin_move "<Control><Alt>w"
-      gconftool-2 --type string --set /apps/metacity/window_keybindings/begin_resize "<Control><Alt>x"
+#       gconftool-2 --dump /apps/metacity/window_keybindings > ~/.config/ctafconf/perso/previous/windowkeybindings-previous.gconf
+#       gconftool-2 --dump /apps/metacity/window_keybindings > ~/.config/ctafconf/perso/previous/windowkeybindings-prev-$date.gconf
+#       gconftool-2 --type string --set /apps/metacity/window_keybindings/toggle_fullscreen "<Control><Alt>f"
+#       gconftool-2 --type string --set /apps/metacity/window_keybindings/toggle_maximized "<Control><Alt>m"
+#       gconftool-2 --type string --set /apps/metacity/window_keybindings/begin_move "<Control><Alt>w"
+#       gconftool-2 --type string --set /apps/metacity/window_keybindings/begin_resize "<Control><Alt>x"
 
       #gnome-terminal profile
       gconftool-2 --dump /apps/gnome-terminal > ~/.config/ctafconf/perso/previous/gnome-terminal-previous.gconf
@@ -104,9 +105,9 @@ gnome_install()
 #     echo "Setting metacity workspace shortcut:"
 #     echo "<Alt>F1 Workspace 1         <Alt>F2 Workspace 2"
 #     echo "<Alt>F3 Workspace 3         <Alt>F4 Workspace 4"
-    echo "Setting metacity window shortcut:"
-    echo "<Control><Alt>f fullscreen  <Control><Alt>m maximized"
-    echo "<Control><Alt>w move        <Control><Alt>x resize"
+#     echo "Setting metacity window shortcut:"
+#     echo "<Control><Alt>f fullscreen  <Control><Alt>m maximized"
+#     echo "<Control><Alt>w move        <Control><Alt>x resize"
     return 0
 }
 
