@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
-## Last update Tue Feb 26 02:24:58 2008 Cedric GESTES
+## Last update Tue Feb 26 16:17:59 2008 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -49,7 +49,8 @@ setprompt () {
 
 ###
 # Finally, the prompt.
-PROMPT='$PR_BG_BLACK $PR_LIGHT_MAGENTA%(!.%SROOT%s.$PR_LIGHT_WHITE%n$PR_LIGHT_YELLOW)@$PR_LIGHT_GREEN%m$PR_LIGHT_MAGENTA\
+PROMPT='$PR_BG_BLACK\
+$PR_LIGHT_MAGENTA%(!.%SROOT%s.$PR_LIGHT_WHITE%n$PR_LIGHT_YELLOW)@$PR_LIGHT_GREEN%m$PR_LIGHT_MAGENTA\
  [%(?.$PR_LIGHT_WHITE$?.$PR_LIGHT_RED% err $?)$PR_LIGHT_MAGENTA]\
  [$PR_LIGHT_BLUE%~$PR_LIGHT_MAGENTA]$PR_NO_COLOUR\
 

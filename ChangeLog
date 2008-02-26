@@ -1,5 +1,6 @@
 2008-02-26 CTAF <>
 	* bash/zsh : support white on black and black on white !!!!
+	* zsh: remove a space in the prompt
 
 2008-02-25 CTAF  <ctaf42@gmail.com> -- 1.0.46
 	* etc/grk/gnome.grk: removed shortkey for metacity
