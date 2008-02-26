@@ -1,4 +1,4 @@
-2008-02-25 CTAF  <ctaf42@gmail.com>
+2008-02-25 CTAF  <ctaf42@gmail.com> -- 1.0.46
 	* etc/grk/gnome.grk: removed shortkey for metacity
 	* emacs: perl template begin with #!/usr/bin/env perl
 	* colorsvn/colorcvs
