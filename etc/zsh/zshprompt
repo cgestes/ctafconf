@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
-## Last update Tue Feb 13 06:42:01 2007 cedric gestes
+## Last update Tue Feb 26 02:24:58 2008 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -25,14 +25,14 @@ setprompt () {
  #   fi
     bright="\033[m1;"
     dull="\033[m0;"
-    for color in RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
+    for color in BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
 	#eval PR_$color='%{$terminfo[bold]$fg[${(L)color}]%}'
 	eval PR_$color='%{$fg_no_bold[${(L)color}]%}'
+	eval PR_BG_$color='%{$bg[${(L)color}]%}'
         eval PR_LIGHT_$color='%{$fg_bold[${(L)color}]%}'
 	(( count = $count + 1 ))
     done
     PR_NO_COLOUR="%{$terminfo[sgr0]%}"
-
 
     ###
     # See if we can use extended characters to look nicer.
@@ -49,13 +49,14 @@ setprompt () {
 
 ###
 # Finally, the prompt.
-PROMPT='$PR_LIGHT_MAGENTA%(!.%SROOT%s.$PR_LIGHT_WHITE%n$PR_LIGHT_YELLOW)@$PR_LIGHT_GREEN%m$PR_LIGHT_MAGENTA\
+PROMPT='$PR_BG_BLACK $PR_LIGHT_MAGENTA%(!.%SROOT%s.$PR_LIGHT_WHITE%n$PR_LIGHT_YELLOW)@$PR_LIGHT_GREEN%m$PR_LIGHT_MAGENTA\
  [%(?.$PR_LIGHT_WHITE$?.$PR_LIGHT_RED% err $?)$PR_LIGHT_MAGENTA]\
- [$PR_LIGHT_BLUE%~$PR_LIGHT_MAGENTA]$PR_LIGHT_WHITE\
+ [$PR_LIGHT_BLUE%~$PR_LIGHT_MAGENTA]$PR_NO_COLOUR\
 
-z$PR_LIGHT_GREEN%(!.#.$)$PR_LIGHT_WHITE '
+z$PR_LIGHT_GREEN%(!.#.$)\
+$PR_NO_COLOUR '
 
-RPROMPT="[$PR_LIGHT_CYAN%D $PR_LIGHT_GREEN%T$PR_LIGHT_WHITE]"
+RPROMPT="[$PR_BG_BLACK$PR_LIGHT_CYAN%D $PR_LIGHT_GREEN%T$PR_NO_COLOUR]"
 
 PS2=''
 }

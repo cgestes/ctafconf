@@ -26,12 +26,16 @@ DOC:
 
   - add a xsession: guess for the default user-profile (X should always work), remove xsession/startx from default install
 
-  - allow to edit the list of blocked machine (gate-epita, ...)
+  - allow to edit the blocked machine list (gate-epita, ...)
   - gui to edit (profile, emacs config, env)
 
 
   - limit/ulimit
   - repertoire de template perso pour emacs
+
+  => ct-autostart need to be finished
+  => ct-profile update need to be done, to backlist xsession by default
+  => ct-profile : xsession always backlisted
 
 ===>
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2; tab-width: 2 -*- */

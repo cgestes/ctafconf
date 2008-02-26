@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Sun Sep 25 21:51:34 2005 GESTES Cedric
-## Last update Sun Feb 10 12:49:13 2008 GESTES Cedric
+## Last update Tue Feb 26 01:41:21 2008 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -166,7 +166,7 @@ if ssft_select_single "Zsh prompt" "Choose your zshprompt (another may be availa
     ctafconf_zprompt=$(getvaldef "$SSFT_RESULT" "$ctafconf_zprompt" )
 fi
 
-ctafconf_wm=$(getvaldef "$ctafconf_wm" 'fluxbox' )
+ctafconf_wm=$(getvaldef "$ctafconf_wm" 'gnome' )
 SSFT_DEFAULT=$ctafconf_wm
 if ssft_select_single "Window Manager" "Choose your desktop environmment from the list (if you use gdm/kdm this will only change the session named XClient)" fluxbox gnome kde xfce4 e16 term aterm; then
     ctafconf_wm=$(getvaldef "$SSFT_RESULT" "$ctafconf_wm" )

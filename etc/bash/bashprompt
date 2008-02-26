@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Sep 30 23:28:35 2005 GESTES Cedric
-## Last update Sat Feb 17 01:44:34 2007 GESTES Cedric
+## Last update Tue Feb 26 02:31:37 2008 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -26,7 +26,7 @@ FG_WHITE=37
 #
 #1 = transparent
 #40 = black
-BG_BLACK=1
+BG_BLACK=40
 BG_RED=41
 BG_GREEN=42
 BG_YELLOW=43
@@ -34,12 +34,14 @@ BG_BLUE=44
 BG_VIOLET=45
 BG_TURQUISE=46
 BG_WHITE=47
+BG_TRANS=1
 
 #
 # ANSI Escape Commands. Change the colors here
 #
 ESC="\033"
 NORM_MODE="$ESC[m"
+RUM_MODE="$ESC[${DULL};${FG_WHITE};${BG_BLACK}m"
 USER_MODE="$ESC[${DULL};${FG_YELLOW};${BG_BLACK}m"
 HOST_MODE="$ESC[${BRIGHT};${FG_TURQUOISE};${BG_BLACK}m"
 TIME_MODE="$ESC[${DULL};${FG_GREEN};${BG_BLACK}m"
@@ -58,6 +60,8 @@ function prompt_command
   local pwdmaxlen=28
   #Indicator that there has been directory truncation:
   local trunc_symbol=".../"
+#   echo -e -n "$RBG_BLACK" blabla
+
   if [ ${#PWD} -gt $pwdmaxlen ]
   then
     local pwdoffset=$(( ${#PWD} - $pwdmaxlen ))
@@ -71,11 +75,12 @@ function prompt_command
   #Show the current directory (or most of it), and say how many files
   #are in it and how big they are
   if [ x$ret = x0 ]; then
-    echo -n -e "$CPU_MODE [$NORM_MODE$ret$CPU_MODE] ["
+    echo -n -e "$CPU_MODE [$RUM_MODE$ret$CPU_MODE] ["
   else
     echo -n -e "$CPU_MODE [$JOB_MODE$ret$CPU_MODE] ["
   fi
-  echo -e "$DIR_MODE$newPWD$CPU_MODE] $NORM_MODE"
+  echo -e -n "$DIR_MODE$newPWD$CPU_MODE]"
+  echo -e "$NORM_MODE"
 }
 
 #
