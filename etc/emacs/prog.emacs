@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 01:14:21 2006 GESTES Cedric
-;; Last update Mon Feb 11 23:54:27 2008 GESTES Cedric
+;; Last update Sat Mar  1 23:54:34 2008 Cedric GESTES
 ;;
 (message ".")
 (message "ctafconf loading: PROG.EMACS")
@@ -33,7 +33,7 @@
 ;; Compilation Options
 (setq compile-command "make -k")
 ;; little compilation window
-(setq compilation-window-height 9)
+(setq compilation-window-height 12)
 
 
 

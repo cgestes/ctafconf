@@ -1,3 +1,8 @@
+2008-03-01  Cedric GESTES  <ctaf42@gmail.com>
+	* emacs: dont call emacs debugger on error (avoid annoying popup)
+	* emacs: added auto perl-mode for file with name matching .pl
+	* emacs: F8, compilation mode is faster, and window bigger
+
 2008-02-26 CTAF <>
 	* bash/zsh : support white on black and black on white !!!!
 	* zsh: remove a space in the prompt

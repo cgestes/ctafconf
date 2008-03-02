@@ -1,4 +1,4 @@
-/*
+q/*
 ** config-parser.cc
 ** Login : <ctaf@ctaf-laptop>
 ** Started on  Wed Feb 13 22:36:06 2008 GESTES Cedric
@@ -39,6 +39,8 @@ void ConfigParser::save_multilist(const Glib::RefPtr<ConfigObject> &config);
 
 void ConfigParser::save_object(const Glib::RefPtr<ConfigObject> &config)
 {
+
+
   switch(config->type) {
   case CF_STRING:
     save_string(config);

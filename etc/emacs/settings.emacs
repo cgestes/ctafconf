@@ -1,14 +1,17 @@
 ;;
-;; settings.emacs for ctafconf in /home/ctaf/IBC/batail_s-ibc2
+;; settings.emacs for ctafconf
 ;;
 ;; Made by GESTES Cedric
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 01:13:33 2006 GESTES Cedric
-;; Last update Mon Feb 12 23:44:24 2007 gestes cedric
+;; Last update Sun Mar  2 00:27:06 2008 Cedric GESTES
 ;;
 (message ".")
 (message "ctafconf loading: SETTINGS.EMACS")
+
+;;dont call the emacs debug on error (avoid annoying popup)
+(setq debug-on-error nil)
 
 (setq
  ;;TEST
@@ -26,6 +29,7 @@
 (setq csh-indent 2)
 (setq sh-basic-offset 2)
 (setq standard-indent 2)
+(setq perl-indent-level 2)
 
 ;;only space when indenting
 ;; Emacs normally uses both tabs and spaces to indent lines. If you

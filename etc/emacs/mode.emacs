@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 00:57:16 2006 GESTES Cedric
-;; Last update Tue Dec 18 12:45:05 2007 GESTES Cedric
+;; Last update Sat Mar  1 23:28:29 2008 Cedric GESTES
 ;;
 (message ".")
 (message "ctafconf loading: MODE.EMACS")
@@ -37,6 +37,7 @@
          ("\\.adb\\'" . ada-mode)
          ("\\.ads\\'" . ada-mode)
          ("\\.e\\'" . eiffel-mode)
+         ("\\.pl$" . perl-mode)
          ) auto-mode-alist))
 
 
