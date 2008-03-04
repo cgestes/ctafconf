@@ -16,7 +16,8 @@ bin_PROGRAMS = gtk-ctafconf
 
 gtk_ctafconf_SOURCES = 			\
 			main.c		\
-			gui-factory.cc
+			gui-factory.cc	\
+			config-parser.cc
 
 gtk_ctafconf_LDFLAGS =
 

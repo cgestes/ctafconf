@@ -26,6 +26,7 @@
 #include <iostream>
 
 #include "gui-factory.h"
+#include "config-parser.h"
 
 #ifdef ENABLE_NLS
 #  include <libintl.h>
@@ -45,6 +46,9 @@ main (int argc, char *argv[])
 	dialog.add(notebook);
 	dialog.set_default_size(640, 480);
 
+	ConfigParser config;
+
+	config.parse("er.tpl");
 /* 	cp_ctafconf.load("user-profile.ct-tpl"); */
 /* 	cp_emacs.load("emacs.ct-tpl"); */
 

@@ -1,0 +1,44 @@
+<file type="ctafconf">
+  <data type="string" name="Complete Name">
+    <generate>ctafconf_name</generate>
+    <default></default>
+    <comment>Your complete name</comment>
+  </data>
+
+  <data type="string" name="Email">
+    <generate>ctafconf_email</generate>
+    <default></default>
+    <comment>Your email, used for emacs template, and shell environment</comment>
+  </data>
+
+  <data type="string" name="Zsh Prompt">
+    <generate>ctafconf_zprompt</generate>
+    <default></default>
+    <comment>Your complete name</comment>
+  </data>
+
+  <data type="combo" name="Window Manager">
+    <generate>ctafconf_wm</generate>
+    <values>
+      <value name="kde"/>
+      <value name="gnome"/>
+      <value name="xfce"/>
+      <value name="fluxbox"/>
+    </values>
+    <default></default>
+    <comment>Your window manager, you should remove xsession from the backlist and call ct-installconf update</comment>
+  </data>
+
+  <data type="choice" name="backlist">
+    <generate>ctafconf_backlist</generate>
+    <default></default>
+    <values>
+      <value name="ctaf" active="true"/>
+      <value name="ctaf" active="true"/>
+      <value name="ctaf" active="true"/>
+      <value name="ctaf" active="true"/>
+      <value name="ctaf" active="true"/>
+    </values>
+    <comment>Your complete name</comment>
+  </data>
+<file>

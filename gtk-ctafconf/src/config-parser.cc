@@ -1,4 +1,4 @@
-q/*
+/*
 ** config-parser.cc
 ** Login : <ctaf@ctaf-laptop>
 ** Started on  Wed Feb 13 22:36:06 2008 GESTES Cedric
@@ -24,44 +24,113 @@ q/*
 */
 
 #include <iostream>
-#include "config-parser.hh"
+#include <fstream>
+#include "config-parser.h"
 
 
-void ConfigParser::parse_string();
-void ConfigParser::parse_combo();
-void ConfigParser::parse_singlelist();
-void ConfigParser::parse_multilist();
+// void ConfigParser::parse_string()
+// {
+// }
 
-void ConfigParser::save_string(const Glib::RefPtr<ConfigObject> &config);
-void ConfigParser::save_combo(const Glib::RefPtr<ConfigObject> &config);
-void ConfigParser::save_singlelist(const Glib::RefPtr<ConfigObject> &config);
-void ConfigParser::save_multilist(const Glib::RefPtr<ConfigObject> &config);
+// void ConfigParser::parse_combo()
+// {
+// }
 
-void ConfigParser::save_object(const Glib::RefPtr<ConfigObject> &config)
+// void ConfigParser::parse_singlelist()
+// {
+// }
+
+// void ConfigParser::parse_multilist()
+// {
+// }
+
+// void ConfigParser::save_string(const Glib::RefPtr<ConfigObject> &config)
+// {
+// }
+
+// void ConfigParser::save_combo(const Glib::RefPtr<ConfigObject> &config)
+// {
+// }
+
+// void ConfigParser::save_singlelist(const Glib::RefPtr<ConfigObject> &config)
+// {
+// }
+
+// void ConfigParser::save_multilist(const Glib::RefPtr<ConfigObject> &config)
+// {
+// }
+
+ConfigParser::ConfigParser()
 {
+}
 
+void ConfigParser::getLine()
+{
+  f >> m_current_line;
+//  m_current_line.trim();
+}
 
-  switch(config->type) {
-  case CF_STRING:
-    save_string(config);
-    break;
-  case CF_COMBO:
-    save_combo(config);
-    break;
-  case CF_SINGLELIST:
-    save_singlelist(config);
-    break;
-  case CF_MULTILIST:
-    save_multilist(config);
-    break;
+void ConfigParser::parseComment()
+{
+  while (m_current_line[0] == '#')
+    getline();
+
+}
+
+void ConfigParser::parseConfig()
+{
+  if (m_current_line[0] == '-' &&
+      m_current_line[1] == '-')
+  {
+//    m_current_line.remove(<
   }
 }
 
-void ConfigParser::save(const std::string &outputfile) {
-  ConfigList::iterator it(m_value);
-  Glib::RefPtr<ConfigObject> config;
-  for(;*it; ++it) {
-    config = *it;
-    save_object(config);
+void ConfigParser::parse(const std::string &fname)
+{
+  std::string tmp;
+
+  f.open(fname.c_str());
+
+  std::cerr << "cant open file" << std::endl;
+
+  while (!f.eof())
+  {
+    f >> tmp;
+    std::cout  << "value:" << tmp
+               << std::endl;
+
+    parse_comment();
+    parse_config();
   }
+  f.close();
+}
+
+// void ConfigParser::save_object(const Glib::RefPtr<ConfigObject> &config)
+// {
+
+
+//   switch(config->type) {
+//   case CF_STRING:
+//     save_string(config);
+//     break;
+//   case CF_COMBO:
+//     save_combo(config);
+//     break;
+//   case CF_SINGLELIST:
+//     save_singlelist(config);
+//     break;
+//   case CF_MULTILIST:
+//     save_multilist(config);
+//     break;
+//   }
+// }
+
+void ConfigParser::save(const std::string &outputfile) {
+//   ConfigList::iterator it(m_value);
+//   Glib::RefPtr<ConfigObject> config;
+//   for(;*it; ++it) {
+//     config = *it;
+//     save_object(config);
+//   }
 }
