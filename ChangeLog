@@ -1,3 +1,6 @@
+2008-03-04  Cedric GESTES  <gestes@aldebaran-robotics.com>
+	* emacs: automatic compilation window scroll
+
 2008-03-01  Cedric GESTES  <ctaf42@gmail.com>
 	* emacs: dont call emacs debugger on error (avoid annoying popup)
 	* emacs: added auto perl-mode for file with name matching .pl

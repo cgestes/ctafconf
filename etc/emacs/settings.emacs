@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 01:13:33 2006 GESTES Cedric
-;; Last update Sun Mar  2 00:27:06 2008 Cedric GESTES
+;; Last update Tue Mar  4 14:01:43 2008 Cedric GESTES
 ;;
 (message ".")
 (message "ctafconf loading: SETTINGS.EMACS")
@@ -30,6 +30,10 @@
 (setq sh-basic-offset 2)
 (setq standard-indent 2)
 (setq perl-indent-level 2)
+
+
+;; scroll the compilation window
+(setq compilation-scroll-output t)
 
 ;;only space when indenting
 ;; Emacs normally uses both tabs and spaces to indent lines. If you
