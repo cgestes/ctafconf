@@ -5,13 +5,6 @@ OnDesktop Mouse3 :rootMenu
 OnDesktop Mouse4 :nextWorkspace
 OnDesktop Mouse5 :prevWorkspace
 
-!mouse actions added by fluxbox-update_configs
-OnDesktop Mouse1 :hideMenus
-OnDesktop Mouse2 :workspaceMenu
-OnDesktop Mouse3 :rootMenu
-OnDesktop Mouse4 :nextWorkspace
-OnDesktop Mouse5 :prevWorkspace
-
 # Fichier généré par FluxConf
 #Mod1 = alt
 #Mod4 = Win
