@@ -77,8 +77,6 @@ void GuiFactory::add_checkbox(const std::string &name, bool def)
   HBox *hbox;
   CheckButton *btn = new CheckButton();
 
-  std::cerr << "adding a string: " << name << endl;
-
   btn->set_active(def);
   hbox = add_box_with_label(name);
   hbox->pack_start(*btn);
@@ -144,3 +142,11 @@ void GuiFactory::add_multichoice(const std::string &name,
   hbox->pack_start(*tv);
 }
 
+void GuiFactory::add_button(const std::string &name)
+{
+  HBox *hbox;
+  Button *btn = new Button("Do IT");
+
+  hbox = add_box_with_label(name);
+  hbox->pack_start(*btn);
+}

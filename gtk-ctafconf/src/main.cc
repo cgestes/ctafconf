@@ -1,4 +1,3 @@
-/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*- */
 /*
  * main.cc
  * Copyright (C) GESTES Cedric 2008 <ctaf42@gmail.com>
@@ -33,45 +32,100 @@
 #endif
 
 
+void buildGui(const ConfigParser::ConfigList &values, GuiFactory &gui_factory)
+{
+  ConfigParser::ConfigList::const_iterator it = values.begin();
+
+  for (;it != values.end(); ++it)
+  {
+    const std::string &type = (*it)->type();
+    const std::string &name = (*it)->name();
+    const ConfigObject::ConfigKeys &keys = (*it)->keys();
+
+    std::cout << "Config:" << name;
+    std::cout << " Type:" << type << std::endl;
+    if (type == "string")
+    {
+      const ConfigObject::ConfigKeys::const_iterator it = keys.find("default");
+      std::string def;
+
+      if (it != keys.end())
+        def = (*it).second;
+      gui_factory.add_string(name, def);
+
+    }
+    else if (type == "frame")
+    {
+      gui_factory.add_frame(name);
+
+    }
+    else if (type == "checkbox")
+    {
+      gui_factory.add_checkbox(name, 1);
+
+    }
+    else if (type == "singlechoice")
+    {
+      std::vector<std::string> values;
+      const ConfigObject::ConfigKeys::const_iterator itd = keys.find("default");
+      std::string def;
+
+      if (itd != keys.end())
+        def = (*itd).second;
+
+      std::cout << "default: " << def << std::endl;
+
+      ConfigObject::ConfigKeys::const_iterator it = keys.begin();
+      for (;it != keys.end(); ++it)
+      {
+        if ((*it).first == "value")
+          values.push_back((*it).second);
+      }
+
+      gui_factory.add_singlechoice(name, values, def);
+    }
+    else if (type == "multichoice")
+    {
+      std::vector<std::string> defaults;
+      std::vector<std::string> values;
+
+      ConfigObject::ConfigKeys::const_iterator it = keys.begin();
+      for (;it != keys.end(); ++it)
+      {
+        if ((*it).first == "default")
+          defaults.push_back((*it).second);
+        else if ((*it).first == "value")
+          values.push_back((*it).second);
+      }
+      gui_factory.add_multichoice(name, values, defaults);
+    }
+    else if (type == "button")
+      gui_factory.add_button(name);
+
+
+  }
+}
+
 int
 main (int argc, char *argv[])
 {
-	Gtk::Main kit(argc, argv);
-	Gtk::Window dialog;
-	Gtk::Notebook notebook;
-	GuiFactory gui_factory(notebook);
+  Gtk::Main kit(argc, argv);
+  Gtk::Window dialog;
+  Gtk::Notebook notebook;
+  GuiFactory gui_factory(notebook);
 /* 	ConfigParserCtafconf cp_ctafconf(gui_factory); */
 /* 	ConfigParserEmacs cp_emacs(gui_factory); */
 
-	dialog.add(notebook);
-	dialog.set_default_size(640, 480);
+  dialog.add(notebook);
+  dialog.set_default_size(640, 480);
 
-	ConfigParser config;
+  ConfigParser config;
 
-	config.parse("er.tpl");
-/* 	cp_ctafconf.load("user-profile.ct-tpl"); */
-/* 	cp_emacs.load("emacs.ct-tpl"); */
+  config.parse("er.tpl");
+  buildGui(config.values(), gui_factory);
 
-	gui_factory.add_frame("bob");
-	gui_factory.add_string("str1", "blabla");
-	gui_factory.add_string("str2");
 
-	std::vector<std::string> strings;
-	strings.push_back("tata");
-	strings.push_back("toto");
-	strings.push_back("titi");
-	gui_factory.add_singlechoice("combotext", strings, "titi");
-
-	std::vector<std::string> strings2;
-	strings2.push_back("tata");
-	strings2.push_back("titi");
-
-	gui_factory.add_frame("bob2");
-
-	gui_factory.add_multichoice("tree", strings, strings2);
-	gui_factory.add_checkbox("str2", 1);
-
-	dialog.show_all();
-	kit.run(dialog);
-	return 0;
+  dialog.show_all();
+  kit.run(dialog);
+  return 0;
 }

@@ -25,106 +25,134 @@
 
 #include <iostream>
 #include <fstream>
+#include <string>
 #include "config-parser.h"
 
+using namespace std;
+#define SPACES " \t\r\n"
 
-// void ConfigParser::parse_string()
-// {
-// }
+inline string trim_right (const string & s, const string & t = SPACES)
+{
+  string d (s);
+  string::size_type i (d.find_last_not_of (t));
+  if (i == string::npos)
+    return "";
+  else
+    return d.erase (d.find_last_not_of (t) + 1) ;
+}  // end of trim_right
 
-// void ConfigParser::parse_combo()
-// {
-// }
+inline string trim_left (const string & s, const string & t = SPACES)
+{
+  string d (s);
+  return d.erase (0, s.find_first_not_of (t)) ;
+}  // end of trim_left
 
-// void ConfigParser::parse_singlelist()
-// {
-// }
+inline string trim (const string & s, const string & t = SPACES)
+{
+  string d (s);
+  return trim_left (trim_right (d, t), t) ;
+}  // end of trim
 
-// void ConfigParser::parse_multilist()
-// {
-// }
 
-// void ConfigParser::save_string(const Glib::RefPtr<ConfigObject> &config)
-// {
-// }
 
-// void ConfigParser::save_combo(const Glib::RefPtr<ConfigObject> &config)
-// {
-// }
 
-// void ConfigParser::save_singlelist(const Glib::RefPtr<ConfigObject> &config)
-// {
-// }
+ConfigObject::ConfigObject(const std::string &type, const std::string &name)
+{
+  m_name = name;
+  m_type = type;
+}
 
-// void ConfigParser::save_multilist(const Glib::RefPtr<ConfigObject> &config)
-// {
-// }
+
+void ConfigObject::addKey(const std::string &name, const std::string &value)
+{
+  m_keys.insert(make_pair(name, value));
+}
 
 ConfigParser::ConfigParser()
 {
+  m_current_cfg = 0;
+  m_line = 0;
+
 }
 
 void ConfigParser::getLine()
 {
-  f >> m_current_line;
+  m_line++;
+  getline(f, m_current_line);
+  m_current_line = trim(m_current_line);
 //  m_current_line.trim();
 }
 
 void ConfigParser::parseComment()
 {
   while (m_current_line[0] == '#')
-    getline();
-
+  {
+    getLine();
+  }
 }
 
 void ConfigParser::parseConfig()
 {
-  if (m_current_line[0] == '-' &&
-      m_current_line[1] == '-')
+  string::size_type i (m_current_line.find_first_of (":"));
+
+  //match
+  if (i != -1)
   {
-//    m_current_line.remove(<
+    string type = trim(m_current_line.substr(0, i));
+    const string name = trim(m_current_line.substr(i + 1));
+
+    getLine();
+
+    if (m_current_cfg)
+      m_values.push_back(m_current_cfg);
+    m_current_cfg = new ConfigObject(type, name);
   }
+
+}
+
+void ConfigParser::parseSubConfig()
+{
+  string::size_type i (m_current_line.find_first_of ("="));
+
+  //match
+  if (i != -1)
+  {
+    const string name = trim(m_current_line.substr(0, i));
+    const string value = trim(m_current_line.substr(i + 1));
+
+    if (m_current_cfg)
+      m_current_cfg->addKey(name, value);
+    getLine();
+  }
+
 }
 
 void ConfigParser::parse(const std::string &fname)
 {
   std::string tmp;
 
+
   f.open(fname.c_str());
 
-  std::cerr << "cant open file" << std::endl;
-
+  if (!f.is_open())
+  {
+    std::cerr << "cant open file" << std::endl;
+    return;
+  }
+  getLine();
   while (!f.eof())
   {
-    f >> tmp;
-    std::cout  << "value:" << tmp
-               << std::endl;
-
-    parse_comment();
-    parse_config();
+    unsigned int curln = m_line;
+    parseComment();
+    parseConfig();
+    parseComment();
+    parseSubConfig();
+    //no parsed data, manually skip current line
+    if (m_line == curln)
+      getLine();
   }
   f.close();
 }
-
-// void ConfigParser::save_object(const Glib::RefPtr<ConfigObject> &config)
-// {
-
-
-//   switch(config->type) {
-//   case CF_STRING:
-//     save_string(config);
-//     break;
-//   case CF_COMBO:
-//     save_combo(config);
-//     break;
-//   case CF_SINGLELIST:
-//     save_singlelist(config);
-//     break;
-//   case CF_MULTILIST:
-//     save_multilist(config);
-//     break;
-//   }
-// }
 
 void ConfigParser::save(const std::string &outputfile) {
 //   ConfigList::iterator it(m_value);

@@ -67,6 +67,8 @@ class GuiFactory
                        const StringVector &values,
                        const StringVector &defaults);
 
+  void add_button(const std::string &name);
+
  protected:
   Gtk::HBox *add_box_with_label(const std::string &name);
 

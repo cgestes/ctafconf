@@ -37,10 +37,23 @@ typedef enum {
 
 class ConfigObject {
  public:
+  typedef std::multimap<std::string, std::string> ConfigKeys;
+
+  ConfigObject(const std::string &type, const std::string &name);
+  void addKey(const std::string &name, const std::string &value);
+
+  const std::string &name() { return m_name; }
+  const std::string &type() { return m_type; }
+  const ConfigKeys &keys() { return m_keys; }
+
+ protected:
+
+ public:
   std::string m_name;
   std::string m_type;
-  ConfigType type;
+/*   ConfigType type; */
   Gtk::Widget *widget;
+  ConfigKeys m_keys;
 };
 
 class ConfigObjectString {
@@ -51,7 +64,7 @@ class ConfigObjectString {
 
 class ConfigParser {
  public:
-  typedef std::vector<ConfigObject> ConfigList;
+  typedef std::vector<ConfigObject *> ConfigList;
 
  public:
   ConfigParser();
@@ -60,9 +73,13 @@ class ConfigParser {
   void save(const std::string &outputfile);
   void parse(const std::string &fname);
 
+  const ConfigList &values() { return m_values; }
+
  protected:
   void getLine();
   void parseComment();
+  void parseConfig();
+  void parseSubConfig();
 
 
 
@@ -80,7 +97,9 @@ class ConfigParser {
  private:
   std::ifstream f;
   std::string   m_current_line;
-  ConfigList    m_value;
+  ConfigList    m_values;
+  ConfigObject  *m_current_cfg;
+  unsigned int  m_line;
 };
 
 #endif 	    /* !CONFIG_PARSER_H_ */

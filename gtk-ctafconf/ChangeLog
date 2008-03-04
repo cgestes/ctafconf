@@ -1,6 +1,5 @@
-2008-03-01  Cedric GESTES  <ctaf42@gmail.com>
-
-	*
+2008-03-04  Cedric GESTES  <ctaf42@gmail.com>
+	* config-parser: added a basic parser, that construct the gui
 
 2008-02-19  Cedric GESTES  <ctaf42@gmail.com>
 
