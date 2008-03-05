@@ -12,7 +12,10 @@ gtk_ctafconfdoc_DATA = \
 	INSTALL\
 	NEWS
 
-EXTRA_DIST = $(gtk_ctafconfdoc_DATA)
+ACLOCAL_AMFLAGS = -I config/m4
+
+EXTRA_DIST = $(gtk_ctafconfdoc_DATA) \
+	     config/m4
 
 # Copy all the spec files. Of cource, only one is actually used.
 dist-hook:

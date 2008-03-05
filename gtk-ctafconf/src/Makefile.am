@@ -8,9 +8,6 @@ INCLUDES = \
 	-DPACKAGE_DATA_DIR=\""$(datadir)"\" \
 	$(GTK_CTAFCONF_CFLAGS)
 
-AM_CFLAGS =\
-	 -Wall\
-	 -g
 
 bin_PROGRAMS = gtk-ctafconf
 
@@ -20,8 +17,12 @@ gtk_ctafconf_SOURCES = 			\
 			config-parser.cc\
 			config-regexp.cc
 
-gtk_ctafconf_LDFLAGS = -lboost_regex
+gtk_ctafconf_LDFLAGS = $(BOOST_LDFLAGS)
 
-gtk_ctafconf_LDADD = $(GTK_CTAFCONF_LIBS)
+gtk_ctafconf_CXXFLAGS =			\
+	 		 -Wall\
+			 -g $(BOSST_CFLAGS)
+
+gtk_ctafconf_LDADD = $(GTK_CTAFCONF_LIBS) $(BOOST_REGEX_LIB)
 
 EXTRA_DIST = $(glade_DATA)
