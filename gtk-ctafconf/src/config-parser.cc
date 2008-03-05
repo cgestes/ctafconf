@@ -27,32 +27,9 @@
 #include <fstream>
 #include <string>
 #include "config-parser.h"
+#include "stringutils.hh"
 
 using namespace std;
-#define SPACES " \t\r\n"
-
-inline string trim_right (const string & s, const string & t = SPACES)
-{
-  string d (s);
-  string::size_type i (d.find_last_not_of (t));
-  if (i == string::npos)
-    return "";
-  else
-    return d.erase (d.find_last_not_of (t) + 1) ;
-}  // end of trim_right
-
-inline string trim_left (const string & s, const string & t = SPACES)
-{
-  string d (s);
-  return d.erase (0, s.find_first_not_of (t)) ;
-}  // end of trim_left
-
-inline string trim (const string & s, const string & t = SPACES)
-{
-  string d (s);
-  return trim_left (trim_right (d, t), t) ;
-}  // end of trim
-
 
 
 
@@ -68,19 +45,20 @@ void ConfigObject::addKey(const std::string &name, const std::string &value)
   m_keys.insert(make_pair(name, value));
 }
 
+
+
+
 ConfigParser::ConfigParser()
 {
   m_current_cfg = 0;
   m_line = 0;
-
 }
 
 void ConfigParser::getLine()
 {
-  m_line++;
   getline(f, m_current_line);
   m_current_line = trim(m_current_line);
-//  m_current_line.trim();
+  m_line++;
 }
 
 void ConfigParser::parseComment()

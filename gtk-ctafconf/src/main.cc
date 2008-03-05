@@ -26,6 +26,7 @@
 
 #include "gui-factory.h"
 #include "config-parser.h"
+#include "config-regexp.hh"
 
 #ifdef ENABLE_NLS
 #  include <libintl.h>
@@ -48,9 +49,14 @@ void buildGui(const ConfigParser::ConfigList &values, GuiFactory &gui_factory)
     {
       const ConfigObject::ConfigKeys::const_iterator it = keys.find("default");
       std::string def;
+      const ConfigObject::ConfigKeys::const_iterator it2 = keys.find("read");
 
       if (it != keys.end())
         def = (*it).second;
+
+      if (it2 != keys.end())
+        def = (*it2).second;
+
       gui_factory.add_string(name, def);
 
     }
@@ -120,10 +126,13 @@ main (int argc, char *argv[])
   dialog.set_default_size(640, 480);
 
   ConfigParser config;
+  ConfigRegexp regexp;
 
   config.parse("er.tpl");
-  buildGui(config.values(), gui_factory);
 
+  regexp.process(config.values());
+
+  buildGui(config.values(), gui_factory);
 
   dialog.show_all();
   kit.run(dialog);

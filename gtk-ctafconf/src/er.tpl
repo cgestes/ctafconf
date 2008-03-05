@@ -22,11 +22,31 @@
 ## Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##
 ## gtk-ctafconf template
+
+include:regexp.tpl
+
+input:user-profile
 frame:test
-  string:THEstring
-    default=I love parsing
-  checkbox:checkbox
-    default=0
+  string:ctafconf_name
+    default=
+    getregexp=^var_set ([a-zA-Z_]+) (.*)$
+
+  string:ctafconf_mail
+    default=
+    regexp=ct-var
+    getregexp=^var_set ([a-zA-Z_]+) (.*)$
+
+  string:ctafconf_zprompt
+    regexp=ct-var
+    getregexp=^var_set ([a-zA-Z_]+) (.*)$
+
+  string:ctafconf_wm
+    regexp=ct-var
+    getregexp=^var_set ([a-zA-Z_]+) (.*)$
+
+  string:ctafconf_backlist
+    regexp=ct-var
+    getregexp=^var_set ([a-zA-Z_]+) (.*)$
 
   singlechoice:THEsinglechoice
     value=bande
@@ -71,6 +91,7 @@ frame:emacs
   checkbox:fixed windows size
   int:window width
   int:window height
+  checkbox:cedet
 
 # -- devel
 #  - ilisp

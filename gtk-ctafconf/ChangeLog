@@ -1,3 +1,6 @@
+2008-03-05  Cedric GESTES  <ctaf42@gmail.com>
+	* src/regexp.tpl (regexp): regexp to get/set value
+
 2008-03-04  Cedric GESTES  <ctaf42@gmail.com>
 	* config-parser: added a basic parser, that construct the gui
 

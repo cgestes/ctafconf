@@ -1,5 +1,3 @@
-- regexp
 - int/float/file/folder
-
-
 - button: launch a shell script: colapsable with a terminal
+- quote (regexp)

@@ -29,11 +29,11 @@
 # include <gtkmm.h>
 # include <fstream>
 
-typedef enum {
-  CF_STRING,
-  CF_SINGLECHOICE,
-  CF_MULTICHOICE
-} ConfigType;
+/* typedef enum { */
+/*   CF_STRING, */
+/*   CF_SINGLECHOICE, */
+/*   CF_MULTICHOICE */
+/* } ConfigType; */
 
 class ConfigObject {
  public:
@@ -44,23 +44,19 @@ class ConfigObject {
 
   const std::string &name() { return m_name; }
   const std::string &type() { return m_type; }
-  const ConfigKeys &keys() { return m_keys; }
+  const ConfigKeys &const_keys() { return m_keys; }
+  ConfigKeys &keys() { return m_keys; }
 
  protected:
 
  public:
   std::string m_name;
   std::string m_type;
-/*   ConfigType type; */
   Gtk::Widget *widget;
   ConfigKeys m_keys;
 };
 
-class ConfigObjectString {
- public:
-  std::vector<std::string> m_values;
-  std::vector<std::string> m_defaults;
-};
+
 
 class ConfigParser {
  public:
@@ -73,26 +69,14 @@ class ConfigParser {
   void save(const std::string &outputfile);
   void parse(const std::string &fname);
 
-  const ConfigList &values() { return m_values; }
+  const ConfigList &const_values() { return m_values; }
+  ConfigList &values() { return m_values; }
 
  protected:
   void getLine();
   void parseComment();
   void parseConfig();
   void parseSubConfig();
-
-
-
-/*   //parse different value type */
-/*   Glib::RefPtr<ConfigObject> *parse_string(); */
-/*   Glib::RefPtr<ConfigObject> *parse_singlelist(); */
-/*   Glib::RefPtr<ConfigObject> *parse_multilist(); */
-
-/*   //save value */
-/*   void save_string(const Glib::RefPtr<ConfigObject> &config); */
-/*   void save_singlelist(const Glib::RefPtr<ConfigObject> &config); */
-/*   void save_multilist(const Glib::RefPtr<ConfigObject> &config); */
-
 
  private:
   std::ifstream f;

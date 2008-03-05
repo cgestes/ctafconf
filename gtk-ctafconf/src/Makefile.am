@@ -17,9 +17,10 @@ bin_PROGRAMS = gtk-ctafconf
 gtk_ctafconf_SOURCES = 			\
 			main.c		\
 			gui-factory.cc	\
-			config-parser.cc
+			config-parser.cc\
+			config-regexp.cc
 
-gtk_ctafconf_LDFLAGS =
+gtk_ctafconf_LDFLAGS = -lboost_regex
 
 gtk_ctafconf_LDADD = $(GTK_CTAFCONF_LIBS)
 
