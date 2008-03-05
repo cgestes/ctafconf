@@ -24,8 +24,8 @@
 #include <gtkmm.h>
 #include <iostream>
 
-#include "gui-factory.h"
-#include "config-parser.h"
+#include "gui-factory.hh"
+#include "config-parser.hh"
 #include "config-regexp.hh"
 
 #ifdef ENABLE_NLS

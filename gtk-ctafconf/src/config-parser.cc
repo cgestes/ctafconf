@@ -26,27 +26,10 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "config-parser.h"
-#include "stringutils.hh"
+#include "config-parser.hh"
+#include "string-utils.hh"
 
 using namespace std;
-
-
-
-ConfigObject::ConfigObject(const std::string &type, const std::string &name)
-{
-  m_name = name;
-  m_type = type;
-}
-
-
-void ConfigObject::addKey(const std::string &name, const std::string &value)
-{
-  m_keys.insert(make_pair(name, value));
-}
-
-
-
 
 ConfigParser::ConfigParser()
 {
@@ -74,7 +57,7 @@ void ConfigParser::parseConfig()
   string::size_type i (m_current_line.find_first_of (":"));
 
   //match
-  if (i != -1)
+  if (i != std::string::npos)
   {
     string type = trim(m_current_line.substr(0, i));
     const string name = trim(m_current_line.substr(i + 1));
@@ -93,7 +76,7 @@ void ConfigParser::parseSubConfig()
   string::size_type i (m_current_line.find_first_of ("="));
 
   //match
-  if (i != -1)
+  if (i != std::string::npos)
   {
     const string name = trim(m_current_line.substr(0, i));
     const string value = trim(m_current_line.substr(i + 1));

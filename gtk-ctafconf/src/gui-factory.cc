@@ -26,7 +26,7 @@
 #include <gtkmm.h>
 #include <string.h>
 #include <iostream>
-#include "gui-factory.h"
+#include "gui-factory.hh"
 
 using namespace std;
 using namespace Gtk;
@@ -88,7 +88,6 @@ void GuiFactory::add_singlechoice(const std::string &name,
                                   const std::string &def /*= ""*/)
 {
   HBox *hbox;
-  Label *lbl = new Label(name);
   ComboBoxText *combo = new ComboBoxText();
   StringVector::const_iterator it = values.begin();
 

@@ -23,40 +23,12 @@
 ** Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 */
 
-#ifndef   	CONFIG_PARSER_H_
-# define   	CONFIG_PARSER_H_
+#ifndef   	CONFIG_PARSER_HH_
+# define   	CONFIG_PARSER_HH_
 
 # include <gtkmm.h>
 # include <fstream>
-
-/* typedef enum { */
-/*   CF_STRING, */
-/*   CF_SINGLECHOICE, */
-/*   CF_MULTICHOICE */
-/* } ConfigType; */
-
-class ConfigObject {
- public:
-  typedef std::multimap<std::string, std::string> ConfigKeys;
-
-  ConfigObject(const std::string &type, const std::string &name);
-  void addKey(const std::string &name, const std::string &value);
-
-  const std::string &name() { return m_name; }
-  const std::string &type() { return m_type; }
-  const ConfigKeys &const_keys() { return m_keys; }
-  ConfigKeys &keys() { return m_keys; }
-
- protected:
-
- public:
-  std::string m_name;
-  std::string m_type;
-  Gtk::Widget *widget;
-  ConfigKeys m_keys;
-};
-
-
+# include "config-object.hh"
 
 class ConfigParser {
  public:

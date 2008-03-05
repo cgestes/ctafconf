@@ -1,13 +1,13 @@
 /*
-** config-parser-ctafconf.h
-** Login : <ctaf@ctaf-laptop>
-** Started on  Wed Feb 13 21:07:18 2008 GESTES Cedric
+** config-object.cc
+** Login : <ctaf@wei>
+** Started on  Wed Mar  5 16:13:53 2008 Cedric GESTES
 ** $Id$
 **
 ** Author(s):
-**  - GESTES Cedric <ctaf42@gmail.com>
+**  - Cedric GESTES <gestes@aldebaran-robotics.com>
 **
-** Copyright (C) 2008 GESTES Cedric
+** Copyright (C) 2008 Cedric GESTES
 ** This program is free software; you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published by
 ** the Free Software Foundation; either version 3 of the License, or
@@ -23,12 +23,18 @@
 ** Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 */
 
-#ifndef   	CONFIG_PARSER_CTAFCONF_H_
-# define   	CONFIG_PARSER_CTAFCONF_H_
+#include <iostream>
+#include "config-object.hh"
 
-class ConfigParserCtafconf : public ConfigParser {
 
+ConfigObject::ConfigObject(const std::string &type, const std::string &name)
+{
+  m_name = name;
+  m_type = type;
 }
 
 
-#endif 	    /* !CONFIG_PARSER_CTAFCONF_H_ */
+void ConfigObject::addKey(const std::string &name, const std::string &value)
+{
+  m_keys.insert(make_pair(name, value));
+}

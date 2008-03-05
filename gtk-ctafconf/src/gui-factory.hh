@@ -23,8 +23,8 @@
 ** Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 */
 
-#ifndef   	GUI_FACTORY_H_
-# define   	GUI_FACTORY_H_
+#ifndef   	GUI_FACTORY_HH_
+# define   	GUI_FACTORY_HH_
 
 #include <gtkmm.h>
 #include <gtkmm/notebook.h>
@@ -77,4 +77,4 @@ class GuiFactory
   Gtk::Box *m_current_page;
 };
 
-#endif 	    /* !GUI_FACTORY_H_ */
+#endif 	    /* !GUI_FACTORY_HH_ */

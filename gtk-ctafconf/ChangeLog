@@ -1,3 +1,6 @@
+2008-03-05  Cedric GESTES  <gestes@aldebaran-robotics.com>
+	* autotools: datadir/boost regexp
+
 2008-03-05  Cedric GESTES  <ctaf42@gmail.com>
 	* src/regexp.tpl (regexp): regexp to get/set value
 

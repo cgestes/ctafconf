@@ -25,7 +25,7 @@
 
 #include <iostream>
 #include <fstream>
-#include "config-parser.h"
+#include "config-parser.hh"
 #include "config-regexp.hh"
 
 
@@ -64,6 +64,10 @@ void ConfigRegexp::setValue(ConfigParser::ConfigList::iterator it,
 
 }
 
+/**
+ * add a read key into the config object, if we find the value in the file
+ * try the regexp on each line, return on the first match
+ */
 std::string ConfigRegexp::getValue(ConfigParser::ConfigList::iterator it,
                                    const std::string &name,
                                    const std::string &regexp)
@@ -76,27 +80,22 @@ std::string ConfigRegexp::getValue(ConfigParser::ConfigList::iterator it,
   while (!f.eof())
   {
     std::string line;
+    bool result;
+
     getline(f, line);
-    bool result = boost::regex_search(line, what, re);
-    if (result)
+    result = boost::regex_search(line, what, re);
+    if (result && what[1] == name)
     {
-      std::cout << "match: " << line << std::endl;
-      // what[0] contains the whole string
-      // what[1] contains the response code
-      // what[2] contains the separator character
-      // what[3] contains the text message.
-      std::cout << "name: " << what[1]
-                << " value: " << what[2] << std::endl;
-      if (what[1] == name)
-      {
-        std::cout << "inserting data" << std::endl;
-        keys.insert(std::make_pair("read", std::string(what[2])));
-        return what[2];
-      }
+      keys.insert(std::make_pair("read", std::string(what[2])));
+      return what[2];
     }
   }
+  return "";
 }
 
+/*
+ * loop through the configlist
+ */
 void ConfigRegexp::process(ConfigParser::ConfigList &config)
 {
   ConfigParser::ConfigList::iterator it = config.begin();
@@ -122,37 +121,4 @@ void ConfigRegexp::process(ConfigParser::ConfigList &config)
     }
 
   }
-}
-
-void ConfigRegexp::test()
-{
-  boost::regex re;
-  boost::smatch what;
-  std::ifstream f;
-
-  re.assign("^var_set ([a-zA-Z_]+) (.*)$");
-
-  f.open("user-profile");
-  if (f.bad())
-  {
-    std::cerr << "Cant open file: " << "user-profile" << std::endl;
-    return;
-  }
-  while (!f.eof())
-  {
-    std::string line;
-    getline(f, line);
-    bool result = boost::regex_search(line, what, re);
-    if (result)
-    {
-      std::cout << "match: " << line << std::endl;
-      // what[0] contains the whole string
-      // what[1] contains the response code
-      // what[2] contains the separator character
-      // what[3] contains the text message.
-      std::cout << "name: " << what[1]
-                << " value: " << what[2] << std::endl;
-    }
-  }
-    f.close();
 }

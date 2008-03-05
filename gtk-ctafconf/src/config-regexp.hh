@@ -26,18 +26,21 @@
 #ifndef   	CONFIG_REGEXP_HH_
 # define   	CONFIG_REGEXP_HH_
 
-#include "config-parser.h"
+# include "config-parser.hh"
+
 class ConfigRegexp
 {
 public:
   ConfigRegexp(){;}
 
   void process(ConfigParser::ConfigList &config);
-  void test();
 
 protected:
   void openFile(const std::string &fname);
-  std::string getValue(ConfigParser::ConfigList::iterator it, const std::string &name,  const std::string &regexp);
+  std::string getValue(ConfigParser::ConfigList::iterator it,
+                       const std::string &name,
+                       const std::string &regexp);
+
   void setValue(ConfigParser::ConfigList::iterator it,
                 const std::string &name,
                 const std::string &value,
