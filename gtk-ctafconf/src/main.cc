@@ -23,7 +23,7 @@
 
 #include <gtkmm.h>
 #include <iostream>
-
+#include <config.h>
 #include "gui-factory.hh"
 #include "config-parser.hh"
 #include "config-regexp.hh"
@@ -128,7 +128,7 @@ main (int argc, char *argv[])
   ConfigParser config;
   ConfigRegexp regexp;
 
-  config.parse("er.tpl");
+  config.parse(GTK_CTAFCONF_DATADIR"/template/main.tpl");
 
   regexp.process(config.values());
 

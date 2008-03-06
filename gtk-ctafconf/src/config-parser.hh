@@ -45,13 +45,13 @@ class ConfigParser {
   ConfigList &values() { return m_values; }
 
  protected:
-  void getLine();
-  void parseComment();
-  void parseConfig();
-  void parseSubConfig();
+  bool getLine(std::ifstream &f);
+  void parseInclude(std::ifstream &f);
+  void parseComment(std::ifstream &f);
+  void parseConfig(std::ifstream &f);
+  void parseSubConfig(std::ifstream &f);
 
  private:
-  std::ifstream f;
   std::string   m_current_line;
   ConfigList    m_values;
   ConfigObject  *m_current_cfg;

@@ -33,11 +33,15 @@
 
 void ConfigRegexp::openFile(const std::string &fname)
 {
-  std::cout << "processing file:" << fname << std::endl;
-  f.open(fname.c_str());
+  std::string fn(fname);
+
+  fn = "/home/ctaf42/.config/ctafconf/perso/" + fn;
+  std::cout << "processing file:" << fn << std::endl;
+  f.close();
+  f.open(fn.c_str());
   if (f.bad())
   {
-    std::cerr << "Cant open file: " << "user-profile" << std::endl;
+    std::cerr << "Cant open file: " << fn << std::endl;
     return;
   }
 }
@@ -51,16 +55,16 @@ void ConfigRegexp::setValue(ConfigParser::ConfigList::iterator it,
   boost::smatch what;
   boost::regex re;
 
-  re.assign(regexp);
-  while (!f.eof())
-  {
-    std::string line;
-    getline(f, line);
-    bool result = boost::regex_search(line, what, re);
-    if (result)
-    {
-    }
-  }
+//   re.assign(regexp);
+//   while (!f.eof())
+//   {
+//     std::string line;
+//     getline(f, line);
+//     bool result = boost::regex_search(line, what, re);
+//     if (result)
+//     {
+//     }
+//   }
 
 }
 
@@ -77,12 +81,21 @@ std::string ConfigRegexp::getValue(ConfigParser::ConfigList::iterator it,
   boost::regex re;
 
   re.assign(regexp);
-  while (!f.eof())
+  if (f.bad() || !f.is_open())
+  {
+    std::cerr << "bad file" << std::endl;
+    return "";
+  }
+  while (!f.eof() && !f.bad())
   {
     std::string line;
     bool result;
 
-    getline(f, line);
+    if (!getline(f, line))
+    {
+      std::cerr << "getline failed" << std::endl;
+      break;
+    }
     result = boost::regex_search(line, what, re);
     if (result && what[1] == name)
     {

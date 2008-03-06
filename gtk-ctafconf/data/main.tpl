@@ -84,10 +84,29 @@ frame:ctafconf
   button:Change the wallpaper
     default=wallpaper
 
-
+input:emacs.config
 frame:emacs
-  string:email
-  string:complete user name
+  string:ctafconf-ilisp
+    getregexp=^\(setq (.+) (.*)\)$
+
+  string:ctafconf-zone
+    getregexp=^\(setq (.+) (.*)\)$
+
+  string:ctafconf-cedet
+    getregexp=^\(setq (.+) (.*)\)$
+
+  string:ctafconf-ecb
+    getregexp=^\(setq (.+) (.*)\)$
+
+  string:ctafconf-fixed-window-size
+    getregexp=^\(setq (.+) (.*)\)$
+
+  string:ctafconf-fixedsize
+    getregexp=^\(setq (.+) (.*)\)$
+
+ctafconf-menubar
+
+ctafconf-custom-template-dir
   checkbox:fixed windows size
   int:window width
   int:window height

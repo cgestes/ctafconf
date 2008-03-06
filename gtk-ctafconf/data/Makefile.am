@@ -26,7 +26,7 @@
 ## extra files
 EXTRA_DIST = $(ctafconf_DATA)
 
-ctafconfdir = ${GTK_CTAFCONF_DATADIR}
+ctafconfdir = ${GTK_CTAFCONF_DATADIR}/template
 
 ctafconf_DATA = main.tpl \
 		regexp.tpl

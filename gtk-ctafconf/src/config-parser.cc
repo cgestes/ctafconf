@@ -37,22 +37,48 @@ ConfigParser::ConfigParser()
   m_line = 0;
 }
 
-void ConfigParser::getLine()
+bool ConfigParser::getLine(std::ifstream &f)
 {
-  getline(f, m_current_line);
+  bool ret;
+
+  if (!(ret = getline(f, m_current_line)))
+  {
+    std::cerr << "getline failed" << std::endl;
+    return false;
+  }
   m_current_line = trim(m_current_line);
   m_line++;
+  return true;
 }
 
-void ConfigParser::parseComment()
+void ConfigParser::parseComment(std::ifstream &f)
 {
   while (m_current_line[0] == '#')
   {
-    getLine();
+    if (!getLine(f))
+      break;
   }
 }
+void ConfigParser::parseInclude(std::ifstream &f)
+{
+//   string::size_type i (m_current_line.find_first_of ("include:"));
 
-void ConfigParser::parseConfig()
+//   //match
+//   if (i != std::string::npos)
+//   {
+//     string type = trim(m_current_line.substr(0, i));
+//     const string name = trim(m_current_line.substr(i + 1));
+
+//     getLine(f);
+
+//     if (m_current_cfg)
+//       m_values.push_back(m_current_cfg);
+//     m_current_cfg = new ConfigObject(type, name);
+//   }
+
+}
+
+void ConfigParser::parseConfig(std::ifstream &f)
 {
   string::size_type i (m_current_line.find_first_of (":"));
 
@@ -62,7 +88,7 @@ void ConfigParser::parseConfig()
     string type = trim(m_current_line.substr(0, i));
     const string name = trim(m_current_line.substr(i + 1));
 
-    getLine();
+    getLine(f);
 
     if (m_current_cfg)
       m_values.push_back(m_current_cfg);
@@ -71,7 +97,7 @@ void ConfigParser::parseConfig()
 
 }
 
-void ConfigParser::parseSubConfig()
+void ConfigParser::parseSubConfig(std::ifstream &f)
 {
   string::size_type i (m_current_line.find_first_of ("="));
 
@@ -83,7 +109,7 @@ void ConfigParser::parseSubConfig()
 
     if (m_current_cfg)
       m_current_cfg->addKey(name, value);
-    getLine();
+    getLine(f);
   }
 
 }
@@ -91,26 +117,30 @@ void ConfigParser::parseSubConfig()
 void ConfigParser::parse(const std::string &fname)
 {
   std::string tmp;
-
+  std::ifstream f;
 
   f.open(fname.c_str());
 
   if (!f.is_open())
   {
-    std::cerr << "cant open file" << std::endl;
+    std::cerr << "cant open file:" << fname << std::endl;
     return;
   }
-  getLine();
+  getLine(f);
   while (!f.eof())
   {
     unsigned int curln = m_line;
-    parseComment();
-    parseConfig();
-    parseComment();
-    parseSubConfig();
+    parseInclude(f);
+    parseComment(f);
+    parseConfig(f);
+    parseComment(f);
+    parseSubConfig(f);
     //no parsed data, manually skip current line
     if (m_line == curln)
-      getLine();
+    {
+      if (!getLine(f))
+        break;
+    }
   }
   f.close();
 }
