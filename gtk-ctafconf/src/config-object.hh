@@ -32,14 +32,20 @@
 class ConfigObject {
  public:
   typedef std::multimap<std::string, std::string> ConfigKeys;
+  typedef ConfigKeys::iterator iterator;
 
   ConfigObject(const std::string &type, const std::string &name);
   void addKey(const std::string &name, const std::string &value);
 
+
   const std::string &name() { return m_name; }
   const std::string &type() { return m_type; }
+
   const ConfigKeys &const_keys() { return m_keys; }
   ConfigKeys &keys() { return m_keys; }
+
+  iterator begin() { return m_keys.begin(); }
+  iterator end() { return m_keys.end(); }
 
  protected:
 

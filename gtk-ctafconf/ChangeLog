@@ -1,3 +1,6 @@
+2008-03-06  Cedric GESTES  <ctaf42@gmail.com>
+	* parser : support include
+
 2008-03-05  Cedric GESTES  <gestes@aldebaran-robotics.com>
 	* autotools: datadir/boost regexp
 

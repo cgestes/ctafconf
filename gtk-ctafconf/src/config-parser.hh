@@ -33,6 +33,7 @@
 class ConfigParser {
  public:
   typedef std::vector<ConfigObject *> ConfigList;
+  typedef ConfigList::iterator iterator;
 
  public:
   ConfigParser();
@@ -43,6 +44,9 @@ class ConfigParser {
 
   const ConfigList &const_values() { return m_values; }
   ConfigList &values() { return m_values; }
+
+  iterator begin() { return m_values.begin(); }
+  iterator end() { return m_values.end(); }
 
  protected:
   bool getLine(std::ifstream &f);

@@ -26,6 +26,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <config.h>
+
 #include "config-parser.hh"
 #include "string-utils.hh"
 
@@ -61,21 +63,23 @@ void ConfigParser::parseComment(std::ifstream &f)
 }
 void ConfigParser::parseInclude(std::ifstream &f)
 {
-//   string::size_type i (m_current_line.find_first_of ("include:"));
+  if (m_current_line.substr(0, 8) == "include:")
+  {
+    string::size_type i (m_current_line.find_first_of (":"));
+    string type = trim(m_current_line.substr(0, i));
+    const string name = trim(m_current_line.substr(i + 1));
+    std::string fname;
+    if (m_current_cfg)
+      m_values.push_back(m_current_cfg);
+    m_current_cfg = new ConfigObject(type, name);
 
-//   //match
-//   if (i != std::string::npos)
-//   {
-//     string type = trim(m_current_line.substr(0, i));
-//     const string name = trim(m_current_line.substr(i + 1));
+    fname = GTK_CTAFCONF_DATADIR;
+    fname += "/template/";
+    fname += name;
+    std::cout << "include:" << fname << std::endl;
+    parse(fname);
 
-//     getLine(f);
-
-//     if (m_current_cfg)
-//       m_values.push_back(m_current_cfg);
-//     m_current_cfg = new ConfigObject(type, name);
-//   }
-
+  }
 }
 
 void ConfigParser::parseConfig(std::ifstream &f)

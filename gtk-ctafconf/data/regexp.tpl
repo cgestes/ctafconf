@@ -27,15 +27,15 @@
 ## REGEXP ALIAS ##
 ##################
 
-regexp:ct-var
+regexp:ct-var-regexp
   readregexp=^var_set ([a-zA-Z_]+) (.*)$
   writeregexp=^/var_set (%1) (%2)$
 
-regexp:ct-env
+regexp:ct-env-regexp
   readregexp=^env_set ([a-zA-Z_]+) (.*)$
   writeregexp=^/env_set (%1) (%2)$
 
-regexp:ct-alias
+regexp:ct-alias-regexp
   readregexp=^alias_set ([a-zA-Z_]+) (.*)$
   writeregexp=^/alias_set (%1) (%2)$
 
@@ -47,12 +47,12 @@ regexp:ct-alias
 # ?1, ?2: the place in the readregexp (where to replace)
 # %1, %2: new values from user input (name, value)
 
-regexp:ct-lisp
+regexp:ct-lisp-regexp
   readregexp=^\(setq ([a-zA-Z_]+) (.*)\)$
   writeregexp=^/(?1$&)(?2%2)\)$
 
 #optionnal
-  bool_true=t
-  bool_false=nil
-  list_separator=,
+#  bool_true=t
+#  bool_false=nil
+#  list_separator=,
 

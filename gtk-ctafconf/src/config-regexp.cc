@@ -39,7 +39,7 @@ void ConfigRegexp::openFile(const std::string &fname)
   std::cout << "processing file:" << fn << std::endl;
   f.close();
   f.open(fn.c_str());
-  if (f.bad())
+  if (!f.is_open())
   {
     std::cerr << "Cant open file: " << fn << std::endl;
     return;
@@ -81,12 +81,12 @@ std::string ConfigRegexp::getValue(ConfigParser::ConfigList::iterator it,
   boost::regex re;
 
   re.assign(regexp);
-  if (f.bad() || !f.is_open())
+  if (!f.is_open())
   {
     std::cerr << "bad file" << std::endl;
     return "";
   }
-  while (!f.eof() && !f.bad())
+  while (!f.eof())
   {
     std::string line;
     bool result;
@@ -111,7 +111,7 @@ std::string ConfigRegexp::getValue(ConfigParser::ConfigList::iterator it,
  */
 void ConfigRegexp::process(ConfigParser::ConfigList &config)
 {
-  ConfigParser::ConfigList::iterator it = config.begin();
+  ConfigParser::iterator it = config.begin();
 
   for (;it != config.end(); ++it)
   {
@@ -129,9 +129,7 @@ void ConfigRegexp::process(ConfigParser::ConfigList &config)
     if (it2 != keys.end())
     {
       const std::string &def = (*it2).second;
-//       processValue(it, def);
       getValue(it, name, def);
     }
-
   }
 }
