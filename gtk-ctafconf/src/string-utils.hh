@@ -51,6 +51,18 @@ inline std::string trim (const std::string & s, const std::string & t = SPACES)
 }  // end of trim
 
 
+inline std::string &vector2string(const std::vector<std::string> &strings, const std::string separator)
+{
 
+}
+
+inline std::vector<std::string> &string2vector(const std::string, const std::string separator)
+{
+
+}
+
+inline std::string trimquote(const std::string)
+{
+}
 
 #endif	    /* !STRINGUTILS_HH_ */

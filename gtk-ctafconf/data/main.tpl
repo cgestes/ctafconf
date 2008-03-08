@@ -76,23 +76,23 @@ frame:ctafconf
     cmd=cd ~/.config/ctafconf
     cmd=svn up
 
-  multichoice:backlisted package
-    default=xsession
-    value='zsh'
-    value='bash'
-    value='ksh'
-    value='tcsh'
-    value='emacs'
-    value='screen'
-    value='top'
-    value='vim'
-    value='e16'
-    value='fluxbox'
-    value='gnome'
-    value='namo'
-    value='torsmo'
-    value='xsession'
-
+  multichoice:ctafconf_backlist
+    regexp=ct-var-regexp
+#     default=xsession
+    value=zsh
+    value=bash
+    value=ksh
+    value=tcsh
+    value=emacs
+    value=screen
+    value=top
+    value=vim
+    value=e16
+    value=fluxbox
+    value=gnome
+    value=namo
+    value=torsmo
+    value=xsession
 
   button:Change the wallpaper
     default=wallpaper
@@ -124,12 +124,12 @@ frame:emacs
   folder:ctafconf-custom-template-dir
     desc="custom template folder for emacs"
 
-  checkbox:fixed windows size
+  checkbox:fixed-windows-size
     desc="start emacs with a fixed windows size?"
     default=nil
 
-  int:window width
-  int:window height
+  int:window-width
+  int:window-height
 
 
 # - user-profile

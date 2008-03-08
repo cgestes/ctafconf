@@ -83,6 +83,7 @@ bool ConfigRegexp::setValue(ConfigObject::ptr obj,
     std::cerr << "bad file" << std::endl;
     return 0;
   }
+  f.seekg(0,std::ios::beg);
   while (!f.eof())
   {
     std::string line;
@@ -112,7 +113,8 @@ bool ConfigRegexp::setValue(ConfigObject::ptr obj,
       return 1;
     }
   }
-  return 1;
+  std::cout << "no match for:" << name << std::endl;
+  return 0;
 }
 
 /*
@@ -224,6 +226,7 @@ void ConfigRegexp::update(ConfigParser &config)
 void ConfigRegexp::read(ConfigParser &config)
 {
   ConfigParser::iterator it = config.begin();
+  RegexpMatcher::ptr preg;
 
   update(config);
 
@@ -242,6 +245,9 @@ void ConfigRegexp::read(ConfigParser &config)
 
     if (obj->getString("regexp", regexp))
     {
+      iterator itreg = regexps.find(regexp);
+      if (itreg != regexps.end())
+        obj->setRegexp((*itreg).second);
       getValue(obj, name, regexp);
     }
   }

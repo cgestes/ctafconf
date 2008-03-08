@@ -31,6 +31,8 @@
 # include <boost/shared_ptr.hpp>
 
 class ComboModelColumns;
+class RegexpMatcher;
+typedef boost::shared_ptr<RegexpMatcher> RegexpMatcherPtr;
 
 class ConfigObject {
 protected:
@@ -45,15 +47,27 @@ protected:
 
   unsigned int getBool(const std::string &name, bool &value);
   unsigned int getString(const std::string &name, std::string &value);
+  //get a range of string
   unsigned int getStrings(const std::string &name, std::vector<std::string> &values);
+
+  //get a list of string from a single string
+  unsigned int getStringsFormated(const std::string &name, std::vector<std::string> &values);
+
+
+
 
   void setBool(const std::string &name, const bool value);
   void setString(const std::string &name, const std::string &value);
   void setStrings(const std::string &name, const std::vector<std::string> &values);
+  //get a list of string from a single string
+  void setStringsFormated(const std::string &name, const std::vector<std::string> &values);
 
 
   const std::string &name()const { return m_name; }
   const std::string &type()const { return m_type; }
+
+  RegexpMatcherPtr &regexp() { return m_regexp; }
+  void setRegexp(const RegexpMatcherPtr &re) { m_regexp = re; }
 
 //   const ConfigKeys &const_keys()const { return m_keys; }
 //   ConfigKeys &keys() { return m_keys; }
@@ -62,13 +76,14 @@ protected:
 //   iterator end() { return m_keys.end(); }
 
  public:
-  Gtk::Widget *widget;
-  ComboModelColumns *columns;
+  Gtk::Widget           *widget;
+  ComboModelColumns     *columns;
 
  protected:
-  std::string m_name;
-  std::string m_type;
-  ConfigKeys m_keys;
+  RegexpMatcherPtr    m_regexp;
+  std::string           m_name;
+  std::string           m_type;
+  ConfigKeys            m_keys;
 };
 
 

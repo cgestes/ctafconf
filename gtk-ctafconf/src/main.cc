@@ -82,8 +82,10 @@ void buildGui(ConfigParser &config, GuiFactory &gui_factory)
       std::vector<std::string> defaults;
       std::vector<std::string> values;
 
-      obj->getStrings("default", defaults);
       obj->getStrings("value", values);
+      if (!obj->getStringsFormated("read", defaults))
+        obj->getStrings("default", defaults);
+
       gui_factory.add_multichoice(obj, name, values, defaults);
     }
     else if (type == "button")
@@ -95,7 +97,6 @@ void buildGui(ConfigParser &config, GuiFactory &gui_factory)
 
 void on_button_clicked(ConfigParser *config, ConfigRegexp *regexp)
 {
-  std::cout << "Hello World" << std::endl;
   ConfigParser::iterator it = config->begin();
 
 
@@ -143,8 +144,6 @@ void on_button_clicked(ConfigParser *config, ConfigRegexp *regexp)
         bool id = row[obj->columns->m_col_active];
         if (id)
           v.push_back(name);
-        std::cout << "combo : " << name << ": " << id << std::endl;
-//        v.push
       }
       obj->setStrings("write", v);
     }
