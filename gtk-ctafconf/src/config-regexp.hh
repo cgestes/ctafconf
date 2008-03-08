@@ -33,8 +33,9 @@
 class RegexpMatcher
 {
 public:
+  typedef boost::shared_ptr<RegexpMatcher> ptr;
   std::string   name;
-  boost::regex  write;
+  std::string  write;
   boost::regex  read;
 };
 
@@ -42,25 +43,24 @@ public:
 class ConfigRegexp
 {
 public:
-  typedef boost::shared_ptr<RegexpMatcher> ptrRegexpMatcher;
-  typedef std::map<std::string, ptrRegexpMatcher> RegexpList;
+  typedef std::map<std::string, RegexpMatcher::ptr> RegexpList;
   typedef RegexpList::iterator iterator;
 
   ConfigRegexp(){;}
 
-  void process(ConfigParser::ConfigList &config);
-  void write(ConfigParser::ConfigList &config);
+  void read(ConfigParser &config);
+  void write(ConfigParser &config);
 
 protected:
-  void addRegexp(ConfigParser::iterator &it, const std::string &name);
-  void update(ConfigParser::ConfigList &config);
+  void addRegexp(ConfigObject::ptr obj, const std::string &name);
+  void update(ConfigParser &config);
 
   void openFile(const std::string &fname);
-  std::string getValue(ConfigParser::ConfigList::iterator it,
+  std::string getValue(ConfigObject::ptr obj,
                        const std::string &name,
                        const std::string &regexp);
 
-  bool setValue(ConfigParser::ConfigList::iterator it,
+  bool setValue(ConfigObject::ptr obj,
                 const std::string &name,
                 const std::string &value,
                 const std::string &regexp);

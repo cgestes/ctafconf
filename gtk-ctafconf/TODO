@@ -1,32 +1,9 @@
 - int/float/file/folder/bool
 - button: launch a shell script: colapsable with a terminal
-- quote (regexp)
-
-- support description
-- replace regexp
-- backup changed file
-
+- quote (regexp) / true/false / packlist
 - choice if the combo could be empty
+- backup changed file
+- multiline description
 
 
 ==>
-- user-profile
-- some keys from env and alias, duplicated if needed (stored in perso)
-- emacs
-  - fonctionnalité activé (ilisp/cedet/...)
-  - some var: indentation/menu-bar/size
-  - w-o-b / b-o-w ??
-  - username/mail
-  - keybindings
-- zsh
-- bash
-- prompt option (transparent/w-o-b/b-o-w)
-
-
-DOC
-  - alias
-  - variable d'environnement
-  - ct-env
-  - ct-date
-  - ct-ssh
-  - emacs

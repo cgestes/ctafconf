@@ -59,19 +59,18 @@ void ConfigRegexp::openFile(const std::string &fname)
 ** @param value
 ** @param regexp
 */
-bool ConfigRegexp::setValue(ConfigParser::ConfigList::iterator it,
+bool ConfigRegexp::setValue(ConfigObject::ptr obj,
                             const std::string &name,
                             const std::string &value,
                             const std::string &regexp)
 {
   boost::smatch what;
   boost::regex re;
-  ptrRegexpMatcher pRegexp;
-//  ConfigObject::ConfigKeys &keys = (*it)->keys();
-  iterator it2 = regexps.find(regexp);
+  RegexpMatcher::ptr pRegexp;
+  iterator itre = regexps.find(regexp);
 
-  if (it2 != regexps.end())
-    pRegexp = (*it2).second;
+  if (itre != regexps.end())
+    pRegexp = (*itre).second;
 
   if (!pRegexp)
   {
@@ -97,22 +96,22 @@ bool ConfigRegexp::setValue(ConfigParser::ConfigList::iterator it,
     result = boost::regex_search(line, what, pRegexp->read);
     if (result && what[1] == name)
     {
-      std::cout << "replace:" <<  name << " =       " << std::string(what[2]) << " ===> " << value << std::endl;
-//      result = boost::regex_replace(line, what, pRegexp->read);
+      std::string regexp = pRegexp->write;
+      std::string r = what[2];
+      size_t pos = regexp.find("%$$%");
 
-      return 0;
+      if (pos == std::string::npos)
+      {
+        std::cout << "bad regexp" << std::endl;
+        continue;
+      }
+      regexp.replace(pos, 4, value);
+
+      std::string res = boost::regex_replace(line, pRegexp->read, regexp);
+      std::cout << " -- result : " << res << std::endl;
+      return 1;
     }
   }
-//   re.assign(regexp);
-//   while (!f.eof())
-//   {
-//     std::string line;
-//     getline(f, line);
-//     bool result = boost::regex_search(line, what, re);
-//     if (result)
-//     {
-//     }
-//   }
   return 1;
 }
 
@@ -126,19 +125,17 @@ bool ConfigRegexp::setValue(ConfigParser::ConfigList::iterator it,
 **
 ** @return
 */
-std::string ConfigRegexp::getValue(ConfigParser::ConfigList::iterator it,
+std::string ConfigRegexp::getValue(ConfigObject::ptr obj,
                                    const std::string &name,
                                    const std::string &regexp)
 {
-  ConfigObject::ConfigKeys &keys = (*it)->keys();
   boost::smatch what;
   boost::regex re;
-  ptrRegexpMatcher pRegexp;
+  RegexpMatcher::ptr pRegexp;
+  iterator itre = regexps.find(regexp);
 
-  iterator it2 = regexps.find(regexp);
-
-  if (it2 != regexps.end())
-    pRegexp = (*it2).second;
+  if (itre != regexps.end())
+    pRegexp = (*itre).second;
 
   if (!pRegexp)
   {
@@ -164,7 +161,7 @@ std::string ConfigRegexp::getValue(ConfigParser::ConfigList::iterator it,
     result = boost::regex_search(line, what, pRegexp->read);
     if (result && what[1] == name)
     {
-      keys.insert(std::make_pair("read", std::string(what[2])));
+      obj->setString("read", std::string(what[2]));
       return what[2];
     }
   }
@@ -177,51 +174,42 @@ std::string ConfigRegexp::getValue(ConfigParser::ConfigList::iterator it,
 ** @param it
 ** @param name
 */
-void ConfigRegexp::addRegexp(ConfigParser::iterator &it, const std::string &name)
+void ConfigRegexp::addRegexp(ConfigObject::ptr obj, const std::string &name)
 {
-  ConfigObject::ConfigKeys &keys = (*it)->keys();
-  ConfigObject::ConfigKeys::const_iterator it2 = keys.find("readregexp");
-  ConfigObject::ConfigKeys::const_iterator it3 = keys.find("writeregexp");
+  std::string rregexp;
+  std::string wregexp;
 
-  if (it2 != keys.end() || it3 != keys.end())
+  RegexpMatcher::ptr pregexp = RegexpMatcher::ptr(new RegexpMatcher());
+
+  if (obj->getString("readregexp", rregexp))
   {
-    std::string rregexp;
-    std::string wregexp;
-
-    ptrRegexpMatcher pregexp = ptrRegexpMatcher(new RegexpMatcher());
-
-
-    if (it2 != keys.end())
-    {
-      rregexp = (*it2).second;
-      pregexp->read.assign(rregexp);
-    }
-
-    if (it3 != keys.end())
-    {
-      wregexp = (*it2).second;
-      pregexp->write.assign(wregexp);
-    }
-    regexps[name] = pregexp;
+    pregexp->read.assign(rregexp);
   }
+
+  if (obj->getString("writeregexp", wregexp))
+  {
+    pregexp->write = wregexp;
+  }
+  regexps[name] = pregexp;
 }
 
 /**
  * update the open file list
  * and the regexp list
  */
-void ConfigRegexp::update(ConfigParser::ConfigList &config)
+void ConfigRegexp::update(ConfigParser &config)
 {
   ConfigParser::iterator it = config.begin();
 
   for (;it != config.end(); ++it)
   {
-    const std::string &type = (*it)->type();
-    const std::string &name = (*it)->name();
+    ConfigObject::ptr obj = (*it);
+    const std::string &type = obj->type();
+    const std::string &name = obj->name();
 
     if (type == "regexp")
     {
-      addRegexp(it, name);
+      addRegexp(obj, name);
       continue;
     }
   }
@@ -231,7 +219,7 @@ void ConfigRegexp::update(ConfigParser::ConfigList &config)
 /*
  * loop through the configlist
  */
-void ConfigRegexp::process(ConfigParser::ConfigList &config)
+void ConfigRegexp::read(ConfigParser &config)
 {
   ConfigParser::iterator it = config.begin();
 
@@ -239,10 +227,10 @@ void ConfigRegexp::process(ConfigParser::ConfigList &config)
 
   for (;it != config.end(); ++it)
   {
-    const std::string &type = (*it)->type();
-    const std::string &name = (*it)->name();
-    const ConfigObject::ConfigKeys &keys = (*it)->keys();
-    const ConfigObject::ConfigKeys::const_iterator it2 = keys.find("regexp");
+    ConfigObject::ptr obj = (*it);
+    const std::string &type = obj->type();
+    const std::string &name = obj->name();
+    std::string regexp;
 
     if (type == "input")
     {
@@ -250,10 +238,9 @@ void ConfigRegexp::process(ConfigParser::ConfigList &config)
       continue;
     }
 
-    if (it2 != keys.end())
+    if (obj->getString("regexp", regexp))
     {
-      const std::string &def = (*it2).second;
-      getValue(it, name, def);
+      getValue(obj, name, regexp);
     }
   }
 }
@@ -261,7 +248,7 @@ void ConfigRegexp::process(ConfigParser::ConfigList &config)
 /*
  * loop through the configlist
  */
-void ConfigRegexp::write(ConfigParser::ConfigList &config)
+void ConfigRegexp::write(ConfigParser &config)
 {
   ConfigParser::iterator it = config.begin();
 
@@ -269,11 +256,10 @@ void ConfigRegexp::write(ConfigParser::ConfigList &config)
 
   for (;it != config.end(); ++it)
   {
-    const std::string &type = (*it)->type();
-    const std::string &name = (*it)->name();
-    const ConfigObject::ConfigKeys &keys = (*it)->keys();
-    const ConfigObject::ConfigKeys::const_iterator it2 = keys.find("regexp");
-    const ConfigObject::ConfigKeys::const_iterator it3 = keys.find("write");
+    ConfigObject::ptr obj = (*it);
+    const std::string &type = obj->type();
+    const std::string &name = obj->name();
+    std::string regexp, value;
 
     if (type == "input")
     {
@@ -281,15 +267,12 @@ void ConfigRegexp::write(ConfigParser::ConfigList &config)
       continue;
     }
 
-    if (it2 != keys.end() && it3 != keys.end())
+    if (obj->getString("regexp", regexp) && obj->getString("write", value))
     {
-      const std::string &regexp = (*it2).second;
-      const std::string &value = (*it3).second;
-
-      setValue(it, name, value, regexp);
+      setValue(obj, name, value, regexp);
     }
-    else
-      std::cerr << "warning;regexp::write: no write value, or no regexp" << std::endl;
+//     else
+//       std::cerr << "warning;regexp::write: no write value, or no regexp" << std::endl;
 
   }
 }

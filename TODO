@@ -41,6 +41,6 @@ DOC:
   => emacs: goto the header
   => emacs: grep => grep the current word under cursor (in the current file or all)
   => correct window color in speedbar and co
-
+  => doxyemacs : always add header on each function, and synchro from each header and source
 ===>
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2; tab-width: 2 -*- */

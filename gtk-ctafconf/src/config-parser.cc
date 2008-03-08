@@ -35,7 +35,6 @@ using namespace std;
 
 ConfigParser::ConfigParser()
 {
-  m_current_cfg = 0;
   m_line = 0;
 }
 
@@ -71,7 +70,7 @@ void ConfigParser::parseInclude(std::ifstream &f)
     std::string fname;
     if (m_current_cfg)
       m_values.push_back(m_current_cfg);
-    m_current_cfg = new ConfigObject(type, name);
+    m_current_cfg = ConfigObject::ptr(new ConfigObject(type, name));
 
     fname = GTK_CTAFCONF_DATADIR;
     fname += "/template/";
@@ -96,7 +95,7 @@ void ConfigParser::parseConfig(std::ifstream &f)
 
     if (m_current_cfg)
       m_values.push_back(m_current_cfg);
-    m_current_cfg = new ConfigObject(type, name);
+    m_current_cfg = ConfigObject::ptr(new ConfigObject(type, name));
   }
 
 }
@@ -147,13 +146,4 @@ void ConfigParser::parse(const std::string &fname)
     }
   }
   f.close();
-}
-
-void ConfigParser::save(const std::string &outputfile) {
-//   ConfigList::iterator it(m_value);
-//   Glib::RefPtr<ConfigObject> config;
-//   for(;*it; ++it) {
-//     config = *it;
-//     save_object(config);
-//   }
 }

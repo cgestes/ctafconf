@@ -38,3 +38,77 @@ void ConfigObject::addKey(const std::string &name, const std::string &value)
 {
   m_keys.insert(make_pair(name, value));
 }
+
+unsigned int  ConfigObject::getBool(const std::string &name, bool &value)
+{
+  iterator it;
+  it = m_keys.find(name);
+
+  if (it != m_keys.end())
+  {
+    const std::string &val = (*it).second;
+    if (val == "t" ||
+        val == "true" ||
+        val == "T" ||
+        val == "TRUE" ||
+        val == "1" ||
+        val == "y" ||
+        val == "Y" ||
+        val == "o" ||
+        val == "O" )
+      value = true;
+    else
+      value = false;
+    return 1;
+  }
+  return 0;
+}
+
+unsigned int ConfigObject::getString(const std::string &name, std::string &value)
+{
+  iterator it;
+  it = m_keys.find(name);
+
+  if (it != m_keys.end())
+  {
+    value = (*it).second;
+//     std::cout << "getString(" << name << ", " << value << ")" << std::endl;
+    return 1;
+  }
+  return 0;
+}
+
+unsigned int ConfigObject::getStrings(const std::string &name, std::vector<std::string> &values)
+{
+  std::pair<iterator, iterator> pair;
+  iterator it;
+
+  pair = m_keys.equal_range(name);
+  for (it = pair.first; it != pair.second; ++it)
+  {
+    values.push_back((*it).second);
+  }
+  return m_keys.count(name);
+}
+
+
+void ConfigObject::setBool(const std::string &name, const bool value)
+{
+}
+
+void ConfigObject::setString(const std::string &name, const std::string &value)
+{
+  iterator it;
+  it = m_keys.find(name);
+
+//   std::cout << "setString(" << name << ", " << value << ")" << std::endl;
+  if (it != m_keys.end())
+    (*it).second = value;
+  else
+    m_keys.insert(make_pair(name, value));
+
+}
+
+void ConfigObject::setStrings(const std::string &name, const std::vector<std::string> &values)
+{
+}

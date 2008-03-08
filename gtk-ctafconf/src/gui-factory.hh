@@ -51,6 +51,8 @@ class GuiFactory
 
   GuiFactory(Gtk::Notebook &notebook);
 
+  void add_description(ConfigObject &obj);
+
   void add_frame(ConfigObject &obj, const std::string &name);
 
   void add_string(ConfigObject &obj,
@@ -76,7 +78,7 @@ class GuiFactory
   void add_button(ConfigObject &obj, const std::string &name);
 
  protected:
-  Gtk::HBox *add_box_with_label(const std::string &name);
+  Gtk::HBox *add_box_with_label(ConfigObject &obj, const std::string &name);
 
  protected:
   Gtk::Notebook &m_notebook;

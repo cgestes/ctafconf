@@ -29,37 +29,35 @@
 # include <gtkmm.h>
 # include <fstream>
 # include "config-object.hh"
+# include <boost/shared_ptr.hpp>
 
 class ConfigParser {
- public:
-  typedef std::vector<ConfigObject *> ConfigList;
+protected:
+  typedef std::vector<ConfigObject::ptr> ConfigList;
+
+public:
   typedef ConfigList::iterator iterator;
+  typedef ConfigList::const_iterator const_iterator;
 
- public:
+public:
   ConfigParser();
-
-  void load(const std::string &xmlfile);
-  void save(const std::string &outputfile);
   void parse(const std::string &fname);
-
-  const ConfigList &const_values() { return m_values; }
-  ConfigList &values() { return m_values; }
 
   iterator begin() { return m_values.begin(); }
   iterator end() { return m_values.end(); }
 
- protected:
+protected:
   bool getLine(std::ifstream &f);
   void parseInclude(std::ifstream &f);
   void parseComment(std::ifstream &f);
   void parseConfig(std::ifstream &f);
   void parseSubConfig(std::ifstream &f);
 
- private:
-  std::string   m_current_line;
-  ConfigList    m_values;
-  ConfigObject  *m_current_cfg;
-  unsigned int  m_line;
+private:
+  std::string           m_current_line;
+  ConfigList            m_values;
+  ConfigObject::ptr     m_current_cfg;
+  unsigned int          m_line;
 };
 
 #endif 	    /* !CONFIG_PARSER_H_ */

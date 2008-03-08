@@ -26,42 +26,48 @@
 include:regexp.tpl
 
 input:user-profile
-frame:test
+frame:ctafconf
   string:ctafconf_name
-    default=
+    desc=
     regexp=ct-var-regexp
 
   string:ctafconf_mail
-    default=
     regexp=ct-var-regexp
 
-  string:ctafconf_zprompt
+  singlechoice:ctafconf_zprompt
+    desc=choose the zsh prompt you want
     regexp=ct-var-regexp
+    default='ctaf'
+    value='ctaf'
+    value='adam1'
+    value='adam2'
+    value='bart'
+    value='zefram'
+    value='fade'
+    value='redhat'
+    value='suse'
+    value='walters'
+    value='bigfade'
+    value='clint'
+    value='elite'
+    value='elite2'
+    value='fire'
+    value='off'
+    value='olivier'
 
-  string:ctafconf_wm
+  singlechoice:ctafconf_wm
+    desc=
     regexp=ct-var-regexp
-
-  string:ctafconf_backlist
-    regexp=ct-var-regexp
-
-  singlechoice:THEsinglechoice
-    value=bande
-    value=branle
-    value=donne tout
-    default=bande
-
-  multichoice:THEmultichoice
-    value=bande
-    value=branle
-    value=donne tout
-    default=bande
-    default=donne tout
-
-
-
-
+    value='fluxbox'
+    value='gnome'
+    value='kde'
+    value='xfce4'
+    value='e16'
+    value='term'
+    value='aterm'
 
 frame:ctafconf
+  desc=This frame let you manage ctafconf packages.
   button:install
     action:install
 
@@ -72,10 +78,21 @@ frame:ctafconf
 
   multichoice:backlisted package
     default=xsession
-    value=zsh
-    value=gnome
-    value=xsession
-    value=bash
+    value='zsh'
+    value='bash'
+    value='ksh'
+    value='tcsh'
+    value='emacs'
+    value='screen'
+    value='top'
+    value='vim'
+    value='e16'
+    value='fluxbox'
+    value='gnome'
+    value='namo'
+    value='torsmo'
+    value='xsession'
+
 
   button:Change the wallpaper
     default=wallpaper
@@ -100,13 +117,43 @@ frame:emacs
   string:ctafconf-fixedsize
     regexp=ct-lisp-regexp
 
-ctafconf-menubar
+  checkbox:ctafconf-menubar
+    desc="draw the menu bar?"
+    default=nil
 
-ctafconf-custom-template-dir
+  folder:ctafconf-custom-template-dir
+    desc="custom template folder for emacs"
+
   checkbox:fixed windows size
+    desc="start emacs with a fixed windows size?"
+    default=nil
+
   int:window width
   int:window height
-  checkbox:cedet
+
+
+# - user-profile
+# - some keys from env and alias, duplicated if needed (stored in perso)
+# - emacs
+#   - fonctionnalité activé (ilisp/cedet/...)
+#   - some var: indentation/menu-bar/size
+#   - w-o-b / b-o-w ??
+#   - username/mail
+#   - keybindings
+# - zsh
+# - bash
+# - prompt option (transparent/w-o-b/b-o-w)
+
+
+# DOC
+#   - alias
+#   - variable d'environnement
+#   - ct-env
+#   - ct-date
+#   - ct-ssh
+#   - emacs
+
+
 
 # -- devel
 #  - ilisp
@@ -114,8 +161,8 @@ ctafconf-custom-template-dir
 #  - ..
 #  - custom template directory
 
-frame:SHELL
-  checkbox:use-color
+# frame:SHELL
+#   checkbox:use-color
 # - env var
 # - alias
 # (allow to override existing, and to see them)
@@ -123,23 +170,23 @@ frame:SHELL
 # - ct-env integration
 
 
-frame:ADM-CONFIG
-  singlechoice:zsh prompt
-   default=ctaf
-   value=hctaf
-   value=blabla2
-   value=ctaf
-   value=blabla4
+# frame:ADM-CONFIG
+#   singlechoice:zsh prompt
+#    default=ctaf
+#    value=hctaf
+#    value=blabla2
+#    value=ctaf
+#    value=blabla4
 
-  singlechoice: window manager
-    value=bob
-    default=bob
+#   singlechoice: window manager
+#     value=bob
+#     default=bob
 
 
-frame:REMINDER
+# frame:REMINDER
 
-frame:CT-DATE
-frame:DOC
+# frame:CT-DATE
+# frame:DOC
 # - emacs keys
 # - shell keys
 # - shell command

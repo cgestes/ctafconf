@@ -27,6 +27,7 @@
 #include <string.h>
 #include <iostream>
 #include "gui-factory.hh"
+#include "string-utils.hh"
 
 using namespace std;
 using namespace Gtk;
@@ -40,14 +41,26 @@ GuiFactory::GuiFactory(Gtk::Notebook &notebook)
  * add a hbox and a label
  * used by all other function
  */
-Gtk::HBox *GuiFactory::add_box_with_label(const std::string &name)
+Gtk::HBox *GuiFactory::add_box_with_label(ConfigObject &obj, const std::string &name)
 {
   HBox *hbox = new HBox(1);
-  Label *lbl = new Label(name);
+  std::string desc;
 
   if (!m_current_page)
     return hbox;
-  m_current_page->pack_start(*hbox, PACK_SHRINK, 3);
+  obj.getString("desc", desc);
+  desc = trim(desc);
+  Label *lbl = new Label();
+  if (desc == "")
+  {
+    lbl->set_text(name);
+    m_current_page->pack_start(*hbox, PACK_SHRINK, 3);
+  }
+  else
+  {
+    lbl->set_text(name + ": \n" + desc);
+    m_current_page->pack_start(*hbox, PACK_SHRINK, 5);
+  }
   lbl->set_alignment(Gtk::ALIGN_LEFT, Gtk::ALIGN_CENTER);
   hbox->pack_start(*lbl);
   return hbox;
@@ -55,11 +68,19 @@ Gtk::HBox *GuiFactory::add_box_with_label(const std::string &name)
 
 void GuiFactory::add_frame(ConfigObject &obj, const string &name)
 {
+  std::string desc;
+
   //create a new vbox for the page
   m_current_page = new Gtk::VBox();
 
   //add the page to the notebook
   m_notebook.append_page(*m_current_page, name);
+  if (obj.getString("desc", desc))
+  {
+    Label *lbl = new Label(desc);
+    lbl->set_alignment(Gtk::ALIGN_LEFT, Gtk::ALIGN_CENTER);
+    m_current_page->pack_start(*lbl);
+  }
 }
 
 void GuiFactory::add_string(ConfigObject &obj, const std::string &name, const std::string &def)
@@ -67,7 +88,7 @@ void GuiFactory::add_string(ConfigObject &obj, const std::string &name, const st
   HBox *hbox;
   Entry *entry = new Entry();
 
-  hbox = add_box_with_label(name);
+  hbox = add_box_with_label(obj, name);
   entry->set_text(def);
   hbox->pack_start(*entry);
   obj.widget = entry;
@@ -80,7 +101,7 @@ void GuiFactory::add_checkbox(ConfigObject &obj, const std::string &name, bool d
   CheckButton *btn = new CheckButton();
 
   btn->set_active(def);
-  hbox = add_box_with_label(name);
+  hbox = add_box_with_label(obj, name);
   hbox->pack_start(*btn);
   obj.widget = btn;
 }
@@ -100,22 +121,11 @@ void GuiFactory::add_singlechoice(ConfigObject &obj,
   }
   combo->set_active_text(def);
 
-  hbox = add_box_with_label(name);
+  hbox = add_box_with_label(obj, name);
   hbox->pack_start(*combo);
   obj.widget = combo;
 }
 
-/*
- * Gtk::TreeModel::iterator iter = m_Combo.get_active();
-if(iter)
-{
-  Gtk::TreeModel::Row row = *iter;
-
-  //Get the data for the selected row, using our knowledge
-  //of the tree model:
-  int id = row[m_Columns.m_col_id];
- *
- */
 void GuiFactory::add_multichoice(ConfigObject &obj,
                                  const std::string &name,
                                  const std::vector<std::string> &values,
@@ -143,7 +153,7 @@ void GuiFactory::add_multichoice(ConfigObject &obj,
     row[m_Columns->m_col_active] = p != defaults.end();
   }
 
-  hbox = add_box_with_label(name);
+  hbox = add_box_with_label(obj, name);
   hbox->pack_start(*tv);
   obj.widget = tv;
   obj.columns = m_Columns;
@@ -154,7 +164,7 @@ void GuiFactory::add_button(ConfigObject &obj, const std::string &name)
   HBox *hbox;
   Button *btn = new Button("Do IT");
 
-  hbox = add_box_with_label(name);
+  hbox = add_box_with_label(obj, name);
   hbox->pack_start(*btn);
   obj.widget = btn;
 }
