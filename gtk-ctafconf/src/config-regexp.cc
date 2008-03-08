@@ -190,6 +190,8 @@ void ConfigRegexp::addRegexp(ConfigObject::ptr obj, const std::string &name)
   {
     pregexp->write = wregexp;
   }
+  pregexp->config = obj;
+
   regexps[name] = pregexp;
 }
 

@@ -41,14 +41,14 @@ GuiFactory::GuiFactory(Gtk::Notebook &notebook)
  * add a hbox and a label
  * used by all other function
  */
-Gtk::HBox *GuiFactory::add_box_with_label(ConfigObject &obj, const std::string &name)
+Gtk::HBox *GuiFactory::add_box_with_label(ConfigObject::ptr obj, const std::string &name)
 {
   HBox *hbox = new HBox(1);
   std::string desc;
 
   if (!m_current_page)
     return hbox;
-  obj.getString("desc", desc);
+  obj->getString("desc", desc);
   desc = trim(desc);
   Label *lbl = new Label();
   if (desc == "")
@@ -66,7 +66,7 @@ Gtk::HBox *GuiFactory::add_box_with_label(ConfigObject &obj, const std::string &
   return hbox;
 }
 
-void GuiFactory::add_frame(ConfigObject &obj, const string &name)
+void GuiFactory::add_frame(ConfigObject::ptr obj, const string &name)
 {
   std::string desc;
 
@@ -75,7 +75,7 @@ void GuiFactory::add_frame(ConfigObject &obj, const string &name)
 
   //add the page to the notebook
   m_notebook.append_page(*m_current_page, name);
-  if (obj.getString("desc", desc))
+  if (obj->getString("desc", desc))
   {
     Label *lbl = new Label(desc);
     lbl->set_alignment(Gtk::ALIGN_LEFT, Gtk::ALIGN_CENTER);
@@ -83,7 +83,7 @@ void GuiFactory::add_frame(ConfigObject &obj, const string &name)
   }
 }
 
-void GuiFactory::add_string(ConfigObject &obj, const std::string &name, const std::string &def)
+void GuiFactory::add_string(ConfigObject::ptr obj, const std::string &name, const std::string &def)
 {
   HBox *hbox;
   Entry *entry = new Entry();
@@ -91,11 +91,11 @@ void GuiFactory::add_string(ConfigObject &obj, const std::string &name, const st
   hbox = add_box_with_label(obj, name);
   entry->set_text(def);
   hbox->pack_start(*entry);
-  obj.widget = entry;
+  obj->widget = entry;
 
 }
 
-void GuiFactory::add_checkbox(ConfigObject &obj, const std::string &name, bool def)
+void GuiFactory::add_checkbox(ConfigObject::ptr obj, const std::string &name, bool def)
 {
   HBox *hbox;
   CheckButton *btn = new CheckButton();
@@ -103,11 +103,11 @@ void GuiFactory::add_checkbox(ConfigObject &obj, const std::string &name, bool d
   btn->set_active(def);
   hbox = add_box_with_label(obj, name);
   hbox->pack_start(*btn);
-  obj.widget = btn;
+  obj->widget = btn;
 }
 
 
-void GuiFactory::add_singlechoice(ConfigObject &obj,
+void GuiFactory::add_singlechoice(ConfigObject::ptr obj,
                                   const std::string &name,
                                   const std::vector<std::string> &values,
                                   const std::string &def /*= ""*/)
@@ -123,10 +123,10 @@ void GuiFactory::add_singlechoice(ConfigObject &obj,
 
   hbox = add_box_with_label(obj, name);
   hbox->pack_start(*combo);
-  obj.widget = combo;
+  obj->widget = combo;
 }
 
-void GuiFactory::add_multichoice(ConfigObject &obj,
+void GuiFactory::add_multichoice(ConfigObject::ptr obj,
                                  const std::string &name,
                                  const std::vector<std::string> &values,
                                  const std::vector<std::string> &defaults)
@@ -155,16 +155,16 @@ void GuiFactory::add_multichoice(ConfigObject &obj,
 
   hbox = add_box_with_label(obj, name);
   hbox->pack_start(*tv);
-  obj.widget = tv;
-  obj.columns = m_Columns;
+  obj->widget = tv;
+  obj->columns = m_Columns;
 }
 
-void GuiFactory::add_button(ConfigObject &obj, const std::string &name)
+void GuiFactory::add_button(ConfigObject::ptr obj, const std::string &name)
 {
   HBox *hbox;
   Button *btn = new Button("Do IT");
 
   hbox = add_box_with_label(obj, name);
   hbox->pack_start(*btn);
-  obj.widget = btn;
+  obj->widget = btn;
 }

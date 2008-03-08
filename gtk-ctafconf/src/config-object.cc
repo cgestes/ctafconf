@@ -25,6 +25,7 @@
 
 #include <iostream>
 #include "config-object.hh"
+#include "config-regexp.hh"
 
 
 ConfigObject::ConfigObject(const std::string &type, const std::string &name)
@@ -94,6 +95,37 @@ unsigned int ConfigObject::getStrings(const std::string &name, std::vector<std::
 
 void ConfigObject::setBool(const std::string &name, const bool value)
 {
+  std::string strue, sfalse, svalue, regexp;
+  iterator it;
+  RegexpMatcher::ptr pRegexp;
+
+//   if (!getString("regexp", regexp))
+//     return;
+
+//   iterator itre = regexps.find(regexp);
+
+//   if (itre != regexps.end())
+//     pRegexp = (*itre).second;
+//   it = m_keys.find(name);
+
+
+//   if (!pRegexp)
+//   {
+//     std::cerr << "error: setBool: cant find a regexp" << std::endl;
+//     return;
+//   }
+//   pRegexp->config->getString("true", strue);
+//   pRegexp->config->getString("false", sfalse);
+
+  std::cout << "setBool(" << name << ", " << svalue << ")" << std::endl;
+
+//   svalue = (value ? strue : sfalse);
+// //   std::cout << "setString(" << name << ", " << value << ")" << std::endl;
+//   if (it != m_keys.end())
+//     (*it).second = svalue;
+//   else
+//     m_keys.insert(make_pair(name, svalue));
+
 }
 
 void ConfigObject::setString(const std::string &name, const std::string &value)
@@ -109,6 +141,17 @@ void ConfigObject::setString(const std::string &name, const std::string &value)
 
 }
 
+/*
+ * set a list of string
+ */
 void ConfigObject::setStrings(const std::string &name, const std::vector<std::string> &values)
 {
+  std::pair<iterator, iterator> pair;
+//   iterator it = values.begin();
+
+  pair = m_keys.equal_range(name);
+  m_keys.erase(pair.first, pair.second);
+//   for (; it != values.end(); ++it)
+//     m_keys.insert(make_pair(name, *it));
+
 }

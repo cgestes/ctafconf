@@ -50,17 +50,20 @@ void buildGui(ConfigParser &config, GuiFactory &gui_factory)
       if (!obj->getString("read", def))
         obj->getString("default", def);
 
-      gui_factory.add_string(*obj, name, def);
+      gui_factory.add_string(obj, name, def);
 
     }
     else if (type == "frame")
     {
-      gui_factory.add_frame(*obj, name);
+      gui_factory.add_frame(obj, name);
 
     }
     else if (type == "checkbox")
     {
-      gui_factory.add_checkbox(*obj, name, 1);
+      bool val = 0;
+      if (!obj->getBool("read", val))
+        obj->getBool("default", val);
+      gui_factory.add_checkbox(obj, name, val);
 
     }
     else if (type == "singlechoice")
@@ -72,7 +75,7 @@ void buildGui(ConfigParser &config, GuiFactory &gui_factory)
         obj->getString("default", def);
 
       obj->getStrings("value", values);
-      gui_factory.add_singlechoice(*obj, name, values, def);
+      gui_factory.add_singlechoice(obj, name, values, def);
     }
     else if (type == "multichoice")
     {
@@ -81,10 +84,10 @@ void buildGui(ConfigParser &config, GuiFactory &gui_factory)
 
       obj->getStrings("default", defaults);
       obj->getStrings("value", values);
-      gui_factory.add_multichoice(*obj, name, values, defaults);
+      gui_factory.add_multichoice(obj, name, values, defaults);
     }
     else if (type == "button")
-      gui_factory.add_button(*obj, name);
+      gui_factory.add_button(obj, name);
 
 
   }
@@ -117,6 +120,7 @@ void on_button_clicked(ConfigParser *config, ConfigRegexp *regexp)
     {
       Gtk::CheckButton *w = (Gtk::CheckButton *)obj->widget;
       std::cout << name << ": " << w->get_active() << std::endl;
+      obj->setBool("write", w->get_active());
     }
     else if (type == "singlechoice")
     {

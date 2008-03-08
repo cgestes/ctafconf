@@ -99,19 +99,19 @@ frame:ctafconf
 
 input:emacs.config
 frame:emacs
-  string:ctafconf-ilisp
+  checkbox:ctafconf-ilisp
     regexp=ct-lisp-regexp
 
-  string:ctafconf-zone
+  checkbox:ctafconf-zone
     regexp=ct-lisp-regexp
 
-  string:ctafconf-cedet
+  checkbox:ctafconf-cedet
     regexp=ct-lisp-regexp
 
-  string:ctafconf-ecb
+  checkbox:ctafconf-ecb
     regexp=ct-lisp-regexp
 
-  string:ctafconf-fixed-window-size
+  checkbox:ctafconf-fixed-window-size
     regexp=ct-lisp-regexp
 
   string:ctafconf-fixedsize

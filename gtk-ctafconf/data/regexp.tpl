@@ -43,6 +43,10 @@ regexp:ct-alias-regexp
 regexp:ct-var-regexp
   readregexp=^var_set ([a-z_\-A-Z]+) (.+)$
   writeregexp=var_set $1 %$$%
+  quote=single
+  list=comma
+  true=1
+  false=0
 
 regexp:ct-env-regexp
   readregexp=^env_set (.+) (.+)$
@@ -53,7 +57,12 @@ regexp:ct-env-regexp
 regexp:ct-lisp-regexp
   readregexp=^\(setq (.+) (.+)\)$
   writeregexp=(setq $1 %$$%)
-
+  quote=single
+  list=comma
+  true=t
+  true=1
+  false=nil
+  false=0
 
 #optionnal
 #  bool_true=t

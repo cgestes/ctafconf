@@ -51,34 +51,32 @@ class GuiFactory
 
   GuiFactory(Gtk::Notebook &notebook);
 
-  void add_description(ConfigObject &obj);
+  void add_frame(ConfigObject::ptr obj, const std::string &name);
 
-  void add_frame(ConfigObject &obj, const std::string &name);
-
-  void add_string(ConfigObject &obj,
+  void add_string(ConfigObject::ptr obj,
                   const std::string &name,
                   const std::string &def = "");
 
-  void add_checkbox(ConfigObject &obj,
+  void add_checkbox(ConfigObject::ptr obj,
                     const std::string &name, bool def);
 
-  void add_int(const ConfigObject &obj,
+  void add_int(const ConfigObject::ptr obj,
                const std::string &name);
 
-  void add_singlechoice(ConfigObject &obj,
+  void add_singlechoice(ConfigObject::ptr obj,
                         const std::string &name,
                         const StringVector &values,
                         const std::string &def = "");
 
-  void add_multichoice(ConfigObject &obj,
+  void add_multichoice(ConfigObject::ptr obj,
                        const std::string &name,
                        const StringVector &values,
                        const StringVector &defaults);
 
-  void add_button(ConfigObject &obj, const std::string &name);
+  void add_button(ConfigObject::ptr obj, const std::string &name);
 
  protected:
-  Gtk::HBox *add_box_with_label(ConfigObject &obj, const std::string &name);
+  Gtk::HBox *add_box_with_label(ConfigObject::ptr obj, const std::string &name);
 
  protected:
   Gtk::Notebook &m_notebook;

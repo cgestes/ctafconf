@@ -34,9 +34,10 @@ class RegexpMatcher
 {
 public:
   typedef boost::shared_ptr<RegexpMatcher> ptr;
-  std::string   name;
-  std::string  write;
-  boost::regex  read;
+  std::string           name;
+  std::string           write;
+  boost::regex          read;
+  ConfigObject::ptr     config;
 };
 
 
