@@ -27,27 +27,47 @@
 # define   	CONFIG_REGEXP_HH_
 
 # include "config-parser.hh"
+# include <boost/shared_ptr.hpp>
+# include <boost/regex.hpp>
+
+class RegexpMatcher
+{
+public:
+  std::string   name;
+  boost::regex  write;
+  boost::regex  read;
+};
+
 
 class ConfigRegexp
 {
 public:
+  typedef boost::shared_ptr<RegexpMatcher> ptrRegexpMatcher;
+  typedef std::map<std::string, ptrRegexpMatcher> RegexpList;
+  typedef RegexpList::iterator iterator;
+
   ConfigRegexp(){;}
 
   void process(ConfigParser::ConfigList &config);
+  void write(ConfigParser::ConfigList &config);
 
 protected:
+  void addRegexp(ConfigParser::iterator &it, const std::string &name);
+  void update(ConfigParser::ConfigList &config);
+
   void openFile(const std::string &fname);
   std::string getValue(ConfigParser::ConfigList::iterator it,
                        const std::string &name,
                        const std::string &regexp);
 
-  void setValue(ConfigParser::ConfigList::iterator it,
+  bool setValue(ConfigParser::ConfigList::iterator it,
                 const std::string &name,
                 const std::string &value,
                 const std::string &regexp);
 
 private:
-  std::ifstream f;
+  RegexpList            regexps;
+  std::ifstream         f;
 };
 
 #endif	    /* !CONFIG_REGEXP_HH_ */

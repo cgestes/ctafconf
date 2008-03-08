@@ -29,6 +29,8 @@
 # include <gtkmm.h>
 # include <fstream>
 
+class ComboModelColumns;
+
 class ConfigObject {
  public:
   typedef std::multimap<std::string, std::string> ConfigKeys;
@@ -38,21 +40,22 @@ class ConfigObject {
   void addKey(const std::string &name, const std::string &value);
 
 
-  const std::string &name() { return m_name; }
-  const std::string &type() { return m_type; }
+  const std::string &name()const { return m_name; }
+  const std::string &type()const { return m_type; }
 
-  const ConfigKeys &const_keys() { return m_keys; }
+  const ConfigKeys &const_keys()const { return m_keys; }
   ConfigKeys &keys() { return m_keys; }
 
   iterator begin() { return m_keys.begin(); }
   iterator end() { return m_keys.end(); }
 
- protected:
-
  public:
+  Gtk::Widget *widget;
+  ComboModelColumns *columns;
+
+ protected:
   std::string m_name;
   std::string m_type;
-  Gtk::Widget *widget;
   ConfigKeys m_keys;
 };
 

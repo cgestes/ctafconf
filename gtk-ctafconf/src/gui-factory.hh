@@ -26,10 +26,11 @@
 #ifndef   	GUI_FACTORY_HH_
 # define   	GUI_FACTORY_HH_
 
-#include <gtkmm.h>
-#include <gtkmm/notebook.h>
-#include <string.h>
-#include <vector>
+# include <gtkmm.h>
+# include <gtkmm/notebook.h>
+# include <string.h>
+# include <vector>
+# include "config-object.hh"
 
 //Tree model columns:
 class ComboModelColumns : public Gtk::TreeModel::ColumnRecord {
@@ -50,24 +51,29 @@ class GuiFactory
 
   GuiFactory(Gtk::Notebook &notebook);
 
-  void add_frame(const std::string &name);
+  void add_frame(ConfigObject &obj, const std::string &name);
 
-  void add_string(const std::string &name,
+  void add_string(ConfigObject &obj,
+                  const std::string &name,
                   const std::string &def = "");
 
-  void add_checkbox(const std::string &name, bool def);
+  void add_checkbox(ConfigObject &obj,
+                    const std::string &name, bool def);
 
-  void add_int(const std::string &name);
+  void add_int(const ConfigObject &obj,
+               const std::string &name);
 
-  void add_singlechoice(const std::string &name,
+  void add_singlechoice(ConfigObject &obj,
+                        const std::string &name,
                         const StringVector &values,
                         const std::string &def = "");
 
-  void add_multichoice(const std::string &name,
+  void add_multichoice(ConfigObject &obj,
+                       const std::string &name,
                        const StringVector &values,
                        const StringVector &defaults);
 
-  void add_button(const std::string &name);
+  void add_button(ConfigObject &obj, const std::string &name);
 
  protected:
   Gtk::HBox *add_box_with_label(const std::string &name);

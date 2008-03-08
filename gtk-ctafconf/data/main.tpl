@@ -29,24 +29,20 @@ input:user-profile
 frame:test
   string:ctafconf_name
     default=
-    getregexp=^var_set ([a-zA-Z_]+) (.*)$
+    regexp=ct-var-regexp
 
   string:ctafconf_mail
     default=
-    regexp=ct-var
-    getregexp=^var_set ([a-zA-Z_]+) (.*)$
+    regexp=ct-var-regexp
 
   string:ctafconf_zprompt
-    regexp=ct-var
-    getregexp=^var_set ([a-zA-Z_]+) (.*)$
+    regexp=ct-var-regexp
 
   string:ctafconf_wm
-    regexp=ct-var
-    getregexp=^var_set ([a-zA-Z_]+) (.*)$
+    regexp=ct-var-regexp
 
   string:ctafconf_backlist
-    regexp=ct-var
-    getregexp=^var_set ([a-zA-Z_]+) (.*)$
+    regexp=ct-var-regexp
 
   singlechoice:THEsinglechoice
     value=bande
@@ -87,22 +83,22 @@ frame:ctafconf
 input:emacs.config
 frame:emacs
   string:ctafconf-ilisp
-    getregexp=^\(setq (.+) (.*)\)$
+    regexp=ct-lisp-regexp
 
   string:ctafconf-zone
-    getregexp=^\(setq (.+) (.*)\)$
+    regexp=ct-lisp-regexp
 
   string:ctafconf-cedet
-    getregexp=^\(setq (.+) (.*)\)$
+    regexp=ct-lisp-regexp
 
   string:ctafconf-ecb
-    getregexp=^\(setq (.+) (.*)\)$
+    regexp=ct-lisp-regexp
 
   string:ctafconf-fixed-window-size
-    getregexp=^\(setq (.+) (.*)\)$
+    regexp=ct-lisp-regexp
 
   string:ctafconf-fixedsize
-    getregexp=^\(setq (.+) (.*)\)$
+    regexp=ct-lisp-regexp
 
 ctafconf-menubar
 
@@ -142,6 +138,7 @@ frame:ADM-CONFIG
 
 frame:REMINDER
 
+frame:CT-DATE
 frame:DOC
 # - emacs keys
 # - shell keys

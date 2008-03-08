@@ -53,7 +53,7 @@ Gtk::HBox *GuiFactory::add_box_with_label(const std::string &name)
   return hbox;
 }
 
-void GuiFactory::add_frame(const string &name)
+void GuiFactory::add_frame(ConfigObject &obj, const string &name)
 {
   //create a new vbox for the page
   m_current_page = new Gtk::VBox();
@@ -62,7 +62,7 @@ void GuiFactory::add_frame(const string &name)
   m_notebook.append_page(*m_current_page, name);
 }
 
-void GuiFactory::add_string(const std::string &name, const std::string &def)
+void GuiFactory::add_string(ConfigObject &obj, const std::string &name, const std::string &def)
 {
   HBox *hbox;
   Entry *entry = new Entry();
@@ -70,9 +70,11 @@ void GuiFactory::add_string(const std::string &name, const std::string &def)
   hbox = add_box_with_label(name);
   entry->set_text(def);
   hbox->pack_start(*entry);
+  obj.widget = entry;
+
 }
 
-void GuiFactory::add_checkbox(const std::string &name, bool def)
+void GuiFactory::add_checkbox(ConfigObject &obj, const std::string &name, bool def)
 {
   HBox *hbox;
   CheckButton *btn = new CheckButton();
@@ -80,10 +82,12 @@ void GuiFactory::add_checkbox(const std::string &name, bool def)
   btn->set_active(def);
   hbox = add_box_with_label(name);
   hbox->pack_start(*btn);
+  obj.widget = btn;
 }
 
 
-void GuiFactory::add_singlechoice(const std::string &name,
+void GuiFactory::add_singlechoice(ConfigObject &obj,
+                                  const std::string &name,
                                   const std::vector<std::string> &values,
                                   const std::string &def /*= ""*/)
 {
@@ -98,6 +102,7 @@ void GuiFactory::add_singlechoice(const std::string &name,
 
   hbox = add_box_with_label(name);
   hbox->pack_start(*combo);
+  obj.widget = combo;
 }
 
 /*
@@ -111,7 +116,8 @@ if(iter)
   int id = row[m_Columns.m_col_id];
  *
  */
-void GuiFactory::add_multichoice(const std::string &name,
+void GuiFactory::add_multichoice(ConfigObject &obj,
+                                 const std::string &name,
                                  const std::vector<std::string> &values,
                                  const std::vector<std::string> &defaults)
 {
@@ -139,13 +145,16 @@ void GuiFactory::add_multichoice(const std::string &name,
 
   hbox = add_box_with_label(name);
   hbox->pack_start(*tv);
+  obj.widget = tv;
+  obj.columns = m_Columns;
 }
 
-void GuiFactory::add_button(const std::string &name)
+void GuiFactory::add_button(ConfigObject &obj, const std::string &name)
 {
   HBox *hbox;
   Button *btn = new Button("Do IT");
 
   hbox = add_box_with_label(name);
   hbox->pack_start(*btn);
+  obj.widget = btn;
 }

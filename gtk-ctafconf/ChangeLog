@@ -1,3 +1,8 @@
+2008-03-07  Cedric GESTES  <ctaf42@gmail.com>
+	* gui : get back value from widget
+	* regexp : support regexp template (with regexp:templatename configobject)
+	* gui : save button
+
 2008-03-06  Cedric GESTES  <ctaf42@gmail.com>
 	* parser : support include
 
@@ -5,7 +10,7 @@
 	* autotools: datadir/boost regexp
 
 2008-03-05  Cedric GESTES  <ctaf42@gmail.com>
-	* src/regexp.tpl (regexp): regexp to get/set value
+	* regexp: regexp to get/set value
 
 2008-03-04  Cedric GESTES  <ctaf42@gmail.com>
 	* config-parser: added a basic parser, that construct the gui
