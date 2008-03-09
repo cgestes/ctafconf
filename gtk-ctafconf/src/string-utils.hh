@@ -51,18 +51,33 @@ inline std::string trim (const std::string & s, const std::string & t = SPACES)
 }  // end of trim
 
 
-inline std::string &vector2string(const std::vector<std::string> &strings, const std::string separator)
+inline std::string vector2string(const std::vector<std::string> &strings, const std::string separator)
 {
+  std::string result;
 
+  return result;
 }
 
-inline std::vector<std::string> &string2vector(const std::string, const std::string separator)
+inline std::vector<std::string> string2vector(const std::string, const std::string separator)
 {
+  std::vector<std::string> v;
 
+  return v;
 }
 
-inline std::string trimquote(const std::string)
+inline std::string trimquote(const std::string totrim)
 {
+  size_t pos, pos2;
+
+  pos = totrim.find_first_of("'\"");
+
+  if (pos != std::string::npos)
+  {
+    pos2 = totrim.find_last_of(totrim[pos]);
+    std::cout << "pos: " << pos << "," << pos2 << std::endl;
+    return totrim.substr(pos + 1, pos2 - pos - 1);
+  }
+  return totrim;
 }
 
 #endif	    /* !STRINGUTILS_HH_ */

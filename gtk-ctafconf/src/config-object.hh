@@ -46,22 +46,26 @@ protected:
   void addKey(const std::string &name, const std::string &value);
 
   unsigned int getBool(const std::string &name, bool &value);
+  void setBool(const std::string &name, const bool value);
+
   unsigned int getString(const std::string &name, std::string &value);
+  unsigned int getStringQuoted(const std::string &name, std::string &value);
+
+  void setString(const std::string &name, const std::string &value);
+  void setStringQuoted(const std::string &name, const std::string &value, const std::string &quote);
+
   //get a range of string
   unsigned int getStrings(const std::string &name, std::vector<std::string> &values);
-
   //get a list of string from a single string
   unsigned int getStringsFormated(const std::string &name, std::vector<std::string> &values);
 
-
-
-
-  void setBool(const std::string &name, const bool value);
-  void setString(const std::string &name, const std::string &value);
   void setStrings(const std::string &name, const std::vector<std::string> &values);
   //get a list of string from a single string
   void setStringsFormated(const std::string &name, const std::vector<std::string> &values);
 
+
+
+  void erase(const std::string &name);
 
   const std::string &name()const { return m_name; }
   const std::string &type()const { return m_type; }

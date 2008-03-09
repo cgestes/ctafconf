@@ -1,3 +1,8 @@
+2008-03-09  Cedric GESTES  <ctaf42@gmail.com>
+	* regexp : support list and boolean value
+	* regexp : write change back into file
+	* regexp : basic support for quote
+
 2008-03-08  Cedric GESTES  <ctaf42@gmail.com>
 	* template : description
 	* regexp : write regexp

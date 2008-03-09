@@ -52,15 +52,16 @@ bool ConfigParser::getLine(std::ifstream &f)
   return true;
 }
 
-void ConfigParser::parseComment(std::ifstream &f)
+bool ConfigParser::parseComment(std::ifstream &f)
 {
-  while (m_current_line[0] == '#')
+  if (m_current_line[0] == '#')
   {
-    if (!getLine(f))
-      break;
+    return true;
   }
+  return false;
 }
-void ConfigParser::parseInclude(std::ifstream &f)
+
+bool ConfigParser::parseInclude(std::ifstream &f)
 {
   if (m_current_line.substr(0, 8) == "include:")
   {
@@ -77,11 +78,12 @@ void ConfigParser::parseInclude(std::ifstream &f)
     fname += name;
     std::cout << "include:" << fname << std::endl;
     parse(fname);
-
+    return true;
   }
+  return false;
 }
 
-void ConfigParser::parseConfig(std::ifstream &f)
+bool ConfigParser::parseConfig(std::ifstream &f)
 {
   string::size_type i (m_current_line.find_first_of (":"));
 
@@ -90,17 +92,15 @@ void ConfigParser::parseConfig(std::ifstream &f)
   {
     string type = trim(m_current_line.substr(0, i));
     const string name = trim(m_current_line.substr(i + 1));
-
-    getLine(f);
-
     if (m_current_cfg)
       m_values.push_back(m_current_cfg);
     m_current_cfg = ConfigObject::ptr(new ConfigObject(type, name));
+    return true;
   }
-
+  return false;
 }
 
-void ConfigParser::parseSubConfig(std::ifstream &f)
+bool ConfigParser::parseSubConfig(std::ifstream &f)
 {
   string::size_type i (m_current_line.find_first_of ("="));
 
@@ -112,9 +112,9 @@ void ConfigParser::parseSubConfig(std::ifstream &f)
 
     if (m_current_cfg)
       m_current_cfg->addKey(name, value);
-    getLine(f);
+    return true;
   }
-
+  return false;
 }
 
 void ConfigParser::parse(const std::string &fname)
@@ -129,21 +129,20 @@ void ConfigParser::parse(const std::string &fname)
     std::cerr << "cant open file:" << fname << std::endl;
     return;
   }
-  getLine(f);
   while (!f.eof())
   {
-    unsigned int curln = m_line;
-    parseInclude(f);
-    parseComment(f);
-    parseConfig(f);
-    parseComment(f);
-    parseSubConfig(f);
-    //no parsed data, manually skip current line
-    if (m_line == curln)
-    {
-      if (!getLine(f))
-        break;
-    }
+    if (!getLine(f))
+      break;
+    if (parseComment(f) ||
+        parseInclude(f) ||
+        parseConfig(f)  ||
+        parseSubConfig(f))
+      ;
   }
+
+  if (m_current_cfg)
+    m_values.push_back(m_current_cfg);
+  m_current_cfg = ConfigObject::ptr();
+
   f.close();
 }

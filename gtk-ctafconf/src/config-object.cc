@@ -1,3 +1,4 @@
+
 /*
 ** config-object.cc
 ** Login : <ctaf@wei>
@@ -26,6 +27,7 @@
 #include <iostream>
 #include "config-object.hh"
 #include "config-regexp.hh"
+#include "string-utils.hh"
 
 
 ConfigObject::ConfigObject(const std::string &type, const std::string &name)
@@ -44,26 +46,47 @@ unsigned int  ConfigObject::getBool(const std::string &name, bool &value)
 {
   iterator it;
   it = m_keys.find(name);
+  std::vector<std::string> trues;
+  std::vector<std::string> falses;
+  std::vector<std::string>::iterator itval;
 
   if (it != m_keys.end())
   {
     const std::string &val = (*it).second;
-    if (val == "t" ||
-        val == "true" ||
-        val == "T" ||
-        val == "TRUE" ||
-        val == "1" ||
-        val == "y" ||
-        val == "Y" ||
-        val == "o" ||
-        val == "O" )
-      value = true;
-    else
-      value = false;
-    return 1;
+    if (m_regexp && m_regexp->config)
+    {
+      m_regexp->config->getStrings("true", trues);
+      m_regexp->config->getStrings("false", falses);
+    }
+    for (itval = trues.begin(); itval != trues.end();++itval)
+    {
+      if (val == *itval)
+      {
+        value = true;
+        return 1;
+      }
+    }
+    for (itval = falses.begin(); itval != falses.end();++itval)
+    {
+      if (val == *itval)
+      {
+        value = false;
+        return 1;
+      }
+    }
+    return 0;
   }
   return 0;
 }
+
+unsigned int ConfigObject::getStringQuoted(const std::string &name, std::string &value)
+{
+  unsigned int ret;
+  if ((ret = getString(name, value)))
+    value = trimquote(value);
+  return ret;
+}
+
 
 unsigned int ConfigObject::getString(const std::string &name, std::string &value)
 {
@@ -81,7 +104,39 @@ unsigned int ConfigObject::getString(const std::string &name, std::string &value
 
 unsigned int ConfigObject::getStringsFormated(const std::string &name, std::vector<std::string> &values)
 {
+  iterator it;
+  size_t pos = 0;
+  size_t prev_pos = 0;
 
+  it = m_keys.find(name);
+
+  if (it != m_keys.end())
+  {
+    std::string block;
+    std::string value = (*it).second;
+    value = trim(value);
+    value = trimquote(value);
+    std::cout << "value:" << value << std::endl;
+    pos = value.find_first_of(SPACES);
+    while (pos != std::string::npos)
+    {
+      block = value.substr(prev_pos, pos - prev_pos);
+      block = trim(block);
+      std::cout << "block:" << block << std::endl;
+      values.push_back(block);
+      prev_pos = pos + 1;
+      pos = value.find_first_of(SPACES, prev_pos);
+    }
+
+    block = value.substr(prev_pos, pos - prev_pos);
+    block = trim(block);
+    std::cout << "block:" << block << std::endl;
+    values.push_back(block);
+
+
+    return 1;
+  }
+  return 0;
 }
 
 unsigned int ConfigObject::getStrings(const std::string &name, std::vector<std::string> &values)
@@ -123,6 +178,26 @@ void ConfigObject::setBool(const std::string &name, const bool value)
 
 }
 
+void ConfigObject::setStringQuoted(const std::string &name, const std::string &value, const std::string &quote)
+{
+  std::string val;
+  if (getString(quote, val))
+  {
+    trim(quote);
+    if (val[0] == '"' || val[0] == '\'')
+    {
+      setString(name, val[0] + value + val[0]);
+      return;
+    }
+  }
+  val = "";
+  if (m_regexp && m_regexp->config)
+  {
+    m_regexp->config->getString("defaultquote", val);
+  }
+  setString(name, val + value + val);
+}
+
 void ConfigObject::setString(const std::string &name, const std::string &value)
 {
   iterator it;
@@ -136,6 +211,26 @@ void ConfigObject::setString(const std::string &name, const std::string &value)
 
 void ConfigObject::setStringsFormated(const std::string &name, const std::vector<std::string> &values)
 {
+//   std::pair<iterator, iterator> pair;
+  std::string value;
+  std::vector<std::string>::const_iterator it = values.begin();
+
+//   pair = m_keys.equal_range(name);
+//   m_keys.erase(pair.first, pair.second);
+
+  value = "'";
+  for (; it != values.end(); ++it)
+  {
+    if ((it + 1) == values.end())
+      value += (*it);
+    else
+      value += (*it) + " ";
+  }
+  value += "'";
+  std::cout << "setStringsFormated(" << name << "):" << value << std::endl;
+  setString(name, value);
+
+
 }
 
 /*
@@ -144,22 +239,19 @@ void ConfigObject::setStringsFormated(const std::string &name, const std::vector
 void ConfigObject::setStrings(const std::string &name, const std::vector<std::string> &values)
 {
   std::pair<iterator, iterator> pair;
-  std::string value;
   std::vector<std::string>::const_iterator it = values.begin();
 
   pair = m_keys.equal_range(name);
   m_keys.erase(pair.first, pair.second);
 
-  value = "'";
   for (; it != values.end(); ++it)
-  {
-    if ((it + 1) == values.end())
-      value += (*it);
-    else
-      value += (*it) + ", ";
-  }
-  value += "'";
-  std::cout << "setStrings(" << name << "):" << value << std::endl;
-  m_keys.insert(make_pair(name, value));
+    m_keys.insert(make_pair(name, *it));
+}
 
+void ConfigObject::erase(const std::string &name)
+{
+   std::pair<iterator, iterator> pair;
+
+   pair = m_keys.equal_range(name);
+   m_keys.erase(pair.first, pair.second);
 }

@@ -44,6 +44,7 @@ public:
 class ConfigRegexp
 {
 public:
+  typedef std::vector<std::string> strings;
   typedef std::map<std::string, RegexpMatcher::ptr> RegexpList;
   typedef RegexpList::iterator iterator;
 
@@ -56,7 +57,8 @@ protected:
   void addRegexp(ConfigObject::ptr obj, const std::string &name);
   void update(ConfigParser &config);
 
-  void openFile(const std::string &fname);
+  void openFileRead(const std::string &fname);
+  void openFileWrite(const std::string &fname);
   std::string getValue(ConfigObject::ptr obj,
                        const std::string &name,
                        const std::string &regexp);
@@ -65,10 +67,12 @@ protected:
                 const std::string &name,
                 const std::string &value,
                 const std::string &regexp);
-
+  void flushWrite();
 private:
   RegexpList            regexps;
-  std::ifstream         f;
+  std::ifstream         fi;
+  std::ofstream         fo;
+  strings               lines;
 };
 
 #endif	    /* !CONFIG_REGEXP_HH_ */

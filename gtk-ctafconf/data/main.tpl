@@ -26,6 +26,9 @@
 include:regexp.tpl
 
 input:user-profile
+  overwrite=true
+  output=
+
 frame:ctafconf
   string:ctafconf_name
     desc=
@@ -37,34 +40,34 @@ frame:ctafconf
   singlechoice:ctafconf_zprompt
     desc=choose the zsh prompt you want
     regexp=ct-var-regexp
-    default='ctaf'
-    value='ctaf'
-    value='adam1'
-    value='adam2'
-    value='bart'
-    value='zefram'
-    value='fade'
-    value='redhat'
-    value='suse'
-    value='walters'
-    value='bigfade'
-    value='clint'
-    value='elite'
-    value='elite2'
-    value='fire'
-    value='off'
-    value='olivier'
+    default=ctaf
+    value=ctaf
+    value=adam1
+    value=adam2
+    value=bart
+    value=zefram
+    value=fade
+    value=redhat
+    value=suse
+    value=walters
+    value=bigfade
+    value=clint
+    value=elite
+    value=elite2
+    value=fire
+    value=off
+    value=olivier
 
   singlechoice:ctafconf_wm
     desc=
     regexp=ct-var-regexp
-    value='fluxbox'
-    value='gnome'
-    value='kde'
-    value='xfce4'
-    value='e16'
-    value='term'
-    value='aterm'
+    value=fluxbox
+    value=gnome
+    value=kde
+    value=xfce4
+    value=e16
+    value=term
+    value=aterm
 
 frame:ctafconf
   desc=This frame let you manage ctafconf packages.
@@ -114,7 +117,7 @@ frame:emacs
   checkbox:ctafconf-fixed-window-size
     regexp=ct-lisp-regexp
 
-  string:ctafconf-fixedsize
+  checkbox:ctafconf-fixedsize
     regexp=ct-lisp-regexp
 
   checkbox:ctafconf-menubar
@@ -129,9 +132,12 @@ frame:emacs
     default=nil
 
   int:window-width
+    df=
   int:window-height
+    dtc=
 
 
+frame:SHELL
 # - user-profile
 # - some keys from env and alias, duplicated if needed (stored in perso)
 # - emacs

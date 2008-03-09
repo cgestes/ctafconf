@@ -1,10 +1,8 @@
 - int/float/file/folder/bool
 - button: launch a shell script: colapsable with a terminal
-- quote (regexp) / true/false / packlist
 - choice if the combo could be empty
-- backup changed file
 - multiline description
 - class to get the folder of each files
-- append value that are not find in file
-
+- only write change when the read and write are different
 ==>
+- append value that are not find in file??

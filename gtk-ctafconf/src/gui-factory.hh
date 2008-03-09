@@ -53,6 +53,10 @@ class GuiFactory
 
   void add_frame(ConfigObject::ptr obj, const std::string &name);
 
+  void add_int(ConfigObject::ptr obj,
+               const std::string &name,
+               const std::string &def = "");
+
   void add_string(ConfigObject::ptr obj,
                   const std::string &name,
                   const std::string &def = "");

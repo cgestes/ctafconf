@@ -47,10 +47,20 @@ void buildGui(ConfigParser &config, GuiFactory &gui_factory)
     {
       std::string def;
 
-      if (!obj->getString("read", def))
+      if (!obj->getStringQuoted("read", def))
         obj->getString("default", def);
 
       gui_factory.add_string(obj, name, def);
+
+    }
+    if (type == "int")
+    {
+      std::string def;
+
+      if (!obj->getStringQuoted("read", def))
+        obj->getString("default", def);
+
+      gui_factory.add_int(obj, name, def);
 
     }
     else if (type == "frame")
@@ -71,7 +81,7 @@ void buildGui(ConfigParser &config, GuiFactory &gui_factory)
       std::vector<std::string> values;
       std::string def;
 
-      if (!obj->getString("read", def))
+      if (!obj->getStringQuoted("read", def))
         obj->getString("default", def);
 
       obj->getStrings("value", values);
@@ -112,7 +122,15 @@ void on_button_clicked(ConfigParser *config, ConfigRegexp *regexp)
 
       if (!w)
         continue;
-      obj->setString("write", w->get_text());
+      obj->setStringQuoted("write", w->get_text(), "read");
+    }
+    if (type == "int")
+    {
+      Gtk::Entry *w = (Gtk::Entry *)obj->widget;
+
+      if (!w)
+        continue;
+      obj->setStringQuoted("write", w->get_text(), "read");
     }
     else if (type == "frame")
     {
@@ -129,7 +147,7 @@ void on_button_clicked(ConfigParser *config, ConfigRegexp *regexp)
 
       if (!w)
         continue;
-      obj->setString("write", w->get_active_text());
+      obj->setStringQuoted("write", w->get_active_text(), "read");
     }
     else if (type == "multichoice")
     {
@@ -145,7 +163,7 @@ void on_button_clicked(ConfigParser *config, ConfigRegexp *regexp)
         if (id)
           v.push_back(name);
       }
-      obj->setStrings("write", v);
+      obj->setStringsFormated("write", v);
     }
     else if (type == "button")
     {

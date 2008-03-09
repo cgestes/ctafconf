@@ -66,6 +66,17 @@ Gtk::HBox *GuiFactory::add_box_with_label(ConfigObject::ptr obj, const std::stri
   return hbox;
 }
 
+void GuiFactory::add_int(ConfigObject::ptr obj, const string &name, const std::string &def)
+{
+  HBox *hbox;
+  Entry *entry = new Entry();
+
+  hbox = add_box_with_label(obj, name);
+  entry->set_text(def);
+  hbox->pack_start(*entry);
+  obj->widget = entry;
+}
+
 void GuiFactory::add_frame(ConfigObject::ptr obj, const string &name)
 {
   std::string desc;

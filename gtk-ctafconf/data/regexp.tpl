@@ -39,19 +39,22 @@
 regexp:ct-alias-regexp
   readregexp=^alias_set (.+) (.+)$
   writeregexp=alias_set $1 %$$%
+  true=1
+  false=0
 
 regexp:ct-var-regexp
   readregexp=^var_set ([a-z_\-A-Z]+) (.+)$
   writeregexp=var_set $1 %$$%
-  quote=single
-  list=comma
+  defaultquote=single
+  list=space
   true=1
   false=0
 
 regexp:ct-env-regexp
   readregexp=^env_set (.+) (.+)$
   writeregexp=var_set $1 %$$%
-
+  true=1
+  false=0
 
 
 regexp:ct-lisp-regexp

@@ -30,25 +30,90 @@
 #include "config-regexp.hh"
 
 
+void ConfigRegexp::flushWrite()
+{
+  //write change to the previous file
+//   fo.seekg(0, std::ios::beg);
+  if (fo.is_open())
+  {
+    strings::iterator itstr;
+    for (itstr = lines.begin(); itstr != lines.end(); itstr++)
+    {
+      fo << *itstr << std::endl;
+    }
+  }
+  lines.clear();
+  fo.close();
+}
+
+
+void ConfigRegexp::openFileRead(const std::string &name)
+{
+  std::string fn(name);
+  fn = "/home/ctaf42/.config/ctafconf/perso/" + fn;
+
+  //open the new file
+  std::cout << "processing file:" << fn << std::endl;
+  fi.close();
+  fi.open(fn.c_str());
+  if (!fi.is_open())
+  {
+    std::cerr << "fi: Cant open file: " << fn << std::endl;
+    return;
+  }
+
+  //read lines
+  lines.clear();
+  while (!fi.eof())
+  {
+    std::string line;
+    if (getline(fi, line))
+      lines.push_back(line);
+  }
+  fi.close();
+}
 
 /*!
 ** open a file as data to match
 **
 ** @param fname
 */
-void ConfigRegexp::openFile(const std::string &fname)
+void ConfigRegexp::openFileWrite(const std::string &fname)
 {
   std::string fn(fname);
+  std::string fnprev;
+  std::string arg;
 
   fn = "/home/ctaf42/.config/ctafconf/perso/" + fn;
+  fnprev = fn + ".prev";
+  arg = "cp " + fn + " " + fnprev;
+  system(arg.c_str());
+
+  //write change to the previous file
+  flushWrite();
+  fo.open(fn.c_str());
+
+
+  //open the new file
   std::cout << "processing file:" << fn << std::endl;
-  f.close();
-  f.open(fn.c_str());
-  if (!f.is_open())
+  fi.close();
+  fi.open(fnprev.c_str());
+  if (!fi.is_open())
   {
-    std::cerr << "Cant open file: " << fn << std::endl;
+    std::cerr << "fi: Cant open file: " << fn << std::endl;
     return;
   }
+
+  //read lines
+  lines.clear();
+  while (!fi.eof())
+  {
+    std::string line;
+    if (getline(fi, line))
+      lines.push_back(line);
+  }
+  fi.close();
+
 }
 
 /*!
@@ -68,6 +133,7 @@ bool ConfigRegexp::setValue(ConfigObject::ptr obj,
   boost::regex re;
   RegexpMatcher::ptr pRegexp;
   iterator itre = regexps.find(regexp);
+  strings::iterator itstr;
 
   if (itre != regexps.end())
     pRegexp = (*itre).second;
@@ -78,22 +144,12 @@ bool ConfigRegexp::setValue(ConfigObject::ptr obj,
     return 0;
   }
 
-  if (!f.is_open())
-  {
-    std::cerr << "bad file" << std::endl;
-    return 0;
-  }
-  f.seekg(0,std::ios::beg);
-  while (!f.eof())
+  for (itstr = lines.begin(); itstr != lines.end(); itstr++)
   {
     std::string line;
     bool result;
 
-    if (!getline(f, line))
-    {
-      std::cerr << "getline failed" << std::endl;
-      break;
-    }
+    line = *itstr;
     result = boost::regex_search(line, what, pRegexp->read);
     if (result && what[1] == name)
     {
@@ -110,10 +166,12 @@ bool ConfigRegexp::setValue(ConfigObject::ptr obj,
 
       std::string res = boost::regex_replace(line, pRegexp->read, regexp);
       std::cout << " -- result : " << res << std::endl;
+      *itstr = res;
       return 1;
     }
   }
   std::cout << "no match for:" << name << std::endl;
+
   return 0;
 }
 
@@ -135,6 +193,7 @@ std::string ConfigRegexp::getValue(ConfigObject::ptr obj,
   boost::regex re;
   RegexpMatcher::ptr pRegexp;
   iterator itre = regexps.find(regexp);
+  strings::iterator itstr;
 
   if (itre != regexps.end())
     pRegexp = (*itre).second;
@@ -145,21 +204,12 @@ std::string ConfigRegexp::getValue(ConfigObject::ptr obj,
     return "";
   }
 
-  if (!f.is_open())
-  {
-    std::cerr << "bad file" << std::endl;
-    return "";
-  }
-  while (!f.eof())
+  for (itstr = lines.begin(); itstr != lines.end(); itstr++)
   {
     std::string line;
     bool result;
 
-    if (!getline(f, line))
-    {
-      std::cerr << "getline failed" << std::endl;
-      break;
-    }
+    line = *itstr;
     result = boost::regex_search(line, what, pRegexp->read);
     if (result && what[1] == name)
     {
@@ -239,7 +289,7 @@ void ConfigRegexp::read(ConfigParser &config)
 
     if (type == "input")
     {
-      openFile(name);
+      openFileRead(name);
       continue;
     }
 
@@ -248,6 +298,7 @@ void ConfigRegexp::read(ConfigParser &config)
       iterator itreg = regexps.find(regexp);
       if (itreg != regexps.end())
         obj->setRegexp((*itreg).second);
+      obj->erase(name);
       getValue(obj, name, regexp);
     }
   }
@@ -271,7 +322,7 @@ void ConfigRegexp::write(ConfigParser &config)
 
     if (type == "input")
     {
-      openFile(name);
+      openFileWrite(name);
       continue;
     }
 
@@ -283,4 +334,5 @@ void ConfigRegexp::write(ConfigParser &config)
 //       std::cerr << "warning;regexp::write: no write value, or no regexp" << std::endl;
 
   }
+  flushWrite();
 }

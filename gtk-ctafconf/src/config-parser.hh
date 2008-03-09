@@ -48,10 +48,10 @@ public:
 
 protected:
   bool getLine(std::ifstream &f);
-  void parseInclude(std::ifstream &f);
-  void parseComment(std::ifstream &f);
-  void parseConfig(std::ifstream &f);
-  void parseSubConfig(std::ifstream &f);
+  bool parseInclude(std::ifstream &f);
+  bool parseComment(std::ifstream &f);
+  bool parseConfig(std::ifstream &f);
+  bool parseSubConfig(std::ifstream &f);
 
 private:
   std::string           m_current_line;
