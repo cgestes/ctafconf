@@ -23,17 +23,31 @@
 ** Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 */
 
+#include <cstdlib>
 #include <iostream>
 #include <fstream>
 #include <boost/regex.hpp>
+
 #include "config-parser.hh"
 #include "config-regexp.hh"
 
-
-void ConfigRegexp::flushWrite()
+void ConfigRegexp::fileWrite()
 {
-  //write change to the previous file
-//   fo.seekg(0, std::ios::beg);
+  std::string           fnprev;
+  std::string           arg;
+  std::ofstream         fo;
+
+
+  if (fo_name.empty())
+    return;
+
+  /*
+   * copy the previous file before writing into it
+   */
+  fnprev = fo_name + ".prev";
+  arg = "cp " + fo_name + " " + fnprev;
+  system(arg.c_str());
+
   if (fo.is_open())
   {
     strings::iterator itstr;
@@ -47,14 +61,19 @@ void ConfigRegexp::flushWrite()
 }
 
 
-void ConfigRegexp::openFileRead(const std::string &name)
+/**
+ * read the input buffer
+ */
+void ConfigRegexp::fileRead(const std::string &fname)
 {
-  std::string fn(name);
-  fn = "/home/ctaf42/.config/ctafconf/perso/" + fn;
+  std::ifstream         fi;
+  std::string           fn;
+
+  fn = getenv("HOME");
+  fn += "/.config/ctafconf/perso/" + fname;
 
   //open the new file
   std::cout << "processing file:" << fn << std::endl;
-  fi.close();
   fi.open(fn.c_str());
   if (!fi.is_open())
   {
@@ -73,47 +92,23 @@ void ConfigRegexp::openFileRead(const std::string &name)
   fi.close();
 }
 
-/*!
-** open a file as data to match
-**
-** @param fname
-*/
-void ConfigRegexp::openFileWrite(const std::string &fname)
+/*
+ * 1) write the previous file
+ * 2) copy the filename for later call
+ *
+ * @param fname
+ */
+void ConfigRegexp::fileWriteNext(const std::string &fname)
 {
-  std::string fn(fname);
-  std::string fnprev;
-  std::string arg;
+  std::string           fn;
 
-  fn = "/home/ctaf42/.config/ctafconf/perso/" + fn;
-  fnprev = fn + ".prev";
-  arg = "cp " + fn + " " + fnprev;
-  system(arg.c_str());
+  fn = getenv("HOME");
+  fn += "/.config/ctafconf/perso/" + fname;
 
-  //write change to the previous file
-  flushWrite();
-  fo.open(fn.c_str());
-
-
-  //open the new file
-  std::cout << "processing file:" << fn << std::endl;
-  fi.close();
-  fi.open(fnprev.c_str());
-  if (!fi.is_open())
-  {
-    std::cerr << "fi: Cant open file: " << fn << std::endl;
-    return;
-  }
-
-  //read lines
-  lines.clear();
-  while (!fi.eof())
-  {
-    std::string line;
-    if (getline(fi, line))
-      lines.push_back(line);
-  }
-  fi.close();
-
+  if (!fo_name.empty())
+    fileWrite();
+  fo_name = fn;
+  fileRead(fname);
 }
 
 /*!
@@ -166,6 +161,10 @@ bool ConfigRegexp::setValue(ConfigObject::ptr obj,
 
       std::string res = boost::regex_replace(line, pRegexp->read, regexp);
       std::cout << " -- result : " << res << std::endl;
+
+      /* set the new value for the read (because we may compare with it, next time configregexp::write is called) */
+      obj->setString("read", value);
+
       *itstr = res;
       return 1;
     }
@@ -289,7 +288,7 @@ void ConfigRegexp::read(ConfigParser &config)
 
     if (type == "input")
     {
-      openFileRead(name);
+      fileRead(name);
       continue;
     }
 
@@ -318,21 +317,21 @@ void ConfigRegexp::write(ConfigParser &config)
     ConfigObject::ptr obj = (*it);
     const std::string &type = obj->type();
     const std::string &name = obj->name();
-    std::string regexp, value;
+    std::string regexp, value, prevvalue;
 
     if (type == "input")
     {
-      openFileWrite(name);
+      fileWriteNext(name);
       continue;
     }
 
     if (obj->getString("regexp", regexp) && obj->getString("write", value))
     {
+      if (obj->getString("read", prevvalue) &&
+          prevvalue == value)
+        continue;
       setValue(obj, name, value, regexp);
     }
-//     else
-//       std::cerr << "warning;regexp::write: no write value, or no regexp" << std::endl;
-
   }
-  flushWrite();
+  fileWrite();
 }

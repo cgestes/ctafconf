@@ -1,8 +1,18 @@
-- int/float/file/folder/bool
+- int/float/file/folder
 - button: launch a shell script: colapsable with a terminal
 - choice if the combo could be empty
 - multiline description
-- class to get the folder of each files
-- only write change when the read and write are different
+
 ==>
-- append value that are not find in file??
+- append value not find in file
+
+
+
+
+
+
+
+
+
+--playground
+  - prefix:/usr/bin     prefix=~/.config/ctafconf  (build prefix to use to get file name)

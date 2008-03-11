@@ -57,8 +57,10 @@ protected:
   void addRegexp(ConfigObject::ptr obj, const std::string &name);
   void update(ConfigParser &config);
 
-  void openFileRead(const std::string &fname);
-  void openFileWrite(const std::string &fname);
+  void fileRead(const std::string &fname);
+  void fileWriteNext(const std::string &fname);
+  void fileWrite();
+
   std::string getValue(ConfigObject::ptr obj,
                        const std::string &name,
                        const std::string &regexp);
@@ -67,11 +69,9 @@ protected:
                 const std::string &name,
                 const std::string &value,
                 const std::string &regexp);
-  void flushWrite();
 private:
   RegexpList            regexps;
-  std::ifstream         fi;
-  std::ofstream         fo;
+  std::string           fo_name;
   strings               lines;
 };
 

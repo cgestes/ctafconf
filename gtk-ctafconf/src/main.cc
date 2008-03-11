@@ -105,7 +105,7 @@ void buildGui(ConfigParser &config, GuiFactory &gui_factory)
   }
 }
 
-void on_button_clicked(ConfigParser *config, ConfigRegexp *regexp)
+void on_button_apply_clicked(ConfigParser *config, ConfigRegexp *regexp)
 {
   ConfigParser::iterator it = config->begin();
 
@@ -185,7 +185,7 @@ main (int argc, char *argv[])
   ConfigParser config;
   ConfigRegexp regexp;
 
-  button.signal_clicked().connect(sigc::bind(sigc::ptr_fun(&on_button_clicked), &config, &regexp));
+  button.signal_clicked().connect(sigc::bind(sigc::ptr_fun(&on_button_apply_clicked), &config, &regexp));
   box.pack_start(notebook);
   box.pack_start(button, 0, 0);
   dialog.add(box);

@@ -41,8 +41,13 @@ protected:
  public:
   typedef ConfigKeys::iterator iterator;
   typedef boost::shared_ptr<ConfigObject> ptr;
+  typedef std::vector<std::string> strings;
 
   ConfigObject(const std::string &type, const std::string &name);
+
+/**
+ * only used by the parser
+ */
   void addKey(const std::string &name, const std::string &value);
 
   unsigned int getBool(const std::string &name, bool &value);

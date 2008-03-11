@@ -74,7 +74,6 @@ inline std::string trimquote(const std::string totrim)
   if (pos != std::string::npos)
   {
     pos2 = totrim.find_last_of(totrim[pos]);
-    std::cout << "pos: " << pos << "," << pos2 << std::endl;
     return totrim.substr(pos + 1, pos2 - pos - 1);
   }
   return totrim;

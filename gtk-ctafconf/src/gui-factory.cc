@@ -26,11 +26,18 @@
 #include <gtkmm.h>
 #include <string.h>
 #include <iostream>
+#include <algorithm>
+#include <functional>
+#include <boost/function.hpp>
+#include <boost/lambda/lambda.hpp>
+
 #include "gui-factory.hh"
 #include "string-utils.hh"
 
 using namespace std;
 using namespace Gtk;
+using namespace boost::lambda;
+
 
 GuiFactory::GuiFactory(Gtk::Notebook &notebook)
   : m_notebook(notebook),
@@ -45,11 +52,25 @@ Gtk::HBox *GuiFactory::add_box_with_label(ConfigObject::ptr obj, const std::stri
 {
   HBox *hbox = new HBox(1);
   std::string desc;
+  ConfigObject::strings descs;
+  ConfigObject::strings::iterator it;
 
   if (!m_current_page)
     return hbox;
-  obj->getString("desc", desc);
-  desc = trim(desc);
+  // yeahman, I love that !!! OVERKILLING STL
+  if (obj->getStrings("desc", descs))
+  {
+    for (it = descs.begin(); it != descs.end(); ++it)
+      desc += *it + "\n";
+//     std::for_each(descs.begin(),
+//                   descs.end(),
+//                   ret<std::string>(var(desc) = _1 + std::string(" ")));
+  }
+//     desc = std::for_each(descs.begin(),
+//                          descs.end(),
+//                          std::compose2(std::plus<std::string>(),
+//                                        std::bind2nd(std::plus<std::string>(), ""),
+//                                        std::bind2nd(std::plus<std::string>(), " ")));
   Label *lbl = new Label();
   if (desc == "")
   {

@@ -25,15 +25,18 @@
 */
 
 #include <iostream>
+#include<boost/tokenizer.hpp>
+#include <string>
+
 #include "config-object.hh"
 #include "config-regexp.hh"
 #include "string-utils.hh"
 
 
 ConfigObject::ConfigObject(const std::string &type, const std::string &name)
+  : m_name(name),
+    m_type(type)
 {
-  m_name = name;
-  m_type = type;
 }
 
 
@@ -96,7 +99,6 @@ unsigned int ConfigObject::getString(const std::string &name, std::string &value
   if (it != m_keys.end())
   {
     value = (*it).second;
-//     std::cout << "getString(" << name << ", " << value << ")" << std::endl;
     return 1;
   }
   return 0;
@@ -105,35 +107,16 @@ unsigned int ConfigObject::getString(const std::string &name, std::string &value
 unsigned int ConfigObject::getStringsFormated(const std::string &name, std::vector<std::string> &values)
 {
   iterator it;
-  size_t pos = 0;
-  size_t prev_pos = 0;
 
   it = m_keys.find(name);
 
   if (it != m_keys.end())
   {
-    std::string block;
-    std::string value = (*it).second;
-    value = trim(value);
-    value = trimquote(value);
-    std::cout << "value:" << value << std::endl;
-    pos = value.find_first_of(SPACES);
-    while (pos != std::string::npos)
-    {
-      block = value.substr(prev_pos, pos - prev_pos);
-      block = trim(block);
-      std::cout << "block:" << block << std::endl;
-      values.push_back(block);
-      prev_pos = pos + 1;
-      pos = value.find_first_of(SPACES, prev_pos);
-    }
+    boost::escaped_list_separator<char> sep("\\", " ", "'\"");
+    boost::tokenizer<boost::escaped_list_separator<char> > tokens((*it).second, sep);
 
-    block = value.substr(prev_pos, pos - prev_pos);
-    block = trim(block);
-    std::cout << "block:" << block << std::endl;
-    values.push_back(block);
-
-
+    values.clear();
+    std::copy(tokens.begin(), tokens.end(), values.begin());
     return 1;
   }
   return 0;
@@ -166,10 +149,8 @@ void ConfigObject::setBool(const std::string &name, const bool value)
 
   m_regexp->config->getString("true", strue);
   m_regexp->config->getString("false", sfalse);
-
-
   svalue = (value ? strue : sfalse);
-//   std::cout << "setBool(" << name << ", " << svalue << ")" << std::endl;
+
   it = m_keys.find(name);
   if (it != m_keys.end())
     (*it).second = svalue;
@@ -227,10 +208,8 @@ void ConfigObject::setStringsFormated(const std::string &name, const std::vector
       value += (*it) + " ";
   }
   value += "'";
-  std::cout << "setStringsFormated(" << name << "):" << value << std::endl;
+
   setString(name, value);
-
-
 }
 
 /*
