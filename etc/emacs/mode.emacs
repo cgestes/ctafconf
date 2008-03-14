@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 00:57:16 2006 GESTES Cedric
-;; Last update Sat Mar  1 23:28:29 2008 Cedric GESTES
+;; Last update Tue Mar 11 14:37:48 2008 Cedric GESTES
 ;;
 (message ".")
 (message "ctafconf loading: MODE.EMACS")
@@ -14,7 +14,6 @@
 (setq auto-mode-alist
       (append
        '(
-         ("\\.txt$" . text-mode)
          ("\\.dat$" . text-mode)
          ("\\.pas$" . pascal-mode)
          ("\\.java$" . c-mode)
@@ -29,6 +28,9 @@
          ("\\.Xdefaults$"    . xrdb-mode)
          ("\\.Xenvironment$" . xrdb-mode)
          ("\\.Xresources$"   . xrdb-mode)
+         ("CMakeLists\\.txt\\'" . cmake-mode)
+         ("\\.txt$" . text-mode)
+         ("\\.cmake\\'" . cmake-mode)
          ("\\SConscript$"   . python-mode)
          ("\\SConstruct$"   . python-mode)
          ("\\.css$" . html-mode)
@@ -39,6 +41,14 @@
          ("\\.e\\'" . eiffel-mode)
          ("\\.pl$" . perl-mode)
          ) auto-mode-alist))
+;;IDO MODE
+;;IDO for find-file, and others
+(condition-case err
+    (progn
+      (require 'cmake-mode)
+      )
+  (error
+   (message "Cannot load cmake-mode %s" (cdr err))))
 
 
 ;;IDO MODE

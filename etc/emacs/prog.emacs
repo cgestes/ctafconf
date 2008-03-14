@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 01:14:21 2006 GESTES Cedric
-;; Last update Sat Mar  1 23:54:34 2008 Cedric GESTES
+;; Last update Thu Mar  6 15:28:12 2008 Cedric GESTES
 ;;
 (message ".")
 (message "ctafconf loading: PROG.EMACS")
@@ -34,6 +34,20 @@
 (setq compile-command "make -k")
 ;; little compilation window
 (setq compilation-window-height 12)
+
+;;igrep
+(condition-case err
+    (progn
+      (require 'igrep)
+
+;;use default c/h in c-mode
+;; (put 'igrep-files-default 'c-mode
+;;      (lambda () "*.[ch]"))
+
+      )
+  (error
+   (message "Cannot load cc-mode with qtenable %s" (cdr err))))
+
 
 
 

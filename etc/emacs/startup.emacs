@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Fri Nov  9 18:13:14 2007 GESTES Cedric
+;; Last update Fri Mar 14 15:02:44 2008 Cedric GESTES
 ;;
 (message ".")
 (message "ctafconf loading: STARTUP.EMACS")
@@ -33,7 +33,7 @@
 ;; [F12][A-Pup]	scroll-other-window     [S-F12][A-Pdown]scroll-other-window-down
 ;;
 ;;===FILE/BUFFER OPERATION===
-;; - [c-x f] open one file
+;; - [c-x c-f] open one file
 ;;   when opening file [M-UP], [M-DOWN] move into the directory history
 ;;   when opening file [M-LEFT], [M-RIGHT] move up into the file history
 ;;   to get the standard open file [C-x f] then [C-f]
