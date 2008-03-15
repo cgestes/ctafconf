@@ -38,6 +38,7 @@ void ConfigRegexp::fileWrite()
   std::ofstream         fo;
 
 
+  std::cout << "fo_name:" << fo_name << std::endl;
   if (fo_name.empty())
     return;
 
@@ -47,13 +48,16 @@ void ConfigRegexp::fileWrite()
   fnprev = fo_name + ".prev";
   arg = "cp " + fo_name + " " + fnprev;
   system(arg.c_str());
-
+  fo.open(fo_name.c_str());
   if (fo.is_open())
   {
     strings::iterator itstr;
+    std::cout << "writing:" << std::endl;
+
     for (itstr = lines.begin(); itstr != lines.end(); itstr++)
     {
       fo << *itstr << std::endl;
+      std::cout << *itstr << std::endl;
     }
   }
   lines.clear();

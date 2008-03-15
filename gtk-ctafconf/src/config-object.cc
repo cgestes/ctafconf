@@ -49,9 +49,9 @@ unsigned int  ConfigObject::getBool(const std::string &name, bool &value)
 {
   iterator it;
   it = m_keys.find(name);
-  std::vector<std::string> trues;
-  std::vector<std::string> falses;
-  std::vector<std::string>::iterator itval;
+  strings trues;
+  strings falses;
+  strings::iterator itval;
 
   if (it != m_keys.end())
   {
@@ -114,9 +114,10 @@ unsigned int ConfigObject::getStringsFormated(const std::string &name, std::vect
   {
     boost::escaped_list_separator<char> sep("\\", " ", "'\"");
     boost::tokenizer<boost::escaped_list_separator<char> > tokens((*it).second, sep);
-
+    boost::tokenizer<boost::escaped_list_separator<char> >::iterator ittok;
     values.clear();
-    std::copy(tokens.begin(), tokens.end(), values.begin());
+    for (ittok = tokens.begin(); ittok != tokens.end(); ++ittok)
+      values.push_back(*ittok);
     return 1;
   }
   return 0;

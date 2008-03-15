@@ -1,4 +1,4 @@
-2008-03-10  Cedric GESTES  <dfdf@ctaf.com>
+2008-03-10  Cedric GESTES  <ctaf42@gmail.com>
 	* regexp : better fileread/filewrite
 	* regexp : search in ~/.config/ctafconf/perso
 

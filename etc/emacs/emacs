@@ -40,6 +40,8 @@
 ;;configuration file
 (safe-load "~/.config/ctafconf/etc/emacs/emacs.config")
 
+(safe-load "~/.config/ctafconf/perso/emacs.config")
+
 (if (file-exists-p "~/.config/ctafconf/perso/emacs-pre.mine")
     (safe-load "~/.config/ctafconf/perso/emacs-pre.mine"))
 

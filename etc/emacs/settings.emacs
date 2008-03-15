@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 01:13:33 2006 GESTES Cedric
-;; Last update Tue Mar  4 14:01:43 2008 Cedric GESTES
+;; Last update Sat Mar 15 15:20:39 2008 Cedric GESTES
 ;;
 (message ".")
 (message "ctafconf loading: SETTINGS.EMACS")
@@ -59,16 +59,27 @@
 (defvar running-on-windows (memq system-type '(windows-nt cygwin)))
 (defvar running-on-linux (not running-on-windows))
 (defvar running-on-x (eq window-system 'x))
+
 ;;suppression du menu
-(if (and enable-menu-bar (or running-on-x running-on-windows))
+(if (and enable-menu-bar
+         (or running-on-x
+             running-on-windows))
     (menu-bar-mode 1)
   (menu-bar-mode 0))
 
 ;;suppression de la toolbar
-(tool-bar-mode 0)
+(if (and enable-tool-bar
+         (or running-on-x
+             running-on-windows))
+    (tool-bar-mode 1)
+    (tool-bar-mode 0))
 
 ;;supprime la scrollbar
-(scroll-bar-mode -1)
+(if (and enable-scroll-bar
+         (or running-on-x
+             running-on-windows))
+    (scroll-bar-mode t)
+  (scroll-bar-mode -1))
 
 ;; Avoid those crappy "tooltips":
 (setq tooltip-delay 9999)

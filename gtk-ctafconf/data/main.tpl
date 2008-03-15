@@ -102,6 +102,15 @@ frame:ctafconf
 
 input:emacs.config
 frame:emacs
+  checkbox:enable-scroll-bar
+    regexp=ct-lisp-regexp
+
+  checkbox:enable-menu-bar
+    regexp=ct-lisp-regexp
+
+  checkbox:enable-tool-bar
+    regexp=ct-lisp-regexp
+
   checkbox:ctafconf-ilisp
     regexp=ct-lisp-regexp
 
