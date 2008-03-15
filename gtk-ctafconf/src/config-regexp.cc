@@ -62,6 +62,7 @@ void ConfigRegexp::fileWrite()
   }
   lines.clear();
   fo.close();
+  fo_name = "";
 }
 
 
