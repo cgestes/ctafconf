@@ -69,6 +69,13 @@ frame:ctafconf
     value=term
     value=aterm
 
+  multichoice:ctafconf_color
+    desc=Use color for?  (disabling color could help to remove bug due to color (interacting with nano, or other console text editor))
+    value=svn
+    value=cvs
+    value=make
+    value=gmake
+
 frame:ctafconf
   desc=This frame let you manage ctafconf packages.
   button:install
