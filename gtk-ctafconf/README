@@ -4,3 +4,12 @@ autoreconf -isvf
 ./configure
 make
 sudo make install
+
+
+
+§§ Dependency §§
+- gettext
+- libtool
+- gtkmm
+- g++
+- autotools
