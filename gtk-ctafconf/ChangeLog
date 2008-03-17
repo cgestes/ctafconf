@@ -1,3 +1,6 @@
+2008-03-16  Cedric GESTES  <dtc@ctaf.com>
+	* data : splitted main into ctafconf and emacs
+
 2008-03-10  Cedric GESTES  <ctaf42@gmail.com>
 	* regexp : better fileread/filewrite
 	* regexp : search in ~/.config/ctafconf/perso

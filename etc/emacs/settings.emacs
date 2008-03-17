@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 01:13:33 2006 GESTES Cedric
-;; Last update Sat Mar 15 15:20:39 2008 Cedric GESTES
+;; Last update Sun Mar 16 11:59:28 2008 Cedric GESTES
 ;;
 (message ".")
 (message "ctafconf loading: SETTINGS.EMACS")
@@ -220,3 +220,12 @@
 (set-terminal-coding-system 'iso-8859-15-unix)
 (set-keyboard-coding-system 'iso-8859-15-unix)
 (set-language-environment 'Latin-1)
+
+
+;;backup everything in ~/.saves
+(setq backup-by-copying         t                        ; don't clobber symlinks
+      backup-directory-alist    '(("." . "~/.config/ctafconf/perso/emacs-backup"))    ; don't litter my fs tree
+      delete-old-versions       t
+      kept-new-versions         6
+      kept-old-versions         2
+      version-control           t)                       ; use versioned backups

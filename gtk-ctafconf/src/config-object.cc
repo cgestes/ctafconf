@@ -40,10 +40,17 @@ ConfigObject::ConfigObject(const std::string &type, const std::string &name)
 }
 
 
+/*!
+** blabla
+**
+** @param name
+** @param value
+*/
 void ConfigObject::addKey(const std::string &name, const std::string &value)
 {
   m_keys.insert(make_pair(name, value));
 }
+
 
 unsigned int  ConfigObject::getBool(const std::string &name, bool &value)
 {

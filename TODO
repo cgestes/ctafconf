@@ -36,11 +36,18 @@ DOC:
   => ct-autostart need to be finished
   => ct-profile update need to be done, to backlist xsession by default
   => ct-profile : xsession always backlisted
+  => ct-profile : enable disable color for cvs/svn/make/gmake
 
   => emacs: goto a symbol
   => emacs: goto the header
-  => emacs: grep => grep the current word under cursor (in the current file or all)
+  => emacs: grep => grep the current word under cursor (in the current file or all) (igrep/igrep-find/occur)
+
   => correct window color in speedbar and co
   => doxyemacs : always add header on each function, and synchro from each header and source
+
+  (require 'tramp)
+  (setq tramp-default-method "sshx")
+  then: c-x c-f /192.168.0.1:files !!!
+
 ===>
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2; tab-width: 2 -*- */

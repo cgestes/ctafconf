@@ -241,9 +241,14 @@ grk_dir ~/.config/ctafconf/perso/repos
 grk_dir ~/.config/ctafconf/perso/wallpaper
 grk_dir ~/.config/ctafconf/perso/bin
 grk_dir ~/.config/ctafconf/perso/previous
+grk_dir ~/.config/ctafconf/perso/emacs-backup
 
 if ! [ -f ~/.config/ctafconf/perso/user-profile ] ; then
   cp ~/.config/ctafconf/etc/mine/user-profile.mine ~/.config/ctafconf/perso/user-profile
+fi
+
+if ! [ -f ~/.config/ctafconf/perso/emacs.config ] ; then
+  cp ~/.config/ctafconf/etc/emacs/emacs.config ~/.config/ctafconf/perso/emacs.config
 fi
 
 . ~/.config/ctafconf/perso/user-profile

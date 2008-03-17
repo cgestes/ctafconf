@@ -28,7 +28,9 @@ EXTRA_DIST = $(ctafconf_DATA)
 
 ctafconfdir = ${GTK_CTAFCONF_DATADIR}/template
 
-ctafconf_DATA = main.tpl \
-		regexp.tpl
+ctafconf_DATA = main.tpl 	\
+		regexp.tpl 	\
+		ctafconf.tpl	\
+		emacs.tpl
 
 

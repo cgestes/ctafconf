@@ -82,6 +82,7 @@ Gtk::HBox *GuiFactory::add_box_with_label(ConfigObject::ptr obj, const std::stri
     lbl->set_text(name + ": \n" + desc);
     m_current_page->pack_start(*hbox, PACK_SHRINK, 5);
   }
+  lbl->set_line_wrap();
   lbl->set_alignment(Gtk::ALIGN_LEFT, Gtk::ALIGN_CENTER);
   hbox->pack_start(*lbl);
   return hbox;

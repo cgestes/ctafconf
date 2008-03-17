@@ -1,3 +1,8 @@
+2008-03-16  Cedric GESTES  <ctaf42@gmail.com>
+	* ct-installconf : add folder perso/emacs-backup for emacs
+	* emacs : store backup in perso/emacs-backup
+
+
 2008-03-15 Cedric GESTES <ctaf42@gmail.com>
 	* emacs: beginning support for gtk-ctafconf (menubar/scrollbar/toolbar)
 
