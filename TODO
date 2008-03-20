@@ -41,6 +41,7 @@ DOC:
   => emacs: goto a symbol
   => emacs: goto the header
   => emacs: grep => grep the current word under cursor (in the current file or all) (igrep/igrep-find/occur)
+  => block like vim
 
   => correct window color in speedbar and co
   => doxyemacs : always add header on each function, and synchro from each header and source

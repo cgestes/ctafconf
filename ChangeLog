@@ -1,3 +1,6 @@
+2008-03-20  Cedric GESTES  <gestes@aldebaran-robotics.com>
+	* emacs : support bitbake
+
 2008-03-16  Cedric GESTES  <ctaf42@gmail.com>
 	* ct-installconf : add folder perso/emacs-backup for emacs
 	* emacs : store backup in perso/emacs-backup

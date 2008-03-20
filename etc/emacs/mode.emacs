@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 00:57:16 2006 GESTES Cedric
-;; Last update Tue Mar 11 14:37:48 2008 Cedric GESTES
+;; Last update Thu Mar 20 10:33:08 2008 Cedric GESTES
 ;;
 (message ".")
 (message "ctafconf loading: MODE.EMACS")
@@ -30,6 +30,8 @@
          ("\\.Xresources$"   . xrdb-mode)
          ("CMakeLists\\.txt\\'" . cmake-mode)
          ("\\.txt$" . text-mode)
+         ("\\.bb$" . sh-mode)
+         ("\\.bbclass$" . sh-mode)
          ("\\.cmake\\'" . cmake-mode)
          ("\\SConscript$"   . python-mode)
          ("\\SConstruct$"   . python-mode)
