@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 01:00:22 2006 GESTES Cedric
-;; Last update Fri Mar 14 15:02:44 2008 Cedric GESTES
+;; Last update Sat Mar 22 12:39:28 2008 GESTES Cedric
 ;;
 (message ".")
 (message "ctafconf loading: STARTUP.EMACS")
@@ -18,7 +18,8 @@
 ;;
 ;;===GLOBAL KEYBINDING===
 ;; [F1]         SHOW THIS HELP          [S-F1]          man
-;; [F2]         check norme (epita)     [S-F2]          xterm-mouse on/off
+;; [C-F1]       describe function under cursor (need cedet)
+;; [F2]         find in file            [S-F2]          find in each file
 ;; [F3]         query-replace           [S-F3]          replace-string
 ;; [C-F3]       list all occurence
 ;; [F4]         comment-region          [S-F4]          uncomment-region
@@ -36,7 +37,7 @@
 ;; - [c-x c-f] open one file
 ;;   when opening file [M-UP], [M-DOWN] move into the directory history
 ;;   when opening file [M-LEFT], [M-RIGHT] move up into the file history
-;;   to get the standard open file [C-x f] then [C-f]
+;;   to get the standard open file [C-x C-f] then [C-f]
 ;;   (usefull to open new file with a name shorter than one already existing)
 ;; - [M-left]     previous buffer
 ;; - [M-right]       next buffer
@@ -87,7 +88,14 @@
 ;; - c-up / c-down in gdb cycle through history
 ;; - c-x SPC to set a break point in a source file
 ;; - c-c c-c to send a INT signal (a simple c-c in fact)
-;; - c-x c-e :evaluate elisp expression
+
+;; - c-x c-a c-n NEXT
+;; - c-x c-a c-s STEP
+;; - c-x c-a c-u UNTIL
+;; - c-x c-a c-j JUMP
+;; - c-x c-a c-l display the current line in the source code
+;; - c-x c-a c-p print the value of the variable under the cursor
+
 ;;
 ;;===TERMINAL(F5)===
 ;; - c-c c-j line mode
@@ -102,6 +110,7 @@
 ;;   taminmanderson
 ;;
 ;;===ELISP PROGRAMMING/DEBUGGING===
+;; - c-x c-e :evaluate elisp expression
 ;; emacs --debug-init
 ;; emacs -Q (load an empty emacs without using config file)
 ;; - learn one key:

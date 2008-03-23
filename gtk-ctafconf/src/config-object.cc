@@ -60,6 +60,7 @@ unsigned int  ConfigObject::getBool(const std::string &name, bool &value)
   strings falses;
   strings::iterator itval;
 
+
   if (it != m_keys.end())
   {
     const std::string &val = (*it).second;

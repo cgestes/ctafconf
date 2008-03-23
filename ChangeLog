@@ -1,3 +1,10 @@
+2008-03-22  GESTES Cedric  <ctaf42@gmail.com>
+	* emacs : freaking support for gdb: just try f8
+	* emacs ([f3]): igrep/igrep-find
+	* emacs (f11) : toggle gdb windows on/off
+	* emacs (c-f1) : describe function under cursor
+	* emacs : semantic working completion \o/
+
 2008-03-20  Cedric GESTES  <gestes@aldebaran-robotics.com>
 	* emacs : support bitbake
 

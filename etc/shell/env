@@ -5,7 +5,7 @@
 ## Login   <goctaf@gmail.com>
 ##
 ## Started on  Fri Sep 30 22:17:33 2005 GESTES Cedric
-## Last update Tue Mar  4 17:41:03 2008 Cedric GESTES
+## Last update Sat Mar 22 09:54:55 2008 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -72,7 +72,6 @@ env_set CVS_RSH "ssh"
 test -d /sbin && env_set PATH "$PATH":/sbin
 test -d /usr/sbin && env_set PATH "$PATH":/usr/sbin
 test -d /usr/local/bin && env_set PATH "$PATH":/usr/local/bin
-test -d /sbin && env_set PATH "$PATH":/sbin
 test -d ~/.config/ctafconf/bin && env_set PATH "$PATH":"$HOME"/.config/ctafconf/bin
 test -d ~/.config/ctafconf/perso/bin && env_set PATH "$PATH":"$HOME"/.config/ctafconf/perso/bin
 env_set PATH "$PATH":.

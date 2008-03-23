@@ -46,6 +46,8 @@ DOC:
   => correct window color in speedbar and co
   => doxyemacs : always add header on each function, and synchro from each header and source
 
+  => f11 toggle gdb/compilation/grep/etc windows on and off
+
   (require 'tramp)
   (setq tramp-default-method "sshx")
   then: c-x c-f /192.168.0.1:files !!!

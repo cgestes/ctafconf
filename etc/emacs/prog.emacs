@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 01:14:21 2006 GESTES Cedric
-;; Last update Thu Mar  6 15:28:12 2008 Cedric GESTES
+;; Last update Sun Mar 23 02:59:59 2008 GESTES Cedric
 ;;
 (message ".")
 (message "ctafconf loading: PROG.EMACS")
@@ -46,9 +46,24 @@
 
       )
   (error
-   (message "Cannot load cc-mode with qtenable %s" (cdr err))))
+   (message "Cannot load igrep %s" (cdr err))))
 
 
+;;gud/gdb settings
+(condition-case err
+    (progn
+      ;;use many frame
+      (setq gdb-many-windows t)
+      ;;separate program io from gdb command line
+;;       (setq gdb-use-separate-io-buffer t)
+      ;;if gdb stop in a frame where we cant find the source file
+      ;;go up in the stack till source are found
+      (setq gdb-find-source-frame t)
+      ;;echo the value of var in the echo area
+;;      (setq gud-tooltip-echo-area t)
+      )
+  (error
+   (message "Cannot load gdb %s" (cdr err))))
 
 
 ;;ugly hack to make qt c++ file look nicer
@@ -195,7 +210,7 @@
 (defun ctafconf-cedet ()
     (condition-case err
         (progn
-          ;;(setq semantic-load-turn-useful-things-on t)
+          (setq semantic-load-turn-useful-things-on t)
           ;;(setq semantic-load-turn-everything-on t)
           ;;(load-file "~/.config/ctafconf/etc/emacs/site-lisp/cedet/common/cedet.el")
 	  (load-file "~/src/cedet/common/cedet.el")
@@ -204,9 +219,18 @@
 	  ;; (semantic-load-enable-guady-code-helpers)
 
           ;;S-SPC for autocompletion
-          (global-set-key '[33554464] 'semantic-complete-analyze-inline)
+;;           (global-set-key '[33554464] 'semantic-complete-analyze-inline)
+          (global-set-key '[33554464] 'semantic-complete-analyze-and-replace)
+;;           (global-set-key '[33554464] 'semantic-ia-complete-symbol)
+
+;;          (global-set-key '[C-f1] 'semantic-ia-describe-class)
+;;          (global-set-key '[C-f1] 'semantic-ia-show-doc)
+          (global-set-key '[C-f1] 'semantic-ia-show-summary)
 ;;          (global-semantic-show-parser-state-mode 1)
           (global-semantic-decoration-mode 1)
+          (global-srecode-minor-mode 0)
+          ;;load the projet management mode
+;;           (global-ede-mode 1)
           ;;display a bar with the function name the cursor is in
 ;;          (global-semantic-stickyfunc-mode 1)
           (setq semanticdb-default-save-directory "~/.config/ctafconf/perso/semantic")

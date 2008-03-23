@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Thu May 11 19:53:25 2006 GESTES Cedric
-;; Last update Mon Mar 12 19:43:13 2007 GESTES Cedric
+;; Last update Sat Mar 22 12:04:25 2008 GESTES Cedric
 ;;
 ;; source: http://blog.pettomato.com/content/site-lisp/.emacs
 (message ".")
@@ -14,6 +14,7 @@
 (defvar running-on-windows (memq system-type '(windows-nt cygwin)))
 (defvar running-on-linux (not running-on-windows))
 (defvar running-on-x (eq window-system 'x))
+
 
 (defun console-color-theme()
   "A console scheme"

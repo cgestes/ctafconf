@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 01:16:47 2006 GESTES Cedric
-;; Last update Sat Mar  1 23:51:16 2008 Cedric GESTES
+;; Last update Sat Mar 22 12:18:24 2008 GESTES Cedric
 ;;
 (message ".")
 (message "ctafconf loading: BINDINGS.EMACS")
@@ -20,7 +20,6 @@
 (defun down-one () (interactive) (scroll-down 1))
 (global-set-key [S-mouse-4] 'down-one)
 (global-set-key [S-mouse-5] 'up-one)
-
 
 (defun up-a-lot () (interactive) (scroll-up))
 (defun down-a-lot () (interactive) (scroll-down))
@@ -53,18 +52,21 @@
 (global-set-key [C-kp-delete] 'kill-word)
 (global-set-key [C-backward-delete-char] 'backward-kill-word)
 
+(global-set-key [(control backspace)] 'join-line)
+
 ;;changement de buffer ac ctrl+tab
 (global-set-key [(control tab)] 'other-window)
 
 ;;appelle la derniere macro enregistré
 (global-set-key "\M-s" 'call-last-kbd-macro)
 (global-set-key "\C-z" 'call-last-kbd-macro)
-;;rotate the though the kill ring
+
+;;rotatethough the kill ring
 (global-set-key (kbd "M-y") 'browse-kill-ring)
 (global-set-key "\M-l" 'goto-line)
 
 
-
+(global-set-key [M-return] 'senator-jump)
 
 (global-set-key [f1] (lambda ()
                        (interactive)
@@ -76,9 +78,12 @@
                                (interactive)
                                (manual-entry (current-word))))
 
-(global-set-key [f2] 'norme)
-(global-set-key [(shift f2)] 'xterm-mouse-mode)
-(global-set-key [f14] 'xterm-mouse-mode)
+;; (global-set-key [f2] 'norme)
+;; (global-set-key [(shift f2)] 'xterm-mouse-mode)
+;; (global-set-key [f14] 'xterm-mouse-mode)
+(global-set-key [f2] 'igrep)
+(global-set-key [(shift f2)] 'igrep-find)
+(global-set-key [f14] 'igrep-find)
 
 (global-set-key [f3] 'query-replace)
 (global-set-key [(shift f3)] 'replace-string)
@@ -119,11 +124,12 @@
 ;;(global-set-key (kbd "<C-f10>")     'outline-next-visible-heading)
 ;;(global-set-key (kbd "<S-C-f10>")   'outline-previous-visible-heading)
 
+(global-set-key (kbd "<f11>")       'gdb-many-windows)
+
 
 (global-set-key [(f12)] '(lambda() (interactive) (scroll-other-window 1)))
 (global-set-key [(shift f12)] '(lambda() (interactive) (scroll-other-window -1)))
 (global-set-key [(f24)] '(lambda() (interactive) (scroll-other-window -1)))
 
-(global-set-key [(control backspace)] 'join-line)
 
 
