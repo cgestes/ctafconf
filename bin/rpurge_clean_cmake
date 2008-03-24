@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+## shfunction for ctafconf in /home/ctaf/.ctafconf
+##
+## Made by GESTES Cedric
+## Login   <ctaf42@gmail.com>
+##
+## Started on  Sun Oct  2 07:23:17 2005 GESTES Cedric
+## Last update Sun Mar 23 04:22:02 2008 GESTES Cedric
+##
+##CTAFCONF
+
+#recursive purge
+rpurge_clean_cmake ()
+{
+ (echo removing: ***/CMakeFiles ***/cmake_install.cmake ***/Makefile ***/CMakeCache.txt) 2>/dev/null
+ (rm -f ***/CMakeFiles ***/cmake_install.cmake ***/Makefile ***/CMakeCache.txt) 2>/dev/null;
+ echo "directory recursively purged";
+}
+
+rpurge_clean_cmake
