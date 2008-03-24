@@ -5,15 +5,24 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Sun Oct  2 07:23:17 2005 GESTES Cedric
-## Last update Sun Mar 23 04:22:02 2008 GESTES Cedric
+## Last update Tue Mar 25 00:03:30 2008 Cedric GESTES
 ##
 ##CTAFCONF
 
 #recursive purge
 rpurge_clean_cmake ()
 {
- (echo removing: ***/CMakeFiles ***/cmake_install.cmake ***/Makefile ***/CMakeCache.txt) 2>/dev/null
- (rm -f ***/CMakeFiles ***/cmake_install.cmake ***/Makefile ***/CMakeCache.txt) 2>/dev/null;
+ (echo -n removing: ***/CMakeFiles) 2>/dev/null
+
+ (echo -n ***/cmake_install.cmake) 2>/dev/null
+ (echo -n ***/Makefile) 2>/dev/null
+ (echo ***/CMakeCache.txt) 2>/dev/null
+
+
+ (rm -rf ***/CMakeFiles) 2>/dev/null;
+ (rm -rf ***/cmake_install.cmake ) 2>/dev/null;
+ (rm -rf ***/Makefile ) 2>/dev/null;
+ (rm -rf ***/CMakeCache.txt) 2>/dev/null;
  echo "directory recursively purged";
 }
 
