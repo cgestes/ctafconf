@@ -45,7 +45,19 @@ function gsvn-co()
   if [ x$rev = x ] ; then
     rev="HEAD"
   fi
-  git svn clone "$svnaddr" -r "$rev" "$dirname"
+  git svn clone "$svnaddr" -r "$rev" "$dirname" --trunk=trunk --branches=branches --tags=tags
+}
+
+# checkout from the svn, using tags, trunk, branches
+function gsvn-co-trunk()
+{
+  $svnaddr = $1
+  $dirname = $2
+  $rev = $3
+  if [ x$rev = x ] ; then
+    rev="HEAD"
+  fi
+  git svn clone "$svnaddr" -r "$rev" "$dirname" --trunk=trunk --branches=branches --tags=tags
 }
 
 #
