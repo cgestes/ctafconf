@@ -49,19 +49,40 @@ function gsvn-up()
   fi
 }
 
-
+#
+# commit to the svn (the change in the current branch)
+#
 function gsvn-ci()
 {
   git svn dcommit
 }
 
-function gsvn-branch-new()
-{
 
+function git-branch-switch()
+{
+  br=$1
+  git branch $br
+}
+
+function gsvn-branch-create()
+{
+  br=$1
+#   git branch $br
+#   git checkout $br
+  git checkout -b $br
 }
 
 function gsvn-branch-commit()
 {
-
+  git commit -a
 }
 
+function gsvn-branch-create-from()
+{
+  git checkout -b speed-up-spinlocks origin
+}
+
+function gsvn-branch-update-from-other()
+{
+  git checkout test && git pull . speed-up-spinlocks
+}
