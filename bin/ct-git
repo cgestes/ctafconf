@@ -34,6 +34,19 @@ function gsvn-init()
   git svn init svn+ssh://blabla blabla-git
 }
 
+#
+# checkout from svn
+#
+function gsvn-co()
+{
+  $svnaddr = $1
+  $dirname = $2
+  $rev = $3
+  if [ x$rev = x ] ; then
+    rev="HEAD"
+  fi
+  git svn clone "$svnaddr" -r "$rev" "$dirname"
+}
 
 #
 # checkout from the svn (in branch master)
