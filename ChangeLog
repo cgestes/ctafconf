@@ -1,3 +1,6 @@
+2008-03-29  GESTES Cedric <ctaf42@gmail.com>
+	* ct-git : poor warper around git and git svn
+
 2008-03-22  GESTES Cedric  <ctaf42@gmail.com>
 	* emacs : freaking support for gdb: just try f8
 	* emacs ([f3]): igrep/igrep-find
@@ -13,7 +16,7 @@
 	* emacs : store backup in perso/emacs-backup
 
 
-2008-03-15 Cedric GESTES <ctaf42@gmail.com>
+2008-03-15  Cedric GESTES <ctaf42@gmail.com>
 	* emacs: beginning support for gtk-ctafconf (menubar/scrollbar/toolbar)
 
 2008-03-11  Cedric GESTES  <gestes@aldebaran-robotics.com>
