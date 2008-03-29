@@ -56,10 +56,9 @@ function gsvn-up()
 {
   rev=$1
   if [ x$rev = x ] ; then
-    git fetch
-  else
-    git fetch -r $rev
+    rev="HEAD"
   fi
+  git fetch -r $rev
 }
 
 #
