@@ -22,9 +22,9 @@ else
         exit $?
       fi
     done;
-    "$@" 2>&1 | ~/.config/ctafconf/bin/color$app.pl
+    "$@" 2>&1 | ~/".config/ctafconf/bin/color$app.pl"
   else
-    "$@" 2>&1 | ~/.config/ctafconf/bin/color$app.pl
+    "$@" 2>&1 | ~/".config/ctafconf/bin/color$app.pl"
   fi
 fi
 

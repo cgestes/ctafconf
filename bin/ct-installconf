@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 ##
 ## ct-install.sh
 ## Login : <ctaf@localhost.localdomain>
@@ -80,7 +80,7 @@ pkg_source()
 {
   local name=$@
 
-  . $grkdir/"$name".grk
+  . "$grkdir"/"$name".grk
 }
 
 
@@ -113,7 +113,7 @@ grk_install()
 #list installed pkg
 grk_installed_list()
 {
-  ls -1 $grkdir | grep ".grk$" | while read line; do
+  ls -1 "$grkdir" | grep ".grk$" | while read line; do
     name=`echo $line | sed -e s/.grk//`
     pkg_source $name
     if pkg_is_installed $name >/dev/null; then
@@ -132,7 +132,7 @@ pkg_is_backlisted()
 
 grk_not_installed_list()
 {
-  ls -1 $grkdir | grep ".grk$" | while read line; do
+  ls -1 "$grkdir" | grep ".grk$" | while read line; do
     name=`echo $line | sed -e s/.grk//`
     pkg_source $name
     if ! pkg_is_backlisted $name && ! pkg_is_installed $name >/dev/null; then
@@ -143,23 +143,23 @@ grk_not_installed_list()
 
 grk_package_list()
 {
-  ls -1 $grkdir | grep ".grk$" | while read line; do
+  ls -1 "$grkdir" | grep ".grk$" | while read line; do
     name=`echo $line | sed -e s/.grk//`
-    pkg_source $name
-    if ! pkg_is_backlisted $name >/dev/null; then
+    pkg_source "$name"
+    if ! pkg_is_backlisted "$name" >/dev/null; then
       echo "$name"
     fi
   done
 }
 grk_install_all()
 {
-  ls -1 $grkdir | grep ".grk$" | while read line; do
+  ls -1 "$grkdir" | grep ".grk$" | while read line; do
     name=`echo $line | sed -e s/.grk//`
-    pkg_source $name
-    if ! pkg_is_backlisted $name >/dev/null 2>/dev/null; then
-      pkg_install $name
+    pkg_source "$name"
+    if ! pkg_is_backlisted "$name" >/dev/null 2>/dev/null; then
+      pkg_install "$name"
     fi
-    pkg_alwaysinstall $name
+    pkg_alwaysinstall "$name"
   done
 }
 
@@ -170,7 +170,7 @@ grk_help()
                      "Select packages you want help for" \
                      `ls -1 $grkdir | grep ".grk$" | sed -e s/.grk//`
   name=$SSFT_RESULT
-  pkg_source $name
+  pkg_source "$name"
   ssft_display_message "$name description" "`pkg_description $name`"
 }
 
@@ -197,7 +197,7 @@ env_mom()
   if ! [ -d "$dirusr" ]; then
     mkdir "$dirusr" >/dev/null 2>/dev/null
   fi
-  ls $dirsys/ | grep ".sys.env$" | while read fn; do
+  ls "$dirsys/" | grep ".sys.env$" | while read fn; do
     if [ -f "$dirusr/$fn" ]; then
       tmp="$dirusr/$fn.tmp";
       mv "$dirusr/$fn" "$tmp"
@@ -217,7 +217,8 @@ env_mom()
 #############################################################################
 ##START
 #############################################################################
-if ! [ -d ~/.config/ctafconf/ ] ; then
+ctconfdir=~/.config/ctafconf
+if ! [ -d "$ctconfdir" ] ; then
   echo "Can't find ~/.config/ctafconf directory"
   echo "Aborting, you should put the ctafconf folder of your tarball into ~/.config"
   exit
@@ -226,11 +227,14 @@ fi
 #install tools
 . ~/.config/ctafconf/etc/shlib/grktools.sh
 
+
 #shellscript frontend
 . ~/.config/ctafconf/etc/shlib/ssft.sh
 
-#shell tools
+
+#shell tool
 . ~/.config/ctafconf/etc/shlib/shelltools.sh sh
+
 
 
 #create default directory

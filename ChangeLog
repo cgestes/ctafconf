@@ -1,3 +1,6 @@
+2008-05-11 GESTES Cedric <ctaf42@gmail.com>
+	* ctafconf : could be installed in a directory with space !!
+
 2008-03-29  GESTES Cedric <ctaf42@gmail.com>
 	* ct-git : poor warper around git and git svn
 

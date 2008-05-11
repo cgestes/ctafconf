@@ -5,7 +5,7 @@
 ## Login   <goctaf@gmail.com>
 ##
 ## Started on  Fri Mar 31 19:54:39 2006 GESTES Cedric
-## Last update Wed Nov 21 11:28:02 2007 GESTES Cedric
+## Last update Sun May 11 20:00:00 2008 bob bob
 ##
 ##use: http://www.intuitive.com/wicked/showscript.cgi?030-agenda.sh
 ##use: http://aplawrence.com/Bofcusm/1455.html
@@ -252,13 +252,13 @@ if [ $# -gt 0 ] && [ x$1 = xlist ]; then
     exit 0
 fi
 
-if [ $# -gt 0 ]; then
+if [ $# -gt 0 ] ; then
     echo "usage ct-date [add] [list]"
     echo "edit ~/.config/ctafconf/perso/reminder to remove one date"
     exit 1
 fi
 
-if [ ! -e $agendafile ] ; then
+if [ ! -e "$agendafile" ] ; then
   echo "ct-date: no '~/.config/ctafconf/perso/reminder' file found" >&2
   echo "use ct-date to add events or create that empty file to remove the warning" >&2
   exit 1

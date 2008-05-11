@@ -49,10 +49,10 @@ grk_testfile()
   local dst=$2
 
   [ x$grk_debug = xyes ] && echo "Testing file: $grk_etc/$src $dst"
-  if ! [ -f $dst ] || [ -h $dst ] ; then
+  if ! [ -f "$dst" ] || [ -h "$dst" ] ; then
       return 1
   fi
-  if diff $grk_etc/$src $dst >/dev/null; then
+  if diff "$grk_etc/$src" "$dst" >/dev/null; then
     return 0
   fi
   return 1
@@ -66,7 +66,7 @@ grk_testdir()
   local dst=$1
 
   [ x$grk_debug = xyes ] && echo "Testing dir: $src $dst"
-  if ! [ -d $dst ]; then
+  if ! [ -d "$dst" ]; then
       return 1
   fi
   return 0
@@ -90,8 +90,8 @@ grk_link ()
           mv $dst $grk_backup/"$name"-prev-"$date" 2>/dev/null
       fi
       [ x$grk_debug = xyes ] && echo "Linking: $dst -> $src"
-      rm -rf $dst 2>/dev/null
-      ln -s $grk_etc/$src $dst
+      rm -rf "$dst" 2>/dev/null
+      ln -s "$grk_etc/$src" "$dst"
   fi
 }
 
@@ -130,23 +130,23 @@ grk_file ()
   local name=$3
 
   #not a symlink, same file
-  if ! [ -h $dst ] && diff $dst $grk_etc/$src >/dev/null 2>/dev/null; then
+  if ! [ -h "$dst" ] && diff "$dst" "$grk_etc/$src" >/dev/null 2>/dev/null; then
       return
   fi
-  if [ -f $dst ]; then
-      if ! [ x$name = x ]; then
+  if [ -f "$dst" ]; then
+      if ! [ "x$name" = x ]; then
           [ x$grk_debug = xyes ] && echo "grk_file: Backup $name"
-          rm -rf      $grk_backup/"$name"-previous 2>/dev/null
-          cp -r $dst $grk_backup/"$name"-previous 2>/dev/null
-          mv    $dst $grk_backup/"$name"-prev-"$date" 2>/dev/null
+          rm -rf      "$grk_backup"/"$name"-previous 2>/dev/null
+          cp -r "$dst" "$grk_backup"/"$name"-previous 2>/dev/null
+          mv    "$dst" "$grk_backup"/"$name"-prev-"$date" 2>/dev/null
       fi
   fi
   #remove symlink
-  if [ -h $dst ]; then
-      rm -rf $dst 2>/dev/null
+  if [ -h "$dst" ]; then
+      rm -rf "$dst" 2>/dev/null
   fi
   [ x$grk_debug = xyes ] && echo "Copying: $src in $dst"
-  cp $grk_etc/$src $dst
+  cp "$grk_etc/$src" "$dst"
 }
 
 #create a dir if it doesnt exist
@@ -156,16 +156,16 @@ grk_dir ()
   local dst=$1
   local name=$2
 
-  if ! [ -d $dst ]; then
-      if ! [ x$name = x ]; then
+  if ! [ -d "$dst" ]; then
+      if ! [ "x$name" = x ]; then
           [ x$grk_debug = xyes ] && echo "grk_dir: Backup $name"
-          rm -rf $grk_backup/"$name"-previous 2>/dev/null
-          cp -r $dst $grk_backup/"$name"-previous 2>/dev/null
-          mv $dst ~/.config/ctafconf/perso/previous/"$name"-prev-"$date" 2>/dev/null
+          rm -rf "$grk_backup"/"$name"-previous 2>/dev/null
+          cp -r "$dst" "$grk_backup"/"$name"-previous 2>/dev/null
+          mv "$dst" ~/.config/ctafconf/perso/previous/"$name"-prev-"$date" 2>/dev/null
       fi
   fi
   [ x$grk_debug = xyes ] && echo "Creating directory: $src"
-  mkdir $dst 2>/dev/null
+  mkdir "$dst" 2>/dev/null
 }
 
 grk_mine ()
