@@ -1,3 +1,7 @@
+2008-05-26  Cedric GESTES  <gestes@aldebaran-robotics.com>
+	* g : git shortcut
+	* gsvn : git svn shortcut!
+
 2008-05-11 GESTES Cedric <ctaf42@gmail.com>
 	* ctafconf : could be installed in a directory with space !!
 
