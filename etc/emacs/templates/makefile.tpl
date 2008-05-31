@@ -33,10 +33,10 @@ INCL  	=		# List of *.h
 ################
 # Optional add #
 ################
-IPATH   = -I.           # path of include file
+IPATH   = -I.                                 # path of include file
 OBJOPT  = -O2 -Wall -Wstrict-prototypes       # option for obj
 EXEOPT  = -O2 -Wall -Wstrict-prototypes       # option for exe (-lefence ...)
-LPATH   = -L.           # path for librairies ...
+LPATH   = -L.                                 # path for librairies ...
 
 #######################
 # OPTIONAL PKG-CONFIG #
@@ -51,7 +51,9 @@ CC 	= gcc
 CXX 	= g++
 MAKE 	= make
 SHELL	= /bin/sh
-OBJS 	= $(SRC:.c=.o) 	# WARNING!!! Be careful of your file extensions.
+OBJS2 	= $(SRC:.c=.o)          # WARNING!!! Be careful of your file extensions.
+OBJS1 	= $(SRC:.cc=.o) 	# WARNING!!! Be careful of your file extensions.
+OBJS 	= $(SRC:.cpp=.o) 	# WARNING!!! Be careful of your file extensions.
 RM 	= /bin/rm -f
 COMP	= gzip -9v
 UNCOMP	= gzip -df
@@ -73,12 +75,16 @@ $(NAME): $(OBJS) $(SRC) $(INCL)
 
 depend:
 	gcc $(IPATH) -MM $(SRC)
+
 clean:
 	-$(RM) $(NAME) $(OBJS) *~
+
 fclean:
 	-$(RM) $(NAME)
+
 comp: clean
 	$(COMP) $(INCL) $(SRC)
+
 ucomp:
 	$(UNCOMP) $(SRC) $(INCL)
 
@@ -92,8 +98,13 @@ syntax-target: $(CHK_SOURCES:.c=.o)
 
 .c.o:
 	$(CC) $(CFLAGS) -c $<
+
 .cc.o:
 	$(CXX) $(CFLAGS) -c $<
+
+.cpp.o:
+	$(CXX) $(CFLAGS) -c $<
+
 ################
 # Dependencies #
 ################

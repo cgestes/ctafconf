@@ -128,6 +128,7 @@ alias_set sudo 'sudo -H'
 #PLATFORM SPECIFIC STUFF IS USED
 
 alias_set l 'ls -F --color=auto'
+alias_set ls 'ls -F --color=auto'
 alias_set ll 'ls -lF --color=auto'
 alias_set la 'ls -lAF --color=auto'
 alias_set lg 'ls -F --color=auto | grep'
@@ -144,6 +145,9 @@ test -f ~/.config/ctafconf/etc/shell/alias.`uname` && source ~/.config/ctafconf/
 #ctafconf log
 alias_set ct-log "$PAGER ~/.config/ctafconf/perso/ctafconf.log"
 alias_set ct-env ". ~/.config/ctafconf/bin/ct-env"
+
+#protect ls against failure
+ls ~/.config/ctafconf >/dev/null || alias_unset ls
 
 ###UNUSED UN-USEFULL###
 #alias_set reports "w3m http://www.lrde.epita.fr/~akim/compil/reports.html"

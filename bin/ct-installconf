@@ -22,7 +22,7 @@
 ##
 
 
-mode=$1
+mode="$1"
 
 grkdir=~/.config/ctafconf/etc/grk
 
@@ -37,7 +37,7 @@ trap _trap_kill INT
 #PKG FUNCTION
 pkg_description()
 {
-  local name=$@
+  local name="$@"
 
   eval $name"_description"
   return $?
@@ -45,7 +45,7 @@ pkg_description()
 
 pkg_is_installed()
 {
-  local name=$@
+  local name="$@"
 
   eval $name"_is_installed"
   return $?

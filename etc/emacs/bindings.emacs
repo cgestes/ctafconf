@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 01:16:47 2006 GESTES Cedric
-;; Last update Sat Mar 22 12:18:24 2008 GESTES Cedric
+;; Last update Fri May 30 22:45:55 2008 GESTES Cedric
 ;;
 (message ".")
 (message "ctafconf loading: BINDINGS.EMACS")
@@ -107,7 +107,7 @@
 (global-set-key [(shift f7)] 'marker-visit-prev)
 (global-set-key [(f19)] 'marker-visit-prev)
 
-(global-set-key [f8] 'mode-compile)
+;;(global-set-key [f8] 'mode-compile)
 (global-set-key [f8] 'compile)
 (global-set-key [(shift f8)] 'gdb)
 (global-set-key [f20] 'gdb)
@@ -132,4 +132,4 @@
 (global-set-key [(f24)] '(lambda() (interactive) (scroll-other-window -1)))
 
 
-
+fopen

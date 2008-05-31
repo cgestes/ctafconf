@@ -1,3 +1,11 @@
+2008-05-30 GESTES Cedric <ctaf42@gmail.com>
+	* bash : prompt look like zsh prompt
+	* emacs : tabbar grouped c/c++ mode
+	* emacs : added CMakeLists.txt template
+	* ctafconf : update work again on windobe
+	* alias : ls is colored
+	* alias : unset alias on ls when it fail
+
 2008-05-26  Cedric GESTES  <gestes@aldebaran-robotics.com>
 	* g : git shortcut
 	* gsvn : git svn shortcut!

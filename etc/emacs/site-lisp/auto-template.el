@@ -82,6 +82,7 @@
     ("\\.ad\\(b\\|s\\)$"	. "ada")
     ("\\.ml\\w?$"		. "ml")
     ("[Mm]akefile$"		. "makefile")
+    ("CMakeLists.txt$"		. "cmake")
     ("\\.mk$"			. "makefile")
     ("\\.yy$"			. "yy")
     ("\\.sieve$"		. "sieve")

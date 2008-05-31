@@ -4,7 +4,6 @@
 
 V1.1.0:
   - support uninstall
-  - ct-repo/ct-date : use ssft
 
 V1.0.44: goal: rock stable
   - test on freebsd/netbsd/openbsd/cygwin/windows/osx
@@ -15,6 +14,7 @@ V1.0.44: goal: rock stable
 see the bug tracker at www.sf.net/projects/grk
 
 ct-env:
+  - GUI
   - remove env.epita, update ct-profile to use env
   - bug with cancel and dialog in enable/disable
   - dont source all the application
@@ -54,3 +54,5 @@ DOC:
 
 ===>
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2; tab-width: 2 -*- */
+(require 'grep)
+(grep "grep")

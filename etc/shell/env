@@ -5,7 +5,7 @@
 ## Login   <goctaf@gmail.com>
 ##
 ## Started on  Fri Sep 30 22:17:33 2005 GESTES Cedric
-## Last update Sat Mar 22 09:54:55 2008 GESTES Cedric
+## Last update Fri May 30 23:21:42 2008 GESTES Cedric
 ##
 ##CTAFCONF
 
@@ -19,8 +19,6 @@ var_set param $1
 #source user profile
 test -f ~/.config/ctafconf/perso/user-profile && . ~/.config/ctafconf/perso/user-profile
 
-#update the ctafconf if VERSION has changed
-~/.config/ctafconf/bin/ct-updateconf
 
 #remove fucking bell
 null_cmd setterm -blength 0
@@ -82,3 +80,5 @@ test -f ~/.config/ctafconf/etc/shell/env.`uname` && source ~/.config/ctafconf/et
 # #sourcing plateform spécifik
 # test x$ctafconf_config != x && test -f ~/.config/ctafconf/etc/shell/env.$ctafconf_config && source ~/.config/ctafconf/etc/shell/env.$ctafconf_config
 
+#update the ctafconf if VERSION has changed
+~/.config/ctafconf/bin/ct-updateconf

@@ -1693,6 +1693,10 @@ Return a list of one element based on major mode."
              gnus-article-mode score-mode gnus-browse-killed-mode))
      "Mail"
      )
+    ((memq major-mode
+           '(c-mode c++-mode))
+     "C/C++"
+     )
     (t
      ;; Return `mode-name' if not blank, `major-mode' otherwise.
      (if (and (stringp mode-name)
