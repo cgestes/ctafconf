@@ -1,3 +1,6 @@
+2008-05-31  GESTES Cedric  <ctaf42@gmail.com>
+	* etc/emacs/templates/cmake.tpl: added version of cmake
+
 2008-05-30 GESTES Cedric <ctaf42@gmail.com>
 	* bash : prompt look like zsh prompt
 	* emacs : tabbar grouped c/c++ mode

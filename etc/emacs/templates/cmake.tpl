@@ -46,6 +46,7 @@ SET(CFLAG -Wall -O2)
 # The makefile                #
 ###############################
 PROJECT(${PROJNAME})
+CMAKE_MINIMUM_REQUIRED(VERSION 2.4)
 
 #add definitions, compiler switches, etc.
 ADD_DEFINITIONS(${CFLAGS})
