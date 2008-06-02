@@ -51,9 +51,9 @@ CC 	= gcc
 CXX 	= g++
 MAKE 	= make
 SHELL	= /bin/sh
-OBJS2 	= $(SRC:.c=.o)          # WARNING!!! Be careful of your file extensions.
-OBJS1 	= $(SRC:.cc=.o) 	# WARNING!!! Be careful of your file extensions.
-OBJS 	= $(SRC:.cpp=.o) 	# WARNING!!! Be careful of your file extensions.
+OBJ1 	= $(SRC:.c=.o) 	# WARNING!!! Be careful of your file extensions.
+OBJ2    = $(OBJ1:.cpp=.o)
+OBJS    = $(OBJ2:.cc=.o)
 RM 	= /bin/rm -f
 COMP	= gzip -9v
 UNCOMP	= gzip -df
@@ -77,7 +77,7 @@ depend:
 	gcc $(IPATH) -MM $(SRC)
 
 clean:
-	-$(RM) $(NAME) $(OBJS) *~
+	-$(RM) $(NAME) *.o *~
 
 fclean:
 	-$(RM) $(NAME)
@@ -104,6 +104,7 @@ syntax-target: $(CHK_SOURCES:.c=.o)
 
 .cpp.o:
 	$(CXX) $(CFLAGS) -c $<
+
 
 ################
 # Dependencies #
