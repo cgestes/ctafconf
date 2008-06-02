@@ -1,3 +1,6 @@
+2008-06-02  Cedric GESTES  <gestes@aldebaran-robotics.com>
+	* emacs : sane default
+
 2008-05-31  GESTES Cedric  <ctaf42@gmail.com>
 	* etc/emacs/templates/cmake.tpl: added version of cmake
 
