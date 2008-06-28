@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Thu May 11 19:53:25 2006 GESTES Cedric
-;; Last update Sat Mar 22 12:04:25 2008 GESTES Cedric
+;; Last update Sat Jun 28 12:04:02 2008 GESTES Cedric
 ;;
 ;; source: http://blog.pettomato.com/content/site-lisp/.emacs
 (message ".")
@@ -36,12 +36,12 @@
 
   ;;SYNTAX COLORATION
   (custom-set-faces
-   '(default														 ((t (:background "black"		:foreground "white" ))))
-   '(cursor														 ((t (:background "white"		:foreground "black" ))))
-   '(highlight													 ((t (:background "yellow"  :foreground "black"))))
-   '(region														 ((t (:background "blue"		:foreground "white"))))
-   '(isearch														 ((t (:background "blue"    :foreground "white"))))
-   '(trailing-whitespace								 ((t (:background "blue"))))
+   '(default		                ((t (:background "black"		:foreground "white" ))))
+   '(cursor                             ((t (:background "white"		:foreground "black" ))))
+   '(highlight                          ((t (:background "yellow"  :foreground "black"))))
+   '(region                             ((t (:background "blue"		:foreground "white"))))
+   '(isearch                            ((t (:background "blue"    :foreground "white"))))
+   '(trailing-whitespace		((t (:background "blue"))))
    '(font-lock-comment-face             ((t (:foreground "red"))))
    '(font-lock-function-name-face       ((t (:foreground "orange"))))
    '(font-lock-builtin-face             ((t (:foreground "magenta"))))
@@ -50,7 +50,7 @@
    '(font-lock-keyword-face             ((t (:foreground "yellow"))))
    '(font-lock-type-face                ((t (:foreground "green"))))
    '(font-lock-variable-name-face       ((t (:foreground "blue"))))
-   '(font-lock-warning-face						 ((t (:foreground "red"))))))
+   '(font-lock-warning-face		((t (:foreground "red"))))))
 
 
 (defun x-color-theme()
@@ -121,8 +121,8 @@
           (border-color . "black")
           (cursor-color . "#7ac470")
           (mouse-color . "white")
-;;          (background-color . "#000000")
-;;          (foreground-color . "#f0f0f0")
+          (background-color . "#000000")
+          (foreground-color . "#f0f0f0")
           ))
 
   ;; couleur de fond en noir et caracteres en blanc

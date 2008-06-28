@@ -1,3 +1,6 @@
+xs2008-06-28  GESTES Cedric  <ctaf42@gmail.com>
+	* emacs: speedbar is in black too
+
 2008-06-02  Cedric GESTES  <gestes@aldebaran-robotics.com>
 	* emacs : sane default
 	* emacs : added igrep.el
