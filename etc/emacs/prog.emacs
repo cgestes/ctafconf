@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 01:14:21 2006 GESTES Cedric
-;; Last update Sun Mar 23 02:59:59 2008 GESTES Cedric
+;; Last update Wed Jun  4 11:29:09 2008 Cedric GESTES
 ;;
 (message ".")
 (message "ctafconf loading: PROG.EMACS")
@@ -212,8 +212,8 @@
         (progn
           (setq semantic-load-turn-useful-things-on t)
           ;;(setq semantic-load-turn-everything-on t)
-          ;;(load-file "~/.config/ctafconf/etc/emacs/site-lisp/cedet/common/cedet.el")
-	  (load-file "~/src/cedet/common/cedet.el")
+          (load-file "~/.config/ctafconf/etc/emacs/site-lisp/cedet/common/cedet.el")
+	  ;;(load-file "~/src/cedet/common/cedet.el")
           ;; * This turns on which-func support (Plus all other code helpers)
           (semantic-load-enable-excessive-code-helpers)
 	  ;; (semantic-load-enable-guady-code-helpers)
