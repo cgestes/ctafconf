@@ -5,7 +5,7 @@
 ## Login   <goctaf@gmail.com>
 ##
 ## Started on  Fri Sep 30 22:17:33 2005 GESTES Cedric
-## Last update Fri May 30 23:21:42 2008 GESTES Cedric
+## Last update Tue Jul  8 10:34:41 2008 ctaf
 ##
 ##CTAFCONF
 
@@ -42,7 +42,7 @@ env_set REALNAME "$ctafconf_name"
 env_set EMAIL "$ctafconf_mail"
 #for debian
 env_set DEBEMAIL "$ctafconf_mail"
-
+env_set DEBFULLNAME "$ctafconf_name"
 #used by man, ..
 env_set PAGER "more"
 null_which less && env_set PAGER "less"
