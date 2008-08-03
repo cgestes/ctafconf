@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 GESTES Cedric
-## Last update Sun Feb 10 13:19:52 2008 GESTES Cedric
+## Last update Sat Jul  5 23:04:35 2008 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -139,6 +139,12 @@ if [ x$plateforme != "xSunOS" ]; then
   zle -N predict-off
   zle -N incremental-complete-word
 
+  #handle url (avoid quote)
+  # Its url-quote-magic line editing plugin automatically quotes metacharacters like question marks,
+  # quotes and ampersands while you type or paste them.
+  autoload -U url-quote-magic
+  zle -N self-insert url-quote-magic
+
 #predict-on
 
   bindkey '^Xi' incremental-complete-word
@@ -181,7 +187,7 @@ if [ x$plateforme != "xSunOS" ]; then
 
 ## allow one error
 #zstyle ':completion:*:approximate:*' max-errors 1 numeric
-#  zstyle ':completion:*' max-errors 2
+  zstyle ':completion:*' max-errors 25
 ## allow one error for every three characters typed in approximate completer
 #zstyle -e ':completion:*:approximate:*' max-errors \
 #    'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'

@@ -1,6 +1,9 @@
 2008-07-08  ctaf  <gestes@aldebaran-robotics.com>
 	* env : added debfullname
 
+2008-07-05  Cedric GESTES  <ctaf42@gmail.com>
+	* zsh: better url handling (handle metachar like ampersands)
+
 2008-06-28  GESTES Cedric  <ctaf42@gmail.com>
 	* emacs: speedbar is in black too
 
@@ -19,7 +22,6 @@
 	* alias : ls is colored
 	* alias : unset alias on ls when it fail
 
->>>>>>> .r281
 2008-05-26  Cedric GESTES  <gestes@aldebaran-robotics.com>
 	* g : git shortcut
 	* gsvn : git svn shortcut!
