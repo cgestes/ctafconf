@@ -1,0 +1,83 @@
+#!/bin/sh
+##
+## fluxbox.grk for ctafconf in /home/ctaf/.ctafconf/etc
+##
+## Made by GESTES Cedric
+## Login   <ctaf42@gmail.com>
+##
+## Started on  Tue Apr 11 12:32:11 2006 GESTES Cedric
+## Last update Wed Sep 24 21:18:09 2008 Cedric GESTES
+##
+
+#--function
+#grk_link
+#grk_unlink
+
+#grk_sudolink
+#grk_unsudolink
+
+#grk_dir
+#grk_undir
+
+#grk_file
+#grk_unfile
+
+
+#grk_variable?
+#grk_value?
+
+#grk_testfile
+#grk_testdir
+#grk_testlink
+
+#this package should be named ion3.grk
+ion3_name='ion3'
+
+#dependance
+#ion3_depend='shell'
+
+#description
+ion3_description()
+{
+    echo "This package contains configuration file for ion3"
+    echo "It's a window manager with a personalised theme"
+    echo "It could be a cool default manager on small configuration"
+}
+
+
+#is this package installed?
+#0 = installed
+#1 = not installed
+ion3_is_installed()
+{
+  grk_testdir ~/.ion3 &&
+  grk_testfile etc/ion3/ctafconf.lua ~/.ion3/ctafconf.lua
+  return $?
+}
+
+#install this package is ion3_is_installed return "not installed"
+#0 = installed
+#1 = not installed
+ion3_install()
+{
+  grk_dir ~/.ion3 ion3
+  grk_file etc/ion3/ctafconf.lua ~/.ion3/ctafconf.lua
+  return 0
+}
+
+#uninstall file install with ion3_install
+ion3_uninstall()
+{
+  grk_undir ~/.ion3 ion3
+  return 0
+}
+
+#this function is always called when you call ct-installconf
+#dont affected by ion3_uninstall
+#put all .mine there
+ion3_alwaysinstall()
+{
+#  grk_mine fbmenu
+  #nothing to do
+  return 0
+}
