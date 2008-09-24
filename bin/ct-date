@@ -5,7 +5,7 @@
 ## Login   <goctaf@gmail.com>
 ##
 ## Started on  Fri Mar 31 19:54:39 2006 GESTES Cedric
-## Last update Sun May 11 20:00:00 2008 bob bob
+## Last update Wed Sep 24 14:44:48 2008 Cedric GESTES
 ##
 ##use: http://www.intuitive.com/wicked/showscript.cgi?030-agenda.sh
 ##use: http://aplawrence.com/Bofcusm/1455.html
@@ -106,12 +106,12 @@ denormanumber()
 
 normanumber()
 {
-    local num=$(($1))
+  local num=$(denormanumber $1)
 
-    if [ $num -lt 10 ]; then
-        num="0$num"
-    fi
-    echo $num
+  if [ $num -lt 10 ]; then
+    num="0$num"
+  fi
+  echo $num
 }
 
 ###########################################
@@ -259,8 +259,8 @@ if [ $# -gt 0 ] ; then
 fi
 
 if [ ! -e "$agendafile" ] ; then
-  echo "ct-date: no '~/.config/ctafconf/perso/reminder' file found" >&2
-  echo "use ct-date to add events or create that empty file to remove the warning" >&2
+#  echo "ct-date: no '~/.config/ctafconf/perso/reminder' file found" >&2
+#  echo "use ct-date to add events or create that empty file to remove the warning" >&2
   exit 1
 fi
 
