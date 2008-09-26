@@ -8,6 +8,15 @@ set tabstop=8
 set shiftwidth=2
 set sts=2
 
+" dont be compatible with vim from 1970
+set nocompatible
+
+" show incomplete cmd
+set showcmd
+
+" always display last status
+set laststatus=2
+
 " Programmation
 syntax on
 set showmatch
