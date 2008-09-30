@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Wed Oct 12 00:20:30 2005 GESTES Cedric
-## Last update Tue Dec  4 12:03:25 2007 GESTES Cedric
+## Last update Sat Sep 27 21:39:51 2008 Cedric GESTES
 ##
 ##CTAFCONF
 ###
@@ -27,7 +27,7 @@
 # var_unset var
 
 #######################
-test x$1 = xcsh && goto csh_functions
+test "x$1" = "xcsh" && goto csh_functions
 
 #echo "Shell mode: SH"
 env_set() {

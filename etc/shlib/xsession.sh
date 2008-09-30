@@ -31,7 +31,7 @@
 #number of application
 app_array_count=0
 
-
+wmlist=~/.config/ctafconf/etc/xsession/wmlist
 
 #return the wm to launch
 extract_wm()
@@ -40,9 +40,19 @@ extract_wm()
 
   ct_log EXTRACTING WM: $wm
   if [ x$wm = xrandom ]; then
-    sz=`cat ~/.config/ctafconf/perso/wmlist | wc -l`
-    pos=$(( `date +%s` % $sz + 1 ))
-    wm=`cat ~/.config/ctafconf/perso/wmlist | tail -$pos | head -1`
+    cont=42
+    count=0
+    #try hard to get a functional wm
+    while [ $cont -ne 0 ] && [ $count -le 20 ]; do
+      sz=`cat $wmlist | wc -l`
+      pos=$(( `date +%N` % $sz + 1 ))
+      wm=`cat $wmlist | tail -$pos | head -1`
+      if which $(echo $wm | cut -d\! -f2) >/dev/null 2>/dev/null ; then
+        cont=0
+      fi
+      count=$(($count + 1))
+      ct_log random failure count: $count
+    done
   fi
   ct_log EXTRACTED WM: $wm
   echo $wm
@@ -56,7 +66,7 @@ exec_wm ()
   wmfct=`cat ~/.config/ctafconf/etc/xsession/wmlist | grep "^$wm" | cut -d ! -f 2`
   echo "lanching: $wmfct"
   which $wmfct && exec $wmfct
-
+  which $ctafconf_wm && exec $ctafconf_wm
 }
 
 exec_app()
@@ -93,6 +103,8 @@ launch_wm()
   ct_log LAUNCHING WM
   exec_app
 #  loop_wm
+
+  ct_log "var ctafconf_wm : $ctafconf_wm"
   ctafconf_wm=`extract_wm $ctafconf_wm`
   ct_log launching: $ctafconf_wm
   exec_wm $ctafconf_wm
@@ -113,6 +125,7 @@ test_wm ()
   local wm=$@
   local ret=0
 
+  ct-log test_wm $ctafconf_wm
   ctafconf_wm=`extract_wm $ctafconf_wm`
   ct_log -n "test_wm ($ctafconf_wm = $@) => "
   [ x$ctafconf_wm = x$wm ]

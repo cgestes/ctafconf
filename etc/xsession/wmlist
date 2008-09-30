@@ -1,13 +1,5 @@
-##
-## wmlist for GRK in /home/ctaf/.ctafconf
-##
-## Made by GESTES Cedric
-## Login   <ctaf42@gmail.com>
-##
-## Started on  Sun May 14 20:36:17 2006 GESTES Cedric
-## Last update Sat May 20 02:59:35 2006 GESTES Cedric
-##
-
+e17!enlightenment_start
+ion3!ion3
 fluxbox!startfluxbox
 gnome!gnome-session
 kde!startkde

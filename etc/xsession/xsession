@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Mon Sep 26 02:37:56 2005 GESTES Cedric
-## Last update Tue Feb 13 05:38:09 2007 gestes cedric
+## Last update Sat Sep 27 21:40:16 2008 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -18,6 +18,7 @@
 
 mv ~/.config/ctafconf/perso/ctafconf.log ~/.config/ctafconf/perso/ctafconf.log.1
 
+. ~/.config/ctafconf/etc/shlib/shelltools.sh sh
 . ~/.config/ctafconf/etc/shlib/xsession.sh
 
 #refuse all connection to xserver except for localhost
@@ -28,16 +29,19 @@ xhost +localhost
 xset b off
 
 #merge setting for x application (xterm,aterm,..)
+ct_log "loading ctafconf xrdb defaults"
 xrdb -merge ~/.config/ctafconf/etc/xsession/Xdefaults
 
 if [ -f ~/.config/ctafconf/perso/user-profile ] ; then
+  ct_log "loading user-profile"
   . ~/.config/ctafconf/perso/user-profile
 fi
 
 #if ! test_wm e16 ; then
 #fi
 #set the wallpaper
-launch_app ~/.config/ctafconf/bin/ct-set-bg
+#launch_app ~/.config/ctafconf/bin/ct-set-bg
+
 
 
 if test_wm term ; then
@@ -57,12 +61,14 @@ fi
 #cause gnome-session launch it
 if ! test_wm gnome ; then
   if which gnome-settings-daemon >/dev/null 2>/dev/null; then
+    ct_log "loading gnome-settings-daemon"
     launch_app gnome-settings-daemon
   fi
 fi
 
 if ! test_wm kde ; then
   if which kdeinit >/dev/null 2>/dev/null; then
+    ct_log "loading kdeint"
     launch_app kdeinit
   fi
 fi
@@ -70,5 +76,8 @@ fi
 #lauch the window manager
 launch_wm
 
+#no wm found launch en emergency terminal, gnome-terminal then xterm
 which gnome-terminal && exec gnome-terminal
+
+#failsafe xterm
 exec xterm

@@ -1,3 +1,9 @@
+2008-09-30  Cedric GESTES  <ctaf42@gmail.com>
+	* etc/shlib/xsession.sh (wmlist): renable randow WM
+
+2008-09-27  Cedric GESTES  <ctaf42@gmail.com>
+	* bin/ct-profile : added ion3 support
+
 2008-09-26  Cedric GESTES  <gestes@aldebaran-robotics.com>
 	* vim : added some more config!
 
