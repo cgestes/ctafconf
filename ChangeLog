@@ -1,3 +1,6 @@
+2008-10-06  Cedric GESTES  <ctaf42@gmail.com>
+	* xsession : fixed: each call to test_wm return a random wm when wm is 'random'
+
 2008-09-30  Cedric GESTES  <ctaf42@gmail.com>
 	* etc/shlib/xsession.sh (wmlist): renable randow WM
 
