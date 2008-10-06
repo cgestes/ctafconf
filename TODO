@@ -21,6 +21,9 @@ ct-env:
   - source env only for the session
   - bug : dont work from tcsh
 
+ct-xsession:
+  - allow ctafconf_wm=cycle to cycle trough each wm
+
 DOC:
   - ct-env : one page on the wiki (each pages: ct-env, ct-installconf, programming, console)
 

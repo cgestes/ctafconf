@@ -1,3 +1,8 @@
+2008-10-07  Cedric GESTES  <ctaf42@gmail.com>
+	* etc/shlib/xsession.sh (wmlist): dont consider terms like wm (in random mode) !!
+
+	* etc/fluxbox/init: disable wallpaper (use the gnome one by default)
+
 2008-10-06  Cedric GESTES  <ctaf42@gmail.com>
 	* xsession : fixed: each call to test_wm return a random wm when wm is 'random'
 

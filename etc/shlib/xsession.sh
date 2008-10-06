@@ -44,9 +44,9 @@ extract_wm()
     count=0
     #try hard to get a functional wm
     while [ $cont -ne 0 ] && [ $count -le 20 ]; do
-      sz=`cat $wmlist | wc -l`
-      pos=$(( `date +%N` % $sz + 1 ))
-      wm=`cat $wmlist | tail -$pos | head -1`
+      sz=`cat $wmlist | grep -v term | wc -l`
+      pos=$(( 1`date +%N | cut -c 3-` % $sz + 1 ))
+      wm=`cat $wmlist | grep -v term | tail -$pos | head -1`
       if which $(echo $wm | cut -d\! -f2) >/dev/null 2>/dev/null ; then
         cont=0
       fi
@@ -65,6 +65,7 @@ exec_wm ()
 
   wmfct=`cat ~/.config/ctafconf/etc/xsession/wmlist | grep "^$wm" | cut -d ! -f 2`
   echo "lanching: $wmfct"
+
   which $wmfct && exec $wmfct
   which $ctafconf_wm && exec $ctafconf_wm
 }
@@ -123,6 +124,35 @@ launch_app()
 set_wm()
 {
   wanted_wm=`extract_wm $ctafconf_wm | cut -d! -f1`
+  echo "wanted wm: $wanted_wm"
+  wanted_wm=`extract_wm $ctafconf_wm | cut -d! -f1`
+  echo "wanted wm: $wanted_wm"
+  wanted_wm=`extract_wm $ctafconf_wm | cut -d! -f1`
+  echo "wanted wm: $wanted_wm"
+  wanted_wm=`extract_wm $ctafconf_wm | cut -d! -f1`
+  echo "wanted wm: $wanted_wm"
+  wanted_wm=`extract_wm $ctafconf_wm | cut -d! -f1`
+  echo "wanted wm: $wanted_wm"
+  wanted_wm=`extract_wm $ctafconf_wm | cut -d! -f1`
+  echo "wanted wm: $wanted_wm"
+  wanted_wm=`extract_wm $ctafconf_wm | cut -d! -f1`
+  echo "wanted wm: $wanted_wm"
+  wanted_wm=`extract_wm $ctafconf_wm | cut -d! -f1`
+  echo "wanted wm: $wanted_wm"
+  wanted_wm=`extract_wm $ctafconf_wm | cut -d! -f1`
+  echo "wanted wm: $wanted_wm"
+  wanted_wm=`extract_wm $ctafconf_wm | cut -d! -f1`
+  echo "wanted wm: $wanted_wm"
+  wanted_wm=`extract_wm $ctafconf_wm | cut -d! -f1`
+  echo "wanted wm: $wanted_wm"
+  wanted_wm=`extract_wm $ctafconf_wm | cut -d! -f1`
+  echo "wanted wm: $wanted_wm"
+  wanted_wm=`extract_wm $ctafconf_wm | cut -d! -f1`
+  echo "wanted wm: $wanted_wm"
+  wanted_wm=`extract_wm $ctafconf_wm | cut -d! -f1`
+  echo "wanted wm: $wanted_wm"
+  wanted_wm=`extract_wm $ctafconf_wm | cut -d! -f1`
+  echo "wanted wm: $wanted_wm"
 }
 
 #test if current wm

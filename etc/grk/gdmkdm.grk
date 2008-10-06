@@ -1,0 +1,63 @@
+#!/bin/sh
+##
+## gdmkdm.grk for ctafconf in /home/ctaf/.ctafconf/etc
+##
+## Made by GESTES Cedric
+## Login   <ctaf42@gmail.com>
+##
+## Started on  Tue Apr 11 12:32:11 2006 GESTES Cedric
+## Last update Sat Sep 27 21:28:15 2008 Cedric GESTES
+##
+
+#this package should be named gdmkdm.grk
+gdmkdm_name='gdmkdm'
+
+#dependance
+#gdmkdm_depend='shell'
+
+#description
+gdmkdm_description()
+{
+    echo "This package contains configuration file for gdm and kdm"
+    echo "It allow you to login using ctafconf session"
+    echo "It use the window manager and wallpaper you choose"
+}
+
+
+#is this package installed?
+#0 = installed
+#1 = not installed
+gdmkdm_is_installed()
+{
+    grk_testfile etc/xsession/ctafconf.desktop /usr/share/xsessions/ctafconf.desktop &&
+    grk_testfile bin/misc/ct-xsession /usr/bin/ct-xsession
+    return $?
+}
+
+#install this package is gdmkdm_is_installed return "not installed"
+#0 = installed
+#1 = not installed
+gdmkdm_install()
+{
+    grk_sudofile etc/xsession/ctafconf.desktop /usr/share/xsessions
+    grk_sudofile bin/misc/ct-xsession /usr/bin/ct-xsession
+    return 0
+}
+
+
+#uninstall file install with gdmkdm_install
+gdmkdm_uninstall()
+{
+#    grk_unfile ~/.xinitrc xinit
+    return 0
+}
+
+#this function is always called when you call ct-installconf
+#dont affected by gdmkdm_uninstall
+#put all .mine there
+gdmkdm_alwaysinstall()
+{
+    #nothing to do
+    grk_mine xsession
+    return 0
+}

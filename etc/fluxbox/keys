@@ -1,4 +1,26 @@
 !mouse actions added by fluxbox-update_configs
+OnTitlebar Mouse2 :StartTabbing
+
+!mouse actions added by fluxbox-update_configs
+OnTitlebar Double Mouse1 :Shade
+OnTitlebar Mouse3 :WindowMenu
+
+!mouse actions added by fluxbox-update_configs
+OnWindow Mod1 Mouse1 :MacroCmd {Raise} {Focus} {StartMoving}
+OnWindow Mod1 Mouse3 :MacroCmd {Raise} {Focus} {StartResizing BottomRight}
+
+!mouse actions added by fluxbox-update_configs
+OnToolbar Mouse4 :NextWorkspace
+OnToolbar Mouse5 :PrevWorkspace
+
+!mouse actions added by fluxbox-update_configs
+OnDesktop Mouse1 :HideMenus
+OnDesktop Mouse2 :WorkspaceMenu
+OnDesktop Mouse3 :RootMenu
+OnDesktop Mouse4 :NextWorkspace
+OnDesktop Mouse5 :PrevWorkspace
+
+!mouse actions added by fluxbox-update_configs
 OnDesktop Mouse1 :hideMenus
 OnDesktop Mouse2 :workspaceMenu
 OnDesktop Mouse3 :rootMenu
@@ -33,5 +55,6 @@ Control Mod1 d :VerticalIncrement
 Control Mod1 z :VerticalDecrement
 #Ctrl+alt+< = shutdown!
 #Control Mod1 < :ExecCommand echo sudo shutdown -h now "Fluxbox: CTAFed SHUTDOWN"
+
 
 

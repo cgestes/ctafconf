@@ -38,7 +38,7 @@ session.screen0.strftimeFormat:	%k:%M %d/%m
 session.screen0.clickRaises:	true
 session.screen0.resizeMode:	Bottom
 session.screen0.windowScrollReverse:	false
-session.screen0.rootCommand:	~/.config/ctafconf/bin/ct-set-bg
+#session.screen0.rootCommand:	~/.config/ctafconf/bin/ct-set-bg
 session.screen0.focusModel:	ClickFocus
 session.screen0.showwindowposition:	true
 session.screen0.menuDelayClose:	0
