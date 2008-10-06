@@ -105,9 +105,9 @@ launch_wm()
 #  loop_wm
 
   ct_log "var ctafconf_wm : $ctafconf_wm"
-  ctafconf_wm=`extract_wm $ctafconf_wm`
-  ct_log launching: $ctafconf_wm
-  exec_wm $ctafconf_wm
+  ct_log "var wanted_wm : $wanted_wm"
+  ct_log launching: $wanted_wm
+  exec_wm $wanted_wm
   ct_log BYEBYE, WE SHOULD NOT BE THERE
 }
 
@@ -119,16 +119,20 @@ launch_app()
   eval "apparray_$app_array_count='$app'"
 }
 
+#set the wanted wm
+set_wm()
+{
+  wanted_wm=`extract_wm $ctafconf_wm | cut -d! -f1`
+}
+
 #test if current wm
 test_wm ()
 {
   local wm=$@
   local ret=0
 
-  ct-log test_wm $ctafconf_wm
-  ctafconf_wm=`extract_wm $ctafconf_wm`
-  ct_log -n "test_wm ($ctafconf_wm = $@) => "
-  [ x$ctafconf_wm = x$wm ]
+  ct_log -n "test_wm ($wanted_wm = $@) => "
+  [ x$wanted_wm = x$wm ]
   ret=$?
   ct_log $ret
   return $ret

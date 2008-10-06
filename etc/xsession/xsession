@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Mon Sep 26 02:37:56 2005 GESTES Cedric
-## Last update Sat Sep 27 21:40:16 2008 Cedric GESTES
+## Last update Tue Sep 30 03:08:39 2008 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -41,7 +41,7 @@ fi
 #fi
 #set the wallpaper
 #launch_app ~/.config/ctafconf/bin/ct-set-bg
-
+set_wm
 
 
 if test_wm term ; then
