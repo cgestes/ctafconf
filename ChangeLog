@@ -1,3 +1,4 @@
+
 2008-10-07  Cedric GESTES  <ctaf42@gmail.com>
 	* etc/shlib/xsession.sh (wmlist): dont consider terms like wm (in random mode) !!
 
@@ -5,6 +6,9 @@
 
 2008-10-06  Cedric GESTES  <ctaf42@gmail.com>
 	* xsession : fixed: each call to test_wm return a random wm when wm is 'random'
+
+2008-10-01  Cedric GESTES  <gestes@aldebaran-robotics.com>
+	* etc/emacs/templates/makefile.tpl: support overriding CC, CXX, CFLAGS, LDFLAGS ! (for cross compil)
 
 2008-09-30  Cedric GESTES  <ctaf42@gmail.com>
 	* etc/shlib/xsession.sh (wmlist): renable randow WM

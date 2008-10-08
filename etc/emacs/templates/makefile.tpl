@@ -47,9 +47,9 @@ LPATH   = -L.                                 # path for librairies ...
 #####################
 # Macro Definitions #
 #####################
-CC 	= gcc
-CXX 	= g++
-MAKE 	= make
+CC 	?= gcc
+CXX 	?= g++
+MAKE 	?= make
 SHELL	= /bin/sh
 OBJ1 	= $(SRC:.c=.o) 	# WARNING!!! Be careful of your file extensions.
 OBJ2    = $(OBJ1:.cpp=.o)
@@ -57,10 +57,10 @@ OBJS    = $(OBJ2:.cc=.o)
 RM 	= /bin/rm -f
 COMP	= gzip -9v
 UNCOMP	= gzip -df
-STRIP	= strip
+STRIP	?= strip
 
-CFLAGS  = $(OBJOPT) $(IPATH) $(PKG_CFLAGS)
-LDFLAGS = $(EXEOPT) $(LPATH) $(PKG_LIBS)
+MYCFLAGS  = $(CFLAGS) $(OBJOPT) $(IPATH) $(PKG_CFLAGS)
+MYLDFLAGS = $(LDFLAGS) $(EXEOPT) $(LPATH) $(PKG_LIBS)
 
 .SUFFIXES: .h.Z .c.Z .h.gz .c.gz .c.z .h.z
 
@@ -70,7 +70,7 @@ LDFLAGS = $(EXEOPT) $(LPATH) $(PKG_LIBS)
 
 all:	$(NAME)
 $(NAME): $(OBJS) $(SRC) $(INCL)
-	$(CC) $(OBJS) $(LDFLAGS) -o $(NAME)
+	$(CC) $(OBJS) $(MYLDFLAGS) -o $(NAME)
 #	$(STRIP) ./$(NAME) # if you debug ,don't strip ...
 
 depend:
@@ -97,13 +97,13 @@ syntax-target: $(CHK_SOURCES:.c=.o)
 	 -$(UNCOMP) $<
 
 .c.o:
-	$(CC) $(CFLAGS) -c $<
+	$(CC) $(MYCFLAGS) -c $<
 
 .cc.o:
-	$(CXX) $(CFLAGS) -c $<
+	$(CXX) $(MYCFLAGS) -c $<
 
 .cpp.o:
-	$(CXX) $(CFLAGS) -c $<
+	$(CXX) $(MYCFLAGS) -c $<
 
 
 ################

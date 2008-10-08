@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 GESTES Cedric
-## Last update Wed Sep 24 21:01:39 2008 Cedric GESTES
+## Last update Mon Oct  6 10:46:03 2008 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -40,7 +40,8 @@ bindkey -s '^T' 'uptime\n'
 #CTAF: fix disable autocompletion.. it wasnt always working
 setopt nocorrect                 # spelling correction
 
-setopt autocd                  # change to dirs without cd
+#nobody use it, and it could be problematic when a dir have the name of a binary
+setopt noautocd                  # change to dirs without cd
 
 setopt nobeep #disable beep in zsh
 
@@ -82,11 +83,11 @@ setopt completeinword          # not just at the end
 setopt no_alwaystoend             # when complete from middle, move cursor
 
 #setopt nopromptcr       # don't add \r which overwrites cmd output with no \n
-setopt no_hist_expire_dups_first  #no dups in history
-setopt no_hist_ignore_dups
+#setopt nohistexpiredupsfirst  #no dups in history
+setopt histignoredups
 setopt hist_verify              # when using ! cmds, confirm first
 setopt interactivecomments     # date # comment will work
-#setopt recexact                # recognise exact, ambiguous matches
+setopt recexact                # recognise exact, ambiguous matches
 #setopt printexitvalue          # alert me if something's failed
 #autoload -U colors
 #colors
