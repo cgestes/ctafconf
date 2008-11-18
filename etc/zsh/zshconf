@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 GESTES Cedric
-## Last update Mon Oct  6 10:46:03 2008 Cedric GESTES
+## Last update Tue Nov 18 18:01:18 2008 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -38,7 +38,8 @@ bindkey -s '^T' 'uptime\n'
 ## Options Settings (man zshoptions)
 ###################
 #CTAF: fix disable autocompletion.. it wasnt always working
-setopt nocorrect                 # spelling correction
+#use correct or it's worste
+setopt correct                 # spelling correction
 
 #nobody use it, and it could be problematic when a dir have the name of a binary
 setopt noautocd                  # change to dirs without cd
@@ -240,7 +241,7 @@ if [ x$plateforme != "xSunOS" ]; then
 
 ## completion caching
   #zstyle ':completion::complete:*' use-cache 1
-  zstyle ':completion::complete:*' use-cache off
+  zstyle ':completion::complete:*' use-cache 1
   zstyle ':completion::complete:*' cache-path ~/.zcompcache/$HOST
 
 ## add colors to completions
