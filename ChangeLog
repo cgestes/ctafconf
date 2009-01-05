@@ -1,3 +1,6 @@
+2009-01-05  Cedric GESTES  <ctaf42@gmail.com>
+	* shell: max 1042 process (avoid forkbomb)
+	* shell: added warning to indicate user which file they can edit
 
 2008-10-07  Cedric GESTES  <ctaf42@gmail.com>
 	* etc/shlib/xsession.sh (wmlist): dont consider terms like wm (in random mode) !!

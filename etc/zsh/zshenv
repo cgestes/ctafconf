@@ -5,9 +5,14 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
-## Last update Wed Feb 13 20:30:59 2008 GESTES Cedric
+## Last update Mon Jan  5 11:28:16 2009 Cedric GESTES
 ##
 ##CTAFCONF
+
+## Warning ##
+#never edit this file
+#please edit ~/.config/ctafconf/perso/zshenv.mine
+
 
 if [[ $- != *i* ]] || [ a$HOST = agate-ssh ]; then
     return

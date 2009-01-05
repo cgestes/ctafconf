@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 GESTES Cedric
-## Last update Tue Dec  2 10:27:06 2008 Cedric GESTES
+## Last update Tue Dec  2 15:53:18 2008 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -15,7 +15,7 @@
 #emacs binddings: ctrl-e(end) ctrl-a(begin of line)
 
 #forbit bomb fork
-limit maxproc 42
+limit maxproc 1042
 
 #completion max size
 #LISTMAX=0    # Only ask if line would scroll off screen

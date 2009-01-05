@@ -1,6 +1,11 @@
 #!/bin/tcsh
 # .tcshrc - 30/06/05 19:16 - Turea Alexandru Teodor (classicmanpro@yahoo.com)
 
+## Warning ##
+#never edit this file
+#please edit ~/.config/ctafconf/perso/tcshrc.mine
+
+
 #######################
 # ##### GENERAL ##### #
 #######################
@@ -20,17 +25,6 @@ umask 022
 limit    coredumpsize 0
 limit -h coredumpsize 0
 
-#####################################
-# ##### ENVIRONMENT VARIABLES ##### #
-#####################################
-
-#setenv    LS_COLORS    'no=01;37:fi=01;37:di=01;34:ln=01;36:pi=01;32:so=01;35:do=01;35:bd=01;33:cd=01;33:ex=01;31:mi=00;05;37:or=00;05;37:'
-
-#setenv    PAGER        'less'
-#setenv    EDITOR       'nano --smooth --tabsize=4 --const --mouse --nowrap --suspend'
-#setenv    VISUAL       "${EDITOR}"
-
-#unsetenv  HPATH
 
 ###############################
 # ##### SHELL VARIABLES ##### #
@@ -79,33 +73,6 @@ unset {histfile,dirsfile,autologout,notify,tperiod} #implicitcd,
 
 alias    .                'source'
 
-# alias    ds               'dirs -v'
-# alias    dsl              'dirs -L'
-# alias    dss              'dirs -S'
-# alias    dsc              'dirs -c'
-
-# alias    po               'popd'  # po    [+n]
-# alias    pu               'pushd' # pu    [name|+n]
-
-# alias    cd               'pu'    # cd    [name|+n]
-# alias    chdir            'cd'    # chdir [name|+n]
-
-# alias    ..               'cd ..'
-# alias    -                'cd -'
-
-# alias    hc               'history -c'
-# alias    hcc              'hc;c'
-
-# alias    cx               'cd;dsc;hc;x'
-
-# alias    ffinf               "find . -name '\!*' -print"
-
-# alias    psa              'ps aux'
-# alias    psu              'ps  ux'
-
-# alias    lpsa             "ps aux \!* | p"
-# alias    lpsu             "ps  ux \!* | p"
-
 unalias {beepcmd,cwdcmd,jobcmd,periodic,precmd,postcmd,shell}
 
 ###########################
@@ -123,7 +90,6 @@ complete {cd,pushd,{ch,mk,rm}dir} 'p/*/d/'
 complete {finger,pinky,groups} 'p/*/u/'
 complete {,un}complete 'p/1/X/'
 complete {,un}set 'p/*/s/'
-
 
 ############################
 # ##### KEY BINDINGS ##### #
@@ -146,15 +112,6 @@ bindkey "^[I" i-search-back
 bindkey "^[a" spell-line
 bindkey "^[o" overwrite-mode
 bindkey "^[q" keyboard-quit
-
-#############################################
-# ##### SOURCE/LOAD - DIRECTORY STACK ##### #
-#############################################
-#set usr_cwd = "`pwd`" # most WMs open terminals in specific locations therefore note the current working directory
-#dsl                   # source/load the directory stack, if present ... this usually changes the current working directory
-#cd "${usr_cwd}"       # 'cd' back to the initial/original working directory and push it onto the directory stack
-#unset usr_cwd         # cleanup
-
 
 if ( -f ~/.config/ctafconf/etc/tcsh/tcshprompt ) source ~/.config/ctafconf/etc/tcsh/tcshprompt
 
