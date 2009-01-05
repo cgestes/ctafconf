@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 GESTES Cedric
-## Last update Tue Nov 18 18:01:18 2008 Cedric GESTES
+## Last update Tue Dec  2 10:27:06 2008 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -13,6 +13,9 @@
 
 #umask 022;
 #emacs binddings: ctrl-e(end) ctrl-a(begin of line)
+
+#forbit bomb fork
+limit maxproc 42
 
 #completion max size
 #LISTMAX=0    # Only ask if line would scroll off screen
@@ -85,7 +88,7 @@ setopt no_alwaystoend             # when complete from middle, move cursor
 
 #setopt nopromptcr       # don't add \r which overwrites cmd output with no \n
 #setopt nohistexpiredupsfirst  #no dups in history
-setopt histignoredups
+setopt histignorealldups
 setopt hist_verify              # when using ! cmds, confirm first
 setopt interactivecomments     # date # comment will work
 setopt recexact                # recognise exact, ambiguous matches
@@ -113,8 +116,6 @@ fignore=(.o .c~ .pro)
 ## Plugins autoload && bindkey
 ##############################
 autoload mere zed zfinit
-
-
 
 plateforme=`uname -s`
 #ca marche pas sur sun
