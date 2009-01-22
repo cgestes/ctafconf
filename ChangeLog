@@ -1,3 +1,6 @@
+2009-01-22  Cedric GESTES  <ctaf42@gmail.com>
+	* emacs: template for hpp
+
 2009-01-05  Cedric GESTES  <ctaf42@gmail.com>
 	* shell: max 1042 process (avoid forkbomb)
 	* shell: added warning to indicate user which file they can edit
