@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 GESTES Cedric
-## Last update Tue Dec  2 15:53:18 2008 Cedric GESTES
+## Last update Sun Jan 25 15:35:58 2009 ctaf42
 ##
 ##CTAFCONF
 
@@ -15,7 +15,8 @@
 #emacs binddings: ctrl-e(end) ctrl-a(begin of line)
 
 #forbit bomb fork
-limit maxproc 1042
+limit maxproc 512
+
 
 #completion max size
 #LISTMAX=0    # Only ask if line would scroll off screen
@@ -117,18 +118,16 @@ fignore=(.o .c~ .pro)
 ##############################
 autoload mere zed zfinit
 
-plateforme=`uname -s`
-#ca marche pas sur sun
-if [ x$plateforme != "xSunOS" ]; then
-  zmodload zsh/complist
-  zmodload zsh/zpty
+
+zmodload zsh/complist
+zmodload zsh/zpty
 
 
-  autoload nslookup
-  autoload -U zed
-  autoload -U zmv
-  autoload compinit
-  autoload insert-files
+autoload nslookup
+autoload -U zed
+autoload -U zmv
+autoload compinit
+autoload insert-files
 
 # This set of functions implements a sort of magic history searching.
 # After predict-on, typing characters causes the editor to look backward
@@ -138,53 +137,52 @@ if [ x$plateforme != "xSunOS" ]; then
 # line doesn't match something in the history, adding a key performs
 # standard completion - though editing in the middle is liable to delete
 # the rest of the line.
-  autoload -U incremental-complete-word
-  autoload -U predict-on
-  zle -N predict-on
-  zle -N predict-off
-  zle -N incremental-complete-word
+autoload -U incremental-complete-word
+autoload -U predict-on
+zle -N predict-on
+zle -N predict-off
+zle -N incremental-complete-word
 
   #handle url (avoid quote)
   # Its url-quote-magic line editing plugin automatically quotes metacharacters like question marks,
   # quotes and ampersands while you type or paste them.
-  autoload -U url-quote-magic
-  zle -N self-insert url-quote-magic
+autoload -U url-quote-magic
+zle -N self-insert url-quote-magic
 
 #predict-on
 
-  bindkey '^Xi' incremental-complete-word
-  bindkey '^Xp' predict-on
-  bindkey '^X^P' predict-off
+bindkey '^Xi' incremental-complete-word
+bindkey '^Xp' predict-on
+bindkey '^X^P' predict-off
 #bindkey "^X^Z" predict-on
 #bindkey "^Z" predict-off
 
   # remove maximum size command line limitation
-  autoload -U zargs
+autoload -U zargs
 
 
-  zle -N insert-files
-  compinit -u
+zle -N insert-files
+compinit -u
   #use --help to complete some cmd (df , ..)
-  compdef _gnu_generic df
-  compdef _make m ma md mm gm mac make_mute make_real
-  compdef _configure c
+compdef _gnu_generic df
+compdef _make m ma md mm gm mac make_mute make_real
+compdef _configure c
 
-  zstyle ':completion:*' format '%{[32m%}-=> %{[01m%}%d%{[0m%}'
-  zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' format '%{[32m%}-=> %{[01m%}%d%{[0m%}'
+zstyle ':completion:*' auto-description 'specify: %d'
 #  zstyle ':completion:*' completer _complete _correct _approximate
-  zstyle ':completion:*' group-name ''
-  zstyle ':completion:*' insert-unambiguous true
-  zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' insert-unambiguous true
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 #  zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'l:|=* r:|=*' 'r:|[._-]=* r:|=*'
-  zstyle ':completion:*' menu select=10
  # zstyle ':completion:*' original true
-  zstyle ':completion:*' squeeze-slashes true
-  zstyle ':completion:*' verbose true
-  zstyle ':completion:*:processes' list-colors '=(#b)(?????)(#B)?????????????????????????????????([^ ]#/)#(#b)([^ /]#)*=00=01;31=01;33'
+zstyle ':completion:*' squeeze-slashes true
+zstyle ':completion:*' verbose true
+zstyle ':completion:*:processes' list-colors '=(#b)(?????)(#B)?????????????????????????????????([^ ]#/)#(#b)([^ /]#)*=00=01;31=01;33'
 
 ## General completion technique
 ## complete as much u can ..
-  zstyle ':completion:*' completer _complete _list _oldlist _expand _ignored _match _correct _approximate _prefix
+zstyle ':completion:*' completer _list _oldlist _expand _complete _ignored _match _correct _approximate _prefix
 ## complete less
 #zstyle ':completion:*' completer _expand _complete _list _ignored _approximate
 ## complete minimal
@@ -193,17 +191,17 @@ if [ x$plateforme != "xSunOS" ]; then
 ## allow one error
 #zstyle ':completion:*:approximate:*' max-errors 1 numeric
 #20 may be too much.. taking too much time
-  zstyle ':completion:*' max-errors 4
+zstyle ':completion:*' max-errors 4
 ## allow one error for every three characters typed in approximate completer
 #zstyle -e ':completion:*:approximate:*' max-errors \
 #    'reply=( $(( ($#PREFIX+$#SUFFIX)/3 )) numeric )'
 
 # formatting and messages
-  zstyle ':completion:*:descriptions' format $'%{\e[0;31m%}%d%{\e[0m%}'
-  zstyle ':completion:*:messages' format $'%{\e[0;31m%}%d%{\e[0m%}'
-  zstyle ':completion:*:warnings' format $'%{\e[0;31m%}No matches for: %d%{\e[0m%}'
-  zstyle ':completion:*:corrections' format $'%{\e[0;31m%}%d (errors: %e)%{\e[0m%}'
-  zstyle ':completion:*' group-name ''
+zstyle ':completion:*:descriptions' format $'%{\e[0;31m%}%d%{\e[0m%}'
+zstyle ':completion:*:messages' format $'%{\e[0;31m%}%d%{\e[0m%}'
+zstyle ':completion:*:warnings' format $'%{\e[0;31m%}No matches for: %d%{\e[0m%}'
+zstyle ':completion:*:corrections' format $'%{\e[0;31m%}%d (errors: %e)%{\e[0m%}'
+zstyle ':completion:*' group-name ''
 
 ## determine in which order the names (files) should be
 ## listed and completed when using menu completion.
@@ -215,40 +213,40 @@ if [ x$plateforme != "xSunOS" ]; then
 ## `reverse' to sort in decreasing order
 ## If the style is set to any other value, or is unset, files will be
 ## sorted alphabetically by name.
-  zstyle ':completion:*' file-sort name
+zstyle ':completion:*' file-sort name
 
 ## how many completions switch on menu selection
 ## use 'long' to start menu compl. if list is bigger than screen
 ## or some number to start menu compl. if list has that number
 ## of completions (or more).
-  zstyle ':completion:*' menu select=long
+zstyle ':completion:*' menu select=long
 
 ## case-insensitive (uppercase from lowercase) completion
 #zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 ## case-insensitive (all) completion
-  zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 ## case-insensitive,partial-word and then substring completion
 #zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 ## offer indexes before parameters in subscripts
-  zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
+zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 
 ## insert all expansions for expand completer
-  zstyle ':completion:*:expand:*' tag-order all-expansions
+zstyle ':completion:*:expand:*' tag-order all-expansions
 
 ## ignore completion functions (until the _ignored completer)
-  zstyle ':completion:*:functions' ignored-patterns '_*'
+zstyle ':completion:*:functions' ignored-patterns '_*'
 
 ## completion caching
   #zstyle ':completion::complete:*' use-cache 1
-  zstyle ':completion::complete:*' use-cache 1
-  zstyle ':completion::complete:*' cache-path ~/.zcompcache/$HOST
+zstyle ':completion::complete:*' use-cache 0
+zstyle ':completion::complete:*' cache-path ~/.zcompcache/$HOST
 
 ## add colors to completions
-  zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
-fi
+
 
 #after compinit
 #dont want which to report alias

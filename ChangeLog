@@ -1,4 +1,7 @@
 2009-01-25  Cedric GESTES  <ctaf42@gmail.com>
+	* etc/zsh/zshconf : always expand completion if possible
+
+2009-01-25  Cedric GESTES  <ctaf42@gmail.com>
 	* etc/emacs/color.emacs : emacs 23 tweak
 
 2009-01-22  Cedric GESTES  <ctaf42@gmail.com>
