@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Thu May 11 19:53:25 2006 GESTES Cedric
-;; Last update Sat Jun 28 12:04:02 2008 GESTES Cedric
+;; Last update Sun Jan 25 15:17:35 2009 ctaf42
 ;;
 ;; source: http://blog.pettomato.com/content/site-lisp/.emacs
 (message ".")
@@ -150,6 +150,7 @@
    '(list-mode-item-selected ((t (:background "gold"))))
    '(makefile-space-face ((t (:background "wheat"))))
 ;;   '(modeline ((t (:background "Navy"))))
+   '(paren-face-match-light ((((class color)) (:background "ARGB23d8eeee"))))
    '(paren-match ((t (:background "darkseagreen4"))))
    '(region ((t (:background "DarkSlateBlue"))))
    '(show-paren-match-face ((t (:foreground "black" :background "wheat"))))
