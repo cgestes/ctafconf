@@ -1,3 +1,6 @@
+2009-01-26  Cedric GESTES  <ctaf42@gmail.com>
+	* bin/colormake.pl: better color on template error
+
 2009-01-25  Cedric GESTES  <ctaf42@gmail.com>
 	* etc/zsh/zshconf : always expand completion if possible
 

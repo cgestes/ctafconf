@@ -76,6 +76,9 @@ while (<>)
     $thisline =~ s|^(.*:\s*)(\d+\s*:\s*)(erreur\s*:\s+)(.*)|$col_filename$1$col_linenum$2$col_underline$col_error$3$col_norm$col_purple$4$col_default|x;
     #filename: 123: warning: ...
     $thisline =~ s|^(.*:\s*)(\d+\s*:\s*)(attention\s*:\s+)(.*)|$col_filename$1$col_linenum$2$col_underline$col_warning$3$col_norm$col_brighten$col_purple$4$col_default|x;
+    #filename: 123:
+    $thisline =~ s|^(.*:\s*)(\d+\s*:\s*)()(.*)|$col_filename$1$col_linenum$2$col_underline$col_warning$3$col_norm$col_brighten$col_purple$4$col_default|x;
+
     $thisline =~ s|^(.*:\s*)(\d+\s*:\s*)(warning\s*:\s+)(.*)|$col_filename$1$col_linenum$2$col_underline$col_warning$3$col_norm$col_brighten$col_purple$4$col_default|x;
 
     print $thisline;
