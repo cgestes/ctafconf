@@ -1,3 +1,6 @@
+2009-02-06  Cedric GESTES  <gestes@aldebaran-robotics.com>
+	* etc/emacs/templates/makefile.tpl: more c++ friendly, added automatic dependencies
+
 2009-01-25  Cedric GESTES  <ctaf42@gmail.com>
 	* etc/zsh/zshconf : always expand completion if possible
 
