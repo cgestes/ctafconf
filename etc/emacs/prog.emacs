@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 01:14:21 2006 GESTES Cedric
-;; Last update Wed Jun  4 11:29:09 2008 Cedric GESTES
+;; Last update Fri Feb 27 11:17:35 2009 Cedric GESTES
 ;;
 (message ".")
 (message "ctafconf loading: PROG.EMACS")
@@ -185,6 +185,14 @@
       (add-to-list 'auto-mode-alist '("\\.tig$" . tiger-mode)))
   (error
    (message "Cannot load tiger %s" (cdr err))))
+
+;;provide the tiger mode
+(condition-case err
+    (progn
+      (require 'lua-mode nil t)
+      (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode)))
+  (error
+   (message "Cannot load lua %s" (cdr err))))
 
 ;;tuareg-mode CAML
 (condition-case err

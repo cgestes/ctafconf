@@ -1,3 +1,6 @@
+2009-02-27  Cedric GESTES  <gestes@aldebaran-robotics.com>
+	* etc/emacs/prog.emacs (err): added support for lua
+
 2009-02-06  Cedric GESTES  <gestes@aldebaran-robotics.com>
 	* etc/emacs/templates/makefile.tpl: more c++ friendly, added automatic dependencies
 
