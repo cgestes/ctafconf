@@ -23,9 +23,9 @@ home = os.getenv("HOME")
 -- The default is a dark theme
 --theme_path = "/usr/share/awesome/themes/default/theme"
 -- Uncommment this for a lighter theme
-theme_path = "/usr/share/awesome/themes/sky/theme"
+--theme_path = "/usr/share/awesome/themes/sky/theme"
 
---theme_path = home .. "/.config/awesome/themes/default/theme"
+theme_path = home .. "/.config/awesome/themes/default/theme"
 
 -- Actually load theme
 beautiful.init(theme_path)
@@ -93,7 +93,7 @@ use_titlebar = false
 -- {{{ Tags
 -- Define tags table.
 -- }}}
-tags_name   = { "main", "www", "mail", "prog", "im", "float"}
+tags_name   = { "1:main", "2:www", "3:mail", "4:prog", "5:im", "6:float"}
 tags_layout = { 1     , 8    , 8     ,  8    , 12  ,   12   }
 
 tags = {}
@@ -268,11 +268,50 @@ keybinding({ modkey }, "c", function () if client.focus then client.focus:kill()
 --keybinding({ "Alt" }, "c", function () if client.focus then client.focus:kill() end end):add()
 
 
-keybinding({ modkey, "Shift" }, "Left", awful.tag.viewprev):add()
-keybinding({ modkey, "Shift" }, "Right", awful.tag.viewnext):add()
+keybinding({ modkey, "Shift" }, "Left",
+           function ()
+              if client.focus then
+                 awful.tag.viewidx(-1, client.focus.screen)
+              else
+                 awful.tag.viewidx(-1)
+              end
+           end):add()
 
-keybinding({ modkey }, "Up", function () awful.screen.focus(1) end):add()
-keybinding({ modkey }, "Down", function () awful.screen.focus(-1) end):add()
+keybinding({ modkey, "Shift" }, "Right",
+           function ()
+              if client.focus then
+                 awful.tag.viewidx(1, client.focus.screen)
+              else
+                 awful.tag.viewidx(1)
+              end
+           end):add()
+
+
+local capi =
+{
+    screen = screen,
+    client = client
+}
+
+--- Give the focus to a screen, and move pointer.
+-- @param i Relative screen number.
+function nomousefocus(i)
+    local s = awful.util.cycle(capi.screen.count(), i)
+    local c = awful.client.focus.history.get(s, 0)
+    if c then capi.client.focus = c end
+
+    -- dont move the mouse => xinemara fail otherwise...
+    -- Move the mouse on the screen
+    -- capi.mouse.screen = s
+end
+
+
+-- keybinding({ modkey }, "Up", function () focus(1) end):add()
+-- keybinding({ modkey }, "Down", function () focus(2) end):add()
+-- keybinding({ modkey }, "Up", function () awful.screen.focus(1) end):add()
+-- keybinding({ modkey }, "Down", function () awful.screen.focus(2) end):add()
+keybinding({ modkey }, "Up", function () nomousefocus(1) end):add()
+keybinding({ modkey }, "Down", function () nomousefocus(2) end):add()
 
 keybinding({ modkey }, "Left", function () awful.client.focus.byidx(-1); if client.focus then client.focus:raise() end end):add()
 keybinding({ modkey }, "Right", function () awful.client.focus.byidx(1);  if client.focus then client.focus:raise() end end):add()
@@ -429,7 +468,7 @@ awful.hooks.manage.register(function (c)
     -- awful.client.setslave(c)
 
     -- Honor size hints: if you want to drop the gaps between windows, set this to false.
-    -- c.honorsizehints = false
+    c.honorsizehints = false
 end)
 
 -- Hook function to execute when arranging the screen.
@@ -450,25 +489,27 @@ awful.hooks.arrange.register(function (screen)
     end
 
     -- Uncomment if you want mouse warping
-    --[[
-    if client.focus then
-        local c_c = client.focus:fullgeometry()
-        local m_c = mouse.coords()
+--     [[
+--     if client.focus then
+--         local c_c = client.focus:fullgeometry()
+--         local m_c = mouse.coords()
 
-        if m_c.x < c_c.x or m_c.x >= c_c.x + c_c.width or
-            m_c.y < c_c.y or m_c.y >= c_c.y + c_c.height then
-            if table.maxn(m_c.buttons) == 0 then
-                mouse.coords({ x = c_c.x + 5, y = c_c.y + 5})
-            end
-        end
-    end
-    ]]
+--         if m_c.x < c_c.x or m_c.x >= c_c.x + c_c.width or
+--             m_c.y < c_c.y or m_c.y >= c_c.y + c_c.height then
+--             if table.maxn(m_c.buttons) == 0 then
+--                 mouse.coords({ x = c_c.x + 5, y = c_c.y + 5})
+--             end
+--         end
+--     end
+--     ]]
 end)
 
 -- Hook called every second
 awful.hooks.timer.register(1, function ()
-   mem = awful.util.pread(home .. "/bin/mem.py")
-   cpu = awful.util.pread(home .. "/bin/cpu.py")
+--    mem = awful.util.pread(home .. "/bin/mem.py")
+--    cpu = awful.util.pread(home .. "/bin/cpu.py")
+   mem = "42"
+   cpu = "42"
    date = os.date()
     mytextbox.text = " | " .. "Mem: " .. mem .. ", Cpu: " .. cpu .. " | " .. date .. " | " end)
 -- }}}
