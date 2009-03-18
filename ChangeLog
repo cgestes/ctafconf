@@ -1,3 +1,6 @@
+2009-03-18  Cedric GESTES  <ctaf42@gmail.com>
+	* etc/emacs/templates : shebang for python template
+
 2009-02-27  Cedric GESTES  <gestes@aldebaran-robotics.com>
 	* etc/emacs/prog.emacs (err): added support for lua
 
