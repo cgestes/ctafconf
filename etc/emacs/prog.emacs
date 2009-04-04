@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 01:14:21 2006 GESTES Cedric
-;; Last update Wed Jun  4 11:29:09 2008 Cedric GESTES
+;; Last update Sat Apr  4 18:03:57 2009 Cedric GESTES
 ;;
 (message ".")
 (message "ctafconf loading: PROG.EMACS")
@@ -40,6 +40,7 @@
     (progn
       (require 'igrep)
 
+
 ;;use default c/h in c-mode
 ;; (put 'igrep-files-default 'c-mode
 ;;      (lambda () "*.[ch]"))
@@ -47,6 +48,13 @@
       )
   (error
    (message "Cannot load igrep %s" (cdr err))))
+
+(condition-case err
+    (progn
+      (require 'yasnippet-bundle)
+      )
+  (error
+   (message "Cannot load yasnippet-bundle %s" (cdr err))))
 
 
 ;;gud/gdb settings

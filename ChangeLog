@@ -1,3 +1,6 @@
+2009-04-04  Cedric GESTES  <ctaf42@gmail.com>
+	* etc/emacs/emacs: added yasnippet
+
 2009-01-26  Cedric GESTES  <ctaf42@gmail.com>
 	* bin/colormake.pl: better color on template error
 
