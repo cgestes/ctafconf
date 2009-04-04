@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Sun Sep 25 21:51:34 2005 GESTES Cedric
-## Last update Tue Sep 30 02:58:16 2008 Cedric GESTES
+## Last update Thu Feb 26 09:49:49 2009 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -168,7 +168,7 @@ fi
 
 ctafconf_wm=$(getvaldef "$ctafconf_wm" 'gnome' )
 SSFT_DEFAULT=$ctafconf_wm
-if ssft_select_single "Window Manager" "Choose your desktop environmment from the list (if you use gdm/kdm this will only change the session named XClient)" random ion3 fluxbox gnome kde xfce4 e16 e17 term aterm; then
+if ssft_select_single "Window Manager" "Choose your desktop environmment from the list (if you use gdm/kdm this will only change the session named XClient)" random ion3 awesome fluxbox gnome kde xfce4 e16 e17 term aterm; then
     ctafconf_wm=$(getvaldef "$SSFT_RESULT" "$ctafconf_wm" )
 fi
 

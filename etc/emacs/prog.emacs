@@ -194,6 +194,14 @@
   (error
    (message "Cannot load tiger %s" (cdr err))))
 
+;;provide the tiger mode
+(condition-case err
+    (progn
+      (require 'lua-mode nil t)
+      (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode)))
+  (error
+   (message "Cannot load lua %s" (cdr err))))
+
 ;;tuareg-mode CAML
 (condition-case err
     (progn

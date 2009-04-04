@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 ##
 ## @FILE-NAME@
 ## Login : <@USER-LOGIN@@@HOST@>

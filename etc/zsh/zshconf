@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 GESTES Cedric
-## Last update Sun Jan 25 15:35:58 2009 ctaf42
+## Last update Thu Mar  5 22:53:47 2009 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -167,7 +167,6 @@ compinit -u
 compdef _gnu_generic df
 compdef _make m ma md mm gm mac make_mute make_real
 compdef _configure c
-
 zstyle ':completion:*' format '%{[32m%}-=> %{[01m%}%d%{[0m%}'
 zstyle ':completion:*' auto-description 'specify: %d'
 #  zstyle ':completion:*' completer _complete _correct _approximate

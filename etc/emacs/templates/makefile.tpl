@@ -33,9 +33,10 @@ INCL  	=		# List of *.h
 ################
 # Optional add #
 ################
+GENDEP= -MD -MP -MF .dep/$(@F).d
 IPATH   = -I.                                 # path of include file
-OBJOPT  = -O2 -Wall -Wstrict-prototypes       # option for obj
-EXEOPT  = -O2 -Wall -Wstrict-prototypes       # option for exe (-lefence ...)
+OBJOPT  = -O2 -Wall $(GENDEP)                 # option for obj
+EXEOPT  = -O2 -Wall $(GENDEP)                 # option for exe (-lefence ...)
 LPATH   = -L.                                 # path for librairies ...
 
 #######################
@@ -53,7 +54,8 @@ MAKE 	?= make
 SHELL	= /bin/sh
 OBJ1 	= $(SRC:.c=.o) 	# WARNING!!! Be careful of your file extensions.
 OBJ2    = $(OBJ1:.cpp=.o)
-OBJS    = $(OBJ2:.cc=.o)
+OBJ3    = $(OBJ2:.cxx=.o)
+OBJS    = $(OBJ3:.cc=.o)
 RM 	= /bin/rm -f
 COMP	= gzip -9v
 UNCOMP	= gzip -df
@@ -70,11 +72,11 @@ MYLDFLAGS = $(LDFLAGS) $(EXEOPT) $(LPATH) $(PKG_LIBS)
 
 all:	$(NAME)
 $(NAME): $(OBJS) $(SRC) $(INCL)
-	$(CC) $(OBJS) $(MYLDFLAGS) -o $(NAME)
+	$(CXX) $(OBJS) $(MYLDFLAGS) -o $(NAME)
 #	$(STRIP) ./$(NAME) # if you debug ,don't strip ...
 
 depend:
-	gcc $(IPATH) -MM $(SRC)
+	$(CXX) $(IPATH) -MM $(SRC)
 
 clean:
 	-$(RM) $(NAME) *.o *~
@@ -109,3 +111,5 @@ syntax-target: $(CHK_SOURCES:.c=.o)
 ################
 # Dependencies #
 ################
+# Include the dependency files, should be the last of the makefile
+-include $(shell mkdir .dep 2>/dev/null) $(wildcard .dep/*)
