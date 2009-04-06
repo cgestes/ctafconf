@@ -1,6 +1,9 @@
 2009-03-20  Cedric GESTES  <ctaf42@gmail.com>
 	* etc/emacs/bindings.emacs: inverted M-Up and M-Down
 
+2009-04-04  Cedric GESTES  <ctaf42@gmail.com>
+	* etc/emacs/emacs: added yasnippet
+
 2009-03-18  Cedric GESTES  <ctaf42@gmail.com>
 	* etc/emacs/templates : shebang for python template
 
