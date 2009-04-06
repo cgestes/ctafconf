@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 01:16:47 2006 GESTES Cedric
-;; Last update Fri May 30 22:45:55 2008 GESTES Cedric
+;; Last update Fri Mar 20 18:17:41 2009 Cedric GESTES
 ;;
 (message ".")
 (message "ctafconf loading: BINDINGS.EMACS")
@@ -30,8 +30,8 @@
 (global-set-key [M-left]       'tabbar-backward-tab)
 (global-set-key [M-right]        'tabbar-forward-tab)
 
-(global-set-key [M-up]       'tabbar-backward-group)
-(global-set-key [M-down]        'tabbar-forward-group)
+(global-set-key [M-up]       'tabbar-forward-group)
+(global-set-key [M-down]        'tabbar-backward-group)
 
 ;; (global-set-key [M-left]       'my-previous-buffer)
 ;; (global-set-key [M-right]        'my-next-buffer)
