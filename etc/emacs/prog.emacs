@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 01:14:21 2006 GESTES Cedric
-;; Last update Sat Apr  4 18:03:57 2009 Cedric GESTES
+;; Last update Tue Apr  7 10:07:04 2009 Cedric GESTES
 ;;
 (message ".")
 (message "ctafconf loading: PROG.EMACS")
@@ -39,7 +39,6 @@
 (condition-case err
     (progn
       (require 'igrep)
-
 
 ;;use default c/h in c-mode
 ;; (put 'igrep-files-default 'c-mode
@@ -222,7 +221,7 @@
 (autoload 'ada-mode "ada-mode" "Major mode for Ada programs" t)
 
 
-;;provide cedet
+;; provide cedet
 (defun ctafconf-cedet ()
     (condition-case err
         (progn
@@ -235,16 +234,17 @@
 	  ;; (semantic-load-enable-guady-code-helpers)
 
           ;;S-SPC for autocompletion
-;;           (global-set-key '[33554464] 'semantic-complete-analyze-inline)
+          ;;(global-set-key '[33554464] 'semantic-complete-analyze-inline)
           (global-set-key '[33554464] 'semantic-complete-analyze-and-replace)
-;;           (global-set-key '[33554464] 'semantic-ia-complete-symbol)
+          ;;(global-set-key '[33554464] 'semantic-ia-complete-symbol)
 
 ;;          (global-set-key '[C-f1] 'semantic-ia-describe-class)
 ;;          (global-set-key '[C-f1] 'semantic-ia-show-doc)
           (global-set-key '[C-f1] 'semantic-ia-show-summary)
 ;;          (global-semantic-show-parser-state-mode 1)
           (global-semantic-decoration-mode 1)
-          (global-srecode-minor-mode 0)
+          (global-srecode-minor-mode 1)
+          (global-semantic-stickyfunc-mode 0)
           ;;load the projet management mode
 ;;           (global-ede-mode 1)
           ;;display a bar with the function name the cursor is in
