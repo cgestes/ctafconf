@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 01:14:21 2006 GESTES Cedric
-;; Last update Sat Apr  4 18:03:57 2009 Cedric GESTES
+;; Last update Sat Apr  4 23:36:35 2009 Cedric GESTES
 ;;
 (message ".")
 (message "ctafconf loading: PROG.EMACS")
@@ -228,8 +228,8 @@
         (progn
           (setq semantic-load-turn-useful-things-on t)
           ;;(setq semantic-load-turn-everything-on t)
-          (load-file "~/.config/ctafconf/etc/emacs/site-lisp/cedet/common/cedet.el")
-	  ;;(load-file "~/src/cedet/common/cedet.el")
+          ;;(load-file "~/.config/ctafconf/etc/emacs/site-lisp/cedet/common/cedet.el")
+	  (load-file "~/src/cvs/cedet/common/cedet.el")
           ;; * This turns on which-func support (Plus all other code helpers)
           (semantic-load-enable-excessive-code-helpers)
 	  ;; (semantic-load-enable-guady-code-helpers)
@@ -243,8 +243,12 @@
 ;;          (global-set-key '[C-f1] 'semantic-ia-show-doc)
           (global-set-key '[C-f1] 'semantic-ia-show-summary)
 ;;          (global-semantic-show-parser-state-mode 1)
-          (global-semantic-decoration-mode 1)
-          (global-srecode-minor-mode 0)
+          ;;(global-semantic-decoration-mode 1)
+
+          ;; remove the bar at the top (allow tabbar to be visible)
+          (global-semantic-stickyfunc-mode 0)
+
+          ;;(global-srecode-minor-mode 0)
           ;;load the projet management mode
 ;;           (global-ede-mode 1)
           ;;display a bar with the function name the cursor is in
@@ -275,8 +279,14 @@
         (progn
           (setq ecb-auto-activate t)
           (setq ecb-tip-of-the-day nil)
-          ;;(require 'ecb nil t)
+
+          (add-to-list 'load-path "/home/ctaf42/src/cvs/ecb")
+          (require 'ecb)
           (require 'ecb-autoloads)
+
+          ;; ;;(require 'ecb nil t)
+	  ;; (load-file "~/src/cvs/cedet/common/cedet.el")
+          ;; (require 'ecb-autoloads)
           )
       (error
        (message "Cannot load ecb %s" (cdr err))))
