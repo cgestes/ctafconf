@@ -1,3 +1,7 @@
+2009-04-18  Cedric GESTES  <ctaf42@gmail.com>
+	* bin/rpurge_*: better name and explicit message
+	* bin/rpurge_python : remove python compiled scripts
+
 2009-04-16  Cedric GESTES  <gestes@aldebaran-robotics.com>
 	* etc/emacs/templates/makefile.tpl: support install
 

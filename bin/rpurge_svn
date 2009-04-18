@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Sun Oct  2 07:23:17 2005 GESTES Cedric
-## Last update Wed Nov 21 10:10:25 2007 GESTES Cedric
+## Last update Sat Apr 18 15:30:02 2009 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -15,7 +15,7 @@ rpurge_svn ()
 {
  (echo removing: ***/\.svn) 2>/dev/null;
  (rm -rf ***/\.svn) 2>/dev/null;
- echo "svn directory recursively purged";
+ echo ".svn directory recursively purged";
 }
 
 rpurge_svn

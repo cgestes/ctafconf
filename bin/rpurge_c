@@ -5,16 +5,16 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Sun Oct  2 07:23:17 2005 GESTES Cedric
-## Last update Wed Nov 21 10:08:12 2007 GESTES Cedric
+## Last update Sat Apr 18 15:27:36 2009 Cedric GESTES
 ##
 ##CTAFCONF
 
 #recursive purge
-rpurge_clean ()
+rpurge_c ()
 {
  (echo removing: ***/*\.o) 2>/dev/null
  (rm -f ***/*\.o) 2>/dev/null;
- echo "directory recursively purged";
+ echo "directory recursively purged from c/c++ compilation objects";
 }
 
-rpurge_clean
+rpurge_c

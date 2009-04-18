@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Sun Oct  2 07:23:17 2005 GESTES Cedric
-## Last update Wed Nov 21 10:11:39 2007 GESTES Cedric
+## Last update Sat Apr 18 15:30:11 2009 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -14,7 +14,7 @@ rpurge_cvs ()
 {
  (echo removing: ***/\.cvs ***/CVS) 2>/dev/null
  (rm -rf ***/\.cvs ***/CVS) 2>/dev/null;
- echo "cvs directory recursively purged";
+ echo ".cvs directory recursively purged";
 }
 
 rpurge_cvs

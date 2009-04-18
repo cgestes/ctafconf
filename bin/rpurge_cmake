@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Sun Oct  2 07:23:17 2005 GESTES Cedric
-## Last update Tue Mar 25 00:03:30 2008 Cedric GESTES
+## Last update Sat Apr 18 15:29:46 2009 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -23,7 +23,7 @@ rpurge_clean_cmake ()
  (rm -rf ***/cmake_install.cmake ) 2>/dev/null;
  (rm -rf ***/Makefile ) 2>/dev/null;
  (rm -rf ***/CMakeCache.txt) 2>/dev/null;
- echo "directory recursively purged";
+ echo "directory recursively purged from cmake generated files";
 }
 
 rpurge_clean_cmake
