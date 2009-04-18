@@ -1,3 +1,9 @@
+2009-04-16  Cedric GESTES  <gestes@aldebaran-robotics.com>
+	* etc/emacs/templates/makefile.tpl: support install
+
+2009-03-20  Cedric GESTES  <ctaf42@gmail.com>
+	* etc/emacs/bindings.emacs: inverted M-Up and M-Down
+
 2009-04-04  Cedric GESTES  <ctaf42@gmail.com>
 	* etc/emacs/emacs: added yasnippet
 

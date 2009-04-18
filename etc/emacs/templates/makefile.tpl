@@ -33,11 +33,11 @@ INCL  	=		# List of *.h
 ################
 # Optional add #
 ################
-GENDEP= -MD -MP -MF .dep/$(@F).d
-IPATH   = -I.                                 # path of include file
-OBJOPT  = -O2 -Wall $(GENDEP)                 # option for obj
-EXEOPT  = -O2 -Wall $(GENDEP)                 # option for exe (-lefence ...)
-LPATH   = -L.                                 # path for librairies ...
+DESTDIR ?= /usr/local
+IPATH    = -I.                                  # path of include file
+LPATH    = -L.                                  # path for librairies ...
+OBJOPT   = -O2 -Wall                            # option for obj
+EXEOPT   = -O2 -Wall                            # option for exe (-lefence ...)
 
 #######################
 # OPTIONAL PKG-CONFIG #
@@ -51,18 +51,22 @@ LPATH   = -L.                                 # path for librairies ...
 CC 	?= gcc
 CXX 	?= g++
 MAKE 	?= make
-SHELL	= /bin/sh
-OBJ1 	= $(SRC:.c=.o) 	# WARNING!!! Be careful of your file extensions.
-OBJ2    = $(OBJ1:.cpp=.o)
-OBJ3    = $(OBJ2:.cxx=.o)
-OBJS    = $(OBJ3:.cc=.o)
-RM 	= /bin/rm -f
-COMP	= gzip -9v
-UNCOMP	= gzip -df
+CP      ?= cp
+SHELL	?= /bin/sh
+RM 	?= /bin/rm -f
+COMP	?= gzip -9v
+UNCOMP	?= gzip -df
 STRIP	?= strip
 
-MYCFLAGS  = $(CFLAGS) $(OBJOPT) $(IPATH) $(PKG_CFLAGS)
-MYLDFLAGS = $(LDFLAGS) $(EXEOPT) $(LPATH) $(PKG_LIBS)
+# WARNING!!! Be careful of your file extensions.
+OBJ1 	 = $(SRC:.c=.o)
+OBJ2     = $(OBJ1:.cpp=.o)
+OBJ3     = $(OBJ2:.cxx=.o)
+OBJS     = $(OBJ3:.cc=.o)
+
+GENDEP    = -MD -MP -MF .dep/$(@F).d
+MYCFLAGS  = $(CFLAGS)  $(OBJOPT) $(IPATH) $(PKG_CFLAGS) $(GENDEP)
+MYLDFLAGS = $(LDFLAGS) $(EXEOPT) $(LPATH) $(PKG_LIBS)   $(GENDEP)
 
 .SUFFIXES: .h.Z .c.Z .h.gz .c.gz .c.z .h.z
 
@@ -77,6 +81,9 @@ $(NAME): $(OBJS) $(SRC) $(INCL)
 
 depend:
 	$(CXX) $(IPATH) -MM $(SRC)
+
+install::
+        $(CP) $(NAME) $(DESTDIR)/bin/
 
 clean:
 	-$(RM) $(NAME) *.o *~

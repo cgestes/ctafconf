@@ -218,7 +218,7 @@ for i = 1, keynumber do
    keybinding({ modkey, "Control" }, tagkeys[i],
               function ()
                  local screen = mouse.screen
-                 if tags[screen][i] then
+                 if tags[sCreen][i] then
                     tags[screen][i].selected = not tags[screen][i].selected
                  end
               end):add()
@@ -246,7 +246,6 @@ keybinding({ modkey }, "Escape", awful.tag.history.restore):add()
 keybinding({ modkey }, "Return", function () awful.util.spawn(terminal) end):add()
 
 keybinding({ modkey }, "F2", function() awful.util.spawn(terminal) end):add()
-
 keybinding({ modkey }, "F5", function() awful.util.spawn("nautilus --no-desktop") end):add()
 keybinding({ modkey }, "F6", function() awful.util.spawn("epiphany") end):add()
 keybinding({ modkey }, "F7", function() awful.util.spawn("thunderbird3") end):add()
