@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 01:14:21 2006 GESTES Cedric
-;; Last update Tue Apr  7 10:07:04 2009 Cedric GESTES
+;; Last update Mon Apr 20 14:23:22 2009 Cedric GESTES
 ;;
 (message ".")
 (message "ctafconf loading: PROG.EMACS")
@@ -158,7 +158,7 @@
 (setq interpreter-mode-alist
       (cons '("python" . python-mode)
             interpreter-mode-alist))
-
+(setq py-indent-offset 2)
 ;;provide the compilation mode
 (condition-case err
     (progn
