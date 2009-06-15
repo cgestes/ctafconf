@@ -5,34 +5,41 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
-## Last update Tue Feb 26 16:17:59 2008 Cedric GESTES
+## Last update Wed May 13 13:28:36 2009 Cedric GESTES
 ##
 ##CTAFCONF
+
+export GIT_PROMPT
+
+autoload colors #zsh/terminfo
+#    if [[ "$terminfo[colors]" -ge 8 ]]; then
+colors
+
+
+bright="\033[m1;"
+dull="\033[m0;"
+for color in BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
+	#eval PR_$color='%{$terminfo[bold]$fg[${(L)color}]%}'
+  eval export PR_$color='%{$fg_no_bold[${(L)color}]%}'
+  eval export PR_BG_$color='%{$bg[${(L)color}]%}'
+  eval export PR_LIGHT_$color='%{$fg_bold[${(L)color}]%}'
+  (( count = $count + 1 ))
+done
+PR_NO_COLOUR="%{$terminfo[sgr0]%}"
+
+git_prompt() {
+  if zgit_isgit ; then
+# $(prompt_wunjo_scm_branch)
+    echo "${PR_BG_BLACK}[GIT$(prompt_wunjo_scm_status)]$PR_NO_COLOUR"
+    echo "\r"
+  fi
+}
 
 
 setprompt () {
 
-    ###
-    # Need this so the prompt will work.
-    setopt prompt_subst
-
-    ###
-    # See if we can use colors.
-
-    autoload colors #zsh/terminfo
-#    if [[ "$terminfo[colors]" -ge 8 ]]; then
-    colors
- #   fi
-    bright="\033[m1;"
-    dull="\033[m0;"
-    for color in BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
-	#eval PR_$color='%{$terminfo[bold]$fg[${(L)color}]%}'
-	eval PR_$color='%{$fg_no_bold[${(L)color}]%}'
-	eval PR_BG_$color='%{$bg[${(L)color}]%}'
-        eval PR_LIGHT_$color='%{$fg_bold[${(L)color}]%}'
-	(( count = $count + 1 ))
-    done
-    PR_NO_COLOUR="%{$terminfo[sgr0]%}"
+  # Need this so the prompt will work.
+  setopt prompt_subst
 
     ###
     # See if we can use extended characters to look nicer.
@@ -47,9 +54,9 @@ setprompt () {
 #     PR_LRCORNER=${altchar[j]:--}
 #     PR_URCORNER=${altchar[k]:--}
 
-###
-# Finally, the prompt.
-PROMPT='$PR_BG_BLACK\
+
+PROMPT='$(git_prompt)\
+$PR_BG_BLACK\
 $PR_LIGHT_MAGENTA%(!.%SROOT%s.$PR_LIGHT_WHITE%n$PR_LIGHT_YELLOW)@$PR_LIGHT_GREEN%m$PR_LIGHT_MAGENTA\
  [%(?.$PR_LIGHT_WHITE$?.$PR_LIGHT_RED% err $?)$PR_LIGHT_MAGENTA]\
  [$PR_LIGHT_BLUE%~$PR_LIGHT_MAGENTA]$PR_NO_COLOUR\
@@ -62,4 +69,5 @@ RPROMPT="[$PR_BG_BLACK$PR_LIGHT_CYAN%D $PR_LIGHT_GREEN%T$PR_NO_COLOUR]"
 PS2=''
 }
 
+prompt_wunjo_setup
 setprompt

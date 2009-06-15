@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
-## Last update Mon Jan  5 11:27:55 2009 Cedric GESTES
+## Last update Wed May 13 11:39:50 2009 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -33,13 +33,15 @@ cat ~/.config/ctafconf/etc/shell/motd
 
 #Prompt
 if [ x$ctafconf_zprompt = x ] || [ x$ctafconf_zprompt = xctaf ] ; then
-    source ~/.config/ctafconf/etc/zsh/zshprompt
+  source ~/.config/ctafconf/etc/zsh/zgitinit.zsh
+  source ~/.config/ctafconf/etc/zsh/prompt_wunjo_setup
+  source ~/.config/ctafconf/etc/zsh/zshprompt
 else
-    autoload -U promptinit
-    promptinit
-    prompt $ctafconf_zprompt
+  autoload -U promptinit
+  promptinit
+  prompt $ctafconf_zprompt
 fi
 
 if [ -f ~/.config/ctafconf/perso/zshrc.mine ]; then
-    source ~/.config/ctafconf/perso/zshrc.mine
+  source ~/.config/ctafconf/perso/zshrc.mine
 fi
