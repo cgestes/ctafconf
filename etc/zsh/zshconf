@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 GESTES Cedric
-## Last update Thu Mar  5 22:53:47 2009 Cedric GESTES
+## Last update Fri Jun 12 16:47:58 2009 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -27,6 +27,11 @@ bindkey -e
 
 #example to bind a key to a command (ctrl+t)
 bindkey -s '^T' 'uptime\n'
+
+#give all in the history completion : up and down search
+# in the history based on the beginning of the line
+bindkey '^[[A' history-beginning-search-backward
+bindkey '^[[B' history-beginning-search-forward
 
 #append the path of a command
 #bindkey "i" expand-cmd-path
