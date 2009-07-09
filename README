@@ -17,7 +17,7 @@ If you dont want to install everything you can backlist package using ct-profile
 there is two way to install the ctafconf, the first one using svn is better as it allow you to update it easily :
 >mkdir .config
 >cd .config
->svn co https://grk.svn.sf.net/svnroot/grk ctafconf
+>git clone git://github.com/ctaf42/ctafconf.git
 >cd ctafconf/bin
 >./ct-installconf
 
