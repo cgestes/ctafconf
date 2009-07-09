@@ -5,13 +5,15 @@
 ## Login   <goctaf@gmail.com>
 ##
 ## Started on  Fri Mar 31 19:54:39 2006 GESTES Cedric
-## Last update Wed Sep 24 14:44:48 2008 Cedric GESTES
+## Last update Thu Jun 25 13:42:35 2009 Cedric GESTES
 ##
 ##use: http://www.intuitive.com/wicked/showscript.cgi?030-agenda.sh
 ##use: http://aplawrence.com/Bofcusm/1455.html
 ##CTAFCONF
 
 agendafile=~/.config/ctafconf/perso/reminder
+
+which cal || exit 2
 
 #max one month
 # yesterday()

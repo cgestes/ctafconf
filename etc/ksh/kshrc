@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Thu Oct  6 04:55:46 2005 GESTES Cedric
-## Last update Fri Dec  7 16:06:00 2007 GESTES Cedric
+## Last update Thu Jul  9 14:30:20 2009 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -16,9 +16,6 @@
 cat ~/.config/ctafconf/VERSION
 echo -n "shell: ksh, "
 cat ~/.config/ctafconf/etc/shell/motd
-
-#date reminder
-~/.config/ctafconf/bin/ct-date
 
 # turn on command line editing mode
 set -o emacs

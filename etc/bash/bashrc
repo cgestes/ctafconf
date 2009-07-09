@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Sep 30 22:08:35 2005 GESTES Cedric
-## Last update Mon Jan  5 11:28:59 2009 Cedric GESTES
+## Last update Thu Jul  9 14:16:22 2009 Cedric GESTES
 ##
 #!/bin/sh
 
@@ -21,9 +21,6 @@ fi
 cat ~/.config/ctafconf/VERSION
 echo -n "shell: bash, "
 cat ~/.config/ctafconf/etc/shell/motd
-
-#date reminder
-~/.config/ctafconf/bin/ct-date
 
 # Bash won't get SIGWINCH if another process is in the foreground.
 # Enable checkwinsize so that bash will check the terminal size when

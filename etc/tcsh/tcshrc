@@ -17,9 +17,6 @@ cat ~/.config/ctafconf/VERSION
 echo -n "shell: tcsh, "
 cat ~/.config/ctafconf/etc/shell/motd
 
-#date reminder
-~/.config/ctafconf/bin/ct-date
-
 umask 022
 
 limit    coredumpsize 0

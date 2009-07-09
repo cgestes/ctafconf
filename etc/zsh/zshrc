@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
-## Last update Wed May 13 11:39:50 2009 Cedric GESTES
+## Last update Thu Jul  9 14:16:14 2009 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -21,9 +21,6 @@ fi
 cat ~/.config/ctafconf/VERSION
 echo -n "shell: zsh, "
 cat ~/.config/ctafconf/etc/shell/motd
-
-#date reminder
-~/.config/ctafconf/bin/ct-date
 
 #alias
 . ~/.config/ctafconf/etc/zsh/zshalias
