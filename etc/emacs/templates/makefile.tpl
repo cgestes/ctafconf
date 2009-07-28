@@ -83,7 +83,7 @@ depend:
 	$(CXX) $(IPATH) -MM $(SRC)
 
 install::
-        $(CP) $(NAME) $(DESTDIR)/bin/
+	$(CP) $(NAME) $(DESTDIR)/bin/
 
 clean:
 	-$(RM) $(NAME) *.o *~
