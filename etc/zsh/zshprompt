@@ -5,16 +5,16 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
-## Last update Tue Aug 11 14:17:18 2009 Cedric GESTES
+## Last update Tue Aug 11 14:55:09 2009 Cedric GESTES
 ##
 ##CTAFCONF
 
+source ~/.config/ctafconf/etc/zsh/zgitinit.zsh
+source ~/.config/ctafconf/etc/zsh/prompt_wunjo_setup
+
 export GIT_PROMPT
 
-autoload colors #zsh/terminfo
-#    if [[ "$terminfo[colors]" -ge 8 ]]; then
-colors
-
+autoload colors && colors
 
 bright="\033[m1;"
 dull="\033[m0;"

@@ -1,0 +1,105 @@
+#!/bin/sh
+## zshstyle for ctafconf in /ctaf/conf/ctafconf/zsh
+##
+## Made by Cedric GESTES
+## Login   <ctaf42@gmail.com>
+##
+## Started on  Tue Aug 11 14:51:10 2009 Cedric GESTES
+## Last update Tue Aug 11 14:53:41 2009 Cedric GESTES
+##
+##CTAFCONF
+
+
+#this function rehash binary (to find new installed program) see completer
+_force_rehash() {
+   (( CURRENT == 1 )) && rehash
+   return 1
+}
+
+zle -N insert-files
+compinit -u
+
+#use --help to complete some cmd (df , ..)
+compdef _gnu_generic df
+#completion alias
+compdef _make m ma md mm gm mac make_mute make_real
+compdef _configure c
+
+zstyle ':completion:*' format '%{[32m%}-=> %{[01m%}%d%{[0m%}'
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' insert-unambiguous true
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' squeeze-slashes true
+zstyle ':completion:*' verbose true
+zstyle ':completion:*:processes' list-colors '=(#b)(?????)(#B)?????????????????????????????????([^ ]#/)#(#b)([^ /]#)*=00=01;31=01;33'
+
+### manual pages are sorted into sections
+zstyle ':completion:*:manuals'       separate-sections true
+zstyle ':completion:*:manuals.(^1*)' insert-sections   true
+
+## General completion technique
+#complete as much u can ..
+#zstyle ':completion:*' completer _list _oldlist _expand _complete _ignored _force_rehash _match _correct _approximate _prefix
+#this completer should be good enough (list and old-list is to be avoided)
+#at the end we rehash and recall expand and complete to find newly installed program
+zstyle ':completion:*' completer _expand _complete _ignored _approximate _prefix _force_rehash _expand _complete
+
+
+# allow one error for every three characters typed in approximate completer
+#zstyle ':completion:*' max-errors 4
+zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX + $#SUFFIX) / 3 )) )'
+
+### functions starting with '_' are completion functions by convention
+### these are not supposed to be called by hand. no completion needed.
+zstyle ':completion:*:(functions|parameters|association-keys)' ignored-patterns '_*'
+
+# formatting and messages
+zstyle ':completion:*:descriptions' format $'%{\e[0;31m%}%d%{\e[0m%}'
+zstyle ':completion:*:messages'     format $'%{\e[0;31m%}%d%{\e[0m%}'
+zstyle ':completion:*:warnings'     format $'%{\e[0;31m%}No matches for: %d%{\e[0m%}'
+zstyle ':completion:*:corrections'  format $'%{\e[0;31m%}%d (errors: %e)%{\e[0m%}'
+zstyle ':completion:*' group-name ''
+
+## determine in which order the names (files) should be
+## listed and completed when using menu completion.
+## `size' to sort them by the size of the file
+## `links' to sort them by the number of links to the file
+## `modification' or `time' or `date' to sort them by the last modification time
+## `access' to sort them by the last access time
+## `inode' or `change' to sort them by the last inode change time
+## `reverse' to sort in decreasing order
+## If the style is set to any other value, or is unset, files will be
+## sorted alphabetically by name.
+zstyle ':completion:*' file-sort name
+
+## how many completions switch on menu selection
+## use 'long' to start menu compl. if list is bigger than screen
+## or some number to start menu compl. if list has that number
+## of completions (or more).
+zstyle ':completion:*' menu select=long
+
+## case-insensitive (all) completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+## case-insensitive,partial-word and then substring completion
+#zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+## offer indexes before parameters in subscripts
+zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
+
+## insert all expansions for expand completer
+zstyle ':completion:*:expand:*' tag-order all-expansions
+
+## ignore completion functions (until the _ignored completer)
+zstyle ':completion:*:functions' ignored-patterns '_*'
+
+## completion caching
+zstyle ':completion::complete:*' use-cache 1
+zstyle ':completion::complete:*' cache-path ~/.zcompcache/$HOST
+zstyle ':completion:*' use-cache  1
+zstyle ':completion:*' cache-path ~/.zcompcache/.cache/
+
+## add colors to completions
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+

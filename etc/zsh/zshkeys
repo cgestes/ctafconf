@@ -1,0 +1,62 @@
+#!/bin/sh
+## zshokeys for ctafconf in /ctaf/conf/ctafconf/zsh
+##
+## Made by Cedric GESTES
+## Login   <ctaf42@gmail.com>
+##
+## Started on  Tue Aug 11 14:51:10 2009 Cedric GESTES
+## Last update Tue Aug 11 14:53:33 2009 Cedric GESTES
+##
+##CTAFCONF
+
+
+#emacs style
+bindkey -e
+
+#example to bind a key to a command (ctrl+t)
+bindkey -s '^T' 'uptime\n'
+
+#give all in the history completion : up and down search
+# in the history based on the beginning of the line
+#Down
+bindkey '^[[A' history-beginning-search-backward
+#Up
+bindkey '^[[B' history-beginning-search-forward
+
+#pageDown
+bindkey "^[[6~" down-line-or-history
+#pageUp
+bindkey "^[[5~" up-line-or-history
+
+autoload run-help
+#Ctrl-H (call man)
+bindkey "^h" run-help
+#Ctrl-X W (call which)
+bindkey "^xw" which-command
+
+#ctrl-e (edit the current command line with an editor)
+autoload edit-command-line && zle -N edit-command-line
+
+bindkey "^xe" edit-command-line
+
+# ### Making sure your keyboard will work on any terminal
+# bindkey "^[[1~" #beginning-of-line
+# bindkey "^[[4~" #end-of-line
+# bindkey "^[[2~" #overwrite-mode
+# bindkey "^[[3~" #delete-char
+# bindkey "^[[6~" #end-of-history
+# bindkey "^[[5~" #beginning-of-history
+# bindkey "^[^I" #reverse-menu-complete
+# bindkey "^[OA" up-line-or-history
+# bindkey "^[[A" up-line-or-history
+# bindkey "^[[B" down-line-or-history
+# bindkey "^[OB" down-line-or-history
+# bindkey "^[OD" #backward-char
+# bindkey "^[OC" #forward-char
+# bindkey "^P"   #history-beginning-search-backward
+# bindkey "^N" #history-beginning-search-forward
+# bindkey "^[[[A" run-help
+# bindkey "^[[[B" #which-command
+# bindkey "^[[[C" #where-is
+# bindkey "^D" list-choices
+
