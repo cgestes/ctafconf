@@ -1,5 +1,11 @@
 2009-08-11  Cedric GESTES  <ctaf42@gmail.com>
 	* etc/shell/env: append color in man
+	* zsh: added bindkey for pageup/pagedown => up/down in history
+	* zsh: better completion (cursor move to the next non-ambiguous letter)
+        * zsh: use cache completion for everything
+	* zsh: complete man page section
+	* zsh: a new shell get the history from all other shell still open!
+	* zsh: dont accept a match if it is ambiguous
 
 2009-07-28  Cedric GESTES  <ctaf42@gmail.com>
 	* etc/emacs/templates/makefile.tpl: fix a problem with tabulation and space
