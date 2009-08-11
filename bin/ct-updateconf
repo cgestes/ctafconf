@@ -24,9 +24,10 @@
 ## Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##
 
+currentcid=$(git rev-list 'HEAD^1..HEAD' 2>/dev/null)
+installcid=$(cat ~/.config/ctafconf/perso/installed 2>/dev/null)
 
-
-if ! diff ~/.config/ctafconf/VERSION ~/.config/ctafconf/perso/VERSION-INSTALLED >/dev/null 2>/dev/null; then
+if ! [ "$currentcid" = "$installcid" ] ; then
   echo "ctafconf update in progress..."
   ~/.config/ctafconf/bin/ct-installconf update
 fi

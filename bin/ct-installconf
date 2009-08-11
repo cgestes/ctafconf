@@ -264,7 +264,8 @@ fi
 if [ x$mode = xupdate ] ; then
   env_mom
   grk_install_all
-  cp ~/.config/ctafconf/VERSION ~/.config/ctafconf/perso/VERSION-INSTALLED
+  currentcid=$(git rev-list 'HEAD^1..HEAD' 2>/dev/null)
+  echo "$currentcid" > ~/.config/ctafconf/perso/installed
   exit 0
 fi
 
@@ -301,7 +302,8 @@ env_mom
 
 grk_install_all
 
-cp ~/.config/ctafconf/VERSION ~/.config/ctafconf/perso/VERSION-INSTALLED
+currentcid=$(git rev-list 'HEAD^1..HEAD' 2>/dev/null)
+echo "$currentcid" > ~/.config/ctafconf/perso/installed
 
 msg="You can change some setting's using ct-profile (for example your zsh prompt, the email used in newly create files in emacs)
 If do not run gdm/kdm, you may want support for xsession/startx, you should remove xsession from the backlist with ct-profile"

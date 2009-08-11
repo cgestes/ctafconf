@@ -1,4 +1,5 @@
 2009-08-11  Cedric GESTES  <ctaf42@gmail.com>
+	* bin/ct-updateconf: autoupdate based on git commit
 	* zsh: splitted config files (options, style, keys)
 	* zshprompt: correct exit status
 	* etc/shell/alias: ka for killall
