@@ -1,4 +1,5 @@
 2009-08-11  Cedric GESTES  <ctaf42@gmail.com>
+	* zsh: splitted config files (options, style, keys)
 	* zshprompt: correct exit status
 	* etc/shell/alias: ka for killall
 	* etc/shell/alias: 644, 755 for fast chmod
