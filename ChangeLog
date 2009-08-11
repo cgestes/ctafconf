@@ -2,7 +2,7 @@
 	* zsh: bigger history to avoid typing the same command again and again
 	* zshalias: added ... .... and ..... alias for ../.. etc.
 	* zsh: find new installed program instead of complaining that the binary doesnt not exist
-	* zsh: ctrl-e to edit the current command line in editor
+	* zsh: ctrl-x e to edit the current command line in editor
 	* zsh: ctrl-x w to call which
 	* etc/shell/env: append color in man
 	* zsh: added bindkey for pageup/pagedown => up/down in history

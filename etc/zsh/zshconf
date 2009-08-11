@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 GESTES Cedric
-## Last update Tue Aug 11 02:41:17 2009 Cedric GESTES
+## Last update Tue Aug 11 02:43:48 2009 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -49,7 +49,7 @@ bindkey "^xw" which-command
 
 #ctrl-e (edit the current command line with an editor)
 autoload edit-command-line && zle -N edit-command-line
-bindkey "^e" edit-command-line
+bindkey "^xe" edit-command-line
 
 # ### Making sure your keyboard will work on any terminal
 # bindkey "^[[1~" #beginning-of-line
