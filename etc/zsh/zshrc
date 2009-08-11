@@ -5,13 +5,15 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
-## Last update Thu Jul  9 14:16:14 2009 Cedric GESTES
+## Last update Tue Aug 11 03:34:12 2009 Cedric GESTES
 ##
 ##CTAFCONF
 
 ## Warning ##
 #never edit this file
 #please edit ~/.config/ctafconf/perso/zshrc.mine
+
+#to start a clean zsh session (without conf) : zsh -fx
 
 # Shell is non-interactive.  Be done now
 if [[ $- != *i* ]] || [ a$HOST = agate-ssh ]; then

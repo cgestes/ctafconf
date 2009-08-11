@@ -1,5 +1,6 @@
 2009-08-11  Cedric GESTES  <ctaf42@gmail.com>
 	* etc/shell/alias: ka for killall
+	* etc/shell/alias: 644, 755 for fast chmod
 	* zsh: bigger history to avoid typing the same command again and again
 	* zshalias: added ... .... and ..... alias for ../.. etc.
 	* zsh: find new installed program instead of complaining that the binary doesnt not exist

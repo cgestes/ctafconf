@@ -50,6 +50,10 @@ alias_set gmake_real '`which gmake`'
 alias_set ka 'killall'
 #alias_set make 'gmake'
 
+# Quick chmod
+alias_set 644 'chmod 644'
+alias_set 755 'chmod 755'
+
 #default alias_set for firefox and thunderbird
 
 null_which mozilla-firefox && alias_set ff 'mozilla-firefox'
