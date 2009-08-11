@@ -47,6 +47,7 @@ alias_set make '~/.config/ctafconf/bin/colorwarper make'
 alias_set make_real '`which make`'
 alias_set gmake '~/.config/ctafconf/bin/colorwarper gmake'
 alias_set gmake_real '`which gmake`'
+alias_set ka 'killall'
 #alias_set make 'gmake'
 
 #default alias_set for firefox and thunderbird
