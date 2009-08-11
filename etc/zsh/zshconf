@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 GESTES Cedric
-## Last update Tue Aug 11 02:27:08 2009 Cedric GESTES
+## Last update Tue Aug 11 02:41:17 2009 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -20,7 +20,8 @@ limit maxproc 512
 
 #completion max size
 #LISTMAX=0    # Only ask if line would scroll off screen
-LISTMAX=1000  # "Never" ask
+#never enter a command already entered once, NEVER!
+LISTMAX=10000  # "Never" ask
 
 #emacs style
 bindkey -e
