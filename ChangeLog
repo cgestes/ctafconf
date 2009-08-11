@@ -1,9 +1,12 @@
 2009-08-11  Cedric GESTES  <ctaf42@gmail.com>
+	* zsh: find new installed program instead of complaining that the binary doesnt not exist
+	* zsh: ctrl-e to edit the current command line in editor
+	* zsh: ctrl-x w to call which
 	* etc/shell/env: append color in man
 	* zsh: added bindkey for pageup/pagedown => up/down in history
 	* zsh: better completion (cursor move to the next non-ambiguous letter)
         * zsh: use cache completion for everything
-	* zsh: complete man page section
+	* zsh: complete man page section (ctrl-h)
 	* zsh: a new shell get the history from all other shell still open!
 	* zsh: dont accept a match if it is ambiguous
 
