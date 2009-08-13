@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
-## Last update Tue Aug 11 14:56:10 2009 Cedric GESTES
+## Last update Thu Aug 13 16:10:00 2009 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -19,24 +19,32 @@
 if [[ $- != *i* ]] || [ a$HOST = agate-ssh ]; then
     return
 fi
+#include global environment
+[ -f ~/.config/ctafconf/etc/shell/env ] && . ~/.config/ctafconf/etc/shell/env sh
 
 cat ~/.config/ctafconf/VERSION
 echo -n "shell: zsh, "
 cat ~/.config/ctafconf/etc/shell/motd
 
+#add our zsh folder to zsh fonction path
+fpath=( $fpath ~/.config/ctafconf/etc/zsh)
+
+
 #alias
-. ~/.config/ctafconf/etc/zsh/zshalias
+autoload -Uz zshalias && zshalias
+#. ~/.config/ctafconf/etc/zsh/zshalias
 
 #General config
-. ~/.config/ctafconf/etc/zsh/zshconf
+autoload -Uz zshconf && zshconf
+#. ~/.config/ctafconf/etc/zsh/zshconf
 
 #Prompt
+autoload -Uz promptinit && promptinit
+
 if [ x$ctafconf_zprompt = x ] || [ x$ctafconf_zprompt = xctaf ] ; then
-  source ~/.config/ctafconf/etc/zsh/zshprompt
+  prompt "ctaf"
 else
-  autoload -U promptinit
-  promptinit
-  prompt $ctafconf_zprompt
+  prompt "$ctafconf_zprompt"
 fi
 
 if [ -f ~/.config/ctafconf/perso/zshrc.mine ]; then
