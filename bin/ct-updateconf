@@ -24,7 +24,7 @@
 ## Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##
 
-currentcid=$(git rev-list 'HEAD^1..HEAD' 2>/dev/null)
+currentcid=$(cd ~/.config/ctafconf ; git rev-list 'HEAD^1..HEAD' 2>/dev/null)
 installcid=$(cat ~/.config/ctafconf/perso/installed 2>/dev/null)
 
 if ! [ "$currentcid" = "$installcid" ] ; then

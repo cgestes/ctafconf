@@ -264,7 +264,7 @@ fi
 if [ x$mode = xupdate ] ; then
   env_mom
   grk_install_all
-  currentcid=$(git rev-list 'HEAD^1..HEAD' 2>/dev/null)
+  currentcid=$(cd ~/.config/ctafconf ; git rev-list 'HEAD^1..HEAD' 2>/dev/null)
   echo "$currentcid" > ~/.config/ctafconf/perso/installed
   exit 0
 fi
@@ -302,7 +302,7 @@ env_mom
 
 grk_install_all
 
-currentcid=$(git rev-list 'HEAD^1..HEAD' 2>/dev/null)
+currentcid=$(cd ~/.config/ctafconf ; git rev-list 'HEAD^1..HEAD' 2>/dev/null)
 echo "$currentcid" > ~/.config/ctafconf/perso/installed
 
 msg="You can change some setting's using ct-profile (for example your zsh prompt, the email used in newly create files in emacs)

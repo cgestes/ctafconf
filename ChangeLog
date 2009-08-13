@@ -1,3 +1,6 @@
+2009-08-13  Cedric GESTES  <ctaf42@gmail.com>
+	* ct-updateconf: always check ctafconf git not the current folder
+
 2009-08-11  Cedric GESTES  <ctaf42@gmail.com>
 	* bin/ct-updateconf: autoupdate based on git commit
 	* zsh: splitted config files (options, style, keys)
