@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Tue Aug 11 14:51:10 2009 Cedric GESTES
-## Last update Tue Aug 11 14:53:41 2009 Cedric GESTES
+## Last update Thu Aug 13 17:29:19 2009 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -15,6 +15,8 @@ _force_rehash() {
    (( CURRENT == 1 )) && rehash
    return 1
 }
+autoload -Uz compinit
+autoload -Uz compdef
 
 zle -N insert-files
 compinit -u
