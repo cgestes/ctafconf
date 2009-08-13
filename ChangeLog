@@ -1,4 +1,7 @@
 2009-08-13  Cedric GESTES  <ctaf42@gmail.com>
+	* prompt_ctaf_setup: refactored zsh compliant prompt
+	* prompt_ctaf_setup: display info from VCS(git, svn, hg, ...)
+	* zshrc: start using autoload
 	* ct-updateconf: always check ctafconf git not the current folder
 
 2009-08-11  Cedric GESTES  <ctaf42@gmail.com>
