@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
-## Last update Thu Aug 13 16:44:23 2009 Cedric GESTES
+## Last update Thu Aug 13 17:31:52 2009 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -14,6 +14,7 @@
 autoload -Uz zgitinit && zgitinit
 autoload -Uz colors   && colors
 autoload -Uz vcs_info && vcs_info
+autoload -Uz add-zsh-hook
 
 ####################################
 # COLORS
@@ -68,8 +69,9 @@ prompt_ctaf_git_tracking_branch()
 #this function is called each time a prompt need to be display
 #this function set the psvar with changing information
 prompt_ctaf_precmd() {
-  vcs_info 'ctaf'
   setopt noxtrace noksharrays localoptions
+  #if the function is not found, fail silently (degraded mode)
+  vcs_info 'ctaf' 2>/dev/null
   psvar=()
   case "$vcs_info_msg_1_" in
     git)

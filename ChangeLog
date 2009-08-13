@@ -3,6 +3,7 @@
 	* prompt_ctaf_setup: display info from VCS(git, svn, hg, ...)
 	* zshrc: start using autoload
 	* ct-updateconf: always check ctafconf git not the current folder
+	* zsh: silent degraded mode when not all feature are found
 
 2009-08-11  Cedric GESTES  <ctaf42@gmail.com>
 	* bin/ct-updateconf: autoupdate based on git commit
