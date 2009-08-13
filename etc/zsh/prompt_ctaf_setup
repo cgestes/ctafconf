@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
-## Last update Thu Aug 13 17:31:52 2009 Cedric GESTES
+## Last update Thu Aug 13 18:08:29 2009 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -13,7 +13,7 @@
 
 autoload -Uz zgitinit && zgitinit
 autoload -Uz colors   && colors
-autoload -Uz vcs_info && vcs_info
+autoload -Uz vcs_info
 autoload -Uz add-zsh-hook
 
 ####################################
@@ -105,13 +105,6 @@ prompt_ctaf_setup () {
 [${PR_LIGHT_BLUE}%~${PR_LIGHT_MAGENTA}]${PR_NO_COLOUR}
 ${PR_BG_BLACK}${PR_LIGHT_WHITE}z${PR_LIGHT_GREEN}%(!.#.$)${PR_NO_COLOUR} "
 
-  #echo "vcsinfo: -${vcs_info_msg_1_}-"
-  if [ "$vcs_info_msg_1_" != "" ] ; then
-    PROMPT="${PR_BG_BLACK}${PR_LIGHT_WHITE}\$psvar[1]${PR_NO_COLOUR}
-${BASE_PROMPT}"
-  else
-    PROMPT="${BASE_PROMPT}"
-  fi
   PROMPT="\$psvar[1]${BASE_PROMPT}"
   RPROMPT="[${PR_BG_BLACK}${PR_LIGHT_CYAN}%D ${PR_LIGHT_GREEN}%T${PR_NO_COLOUR}]"
 
