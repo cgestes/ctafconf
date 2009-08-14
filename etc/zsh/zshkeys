@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Tue Aug 11 14:51:10 2009 Cedric GESTES
-## Last update Tue Aug 11 14:53:33 2009 Cedric GESTES
+## Last update Fri Aug 14 02:19:09 2009 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -36,8 +36,18 @@ bindkey "^xw" which-command
 
 #ctrl-e (edit the current command line with an editor)
 autoload edit-command-line && zle -N edit-command-line
-
 bindkey "^xe" edit-command-line
+
+
+#ctrl-n accept the completion and pass to the next one (usefull to select many files)
+bindkey "^n" accept-and-menu-complete
+
+#ctrl-c in completion menu go back just before completion
+bindkey -N menuselect
+bindkey -M menuselect "^c" undo
+
+autoload zcalc
+bindkey -s "^xc" 'zcalc\n'
 
 # ### Making sure your keyboard will work on any terminal
 # bindkey "^[[1~" #beginning-of-line

@@ -112,6 +112,17 @@ alt+click droit  : resize
 
 
 ===========================================================
+ZSH
+===========================================================
+- ctrl-c in completion menu go back to the text previously enterred
+- up/down search through history (start typing then up/down to see what i mean)
+- pageup/pagedown cycle through history (it does not care about what is already on the command line)
+- ctrl-h call the man for the first word on the command line
+- ctrl-x e edit the current command line in your editor
+- ctrl-x w display the location of the current command
+- ctrl-x c calculator
+
+===========================================================
 UNINSTALL
 ===========================================================
 You will never want to uninstall, after you tried the ctafconf

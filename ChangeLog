@@ -1,3 +1,8 @@
+2009-08-14  Cedric GESTES  <ctaf42@gmail.com>
+	* zsh: ctrl-x c to get a calculator with history
+	* zsh: always use menucomplete
+	* zsh: ctrl-c in the completion menu go back before completion
+
 2009-08-13  Cedric GESTES  <ctaf42@gmail.com>
 	* prompt_ctaf_setup: refactored zsh compliant prompt
 	* prompt_ctaf_setup: display info from VCS(git, svn, hg, ...)

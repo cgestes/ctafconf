@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Tue Aug 11 14:51:10 2009 Cedric GESTES
-## Last update Wed Aug 12 01:31:38 2009 Cedric GESTES
+## Last update Fri Aug 14 02:21:40 2009 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -29,9 +29,9 @@ setopt no_always_to_end         # when complete from middle, move cursor
 #Menu
 #setopt menu_complete		# jump through menus
 setopt automenu			# don't cycle completions
-setopt auto_list
+setopt auto_list                # display a list of completion
 setopt auto_param_keys
-setopt auto_param_slash         #auto add slash when completing path
+setopt auto_param_slash         # auto add slash when completing path
 setopt auto_remove_slash
 
 
@@ -43,8 +43,7 @@ setopt magic_equal_subst
 setopt numericglobsort
 setopt extendedglob             # weird & wacky pattern matching - yay zsh!
 
-#setopt nopromptcr       # don't add \r which overwrites cmd output with no \n
-setopt interactivecomments     # date # comment will work
+setopt interactivecomments      # date # comment will work
 
 # History handling
 setopt append_history           # append to history
