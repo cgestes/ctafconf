@@ -1,4 +1,5 @@
 2009-08-14  Cedric GESTES  <ctaf42@gmail.com>
+	* zshoptions: command line correction desactivated (avoid bug with newly installed program)
 	* zsh: ctrl-x c to get a calculator with history
 	* zsh: always use menucomplete
 	* zsh: ctrl-c in the completion menu go back before completion

@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Tue Aug 11 14:51:10 2009 Cedric GESTES
-## Last update Fri Aug 14 02:21:40 2009 Cedric GESTES
+## Last update Fri Aug 14 15:33:10 2009 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -19,7 +19,10 @@ setopt no_beep #disable beep in zsh
 setopt no_mail_warning
 
 #Completion
-setopt correct                  # spelling correction
+setopt nocorrect                # spelling correction (desactivate otherwise
+                                # correction take the precedence
+                                # on newly installed program
+
 setopt list_ambiguous           # complete as much of a completion until it gets ambiguous.
 setopt norecexact               # recognise exact match even if there are ambiguous matches
 setopt complete_aliases
