@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 root
-## Last update Tue Aug 11 02:38:32 2009 Cedric GESTES
+## Last update Sun Sep  6 21:50:55 2009 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -21,6 +21,9 @@ alias mkdir='nocorrect mkdir'
 alias man='nocorrect man'
 alias gcc='nocorrect gcc'
 alias mkdir='nocorrect mkdir'
+
+autoload zmv
+alias mmv='noglob zmv -W'
 
 #no pattern matching (*, etc are not replaced) on those commands:
 alias find='noglob find'

@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Tue Aug 11 14:51:10 2009 Cedric GESTES
-## Last update Fri Aug 14 02:19:09 2009 Cedric GESTES
+## Last update Thu Aug 20 00:31:03 2009 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -41,13 +41,34 @@ bindkey "^xe" edit-command-line
 
 #ctrl-n accept the completion and pass to the next one (usefull to select many files)
 bindkey "^n" accept-and-menu-complete
+#alt+return
+bindkey "\M-^M" accept-and-menu-complete
 
+#zle menu-complete 2>/dev/null
+#bindkey -N menuselect
 #ctrl-c in completion menu go back just before completion
-bindkey -N menuselect
 bindkey -M menuselect "^c" undo
+#backspace
+#bindkey -M menuselect "^?" undo
+#ctrl+z
+bindkey -M menuselect "^Z" undo
+
+# bindkey "^h" undo-if-not-isearch
+# bindkey "^?" undo-if-not-isearch
+
+# undo-if-not-isearch () {
+#  echo lastsearch: -$LASTSEARCH- widget: -$WIDGET- widget: -$LASTWIDGET- cursor: -$CURSOR-
+#  echo "sdsd"
+#  zle undo
+# # zle backward-delete-char
+# }
+
+# zle -N undo-if-not-isearch
 
 autoload zcalc
 bindkey -s "^xc" 'zcalc\n'
+
+bindkey "^xi" interactive
 
 # ### Making sure your keyboard will work on any terminal
 # bindkey "^[[1~" #beginning-of-line

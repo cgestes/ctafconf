@@ -55,7 +55,22 @@ DOC:
   (setq tramp-default-method "sshx")
   then: c-x c-f /192.168.0.1:files !!!
 
+now:
+  => zsh => git => display number of change not push if tracking branch
+  => zsh profile by folder : http://git.grml.org/?p=grml-etc-core.git;f=etc/zsh/zshrc;hb=HEAD#l1044
+  => emacs : scroll-bar
+
 ===>
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2; tab-width: 2 -*- */
 (require 'grep)
 (grep "grep")
+
+awesome frame work
+==================
+a tag by project
+
+=> a project folder
+=> command for git gui,gitk
+=> command to open emacs
+=> a command to toggle a terminal in the right folder
+

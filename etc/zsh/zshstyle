@@ -5,10 +5,12 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Tue Aug 11 14:51:10 2009 Cedric GESTES
-## Last update Fri Aug 14 01:56:55 2009 Cedric GESTES
+## Last update Tue Sep  1 16:07:17 2009 Cedric GESTES
 ##
 ##CTAFCONF
 
+#preload the completion code (allow tweaking of menucomplete keybindings for eg)
+zmodload -i zsh/complist
 
 #this function rehash binary (to find new installed program) see completer
 _force_rehash() {
@@ -33,7 +35,8 @@ zstyle ':completion:*' insert-unambiguous true
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' squeeze-slashes true
 zstyle ':completion:*' verbose true
-zstyle ':completion:*' menu select    #force menu selection for each completion
+zstyle ':completion:*' menu select
+#zstyle ':completion:*' menu select interactive   #force menu selection for each completion, when completing its possible to type something to search in the completion
 
 zstyle ':completion:*:processes' list-colors '=(#b)(?????)(#B)?????????????????????????????????([^ ]#/)#(#b)([^ /]#)*=00=01;31=01;33'
 

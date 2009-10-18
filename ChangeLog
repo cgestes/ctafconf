@@ -1,3 +1,12 @@
+2009-09-12  Cedric GESTES  <ctaf42@gmail.com>
+	* emacs/template: added .cmake template
+
+2009-09-06  Cedric GESTES  <ctaf42@gmail.com>
+	* etc/zsh/zshalias: add mmv => simple zmv
+
+2009-08-19  Cedric GESTES  <ctaf42@gmail.com>
+	* etc/zsh/zshstyle: added intuitive search in completion menu
+
 2009-08-14  Cedric GESTES  <ctaf42@gmail.com>
 	* zshoptions: command line correction desactivated (avoid bug with newly installed program)
 	* zsh: ctrl-x c to get a calculator with history
