@@ -83,11 +83,13 @@
     ("\\.ad\\(b\\|s\\)$"	. "ada")
     ("\\.ml\\w?$"		. "ml")
     ("[Mm]akefile$"		. "makefile")
-    ("CMakeLists.txt$"		. "cmake")
+    ("CMakeLists.txt$"		. "cmakelist")
+    ("\\.cmake$"		. "cmake")
     ("\\.mk$"			. "makefile")
     ("\\.yy$"			. "yy")
     ("\\.sieve$"		. "sieve")
     ("Makefile.am$"		. "am")
+    ("\\.asciidoc$"		. "asciidoc")
     )
   "Alist specifying text to insert by default into a new file.
 Elements look like (REGEXP . BASENAME); if the new file's name

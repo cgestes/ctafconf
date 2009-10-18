@@ -23,3 +23,37 @@
 ## Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##
 
+##############################
+# Complete this to make it ! #
+##############################
+
+#the project name
+SET(PROJNAME "foobar")
+
+#sources list
+SET(SRC "main.cpp main.h")
+
+#library to link with
+SET(PROJLIB "")
+
+#verbose output?
+SET(CMAKE_VERBOSE_MAKEFILE OFF)
+
+#flags?
+SET(CFLAG -Wall -O2)
+
+###############################
+# The makefile                #
+###############################
+PROJECT(${PROJNAME})
+CMAKE_MINIMUM_REQUIRED(VERSION 2.4)
+
+#add definitions, compiler switches, etc.
+ADD_DEFINITIONS(${CFLAGS})
+
+#do you want an executable or a library?
+ADD_EXECUTABLE(${PROJNAME} ${SRC})
+#ADD_LIBRARY(${PROJNAME} ${SRC})
+
+#need to link to some other libraries ? just add them here
+TARGET_LINK_LIBRARIES(${PROJNAME} ${PROJLIB})
