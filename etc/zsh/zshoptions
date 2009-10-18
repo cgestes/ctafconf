@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Tue Aug 11 14:51:10 2009 Cedric GESTES
-## Last update Wed Aug 19 23:32:11 2009 Cedric GESTES
+## Last update Sun Oct 18 20:54:10 2009 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -32,7 +32,7 @@ setopt no_always_to_end         # when complete from middle, move cursor
 #Menu
 setopt no_menu_complete		# jump through menus
 setopt automenu			# don't cycle completions
-setopt no_auto_list                # display a list of completion
+setopt auto_list                # display a list of completion
 setopt auto_param_keys
 setopt auto_param_slash         # auto add slash when completing path
 setopt auto_remove_slash

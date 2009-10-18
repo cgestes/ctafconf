@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Tue Aug 11 14:51:10 2009 Cedric GESTES
-## Last update Thu Aug 20 00:31:03 2009 Cedric GESTES
+## Last update Sun Oct 18 20:53:00 2009 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -53,6 +53,51 @@ bindkey -M menuselect "^c" undo
 #ctrl+z
 bindkey -M menuselect "^Z" undo
 
+bindkey -M menuselect "^c" undo
+
+
+mef() {
+  zle undo
+  zle undo
+  zle undo
+  zle undo
+#
+}
+zle -N mef
+
+menu-expand-or-interactive-f() {
+  #echo "compstate: $compstate['nmatches']" >> ~/.logg
+  #zle list-choices
+  #zle menu-expand-or-complete
+#   if $compstate['nmatches'] -ge 10 ; then
+#     zle list-choices
+#   #zle menu-complete
+#   #zle menu-expand-or-complete
+#   fi
+#  zle vi-insert
+  #compstate
+}
+
+# zle -N menu-expand-or-interactive menu-expand-or-interactive-f
+zle -C menu-expand-or-interactive menu-expand-or-complete menu-expand-or-interactive-f
+#zle -C menu-expand-or-interactive menu-expand-or-complete toto
+#zle -C menu-expand-or-interactive menu-expand-or-complete mef
+#zle -C menu-expand-or-interactive menu-expand-or-complete menu-expand-or-interactive-f
+
+bindkey -M menuselect "^I" menu-expand-or-interactive
+
+#can you find what that one does?
+#...
+#menu-completion will be switched between interactive and normal using tab
+#if you want to know more... read the zsh code (Src/Zle/complist.c)
+#enjoy!
+#bindkey -M menuselect "^I" vi-insert
+
+#this one could be cool too... when pressing tab the cursor is advanced to the
+#next char after the unambigous part of the search
+#bindkey -M menuselect "^I" menu-expand-or-complete
+
+
 # bindkey "^h" undo-if-not-isearch
 # bindkey "^?" undo-if-not-isearch
 
@@ -68,7 +113,7 @@ bindkey -M menuselect "^Z" undo
 autoload zcalc
 bindkey -s "^xc" 'zcalc\n'
 
-bindkey "^xi" interactive
+#bindkey "^xi" interactive
 
 # ### Making sure your keyboard will work on any terminal
 # bindkey "^[[1~" #beginning-of-line
