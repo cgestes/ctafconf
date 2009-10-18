@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 00:57:16 2006 GESTES Cedric
-;; Last update Thu Mar 20 10:33:08 2008 Cedric GESTES
+;; Last update Sun Oct 18 15:16:19 2009 Cedric GESTES
 ;;
 (message ".")
 (message "ctafconf loading: MODE.EMACS")
@@ -42,6 +42,7 @@
          ("\\.ads\\'" . ada-mode)
          ("\\.e\\'" . eiffel-mode)
          ("\\.pl$" . perl-mode)
+         ("\\.asciidoc$" . doc-mode)
          ) auto-mode-alist))
 ;;IDO MODE
 ;;IDO for find-file, and others
@@ -135,6 +136,15 @@
       )
   (error
    (message "Cannot autoload setnu-mode %s" (cdr err))))
+
+(condition-case err
+    (progn
+      ;; setnu (Show line numbers)
+      (require 'doc-mode)
+      (require 'asciidoc)
+      )
+  (error
+   (message "Cannot autoload doc-mode %s" (cdr err))))
 
 
 
