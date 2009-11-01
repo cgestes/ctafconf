@@ -2,11 +2,10 @@
 ##
 ## vim.grk for ctafconf in /home/ctaf/.ctafconf/etc
 ##
-## Made by GESTES Cedric
-## Login   <ctaf42@gmail.com>
-##
+## Author(s)
+##  - GESTES Cedric <ctaf42@gmail.com>
+##  - MEREJKOWSKY Dimitri
 ## Started on  Tue Apr 11 12:32:11 2006 GESTES Cedric
-## Last update Tue Apr 11 22:35:09 2006 GESTES Cedric
 ##
 
 #--function
@@ -49,8 +48,9 @@ vim_description()
 #0 = not installed
 vim_is_installed()
 {
-    grk_testfile etc/vim/vimrc ~/.vimrc
-    return $?
+  grk_testlink etc/vim/      ~/.vim     &&
+  grk_testfile etc/vim/vimrc ~/.vimrc
+  return $?
 }
 
 #install this package is vim_is_installed return "not installed"
@@ -58,7 +58,7 @@ vim_is_installed()
 #0 = not installed
 vim_install()
 {
-    grk_link etc/vim/vimrc ~/.vimrc
+    grk_file etc/vim/vimrc ~/.vimrc
     grk_link etc/vim/      ~/.vim
     return 0
 }
