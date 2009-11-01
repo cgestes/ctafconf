@@ -22,13 +22,8 @@ fi
 #include global environment
 [ -f ~/.config/ctafconf/etc/shell/env ] && . ~/.config/ctafconf/etc/shell/env sh
 
-cat ~/.config/ctafconf/VERSION
-echo -n "shell: zsh, "
-cat ~/.config/ctafconf/etc/shell/motd
-
 #add our zsh folder to zsh fonction path
 fpath=( $fpath ~/.config/ctafconf/etc/zsh)
-
 
 #alias
 autoload -Uz zshalias && zshalias
