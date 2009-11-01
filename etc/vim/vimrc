@@ -1,23 +1,94 @@
-" Affichage
-set nowrap
+" Yannick LM vim configuration file
+"
 
-" Gestion des espaces
-set autoindent
-set expandtab
-set tabstop=8
-set shiftwidth=2
-set sts=2
-
-" dont be compatible with vim from 1970
 set nocompatible
-
-" show incomplete cmd
+set encoding=utf-8
 set showcmd
-
-" always display last status
-set laststatus=2
-
-" Programmation
+set showmode
+set ruler
 syntax on
-set showmatch
-set fdm=indent
+set backspace=2
+
+" nice menu to navigate through possible completions
+set wildmenu
+
+"set ignorecase
+"set smartcase
+set hlsearch
+set incsearch
+filetype plugin on
+
+set history=10000
+
+set mouse=a
+
+" Tabulations
+set shiftwidth=2
+set expandtab
+set smarttab
+set smartindent
+
+set background=dark
+
+" Matchit !
+runtime! macros/matchit.vim
+
+" smarter J
+set nojoinspaces
+
+" isfname:
+set isfname-==
+
+" 'cd' towards the dir in which is the file edited
+map ,cd :cd %:p:h<CR>
+
+set autowriteall
+
+"""
+"Skeletons :
+
+" First read the skeleton
+autocmd BufNewFile *.rb        0r ~/.config/vim/skeletons/rbskel.rb
+autocmd BufNewFile *.sh        0r ~/.config/vim/skeletons/shskel.sh
+autocmd BufNewFile *.tex       0r ~/.config/vim/skeletons/texskel.tex
+autocmd BufNewFile *.py        0r ~/.config/vim/skeletons/pyskel.py
+autocmd BufNewFile *.html      0r ~/.config/vim/skeletons/htmlskel.html
+
+" Then move to the according line
+autocmd BufNewFile *.rb       :3
+autocmd BufNewFile *.sh       :3
+autocmd BufNewFile *.tex      :16
+autocmd BufNewFile *.html     :12
+
+
+" Vim spell check
+
+cmap spc setlocal spell spelllang=
+
+" Useful plugins:
+runtime! plugin/imaps.vim
+runtime! ftplugin/man.vim
+nnoremap K :Man <cword> <CR>
+
+" Status line
+set laststatus=2
+set statusline=%{VimBuddy()}\ %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+
+
+" Remove menu bar from GUI
+let did_install_default_menus = 1
+
+" Remove trailing whitespaces when saving:
+autocmd bufwritepre * :%s/\s\+$//e
+
+
+" Tell NerdCommenter to shut up:
+let g:NERDShutUp=1
+
+" No more annoying bell
+set visualbell t_vb=
+
+" I always make mistakes in these words
+abbreviate swith switch
+abbreviate wich which
+abbreviate lauch launch

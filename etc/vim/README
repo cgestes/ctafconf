@@ -1,0 +1,48 @@
+Yannick LM's vim configuration files.
+
+
+
+Hi there ;)
+
+Just a few notes about what you're about to find here.
+
+SETUP:
+-----
+
+Best thing to do is to untar the archive in ~/.config,
+and add a symlink ~/.vim -> ~/.config/vim,
+~/.vimrc -> ~/.config/vimrc
+(After having carefully backuped your own settings!)
+
+
+FILES:
+----
+
+vimrc       : some of setting you'll hopefully find useful.
+
+REAMDE      : this file ;)
+colors      : some colorscheme I like (although I'm color-blind ...)
+doc
+ftplugin
+plugin
+skeletons  : use this to put your templates. (see vimrc on how to use it)
+spell
+syntax     : better syntax file for python, and a asccidoc syntax file
+tags
+
+./ftplugin: : Options put here because there are conflicts with vimrc, or
+just because they are too specific
+
+
+./plugin   :  A bunch of plugins that I found useful. Careful! Some of them may
+not be up-to-date, and a few of them are patched ;). However some are necessary
+for this configuration to work properly. (vimbuddy and imaps)
+
+
+tags/python : This goes with the "set tags+=" in ftplugin/python. It contains
+python tags from a regular Pthon2.6 distribution.
+
+.gitignore  : Yes, all of this is versionned with git.
+
+Beware, vimrc contains auto-removing of trailing whitespaces,
+which could be harmful ...

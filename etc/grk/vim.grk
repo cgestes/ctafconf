@@ -58,7 +58,8 @@ vim_is_installed()
 #0 = not installed
 vim_install()
 {
-    grk_file etc/vim/vimrc ~/.vimrc vimrc
+    grk_link etc/vim/vimrc ~/.vimrc
+    grk_link etc/vim/      ~/.vim
     return 0
 }
 
