@@ -48,11 +48,11 @@ set autowriteall
 "Skeletons :
 
 " First read the skeleton
-autocmd BufNewFile *.rb        0r ~/.config/vim/skeletons/rbskel.rb
-autocmd BufNewFile *.sh        0r ~/.config/vim/skeletons/shskel.sh
-autocmd BufNewFile *.tex       0r ~/.config/vim/skeletons/texskel.tex
-autocmd BufNewFile *.py        0r ~/.config/vim/skeletons/pyskel.py
-autocmd BufNewFile *.html      0r ~/.config/vim/skeletons/htmlskel.html
+autocmd BufNewFile *.rb        0r ~/.config/ctafconf/etc/vim/skeletons/rbskel.rb
+autocmd BufNewFile *.sh        0r ~/.config/ctafconf/etc/vim/skeletons/shskel.sh
+autocmd BufNewFile *.tex       0r ~/.config/ctafconf/etc/vim/skeletons/texskel.tex
+autocmd BufNewFile *.py        0r ~/.config/ctafconf/etc/vim/skeletons/pyskel.py
+autocmd BufNewFile *.html      0r ~/.config/ctafconf/etc/vim/skeletons/htmlskel.html
 
 " Then move to the according line
 autocmd BufNewFile *.rb       :3
