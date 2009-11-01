@@ -49,6 +49,7 @@ vim_description()
 vim_is_installed()
 {
   grk_testlink etc/vim/      ~/.vim     &&
+  grk_testfile etc/vim/vimrc ~/.gvimrc  &&
   grk_testfile etc/vim/vimrc ~/.vimrc
   return $?
 }
@@ -59,6 +60,7 @@ vim_is_installed()
 vim_install()
 {
     grk_file etc/vim/vimrc ~/.vimrc
+    grk_file etc/vim/gvimrc ~/.gvimrc
     grk_link etc/vim/      ~/.vim
     return 0
 }
