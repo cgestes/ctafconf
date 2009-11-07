@@ -88,6 +88,9 @@ let g:NERDShutUp=1
 " No more annoying bell
 set visualbell t_vb=
 
+" Disable useless ctrl+space behavior:
+imap <Nul> <Space>
+
 " I always make mistakes in these words
 abbreviate swith switch
 abbreviate wich which
