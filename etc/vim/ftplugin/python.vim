@@ -27,11 +27,3 @@ autocmd bufwritepre * :%s/\s\+$//e
 " Thi is a fix in a quick and dirty way:
 ": syn match dosiniComment "#.*^"
 "
-
-" Using imaps.vim
-
-call IMAP ("ifn",  "if __name__ == \"__main__\":\n<++>",            "python")
-call IMAP ("s." ,  "self.<++>",                                       "python")
-call IMAP ("def",  "def <++>(<++>):\n\t\"\"\"\n<++>\n\"\"\"\n<++>",   "python")
-call IMAP ("fim",  "from <++> import <++>",                           "python")
-
