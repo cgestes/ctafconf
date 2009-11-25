@@ -5,12 +5,12 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 GESTES Cedric
-## Last update Tue Aug 11 14:58:07 2009 Cedric GESTES
+## Last update Wed Nov 25 14:16:24 2009 ctaf42
 ##
 ##CTAFCONF
 
 #forbit bomb fork
-limit maxproc 512
+limit maxproc 255
 #never enter a command already entered once, NEVER!
 LISTMAX=10000
 #Filename suffixes to ignore during completion
