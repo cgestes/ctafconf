@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
-## Last update Thu Aug 13 18:08:29 2009 Cedric GESTES
+## Last update Wed Nov 25 14:14:29 2009 ctaf42
 ##
 ##CTAFCONF
 
@@ -98,7 +98,7 @@ prompt_ctaf_precmd() {
 
 
 prompt_ctaf_setup () {
-  add-zsh-hook precmd prompt_ctaf_precmd
+  add-zsh-hook precmd prompt_ctaf_precmd 2>/dev/null
   BASE_PROMPT="${PR_BG_BLACK}${PR_LIGHT_MAGENTA}%(!.%SROOT%s.${PR_LIGHT_WHITE}%n${PR_LIGHT_YELLOW})\
 @${PR_LIGHT_GREEN}%m${PR_LIGHT_MAGENTA} \
 [%(?.${PR_LIGHT_WHITE}$?.${PR_LIGHT_RED}% err %?)${PR_LIGHT_MAGENTA}] \
