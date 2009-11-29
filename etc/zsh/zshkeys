@@ -30,7 +30,11 @@ bindkey "^[[5~" up-line-or-history
 
 autoload run-help
 #Ctrl-H (call man)
-bindkey "^h" run-help
+# On FreeBSD, backspace sends ^H and hence
+# run-help gets called...
+#
+# Disabling for now
+#bindkey "^h" run-help
 #Ctrl-X W (call which)
 bindkey "^xw" which-command
 
