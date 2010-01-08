@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 root
-## Last update Sun Sep  6 21:50:55 2009 Cedric GESTES
+## Last update Fri Jan  8 01:49:37 2010 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -35,16 +35,6 @@ alias -g "...."="../../.."
 alias -g "....."="../../../.."
 
 
-alias rm='rm -i'
-alias mv='mv -i'
-alias cp='cp -iv'
-alias rmrf='rm -rf'
-
-alias sz='source $HOME/.zshrc'
-
-alias vi='vim'
-alias svi='sudo vim'
-alias cux='chmod +x'
 # More useful than pgrep, I believe
 function psgrep { ps aux | grep "$*"  | grep -v grep ;}
 
@@ -56,10 +46,6 @@ alias ip="wget http://checkip.dyndns.org/ -O - -o /dev/null | perl -e '<STDIN> =
 function cmd {
 	sed -e 's/sudo //' $HOME/.histfile |  cut -d' ' -f1 | sort | uniq -c | sort -rg | head $1
 }
-
-# Screen is nice but options can be a bit hard to remember:
-alias sw='screen -wipe'
-alias sr='screen -RaAd'
 
 
 # Stupid extracer:

@@ -1,4 +1,4 @@
-# !/bin/sh
+#!/bin/sh
 ## alias for alias in /home/ctaf/.ctafconf/etc
 ##
 ## Made by GESTES Cedric
@@ -81,6 +81,7 @@ alias_set wgetr_localhtml 'wget -r -N -l inf -c -np --convert-links -p'
 
 #remove directory
 alias_set rd 'rm -r'
+alias_set rmrf='rm -rf'
 
 #emacs alias_set
 alias_set e 'emacs'
@@ -89,6 +90,15 @@ alias_set enox 'emacs -nw'
 alias_set ne 'emacs -nw'
 #alias_set gnus 'LC_CTYPE=fr_FR emacs -f gnus'
 alias_set gnus 'emacs -nw -f gnus'
+
+#vim
+alias_set vi  'vim'
+alias_set svi 'sudo vim'
+
+# Screen is nice but options can be a bit hard to remember:
+alias sw='screen -wipe'
+alias sr='screen -RaAd'
+
 
 alias_set z "zsh"
 alias_set b "bash"
@@ -100,12 +110,10 @@ alias_set psu 'ps -aux'
 
 #change the user::group of all the file in the home user directory
 alias_set chownr 'chown -R $USER:`id -g -n`'
+alias_set cux    'chmod +x'
 
 #image en fullscreen
 alias_set full 'xv -maxpect'
-
-#vim
-alias_set vi 'vim'
 
 #ghostview
 alias_set gv "gv -resize -center -antialias_set"
