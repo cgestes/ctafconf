@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 root
-## Last update Fri Jan  8 01:56:59 2010 Cedric GESTES
+## Last update Fri Jan  8 02:02:11 2010 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -33,19 +33,5 @@ alias replacer='noglob replacer'
 alias -g "..."="../.."
 alias -g "...."="../../.."
 alias -g "....."="../../../.."
-
-
-# More useful than pgrep, I believe
-function psgrep { ps aux | grep "$*"  | grep -v grep ;}
-
-
-# Get current IP from checkip.dyndns.org
-alias ip="wget http://checkip.dyndns.org/ -O - -o /dev/null | perl -e '<STDIN> =~ m/((\d{1,3}\.){3}\d{1,3})/ && print \"\$1\n\"'"
-
-# Top ten of used commands:
-function cmd {
-	sed -e 's/sudo //' $HOME/.histfile |  cut -d' ' -f1 | sort | uniq -c | sort -rg | head $1
-}
-
 
 
