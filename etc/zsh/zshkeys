@@ -5,10 +5,12 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Tue Aug 11 14:51:10 2009 Cedric GESTES
-## Last update Sun Oct 18 20:53:00 2009 Cedric GESTES
+## Last update Fri Jan  8 01:11:14 2010 Cedric GESTES
 ##
 ##CTAFCONF
-
+#
+#Caution ^H should never be binded
+#
 
 #emacs style
 bindkey -e
@@ -34,7 +36,8 @@ autoload run-help
 # run-help gets called...
 #
 # Disabling for now
-#bindkey "^h" run-help
+bindkey "^xh" run-help
+
 #Ctrl-X W (call which)
 bindkey "^xw" which-command
 
