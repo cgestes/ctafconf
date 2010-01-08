@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 00:57:16 2006 GESTES Cedric
-;; Last update Sun Oct 18 15:16:19 2009 Cedric GESTES
+;; Last update Mon Jan  4 13:19:58 2010 Cedric GESTES
 ;;
 (message ".")
 (message "ctafconf loading: MODE.EMACS")
@@ -35,7 +35,7 @@
          ("\\.cmake\\'" . cmake-mode)
          ("\\SConscript$"   . python-mode)
          ("\\SConstruct$"   . python-mode)
-         ("\\.css$" . html-mode)
+         ("\\.css$" . css-mode)
          ("\\.cfm$" . html-mode)
          ("\\.ml\\w?" . tuareg-mode)
          ("\\.adb\\'" . ada-mode)
