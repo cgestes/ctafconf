@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Thu Oct  6 04:55:46 2005 GESTES Cedric
-## Last update Thu Jul  9 14:30:20 2009 Cedric GESTES
+## Last update Sat Jan  9 02:41:03 2010 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -37,7 +37,7 @@ ls ~/.config/ctafconf/perso/env | null_cmd grep '.env$' && source ~/.config/ctaf
 
 
 if [ -f ~/.config/ctafconf/etc/shell/alias ]; then
-    . ~/.config/ctafconf/etc/shell/alias
+    . ~/.config/ctafconf/etc/shell/alias sh
 fi
 
 if [ -f ~/.config/ctafconf/perso/kshrc.mine ]; then

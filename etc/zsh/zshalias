@@ -5,13 +5,13 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 18 01:52:43 2005 root
-## Last update Fri Jan  8 02:02:11 2010 Cedric GESTES
+## Last update Sat Jan  9 02:39:49 2010 Cedric GESTES
 ##
 ##CTAFCONF
 
 
 #source global alias
-[ -f ~/.config/ctafconf/etc/shell/alias ] && . ~/.config/ctafconf/etc/shell/alias
+[ -f ~/.config/ctafconf/etc/shell/alias ] && . ~/.config/ctafconf/etc/shell/alias sh
 
 #remove autocorrect on those commands:
 alias mv='nocorrect mv'

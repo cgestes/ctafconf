@@ -122,7 +122,7 @@ if ( ! $? ) then
 endif
 
 
-if ( -f ~/.config/ctafconf/etc/shell/alias ) source ~/.config/ctafconf/etc/shell/alias
+if ( -f ~/.config/ctafconf/etc/shell/alias ) source ~/.config/ctafconf/etc/shell/alias sh
 
 if ( -f ~/.config/ctafconf/perso/tcshrc.mine ) source ~/.config/ctafconf/perso/tcshrc.mine
 
