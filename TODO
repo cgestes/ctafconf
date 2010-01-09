@@ -3,14 +3,18 @@
 ########################################
 
 v2.0:
+General:
+  - cleanup as much as possible (emacs, old files)
   - install: backup the first copy of a configfile, the backup will be next to the config file
   - automatic aldebaran mode if running on a box inside aldebaran
   - separate user configuration to file <configfile.rc>.custom next to <configfile.rc>
-  - drop support for csh?
 
 setup:
   - use python for the installation
   - ask if user want to switch it's default shell to zsh
+  - allow ctafconf's src to be elsewhere than .config/ctafconf
+  - store personal information to .config/ctafconf (install link from everywhere), remove the perso folder
+  - simplify setup
 
 GUI:
   - install

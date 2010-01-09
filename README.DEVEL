@@ -151,9 +151,6 @@ emacs (emacs-profile):
 - doxy
 - ...
 
-ct-ssh/ct-repo:
-ssh_gate
-
 
 ---
 - ct-profile edit *.ctprofile , each .ctprofile describe :
@@ -170,22 +167,6 @@ var_description
 var_file (needed?)
 var_type (emacs,csh,sh)
 
-
-===========================================================
-KEYBOARD:
-===========================================================
-ctrl+alt+m      : toggle maximize
-ctrl+alt+t      : toggle decoration
-ctrl+alt+c      : close
-ctrl+alt+k      : kill
-ctrl+alt+f      : toggle fullscreen
-alt+f1          : switch to desktop 1
-alt+f2          : switch to desktop 2
-alt+f3          : switch to desktop 3
-alt+f4          : switch to desktop 4
-
-alt+click gauche : move
-alt+click droit  : resize
 
 
 ===========================================================
