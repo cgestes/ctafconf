@@ -1,3 +1,0 @@
-#!/bin/sh
-
-ssh -t gestes_c@ssh.epita.fr ssh $@

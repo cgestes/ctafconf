@@ -1,7 +1,0 @@
-#!/bin/sh
-#
-#CTAFCONF: save gaim file, => produce a tarball
-#
-
-cd ~
-tar -cvzf ctafconf-gaimsave-`date "+%d%m%Y`.tgz .gaim/accounts.xml .gaim/blist.xml .gaim/prefs.xml .gaim/log
