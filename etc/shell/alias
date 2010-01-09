@@ -9,14 +9,9 @@
 ##
 ##CTAFCONF
 
-####
-## SET equal to " " (tcsh) or "=" (zsh,bash)
-## UNSET
-####
-
 ###
 #global alias
-#used by all shell (zsh, bash, ksh, tcsh)
+#used by all shell (zsh, bash)
 ##
 
 #use + and - to navigate thru cd's dir history
@@ -140,6 +135,25 @@ alias_set ct-vnc 'xvnc4viewer'
 alias_set sudo_real '`which sudo`'
 alias_set sudo 'sudo -H'
 
+#find a .env file
+sz-find-env()
+{
+  cur_dir=$(pwd)/fake
+  while true; do
+    cur_dir=$(dirname ${cur_dir})
+    if [ -f "${cur_dir}/.env" ]; then
+      echo "${cur_dir}/.env"
+      return;
+    fi
+    if [ "${cur_dir}" = "/" ] || [ -z "${cur_dir}" ] ; then
+      break
+    fi
+  done
+  return 1
+}
+#source a .env found in the current or parents directory
+alias_set sz 'sz-find-env >/dev/null && source $(sz-find-env)'
+
 
 #AFTER HERE
 #PLATFORM SPECIFIC STUFF IS USED
@@ -152,9 +166,6 @@ alias_set lg 'ls -F --color=auto | grep'
 
 alias_set grep 'grep --color=auto'
 alias_set grep_real '`which grep`'
-
-shell_type=$1
-test -f ~/.config/ctafconf/etc/shell/alias.${shell_type} && source ~/.config/ctafconf/etc/shell/alias.${shell_type}
 
 #different plateform test
 test -f ~/.config/ctafconf/etc/shell/alias.`uname` && source ~/.config/ctafconf/etc/shell/alias.`uname`

@@ -22,21 +22,3 @@
 #alias available only in sh mode
 echo bingbing
 
-sz-find-env()
-{
-  cur_dir=$(pwd)/fake
-  while true; do
-    cur_dir=$(dirname ${cur_dir})
-    if [ -f "${cur_dir}/.env" ]; then
-      echo "${cur_dir}/.env"
-      return;
-    fi
-    if [ "${cur_dir}" = "/" ] || [ -z "${cur_dir}" ] ; then
-      break
-    fi
-  done
-  return 1
-}
-
-
-alias_set sz 'sz-find-env >/dev/null && source $(sz-find-env)'
