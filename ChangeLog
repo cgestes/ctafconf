@@ -1,3 +1,7 @@
+2010-01-09  Cedric GESTES  <ctaf42@gmail.com>
+	* shell/alias: added sh specific alias
+	* sz: find then source .env files. start from working directory descending to /
+
 2009-09-12  Cedric GESTES  <ctaf42@gmail.com>
 	* emacs/template: added .cmake template
 

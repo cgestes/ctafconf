@@ -10,7 +10,7 @@ v2.0:
 
 setup:
   - use python for the installation
-  - ask if user want to switch it's default shell
+  - ask if user want to switch it's default shell to zsh
 
 GUI:
   - install
@@ -26,7 +26,6 @@ zsh:
     and finding a .zshenv
     this config file should set a variable that would be displayed in the prompt
     to remember the special behaviors of the shell
-  - <.|zs|source-dir> that shell command would allow to spawn a new shell sourcing the folder specific .zshenv or a parent one
 
 
 V1.1.0:
