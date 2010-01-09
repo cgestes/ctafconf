@@ -153,6 +153,9 @@ alias_set lg 'ls -F --color=auto | grep'
 alias_set grep 'grep --color=auto'
 alias_set grep_real '`which grep`'
 
+shell_type=$1
+test -f ~/.config/ctafconf/etc/shell/alias.${shell_type} && source ~/.config/ctafconf/etc/shell/alias.${shell_type}
+
 #different plateform test
 test -f ~/.config/ctafconf/etc/shell/alias.`uname` && source ~/.config/ctafconf/etc/shell/alias.`uname`
 
