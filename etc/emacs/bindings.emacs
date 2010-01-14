@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 01:16:47 2006 GESTES Cedric
-;; Last update Sat Apr  4 22:45:15 2009 Cedric GESTES
+;; Last update Thu Oct  8 15:26:38 2009 Cedric GESTES
 ;;
 (message ".")
 (message "ctafconf loading: BINDINGS.EMACS")
@@ -63,7 +63,7 @@
 
 ;;rotatethough the kill ring
 (global-set-key (kbd "M-y") 'browse-kill-ring)
-(global-set-key "\M-l" 'goto-line)
+;; (global-set-key "\M-l" 'goto-line)
 
 
 (global-set-key [M-return] 'senator-jump)
