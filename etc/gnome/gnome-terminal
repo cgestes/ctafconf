@@ -159,7 +159,7 @@
     <entry>
       <key>profiles/ctafconf/scrollback_lines</key>
       <value>
-        <int>5000</int>
+        <int>50000</int>
       </value>
     </entry>
     <entry>
