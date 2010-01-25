@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
-## Last update Mon Jan  5 11:28:16 2009 Cedric GESTES
+## Last update Mon Jan 25 13:48:08 2010 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -30,7 +30,7 @@ ls ~/.config/ctafconf/perso/env | null_cmd grep '.env$' && source ~/.config/ctaf
 # setopt monitor
 
 
-export HISTSIZE=1000
+export HISTSIZE=50000
 export HISTFILE=~/.zshhistory
 export SAVEHIST=1000
 export BLOCK_SIZE=human-readable
