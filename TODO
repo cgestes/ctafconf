@@ -4,18 +4,21 @@
 
 v2.0:
 General:
+continue to support console tools
+
   - cleanup as much as possible (emacs, old files)
   - install: backup the first copy of a configfile, the backup will be next to the config file
   - automatic aldebaran mode if running on a box inside aldebaran
   - separate user configuration to file <configfile.rc>.custom next to <configfile.rc>
-  - zsh: do not use zshenv (broken on some plateform)
   - osx: do not always install on macosx
   - osx: be smart with cmake, etc..
+  - osx: correct man page
+  - config option to switch from emacs to vim as default editor (and others?)
 
 setup:
   - use python for the installation
-  - ask if user want to switch it's default shell to zsh
-  - allow ctafconf's src to be elsewhere than .config/ctafconf
+  - ask if user want to switch default shell to zsh
+  - do not assume ctafconf's sources are in .config/ctafconf
   - store personal information to .config/ctafconf (install link from everywhere), remove the perso folder
   - simplify setup
 
@@ -30,7 +33,7 @@ GUI:
 
 zsh:
   - allow for automatic sourcing of a config file when entering a directory
-    and finding a .zshenv
+    and finding a .zenv or .env
     this config file should set a variable that would be displayed in the prompt
     to remember the special behaviors of the shell
 
