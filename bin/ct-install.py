@@ -80,29 +80,6 @@ def grk_backup_file(fname, src = None):
     LOGGER.warning("grk_backup_file: %s doest not exits", fname)
     return
 
-  #check if fname and src are identical
-  if src:
-
-    if filecmp.cmp(fname, src):
-      print "identical:", fname, src
-      return
-
-    #TODO
-
-    #f = open(src, "r")
-    #src_content = f.readlines()
-    #f.close()
-    #f = open(fname, "r")
-    #dest_content = f.readlines()
-    #f.close()
-
-    #d = difflib.Differ()
-    #ret = d.compare(src_content, dest_content)
-    #if ret:
-    #  print ret
-    #  return
-
-
   #first installation, create .original
   if not os.path.exists(original):
     LOGGER.info("copy %s to %s", fname, original)
