@@ -8,6 +8,9 @@ General:
   - install: backup the first copy of a configfile, the backup will be next to the config file
   - automatic aldebaran mode if running on a box inside aldebaran
   - separate user configuration to file <configfile.rc>.custom next to <configfile.rc>
+  - zsh: do not use zshenv (broken on some plateform)
+  - osx: do not always install on macosx
+  - osx: be smart with cmake, etc..
 
 setup:
   - use python for the installation
