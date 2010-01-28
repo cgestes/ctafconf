@@ -178,12 +178,43 @@ class GrkSetup:
   pass
 
 class GrkSetupZsh:
-  FILES = [ ( ".zshrc", "etc/zsh/zshrc") ]
+  FILES = [ ( ".zshrc",   "etc/zsh/zshrc") ]
+  #etc/zsh/zshenv ~/.zshenv zshenv
 
 class GrkSetupBash:
-  FILES = [ ( ".bashrc", "etc/bash/bashrc") ]
+  FILES = [ ( ".bashrc",  "etc/bash/bashrc") ]
+
+class GrkSetupNano:
+  FILES = [ (".nanorc",   "etc/nano/nanorc") ]
+
+class GrkSetupTop:
+  FILES = [ (".toprc",    "etc/top/toprc") ]
+
+class GrkSetupEmacs:
+  FILES = [ (".emacs",    "etc/emacs/emacs") ]
+
+class GrkSetupScreen:
+  FILES = [ (".screenrc", "etc/screen/screenrc") ]
+
+class GrkSetupVim:
+  FILES = [ (".vimrc",    "etc/vim/vimrc"),
+            (".gvimrc",   "etc/vim/gvimrc") ]
+
+#   FILES = [ ("~/.fluxbox" "etc/fluxbox/init") ]
+#   FILES = [ ("~/.xinitrc" "etc/xsession/xsession") ]
+#   FILES = [ ("~/.xsession" "etc/xsession/xsession") ]
+#  FILES = [ ("lua" "etc/ion3/ctafconf") ]
+PACKAGES = [ GrkSetupZsh,
+             GrkSetupBash,
+             GrkSetupNano,
+             GrkSetupTop,
+             GrkSetupEmacs,
+             GrkSetupScreen,
+             GrkSetupVim ]
 
 if __name__ == "__main__":
-  grk = GrkSetupZsh()
-  grk_install(grk)
+
+
+  for grk in PACKAGES:
+    grk_install(grk)
 
