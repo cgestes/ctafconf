@@ -42,8 +42,7 @@ replacer [options]  PATTERN REPL [files]
 
 eg:
   replacer 'toto' 'titi'
-  replacer '(.*)toto([0-9]{0,3})' '\1titi\2'
-  replacer --filter .py 'toto' 'titi'
+  replacer '(.*)toto([0-9]{0,3})' '\\1titi\\2'
 
 Files matching %s are discarded.
 """ % (str(FILTER_OUT))
