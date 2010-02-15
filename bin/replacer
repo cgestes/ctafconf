@@ -1,97 +1,207 @@
-#!/usr/bin/env zsh
-## shfunction for ctafconf in /home/ctaf/.ctafconf
+#!/usr/bin/env python
 ##
-## Made by GESTES Cedric
-## Login   <ctaf42@gmail.com>
+## Author(s):
+##  - Dimitri MEREJKOWSKY <yannicklm1337@gmail.com>
+##  - Cedric GESTES <ctaf42@gmail.com>
 ##
-## Started on  Sun Oct  2 07:23:17 2005 GESTES Cedric
-## Last update Mon Feb 11 01:02:50 2008 GESTES Cedric
+## Original Implementation provided by Dimitri
 ##
-##CTAFCONF
 
-action=$1
-action2=$2
+"""
+Quick script to replace stuff in files
 
-#recursive replace all occurence by another in all file of the current folder
-replacer ()
-{
-  local ext1=".9pl9.replacer.bak"
+"""
 
-  recurse_file . | grep -v "$ext1" | while read file; do
+import sys
+import os
+import re
+import random
+import logging
+import fnmatch
 
-    if ! perl -pi"$ext1" -e "$action2" "$file" ; then
-      exit 1;
-    fi
-    if ! diff -q "$file$ext1" "$file" >/dev/null 2>/dev/null ; then
-      echo "replacing in file: $file"
-    else
-      #no change we remove the backup
-      rm "$file$ext1"
-    fi
-  done
+from optparse import OptionParser
+
+COLORS = {
+    "bold"    :  "\033[1m"  ,
+    "clear"   :  "\033[0m"  ,
+    "red"     :  "\033[31m" ,
+    "green"   :  "\033[32m" ,
+    "blue"    :  "\033[34m" ,
 }
 
+FILTER_OUT = (
+    ".git"    ,
+    ".svn"    ,
+    "*.py[co]",
+    "*.[oa]"  ,
+    "*~"
+)
 
-#recursive replace all occurence by another in all file of the current folder
-replacer_dry ()
-{
-  local ext1=".orig"
-  local ext2=".9pl9.changed"
+__usage__ = """
+replacer [options]  PATTERN REPL [files]
 
-  recurse_file . | grep -v "$ext1" | grep -v "$ext2" | while read file; do
-    cp "$file" "$file$ext2"
-    if ! perl -pi"$ext1" -e "$action" "$file$ext2" >/dev/null; then
-      rm "$file$ext2"
-      rm "$file$ext2$ext1"
-      exit 1;
-    fi
+eg:
+  replacer 'toto' 'titi'
+  replacer '(.*)toto([0-9]{0,3})' '\1titi\2'
+  replacer --filter .py 'toto' 'titi'
 
-    #are the file different?
-    if ! diff -q "$file$ext2$ext1" "$file$ext2" >/dev/null 2>/dev/null ; then
-      diff -U 0 "$file$ext2$ext1" "$file$ext2" | ~/.config/ctafconf/bin/colorsvn.pl
-    fi
-    rm "$file$ext2"
-    rm "$file$ext2$ext1"
-  done
-}
+Files matching %s are discarded.
+""" % (str(FILTER_OUT))
+
+LOGGER = logging.getLogger("replacer")
+
+def recurse_file(opts, directory, action):
+    """
+    Recusively go do the subdirectories of the directory,
+    calling the action on each file
+
+    """
+    for f in os.listdir(directory):
+        if opts.get("no_hidden") and f.startswith("."):
+            LOGGER.info("filter hidden  : %s/%s", directory, f)
+            continue
+        filter_out = False
+        if not opts.get("no_filter"):
+            for fo in FILTER_OUT:
+                if fnmatch.fnmatch(f, fo):
+                    LOGGER.info("filter %s: %s/%s", fo, directory, f)
+                    filter_out = True
+                    break
+        if filter_out:
+            continue
+        f = os.path.join(directory, f)
+        if os.path.isdir(f):
+            recurse_file(opts, f, action)
+        if os.path.isfile(f):
+            action(f)
 
 
-recurse_file ()
-{
-  local arg="$1"
-  local i=""
-  local fn=""
+def replace_in_file(opts, in_file, regexp, repl):
+    """
+    Perfoms re.sub(regexp, repl, line) for each line in
+    in_file
+    """
+    in_fd = open(in_file, "r")
+    in_lines = in_fd.readlines()
+    in_fd.close()
 
-  ls "$arg" 2>/dev/null | while read i; do
-    fn="$arg/$i"
-    if [ -d "$fn" ]; then
-      recurse_file "$fn";
-    elif [ -f "$fn" ]; then
-      echo "$fn";
-    fi;
-  done;
-}
+    out_lines = in_lines[:]
+    out_lines = [re.sub(regexp, repl, l) for l in in_lines]
 
-if [ x$action = x-h ] || [ x$action = x ] ; then
-  echo "usage: replacer [--clean][--go] perlregexp"
-  echo ""
-  echo "replacer create .9pl9.replacer.bak for each file it modify"
-  echo "when you are sure your modification are good, call replacer with --go"
-  echo "to cleanup backup file run:"
-  echo "> replacer --clean"
-  echo ""
-  echo "example to replace foo by bar: replacer s/foo/bar/g"
-  echo "or                           : replacer s-foo-bar-g"
-  echo "or (case insensitive)        : replacer s/foo/bar/gi"
-  exit 0
-elif [ x$action = x--clean ] ; then
-  rm -rf "***/*.9pl9.replacer.bak"
-  echo "directory clean up (all backup removed)"
-  exit 0
-elif [ x$action = x--go ] ; then
-  replacer
-  exit 0
-else
-  replacer_dry
-fi
+    diff = False
+
+    # See if there's a diff first:
+    for (in_line, out_line) in zip(in_lines, out_lines):
+        if in_line != out_line:
+            diff = True
+
+    if not diff:
+        return
+
+    if not opts.get("quiet"):
+        print COLORS["bold"] + COLORS["blue"] + "patching: " + in_file + COLORS["clear"]
+    if opts.get("go"):
+        if opts.get("backup"):
+            rand_int = random.randint(100,999)
+            back_file = "%s-%i.back" % (in_file, rand_int)
+            back_file_fd = open(back_file, "w")
+            back_file_fd.writelines(in_lines)
+            back_file_fd.close()
+        out_fd = open(in_file, "w")
+        out_fd.writelines(out_lines)
+        out_fd.close()
+
+    if opts.get("quiet"):
+        return
+
+    for (in_line, out_line) in zip(in_lines, out_lines):
+        if in_line != out_line:
+            in_line  = in_line.strip()
+            out_line = out_line.strip()
+            print COLORS["bold"] + COLORS["red"]   + "--" + in_line  + COLORS["clear"]
+            print COLORS["bold"] + COLORS["green"] + "++" + out_line + COLORS["clear"]
+            print
+
+
+def main():
+    """
+    manages options when called from command line
+
+    """
+    option_parser = OptionParser(usage = __usage__)
+    option_parser.add_option("--no-skip-hidden",
+        action = "store_false", dest = "no_hidden",
+        help = "Do not skip hidden files. Use this if you know what you are doing...")
+    option_parser.add_option("--no-filter", action = "store_true", dest = "no_filter",
+                             help = "Do not skip files that match the filter")
+    option_parser.add_option("-d", "--debug",
+        action = "store_true", dest = "debug",
+        help = "Enable debug output")
+    option_parser.add_option("--backup",
+        action = "store_true", dest = "backup",
+        help = "Create a backup for each file. This is the default")
+    option_parser.add_option("--no-backup",
+        action = "store_false", dest = "backup",
+        help = "Do not create backups")
+    option_parser.add_option("--go",
+        action = "store_true", dest = "go",
+        help = "Perform changes rather than just printing then")
+    option_parser.add_option("--dry-run", "-n",
+        action = "store_false", dest = "go",
+        help = "Do not change anything. This is the default")
+    option_parser.add_option("--color",
+        action = "store_false", dest = "color",
+        help = "Colorize output. This is the default")
+    option_parser.add_option("--no-color",
+        action = "store_false", dest = "color",
+        help = "Do not colorize output")
+    option_parser.add_option("--quiet", "-q",
+        action = "store_true", dest = "quiet",
+        help = "Do not produce any output")
+
+    option_parser.set_defaults(
+        no_hidden = True,
+        no_filter = False,
+        backup    = True,
+        go        = False,
+        color     = True,
+        debug     = False,
+        quiet     = False)
+
+    (opts_obj, args) = option_parser.parse_args()
+
+    opts = vars(opts_obj)
+
+    if not opts.get("color"):
+        for k in COLORS.iterkeys():
+            COLORS[k] = ""
+
+    if opts.get("debug"):
+        logging.basicConfig(level=logging.DEBUG)
+
+    if len(args) < 2:
+        print "Wrong number of arguments"
+        print __usage__
+        sys.exit(2)
+
+    pattern = args[0]
+    repl    = args[1]
+
+    regexp = re.compile(pattern)
+
+    def repl_action(f):
+        return replace_in_file(opts, f, regexp, repl)
+
+    if len(args) > 3:
+        files = args[2:]
+        for f in files:
+            repl_action(f)
+    else:
+        recurse_file(opts, os.getcwd(), repl_action)
+
+
+
+if __name__ == "__main__":
+    main()
+
 
