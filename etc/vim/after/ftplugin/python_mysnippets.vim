@@ -4,7 +4,7 @@ endif
 
 Snippet . self.<{}>
 
-Snippet ifn if __name__ = "__main__":<CR><{}>
+Snippet ifn if __name__ == "__main__":<CR><{}>
 
 Snippet def def <{}>(<{}>):<CR><TAB>"""<CR><{}><CR>"""<CR><{pass}><CR><{}>
 
