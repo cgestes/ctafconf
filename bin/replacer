@@ -34,6 +34,7 @@ FILTER_OUT = (
     ".svn"    ,
     "*.py[co]",
     "*.[oa]"  ,
+    "*.back"  ,
     "*~"
 )
 
