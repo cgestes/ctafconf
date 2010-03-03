@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
-## Last update Wed Feb 17 19:13:35 2010 Cedric GESTES
+## Last update Wed Mar  3 10:33:46 2010 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -97,8 +97,8 @@ prompt_ctaf_precmd() {
   if ! [ -z $CTAFCONF_ENV ] ; then
     psvar[2]="${PR_NO_COLOUR}/${PR_LIGHT_RED}${CTAFCONF_ENV}"
   fi
-  if ! [ -z $SCHROOT_SESSION_ID ] ; then
-    psvar[2]="${PR_LIGHT_YELLOW}:CHROOT${PR_NO_COLOUR}$psvar[2]"
+  if ! [ -z $SCHROOT_COMMAND ] ; then
+    psvar[2]="${PR_LIGHT_YELLOW}:SCHROOT${PR_NO_COLOUR}$psvar[2]"
   fi
 }
 
