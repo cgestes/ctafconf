@@ -28,8 +28,10 @@ arg=$1
 
 
 if [ ${arg} -ge 0 -a ${arg} -le 255 ] 2>/dev/null; then
-  ssh "root@10.0.252.${arg}"
+  ssh-keygen -R "10.0.252.${arg}"
+  ssh -o StrictHostKeyChecking=no "nao@10.0.252.${arg}"
 else
-  ssh "root@${arg}.local"
+  ssh-keygen -R "nao@${arg}.local"
+  ssh -o StrictHostKeyChecking=no "nao@${arg}.local"
 fi
 
