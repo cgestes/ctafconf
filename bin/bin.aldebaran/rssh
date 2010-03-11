@@ -24,14 +24,47 @@
 ## Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ##
 
-arg=$1
+COPY_ID=0
+ADDR=""
 
+usage() {
+  echo "rssh [-c] <ip|name>"
+  echo ""
+  echo "  -c : copy the current public keys to the destination authorized_keys"
+  exit 1
+}
 
-if [ ${arg} -ge 0 -a ${arg} -le 255 ] 2>/dev/null; then
-  ssh-keygen -R "10.0.252.${arg}"
-  ssh -o StrictHostKeyChecking=no "nao@10.0.252.${arg}"
+parse_option() {
+  while getopts hc opt ; do
+    case "$opt" in
+      c)
+        COPY_ID=1
+        ;;
+      [?]|h)
+        usage
+        ;;
+    esac
+  done
+  shift $(($OPTIND-1))
+  if ! [ $# -eq 1 ] ; then
+    echo "bad number of argument:" $#
+    usage
+  fi
+  ADDR=$1
+}
+
+parse_option $@
+
+if [ ${ADDR} -ge 0 -a ${ADDR} -le 255 ] 2>/dev/null; then
+  ssh_address="nao@10.0.252.${ADDR}"
 else
-  ssh-keygen -R "nao@${arg}.local"
-  ssh -o StrictHostKeyChecking=no "nao@${arg}.local"
+  ssh_address="nao@${ADDR}.local"
 fi
+
+if [ $COPY_ID -eq 1 ] ; then
+  ssh-copy-id -i ~/.ssh/id_[rd]sa.pub "$ssh_address"
+fi
+
+ssh-keygen -R "$ssh_address"
+ssh -o StrictHostKeyChecking=no "$ssh_address"
 
