@@ -22,21 +22,26 @@ import fnmatch
 from optparse import OptionParser
 
 COLORS = {
-    "clear"       : "\033[0m"  ,
-    "bold"        : "\033[1m"  ,
-    "underline"   : "\033[4m"  ,
+    "clear"         : "\033[0m"  ,
+    "bold"          : "\033[1m"  ,
+    "underline"     : "\033[4m"  ,
 
-    "red"         : "\033[0;31m" ,
-    "light-red"   : "\033[1;31m" ,
+    "red"           : "\033[0;31m" ,
+    "light-red"     : "\033[1;31m" ,
 
-    "green"       : "\033[0;32m" ,
-    "light-green" : "\033[1;32m" ,
+    "green"         : "\033[0;32m" ,
+    "light-green"   : "\033[1;32m" ,
 
-    "blue"        : "\033[0;34m" ,
-    "light-blue"  : "\033[1;34m" ,
+    "blue"          : "\033[0;34m" ,
+    "light-blue"    : "\033[1;34m" ,
+
+    "magenta"       : "\033[0;36m" ,
+    "light-magenta" : "\033[1;36m" ,
+
 }
 
 COLORS_REPLACE = {
+    "pyctx" : COLORS["clear"] + COLORS["light-magenta"],
     "line1" : COLORS["clear"],
     "line2" : COLORS["clear"],
     "line1start" : COLORS["clear"] + COLORS["light-red"],
@@ -91,6 +96,40 @@ def recurse_file(opts, directory, action):
         if os.path.isfile(f):
             action(f)
 
+class Context:
+    """ regexp context """
+    def __init__(self, filename):
+        self.filename = filename
+
+    #VIRTUAL
+    def search(self, line):
+        """ search for a context line """
+        pass
+
+    #VIRTUAL
+    def display(self):
+        """ display a context if needed """
+        pass
+
+class PyContext(Context):
+    def __init__(self, filename):
+        Context.__init__(self, filename)
+        self.regexp     = re.compile("[ \t]*def[ \t].*\(.*\)[ \t]*:")
+        self.match      = None
+        self.displayed  = False
+
+    def search(self, line):
+        """ search for a function or class name """
+        if self.regexp.search(line):
+            self.match     = line
+            self.displayed = False
+
+    def display(self):
+        """ display the current function/class name """
+        if self.displayed:
+            return
+        print "%sIn: %s%s" % (COLORS_REPLACE["pyctx"], self.match.strip(), COLORS["clear"])
+        self.displayed = True
 
 def find_in_file(opts, in_file, regexp):
     """ display math """
@@ -99,12 +138,22 @@ def find_in_file(opts, in_file, regexp):
     in_lines = in_fd.readlines()
     in_fd.close()
 
-    out_lines = [ (ln, l) for l, ln in zip(in_lines, range(len(in_lines))) if re.search(regexp, l) ]
+    if opts.get("pyctx"):
+        pyctx = PyContext(in_file)
+    else:
+        pyctx = Context(in_file)
 
-    if len(out_lines) > 0:
-        if not opts.get("quiet"):
-            print COLORS["bold"] + COLORS["light-blue"] + "file: " + os.path.relpath(in_file) + COLORS["clear"]
-        for ln, out_line in out_lines:
+    display_header = True
+    for out_line, ln in zip(in_lines, range(len(in_lines))):
+        pyctx.search(out_line)
+        if re.search(regexp, out_line):
+            if display_header:
+                if not opts.get("quiet"):
+                    print
+                    print COLORS["bold"] + COLORS["light-blue"] + "file: " + os.path.relpath(in_file) + COLORS["clear"]
+                display_header = False
+
+            pyctx.display()
             out_line = out_line.rstrip()
             match    = re.search(regexp, out_line)
             out_line_color  = out_line[0:match.start()] + COLORS_REPLACE["word1"]
@@ -245,6 +294,9 @@ def main():
     option_parser.add_option("--quiet", "-q",
         action = "store_true", dest = "quiet",
         help = "Do not produce any output")
+    option_parser.add_option("--no-py-ctx",
+        action = "store_false", dest = "pyctx",
+        help = "Do not use the python context")
 
     option_parser.set_defaults(
         no_hidden = True,
@@ -253,7 +305,8 @@ def main():
         go        = False,
         color     = True,
         debug     = False,
-        quiet     = False)
+        quiet     = False,
+        pyctx     = True)
 
     (opts_obj, args) = option_parser.parse_args()
 
@@ -262,6 +315,8 @@ def main():
     if not opts.get("color"):
         for k in COLORS.iterkeys():
             COLORS[k] = ""
+        for k in COLORS_REPLACE.iterkeys():
+            COLORS_REPLACE[k] = ""
 
     if opts.get("debug"):
         logging.basicConfig(level=logging.DEBUG)
