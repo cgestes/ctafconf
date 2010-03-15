@@ -103,8 +103,9 @@ def find_in_file(opts, in_file, regexp):
 
     if len(out_lines) > 0:
         if not opts.get("quiet"):
-            print COLORS["bold"] + COLORS["light-blue"] + "file: " + in_file + COLORS["clear"]
+            print COLORS["bold"] + COLORS["light-blue"] + "file: " + os.path.relpath(in_file) + COLORS["clear"]
         for ln, out_line in out_lines:
+            out_line = out_line.rstrip()
             match    = re.search(regexp, out_line)
             out_line_color  = out_line[0:match.start()] + COLORS_REPLACE["word1"]
             out_line_color  = out_line_color + out_line[match.start():match.end()]
@@ -134,7 +135,7 @@ def replace_in_file(opts, in_file, regexp, repl):
         return
 
     if not opts.get("quiet"):
-        print COLORS["bold"] + COLORS["light-blue"] + "patching: " + in_file + COLORS["clear"]
+        print COLORS["bold"] + COLORS["light-blue"] + "patching: " + os.path.relpath(in_file) + COLORS["clear"]
     if opts.get("go"):
         if opts.get("backup"):
             rand_int = random.randint(100,999)
