@@ -128,6 +128,8 @@ class PyContext(Context):
         """ display the current function/class name """
         if self.displayed:
             return
+        if not self.match:
+            return
         print "%sIn: %s%s" % (COLORS_REPLACE["pyctx"], self.match.strip(), COLORS["clear"])
         self.displayed = True
 
