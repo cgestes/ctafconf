@@ -5,7 +5,7 @@
 ## Login   <goctaf@gmail.com>
 ##
 ## Started on  Fri Sep 30 22:17:33 2005 GESTES Cedric
-## Last update Tue Aug 11 02:00:58 2009 Cedric GESTES
+## Last update Tue Apr  6 10:29:12 2010 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -52,7 +52,7 @@ null_which most && env_set PAGER "most"
 env_set EADNULLCMD $PAGER
 
 #option for less
-env_set LESS "-Qwx2Mz-3"
+env_set LESS "-Qx2Mz-3"
 
 #color output of man etc...
 env_set LESS_TERMCAP_mb $'\E[01;31m'       # begin blinking
