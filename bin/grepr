@@ -5,8 +5,17 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Sun Oct  2 07:23:17 2005 GESTES Cedric
-## Last update Mon Mar 15 10:11:18 2010 Cedric GESTES
+## Last update Fri Nov 23 06:41:40 2007 GESTES Cedric
 ##
 ##CTAFCONF
 
-replacer --find $@
+
+#recursive grep with filename and line number
+#exclude svn
+grepr ()
+{
+  arg=$@
+  grep --color=always -r -n -H $arg . | grep -v "/.svn/" | grep -v ".svn-base:" | grep -v "^grep:" | ~/.config/ctafconf/bin/colorgrepr.pl 2>/dev/null
+}
+
+grepr $@
