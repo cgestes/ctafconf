@@ -56,15 +56,15 @@ parse_option() {
 parse_option $@
 
 if [ ${ADDR} -ge 0 -a ${ADDR} -le 255 ] 2>/dev/null; then
-  ssh_address="nao@10.0.252.${ADDR}"
+  ssh_address="10.0.252.${ADDR}"
 else
-  ssh_address="nao@${ADDR}.local"
+  ssh_address="${ADDR}.local"
 fi
 
 if [ $COPY_ID -eq 1 ] ; then
-  ssh-copy-id -i ~/.ssh/id_[rd]sa.pub "$ssh_address"
+  ssh-copy-id -i ~/.ssh/id_[rd]sa.pub "nao@$ssh_address"
 fi
 
 ssh-keygen -R "$ssh_address"
-ssh -o StrictHostKeyChecking=no "$ssh_address"
+ssh -o StrictHostKeyChecking=no "nao@$ssh_address"
 
