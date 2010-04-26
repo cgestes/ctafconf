@@ -10,9 +10,7 @@ continue to support console tools
   - install: backup the first copy of a configfile, the backup will be next to the config file
   - automatic aldebaran mode if running on a box inside aldebaran
   - separate user configuration to file <configfile.rc>.custom next to <configfile.rc>
-  - osx: do not always install on macosx
   - osx: be smart with cmake, etc..
-  - osx: correct man page
   - config option to switch from emacs to vim as default editor (and others?)
 
 setup:
@@ -36,13 +34,6 @@ zsh:
     and finding a .zenv or .env
     this config file should set a variable that would be displayed in the prompt
     to remember the special behaviors of the shell
-
-
-V1.1.0:
-  - support uninstall
-
-V1.0.44: goal: rock stable
-  - test on freebsd/netbsd/openbsd/cygwin/windows/osx
 
 ########################################
 ###############  TODO  #################
@@ -93,20 +84,7 @@ DOC:
 
 now:
   => zsh => git => display number of change not push if tracking branch
-  => zsh profile by folder : http://git.grml.org/?p=grml-etc-core.git;f=etc/zsh/zshrc;hb=HEAD#l1044
   => emacs : scroll-bar
 
 ===>
 /* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2; tab-width: 2 -*- */
-(require 'grep)
-(grep "grep")
-
-awesome frame work
-==================
-a tag by project
-
-=> a project folder
-=> command for git gui,gitk
-=> command to open emacs
-=> a command to toggle a terminal in the right folder
-
