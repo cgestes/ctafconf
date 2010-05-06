@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 00:57:16 2006 GESTES Cedric
-;; Last update Wed Mar 10 16:21:29 2010 Cedric GESTES
+;; Last update Thu May  6 10:13:08 2010 Cedric GESTES
 ;;
 (message ".")
 (message "ctafconf loading: MODE.EMACS")
@@ -45,9 +45,9 @@
          ("\\.e\\'" . eiffel-mode)
          ("\\.pl$" . perl-mode)
          ("\\.asciidoc$" . doc-mode)
+         ("\\.proto$" . protobuf-mode)
          ) auto-mode-alist))
-;;IDO MODE
-;;IDO for find-file, and others
+
 (condition-case err
     (progn
       (require 'cmake-mode)

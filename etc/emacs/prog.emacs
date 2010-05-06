@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 01:14:21 2006 GESTES Cedric
-;; Last update Tue Feb 23 12:10:15 2010 Cedric GESTES
+;; Last update Thu May  6 10:13:24 2010 Cedric GESTES
 ;;
 (message ".")
 (message "ctafconf loading: PROG.EMACS")
@@ -209,6 +209,13 @@
 
 ;;editer les fichiers ada
 (autoload 'ada-mode "ada-mode" "Major mode for Ada programs" t)
+
+(condition-case err
+    (progn
+      (load-file "~/.config/ctafconf/etc/emacs/site-lisp/protobuf-mode.el")
+      )
+  (error
+   (message "Cannot load protobuf-mode %s" (cdr err))))
 
 
 ;; provide cedet
