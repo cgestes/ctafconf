@@ -68,7 +68,6 @@ cmap spc setlocal spell spelllang=
 " Useful plugins:
 runtime! plugin/imaps.vim
 runtime! ftplugin/man.vim
-nnoremap K :Man <cword> <CR>
 
 " Status line
 set laststatus=2
@@ -96,8 +95,17 @@ abbreviate swith switch
 abbreviate wich which
 abbreviate lauch launch
 
-"vala stuff:
+" Vala stuff:
 autocmd BufRead *.vala set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
 autocmd BufRead *.vapi set efm=%f:%l.%c-%[%^:]%#:\ %t%[%^:]%#:\ %m
 au BufRead,BufNewFile *.vala            setfiletype vala
 au BufRead,BufNewFile *.vapi            setfiletype vala
+
+""
+" Nicer keybindings
+
+" Navigate through the buffer's list with alt+up, alt+down
+nnoremap <M-Down>  :bp<CR>
+nnoremap <M-Up>    :bn<CR>
+
+nnoremap K :Man <cword> <CR>
