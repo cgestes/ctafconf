@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 01:14:21 2006 GESTES Cedric
-;; Last update Thu May  6 10:13:24 2010 Cedric GESTES
+;; Last update Tue May 11 18:16:02 2010 Cedric GESTES
 ;;
 (message ".")
 (message "ctafconf loading: PROG.EMACS")
@@ -190,6 +190,14 @@
       (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode)))
   (error
    (message "Cannot load lua %s" (cdr err))))
+
+;;provide the tiger mode
+(condition-case err
+    (progn
+      (load "~/.config/ctafconf/etc/emacs/site-lisp/haskell-mode-2.7.0/haskell-site-file")
+      (add-to-list 'auto-mode-alist '("\\.hs" . haskell-mode)))
+  (error
+   (message "Cannot load haskell %s" (cdr err))))
 
 ;;tuareg-mode CAML
 (condition-case err
