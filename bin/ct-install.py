@@ -31,21 +31,15 @@ import shutil
 import difflib #does not work in python (does in ipython?), i should investigate
 import filecmp
 
+
 logging.basicConfig(level=logging.WARNING)
 
 LOGGER = logging.getLogger('grk-install')
 LOGGER.setLevel(logging.DEBUG)
 
+DRY_RUN  = False
 DEST_DIR = os.path.expanduser("~")
-SRC_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
-
-def grk_file():
-  LOGGER.debug("grk_file")
-  pass
-
-def grk_dir():
-  LOGGER.debug("grk_dir")
-  pass
+SRC_DIR  = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 
 def get_backup_filename(fname):
   """ return a filename.<id>
@@ -61,6 +55,14 @@ def get_backup_filename(fname):
     bid = bid + 1
     if not os.path.exists(backup):
       return backup
+
+def grk_copy_file(dest, src):
+  LOGGER.debug("cp %s %s", src, dest)
+  if not DRY_RUN:
+    shutil.copyfile(dest, src)
+  else:
+    LOGGER.debug("dryrun: cp %s %s", src, dest)
+  pass
 
 
 def grk_backup_file(fname, src = None):
@@ -83,14 +85,25 @@ def grk_backup_file(fname, src = None):
   #first installation, create .original
   if not os.path.exists(original):
     LOGGER.info("copy %s to %s", fname, original)
-    #shutil.copyfile(fname, original)
+    grk_copy_file(fname, original)
     return
 
   #backup as fname.date
   backup = get_backup_filename(fname)
   LOGGER.info("backup: %s to %s", fname, backup)
-  #shutil.copyfile(fname, backup)
+  grk_copy_file(fname, backup)
   pass
+
+def grk_install_file_once(fname):
+  LOGGER.debug("grk_install_file_once(%s)", fname)
+  src  = os.path.join(SRC_DIR, "etc", "mine", fname)
+  dest = os.path.join(DEST_DIR, fname)
+  LOGGER.debug("grk_install_file_once(%s, %s)", src, dest)
+  if not os.path.exists(dest):
+    LOGGER.debug("install custom file: %s", dest)
+  else:
+    LOGGER.debug("file already exists: %s", dest)
+
 
 def grk_install_file(dest, src):
   """
@@ -100,10 +113,10 @@ def grk_install_file(dest, src):
   LOGGER.debug("grk_install_file(%s, %s)" % (str(dest), str(src)))
 
   dest_abs = os.path.abspath(os.path.join(DEST_DIR, dest))
-  LOGGER.debug("dest abs: %s" % (dest_abs))
+  #LOGGER.debug("dest abs: %s" % (dest_abs))
 
   src_abs = os.path.abspath(os.path.join(SRC_DIR, src))
-  LOGGER.debug("src abs: %s" % (src_abs))
+  #LOGGER.debug("src abs: %s" % (src_abs))
 
   #check if fname and src are identical
   if filecmp.cmp(src_abs, dest_abs):
@@ -129,7 +142,7 @@ def grk_install_file(dest, src):
     grk_backup_file(dest_abs, src_abs)
 
   print "installing: %s to %s" % (src_abs, dest_abs)
-  #shutil.copyfile(src, dest_abs)
+  grk_copy_file(src, dest_abs)
   pass
 
 def grk_uninstall_file(dest):
@@ -141,12 +154,40 @@ def grk_install(grksetup):
   """
   - install a grksetup file
   """
-  LOGGER.debug("grk install")
-  for grk in grksetup.FILES:
-    #todo check type
-    grk_install_file(grk[0], grk[1])
+  LOGGER.debug("=============== INSTALL ===============")
+  LOGGER.debug("grk install: %s", grksetup.__name__)
+  if getattr(grksetup, 'FILES', None):
+    for grk in grksetup.FILES:
+      grk_install_file(grk[0], grk[1])
 
-  pass
+  if getattr(grksetup, 'USERS', None):
+    for user in grksetup.USERS:
+      grk_install_file_once(user)
+  LOGGER.debug("===============   END   ===============")
+
+def write_git_sha1():
+  """ get the current git sha1
+      write it to ~/.config/ctafconf/perso/installed
+  """
+  try:
+    head = open(os.path.join(SRC_DIR, ".git", "HEAD")).readlines()[0].strip()
+  except:
+    LOGGER.warning("Can't open .git/HEAD")
+    return
+  rev = None
+  if head.startswith("ref:"):
+    try:
+      rev = open(os.path.join(SRC_DIR, ".git", head[5:])).readlines()[0].strip()
+    except:
+      LOGGER.warning("Can't open .git/<rev>")
+      return
+  else:
+    rev = head
+  LOGGER.debug("Head sha1 is %s", rev)
+  f = open(os.path.join(SRC_DIR, "perso", "installed"), "w+")
+  f.write("%s\n" % (rev))
+  f.close()
+
 
 class GrkSetup:
   """
@@ -156,10 +197,12 @@ class GrkSetup:
 
 class GrkSetupZsh:
   FILES = [ ( ".zshrc",   "etc/zsh/zshrc") ]
+  USERS = ( ".zshrc.user", )
   #etc/zsh/zshenv ~/.zshenv zshenv
 
 class GrkSetupBash:
   FILES = [ ( ".bashrc",  "etc/bash/bashrc") ]
+  USERS = ( ".bashrc.user", )
 
 class GrkSetupNano:
   FILES = [ (".nanorc",   "etc/nano/nanorc") ]
@@ -169,6 +212,7 @@ class GrkSetupTop:
 
 class GrkSetupEmacs:
   FILES = [ (".emacs",    "etc/emacs/emacs") ]
+  USERS = ( ".emacs.user", )
 
 class GrkSetupScreen:
   FILES = [ (".screenrc", "etc/screen/screenrc") ]
@@ -177,10 +221,7 @@ class GrkSetupVim:
   FILES = [ (".vimrc",    "etc/vim/vimrc"),
             (".gvimrc",   "etc/vim/gvimrc") ]
 
-#   FILES = [ ("~/.fluxbox" "etc/fluxbox/init") ]
-#   FILES = [ ("~/.xinitrc" "etc/xsession/xsession") ]
-#   FILES = [ ("~/.xsession" "etc/xsession/xsession") ]
-#  FILES = [ ("lua" "etc/ion3/ctafconf") ]
+
 PACKAGES = [ GrkSetupZsh,
              GrkSetupBash,
              GrkSetupNano,
@@ -190,8 +231,8 @@ PACKAGES = [ GrkSetupZsh,
              GrkSetupVim ]
 
 if __name__ == "__main__":
-
-
-  for grk in PACKAGES:
-    grk_install(grk)
-
+  if "--dry-run" in sys.argv:
+    DRY_RUN = True
+  # for grk in PACKAGES:
+  #   grk_install(grk)
+  write_git_sha1()
