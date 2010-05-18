@@ -33,9 +33,7 @@ import filecmp
 
 
 logging.basicConfig(level=logging.WARNING)
-
-LOGGER = logging.getLogger('grk-install')
-LOGGER.setLevel(logging.DEBUG)
+LOGGER = logging.getLogger('')
 
 DRY_RUN  = False
 DEST_DIR = os.path.expanduser("~")
@@ -50,8 +48,8 @@ def get_backup_filename(fname):
   """
 
   bid = 0
-  while true:
-    backup = "%s.%d" % (fname + bid)
+  while True:
+    backup = "%s.%d" % (fname, bid)
     bid = bid + 1
     if not os.path.exists(backup):
       return backup
@@ -76,7 +74,7 @@ def grk_backup_file(fname, src = None):
   """
   LOGGER.debug("grk_backup_file(%s, %s)" % (fname, src))
 
-  original = os.path.join(fname, ".original")
+  original = fname + ".original"
 
   if not os.path.exists(fname):
     LOGGER.warning("grk_backup_file: %s doest not exits", fname)
@@ -104,7 +102,6 @@ def grk_install_file_once(fname):
   else:
     LOGGER.debug("file already exists: %s", dest)
 
-
 def grk_install_file(dest, src):
   """
   - check if file exists
@@ -119,10 +116,14 @@ def grk_install_file(dest, src):
   #LOGGER.debug("src abs: %s" % (src_abs))
 
   #check if fname and src are identical
-  if filecmp.cmp(src_abs, dest_abs):
-    print "identical:", src_abs, dest_abs
-    return
-
+  try:
+    if filecmp.cmp(src_abs, dest_abs):
+      LOGGER.info("identical: %s %s", src_abs, dest_abs)
+      return
+  except OSError as e:
+    if e.errno != 2:
+      raise
+    
     #TODO
     #f = open(src, "r")
     #src_content = f.readlines()
@@ -141,8 +142,8 @@ def grk_install_file(dest, src):
     #LOGGER.info("the configuration file : %s exits, creating a backup", dest_abs)
     grk_backup_file(dest_abs, src_abs)
 
-  print "installing: %s to %s" % (src_abs, dest_abs)
-  grk_copy_file(src, dest_abs)
+  print "installing: %s" % src
+  grk_copy_file(src_abs, dest_abs)
   pass
 
 def grk_uninstall_file(dest):
@@ -154,8 +155,7 @@ def grk_install(grksetup):
   """
   - install a grksetup file
   """
-  LOGGER.debug("=============== INSTALL ===============")
-  LOGGER.debug("grk install: %s", grksetup.__name__)
+  print grksetup.__name__
   if getattr(grksetup, 'FILES', None):
     for grk in grksetup.FILES:
       grk_install_file(grk[0], grk[1])
@@ -163,7 +163,6 @@ def grk_install(grksetup):
   if getattr(grksetup, 'USERS', None):
     for user in grksetup.USERS:
       grk_install_file_once(user)
-  LOGGER.debug("===============   END   ===============")
 
 def write_git_sha1():
   """ get the current git sha1
@@ -233,6 +232,9 @@ PACKAGES = [ GrkSetupZsh,
 if __name__ == "__main__":
   if "--dry-run" in sys.argv:
     DRY_RUN = True
-  # for grk in PACKAGES:
-  #   grk_install(grk)
+  if "--verbose" in sys.argv or "-v" in sys.argv:
+    LOGGER.setLevel(logging.DEBUG)
+
+  for grk in PACKAGES:
+    grk_install(grk)
   write_git_sha1()
