@@ -193,43 +193,4 @@ grk_mine ()
     cp ~/.config/ctafconf/etc/mine/"$src".mine ~/.config/ctafconf/perso/"$src".mine
     return
   fi
-
-#   tmp_patch=~/.config/ctafconf/perso/.tmp1
-#   tmp_f1=~/.config/ctafconf/perso/.tmp2
-#   tmp_f2=~/.config/ctafconf/perso/.tmp3
-#   tmp_diff=~/.config/ctafconf/perso/.tmp4
-
-#   #dest file
-#   if [ -f ~/.config/ctafconf/perso/previous/"$src".mine ]; then
-
-#     #diff between 2 upstream version, then patch
-#     cp ~/.config/ctafconf/perso/previous/"$src".mine $tmp_f1
-#     cp ~/.config/ctafconf/etc/mine/"$src".mine $tmp_f2
-
-#     cp ~/.config/ctafconf/perso/$src.mine $tmp_patch 2>/dev/null
-#     diff -c $tmp_f1 $tmp_f2 >$tmp_diff
-
-#     if ! cat $tmp_diff | patch -c -f $tmp_patch 2>/dev/null; then
-#       echo "patch dont suceeded"
-#       #diff between previous and user version, then patch new upstream
-#       cp ~/.config/ctafconf/perso/previous/"$src".mine $tmp_f1
-#       cp ~/.config/ctafconf/perso/"$src".mine $tmp_f2
-
-#       cp ~/.config/ctafconf/etc/mine/$src.mine $tmp_patch 2>/dev/null
-#       diff -c $tmp_f1 $tmp_f2 >$tmp_diff
-#       if ! cat $tmp_diff | patch -c -f $tmp_patch 2>/dev/null; then
-#         echo "patch dont suceeded"
-#       fi
-#     fi
-#     patchfile="`echo 'You have modified '$src'.mine, do you want to apply the current diff to '$src'.mine (I think yes)?;'`"
-#     patchfile=$patchfile`diff -c ~/.config/ctafconf/perso/$src.mine $tmp_patch`
-
-#     if ssft_yesno "Change in user file detected" "$patchfile"; then
-#       echo "patchinggg"
-#       #cat $tmp_diff | patch -b -u ~/.config/ctafconf/perso/"$src".mine
-#     fi
-
-#   else
-#    ssft_display_message "Change in user-specific file" "The file $src.mine have been updated upstream. You should compare ~/.config/ctafconf/etc/mine/$src.mine and your's ~/.config/ctafconf/perso/$src.mine"
-#  fi
 }
