@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Tue Aug 11 14:51:10 2009 Cedric GESTES
-## Last update Fri Jan  8 01:11:14 2010 Cedric GESTES
+## Last update Fri May 21 16:34:59 2010 Cedric GESTES
 ##
 ##CTAFCONF
 #
@@ -45,7 +45,6 @@ bindkey "^xw" which-command
 autoload edit-command-line && zle -N edit-command-line
 bindkey "^xe" edit-command-line
 
-
 #ctrl-n accept the completion and pass to the next one (usefull to select many files)
 bindkey "^n" accept-and-menu-complete
 #alt+return
@@ -63,83 +62,17 @@ bindkey -M menuselect "^Z" undo
 bindkey -M menuselect "^c" undo
 
 
-mef() {
-  zle undo
-  zle undo
-  zle undo
-  zle undo
-#
-}
-zle -N mef
-
-menu-expand-or-interactive-f() {
-  #echo "compstate: $compstate['nmatches']" >> ~/.logg
-  #zle list-choices
-  #zle menu-expand-or-complete
-#   if $compstate['nmatches'] -ge 10 ; then
-#     zle list-choices
-#   #zle menu-complete
-#   #zle menu-expand-or-complete
-#   fi
-#  zle vi-insert
-  #compstate
-}
-
-# zle -N menu-expand-or-interactive menu-expand-or-interactive-f
-zle -C menu-expand-or-interactive menu-expand-or-complete menu-expand-or-interactive-f
-#zle -C menu-expand-or-interactive menu-expand-or-complete toto
-#zle -C menu-expand-or-interactive menu-expand-or-complete mef
-#zle -C menu-expand-or-interactive menu-expand-or-complete menu-expand-or-interactive-f
-
 bindkey -M menuselect "^I" menu-expand-or-interactive
 
-#can you find what that one does?
-#...
-#menu-completion will be switched between interactive and normal using tab
-#if you want to know more... read the zsh code (Src/Zle/complist.c)
-#enjoy!
-#bindkey -M menuselect "^I" vi-insert
-
-#this one could be cool too... when pressing tab the cursor is advanced to the
-#next char after the unambigous part of the search
-#bindkey -M menuselect "^I" menu-expand-or-complete
-
-
-# bindkey "^h" undo-if-not-isearch
-# bindkey "^?" undo-if-not-isearch
-
-# undo-if-not-isearch () {
-#  echo lastsearch: -$LASTSEARCH- widget: -$WIDGET- widget: -$LASTWIDGET- cursor: -$CURSOR-
-#  echo "sdsd"
-#  zle undo
-# # zle backward-delete-char
-# }
-
-# zle -N undo-if-not-isearch
 
 autoload zcalc
 bindkey -s "^xc" 'zcalc\n'
 
 #bindkey "^xi" interactive
+# Active dead keys
 
-# ### Making sure your keyboard will work on any terminal
-# bindkey "^[[1~" #beginning-of-line
-# bindkey "^[[4~" #end-of-line
-# bindkey "^[[2~" #overwrite-mode
-# bindkey "^[[3~" #delete-char
-# bindkey "^[[6~" #end-of-history
-# bindkey "^[[5~" #beginning-of-history
-# bindkey "^[^I" #reverse-menu-complete
-# bindkey "^[OA" up-line-or-history
-# bindkey "^[[A" up-line-or-history
-# bindkey "^[[B" down-line-or-history
-# bindkey "^[OB" down-line-or-history
-# bindkey "^[OD" #backward-char
-# bindkey "^[OC" #forward-char
-# bindkey "^P"   #history-beginning-search-backward
-# bindkey "^N" #history-beginning-search-forward
-# bindkey "^[[[A" run-help
-# bindkey "^[[[B" #which-command
-# bindkey "^[[[C" #where-is
-# bindkey "^D" list-choices
-
+#make home/end working
+bindkey "\eOH" beginning-of-line
+bindkey "\eOF" end-of-line
+bindkey "\e[2~" quoted-insert
+bindkey "\e[3~" delete-char
