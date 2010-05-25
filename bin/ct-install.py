@@ -37,7 +37,7 @@ LOGGER = logging.getLogger('')
 
 DRY_RUN  = False
 DEST_DIR = os.path.expanduser("~")
-SRC_DIR  = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
+SRC_DIR  = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 
 def get_backup_filename(fname):
   """ return a filename.<id>
@@ -94,7 +94,7 @@ def grk_backup_file(fname, src = None):
 
 def grk_install_file_once(fname):
   LOGGER.debug("grk_install_file_once(%s)", fname)
-  src  = os.path.join(SRC_DIR, "etc", "mine", fname)
+  src  = os.path.join(SRC_DIR, "etc", "users", fname)
   dest = os.path.join(DEST_DIR, fname)
   LOGGER.debug("grk_install_file_once(%s, %s)", src, dest)
   if not os.path.exists(dest):
@@ -123,7 +123,7 @@ def grk_install_file(dest, src):
   except OSError as e:
     if e.errno != 2:
       raise
-    
+
     #TODO
     #f = open(src, "r")
     #src_content = f.readlines()
@@ -187,6 +187,16 @@ def write_git_sha1():
   f.write("%s\n" % (rev))
   f.close()
 
+def write_default_profile():
+  """
+  write a default configuration file to ~/.config/ctafconf/user-profile.sh if the file does not exists
+  """
+  src_abs  = SRC_DIR  + "/etc/users/user-profile.sh"
+  dest_abs = DEST_DIR + "/.config/ctafconf/user-profile.sh"
+  if not os.path.exists(dest_abs):
+    grk_copy_file(src_abs, dest_abs)
+    print "to complete the installation edit ~/.config/ctafconf/user-profile.sh"
+  pass
 
 class GrkSetup:
   """
@@ -238,3 +248,6 @@ if __name__ == "__main__":
   for grk in PACKAGES:
     grk_install(grk)
   write_git_sha1()
+  write_default_profile()
+
+
