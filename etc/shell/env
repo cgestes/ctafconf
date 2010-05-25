@@ -5,7 +5,7 @@
 ## Login   <goctaf@gmail.com>
 ##
 ## Started on  Fri Sep 30 22:17:33 2005 GESTES Cedric
-## Last update Tue May 25 20:12:25 2010 Cedric GESTES
+## Last update Tue May 25 20:27:18 2010 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -71,7 +71,7 @@ null_which vi   && env_set VISUAL "vi"   && env_set EDITOR "vi"
 null_which vim  && env_set VISUAL "vim"   && env_set EDITOR "vim"
 null_which nano && env_set VISUAL "nano" && env_set EDITOR "nano"
 null_which emacs && env_set VISUAL "emacs" && env_set EDITOR "emacs"
-test -z $ctafconf_editor || (null_which $ctafconf_editor && env_set VISUAL $ctafconf_editor && env_set EDITOR $ctafconf_editor)
+test -z $ctafconf_editor || { null_which $ctafconf_editor && env_set VISUAL $ctafconf_editor && env_set EDITOR $ctafconf_editor }
 
 #cvs variable
 env_set CVS_RSH "ssh"
