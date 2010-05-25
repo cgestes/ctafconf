@@ -5,13 +5,13 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
-## Last update Mon May 17 10:36:55 2010 Cedric GESTES
+## Last update Tue May 25 19:02:47 2010 Cedric GESTES
 ##
 ##CTAFCONF
 
 ## Warning ##
 #never edit this file
-#please edit ~/.config/ctafconf/perso/zshenv.mine
+#please edit ~/.zshenv.user
 
 
 if [[ $- != *i* ]] || [ a$HOST = agate-ssh ]; then
@@ -23,8 +23,6 @@ fi
 
 #include global environment
 [ -f ~/.config/ctafconf/etc/shell/env ] && . ~/.config/ctafconf/etc/shell/env sh
-
-ls ~/.config/ctafconf/perso/env | null_cmd grep '.env$' && source ~/.config/ctafconf/perso/env/*.env
 
 # #enable notification for jobs
 # setopt monitor
@@ -46,6 +44,6 @@ export WATCH=all
 # Automatically remove duplicates from these arrays
 typeset -U PATH
 
-if [ -f ~/.config/ctafconf/perso/zshenv.mine ]; then
-    source ~/.config/ctafconf/perso/zshenv.mine
+if [ -f ~/.zshenv.user ]; then
+    source ~/.zshenv.user
 fi

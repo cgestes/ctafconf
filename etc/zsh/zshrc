@@ -5,13 +5,13 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
-## Last update Thu Aug 13 16:10:00 2009 Cedric GESTES
+## Last update Tue May 25 19:02:38 2010 Cedric GESTES
 ##
 ##CTAFCONF
 
 ## Warning ##
 #never edit this file
-#please edit ~/.config/ctafconf/perso/zshrc.mine
+#please edit ~/.zshrc.user
 
 #to start a clean zsh session (without conf) : zsh -fx
 
@@ -42,6 +42,6 @@ else
   prompt "$ctafconf_zprompt"
 fi
 
-if [ -f ~/.config/ctafconf/perso/zshrc.mine ]; then
-  source ~/.config/ctafconf/perso/zshrc.mine
+if [ -f ~/.zshrc.user ]; then
+  source ~/.zshrc.user
 fi
