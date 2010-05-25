@@ -92,13 +92,15 @@ def grk_backup_file(fname, src = None):
   grk_copy_file(fname, backup)
   pass
 
-def grk_install_file_once(fname):
-  LOGGER.debug("grk_install_file_once(%s)", fname)
-  src  = os.path.join(SRC_DIR, "etc", "users", fname)
-  dest = os.path.join(DEST_DIR, fname)
+def grk_install_file_once(fname_dest, fname_src):
+  LOGGER.debug("grk_install_file_once(%s)", fname_dest)
+  src  = os.path.join(SRC_DIR, "etc", "users", fname_src)
+  dest = os.path.join(DEST_DIR, fname_dest)
   LOGGER.debug("grk_install_file_once(%s, %s)", src, dest)
   if not os.path.exists(dest):
     LOGGER.debug("install custom file: %s", dest)
+    print "creating :", dest
+    grk_copy_file(src, dest)
   else:
     LOGGER.debug("file already exists: %s", dest)
 
@@ -162,7 +164,7 @@ def grk_install(grksetup):
 
   if getattr(grksetup, 'USERS', None):
     for user in grksetup.USERS:
-      grk_install_file_once(user)
+      grk_install_file_once(user[0], user[1])
 
 def write_git_sha1():
   """ get the current git sha1
@@ -205,30 +207,31 @@ class GrkSetup:
   pass
 
 class GrkSetupZsh:
-  FILES = [ ( ".zshrc",   "etc/zsh/zshrc") ]
-  USERS = ( ".zshrc.user", )
-  #etc/zsh/zshenv ~/.zshenv zshenv
+  FILES = [ ( ".zshrc"       , "etc/zsh/zshrc") ]
+  USERS = [ ( ".zshrc.user"  , "sh.user"),
+            ( ".zshenv.user" , "sh.user") ]
 
 class GrkSetupBash:
-  FILES = [ ( ".bashrc",  "etc/bash/bashrc") ]
-  USERS = ( ".bashrc.user", )
+  FILES = [ ( ".bashrc"      , "etc/bash/bashrc") ]
+  USERS = [ ( ".bashrc.user" , "sh.user"), ]
 
 class GrkSetupNano:
-  FILES = [ (".nanorc",   "etc/nano/nanorc") ]
+  FILES = [ (".nanorc"       , "etc/nano/nanorc") ]
 
 class GrkSetupTop:
-  FILES = [ (".toprc",    "etc/top/toprc") ]
+  FILES = [ (".toprc"        , "etc/top/toprc") ]
 
 class GrkSetupEmacs:
-  FILES = [ (".emacs",    "etc/emacs/emacs") ]
-  USERS = ( ".emacs.user", )
+  FILES = [ (".emacs"        , "etc/emacs/emacs") ]
+  USERS = [ (".emacs.pre.el" , "emacs.user.el"),
+            (".emacs.post.el", "emacs.user.el") ]
 
 class GrkSetupScreen:
-  FILES = [ (".screenrc", "etc/screen/screenrc") ]
+  FILES = [ (".screenrc"     , "etc/screen/screenrc") ]
 
 class GrkSetupVim:
-  FILES = [ (".vimrc",    "etc/vim/vimrc"),
-            (".gvimrc",   "etc/vim/gvimrc") ]
+  FILES = [ (".vimrc"        ,    "etc/vim/vimrc"),
+            (".gvimrc"       ,   "etc/vim/gvimrc") ]
 
 
 PACKAGES = [ GrkSetupZsh,
