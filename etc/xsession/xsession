@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Mon Sep 26 02:37:56 2005 GESTES Cedric
-## Last update Tue Oct  7 00:38:01 2008 Cedric GESTES
+## Last update Tue May 25 18:46:30 2010 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -32,9 +32,9 @@ xset b off
 ct_log "loading ctafconf xrdb defaults"
 xrdb -merge ~/.config/ctafconf/etc/xsession/Xdefaults
 
-if [ -f ~/.config/ctafconf/perso/user-profile ] ; then
+if [ -f ~/.config/ctafconf/user-profile.sh ] ; then
   ct_log "loading user-profile"
-  . ~/.config/ctafconf/perso/user-profile
+  . ~/.config/ctafconf/user-profile.sh
 fi
 
 #if ! test_wm e16 ; then
