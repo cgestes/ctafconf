@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
-## Last update Tue May 25 19:02:38 2010 Cedric GESTES
+## Last update Tue May 25 19:43:32 2010 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -41,6 +41,12 @@ if [ x$ctafconf_zprompt = x ] || [ x$ctafconf_zprompt = xctaf ] ; then
 else
   prompt "$ctafconf_zprompt"
 fi
+
+test -z "$ctafconf_profile" || (
+  for i in $(echo $ctafconf_profile) ; do
+    test -f ~/.config/ctafconf/profile/$i/zshrc && source ~/.config/ctafconf/profile/$i/zshrc
+  done
+)
 
 if [ -f ~/.zshrc.user ]; then
   source ~/.zshrc.user
