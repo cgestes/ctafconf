@@ -5,7 +5,7 @@
 ## Login   <goctaf@gmail.com>
 ##
 ## Started on  Fri Sep 30 22:17:33 2005 GESTES Cedric
-## Last update Tue May 25 19:42:56 2010 Cedric GESTES
+## Last update Tue May 25 20:12:25 2010 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -86,12 +86,12 @@ env_set PATH "$PATH":.
 #different plateform test
 test -f ~/.config/ctafconf/etc/shell/env.`uname` && source ~/.config/ctafconf/etc/shell/env.`uname`
 
-test -z "$ctafconf_profile" || (
+test -z "$ctafconf_profile" || {
   for i in $(echo $ctafconf_profile) ; do
     test -d ~/.config/ctafconf/profile/$i/bin && env_set PATH "$PATH":"${HOME}/.config/ctafconf/profile/$i/bin"
     test -f ~/.config/ctafconf/profile/$i/env && source ~/.config/ctafconf/profile/$i/env
   done
-)
+}
 
 #update the ctafconf if VERSION has changed
 ~/.config/ctafconf/bin/ct-updateconf
