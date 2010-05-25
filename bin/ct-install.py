@@ -62,6 +62,14 @@ def grk_copy_file(dest, src):
     LOGGER.debug("dryrun: cp %s %s", src, dest)
   pass
 
+def grk_rm_file(dest):
+  LOGGER.debug("rm %s", dest)
+  if not DRY_RUN:
+    os.remove(dest)
+  else:
+    LOGGER.debug("dryrun: rm %s %s", dest)
+  pass
+
 
 def grk_backup_file(fname, src = None):
   """
@@ -104,6 +112,14 @@ def grk_install_file_once(fname_dest, fname_src):
   else:
     LOGGER.debug("file already exists: %s", dest)
 
+def grk_remove_file(dest):
+  dest_abs = os.path.abspath(os.path.join(DEST_DIR, dest))
+  if (os.path.exists(dest_abs)):
+    LOGGER.info("the configuration file : %s exits, creating a backup", dest_abs)
+    print "removing :", dest
+    grk_backup_file(dest_abs)
+    grk_rm_file(dest_abs)
+
 def grk_install_file(dest, src):
   """
   - check if file exists
@@ -144,7 +160,7 @@ def grk_install_file(dest, src):
     #LOGGER.info("the configuration file : %s exits, creating a backup", dest_abs)
     grk_backup_file(dest_abs, src_abs)
 
-  print "installing: %s" % src
+  print "installing: %s" % dest
   grk_copy_file(src_abs, dest_abs)
   pass
 
@@ -161,6 +177,10 @@ def grk_install(grksetup):
   if getattr(grksetup, 'FILES', None):
     for grk in grksetup.FILES:
       grk_install_file(grk[0], grk[1])
+
+  if getattr(grksetup, 'REMOVE_FILES', None):
+    for grk in grksetup.REMOVE_FILES:
+      grk_remove_file(grk)
 
   if getattr(grksetup, 'USERS', None):
     for user in grksetup.USERS:
@@ -207,9 +227,9 @@ class GrkSetup:
   pass
 
 class GrkSetupZsh:
-  FILES = [ ( ".zshrc"       , "etc/zsh/zshrc") ]
-  USERS = [ ( ".zshrc.user"  , "sh.user"),
-            ( ".zshenv.user" , "sh.user") ]
+  FILES         = [ ( ".zshrc"       , "etc/zsh/zshrc") ]
+  USERS         = [ ( ".zshrc.user"  , "sh.user") ]
+  REMOVE_FILES  = [ ".zshenv", ]
 
 class GrkSetupBash:
   FILES = [ ( ".bashrc"      , "etc/bash/bashrc") ]
