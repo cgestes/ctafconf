@@ -2,5 +2,4 @@ perso
 \#*#
 *.[oa]
 *~
-
-etc/emacs/site-lisp/cedet
+user-profile.sh
