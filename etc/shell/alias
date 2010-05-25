@@ -95,7 +95,7 @@ alias_set sw 'screen -wipe'
 alias_set sr 'screen -RaAd'
 
 # Get current IP from checkip.dyndns.org
-alias_set ip "wget http://checkip.dyndns.org/ -O - -o /dev/null | perl -e '<STDIN> =~ m/((\d{1,3}\.){3}\d{1,3})/ && print \"\$1\n\"'"
+alias_set myip "wget http://checkip.dyndns.org/ -O - -o /dev/null | perl -e '<STDIN> =~ m/((\d{1,3}\.){3}\d{1,3})/ && print \"\$1\n\"'"
 
 
 alias_set z "zsh"
@@ -123,11 +123,6 @@ alias_set getx 'export DISPLAY=:0.0'
 
 alias_set j 'jobs'
 alias_set h 'history'
-
-#VNC
-alias_set ct-tightvnc 'xtightvncviewer -bgr233 -compresslevel 9 -quality 0 -depth 8 -owncmap -encodings tight'
-alias_set ct-vnc 'xvnc4viewer'
-
 
 #never alias ls
 #alias_set ls 'ls -F --color=tty'
@@ -172,10 +167,6 @@ test -f ~/.config/ctafconf/etc/shell/alias.`uname` && source ~/.config/ctafconf/
 
 # #sourcing plateform specific
 # test x$ctafconf_config != x && test -f ~/.config/ctafconf/etc/shell/alias.$ctafconf_config && source ~/.config/ctafconf/etc/shell/alias.$ctafconf_config
-
-#ctafconf log
-alias_set ct-log "$PAGER ~/.config/ctafconf/perso/ctafconf.log"
-alias_set ct-env ". ~/.config/ctafconf/bin/ct-env"
 
 #protect ls against failure
 ls ~/.config/ctafconf >/dev/null || alias_unset ls
