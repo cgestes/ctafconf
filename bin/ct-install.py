@@ -166,7 +166,7 @@ def grk_install(grksetup):
 
 def write_git_sha1():
   """ get the current git sha1
-      write it to ~/.config/ctafconf/perso/installed
+      write it to ~/.config/ctafconf/.installed
   """
   try:
     head = open(os.path.join(SRC_DIR, ".git", "HEAD")).readlines()[0].strip()
@@ -183,7 +183,7 @@ def write_git_sha1():
   else:
     rev = head
   LOGGER.debug("Head sha1 is %s", rev)
-  f = open(os.path.join(SRC_DIR, "perso", "installed"), "w+")
+  f = open(os.path.join(SRC_DIR, ".installed"), "w+")
   f.write("%s\n" % (rev))
   f.close()
 

@@ -29,7 +29,7 @@ if ! which git >/dev/null 2>/dev/null ; then
 fi
 
 currentcid=$(cd ~/.config/ctafconf ; git rev-list 'HEAD^1..HEAD' 2>/dev/null)
-installcid=$(cat ~/.config/ctafconf/perso/installed 2>/dev/null)
+installcid=$(cat ~/.config/ctafconf/.installed 2>/dev/null)
 
 if ! [ "$currentcid" = "$installcid" ] ; then
   echo "ctafconf update in progress..."
