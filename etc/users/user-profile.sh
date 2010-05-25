@@ -10,8 +10,9 @@ var_set ctafconf_mail ''
 #set your prefered editor here (emacs, nano, vim, vi)
 var_set ctafconf_editor 'emacs'
 
-#choose a specific configuration (ctaf, yannick)
-#if you dont know => dont change the variable
+#list of specific configurations (ctaf, yannick, aldebaran)
+#if you dont know => dont change this variables
+#you can list availables profiles in .config/ctafconf/profile
 var_set ctafconf_profile ''
 
 #choose your zsh prompt
