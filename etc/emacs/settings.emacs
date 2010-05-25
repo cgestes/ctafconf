@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 01:13:33 2006 GESTES Cedric
-;; Last update Sun Mar 16 11:59:28 2008 Cedric GESTES
+;; Last update Tue May 25 18:54:53 2010 Cedric GESTES
 ;;
 (message ".")
 (message "ctafconf loading: SETTINGS.EMACS")
@@ -224,7 +224,7 @@
 
 ;;backup everything in ~/.saves
 (setq backup-by-copying         t                        ; don't clobber symlinks
-      backup-directory-alist    '(("." . "~/.config/ctafconf/perso/emacs-backup"))    ; don't litter my fs tree
+      backup-directory-alist    '(("." . "~/.emacs.d/backup/emacs-backup"))    ; don't litter my fs tree
       delete-old-versions       t
       kept-new-versions         6
       kept-old-versions         2

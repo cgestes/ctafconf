@@ -42,8 +42,8 @@
 
 (safe-load "~/.config/ctafconf/perso/emacs.config")
 
-(if (file-exists-p "~/.config/ctafconf/perso/emacs-pre.mine")
-    (safe-load "~/.config/ctafconf/perso/emacs-pre.mine"))
+(if (file-exists-p "~/.emacs.pre.el")
+    (safe-load "~/.emacs.pre.el"))
 
 (safe-load "~/.config/ctafconf/etc/emacs/color.emacs")
 
@@ -77,8 +77,8 @@
 ;;personal settings
 (if (file-exists-p "~/.myemacs")
     (safe-load "~/.myemacs"))
-(if (file-exists-p "~/.config/ctafconf/perso/emacs-post.mine")
-    (safe-load "~/.config/ctafconf/perso/emacs-post.mine"))
+(if (file-exists-p "~/.emacs.post.el")
+    (safe-load "~/.emacs.post.el"))
 
 ;;print debug info
 (safe-load-check)

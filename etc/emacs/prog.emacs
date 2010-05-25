@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 01:14:21 2006 GESTES Cedric
-;; Last update Tue May 11 18:16:02 2010 Cedric GESTES
+;; Last update Tue May 25 18:56:10 2010 Cedric GESTES
 ;;
 (message ".")
 (message "ctafconf loading: PROG.EMACS")
@@ -254,7 +254,7 @@
 ;;           (global-ede-mode 1)
           ;;display a bar with the function name the cursor is in
 ;;          (global-semantic-stickyfunc-mode 1)
-          (setq semanticdb-default-save-directory "~/.config/ctafconf/perso/semantic")
+          ;;(setq semanticdb-default-save-directory "~/.emacs.d/semantic")
           ;;(global-semantic-idle-completions-mode 1)
           ;;(global-semantic-highlight-edits-mode 1)
           ;;(global-semantic-show-unmatched-syntax-mode 0)
