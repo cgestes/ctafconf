@@ -33,5 +33,5 @@ installcid=$(cat ~/.config/ctafconf/.installed 2>/dev/null)
 
 if ! [ "$currentcid" = "$installcid" ] ; then
   echo "ctafconf update in progress..."
-  ~/.config/ctafconf/bin/ct-install.py update
+  ~/.config/ctafconf/bin/ct-installconf update
 fi
