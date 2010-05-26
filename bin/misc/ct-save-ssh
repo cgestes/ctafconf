@@ -1,7 +1,0 @@
-#!/bin/sh
-#
-#CTAFCONF: save gaim file, => produce a tarball
-#
-
-cd ~
-tar -cvzf ctafconf-sshsave-`date "+%d%m%Y`.tgz .ssh
