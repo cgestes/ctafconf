@@ -7,17 +7,20 @@
 ===========================================================
 INSTALL
 ===========================================================
-the ctafconf should be installed in .config/ctafconf.
-You can backlist module from installation using ct-profile prior to call ct-installconf
-Installation should be done by git, if you dont have git access you can get a tarball on github.
+the ctafconf should be installed in ~/.config/ctafconf.
+Installation should be done using the git repository,
+if you dont have git access you can get a tarball on github.
 Always prefer git master, the branch is keept as stable as possible.
+After calling ct-installconf, edit user-profile.sh to change your settings.
+
 
 Prefered way to install, from GIT:
->mkdir .config
->cd .config
->git clone git://github.com/ctaf42/ctafconf.git
->cd ctafconf/bin
->./ct-installconf
+> mkdir .config
+> cd .config
+> git clone git://github.com/ctaf42/ctafconf.git
+> cd ctafconf/bin
+> ./ct-installconf
+> nano ~/.config/ctafconf/user-profile.sh
 
 Install from a tarball.
  you download the tarball from the website and unpack it in .config
@@ -26,7 +29,7 @@ Install from a tarball.
 > tar xvzf ctafconf-DATE.tgz
 > cd ctafconf/bin
 > ./ct-installconf
-
+> nano ~/.config/ctafconf/user-profile.sh
 
 
 ===========================================================
@@ -51,52 +54,7 @@ INSTALL FOR EMACS ONLY
 ==========================================================
 if you are paranoid, and dont trust the install script.
 Try the manual way to get the emacs configuration:
->mkdir ~/.config/ctafconf/perso
->mkdir ~/.config/ctafconf/perso/semantic
 >echo "(load-file \"~/.config/ctafconf/etc/emacs/emacs\")" >> ~/.emacs
-
-
-===========================================================
-EMACS ADD-ONS
-===========================================================
-pour emacs:
-!!! ces outils ne sont pas necessaire a un bon fonctionnement d'emacs et le ralentisse beaucoup !!!
-recuperer au choix sur le web:
-- cedet     : outils pour le developpement, meilleur completion automatique,
-              meilleur coloration, ...
-- ilisp     : lisp interactif
-- ecb       : IDE pour emacs, basé sur cedet
-- doxyemacs : commentaire doxygen
-
-les decompresser dans ~/.config/ctafconf/etc/emacs/site-lisp
-renommer ecb-* en ecb, cedet-* en cedet, doxymacs-* en doxymacs, pareil pour ilisp
-afin d'avoir ecb,cedet,ilisp et doxymacs comme repertoire dans site-lisp
-
-compiler chaque projet:
-  cd cedet;make;
-  cd ecb;make;
-  cd ilisp;make;
-  cd doxyemacs; configure; make; (maybe you should remove -Werror to compile successfully)
-
- (pour compiler avec une autre version d'emacs: make EMACS=emacs21)
-
-
-===========================================================
-KEYBOARD SHORTCUT (fluxbox)
-===========================================================
-ctrl+alt+m      : toggle maximize
-ctrl+alt+t      : toggle decoration
-ctrl+alt+c      : close
-ctrl+alt+k      : kill
-ctrl+alt+f      : toggle fullscreen
-alt+f1          : switch to desktop 1
-alt+f2          : switch to desktop 2
-alt+f3          : switch to desktop 3
-alt+f4          : switch to desktop 4
-
-alt+click gauche : move
-alt+click droit  : resize
-
 
 ===========================================================
 ZSH
@@ -104,7 +62,7 @@ ZSH
 - ctrl-c in completion menu go back to the text previously enterred
 - up/down search through history (start typing then up/down to see what i mean)
 - pageup/pagedown cycle through history (it does not care about what is already on the command line)
-- ctrl-h call the man for the first word on the command line
+- ctrl-x h call the man for the first word on the command line
 - ctrl-x e edit the current command line in your editor
 - ctrl-x w display the location of the current command
 - ctrl-x c calculator
@@ -114,21 +72,23 @@ UNINSTALL
 ===========================================================
 You will never want to uninstall, after you tried the ctafconf
 
-
 ===========================================================
 HELP
 ===========================================================
 It's a good framework to create our own personnal configuration
 
-ct-profile : configure your ctafconf profile (wallpaper, wm, mail, etc..)
-ct-installconf : reinstall la ctafconf (et l'install aussi qd mm!)
-ct-ssh : create alias for ssh host
-ct-help : a litle help about the ctafconf command
-grepr, rpurge : grep recursif, netoyage de fichier tmp (~,..)
-replacer : recursive find and replace in all files in the current folder
+ct-ssh        : create alias for ssh host
+findr         : recursive find
+grepr         : recursive grep with color
+rpurge        : cleanup temporary file (#*, *~)
+rpurge_c      : cleanup c compiled object (*.o)
+rpurge_cmake  : cleanup cmake generated makefiles (Makefile, CMakeCache.txt, ..)
+rpurge_svn    : cleanup svn files (.svn)
+rpurge_python : cleanup python files (*.pyc, *.pyo)
+rpurge_cvs    : cleanup cvs files (.cvs)
+replacer      : recursive find and replace in all files in the current folder
 
 visit http://www.ctaf.free.fr for more information/help about the ctafconf
-
 
 ===========================================================
 Credits

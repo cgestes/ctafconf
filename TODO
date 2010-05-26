@@ -9,16 +9,11 @@ continue to support console tools
   - cleanup as much as possible (emacs, old files)
   - install: backup the first copy of a configfile, the backup will be next to the config file
   - automatic aldebaran mode if running on a box inside aldebaran
-  - separate user configuration to file <configfile.rc>.custom next to <configfile.rc>
-  - osx: be smart with cmake, etc..
   - config option to switch from emacs to vim as default editor (and others?)
 
 setup:
-  - use python for the installation
   - ask if user want to switch default shell to zsh
   - do not assume ctafconf's sources are in .config/ctafconf
-  - store personal information to .config/ctafconf (install link from everywhere), remove the perso folder
-  - simplify setup
 
 GUI:
   - install
@@ -40,51 +35,14 @@ zsh:
 ########################################
 see the bug tracker at www.sf.net/projects/grk
 
-ct-env:
-  - GUI
-  - remove env.epita, update ct-profile to use env
-  - bug with cancel and dialog in enable/disable
-  - dont source all the application
-  - source env only for the session
-  - bug : dont work from tcsh
-
-ct-xsession:
-  - allow ctafconf_wm=cycle to cycle trough each wm
-
-DOC:
-  - ct-env : one page on the wiki (each pages: ct-env, ct-installconf, programming, console)
-
-  - add a xsession: guess for the default user-profile (X should always work), remove xsession/startx from default install
-
-  - allow to edit the blocked machine list (gate-epita, ...)
-  - gui to edit (profile, emacs config, env)
-
-
-  - limit/ulimit
-  - repertoire de template perso pour emacs
-
-  => ct-autostart need to be finished
-  => ct-profile update need to be done, to backlist xsession by default
-  => ct-profile : xsession always backlisted
-  => ct-profile : enable disable color for cvs/svn/make/gmake
-
+Emacs:
+  => repertoire de template perso pour emacs
   => emacs: goto a symbol
   => emacs: goto the header
   => emacs: grep => grep the current word under cursor (in the current file or all) (igrep/igrep-find/occur)
   => block like vim
-
-  => correct window color in speedbar and co
   => doxyemacs : always add header on each function, and synchro from each header and source
-
   => f11 toggle gdb/compilation/grep/etc windows on and off
-
-  (require 'tramp)
-  (setq tramp-default-method "sshx")
-  then: c-x c-f /192.168.0.1:files !!!
 
 now:
   => zsh => git => display number of change not push if tracking branch
-  => emacs : scroll-bar
-
-===>
-/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 2; tab-width: 2 -*- */

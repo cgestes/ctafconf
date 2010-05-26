@@ -10,175 +10,28 @@ FILES AND FOLDERS:
 ===========================================================
 - all files in .ctafconf/etc must be static (user should not edit them, program should not add file into)
 - all binary files should be in .ctafconf/bin
-- all files in .ctafconf/perso must not be overwritten and are user specific
 
 .ctafconf                       root directory
 .ctafconf/etc                   contain all configuration files
-.ctafconf/bin                   ct-profile, ct-installconf, ctssh, ctrepo, ...
+.ctafconf/bin                   ct-installconf, rpurge, findr, ...
 
-.ctafconf/perso                 user specific configuration files
-.ctafconf/perso/bin             user binary
-.ctafconf/perso/semantic        semantic cache file (for emacs, when cedet is installed)
-.ctafconf/perso/previous        all file replaced by the ctafconf
-.ctafconf/perso/wallpaper       user wallpaper (ct-add-wallpaper to add one)
+===========================================================
+PROFILES:
+===========================================================
+specifics profiles can be created in the profile folder.
+They should be activated by adding them to ctafconf_profile in user-profile.sh.
+A profile can contain a zshrc, a bashrc, an env file and a bin directory.
 
+- zshrc: will be sourced at the end of the configuration when using zsh
+- bashrc: will be sourced at the end of the configuration when using bash
+- env: will be sourced by both zsh and bash after setting the environment (see etc/shell/env)
+- bin: this folder can contain profile specific binaries, the folder will be added to the PATH.
 
 ===========================================================
 SHELL POSIX:
 ===========================================================
-######################
 Global advise:
 - always quote string and variable to avoid problem with string containing space
-- use shell lib
-- $(( 1 + 2 )) dont work on sun (jsh), use expr
+- use ${varname} to access variable
 - $(( 077 )) = 63
 
-######################
---shell lib
-ssft.sh       : interface for zenity, kdialog, dialog or read
-shelltools.sh : portable function between bash,ksh,tcsh, and zsh
-                set_env, set_var, null_which (which without output), ...
-xsession.sh   : delay application launching
-grktools.sh   : file operation tools, copyfile, linkfile, restorefile
-                make file operation with backup, usefull for installation
-
-######################
---sh---- (ksh, zsh, bash)
-#syntax
-if cmp -s $SRCFILE $FILE; then
-fi
-export al=val
-alias al=val
-var=val
-source
-
-#catch a signal
-_trap_kill ()
-{
-  exit 0
-}
-trap _trap_kill INT #KILL EXIT QUIT INT TERM
-
-#exit from sourced or standalone script
-#sourced or standalone
-return 2>/dev/null
-exit
-
-######################
---tcsh--
-#syntax
-if ( -x file ) echo cool
-setenv al val
-alias al val
-set var val
-
-
-===========================================================
-MINE:
-===========================================================
-all .mine should be in etc/mine
-they should contains configuration user can tweak
-
-
-
-
-===========================================================
-PACKAGE:
-===========================================================
-all .grk should be in etc/
-they contains installation instruction for a package
-
-current variable/functions to define are (replace pkgname with the name of the file):
-pkgname_name='name of the package' (usefull??)
-
-#description of the package
-pkgname_description
-
-#is this package installed?
-#0 = installed
-#1 = not installed
-pkgname_is_installed
-
-#install this package is pkgname_is_installed return "not installed"
-#0 = installed
-#1 = not installed
-pkgname_install
-
-#uninstall file installed with pkgname_install
-pkgname_uninstall
-
-#this function is always called when you call ct-installconf
-#dont affected by pkgname_uninstall
-#put all .mine there, and stuff for upgrade
-pkgname_alwaysinstall
-
-
-===========================================================
-CUSTOM VAR:
-===========================================================
-ctafconf (user-profile):
-- wm
-- wallpaper
-- config
-- interface
-- sudo (ct-sudo)
-
-defaultapp (for menus):
-- webnavigator
-- mailclient
-
-shell (shell-profile):
-- zshprompt
-- email
-- name
-- proxy
-- pager
-- editor
-- screen at startup
-- host to ban (restricted host)
-
-fluxbox:
-- style (init file)
-
-e16:
-- style
-
-emacs (emacs-profile):
-- size
-- ilisp
-- cedet
-- ecb
-- doxy
-- ...
-
-
----
-- ct-profile edit *.ctprofile , each .ctprofile describe :
-  - variable
-  - the output file
-  - the output method (sh, emacs, csh, ..)
-- ct-profile arg:
-  - askall
-  - test if var are def
-var_type (yesno, singlechoice, multichoice, text)
-var_separator #defined by the type
-var_value (value separate by separator)
-var_description
-var_file (needed?)
-var_type (emacs,csh,sh)
-
-
-
-===========================================================
-EMACS:
-===========================================================
-emacs                   : global configuration file
-bindings.emacs          : global keybindings
-misc.emacs              : not very usefull think
-settings.emacs          : emacs settings
-color.emacs             : emacs color theme
-functions.emacs         : emacs functions
-mode.emacs              : autoload mode
-menu.emacs              : emacs menu
-prog.emacs              : specific think for programmation
-startup.emacs           : startup message and help
