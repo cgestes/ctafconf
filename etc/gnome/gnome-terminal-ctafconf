@@ -1,229 +1,187 @@
 <gconfentryfile>
-  <entrylist base="/apps/gnome-terminal">
+  <entrylist base="/apps/gnome-terminal/profiles/ctafconf">
     <entry>
-      <key>global/active_encodings</key>
-      <schema_key>/schemas/apps/gnome-terminal/global/active_encodings</schema_key>
-      <value>
-        <list type="string">
-            <value>
-              <string>UTF-8</string>
-            </value>
-            <value>
-              <string>current</string>
-            </value>
-        </list>
-      </value>
-    </entry>
-    <entry>
-      <key>global/confirm_window_close</key>
-      <schema_key>/schemas/apps/gnome-terminal/global/confirm_window_close</schema_key>
-      <value>
-        <bool>true</bool>
-      </value>
-    </entry>
-    <entry>
-      <key>global/default_profile</key>
-      <schema_key>/schemas/apps/gnome-terminal/global/default_profile</schema_key>
-      <value>
-        <string>ctafconf</string>
-      </value>
-    </entry>
-    <entry>
-      <key>global/profile_list</key>
-      <schema_key>/schemas/apps/gnome-terminal/global/profile_list</schema_key>
-      <value>
-        <list type="string">
-            <value>
-              <string>ctafconf</string>
-            </value>
-            <value>
-              <string>Default</string>
-            </value>
-        </list>
-      </value>
-    </entry>
-    <entry>
-      <key>profiles/ctafconf/allow_bold</key>
+      <key>allow_bold</key>
       <value>
         <bool>false</bool>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/background_color</key>
+      <key>background_color</key>
       <value>
         <string>#000000</string>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/background_darkness</key>
+      <key>background_darkness</key>
       <value>
-        <float>0.88888016700744629</float>
+        <float>0.88888019323348999</float>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/background_image</key>
+      <key>background_image</key>
       <value>
         <string></string>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/background_type</key>
+      <key>background_type</key>
       <value>
         <string>transparent</string>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/backspace_binding</key>
+      <key>backspace_binding</key>
       <value>
         <string>ascii-del</string>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/cursor_blink</key>
+      <key>cursor_blink</key>
       <value>
         <bool>true</bool>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/custom_command</key>
+      <key>custom_command</key>
       <value>
         <string></string>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/default_show_menubar</key>
+      <key>default_show_menubar</key>
       <value>
         <bool>false</bool>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/delete_binding</key>
+      <key>delete_binding</key>
       <value>
         <string>escape-sequence</string>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/exit_action</key>
+      <key>exit_action</key>
       <value>
         <string>close</string>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/font</key>
+      <key>font</key>
       <value>
         <string>monospace 12</string>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/foreground_color</key>
+      <key>foreground_color</key>
       <value>
         <string>#FFFFFF</string>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/icon</key>
+      <key>icon</key>
       <value>
         <string>gnome-terminal.png</string>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/login_shell</key>
+      <key>login_shell</key>
       <value>
         <bool>false</bool>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/palette</key>
+      <key>palette</key>
       <value>
         <string>#000000000000:#AAAA00000000:#0000AAAA0000:#AAAA55550000:#00000000AAAA:#AAAA0000AAAA:#0000AAAAAAAA:#AAAAAAAAAAAA:#555555555555:#FFFF55555555:#5555FFFF5555:#FFFFFFFF5555:#55555555FFFF:#FFFF5555FFFF:#5555FFFFFFFF:#FFFFFFFFFFFF</string>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/scroll_background</key>
+      <key>scroll_background</key>
       <value>
         <bool>true</bool>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/scroll_on_keystroke</key>
+      <key>scroll_on_keystroke</key>
       <value>
         <bool>true</bool>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/scroll_on_output</key>
+      <key>scroll_on_output</key>
       <value>
         <bool>false</bool>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/scrollback_lines</key>
+      <key>scrollback_lines</key>
       <value>
         <int>50000</int>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/scrollbar_position</key>
+      <key>scrollbar_position</key>
       <value>
         <string>left</string>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/silent_bell</key>
+      <key>silent_bell</key>
       <value>
         <bool>true</bool>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/title</key>
+      <key>title</key>
       <value>
         <string>ctafconf</string>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/title_mode</key>
+      <key>title_mode</key>
       <value>
         <string>replace</string>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/update_records</key>
+      <key>update_records</key>
       <value>
         <bool>true</bool>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/use_custom_command</key>
+      <key>use_custom_command</key>
       <value>
         <bool>false</bool>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/use_system_font</key>
+      <key>use_system_font</key>
       <value>
         <bool>true</bool>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/use_theme_colors</key>
+      <key>use_theme_colors</key>
       <value>
         <bool>false</bool>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/visible_name</key>
+      <key>visible_name</key>
       <value>
         <string>ctafconf</string>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/word_chars</key>
+      <key>word_chars</key>
       <value>
         <string>-A-Za-z0-9,./?%&amp;#:_</string>
       </value>
     </entry>
     <entry>
-      <key>profiles/ctafconf/x_font</key>
+      <key>x_font</key>
       <value>
         <string>-misc-fixed-medium-r-semicondensed--*-120-*-*-c-*-*-*</string>
       </value>
