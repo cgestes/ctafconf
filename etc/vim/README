@@ -1,48 +1,101 @@
+========================================
 Yannick LM's vim configuration files.
+========================================
 
 
+Setup:
+======
 
-Hi there ;)
+You'll need a fairly recent version of vim for everything to work.
 
-Just a few notes about what you're about to find here.
+You'll need to have exuberant-ctags installed to stop having vimrc
+complaining at start up.
 
-SETUP:
+
+Random notes:
+============
+
+
+I'll try to keep the correct file system hierarchy for vim scripts,
+so the vimrc itself is  quite small
+
+The various plugins are versionned as they were when I downloaded them,
+and some of them are patched, so do not expect to have the latest
+version of every plugins.
+
+
+If you wish to change settings for a particular language, please use
+vim/ftplugin/<language>.vim, NOT vimrc.
+
+Non-standard behavior:
+
+ - trailing white spaces are removed when saving
+ - virtualedit in "block" mode
+
+mappings in normal mode
+ - ,cd: to go the directory containing the current buffer
+ (mimic default emacs' behavior)
+ - alt-<UP>  : go to the previous buffer
+ - alt-<DOWN>: go to the next buffer
+ - K : open manpage for work under cursor.
+ (you can use :Man too)
+
+
+PLUGINS :
+=======
+
+
+Code:
 -----
 
-Best thing to do is to untar the archive in ~/.config,
-and add a symlink ~/.vim -> ~/.config/vim,
-~/.vimrc -> ~/.config/vimrc
-(After having carefully backuped your own settings!)
+  - supertab
+    Use <TAB> to complete instead of CRTL+X CRL+O
+    See :SupertabHelp
+  - NERD_commenter:
+    ,c<ESC>  to comment a line (note the leading comma)
+    ,c<ESC>i to inverse the comment of a line
+    ,cs      "sexy" comment of the selection
+  - snippetsEmu: an emulation of TexMate snippates.
+    They are stored in
+    after/ftplugin/<language>_mysnippets.vim
+    Open the files to see how to defoine your own snippets.
+    Templates are also completed with <TAB>
 
+* C/C++:
+   - a.vim
+    :A to go from .h to .c, and vice-versa,
+    :AV to vsplist,
+    :AS to split)
+  - taglist:
+    :TlistAddFilesRecursive .
+    :Tlist
 
-FILES:
+* Python:
+  - pydoc:
+    :Pydoc <keywork>
+    \pw on a word
+  - completion:
+
+Misc:
 ----
 
-vimrc       : some of setting you'll hopefully find useful.
+  - NERD_tree: an improvement of netrw
+  - fullscren:
+    :W to open maximzie a window
+  - yankring:
+    Right after having paste something, you can use <C-N> and <C-P>
+    to navigate through the history of registers.
 
-REAMDE      : this file ;)
-colors      : some colorscheme I like (although I'm color-blind ...)
-doc
-ftplugin
-plugin
-skeletons  : use this to put your templates. (see vimrc on how to use it)
-spell
-syntax     : better syntax file for python, and a asccidoc syntax file
-tags
+Uselsess:
+--------
 
-./ftplugin: : Options put here because there are conflicts with vimrc, or
-just because they are too specific
-
-
-./plugin   :  A bunch of plugins that I found useful. Careful! Some of them may
-not be up-to-date, and a few of them are patched ;). However some are necessary
-for this configuration to work properly. (vimbuddy and imaps)
+  - matrix:
+    :Matrix
+  - vimbuddy:
+    For the nice smiley in the status line
 
 
-tags/python : This goes with the "set tags+=" in ftplugin/python. It contains
-python tags from a regular Pthon2.6 distribution.
+TODO:
+====
 
-.gitignore  : Yes, all of this is versionned with git.
-
-Beware, vimrc contains auto-removing of trailing whitespaces,
-which could be harmful ...
+* Cleanup the skeletons

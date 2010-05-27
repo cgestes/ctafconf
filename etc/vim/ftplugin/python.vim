@@ -1,10 +1,12 @@
 set omnifunc=pythoncomplete#Complete
 
 set path+=/usr/lib/python2.6/,/usr/lib/python2.6/site-packages
+
+" Comment this if omnicomplete gets too slow...
 set tags+=~/.vim/tags/python/tags
 
 
-" This was incredibly helpful...
+" This is incredibly helpful...
 abbreviate <buffer> sefl self
 abbreviate <buffer> slef self
 
@@ -12,7 +14,7 @@ abbreviate <buffer> slef self
 setlocal makeprg=python\ %
 
 
-" This is quite good for python scripts
+" Follow PEP8
 setlocal expandtab
 setlocal smarttab
 setlocal shiftwidth=4
@@ -24,6 +26,6 @@ autocmd bufwritepre * :%s/\s\+$//e
 " time load syntax/dosini.vim.
 " (Syntax is almost the same as ConfigParser,
 " except for comments).
-" Thi is a fix in a quick and dirty way:
+" This is a fix in a quick and dirty way:
 ": syn match dosiniComment "#.*^"
 "

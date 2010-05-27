@@ -56,6 +56,14 @@ if you are paranoid, and dont trust the install script.
 Try the manual way to get the emacs configuration:
 >echo "(load-file \"~/.config/ctafconf/etc/emacs/emacs\")" >> ~/.emacs
 
+
+===========================================================
+VIM
+===========================================================
+See .config/etc/vim/REAMDE
+
+
+
 ===========================================================
 ZSH
 ===========================================================

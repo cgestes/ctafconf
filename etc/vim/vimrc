@@ -1,26 +1,53 @@
 " Yannick LM vim configuration file
 "
 
+""
+" Sane defaults:
+
 set nocompatible
+syntax on
+filetype plugin on
+set history=10000
+set mouse=a
 set encoding=utf-8
 set showcmd
 set showmode
 set ruler
-syntax on
 set backspace=2
+set virtualedit=block
+set background=dark
+set autowriteall
 
 " nice menu to navigate through possible completions
 set wildmenu
+" smarter behavior of 'J' (join lines)
+set nojoinspaces
 
-"set ignorecase
-"set smartcase
+" highlight search
 set hlsearch
+" search as you type
 set incsearch
-filetype plugin on
+" The correct way to remove highlight is:
+" :let @/=""
 
-set history=10000
+" Remove menu bar from GUI
+let did_install_default_menus = 1
 
-set mouse=a
+" Remove trailing whitespaces when saving:
+autocmd bufwritepre * :%s/\s\+$//e
+
+" Tell NerdCommenter to shut up:
+let g:NERDShutUp=1
+
+" Allow completion on filenames right after a '='.
+" Uber-useful when editing bash scripts
+set isfname-==
+
+" No more annoying bell
+set visualbell t_vb=
+
+" Disable useless ctrl+space behavior:
+imap <Nul> <Space>
 
 " Tabulations
 set shiftwidth=2
@@ -28,44 +55,9 @@ set expandtab
 set smarttab
 set smartindent
 
-set background=dark
 
-" Matchit !
+" Always load those useful plugins:
 runtime! macros/matchit.vim
-
-" smarter J
-set nojoinspaces
-
-" isfname:
-set isfname-==
-
-" 'cd' towards the dir in which is the file edited
-map ,cd :cd %:p:h<CR>
-
-set autowriteall
-
-"""
-"Skeletons :
-
-" First read the skeleton
-autocmd BufNewFile *.rb        0r ~/.config/ctafconf/etc/vim/skeletons/rbskel.rb
-autocmd BufNewFile *.sh        0r ~/.config/ctafconf/etc/vim/skeletons/shskel.sh
-autocmd BufNewFile *.tex       0r ~/.config/ctafconf/etc/vim/skeletons/texskel.tex
-autocmd BufNewFile *.py        0r ~/.config/ctafconf/etc/vim/skeletons/pyskel.py
-autocmd BufNewFile *.html      0r ~/.config/ctafconf/etc/vim/skeletons/htmlskel.html
-
-" Then move to the according line
-autocmd BufNewFile *.rb       :3
-autocmd BufNewFile *.sh       :3
-autocmd BufNewFile *.tex      :16
-autocmd BufNewFile *.html     :12
-
-
-" Vim spell check
-
-cmap spc setlocal spell spelllang=
-
-" Useful plugins:
 runtime! plugin/imaps.vim
 runtime! ftplugin/man.vim
 
@@ -74,32 +66,46 @@ set laststatus=2
 set statusline=%{VimBuddy()}\ %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
 
-" Remove menu bar from GUI
-let did_install_default_menus = 1
-
-" Remove trailing whitespaces when saving:
-autocmd bufwritepre * :%s/\s\+$//e
-
-
-" Tell NerdCommenter to shut up:
-let g:NERDShutUp=1
-
-" No more annoying bell
-set visualbell t_vb=
-
-" Disable useless ctrl+space behavior:
-imap <Nul> <Space>
-
-" I always make mistakes in these words
-abbreviate swith switch
-abbreviate wich which
-abbreviate lauch launch
 
 ""
-" Nicer keybindings
+" Skeletons :
+
+" First read the skeleton ...
+autocmd BufNewFile *.rb        0r ~/.config/ctafconf/etc/vim/skeletons/rbskel.rb
+autocmd BufNewFile *.sh        0r ~/.config/ctafconf/etc/vim/skeletons/shskel.sh
+autocmd BufNewFile *.tex       0r ~/.config/ctafconf/etc/vim/skeletons/texskel.tex
+autocmd BufNewFile *.py        0r ~/.config/ctafconf/etc/vim/skeletons/pyskel.py
+autocmd BufNewFile *.html      0r ~/.config/ctafconf/etc/vim/skeletons/htmlskel.html
+
+" ... then move to the according line
+autocmd BufNewFile *.rb       :3
+autocmd BufNewFile *.sh       :3
+autocmd BufNewFile *.tex      :16
+autocmd BufNewFile *.html     :12
+
+
+
+""
+" Few keybindings
+
+" 'cd' towards the dir in which is the file edited
+map ,cd :cd %:p:h<CR>
 
 " Navigate through the buffer's list with alt+up, alt+down
 nnoremap <M-Down>  :bp<CR>
 nnoremap <M-Up>    :bn<CR>
 
+" Man page for work under cursor
 nnoremap K :Man <cword> <CR>
+" Spell check
+cmap spc setlocal spell spelllang=
+
+
+
+""
+" Misc
+
+" I always make mistakes in these words
+abbreviate swith switch
+abbreviate wich which
+abbreviate lauch launch
