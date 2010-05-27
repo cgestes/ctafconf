@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Feb 11 01:37:23 2005 GESTES Cedric
-## Last update Wed Mar  3 10:33:46 2010 Cedric GESTES
+## Last update Thu May 27 18:03:33 2010 Cedric GESTES
 ##
 ##CTAFCONF
 
@@ -22,10 +22,9 @@ autoload -Uz add-zsh-hook
 bright="\033[m1;"
 dull="\033[m0;"
 for color in BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
-	#eval PR_$color='%{$terminfo[bold]$fg[${(L)color}]%}'
-  eval export PR_$color='%{$fg_no_bold[${(L)color}]%}'
-  eval export PR_BG_$color='%{$bg[${(L)color}]%}'
-  eval export PR_LIGHT_$color='%{$fg_bold[${(L)color}]%}'
+  eval PR_$color='%{$fg_no_bold[${(L)color}]%}'
+  eval PR_BG_$color='%{$bg[${(L)color}]%}'
+  eval PR_LIGHT_$color='%{$fg_bold[${(L)color}]%}'
   (( count = $count + 1 ))
 done
 PR_NO_COLOUR="%{$terminfo[sgr0]%}"
