@@ -5,7 +5,7 @@
 ## Login   <ctaf42@gmail.com>
 ##
 ## Started on  Fri Sep 30 22:08:35 2005 GESTES Cedric
-## Last update Thu May 27 10:45:53 2010 Cedric GESTES
+## Last update Thu May 27 11:02:11 2010 Cedric GESTES
 ##
 #!/bin/sh
 
@@ -34,7 +34,7 @@ set bell-style none
 
 [ -f ~/.config/ctafconf/etc/bash/bashprompt ] && . ~/.config/ctafconf/etc/bash/bashprompt
 
-if [ $ctafconf_profiles ] ; then
+if ! test -z $ctafconf_profiles ; then
   for i in $(echo $ctafconf_profiles) ; do
     test -f ~/.config/ctafconf/profile/$i/bashrc && source ~/.config/ctafconf/profile/$i/bashrc
   done
