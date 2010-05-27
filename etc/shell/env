@@ -71,7 +71,10 @@ null_which vi   && env_set VISUAL "vi"   && env_set EDITOR "vi"
 null_which vim  && env_set VISUAL "vim"   && env_set EDITOR "vim"
 null_which nano && env_set VISUAL "nano" && env_set EDITOR "nano"
 null_which emacs && env_set VISUAL "emacs" && env_set EDITOR "emacs"
-test -z $ctafconf_editor || { null_which $ctafconf_editor && env_set VISUAL $ctafconf_editor && env_set EDITOR $ctafconf_editor }
+if [ $ctafconf_editor ]; then
+ null_which $ctafconf_editor && env_set VISUAL $ctafconf_editor && env_set EDITOR $ctafconf_editor
+fi
+
 
 #cvs variable
 env_set CVS_RSH "ssh"
@@ -86,12 +89,12 @@ env_set PATH "$PATH":.
 #different plateform test
 test -f ~/.config/ctafconf/etc/shell/env.`uname` && source ~/.config/ctafconf/etc/shell/env.`uname`
 
-test -z "$ctafconf_profile" || {
+if [ $ctafconf_profile ] ; then
   for i in $(echo $ctafconf_profile) ; do
     test -d ~/.config/ctafconf/profile/$i/bin && env_set PATH "$PATH":"${HOME}/.config/ctafconf/profile/$i/bin"
     test -f ~/.config/ctafconf/profile/$i/env && source ~/.config/ctafconf/profile/$i/env
   done
-}
+fi
 
 #update the ctafconf if VERSION has changed
 ~/.config/ctafconf/bin/ct-updateconf
