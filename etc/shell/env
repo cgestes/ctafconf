@@ -89,8 +89,8 @@ env_set PATH "$PATH":.
 #different plateform test
 test -f ~/.config/ctafconf/etc/shell/env.`uname` && source ~/.config/ctafconf/etc/shell/env.`uname`
 
-if [ $ctafconf_profile ] ; then
-  for i in $(echo $ctafconf_profile) ; do
+if [ $ctafconf_profiles ] ; then
+  for i in $(echo $ctafconf_profiles) ; do
     test -d ~/.config/ctafconf/profile/$i/bin && env_set PATH "$PATH":"${HOME}/.config/ctafconf/profile/$i/bin"
     test -f ~/.config/ctafconf/profile/$i/env && source ~/.config/ctafconf/profile/$i/env
   done

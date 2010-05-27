@@ -19,7 +19,7 @@ FILES AND FOLDERS:
 PROFILES:
 ===========================================================
 specifics profiles can be created in the profile folder.
-They should be activated by adding them to ctafconf_profile in user-profile.sh.
+They should be activated by adding them to ctafconf_profiles in user-profile.sh.
 A profile can contain a zshrc, a bashrc, an env file and a bin directory.
 
 - zshrc: will be sourced at the end of the configuration when using zsh

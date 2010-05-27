@@ -57,8 +57,8 @@ else
   prompt "$ctafconf_zprompt"
 fi
 
-test -z "$ctafconf_profile" || {
-  for i in $(echo $ctafconf_profile) ; do
+test -z "$ctafconf_profiles" || {
+  for i in $(echo $ctafconf_profiles) ; do
     test -f ~/.config/ctafconf/profile/$i/zshrc && source ~/.config/ctafconf/profile/$i/zshrc
   done
 }

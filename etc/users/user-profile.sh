@@ -13,7 +13,7 @@ var_set ctafconf_editor 'emacs'
 #list of specific configurations (ctaf, yannick, aldebaran)
 #if you dont know => dont change this variables
 #you can list availables profiles in .config/ctafconf/profile
-var_set ctafconf_profile ''
+var_set ctafconf_profiles ''
 
 #choose your zsh prompt
 #choice are: ctaf adam1 adam2 bart zefram fade redhat suse walters bigfade clint elite elite2 fire off olivier
