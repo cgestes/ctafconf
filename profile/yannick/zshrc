@@ -1,0 +1,16 @@
+##
+## Cutom settings for Zsh
+##
+
+# Activate spell check:
+setopt correct
+
+# Activate bang history:
+setopt bang_hist
+
+# Better safe that sorry:
+alias_set rm "rm -i"
+alias_set mv "mv -iv"
+alias_set cp "cp -iv"
+
+setopt

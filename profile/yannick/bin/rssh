@@ -1,0 +1,70 @@
+#!/bin/sh
+##
+## rssh.sh
+## Login : <ctaf@localhost.localdomain>
+## Started on  Mon May 26 17:16:55 2008 Cedric GESTES
+## $Id$
+##
+## Author(s):
+##  - Cedric GESTES <gestes@aldebaran-robotics.com>
+##
+## Copyright (C) 2008 Cedric GESTES
+## This program is free software; you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation; either version 3 of the License, or
+## (at your option) any later version.
+##
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+##
+## You should have received a copy of the GNU General Public License
+## along with this program; if not, write to the Free Software
+## Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+##
+
+COPY_ID=0
+ADDR=""
+
+usage() {
+  echo "rssh [-c] <ip|name>"
+  echo ""
+  echo "  -c : copy the current public keys to the destination authorized_keys"
+  exit 1
+}
+
+parse_option() {
+  while getopts hc opt ; do
+    case "$opt" in
+      c)
+        COPY_ID=1
+        ;;
+      [?]|h)
+        usage
+        ;;
+    esac
+  done
+  shift $(($OPTIND-1))
+  if ! [ $# -eq 1 ] ; then
+    echo "bad number of argument:" $#
+    usage
+  fi
+  ADDR=$1
+}
+
+parse_option $@
+
+if [ ${ADDR} -ge 0 -a ${ADDR} -le 255 ] 2>/dev/null; then
+  ssh_address="10.0.252.${ADDR}"
+else
+  ssh_address="${ADDR}.local"
+fi
+
+if [ $COPY_ID -eq 1 ] ; then
+  ssh-copy-id -i ~/.ssh/id_[rd]sa.pub "nao@$ssh_address"
+fi
+
+ssh-keygen -R "$ssh_address"
+ssh -o StrictHostKeyChecking=no "nao@$ssh_address"
+

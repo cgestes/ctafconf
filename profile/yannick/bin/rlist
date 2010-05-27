@@ -1,0 +1,40 @@
+#! /bin/sh
+
+usage() {
+  echo "Usage: rlist [-i | -n]" >&2
+  exit 1
+}
+
+
+case $# in
+  0)
+    OPT="-i"
+    ;;
+  1)
+    OPT=$1
+    if [ "$OPT" = "-h" ] ; then
+      usage
+    fi
+    ;;
+  *)
+    usage
+    ;;
+esac
+
+
+IFS="
+"
+
+avahi-browse -p -r -t _nao._tcp 2> /dev/null | grep "^=" | while read I;
+do
+  HOST=`echo -n $I | cut -f 4 -d ';'`
+  IP=`echo -n$I | cut -f 8 -d ';'`
+  case $OPT in
+    "-n")
+      printf "%-25s => %s\n" $HOST $IP
+      ;;
+    *)
+      printf "%-15s => %s\n" $IP $HOST
+      ;;
+  esac
+done | sort
