@@ -68,8 +68,6 @@
 ;;keys bindings
 (safe-load "~/.config/ctafconf/etc/emacs/bindings.emacs")
 
-;;menu
-(safe-load "~/.config/ctafconf/etc/emacs/menu.emacs")
 ;;test
 ;;(safe-load "~/.config/ctafconf/etc/emacs/test.emacs")
 

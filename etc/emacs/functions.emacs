@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 00:58:57 2006 GESTES Cedric
-;; Last update Thu Feb 15 19:12:00 2007 GESTES Cedric
+;; Last update Thu May 27 18:21:10 2010 Cedric GESTES
 ;;
 (message ".")
 (message "ctafconf loading: FUNCTIONS.EMACS")
@@ -32,38 +32,6 @@
   )
 )
 
-;; Zlock handling for emacs
-(defun zlock ()
-  (interactive)
-  (shell-command "zlock -immed"))
-
-
-;;; buffer functions
-(defun my-previous-buffer ()
-  "Cycle to the previous buffer with keyboard."
-  (interactive)
-  (bury-buffer))
-
-;; (defun next-buffer ()
-;;   "Go to the buffer which is at the end of the buffer-list.
-;;    This is the symmetric of burry-buffer."
-;;   (interactive)
-;;   (switch-to-buffer (nth (- (length (buffer-list)) 1) (buffer-list))))
-
-(defun my-next-buffer ()
-  "Cycle to the next buffer with keyboard."
-  (interactive)
-  (let* ((bufs (buffer-list))
-         (entry (1- (length bufs)))
-         val)
-    (while (not (setq val (nth entry bufs)
-                      val (and (/= (aref (buffer-name val) 0)
-                                   ? )
-                               val)))
-      (setq entry (1- entry)))
-    (switch-to-buffer val)))
-
-
 ;;test si on est en graphique
 ;; from command line: emacs -g 80x40
 (defun ctafconf-resize-80x25()
@@ -77,35 +45,3 @@
     )
   )
 
-
-
-;; (defun jl-kill-region ()
-;;   "if the mark is not active kill the current word \
-;;   or if the mark is active kill the active region"
-;;   (interactive)
-;;   (if (equal mark-active t)
-;;     (kill-region (region-beginning) (region-end))
-;;     (progn
-;;       (search-backward " ")
-;;       (kill-word 1)
-;;       (insert " "))
-;;     )
-;;   )
-
-;; ;;; some functions
-;; (defun push-line ()
-;;   "Select current line, push onto kill ring."
-;;   (interactive)
-;;   (save-excursion
-;;     (copy-region-as-kill (re-search-backward "^") (re-search-forward "$"))))
-
-
-;; (defun push-rest-of-line ()
-;;   "Select text from point to end of current line, push onto kill ring."
-;;   (interactive)
-;;   (save-excursion
-;;     (copy-region-as-kill (point) (re-search-forward "$"))))
-;; ;;special kill
-;; (global-set-key "\C-ck" 'push-rest-of-line)
-;; (global-set-key "\C-w"  'jl-kill-region)
-;; (global-set-key "\C-cp" 'push-line)

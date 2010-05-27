@@ -5,36 +5,16 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 01:16:47 2006 GESTES Cedric
-;; Last update Thu Oct  8 15:26:38 2009 Cedric GESTES
+;; Last update Thu May 27 19:28:26 2010 Cedric GESTES
 ;;
 (message ".")
 (message "ctafconf loading: BINDINGS.EMACS")
-;;(global-unset-key "\M-[")
-
-(defun up-slightly () (interactive) (scroll-up 5))
-(defun down-slightly () (interactive) (scroll-down 5))
-(global-set-key [mouse-4] 'down-slightly)
-(global-set-key [mouse-5] 'up-slightly)
-
-(defun up-one () (interactive) (scroll-up 1))
-(defun down-one () (interactive) (scroll-down 1))
-(global-set-key [S-mouse-4] 'down-one)
-(global-set-key [S-mouse-5] 'up-one)
-
-(defun up-a-lot () (interactive) (scroll-up))
-(defun down-a-lot () (interactive) (scroll-down))
-(global-set-key [C-mouse-4] 'down-a-lot)
-(global-set-key [C-mouse-5] 'up-a-lot)
-
 
 (global-set-key [M-left]       'tabbar-backward-tab)
 (global-set-key [M-right]        'tabbar-forward-tab)
 
 (global-set-key [M-up]       'tabbar-backward-group)
 (global-set-key [M-down]        'tabbar-forward-group)
-
-;; (global-set-key [M-left]       'my-previous-buffer)
-;; (global-set-key [M-right]        'my-next-buffer)
 
 
 ;; M-x pc-bindings-mode sets up bindings compatible with many PC editors. In particular, Delete and its variants delete forward instead of backward. Use Backspace to delete backward.
