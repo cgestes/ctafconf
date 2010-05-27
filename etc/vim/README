@@ -41,6 +41,14 @@ mappings in normal mode
  (you can use :Man too)
 
 
+If you want, you can create a symlink:
+
+~.Xmodmap -> ~/.config/ctafconf/profile/yannick/Xmodmap
+
+to swap "caps lock" and "escape" keys.
+(beware, after this there is no turning back...)
+
+
 PLUGINS :
 =======
 
