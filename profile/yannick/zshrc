@@ -13,4 +13,3 @@ alias_set rm "rm -i"
 alias_set mv "mv -iv"
 alias_set cp "cp -iv"
 
-setopt
