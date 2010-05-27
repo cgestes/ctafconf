@@ -37,11 +37,6 @@
 
 (load-file "~/.config/ctafconf/etc/emacs/site-lisp/safe-load.el")
 
-;;configuration file
-(safe-load "~/.config/ctafconf/etc/emacs/emacs.config")
-
-(safe-load "~/.config/ctafconf/perso/emacs.config")
-
 (if (file-exists-p "~/.emacs.pre.el")
     (safe-load "~/.emacs.pre.el"))
 

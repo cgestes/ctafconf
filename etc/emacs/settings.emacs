@@ -5,7 +5,7 @@
 ;; Login   <ctaf42@gmail.com>
 ;;
 ;; Started on  Mon Jan 16 01:13:33 2006 GESTES Cedric
-;; Last update Tue May 25 18:54:53 2010 Cedric GESTES
+;; Last update Thu May 27 19:33:40 2010 Cedric GESTES
 ;;
 (message ".")
 (message "ctafconf loading: SETTINGS.EMACS")
@@ -229,3 +229,6 @@
       kept-new-versions         6
       kept-old-versions         2
       version-control           t)                       ; use versioned backups
+
+;;organised buffer
+(msb-mode)
