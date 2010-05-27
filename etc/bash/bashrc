@@ -18,9 +18,6 @@ if [[ $- != *i* ]] || [ a$HOST = agate-ssh ]; then
 	# Shell is non-interactive.  Be done now
 	return
 fi
-cat ~/.config/ctafconf/VERSION
-echo -n "shell: bash, "
-cat ~/.config/ctafconf/etc/shell/motd
 
 # Bash won't get SIGWINCH if another process is in the foreground.
 # Enable checkwinsize so that bash will check the terminal size when
