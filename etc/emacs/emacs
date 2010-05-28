@@ -18,13 +18,12 @@
 ;;http://www.emacswiki.org
 
 ;;;PATH and .el file
-(setq load-path (nconc '( "~/.config/ctafconf/etc/emacs/site-lisp/"
-			  "~/.config/ctafconf/etc/emacs/site-lisp/ilisp/"
-			  "~/.config/ctafconf/etc/emacs/site-lisp/ecb/"
-			  "~/.config/ctafconf/etc/emacs/site-lisp/tuareg/"
-			  "~/.config/ctafconf/etc/emacs/site-lisp/doxymacs/lisp"
-			  "~/.config/ctafconf/etc/emacs/site-lisp/sieve/") load-path))
-
+(setq load-path (nconc '( "~/.config/ctafconf/etc/emacs/"
+			  "~/.config/ctafconf/etc/emacs/site-lisp/"
+			  "~/.config/ctafconf/etc/emacs/site-lisp/mode/"
+			  "~/.config/ctafconf/etc/emacs/site-lisp/mode/tuareg/"
+			  "~/.config/ctafconf/etc/emacs/site-lisp/mode/haskell-mode-2.7.0/"
+			  "~/.config/ctafconf/etc/emacs/site-lisp/mode/sieve/") load-path))
 
 ;;debug those file on error
 (setq debug-on-error t)
@@ -34,38 +33,34 @@
 ;;;;anything less than 1 ghz).
 (setq gc-cons-threshold 50000000)
 
-
-(load-file "~/.config/ctafconf/etc/emacs/site-lisp/safe-load.el")
+(load "safe-load")
+;;(load-file "~/.config/ctafconf/etc/emacs/site-lisp/safe-load.el")
 
 (if (file-exists-p "~/.emacs.pre.el")
     (safe-load "~/.emacs.pre.el"))
 
-(safe-load "~/.config/ctafconf/etc/emacs/color.emacs")
+(safe-load "ctafconf_color")
 
 ;;emacs settings
-(safe-load "~/.config/ctafconf/etc/emacs/settings.emacs")
+(safe-load "ctafconf_settings")
 
 ;;startup message
-(safe-load "~/.config/ctafconf/etc/emacs/startup.emacs")
+(safe-load "ctafconf_startup")
 
 ;;mode (ada,tuareg, ido, autotemplate,..)
-(safe-load "~/.config/ctafconf/etc/emacs/mode.emacs")
+(safe-load "ctafconf_mode")
 
 ;;usefull functions
-(safe-load "~/.config/ctafconf/etc/emacs/functions.emacs")
+(safe-load "ctafconf_functions")
 
 ;;screensaver,
 ;;(safe-load "~/.config/ctafconf/etc/emacs/misc.emacs")
 
 ;;cparse, cpcomment, cwarn, cedet, ecb, semantic
-(safe-load "~/.config/ctafconf/etc/emacs/prog.emacs")
+(safe-load "ctafconf_prog")
 
 ;;keys bindings
-(safe-load "~/.config/ctafconf/etc/emacs/bindings.emacs")
-
-;;test
-;;(safe-load "~/.config/ctafconf/etc/emacs/test.emacs")
-
+(safe-load "ctafconf_bindings")
 
 ;;personal settings
 (if (file-exists-p "~/.myemacs")
@@ -75,14 +70,3 @@
 
 ;;print debug info
 (safe-load-check)
-
-
-;; (custom-set-variables
-;;   ;; custom-set-variables was added by Custom -- don't edit or cut/paste it!
-;;   ;; Your init file should contain only one such instance.
-;;  '(ecb-options-version "2.32")
-;;  '(speedbar-frame-parameters (quote ((minibuffer) (width . 20)
-;;                                      (border-width . 0)
-;;                                      (menu-bar-lines . 0)
-;;                                      (tool-bar-lines . 0) (unsplittable . t) (set-background-color "black")))))
-

@@ -31,17 +31,3 @@
     (replace-match "\r\n")
   )
 )
-
-;;test si on est en graphique
-;; from command line: emacs -g 80x40
-(defun ctafconf-resize-80x25()
-  "resize the terminal"
-  (if window-system
-      (progn
-        (interactive)
-        (set-frame-width (selected-frame) 80)
-        (set-frame-height (selected-frame) 27)
-        )
-    )
-  )
-

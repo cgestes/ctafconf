@@ -15,7 +15,6 @@
 (defvar running-on-linux (not running-on-windows))
 (defvar running-on-x (eq window-system 'x))
 
-
 (defun console-color-theme()
   "A console scheme"
   (interactive "")

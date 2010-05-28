@@ -7,6 +7,7 @@
 ;; Started on  Mon Jan 16 01:13:33 2006 GESTES Cedric
 ;; Last update Thu May 27 19:33:40 2010 Cedric GESTES
 ;;
+
 (message ".")
 (message "ctafconf loading: SETTINGS.EMACS")
 
@@ -23,13 +24,13 @@
 
 ;; Distance between tab stops (for display of tab characters), in columns.
 ;; Automatically becomes buffer-local when set in any fashion.
-(setq default-tab-width 8)
-(setq sh-indentation 2)
+(setq default-tab-width  8)
+(setq sh-indentation     2)
 (setq sh-indent-for-then 0)
-(setq csh-indent 2)
-(setq sh-basic-offset 2)
-(setq standard-indent 2)
-(setq perl-indent-level 2)
+(setq csh-indent         2)
+(setq sh-basic-offset    2)
+(setq standard-indent    2)
+(setq perl-indent-level  2)
 
 
 ;; scroll the compilation window
@@ -41,45 +42,36 @@
 ;; set `indent-tabs-mode' to `nil'. This is a per-buffer variable;
 ;; altering the variable affects only the current buffer, but it can be
 ;; disabled for all buffers.
-
-;;
 ;; Use (setq ...) to set value locally to a buffer
 ;; Use (setq-default ...) to set value globally
 ;;
-(setq-default indent-tabs-mode nil);
-;;pour les accents (obselete)
-;;(standard-display-european 1)
+(setq-default indent-tabs-mode nil)
 
 ;;scroll avec la souris
-(mouse-wheel-mode 1)
+(mouse-wheel-mode t)
 
 ;;coloration syntaxique
-(global-font-lock-mode 1)
+(global-font-lock-mode t)
+
+;;organised buffer
+(msb-mode t)
 
 (defvar running-on-windows (memq system-type '(windows-nt cygwin)))
-(defvar running-on-linux (not running-on-windows))
-(defvar running-on-x (eq window-system 'x))
+(defvar running-on-linux   (not running-on-windows))
+(defvar running-on-x       (eq window-system 'x))
 
 ;;suppression du menu
-(if (and enable-menu-bar
-         (or running-on-x
-             running-on-windows))
-    (menu-bar-mode 1)
-  (menu-bar-mode 0))
-
-;;suppression de la toolbar
-(if (and enable-tool-bar
-         (or running-on-x
-             running-on-windows))
-    (tool-bar-mode 1)
-    (tool-bar-mode 0))
-
-;;supprime la scrollbar
-(if (and enable-scroll-bar
-         (or running-on-x
-             running-on-windows))
-    (scroll-bar-mode t)
-  (scroll-bar-mode -1))
+(if (or running-on-x
+        running-on-windows)
+    (progn
+      (menu-bar-mode   t)
+      (tool-bar-mode   t)
+      (scroll-bar-mode t))
+  (progn
+    (menu-bar-mode nil)
+    (tool-bar-mode nil)
+    (scroll-bar-mode nil))
+  )
 
 ;; Avoid those crappy "tooltips":
 (setq tooltip-delay 9999)
@@ -90,8 +82,8 @@
 ;;(setq-default truncate-lines t)
 
 ;;affiche les lignes et les colonnes dans la barre en bas
-(column-number-mode 1)
-(line-number-mode 1)
+(column-number-mode t)
+(line-number-mode   t)
 
 ;; display the current time
 ;;(display-time)
@@ -120,7 +112,7 @@
 (setq query-replace-highlight t)
 
 ;; highlight incremental search
-(setq search-highlight t)
+(setq search-highlight        t)
 
 ;; highlight matches from searches
 ;;(setq isearch-highlight t)
@@ -230,5 +222,6 @@
       kept-old-versions         2
       version-control           t)                       ; use versioned backups
 
-;;organised buffer
-(msb-mode)
+
+;;igrep
+(safe-load "igrep")

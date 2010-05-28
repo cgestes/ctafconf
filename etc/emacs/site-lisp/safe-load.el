@@ -10,7 +10,7 @@
   "Load a file.  If error when loading, report back, wait for
    a key stroke then continue on"
 ;;  (interactive "f")
-  (condition-case nil (load-file file)
+  (condition-case nil (load file)
     (error
       (progn
        (setq safe-load-error-list  (concat safe-load-error-list  " " file))
