@@ -138,7 +138,7 @@ def grk_install_file(dest, src):
     if filecmp.cmp(src_abs, dest_abs):
       LOGGER.info("identical: %s %s", src_abs, dest_abs)
       return
-  except OSError as e:
+  except OSError, e:
     if e.errno != 2:
       raise
 
