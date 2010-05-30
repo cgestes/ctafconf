@@ -70,3 +70,7 @@
 (require 'generic-x)
 
 
+
+;;copy line above/under  (use C-S-{up,down, insert}
+(setq vcursor-key-bindings t)      ;; enable default bindings
+(require 'vcursor)
