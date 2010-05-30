@@ -56,7 +56,7 @@
 
 (global-set-key [(shift f1)] (lambda ()
                                (interactive)
-                               (manual-entry (current-word))))
+                               (woman (current-word))))
 
 ;; (global-set-key [f2] 'norme)
 ;; (global-set-key [(shift f2)] 'xterm-mouse-mode)

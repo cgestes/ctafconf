@@ -36,15 +36,8 @@
 ;; scroll the compilation window
 (setq compilation-scroll-output t)
 
-;;only space when indenting
-;; Emacs normally uses both tabs and spaces to indent lines. If you
-;; prefer, all indentation can be made from spaces only. To request this,
-;; set `indent-tabs-mode' to `nil'. This is a per-buffer variable;
-;; altering the variable affects only the current buffer, but it can be
-;; disabled for all buffers.
-;; Use (setq ...) to set value locally to a buffer
-;; Use (setq-default ...) to set value globally
-;;
+;;Use only space when indenting
+;;setq-default: is like setq, but only the value in buffer that do not already define the value)
 (setq-default indent-tabs-mode nil)
 
 ;;scroll avec la souris
@@ -74,7 +67,7 @@
   )
 
 ;; Avoid those crappy "tooltips":
-(setq tooltip-delay 9999)
+(setq tooltip-delay 2)
 
 ;;ne coupe pas les ligne avec des $
 ;;(set-variable 'truncate-partial-width-windows nil)
@@ -160,7 +153,7 @@
 
 ;;show matching parenthese
 (setq show-paren-delay 0)
-(show-paren-mode 1)
+(show-paren-mode t)
 
 
 ;; montre les lignes inutilisées et les limites d'un buffer
@@ -181,8 +174,8 @@
 ;; nil      n'ajoute pas de newline
 ;; non-nil  pose la question
 ;; t        rajoute les newlines automatiquement
-(setq require-final-newline 1
-      mode-require-final-newline 1)
+(setq require-final-newline      t
+      mode-require-final-newline t)
 
 ;;transforme 'yes or no' en 'y or n'
 (fset 'yes-or-no-p 'y-or-n-p)
