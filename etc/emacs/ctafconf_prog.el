@@ -55,6 +55,7 @@
 
 ;;gud/gdb settings
 (require 'gdb-ui)
+
 ;;use many frame
 (setq gdb-many-windows t)
 ;;separate program io from gdb command line
@@ -67,6 +68,13 @@
 
 ;; kill trailing white space on save
 (add-hook 'write-file-hooks 'delete-trailing-whitespace)
+
+;;update copyright years in headers
+(add-hook 'before-save-hook 'copyright-update)
+
+;;Display potential error in red
+;;PS: check for: if (bla);   and if (bla = bla)
+(global-cwarn-mode t)
 
 ;;c/c++ : autoappend * when in /* */ comment
 (autoload 'blockcomment-mode         "block-comm" "" t)
