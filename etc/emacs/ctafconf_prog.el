@@ -54,8 +54,7 @@
 (safe-load "yasnippet-bundle")
 
 ;;gud/gdb settings
-(require 'gdb-ui)
-
+;;(require 'gdb-ui)
 ;;use many frame
 (setq gdb-many-windows t)
 ;;separate program io from gdb command line
@@ -139,49 +138,27 @@
 (add-to-list 'auto-mode-alist '("\\.asciidoc$"        . doc-mode))
 
 
-;; provide cedet
-;; (condition-case err
-;;     (progn
+(defun ctafconf-semantic ()
+  (if (boundp 'semantic-mode)
+      (progn
+        (semantic-mode t)
+        (global-semanticdb-minor-mode          t)
+        (global-semantic-idle-scheduler-mode   t)
+        (global-semantic-idle-summary-mode     t)
+        ;;(global-semantic-idle-completions-mode t)
+        (global-semantic-highlight-func-mode   t)
+        (global-semantic-decoration-mode       t)
+        (global-semantic-stickyfunc-mode       t)
+        (global-semantic-mru-bookmark-mode     t)
+        )))
+(ctafconf-semantic)
 
-;;       (setq semantic-load-turn-useful-things-on t)
-;;       ;;(setq semantic-load-turn-everything-on t)
-;;       (load-file "~/.config/ctafconf/etc/emacs/site-lisp/cedet/common/cedet.el")
-;;       ;;(load-file "~/src/cedet/common/cedet.el")
-;;       ;; * This turns on which-func support (Plus all other code helpers)
-;;       (semantic-load-enable-excessive-code-helpers)
-;;       ;; (semantic-load-enable-guady-code-helpers)
-
-;;       ;;S-SPC for autocompletion
-;;       ;;(global-set-key '[33554464] 'semantic-complete-analyze-inline)
-;;       (global-set-key '[33554464] 'semantic-complete-analyze-and-replace)
-;;       ;;(global-set-key '[33554464] 'semantic-ia-complete-symbol)
-
-;;       ;;          (global-set-key '[C-f1] 'semantic-ia-describe-class)
-;;       ;;          (global-set-key '[C-f1] 'semantic-ia-show-doc)
-;;       (global-set-key '[C-f1] 'semantic-ia-show-summary)
-;;       ;;          (global-semantic-show-parser-state-mode 1)
-;;       (global-semantic-decoration-mode 1)
-;;       (global-srecode-minor-mode 1)
-;;       (global-semantic-stickyfunc-mode 0)
-;;       ;;load the projet management mode
-;;       ;;           (global-ede-mode 1)
-;;       ;;display a bar with the function name the cursor is in
-;;       ;;          (global-semantic-stickyfunc-mode 1)
-;;       ;;(setq semanticdb-default-save-directory "~/.emacs.d/semantic")
-;;       ;;(global-semantic-idle-completions-mode 1)
-;;       ;;(global-semantic-highlight-edits-mode 1)
-;;       ;;(global-semantic-show-unmatched-syntax-mode 0)
-;;       ;; (global-highlight-changes 1)
-;;       ;; (highlight-changes-rotate-faces)
-;;       ;; (setq highlight-changes-colours
-;;       ;;   '("yellow" "magenta" "blue" "maroon" "firebrick" "green4" "DarkOrchid"))
-;;       )
-;;   (error
-;;    (message "Cannot load CEDET %s" (cdr err))))
+;;very good completion (using semantic, etags, ...)
+(require 'company)
+(global-company-mode t)
 
 
 ;;provide ecb
-
 (defun ctafconf-ecb ()
   (condition-case err
         (progn
@@ -193,4 +170,4 @@
       (error
        (message "Cannot load ecb %s" (cdr err))))
   )
-
+(ctafconf-ecb)

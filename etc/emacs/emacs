@@ -23,6 +23,7 @@
 			  "~/.config/ctafconf/etc/emacs/site-lisp/mode/"
 			  "~/.config/ctafconf/etc/emacs/site-lisp/mode/tuareg/"
 			  "~/.config/ctafconf/etc/emacs/site-lisp/mode/haskell-mode-2.7.0/"
+			  "~/.config/ctafconf/etc/emacs/site-lisp/company-0.5/"
 			  "~/.config/ctafconf/etc/emacs/site-lisp/mode/sieve/") load-path))
 
 ;;debug those file on error
