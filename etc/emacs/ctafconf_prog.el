@@ -217,6 +217,11 @@
 (add-hook 'font-lock-mode-hook 'try-to-add-imenu)
 
 
+;;foldable region display clickable +/- mark in the fringe
+(autoload 'hideshowvis-enable "hideshowvis" "Highlight foldable regions")
+(dolist (hook (list 'c-mode-common-hook 'emacs-lisp-mode-hook 'java-mode-hook 'lisp-mode-hook 'perl-mode-hook 'sh-mode-hook 'python-mode-hook))
+  (add-hook hook 'hideshowvis-enable))
+
 ;;Display potential error in red
 ;;PS: check for: if (bla);   and if (bla = bla)
 ;;conflict with new emacs (24.0.50 git)
