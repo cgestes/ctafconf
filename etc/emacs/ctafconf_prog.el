@@ -216,9 +216,10 @@
 
 
 
-;;weird by recall ropemacs setting after company (that use and load ropemacs)
+;;weird, recall ropemacs setting after company (that use and load ropemacs)
 (setq ropemacs-guess-project  t)
 (setq ropemacs-confirm-saving nil)
+(setq ropemacs-enable-autoimport t)
 
 ;;provide ecb
 (defun ctafconf-ecb ()
@@ -226,10 +227,12 @@
         (progn
           (add-to-list 'load-path (concat ctafconf-path "site-lisp/ecb"))
           (setq ecb-primary-secondary-mouse-buttons 'mouse-1--mouse-2)
+          (setq ecb-options-version "2.40")
           (require 'ecb)
           ;; (setq ecb-auto-activate t)
           (setq ecb-tip-of-the-day nil)
           (setq ecb-vc-enable-support t)
+          (setq ecb-options-version "2.40")
           ;; ;;(require 'ecb nil t)
           ;; (require 'ecb-autoloads)
           )
