@@ -111,3 +111,5 @@
 (global-set-key [(shift f12)] '(lambda() (interactive) (scroll-other-window -1)))
 (global-set-key [(f24)] '(lambda() (interactive) (scroll-other-window -1)))
 
+;;jump to tag in semantic
+(global-set-key [(control shift mouse-1)] 'semantic-ia-fast-mouse-jump)
