@@ -154,6 +154,32 @@
     )
 (ctafconf-semantic)
 
+(defun ctafconf-ropemacs ()
+  (condition-case err
+      (progn
+        (let ((newpypath (concat (getenv "PYTHONPATH")  ":/home/ctaf42/.config/ctafconf/etc/emacs/site-lisp/python/Pymacs")))
+          (setenv "PYTHONPATH" newpypath)
+          (message "PYTHONPATH set to: %s" newpypath)
+          )
+
+        (let ((emacs-file-path (file-name-directory (or load-file-name buffer-file-name))))
+          (add-to-list 'load-path (concat emacs-file-path "site-lisp/python/Pymacs"))
+
+          (set 'pymacs-load-path (list (concat emacs-file-path "site-lisp/python/Pymacs")
+                                       (concat emacs-file-path "site-lisp/python/rope")
+                                       (concat emacs-file-path "site-lisp/python/ropemode")
+                                       (concat emacs-file-path "site-lisp/python/ropemacs")))
+          )
+        (require 'pymacs)
+        (pymacs-load "ropemacs" "rope-")
+        )
+    (error
+     (message "Cannot load ropemacs %s" (cdr err))))
+  )
+
+(ctafconf-ropemacs)
+
+
 ;;very good completion (using semantic, etags, ...)
 (require 'company)
 (global-company-mode t)
