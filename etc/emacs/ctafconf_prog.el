@@ -43,7 +43,7 @@
 
 
 ;;auto-template for .cc, .c, .h, .hh, ...
-(setq auto-template-dir "~/.config/ctafconf/etc/emacs/templates/")
+(setq auto-template-dir (concat ctafconf-path "templates/"))
 (safe-load "auto-template")
 
 ;; Compilation Options
@@ -100,10 +100,12 @@
 (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
 
 ;;provide the haskell mode
+(add-to-list 'load-path (concat ctafconf-path "site-lisp/mode/haskell-mode-2.7.0"))
 (autoload 'haskell-mode "haskell-site-file" "major mode for haskell" t)
 (add-to-list 'auto-mode-alist '("\\.hs" . haskell-mode))
 
 ;;tuareg-mode CAML
+(add-to-list 'load-path (concat ctafconf-path "site-lisp/mode/tuareg"))
 (autoload 'tuareg-mode "tuareg"    "Major mode for editing Caml code" t)
 (autoload 'camldebug   "camldebug" "Run the Caml debugger" t)
 (add-to-list 'auto-mode-alist '("\\.ml\\w?" . tuareg-mode))
@@ -139,7 +141,7 @@
       (condition-case err
           (progn
             (semantic-mode t)
-            (global-semanticdb-minor-mode          t)
+            (global-semanticdb-minor-mode          1)
             (global-semantic-idle-scheduler-mode   1)
             (global-semantic-idle-summary-mode     1)
             ;;(global-semantic-idle-completions-mode t)
@@ -157,32 +159,31 @@
 (defun ctafconf-ropemacs ()
   (condition-case err
       (progn
-        (let ((newpypath (concat (getenv "PYTHONPATH")  ":/home/ctaf42/.config/ctafconf/etc/emacs/site-lisp/python/Pymacs")))
+        (let ((newpypath (concat (getenv "PYTHONPATH")  ":" ctafconf-path "site-lisp/python/Pymacs")))
           (setenv "PYTHONPATH" newpypath)
           (message "PYTHONPATH set to: %s" newpypath)
           )
 
-        (let ((emacs-file-path (file-name-directory (or load-file-name buffer-file-name))))
-          (add-to-list 'load-path (concat emacs-file-path "site-lisp/python/Pymacs"))
+          (add-to-list 'load-path (concat ctafconf-path "site-lisp/python/Pymacs"))
 
-          (set 'pymacs-load-path (list (concat emacs-file-path "site-lisp/python/Pymacs")
-                                       (concat emacs-file-path "site-lisp/python/rope")
-                                       (concat emacs-file-path "site-lisp/python/ropemode")
-                                       (concat emacs-file-path "site-lisp/python/ropemacs")))
+          (set 'pymacs-load-path (list (concat ctafconf-path "site-lisp/python/Pymacs")
+                                       (concat ctafconf-path "site-lisp/python/rope")
+                                       (concat ctafconf-path "site-lisp/python/ropemode")
+                                       (concat ctafconf-path "site-lisp/python/ropemacs")))
           )
         (require 'pymacs)
         (pymacs-load "ropemacs" "rope-")
-        )
     (error
      (message "Cannot load ropemacs %s" (cdr err))))
   )
-
 (ctafconf-ropemacs)
 
 
 ;;very good completion (using semantic, etags, ...)
-(require 'company)
-(global-company-mode t)
+(add-to-list 'load-path (concat ctafconf-path "site-lisp/mode/company-0.5"))
+(safe-load 'company)
+(if (boundp global-company-mode)
+    (global-company-mode 1))
 
 
 ;;provide ecb
