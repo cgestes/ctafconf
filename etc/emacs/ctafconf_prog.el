@@ -172,6 +172,8 @@
           )
         (require 'pymacs)
         (pymacs-load "ropemacs" "rope-")
+        (setq ropemacs-guess-project  t)
+        (setq ropemacs-confirm-saving nil)
     (error
      (message "Cannot load ropemacs %s" (cdr err))))
   )
@@ -182,7 +184,10 @@
 (add-to-list 'load-path (concat ctafconf-path "site-lisp/company-0.5"))
 (safe-load "company")
 (if (boundp 'global-company-mode)
-    (global-company-mode 1))
+    (progn
+      (global-company-mode 1)
+      ;; only complete when inserting char (otherwize completion popup when browsing code)
+      (setq company-begin-commands '(self-insert-command))))
 
 ;;weird by recall ropemacs setting after company (that use and load ropemacs)
 (setq ropemacs-guess-project  t)
@@ -197,6 +202,7 @@
           (require 'ecb)
           ;; (setq ecb-auto-activate t)
           (setq ecb-tip-of-the-day nil)
+          (setq ecb-vc-enable-support t)
           ;; ;;(require 'ecb nil t)
           ;; (require 'ecb-autoloads)
           )
