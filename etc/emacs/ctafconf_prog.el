@@ -71,10 +71,6 @@
 ;;update copyright years in headers
 (add-hook 'before-save-hook 'copyright-update)
 
-;;Display potential error in red
-;;PS: check for: if (bla);   and if (bla = bla)
-(global-cwarn-mode t)
-
 ;;c/c++ : autoappend * when in /* */ comment
 (autoload 'blockcomment-mode         "block-comm" "" t)
 (autoload 'turn-on-blockcomment-mode "block-comm" "" t)
@@ -177,3 +173,9 @@
 (defun try-to-add-imenu ()
   (condition-case nil (imenu-add-menubar-index) (error nil)))
 (add-hook 'font-lock-mode-hook 'try-to-add-imenu)
+
+
+;;Display potential error in red
+;;PS: check for: if (bla);   and if (bla = bla)
+;;conflict with new emacs (24.0.50 git)
+;;(global-cwarn-mode t)
