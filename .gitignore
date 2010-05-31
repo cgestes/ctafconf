@@ -4,3 +4,5 @@ perso
 *~
 .installed
 user-profile.sh
+*.pyc
+*.pyo
