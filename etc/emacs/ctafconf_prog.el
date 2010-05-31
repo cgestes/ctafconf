@@ -193,11 +193,28 @@
 ;;very good completion (using semantic, etags, ...)
 (add-to-list 'load-path (concat ctafconf-path "site-lisp/company-0.5"))
 (safe-load "company")
+
+(defun complete-or-indent ()
+  (interactive)
+  (if (company-manual-begin)
+      (company-complete-common)
+    (indent-according-to-mode)))
+
+(defun indent-or-complete ()
+  (interactive)
+  (if (looking-at "\\_>")
+      (company-complete-common)
+    (indent-according-to-mode)))
+
 (if (boundp 'global-company-mode)
     (progn
       (global-company-mode 1)
       ;; only complete when inserting char (otherwize completion popup when browsing code)
-      (setq company-begin-commands '(self-insert-command))))
+      (setq company-begin-commands '(self-insert-command))
+      (global-set-key "\t" 'indent-or-complete)
+))
+
+
 
 ;;weird by recall ropemacs setting after company (that use and load ropemacs)
 (setq ropemacs-guess-project  t)
