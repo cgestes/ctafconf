@@ -136,18 +136,22 @@
 
 (defun ctafconf-semantic ()
   (if (boundp 'semantic-mode)
-      (progn
-        (semantic-mode t)
-        (global-semanticdb-minor-mode          t)
-        (global-semantic-idle-scheduler-mode   t)
-        (global-semantic-idle-summary-mode     t)
-        ;;(global-semantic-idle-completions-mode t)
-        (global-semantic-highlight-func-mode   t)
-        (global-semantic-decoration-mode       t)
-        (global-semantic-stickyfunc-mode       t)
-        (global-semantic-mru-bookmark-mode     t)
-        (global-semantic-stickyfunc-mode       0)
-        )))
+      (condition-case err
+          (progn
+            (semantic-mode t)
+            (global-semanticdb-minor-mode          t)
+            (global-semantic-idle-scheduler-mode   1)
+            (global-semantic-idle-summary-mode     1)
+            ;;(global-semantic-idle-completions-mode t)
+            (global-semantic-highlight-func-mode   1)
+            (global-semantic-decoration-mode       1)
+            (global-semantic-stickyfunc-mode       1)
+            (global-semantic-mru-bookmark-mode     1)
+            (global-semantic-stickyfunc-mode       0)
+            ))
+      (error
+       (message "Cannot load ecb %s" (cdr err))))
+    )
 (ctafconf-semantic)
 
 ;;very good completion (using semantic, etags, ...)
