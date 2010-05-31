@@ -172,3 +172,8 @@
        (message "Cannot load ecb %s" (cdr err))))
   )
 (ctafconf-ecb)
+
+;; add the index menu to each mode support that (showing function/var/class of the current buffer)
+(defun try-to-add-imenu ()
+  (condition-case nil (imenu-add-menubar-index) (error nil)))
+(add-hook 'font-lock-mode-hook 'try-to-add-imenu)
