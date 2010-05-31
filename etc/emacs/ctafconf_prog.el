@@ -184,6 +184,10 @@
 (if (boundp 'global-company-mode)
     (global-company-mode 1))
 
+;;weird by recall ropemacs setting after company (that use and load ropemacs)
+(setq ropemacs-guess-project  t)
+(setq ropemacs-confirm-saving nil)
+
 ;;provide ecb
 (defun ctafconf-ecb ()
   (condition-case err
@@ -192,7 +196,7 @@
           (setq ecb-primary-secondary-mouse-buttons 'mouse-1--mouse-2)
           (require 'ecb)
           ;; (setq ecb-auto-activate t)
-          ;; (setq ecb-tip-of-the-day nil)
+          (setq ecb-tip-of-the-day nil)
           ;; ;;(require 'ecb nil t)
           ;; (require 'ecb-autoloads)
           )
