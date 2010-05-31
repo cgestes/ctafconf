@@ -50,6 +50,16 @@
 (setq compile-command "make -k")
 ;; little compilation window
 (setq compilation-window-height 12)
+;;remove compilation windows when there is no error, after 2sec
+(add-hook 'compilation-finish-functions
+          (lambda (buf str)
+            (if (string-match "exited abnormally" str)
+                (next-error)
+              ;;no errors, make the compilation window go away in a few seconds
+              (run-at-time "2 sec" nil 'delete-windows-on (get-buffer-create "*compilation*"))
+              (message "No Compilation Errors!")
+              )
+            ))
 
 (safe-load "yasnippet-bundle")
 
