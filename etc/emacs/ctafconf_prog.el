@@ -188,10 +188,13 @@
 (defun ctafconf-ecb ()
   (condition-case err
         (progn
-          (setq ecb-auto-activate t)
-          (setq ecb-tip-of-the-day nil)
-          ;;(require 'ecb nil t)
-          (require 'ecb-autoloads)
+          (add-to-list 'load-path (concat ctafconf-path "site-lisp/ecb"))
+          (setq ecb-primary-secondary-mouse-buttons 'mouse-1--mouse-2)
+          (require 'ecb)
+          ;; (setq ecb-auto-activate t)
+          ;; (setq ecb-tip-of-the-day nil)
+          ;; ;;(require 'ecb nil t)
+          ;; (require 'ecb-autoloads)
           )
       (error
        (message "Cannot load ecb %s" (cdr err))))
