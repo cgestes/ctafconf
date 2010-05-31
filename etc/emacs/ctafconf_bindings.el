@@ -75,8 +75,8 @@
 (global-set-key [f16] 'uncomment-region)
 
 (global-set-key [f5] 'ansi-term)
-(global-set-key [(shift f5)] 'speedbar)
-(global-set-key [f17] 'speedbar)
+(global-set-key [(shift f5)] 'sr-speedbar-toggle)
+(global-set-key [f17] 'sr-speedbar-toggle)
 
 (global-set-key [f6] 'bm-toggle)
 (global-set-key [(shift f6)] 'bm-next)

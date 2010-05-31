@@ -218,3 +218,11 @@
 
 ;;igrep
 (safe-load "igrep")
+
+;;sr-speedbar : speedbar in a frame
+(safe-load "srspeedbar")
+;; (if (fboundp 'sr-speedbar-open)
+;;     (sr-speedbar-open))
+
+;;display function's doc in the minibuffer for elisp
+(require 'eldoc)
