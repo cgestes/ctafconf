@@ -150,6 +150,7 @@
         (global-semantic-decoration-mode       t)
         (global-semantic-stickyfunc-mode       t)
         (global-semantic-mru-bookmark-mode     t)
+        (global-semantic-stickyfunc-mode       0)
         )))
 (ctafconf-semantic)
 
