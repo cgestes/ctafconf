@@ -147,9 +147,8 @@
             ;;(global-semantic-idle-completions-mode t)
             (global-semantic-highlight-func-mode   1)
             (global-semantic-decoration-mode       1)
-            (global-semantic-stickyfunc-mode       1)
-            (global-semantic-mru-bookmark-mode     1)
             (global-semantic-stickyfunc-mode       0)
+            (global-semantic-mru-bookmark-mode     1)
             ))
       (error
        (message "Cannot load ecb %s" (cdr err))))
@@ -180,11 +179,10 @@
 
 
 ;;very good completion (using semantic, etags, ...)
-(add-to-list 'load-path (concat ctafconf-path "site-lisp/mode/company-0.5"))
-(safe-load 'company)
-(if (boundp global-company-mode)
+(add-to-list 'load-path (concat ctafconf-path "site-lisp/company-0.5"))
+(safe-load "company")
+(if (boundp 'global-company-mode)
     (global-company-mode 1))
-
 
 ;;provide ecb
 (defun ctafconf-ecb ()
