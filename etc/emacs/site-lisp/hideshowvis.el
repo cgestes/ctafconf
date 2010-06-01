@@ -54,6 +54,8 @@
 ;; - '-' symbol in fringe is clickable
 ;; - don't show '-' in fringe if the foldable region ends on the same line
 ;;
+;; v0.3 2010-06-01
+;; - dont fuck the local-mode-map
 
 (define-fringe-bitmap 'hideshowvis-hideable-marker [0 0 0 126 126 0 0 0])
 
@@ -128,6 +130,11 @@
     hideshowvis-mode-map)
   "Keymap for hideshowvis mode")
 
+(setq minor-mode-map-alist
+      (cons (cons 'hideshowvis-minor-mode hideshowvis-mode-map)
+            minor-mode-map-alist))
+
+
 (define-minor-mode hideshowvis-minor-mode ()
   "Will indicate regions foldable with hideshow in the fringe"
   :init-value nil
@@ -140,7 +147,7 @@
             (hideshowvis-highlight-hs-regions-in-fringe (point-min) (point-max) 0)
             (add-to-list 'after-change-functions
                          'hideshowvis-highlight-hs-regions-in-fringe)
-            (use-local-map hideshowvis-mode-map))
+            )
         (remove-overlays (point-min) (point-max) 'hideshowvis-hs t)
         (setq after-change-functions
               (remove 'hideshowvis-highlight-hs-regions-in-fringe
@@ -148,7 +155,6 @@
     (error
      (message "Failed to toggle hideshowvis-minor-mode")
      )))
-
 (defun hideshowvis-enable ()
   (hideshowvis-minor-mode 1))
 
