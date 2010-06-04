@@ -39,6 +39,8 @@ mappings in normal mode
  - alt-<DOWN>: go to the next buffer
  - K : open manpage for work under cursor.
  (you can use :Man too)
+ - :spc : abbreviate for :setlocal spell spellang=
+ (note that keeping the setting empty toogle the spell check off)
 
 
 If you want, you can create a symlink:
@@ -82,7 +84,6 @@ Code:
   - pydoc:
     :Pydoc <keywork>
     \pw on a word
-  - completion:
 
 Misc:
 ----
@@ -107,3 +108,4 @@ TODO:
 ====
 
 * Cleanup the skeletons
+* Use rope for python completion like emacs
