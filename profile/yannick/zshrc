@@ -13,3 +13,9 @@ alias_set rm "rm -i"
 alias_set mv "mv -iv"
 alias_set cp "cp -iv"
 
+# ./foo.mp3 will open the file with mplayer,
+# and so on:
+alias -s mp3=mplayer
+alias -s avi=mplayer
+alias -s pdf=evince
+alias -s html=firefox
