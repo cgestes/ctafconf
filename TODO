@@ -44,5 +44,8 @@ Emacs:
   => doxyemacs : always add header on each function, and synchro from each header and source
   => f11 toggle gdb/compilation/grep/etc windows on and off
 
+Vim:
+  => install .vim with a simlink rather than a copy (and add .gitignore's when relevant)
+
 now:
   => zsh => git => display number of change not push if tracking branch
