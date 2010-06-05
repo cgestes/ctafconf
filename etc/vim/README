@@ -109,3 +109,4 @@ TODO:
 
 * Cleanup the skeletons
 * Use rope for python completion like emacs
+* Auto-detect indent settings like emacs
