@@ -257,6 +257,17 @@ class GrkSetupScreen:
 class GrkSetupVim:
   FILES = [ (".vimrc"        ,    "etc/vim/vimrc"),
             (".gvimrc"       ,   "etc/vim/gvimrc") ]
+  def install(self):
+    """Make a symlink ~/.vim -> .config/etc/vim """
+    src  = os.path.join(SRC_DIR,  "etc/vim")
+    dest = os.path.join(DEST_DIR, ".vim")
+    # Back up ~/.vim if neccessary
+    if os.path.samefile(src, dest):
+      return
+    else:
+      dest_orig = dest + ".orig"
+      os.rename(dest, dest_orig)
+      os.symlink(src, dest)
 
 class GrkSetupGnomeTerminal:
   def install(self):
