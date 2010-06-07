@@ -151,7 +151,6 @@
 (setq require-final-newline             t
       mode-require-final-newline        1)
 
-
 ;;transforme 'yes or no' en 'y or n'
 (fset 'yes-or-no-p 'y-or-n-p)
 
@@ -183,4 +182,4 @@
 ;;     (sr-speedbar-open))
 
 ;;display function's doc in the minibuffer for elisp
-(require 'eldoc)
+(require 'eldoc 1)
