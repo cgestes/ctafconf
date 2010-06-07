@@ -96,11 +96,6 @@
 (add-hook 'c-mode-common-hook  'doxymacs-mode)
 (add-hook 'font-lock-mode-hook 'my-doxymacs-font-lock-hook)
 
-;;provide the sieve mode
-(autoload 'sieve-mode "sieve" "major mode for sieve" t)
-(add-to-list 'auto-mode-alist '("\\.siv$" . sieve-mode))
-(add-to-list 'auto-mode-alist '("\\.sieve$" . sieve-mode))
-
 ;;provide the tiger mode
 (autoload 'tiger-mode "tiger" "major mode for tiger" t)
 (add-to-list 'auto-mode-alist '("\\.tig$" . tiger-mode))
