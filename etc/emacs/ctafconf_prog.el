@@ -78,9 +78,6 @@
 ;; kill trailing white space on save
 (add-hook 'write-file-hooks 'delete-trailing-whitespace)
 
-;;update copyright years in headers
-(add-hook 'before-save-hook 'copyright-update)
-
 ;;c/c++ : autoappend * when in /* */ comment
 (autoload 'blockcomment-mode         "block-comm" "" t)
 (autoload 'turn-on-blockcomment-mode "block-comm" "" t)

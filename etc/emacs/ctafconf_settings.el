@@ -145,8 +145,6 @@
 ;;show matching parenthese
 (setq show-paren-delay 0)
 (show-paren-mode t)
-
-
 ;; montre les lignes inutilisées et les limites d'un buffer
 (setq-default indicate-empty-lines t)
 
@@ -172,17 +170,8 @@
 ;;show shorcut for the last executed command if available
 (setq teach-extended-commands-p t)
 
-; make scripts executable upon saving
-(add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
-
 ;; indiquate buffer boundaries on the left fringe
 (setq-default indicate-buffer-boundaries (quote left))
-;;--------------------------------------------------------------------
-;; support de mon clavier en mode console
-(set-terminal-coding-system 'iso-8859-15-unix)
-(set-keyboard-coding-system 'iso-8859-15-unix)
-(set-language-environment 'Latin-1)
-
 
 
 ;;igrep
