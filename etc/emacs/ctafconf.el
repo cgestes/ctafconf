@@ -48,6 +48,7 @@
 ;;keys bindings
 (safe-load "ctafconf_bindings")
 
+(safe-load "ctafconf_profile")
 
 ;;print debug info
 (safe-load-check)

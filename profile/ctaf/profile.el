@@ -30,3 +30,5 @@
 
 ;;update copyright years in headers
 (add-hook 'before-save-hook 'copyright-update)
+
+(message "using ctaf emacs profile")
