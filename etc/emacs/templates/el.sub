@@ -4,4 +4,5 @@
 "@USER-MAIL@"	    tpl-user-mail
 "@DATE-STAMP@"      tpl-date-stamp
 "@HOST@"            tpl-host
+"@YEAR@"	    tpl-year
 "@Id@"              (concat () "Id")
