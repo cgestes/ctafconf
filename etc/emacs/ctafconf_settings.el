@@ -114,25 +114,16 @@
 (when (fboundp 'blink-cursor-mode)
   (blink-cursor-mode -1))
 
-;;supprimer les fichiers de backup(temporaire) en quittant
-;;(setq make-backup-files nil)
-
-(setq make-backup-files t               ; make ~ files
-      ;; With nil, numbered backups are made only if they already exist.
-      ;; A new backup version is made every time the file is loaded.
-      ;;version-control nil ; set to t below if `backup-directory-alist' exists
-      kept-old-versions 2
-      kept-new-versions 2
-      ;; Preserves permissions of file being edited. Also affects links.
-      backup-by-copying nil
-      backup-by-copying-when-linked t
-      backup-by-copying-when-mismatch nil
-      backup-by-copying-when-privileged-mismatch 200
-      delete-old-versions t           ; auto-delete excess numbered backups
-      delete-auto-save-files t          ; delete auto-save files on save
+;;backup everything in ~/.saves
+(setq backup-by-copying         t                        ; don't clobber symlinks
+      backup-directory-alist    '(("." . "~/.emacs.d/backup/emacs-backup"))    ; don't litter my fs tree
+      delete-old-versions       t
+      kept-new-versions         6
+      kept-old-versions         2
+      version-control           t
       auto-save-default t               ; auto-save on every visit
       auto-save-interval 200            ; input events between auto-saves
-      auto-save-timeout 30)             ; seconds idleness before autosave
+      auto-save-timeout 30)             ; use versioned backups
 
 ; yank to point rather than cursor
 (setq mouse-yank-at-point t)
@@ -156,26 +147,12 @@
 (show-paren-mode t)
 
 
-;; montre les lignes inutilisées et les limites d'un buffer
+;; montre les lignes inutilisÃ©es et les limites d'un buffer
 (setq-default indicate-empty-lines t)
 
-;; A more fine-grained minibuffer completion feedback scheme.
-;; Prospective completions are concisely indicated within the
-;; minibuffer itself, with each successive keystroke.
-(icomplete-mode t)
+(setq require-final-newline             t
+      mode-require-final-newline        1)
 
-;; Non-nil if searches should ignore case
-;;(setq case-fold-search t)
-
-;; Non-nil means query-replace should preserve case in replacements
-;;(setq case-replace t)
-
-;; s'assurer que les fichiers comportent un retour a la ligne en fin
-;; nil      n'ajoute pas de newline
-;; non-nil  pose la question
-;; t        rajoute les newlines automatiquement
-(setq require-final-newline      t
-      mode-require-final-newline t)
 
 ;;transforme 'yes or no' en 'y or n'
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -206,14 +183,6 @@
 (set-keyboard-coding-system 'iso-8859-15-unix)
 (set-language-environment 'Latin-1)
 
-
-;;backup everything in ~/.saves
-(setq backup-by-copying         t                        ; don't clobber symlinks
-      backup-directory-alist    '(("." . "~/.emacs.d/backup/emacs-backup"))    ; don't litter my fs tree
-      delete-old-versions       t
-      kept-new-versions         6
-      kept-old-versions         2
-      version-control           t)                       ; use versioned backups
 
 
 ;;igrep
