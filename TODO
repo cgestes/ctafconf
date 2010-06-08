@@ -32,6 +32,9 @@ zsh:
 see the bug tracker at www.sf.net/projects/grk
 
 Emacs:
+  => .h header should be handled by c++-mode
+  => correct indentation of { in c++
+
   => repertoire de template perso pour emacs
   => emacs: goto a symbol
   => emacs: goto the header
