@@ -1,3 +1,20 @@
+2010-06-08  Cedric GESTES  <ctaf42@gmail.com> Massive Changelog Update
+	* ctafconf: install rewriten in python
+	* ctafconf: no more ~/.config/ctafconf/perso => personal files are next to config file, (eg ~/.zshrc.user for zsh)
+	* ctafconf: support profiles (there is 3 profile atm: aldebaran,ctaf,yannick)
+	* ctafconf: no more ct-profile, a simple config file should be tweaked in ~/.config/ctafconf/user-profile.sh
+	* emacs: massive improvement/cleanup
+	* emacs: include ecb (emacs code browser), pymacs
+	* emacs: support completion whenever it's possible using company (press TAB to try)
+	         (complete python code with ropemacs, complete c/c++ with semantics)
+	* emacs: framed speedbar (Shift-F5)
+	* emacs: support profile (only ctaf profile include emacs tweak)
+	* emacs: removed each package already provided by emacs23.
+	* emacs: provide a visual folding mode for elisp/python/c/c++ (just click in the fringe)
+	* emacs: updated yasnippet
+	* emacs: display a menu with function/variable/class for fast access (available for most programming language)
+	* emacs: added haskell, protobuf maybe more
+
 2010-01-09  Cedric GESTES  <ctaf42@gmail.com>
 	* shell/alias: added sh specific alias
 	* sz: find then source .env files. start from working directory descending to /

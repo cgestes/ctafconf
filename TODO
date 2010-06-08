@@ -5,11 +5,7 @@
 v2.0:
 General:
 continue to support console tools
-
-  - cleanup as much as possible (emacs, old files)
   - install: backup the first copy of a configfile, the backup will be next to the config file
-  - automatic aldebaran mode if running on a box inside aldebaran
-  - config option to switch from emacs to vim as default editor (and others?)
 
 setup:
   - ask if user want to switch default shell to zsh
