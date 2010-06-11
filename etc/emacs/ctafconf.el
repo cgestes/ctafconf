@@ -39,15 +39,13 @@
 ;;usefull functions
 (safe-load "ctafconf_functions")
 
-;;screensaver,
-;;(safe-load "~/.config/ctafconf/etc/emacs/misc.emacs")
-
 ;;cparse, cpcomment, cwarn, cedet, ecb, semantic
 (safe-load "ctafconf_prog")
 
 ;;keys bindings
 (safe-load "ctafconf_bindings")
 
+;;source ctafconf profiles
 (safe-load "ctafconf_profile")
 
 ;;print debug info
