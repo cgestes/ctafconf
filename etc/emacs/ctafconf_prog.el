@@ -180,7 +180,6 @@
     (error
      (message "Cannot load ropemacs %s" (cdr err))))
   )
-(ctafconf-ropemacs)
 
 
 ;;very good completion (using semantic, etags, ...)
