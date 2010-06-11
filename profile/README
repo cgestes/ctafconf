@@ -1,0 +1,13 @@
+-*- mode:org; -*-
+
+* aldebaran:
+  Adebaran profile
+** rlist and rssh script
+* yannick:
+  This is the perfect vim'an profile
+** shell: vim is the default editor
+** zsh  : support ! in command
+* ctaf:
+  Nothing really interesting here at the moment
+** emacs: update copyright in headers
+** emacs: save script as executable
