@@ -1,3 +1,6 @@
+2010-06-12  Cedric GESTES  <ctaf42@gmail.com>
+	* ct-installconf: source could be outside ~/.config/ctafconf
+
 2010-06-08  Cedric GESTES  <ctaf42@gmail.com> Massive Changelog Update
 	* ctafconf: install rewriten in python
 	* ctafconf: no more ~/.config/ctafconf/perso => personal files are next to config file, (eg ~/.zshrc.user for zsh)
