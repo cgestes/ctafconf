@@ -197,7 +197,6 @@ def write_git_sha1():
       write it to ~/.config/ctafconf/.installed
   """
   try:
-    print "src: ", SRC_DIR
     head = open(os.path.join(SRC_DIR, ".git", "HEAD")).readlines()[0].strip()
   except:
     LOGGER.warning("Can't open .git/HEAD")
@@ -212,7 +211,7 @@ def write_git_sha1():
   else:
     rev = head
   LOGGER.debug("Head sha1 is %s", rev)
-  f = open(os.path.join(SRC_DIR, ".installed"), "w+")
+  f = open(os.path.expanduser("~/.config/ctafconf/.installed"), "w+")
   f.write("%s\n" % (rev))
   f.close()
 
@@ -303,8 +302,9 @@ def prepare_tree():
   """ create symlink for etc and bin if necessary,
   this avoid forcing source to be in .config/ctafconf
   """
-  current_folder = os.path.abspath(os.path.normpath(os.path.join(os.path.dirname(__file__), "..")))
-  dest_folder = os.path.abspath(os.path.join(DEST_DIR, ".config", "ctafconf"))
+
+  current_folder = os.path.normpath(os.path.join(os.path.realpath(os.path.dirname(__file__)), ".."))
+  dest_folder = os.path.realpath(os.path.join(DEST_DIR, ".config", "ctafconf"))
 
   try:
     if os.path.samefile(dest_folder, current_folder):
@@ -312,7 +312,7 @@ def prepare_tree():
       return
   except OSError:
     pass
-  #print "installation from %s to %s." % (current_folder, dest_folder)
+  print "install from", current_folder
   dest_bin = os.path.join(dest_folder, "bin")
   dest_etc = os.path.join(dest_folder, "etc")
   if not os.path.exists(dest_folder):
