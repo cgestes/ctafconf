@@ -300,32 +300,31 @@ PACKAGES = [ GrkSetupZsh,
              GrkSetupGnomeTerminal ]
 
 def prepare_tree():
-  """ check if is inside ~/.config/ctafconf/ """
+  """ create symlink for etc and bin if necessary,
+  this avoid forcing source to be in .config/ctafconf
+  """
   current_folder = os.path.abspath(os.path.normpath(os.path.join(os.path.dirname(__file__), "..")))
   dest_folder = os.path.abspath(os.path.join(DEST_DIR, ".config", "ctafconf"))
 
-
-  print "p1", current_folder
-  print "p2", dest_folder
   try:
     if os.path.samefile(dest_folder, current_folder):
       print "inplace installation"
       return
   except OSError:
     pass
-  print "installation from %s to %s." % (current_folder, dest_folder)
+  #print "installation from %s to %s." % (current_folder, dest_folder)
   dest_bin = os.path.join(dest_folder, "bin")
   dest_etc = os.path.join(dest_folder, "etc")
   if not os.path.exists(dest_folder):
     os.makedirs(dest_folder)
   if not os.path.exists(dest_bin):
-    print "linking ~/.config/ctafconf/bin"
+    print "new symlink: ~/.config/ctafconf/bin"
     #remove broken symlink (exists return false for broken symlink)
     if os.path.islink(dest_bin):
       os.remove(dest_bin)
     os.symlink(os.path.join(current_folder, "bin"), os.path.join(dest_folder, "bin"))
   if not os.path.exists(dest_etc):
-    print "linking ~/.config/ctafconf/etc"
+    print "new symlink: ~/.config/ctafconf/etc"
     #remove broken symlink (exists return false for broken symlink)
     if os.path.islink(dest_etc):
       os.remove(dest_etc)
