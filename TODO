@@ -1,47 +1,26 @@
-########################################
-##############  ROADMAP  ###############
-########################################
+CTAFCONF -*- mode: org; -*-
 
-v2.0:
-General:
-continue to support console tools
-  - install: backup the first copy of a configfile, the backup will be next to the config file
+Roadmap
+  The goal is to work everywhere, without intrusive configuration,
+  Profile can be created to support specific features in emacs/zsh/bash
 
-setup:
-  - ask if user want to switch default shell to zsh
-  - do not assume ctafconf's sources are in .config/ctafconf
+* ct-installconf
+** TODO install
+*** TODO more intelligent file backup
+*** TODO [#B] ask if user want to switch default shell to zsh
+** TODO ct-gui
+*** TODO install
+*** TODO component installation
+*** TODO update
+*** TODO use the same lib as setup
+*** TODO change env variable
+*** TODO add/mod/suppr alias
+*** TODO handle profile
+* Emacs
+** TODO c++
+*** TODO [#A] .h header should be handled by c++-mode
+*** TODO [#A] correct indentation of { in c++
+** TODO Template
+*** TODO support profile in template (use profile/emacs/template if available)
 
-GUI:
-  - install
-  - component installation
-  - update
-  - use the same lib as setup
-  - change env variable
-  - add/mod/suppr alias
-  - handle profile
 
-zsh:
-  - allow for automatic sourcing of a config file when entering a directory
-    and finding a .zenv or .env
-    this config file should set a variable that would be displayed in the prompt
-    to remember the special behaviors of the shell
-
-########################################
-###############  TODO  #################
-########################################
-see the bug tracker at www.sf.net/projects/grk
-
-Emacs:
-  => .h header should be handled by c++-mode
-  => correct indentation of { in c++
-
-  => repertoire de template perso pour emacs
-  => emacs: goto a symbol
-  => emacs: goto the header
-  => emacs: grep => grep the current word under cursor (in the current file or all) (igrep/igrep-find/occur)
-  => block like vim
-  => doxyemacs : always add header on each function, and synchro from each header and source
-  => f11 toggle gdb/compilation/grep/etc windows on and off
-
-now:
-  => zsh => git => display number of change not push if tracking branch
