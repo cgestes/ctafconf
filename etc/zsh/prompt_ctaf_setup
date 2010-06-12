@@ -9,8 +9,6 @@
 ##
 ##CTAFCONF
 
-#source ~/.config/ctafconf/etc/zsh/zgitinit.zsh
-
 autoload -Uz zgitinit && zgitinit
 autoload -Uz colors   && colors
 autoload -Uz vcs_info
@@ -29,7 +27,10 @@ for color in BLACK RED GREEN YELLOW BLUE MAGENTA CYAN WHITE; do
 done
 PR_NO_COLOUR="%{$terminfo[sgr0]%}"
 
-
+#customise this two variable to change foreground/background
+#left empty for automatic default
+PR_BG_PROMPT=""
+PR_FG_PROMPT="${PR_NO_COLOUR}"
 
 ####################################
 # VCS_INFO
@@ -49,18 +50,18 @@ zstyle ':vcs_info:*:ctaf:*' max-exports       2
 # %R - repository path
 # %S - path in the repository
 #default format for standard vcs
-ACTION="[${PR_LIGHT_RED}%a${PR_LIGHT_WHITE}]"
-FORMAT="%s on ${PR_MAGENTA}%b${PR_LIGHT_WHITE}"
+ACTION="[${PR_LIGHT_RED}%a${PR_FG_PROMPT}]"
+FORMAT="%s on ${PR_MAGENTA}%b${PR_FG_PROMPT}"
 FORMAT_ACTION="$FORMAT $ACTION"
 zstyle ':vcs_info:*:ctaf:*' formats             "$FORMAT" "%s"
 zstyle ':vcs_info:*:ctaf:*' actionformats       "$FORMAT_ACTION" "%s"
-zstyle ':vcs_info:*:ctaf:*' branchformat        "${PR_MAGENTA}%b${PR_LIGHT_WHITE}:${PR_LIGHT_RED}%r${PR_NO_COLOUR}"
+zstyle ':vcs_info:*:ctaf:*' branchformat        "${PR_MAGENTA}%b${PR_FG_PROMPT}:${PR_LIGHT_RED}%r${PR_NO_COLOUR}"
 
 prompt_ctaf_git_tracking_branch()
 {
   t=$(zgit_tracking_merge)
   if ! [ "$t" = "" ] ; then
-    echo " tracking${PR_LIGHT_MAGENTA} ${t}${PR_LIGHT_WHITE}"
+    echo " tracking${PR_LIGHT_MAGENTA} ${t}${PR_FG_PROMPT}"
   fi
 }
 
@@ -74,11 +75,11 @@ prompt_ctaf_precmd() {
   psvar=()
   case "$vcs_info_msg_1_" in
     git)
-      GIT_FORMAT="$vcs_info_msg_0_ (${PR_LIGHT_YELLOW}$(git describe --always --tags 2>/dev/null)${PR_LIGHT_WHITE})$(prompt_ctaf_git_tracking_branch 2>/dev/null)"
+      GIT_FORMAT="$vcs_info_msg_0_ (${PR_LIGHT_YELLOW}$(git describe --always --tags 2>/dev/null)${PR_FG_PROMPT})$(prompt_ctaf_git_tracking_branch 2>/dev/null)"
       psvar[1]="[$GIT_FORMAT]"
       ;;
     git-svn)
-      GITSVN_FORMAT="$vcs_info_msg_0_ (${PR_LIGHT_YELLOW}$(git describe --always --tags) ${PR_MAGENTA}$(zgit_svnbranch)${PR_LIGHT_WHITE}:${PR_LIGHT_RED}$(zgit_svnhead)${PR_LIGHT_WHITE})$(prompt_ctaf_git_tracking_branch)"
+      GITSVN_FORMAT="$vcs_info_msg_0_ (${PR_LIGHT_YELLOW}$(git describe --always --tags) ${PR_MAGENTA}$(zgit_svnbranch)${PR_FG_PROMPT}:${PR_LIGHT_RED}$(zgit_svnhead)${PR_FG_PROMPT})$(prompt_ctaf_git_tracking_branch)"
       psvar[1]="[$GITSVN_FORMAT]"
       ;;
     "")
@@ -89,7 +90,7 @@ prompt_ctaf_precmd() {
       ;;
   esac
   if [ "$psvar[1]" != "" ] ; then
-    psvar[1]="${PR_BG_BLACK}${PR_LIGHT_WHITE}$psvar[1]${PR_NO_COLOUR}
+    psvar[1]="${PR_BG_PROMPT}${PR_FG_PROMPT}$psvar[1]${PR_NO_COLOUR}
 "
   fi
   psvar[2]=""
@@ -105,17 +106,17 @@ prompt_ctaf_precmd() {
 
 prompt_ctaf_setup () {
   add-zsh-hook precmd prompt_ctaf_precmd 2>/dev/null
-  BASE_PROMPT="${PR_BG_BLACK}${PR_LIGHT_MAGENTA}%(!.%SROOT%s.${PR_LIGHT_WHITE}%n${PR_LIGHT_YELLOW})\
+  BASE_PROMPT="${PR_BG_PROMPT}${PR_LIGHT_MAGENTA}%(!.%SROOT%s.${PR_FG_PROMPT}%n${PR_LIGHT_YELLOW})\
 @${PR_LIGHT_GREEN}%m\$psvar[2]${PR_LIGHT_MAGENTA} \
-[%(?.${PR_LIGHT_WHITE}$?.${PR_LIGHT_RED}% err %?)${PR_LIGHT_MAGENTA}] \
+[%(?.${PR_FG_PROMPT}$?.${PR_LIGHT_RED}% err %?)${PR_LIGHT_MAGENTA}] \
 [${PR_LIGHT_BLUE}%~${PR_LIGHT_MAGENTA}]${PR_NO_COLOUR}
-${PR_BG_BLACK}${PR_LIGHT_WHITE}z${PR_LIGHT_GREEN}%(!.#.$)${PR_NO_COLOUR} "
+${PR_BG_PROMPT}${PR_FG_PROMPT}z${PR_LIGHT_GREEN}%(!.#.$)${PR_NO_COLOUR} "
 
   PROMPT="\$psvar[1]${BASE_PROMPT}"
-  RPROMPT="[${PR_BG_BLACK}${PR_LIGHT_CYAN}%D ${PR_LIGHT_GREEN}%T${PR_NO_COLOUR}]"
+  RPROMPT="[${PR_BG_PROMPT}${PR_LIGHT_CYAN}%D ${PR_LIGHT_GREEN}%T${PR_NO_COLOUR}]"
 
   PS2=''
 }
 
-
 prompt_ctaf_setup "$@"
+
