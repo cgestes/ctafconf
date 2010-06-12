@@ -208,6 +208,24 @@
 
 
 
+;;ugly hack to make qt c++ file look nicer
+(condition-case err
+    (progn
+      (require 'cc-mode)
+      (setq c-basic-offset 2)
+      (setq c-comment-only-line-offset 0)
+      ;; we want 0 space brace indent after if, else, ..
+      (setq c-offsets-alist '((statement-block-intro . +)
+                              (substatement-open . 0)
+                              (substatement-label . 0)
+                              (label . 0)
+                              (statement-cont . +)))
+;;      (setq c-C++-access-key "\\<\\(slots\\|signals\\|private\\|protected\\|public\\)\\>[ \t]*[(slots\\|signals)]*[ \t]*:")
+;;      (font-lock-add-keywords 'c++-mode '(("\\<\\(Q_OBJECT\\|public slots\\|public signals\\|private slots\\|private signals\\|protected slots\\|protected signals\\)\\>" . font-lock-constant-face)))
+      )
+  (error
+   (message "Cannot load cc-mode with qtenable %s" (cdr err))))
+
 ;;weird, recall ropemacs setting after company (that use and load ropemacs)
 (setq ropemacs-guess-project  t)
 (setq ropemacs-confirm-saving nil)
