@@ -58,9 +58,6 @@
                                (interactive)
                                (woman (current-word))))
 
-;; (global-set-key [f2] 'norme)
-;; (global-set-key [(shift f2)] 'xterm-mouse-mode)
-;; (global-set-key [f14] 'xterm-mouse-mode)
 (global-set-key [f2] 'igrep)
 (global-set-key [(shift f2)] 'igrep-find)
 (global-set-key [f14] 'igrep-find)
@@ -70,22 +67,22 @@
 (global-set-key [f15] 'replace-string)
 (global-set-key [(control f3)]   'occur)
 
-(global-set-key [f4] 'comment-region)
-(global-set-key [(shift f4)] 'uncomment-region)
-(global-set-key [f16] 'uncomment-region)
+(global-set-key [f4] 'comment-or-uncomment-region)
+;; (global-set-key [(shift f4)] 'uncomment-region)
+;; (global-set-key [f16] 'uncomment-region)
 
-(global-set-key [f5] 'ansi-term)
-(global-set-key [(shift f5)] 'sr-speedbar-toggle)
-(global-set-key [f17] 'sr-speedbar-toggle)
+(global-set-key [f5] 'sr-speedbar-toggle)
+(global-set-key [(shift f5)] 'ansi-term)
+(global-set-key [f17] 'ansi-term)
 
-(global-set-key [f6] 'bm-toggle)
-(global-set-key [(shift f6)] 'bm-next)
-(global-set-key [f18] 'bm-next)
-(global-set-key [(control f6)] 'bm-previous)
+(global-set-key [f6] 'ff-find-related-file)
+;; (global-set-key [(shift f6)] 'bm-next)
+;; (global-set-key [f18] 'bm-next)
+;; (global-set-key [(control f6)] 'bm-previous)
 
-(global-set-key [(f7)] 'marker-visit-next)
-(global-set-key [(shift f7)] 'marker-visit-prev)
-(global-set-key [(f19)] 'marker-visit-prev)
+;; (global-set-key [(f7)] 'marker-visit-next)
+;; (global-set-key [(shift f7)] 'marker-visit-prev)
+;; (global-set-key [(f19)] 'marker-visit-prev)
 
 ;;(global-set-key [f8] 'mode-compile)
 (global-set-key [f8] 'compile)
@@ -98,9 +95,9 @@
 
 ;;;;;; F7: Folding
 
-(global-set-key (kbd "<f10>")       'fold-dwim-toggle)
-(global-set-key (kbd "<S-f10>")     'fold-dwim-hide-all)
-(global-set-key (kbd "<S-C-f10>")   'fold-dwim-show-all)
+;;(global-set-key (kbd "<f10>")       'fold-dwim-toggle)
+;;(global-set-key (kbd "<S-f10>")     'fold-dwim-hide-all)
+;;(global-set-key (kbd "<S-C-f10>")   'fold-dwim-show-all)
 ;;(global-set-key (kbd "<C-f10>")     'outline-next-visible-heading)
 ;;(global-set-key (kbd "<S-C-f10>")   'outline-previous-visible-heading)
 
