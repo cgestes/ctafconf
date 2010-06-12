@@ -15,6 +15,7 @@
 (setq auto-mode-alist
       (append
        '(
+         ("\\.h$"               . c++-mode)
          ("\\.dat$"             . text-mode)
          ("\\.pas$"             . pascal-mode)
          ("\\.java$"            . c-mode)

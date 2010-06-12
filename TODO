@@ -1,7 +1,7 @@
 CTAFCONF -*- mode: org; -*-
 
 Roadmap
-  The goal is to work everywhere, without intrusive configuration,
+  The goal is to work everywhere, without intrusive default settings,
   Profile can be created to support specific features in emacs/zsh/bash
 
 * ct-installconf
@@ -17,9 +17,6 @@ Roadmap
 *** TODO add/mod/suppr alias
 *** TODO handle profile
 * Emacs
-** TODO c++
-*** TODO [#A] .h header should be handled by c++-mode
-*** TODO [#A] correct indentation of { in c++
 ** TODO Template
 *** TODO support profile in template (use profile/emacs/template if available)
 
