@@ -34,7 +34,7 @@
     ctafconf-profiles))
 
 (defun load-profiles (profiles)
-  (dolist (profile ctafconf-profiles ctafconf-profiles)
+  (dolist (profile profiles profiles)
     (let ((fname (concat ctafconf-path "../../profile/" profile "/profile.el")))
       (if (file-readable-p fname)
           (progn
