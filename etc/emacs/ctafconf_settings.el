@@ -22,6 +22,14 @@
  garbage-collection-messages t)
 ;;/TEST
 
+
+;;scroll: dont "jump scroll", just scroll line by line when pressing up/down arrow
+(setq scroll-preserve-screen-position 'always
+      scroll-conservatively           most-positive-fixnum
+      scroll-step                     0)
+
+
+
 ;; Distance between tab stops (for display of tab characters), in columns.
 ;; Automatically becomes buffer-local when set in any fashion.
 (setq default-tab-width  8)
@@ -182,4 +190,6 @@
 ;;     (sr-speedbar-open))
 
 ;;display function's doc in the minibuffer for elisp
-(require 'eldoc 1)
+(require 'eldoc)
+
+
