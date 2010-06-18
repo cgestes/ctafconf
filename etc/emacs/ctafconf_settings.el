@@ -24,9 +24,8 @@
 
 
 ;;scroll: dont "jump scroll", just scroll line by line when pressing up/down arrow
-(setq scroll-preserve-screen-position 'always
-      scroll-conservatively           most-positive-fixnum
-      scroll-step                     0)
+(setq scroll-conservatively           most-positive-fixnum)
+(setq scroll-step                     0)
 
 
 
