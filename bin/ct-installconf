@@ -263,9 +263,12 @@ class GrkSetupVim:
     src  = os.path.join(SRC_DIR,  "etc/vim")
     dest = os.path.join(DEST_DIR, ".vim")
     # Back up ~/.vim if neccessary
-    if os.path.samefile(src, dest):
-      return
-    else:
+    identical = True
+    try:
+      identical = os.path.samefile(src, dest)
+    except OSError:
+      pass
+    if not identical:
       dest_orig = dest + ".orig"
       os.rename(dest, dest_orig)
       os.symlink(src, dest)
