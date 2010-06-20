@@ -13,6 +13,14 @@
 #exclude svn
 grepr()
 {
+  grep --exclude-dir=test "test" "test" 2>&1 | grep unrecognized >/dev/null
+
+  #grep < 2.5.3 doest not support exclude-dir
+  if [ $? -eq 1 ] ; then
+    filterdir="--exclude-dir=\"*git*\" --exclude-dir=\"*.svn*\" "
+  else
+    filterdir=""
+  fi
   # -s : silent error
   # -I : do not show binarymatch
   # -r : recursive
@@ -23,8 +31,7 @@ grepr()
     --exclude "*.o"               \
     --exclude "*.a"               \
     --exclude "#*#"               \
-    --exclude-dir="*git*"         \
-    --exclude-dir="*.svn*"    $@  .
+   $filterdir  $@  .
 }
 
 grepr $@
