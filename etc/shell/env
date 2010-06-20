@@ -56,12 +56,13 @@ env_set EADNULLCMD $PAGER
 #env_set LESS "-Qx2Mz-3"
 
 #color output of man etc...
-env_set LESS_TERMCAP_mb $'\E[01;31m'       # begin blinking
-env_set LESS_TERMCAP_md $'\E[01;38;5;74m'  # begin bold
-env_set LESS_TERMCAP_me $'\E[0m'           # end mode
-env_set LESS_TERMCAP_se $'\E[0m'           # end standout-mode
-env_set LESS_TERMCAP_so $'\E[38;5;246m'    # begin standout-mode - info box
-env_set LESS_TERMCAP_ue $'\E[0m'           # end underline
+#this fuckup color on mac manpage
+#env_set LESS_TERMCAP_mb $'\E[01;31m'       # begin blinking
+#env_set LESS_TERMCAP_md $'\E[01;38;5;74m'  # begin bold
+#env_set LESS_TERMCAP_me $'\E[0m'           # end mode
+#env_set LESS_TERMCAP_se $'\E[0m'           # end standout-mode
+#env_set LESS_TERMCAP_so $'\E[38;5;246m'    # begin standout-mode - info box
+#env_set LESS_TERMCAP_ue $'\E[0m'           # end underline
 
 
 #text editor in console mode (for cvs, svn)
