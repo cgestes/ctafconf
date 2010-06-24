@@ -1,12 +1,13 @@
-========================================
-Yannick LM's vim configuration files.
-========================================
+============
+VIM ctafonf
+============
 
 
 Setup:
 ======
 
 You'll need a fairly recent version of vim for everything to work.
+(and the support of python in vim ...)
 
 You'll need to have exuberant-ctags installed to stop having vimrc
 complaining at start up.
@@ -28,27 +29,12 @@ If you wish to change settings for a particular language, please use
 vim/ftplugin/<language>.vim, NOT vimrc.
 
 Non-standard behavior:
-
- - trailing white spaces are removed when saving
  - virtualedit in "block" mode
 
-mappings in normal mode
- - ,cd: to go the directory containing the current buffer
- (mimic default emacs' behavior)
- - alt-<UP>  : go to the previous buffer
- - alt-<DOWN>: go to the next buffer
- - K : open manpage for work under cursor.
- (you can use :Man too)
- - :spc : abbreviate for :setlocal spell spellang=
- (note that keeping the setting empty toogle the spell check off)
+There is support for profiles, too.
+You can put your favorite stuff to
+.config/ctafconf/profile/<name>/vimrc
 
-
-If you want, you can create a symlink:
-
-~.Xmodmap -> ~/.config/ctafconf/profile/yannick/Xmodmap
-
-to swap "caps lock" and "escape" keys.
-(beware, after this there is no turning back...)
 
 
 PLUGINS :
@@ -107,6 +93,12 @@ Useless:
 TODO:
 ====
 
-* Cleanup the skeletons
+general
+-------
+
 * Use rope for python completion like emacs
 * Auto-detect indent settings like emacs
+
+yannick's vimrc:
+---------------
+* Cleanup the skeletons
