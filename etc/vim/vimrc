@@ -1,6 +1,3 @@
-" Yannick LM vim configuration file
-"
-
 ""
 " Sane defaults:
 
@@ -25,16 +22,11 @@ set nojoinspaces
 
 " highlight search
 set hlsearch
+
 " search as you type
 set incsearch
 " The correct way to remove highlight is:
 " :let @/=""
-
-" Remove menu bar from GUI
-let did_install_default_menus = 1
-
-" Remove trailing whitespaces when saving:
-autocmd bufwritepre * :%s/\s\+$//e
 
 " Tell NerdCommenter to shut up:
 let g:NERDShutUp=1
@@ -49,63 +41,13 @@ set visualbell t_vb=
 " Disable useless ctrl+space behavior:
 imap <Nul> <Space>
 
-" Tabulations
-set shiftwidth=2
-set expandtab
-set smarttab
-set smartindent
-
-
 " Always load those useful plugins:
 runtime! macros/matchit.vim
 runtime! plugin/imaps.vim
 runtime! ftplugin/man.vim
 
-" Status line
-set laststatus=2
-set statusline=%{VimBuddy()}\ %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+" Last, magic stuff: this will load
+" profile/<name>/vimrc
+call ctafconf#load_profiles()
 
 
-
-""
-" Skeletons :
-
-" First read the skeleton ...
-autocmd BufNewFile *.rb        0r ~/.config/ctafconf/etc/vim/skeletons/rbskel.rb
-autocmd BufNewFile *.sh        0r ~/.config/ctafconf/etc/vim/skeletons/shskel.sh
-autocmd BufNewFile *.tex       0r ~/.config/ctafconf/etc/vim/skeletons/texskel.tex
-autocmd BufNewFile *.py        0r ~/.config/ctafconf/etc/vim/skeletons/pyskel.py
-autocmd BufNewFile *.html      0r ~/.config/ctafconf/etc/vim/skeletons/htmlskel.html
-
-" ... then move to the according line
-autocmd BufNewFile *.rb       :3
-autocmd BufNewFile *.sh       :3
-autocmd BufNewFile *.tex      :16
-autocmd BufNewFile *.html     :12
-
-
-
-""
-" Few keybindings
-
-" 'cd' towards the dir in which is the file edited
-map ,cd :cd %:p:h<CR>
-
-" Navigate through the buffer's list with alt+up, alt+down
-nnoremap <M-Down>  :bp<CR>
-nnoremap <M-Up>    :bn<CR>
-
-" Man page for work under cursor
-nnoremap K :Man <cword> <CR>
-" Spell check
-cmap spc setlocal spell spelllang=
-
-
-
-""
-" Misc
-
-" I always make mistakes in these words
-abbreviate swith switch
-abbreviate wich which
-abbreviate lauch launch

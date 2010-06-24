@@ -1,0 +1,63 @@
+" Remove need from Escape key:
+" map jj in insert mode to go to normal mode
+" (note going to normal mode from other modes is always
+" possible with ctrl+c)
+inoremap jj <ESC>
+
+" Remove menu bar from GUI
+let did_install_default_menus = 1
+
+" Remove trailing whitespaces when saving:
+autocmd bufwritepre * :%s/\s\+$//e
+
+" Tabulations
+set shiftwidth=2
+set expandtab
+set smarttab
+set smartindent
+
+
+
+" Status line
+set laststatus=2
+set statusline=%{VimBuddy()}\ %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+
+
+""
+" Few keybindings
+
+" 'cd' towards the dir in which is the file edited
+map ,cd :cd %:p:h<CR>
+
+" Navigate through the buffer's list with alt+up, alt+down
+nnoremap <M-Down>  :bp<CR>
+nnoremap <M-Up>    :bn<CR>
+
+" Man page for work under cursor
+nnoremap K :Man <cword> <CR>
+" Spell check
+cmap spc setlocal spell spelllang=
+
+""
+" Skeletons :
+
+" First read the skeleton ...
+autocmd BufNewFile *.rb        0r ~/.config/ctafconf/etc/vim/skeletons/rbskel.rb
+autocmd BufNewFile *.sh        0r ~/.config/ctafconf/etc/vim/skeletons/shskel.sh
+autocmd BufNewFile *.tex       0r ~/.config/ctafconf/etc/vim/skeletons/texskel.tex
+autocmd BufNewFile *.py        0r ~/.config/ctafconf/etc/vim/skeletons/pyskel.py
+autocmd BufNewFile *.html      0r ~/.config/ctafconf/etc/vim/skeletons/htmlskel.html
+
+" ... then move to the according line
+autocmd BufNewFile *.rb       :3
+autocmd BufNewFile *.sh       :3
+autocmd BufNewFile *.tex      :16
+autocmd BufNewFile *.html     :12
+
+""
+" Misc
+
+" I always make mistakes in these words
+abbreviate swith switch
+abbreviate wich which
+abbreviate lauch launch
