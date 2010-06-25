@@ -16,7 +16,7 @@ for line in profile_file.readlines():
     prof_str = match.groups()[0]
     prof_str = prof_str .strip("'")
     prof_str = prof_str.strip('"')
-    profiles.append(prof_str)
+    profiles = prof_str.split()
 
 profile_file.close()
 for profile in profiles:
