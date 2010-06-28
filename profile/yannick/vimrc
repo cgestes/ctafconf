@@ -3,6 +3,7 @@
 " (note going to normal mode from other modes is always
 " possible with ctrl+c)
 inoremap jj <ESC>
+vnoremap jj <ESC>
 
 " Remove menu bar from GUI
 let did_install_default_menus = 1
