@@ -98,6 +98,8 @@ general
 
 * Use rope for python completion like emacs
 * Auto-detect indent settings like emacs
+* ctafconf.vim should be re-written in vim script (It's in vim python
+  right now)
 
 yannick's vimrc:
 ---------------
