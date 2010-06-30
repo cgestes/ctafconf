@@ -18,20 +18,28 @@
 ;; Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 ;;
 
+
+""
+
 ;;get the list of ctafconf profiles
 (defun get-profiles (&optional file-name)
   (let (ctafconf-profiles)
     (when (file-readable-p file-name)
       (with-temp-buffer
+        (sh-mode)
         (insert-file-contents file-name)
         (goto-char (point-min))
         (while (re-search-forward "var_set.*ctafconf_profiles" nil t)
-          (skip-chars-forward " \t\"\'")
+          (skip-chars-forward " \t")
+          (skip-chars-forward "\"\'" (+ (point) '1))
           (let ((beg (point)))
-            (forward-sentence 1)
-            (skip-chars-backward " \t\"\'")
-            (setq ctafconf-profiles (split-string (buffer-substring beg (point))))))))
+            (skip-chars-backward "\"\'")
+            (forward-sexp)
+            (skip-chars-backward "\"\'" (- (point) '1))
+            (setq ctafconf-profiles (split-string (buffer-substring beg (point))))
+            ))))
     ctafconf-profiles))
+(get-profiles "~/.config/ctafconf/user-profile.sh")
 
 (defun load-profiles (profiles)
   (dolist (profile profiles profiles)
