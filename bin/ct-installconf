@@ -315,24 +315,23 @@ def prepare_tree():
       return
   except OSError:
     pass
-  print "install from", current_folder
-  dest_bin = os.path.join(dest_folder, "bin")
-  dest_etc = os.path.join(dest_folder, "etc")
-  if not os.path.exists(dest_folder):
-    os.makedirs(dest_folder)
-  if not os.path.exists(dest_bin):
-    print "new symlink: ~/.config/ctafconf/bin"
-    #remove broken symlink (exists return false for broken symlink)
-    if os.path.islink(dest_bin):
-      os.remove(dest_bin)
-    os.symlink(os.path.join(current_folder, "bin"), os.path.join(dest_folder, "bin"))
-  if not os.path.exists(dest_etc):
-    print "new symlink: ~/.config/ctafconf/etc"
-    #remove broken symlink (exists return false for broken symlink)
-    if os.path.islink(dest_etc):
-      os.remove(dest_etc)
-    os.symlink(os.path.join(current_folder, "etc"), os.path.join(dest_folder, "etc"))
 
+
+  def symlink_folder(name):
+    dest_sym = os.path.join(dest_folder, name)
+    if not os.path.exists(dest_folder):
+      os.makedirs(dest_folder)
+    if not os.path.exists(dest_sym):
+      print "new symlink: ~/.config/ctafconf/" + name
+      #remove broken symlink (exists return true for broken symlink)
+      if os.path.islink(dest_sym):
+        os.remove(dest_sym)
+      os.symlink(os.path.join(current_folder, name), os.path.join(dest_folder, name))
+
+  print "install from", current_folder
+  symlink_folder("etc")
+  symlink_folder("bin")
+  symlink_folder("profile")
 
 if __name__ == "__main__":
   if "--dry-run" in sys.argv:
