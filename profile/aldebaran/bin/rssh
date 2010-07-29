@@ -55,10 +55,12 @@ parse_option() {
 
 parse_option $@
 
-if [ ${ADDR} -ge 0 -a ${ADDR} -le 255 ] 2>/dev/null; then
-  ssh_address="10.0.252.${ADDR}"
+# If there is no dot in ADDR, assume it's
+# a bonjour name, and a .local
+if echo ${ADDR} | grep "\." 2>/dev/null ; then
+  ssh_address=${ADDR}
 else
-  ssh_address="${ADDR}.local"
+  ssh_address=${ADDR}.local
 fi
 
 if [ $COPY_ID -eq 1 ] ; then
