@@ -8,7 +8,7 @@
 ## Author(s):
 ##  - Cedric GESTES <gestes@aldebaran-robotics.com>
 ##
-## Copyright (C) 2008 Cedric GESTES
+## Copyright (C) 2008, 2010 Cedric GESTES
 ## This program is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
 ## the Free Software Foundation; either version 3 of the License, or
@@ -55,10 +55,16 @@ parse_option() {
 
 parse_option $@
 
-# If there is no dot in ADDR, assume it's
-# a bonjour name, and a .local
-if echo ${ADDR} | grep "\." 2>/dev/null ; then
-  ssh_address=${ADDR}
+# If this look like a number separated by dot, assume it's an IP else
+# a bonjour name, and add .local
+if echo ${ADDR} | grep -E '^[0-9]+(\.[0-9]+)*$' >/dev/null 2>/dev/null ; then
+  if   [ $(echo ${ADDR} | sed -e 's/[^.]//g' | wc -c 2>/dev/null) -eq 1 ] ; then
+    ssh_address=10.0.252.${ADDR}
+  elif [ $(echo ${ADDR} | sed -e 's/[^.]//g' | wc -c 2>/dev/null) -eq 2 ] ; then
+    ssh_address=10.0.${ADDR}
+  else
+    ssh_address=${ADDR}
+  fi
 else
   ssh_address=${ADDR}.local
 fi
@@ -67,6 +73,7 @@ if [ $COPY_ID -eq 1 ] ; then
   ssh-copy-id -i ~/.ssh/id_[rd]sa.pub "nao@$ssh_address"
 fi
 
+echo "connecting to '$ssh_address'"
 ssh-keygen -R "$ssh_address"
 ssh -o StrictHostKeyChecking=no "nao@$ssh_address"
 
