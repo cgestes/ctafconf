@@ -53,4 +53,4 @@ call ctafconf#load_profiles()
 
 
 " Last, load ~/.vimrc.user
-source "~/.vimrc.user"
+source ~/.vimrc.user
