@@ -11,7 +11,9 @@ abbreviate <buffer> sefl self
 abbreviate <buffer> slef self
 
 " To use quickfix with python programs:
-setlocal makeprg=python\ %
+if executable("pyflakes")
+  setlocal makeprg=pyflakes\ %
+endif
 
 
 " Follow PEP8
