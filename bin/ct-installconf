@@ -258,6 +258,7 @@ class GrkSetupScreen:
 class GrkSetupVim:
   FILES = [ (".vimrc"        ,    "etc/vim/vimrc"),
             (".gvimrc"       ,   "etc/vim/gvimrc") ]
+  USERS         = [ ( ".vimrc.user"  , "vimrc.user") ]
   def install(self):
     """Make a symlink ~/.vim -> .config/etc/vim """
     src  = os.path.join(SRC_DIR,  "etc/vim")

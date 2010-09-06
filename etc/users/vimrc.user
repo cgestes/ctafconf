@@ -1,0 +1,11 @@
+""
+"" CTAFCONF
+""
+"" You can edit this file, it will never be modified by the ctafconf
+""
+
+" This file is for the settings you do not want to put into
+" version control.
+" If you want to track your vimrc with the ctafconf git repository,
+" you can add it in profile/$YOUR_NAME/vimrc.
+" Of course, add $YOUR_NAME to user-profile.sh

@@ -46,8 +46,11 @@ runtime! macros/matchit.vim
 runtime! plugin/imaps.vim
 runtime! ftplugin/man.vim
 
-" Last, magic stuff: this will load
-" profile/<name>/vimrc
+" Read ~/.config/ctafconf/user-profile.sh
+" add load ~/.config/ctafconf/profile/<name>/vimrc
+" for each name in profile
 call ctafconf#load_profiles()
 
 
+" Last, load ~/.vimrc.user
+source "~/.vimrc.user"
