@@ -40,5 +40,5 @@ if ! test -z "$ctafconf_profiles" ; then
   done
 fi
 
-[ -f ~/.bashrc.user ] && ~/.bashrc.user
+[ -f ~/.bashrc.user ] && source ~/.bashrc.user
 
