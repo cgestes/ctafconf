@@ -1,7 +1,7 @@
 "Special configuration for C/C++ files
 
 " /!\ this is *not* the default for many projects
-setlocal noexpandtab
+setlocal expandtab
 setlocal smarttab
 setlocal shiftwidth=2
 
