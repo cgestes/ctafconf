@@ -53,4 +53,8 @@ call ctafconf#load_profiles()
 
 
 " Last, load ~/.vimrc.user
-source ~/.vimrc.user
+if has("unix")
+  source ~/.vimrc.user
+else
+  source ~/_vimrc.user
+endif

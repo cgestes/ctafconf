@@ -1,6 +1,12 @@
 function! ctafconf#load_profiles()
-  let s:ctafconf_path = expand('$HOME') . "/.config/ctafconf"
-  let s:profile_file = s:ctafconf_path . "/user-profile.sh"
+  if has("unix")
+     let s:path_sep = "/"
+  else
+     let s:path_sep = "\\"
+  endif
+
+  let s:ctafconf_path = expand('$HOME') . s:path_sep . ".config" . s:path_sep . "ctafconf"
+  let s:profile_file = s:ctafconf_path . s:path_sep . "user-profile.sh"
   let s:lines = readfile(s:profile_file)
   let s:prof_line = ""
   for line in s:lines
@@ -14,7 +20,7 @@ function! ctafconf#load_profiles()
   let s:prof_str = substitute(s:prof_str, "'", "", "g")
   let s:profiles = split(s:prof_str)
   for ct_profile in s:profiles
-    let s:profile_path = s:ctafconf_path . "/profile/" . ct_profile . "/vimrc"
+    let s:profile_path = s:ctafconf_path . s:path_sep. "profile" . s:path_sep . ct_profile . s:path_sep . "vimrc"
     if filereadable(s:profile_path)
       execute "source " . s:profile_path
     else
