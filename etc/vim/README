@@ -12,6 +12,17 @@ You'll need to have exuberant-ctags installed to stop having vimrc
 complaining at start up.
 
 
+Windows setup:
+==============
+
+Do NOT try to use bin/ct-install (at least not yet)
+
+Copy:
+
+ctafconf/etc/vim/vimrc to $USER\_vimrc
+ctafconf/etc/vim        to $USER\vimfiles
+
+
 Random notes:
 ============
 
