@@ -272,7 +272,7 @@ class GrkSetupVim:
     if not identical:
       dest_orig = dest + ".orig"
       os.rename(dest, dest_orig)
-      os.symlink(src, dest)
+    os.symlink(src, dest)
 
 class GrkSetupGnomeTerminal:
   def install(self):
