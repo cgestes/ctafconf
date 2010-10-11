@@ -272,7 +272,12 @@ class GrkSetupVim:
     if not identical:
       dest_orig = dest + ".orig"
       os.rename(dest, dest_orig)
-    os.symlink(src, dest)
+    try:
+      os.symlink(src, dest)
+    except OSError as e:
+      #symlink exists... ok we dont care
+      if e.errno != 17:
+        raise
 
 class GrkSetupGnomeTerminal:
   def install(self):
