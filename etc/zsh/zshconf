@@ -9,8 +9,8 @@
 ##
 ##CTAFCONF
 
-#forbit bomb fork
-limit maxproc 255
+#forbit bomb fork (255 is too low)
+limit maxproc 1042
 #never enter a command already entered once, NEVER!
 LISTMAX=10000
 #Filename suffixes to ignore during completion
