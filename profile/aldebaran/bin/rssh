@@ -56,7 +56,7 @@ parse_option() {
 
 parse_option $@
 
-if echo ${ADDR} | grep '@' ; then
+if echo ${ADDR} | grep '@' >/dev/null 2>/dev/null; then
   SSH_USER=$(echo ${ADDR} | cut -d'@' -f1)
   ADDR=$(echo ${ADDR} | cut -d'@' -f2)
 else
