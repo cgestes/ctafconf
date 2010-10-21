@@ -26,6 +26,7 @@
 
 COPY_ID=0
 ADDR=""
+SSH_USER=""
 
 usage() {
   echo "rssh [-c] <ip|name>"
@@ -55,6 +56,13 @@ parse_option() {
 
 parse_option $@
 
+if echo ${ADDR} | grep '@' ; then
+  SSH_USER=$(echo ${ADDR} | cut -d'@' -f1)
+  ADDR=$(echo ${ADDR} | cut -d'@' -f2)
+else
+  SSH_USER="nao"
+fi
+
 # If this look like a number separated by dot, assume it's an IP else
 # a bonjour name, and add .local
 if echo ${ADDR} | grep -E '^[0-9]+(\.[0-9]+)*$' >/dev/null 2>/dev/null ; then
@@ -70,10 +78,10 @@ else
 fi
 
 if [ $COPY_ID -eq 1 ] ; then
-  ssh-copy-id -i ~/.ssh/id_[rd]sa.pub "nao@$ssh_address"
+  ssh-copy-id -i ~/.ssh/id_[rd]sa.pub "${SSH_USER}@$ssh_address"
 fi
 
 echo "connecting to '$ssh_address'"
 ssh-keygen -R "$ssh_address"
-ssh -o StrictHostKeyChecking=no "nao@$ssh_address"
+ssh -o StrictHostKeyChecking=no "${SSH_USER}@$ssh_address"
 
