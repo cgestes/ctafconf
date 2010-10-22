@@ -19,7 +19,9 @@
     (progn
       (require 'ido)
       (ido-mode t)
-      (setq ido-enable-flex-matching t) ; fuzzy matching is a must have
+      (setq ido-enable-flex-matching nil) ; fuzzy matching is really annoying
+      (setq ido-max-directory-size 100000)
+      (setq ido-enable-regexp t)
       )
   (error
    (message "Cannot load ido %s" (cdr err))))
