@@ -7,3 +7,9 @@ null_which ccache && env_set CXX "ccache g++"
 
 alias_set na "naogentoo -c naogentoo-atom"
 alias_set ng "naogentoo -c naogentoo-geode"
+
+alias_set tc "toc cmake"
+alias_set tm "toc build"
+
+alias_set tcr "toc cmake --release"
+alias_set tmr "toc build --release"
