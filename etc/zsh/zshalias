@@ -24,10 +24,15 @@ alias mkdir='nocorrect mkdir'
 
 autoload zmv
 alias mmv='noglob zmv -W'
+alias mcp='noglob zmv -C -W'
+alias mln='noglob zmv -L -W'
 
 #no pattern matching (*, etc are not replaced) on those commands:
 alias find='noglob find'
 alias zmv='noglob zmv'
+alias zcp='noglob zmv -C'
+alias zln='noglob zmv -L'
+
 alias replacer='noglob replacer'
 
 alias -g "..."="../.."
