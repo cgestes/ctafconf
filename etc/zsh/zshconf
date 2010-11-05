@@ -10,7 +10,9 @@
 ##CTAFCONF
 
 #forbit bomb fork (255 is too low)
-limit maxproc 1042
+#on mac 266 is a hardlimit..
+limit maxproc 1042 2>/dev/null
+
 #never enter a command already entered once, NEVER!
 LISTMAX=10000
 #Filename suffixes to ignore during completion

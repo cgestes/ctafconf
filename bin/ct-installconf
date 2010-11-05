@@ -274,7 +274,7 @@ class GrkSetupVim:
       os.rename(dest, dest_orig)
     try:
       os.symlink(src, dest)
-    except OSError as e:
+    except OSError, e:
       #symlink exists... ok we dont care
       if e.errno != 17:
         raise
