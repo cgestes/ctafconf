@@ -317,7 +317,7 @@ def main():
 
     opts = vars(opts_obj)
 
-    if not opts.get("color"):
+    if not opts.get("color") or not sys.stdout.isatty():
         for k in COLORS.iterkeys():
             COLORS[k] = ""
         for k in COLORS_REPLACE.iterkeys():

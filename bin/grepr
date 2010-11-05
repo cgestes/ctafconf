@@ -26,7 +26,7 @@ grepr()
   # -r : recursive
   # -n : line number
   # -H :
-  grep --color=always -s -I -r -n \
+  grep --color=auto -s -I -r -n   \
     --exclude "\~*"               \
     --exclude "*.o"               \
     --exclude "*.a"               \
