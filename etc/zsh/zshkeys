@@ -76,3 +76,19 @@ bindkey "\eOH" beginning-of-line
 bindkey "\eOF" end-of-line
 bindkey "\e[2~" quoted-insert
 bindkey "\e[3~" delete-char
+
+#On an empty command line runs bg (so that Ctrl+Z Ctrl+Z suspends a program and
+#immediately resumes it in the background).
+#On a non-empty command line, suspend the current command edition:
+#let me type another command, and when that second command line finished,
+#I get back the first command to edit.
+fancy-ctrl-z () {
+  if [[ $#BUFFER -eq 0 ]]; then
+    bg
+    zle redisplay
+  else
+    zle push-input
+  fi
+}
+zle -N fancy-ctrl-z
+bindkey '^Z' fancy-ctrl-z
