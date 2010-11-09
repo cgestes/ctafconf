@@ -86,7 +86,7 @@ If NOERROR is not nil, do not raise error when the module is not found."
           (prefix (read-string (format "Prefix? [%s] " default)
                                nil nil default)))
      (list module prefix)))
-  (message "Pymacs loading %s..." module)
+  ;;(message "Pymacs loading %s..." module)
   (let ((lisp-code (pymacs-call "pymacs_load_helper" module prefix)))
     (cond (lisp-code (let ((result (eval lisp-code)))
                        (message "Pymacs loading %s...done" module)
