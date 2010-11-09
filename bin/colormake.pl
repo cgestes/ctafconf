@@ -2,7 +2,7 @@
 #
 # colormake.pl 0.3
 #
-# Copyright: (C) 1999, Bjarni R. Einarsson <bre@netverjar.is>
+# Copyright: (C) 1999, 2010, Bjarni R. Einarsson <bre@netverjar.is>
 #                      http://bre.klaki.net/
 #
 #   This program is free software; you can redistribute it and/or modify
@@ -51,40 +51,52 @@ $col_warning =      $col_brighten . $col_green;
 $col_error =        $col_brighten . $col_red;
 $error_highlight =  $col_brighten;
 
+sub is_interactive {
+  return -t STDOUT;
+}
+
 $| = 1;
 while (<>)
 {
-    $orgline = $thisline = $_;
+  if (!is_interactive()) {
+    print $_;
+    next;
+  }
 
-    # Remove multiple spaces
-    $thisline =~ s/  \+/ /g;
+  $orgline = $thisline = $_;
 
-    #make[1] | make:
-    $thisline =~ s/^((p|g)?make)(\[[1234567890]*\]|:)(.*$)/$col_make$1$col_norm$col_brown$3$col_trace$4$col_default/x;
-    $thisline =~ s/^(\s*(g?cc|(g|c)\+\+))/$col_gcc$1$col_default/x;
+  # Remove multiple spaces
+  $thisline =~ s/  \+/ /g;
+
+  #make[1] | make:
+  $thisline =~ s/^((p|g)?make)(\[[1234567890]*\]|:)(.*$)/$col_make$1$col_norm$col_brown$3$col_trace$4$col_default/x;
+  $thisline =~ s/^(\s*(g?cc|(g|c)\+\+))/$col_gcc$1$col_default/x;
 #     $thisline =~ s/^(.*(libtool\s)*.*(g?cc|(g|c)\+\+))$/$col_gcc$1$col_norm/x;
 #     $thisline =~ s/^(((\t|\s)*then\s))$/$col_gcc$1$col_norm/x;
 #    $thisline =~ s/^(\s*\(|\[|a(r|wk)|c(p|d|h(mod|own))|do(ne)?|e(cho|lse)|f(ind|or)|i(f|nstall)|mv|perl|r(anlib|m(dir)?)|s(e(d|t)|trip)|tar)\s+/$col_gcc$1 $col_default/x;
 
 #     $thisline =~ s/(In (member\s)+f(unction|ile))/$col_trace$1$col_normal/x;
 
-    #filename: In function:
-    $thisline =~ s/^(.*:\s*)(In\s|At\s)(.*)/$col_filename$1$col_trace$2$3$col_default/x;
+  #filename: In function:
+  $thisline =~ s/^(.*:\s*)(In\s|At\s)(.*)/$col_filename$1$col_trace$2$3$col_default/x;
 
-    #filename: 123: error: ...
-    $thisline =~ s|^(.*:\s*)(\d+\s*:\s*)(error\s*:\s+)(.*)|$col_filename$1$col_linenum$2$col_underline$col_error$3$col_norm$col_purple$4$col_default|x;
-    $thisline =~ s|^(.*:\s*)(\d+\s*:\s*)(erreur\s*:\s+)(.*)|$col_filename$1$col_linenum$2$col_underline$col_error$3$col_norm$col_purple$4$col_default|x;
-    #filename: 123: warning: ...
-    $thisline =~ s|^(.*:\s*)(\d+\s*:\s*)(attention\s*:\s+)(.*)|$col_filename$1$col_linenum$2$col_underline$col_warning$3$col_norm$col_brighten$col_purple$4$col_default|x;
-    #filename: 123:
-    $thisline =~ s|^(.*:\s*)(\d+\s*:\s*)()(.*)|$col_filename$1$col_linenum$2$col_underline$col_warning$3$col_norm$col_brighten$col_purple$4$col_default|x;
+  #filename: 123: error: ...
+  $thisline =~ s|^(.*:\s*)(\d+\s*:\s*)(error\s*:\s+)(.*)|$col_filename$1$col_linenum$2$col_underline$col_error$3$col_norm$col_purple$4$col_default|x;
+  $thisline =~ s|^(.*:\s*)(\d+\s*:\s*)(erreur\s*:\s+)(.*)|$col_filename$1$col_linenum$2$col_underline$col_error$3$col_norm$col_purple$4$col_default|x;
+  #filename: 123: warning: ...
+  $thisline =~ s|^(.*:\s*)(\d+\s*:\s*)(attention\s*:\s+)(.*)|$col_filename$1$col_linenum$2$col_underline$col_warning$3$col_norm$col_brighten$col_purple$4$col_default|x;
+  #filename: 123:
+  $thisline =~ s|^(.*:\s*)(\d+\s*:\s*)()(.*)|$col_filename$1$col_linenum$2$col_underline$col_warning$3$col_norm$col_brighten$col_purple$4$col_default|x;
 
-    $thisline =~ s|^(.*:\s*)(\d+\s*:\s*)(warning\s*:\s+)(.*)|$col_filename$1$col_linenum$2$col_underline$col_warning$3$col_norm$col_brighten$col_purple$4$col_default|x;
+  $thisline =~ s|^(.*:\s*)(\d+\s*:\s*)(warning\s*:\s+)(.*)|$col_filename$1$col_linenum$2$col_underline$col_warning$3$col_norm$col_brighten$col_purple$4$col_default|x;
 
-    print $thisline;
+  print $thisline;
 }
 
-print $col_default;
+if (is_interactive()) {
+  print $col_default;
+}
+
 
 # UNUSED:
 #

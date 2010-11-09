@@ -2,7 +2,7 @@
 #
 # colorcvs.pl 0.1
 #
-# Copyright: (C) 1999, Bjarni R. Einarsson <bre@netverjar.is>
+# Copyright: (C) 1999, 2010, Bjarni R. Einarsson <bre@netverjar.is>
 #                      http://bre.klaki.net/
 # adapted from colormake by ctaf42@gmail.com
 #
@@ -68,42 +68,50 @@ $lines = shift @ARGV || 0;
 $cols  = shift @ARGV || 0;
 $cols -= 19;
 
+sub is_interactive {
+  return -t STDOUT;
+}
+
 $in = 'unknown';
 $| = 1;
 while (<>)
 {
-	$orgline = $thisline = $_;
 
-	# Remove multiple spaces
-	$thisline =~ s/  \+/ /g;
+  if (!is_interactive()) {
+    print $_;
+    next;
+  }
 
-	# Truncate lines.
-	# I suppose this is bad, but it's better than what less does!
-	if ($cols >= 0) {
-	    $thisline =~ s/^(.{$cols}).....*(.{15})$/$1 .. $2/;
-	}
-	#svn up
-	$thisline =~ s/^(C)\s\s*(.*)/$col_conflict$1onflict: $col_file$2/x;
-	$thisline =~   s/^(U)\s\s*(.*)/$col_update$1pdated : $col_file$2/x;
-	$thisline =~   s/^(P)\s\s*(.*)/$col_update$1Updated: $col_file$2/x;
-	$thisline =~    s/^(A)\s\s*(.*)/$col_added$1dded   : $col_file$2/x;
-	$thisline =~  s/^(R)\s\s*(.*)/$col_deleted$1emoved : $col_file$2/x;
-	$thisline =~   s/^(\?)\s\s*(.*)/$col_file$1       : $col_file$2/x;
-	$thisline =~    s/^(M)\s\s*(.*)/$col_update$1odified: $col_file$2/x;
+  $orgline = $thisline = $_;
+
+  # Remove multiple spaces
+  $thisline =~ s/  \+/ /g;
+
+  # Truncate lines.
+  # I suppose this is bad, but it's better than what less does!
+  if ($cols >= 0) {
+    $thisline =~ s/^(.{$cols}).....*(.{15})$/$1 .. $2/;
+  }
+  #svn up
+  $thisline =~ s/^(C)\s\s*(.*)/$col_conflict$1onflict: $col_file$2/x;
+  $thisline =~   s/^(U)\s\s*(.*)/$col_update$1pdated : $col_file$2/x;
+  $thisline =~   s/^(P)\s\s*(.*)/$col_update$1Updated: $col_file$2/x;
+  $thisline =~    s/^(A)\s\s*(.*)/$col_added$1dded   : $col_file$2/x;
+  $thisline =~  s/^(R)\s\s*(.*)/$col_deleted$1emoved : $col_file$2/x;
+  $thisline =~   s/^(\?)\s\s*(.*)/$col_file$1       : $col_file$2/x;
+  $thisline =~    s/^(M)\s\s*(.*)/$col_update$1odified: $col_file$2/x;
 
 
 
-	#cvs diff
-	$thisline =~   s/^(\+.*)/$col_purple$1$col_file/x;
-	$thisline =~   s/^(-.*)/$col_yellow$1$col_file/x;
-	$thisline =~   s/^(@@.*)/$col_blue$1$col_file/x;
+  #cvs diff
+  $thisline =~   s/^(\+.*)/$col_purple$1$col_file/x;
+  $thisline =~   s/^(-.*)/$col_yellow$1$col_file/x;
+  $thisline =~   s/^(@@.*)/$col_blue$1$col_file/x;
 
 
-	#if ($thisline !~ /^\s+/)
-	#{
-		#print $col_norm, $col_default;
-	#}
-	print $thisline;
+  print $thisline;
 }
 
-print $col_norm;
+if (is_interactive()) {
+  print $col_norm;
+}

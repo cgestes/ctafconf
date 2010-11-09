@@ -2,7 +2,7 @@
 #
 # colorsvn.pl 0.1
 #
-# Copyright: (C) 1999, Bjarni R. Einarsson <bre@netverjar.is>
+# Copyright: (C) 1999, 2010, Bjarni R. Einarsson <bre@netverjar.is>
 #                      http://bre.klaki.net/
 # adapted from colormake by ctaf42@gmail.com
 #
@@ -22,6 +22,7 @@
 #
 # Some useful color codes, see end of file for more.
 #
+
 $col_red =          "\033[31m";
 $col_green =        "\033[32m";
 $col_yellow =       "\033[33m";
@@ -68,55 +69,63 @@ $lines = shift @ARGV || 0;
 $cols  = shift @ARGV || 0;
 $cols -= 19;
 
+sub is_interactive {
+  return -t STDOUT;
+}
+
 $in = 'unknown';
 $| = 1;
 while (<>)
 {
-	$orgline = $thisline = $_;
+  if (!is_interactive()) {
+    print $_;
+    next;
+  }
+  $orgline = $thisline = $_;
 
-	# Remove multiple spaces
-	$thisline =~ s/  \+/ /g;
+  # Remove multiple spaces
+  $thisline =~ s/  \+/ /g;
 
-	# Truncate lines.
-	# I suppose this is bad, but it's better than what less does!
-	if ($cols >= 0) {
-	    $thisline =~ s/^(.{$cols}).....*(.{15})$/$1 .. $2/;
-	}
-	#svn up
-	$thisline =~ s/^(C)\s\s*(.*)/$col_conflict$1onflict: $col_file$2/x;
-	$thisline =~   s/^(U)\s\s*(.*)/$col_update$1pdated : $col_file$2/x;
-	$thisline =~   s/^(G)\s\s*(.*)/$col_fusion$1 Merged: $col_file$2/x;
-	$thisline =~    s/^(A)\s\s*(.*)/$col_added$1dded   : $col_file$2/x;
-	$thisline =~  s/^(D)\s\s*(.*)/$col_deleted$1eleted : $col_file$2/x;
+  # Truncate lines.
+  # I suppose this is bad, but it's better than what less does!
+  if ($cols >= 0) {
+    $thisline =~ s/^(.{$cols}).....*(.{15})$/$1 .. $2/;
+  }
+  #svn up
+  $thisline =~ s/^(C)\s\s*(.*)/$col_conflict$1onflict: $col_file$2/x;
+  $thisline =~   s/^(U)\s\s*(.*)/$col_update$1pdated : $col_file$2/x;
+  $thisline =~   s/^(G)\s\s*(.*)/$col_fusion$1 Merged: $col_file$2/x;
+  $thisline =~    s/^(A)\s\s*(.*)/$col_added$1dded   : $col_file$2/x;
+  $thisline =~  s/^(D)\s\s*(.*)/$col_deleted$1eleted : $col_file$2/x;
 
-	#svn status
-	$thisline =~ s/^(\~)\s\s*(.*)/$col_conflict$1       : $col_file$2/x;
-	$thisline =~     s/^(\?)\s\s*(.*)/$col_file$1       : $col_file$2/x;
-	$thisline =~ s/^(\!)\s\s*(.*)/$col_conflict$1       : $col_file$2/x;
-	$thisline =~    s/^(M)\s\s*(.*)/$col_update$1odified: $col_file$2/x;
-	$thisline =~    s/^(R)\s\s*(.*)/$col_update$1eplaced: $col_file$2/x;
-	$thisline =~    s/^(X)\s\s*(.*)/$col_fusion$1       : $col_file$2/x;
-	$thisline =~      s/^(I)\s\s*(.*)/$col_file$1gnored : $col_file$2/x;
+  #svn status
+  $thisline =~ s/^(\~)\s\s*(.*)/$col_conflict$1       : $col_file$2/x;
+  $thisline =~     s/^(\?)\s\s*(.*)/$col_file$1       : $col_file$2/x;
+  $thisline =~ s/^(\!)\s\s*(.*)/$col_conflict$1       : $col_file$2/x;
+  $thisline =~    s/^(M)\s\s*(.*)/$col_update$1odified: $col_file$2/x;
+  $thisline =~    s/^(R)\s\s*(.*)/$col_update$1eplaced: $col_file$2/x;
+  $thisline =~    s/^(X)\s\s*(.*)/$col_fusion$1       : $col_file$2/x;
+  $thisline =~      s/^(I)\s\s*(.*)/$col_file$1gnored : $col_file$2/x;
 
-	#svn diff
-	$thisline =~   s/^(\Index.*)/$col_yellow$col_brighten$1$col_file/x;
-	$thisline =~   s/^(\===.*)/$col_yellow$col_brighten$1$col_file/x;
+  #svn diff
+  $thisline =~   s/^(\Index.*)/$col_yellow$col_brighten$1$col_file/x;
+  $thisline =~   s/^(\===.*)/$col_yellow$col_brighten$1$col_file/x;
 
-	$thisline =~   s/^(\-\-\-.*)/$col_yellow$col_brighten$1$col_file/x;
-	$thisline =~   s/^(\+\+\+.*)/$col_yellow$col_brighten$1$col_file/x;
+  $thisline =~   s/^(\-\-\-.*)/$col_yellow$col_brighten$1$col_file/x;
+  $thisline =~   s/^(\+\+\+.*)/$col_yellow$col_brighten$1$col_file/x;
 
-	$thisline =~   s/^(\+.*)/$col_purple$1$col_file/x;
-	$thisline =~   s/^(-.*)/$col_yellow$1$col_file/x;
-	$thisline =~   s/^(@@.*)/$col_blue$1$col_file/x;
+  $thisline =~   s/^(\+.*)/$col_purple$1$col_file/x;
+  $thisline =~   s/^(-.*)/$col_yellow$1$col_file/x;
+  $thisline =~   s/^(@@.*)/$col_blue$1$col_file/x;
 
 
-	if ($thisline !~ /^\s+/)
-	{
-		print $col_norm, $col_default;
-	}
-	print $thisline;
+  if ($thisline !~ /^\s+/)
+  {
+    print $col_norm, $col_default;
+  }
+  print $thisline;
 }
 
-print $col_norm;
-
-
+if (is_interactive()) {
+  print $col_norm;
+}
