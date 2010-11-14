@@ -8,8 +8,8 @@ Setup:
 
 You'll need a fairly recent version of vim for everything to work.
 
-You'll need to have exuberant-ctags installed to stop having vimrc
-complaining at start up.
+You'll need to have exuberant-ctags installed
+to use :TList
 
 
 Windows setup:
@@ -20,7 +20,7 @@ Do NOT try to use bin/ct-install (at least not yet)
 Copy:
 
 ctafconf/etc/vim/vimrc to $USER\_vimrc
-ctafconf/etc/vim        to $USER\vimfiles
+ctafconf/etc/vim       to $USER\vimfiles
 
 
 Random notes:
@@ -72,7 +72,7 @@ Code:
     :A to go from .h to .c, and vice-versa,
     :AV to vsplist,
     :AS to split)
-  - taglist:
+  - taglist: (needs exuberant-ctags)
     :TlistAddFilesRecursive .
     :Tlist
 
@@ -80,6 +80,7 @@ Code:
   - pydoc:
     :Pydoc <keywork>
     \pw on a word
+  - make: if pyflakes is found, run it in quick-fix mode
 
 Misc:
 ----
