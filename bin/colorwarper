@@ -15,6 +15,8 @@ if ! which perl 2>/dev/null >/dev/null ; then
 else
   if [ x"$app" = xgmake ]; then
     "$@" 2>&1 | ~/.config/ctafconf/bin/colormake.pl
+  elif [ x"$app" = xdoxygen ]; then
+    "$@" 2>&1 | ~/.config/ctafconf/bin/colordoxy.pl
   elif [ x"$app" = xsvn ] || [ x"$app" = xcvs ]; then
     for i in $@; do
       if [ x$i = xci ] || [ x$i = xcommit ]; then

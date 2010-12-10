@@ -43,6 +43,7 @@ alias_set make_real '`which make`'
 alias_set gmake '~/.config/ctafconf/bin/colorwarper gmake'
 alias_set gmake_real '`which gmake`'
 alias_set ka 'killall'
+alias_set doxygen '~/.config/ctafconf/bin/colorwarper doxygen'
 #alias_set make 'gmake'
 
 # Quick chmod
