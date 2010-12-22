@@ -122,7 +122,6 @@ alias_set less 'less -r -X -M'
 
 alias_set getx 'export DISPLAY=:0.0'
 
-alias_set j 'jobs'
 alias_set h 'history'
 
 #never alias ls
