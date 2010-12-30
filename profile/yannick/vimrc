@@ -28,8 +28,17 @@ set statusline=%{VimBuddy()}\ %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 ""
 " Few keybindings
 
-" 'cd' towards the dir in which is the file edited
+" 'cd' towards the dir in which the current file is edited
 map ,cd :cd %:p:h<CR>
+
+" I prefer , for mapleader rather than \
+let mapleader=","
+
+" Open files located in the same dir in with the current file is edited
+map <leader>ew :e <C-R>=expand("%:p:h") . "/" <CR>
+map <leader>es :sp <C-R>=expand("%:p:h") . "/" <CR>
+map <leader>ev :vsp <C-R>=expand("%:p:h") . "/" <CR>
+map <leader>et :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
 " Navigate through the buffer's list with alt+up, alt+down
 nnoremap <M-Down>  :bp<CR>
