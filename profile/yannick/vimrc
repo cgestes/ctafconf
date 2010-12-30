@@ -40,6 +40,14 @@ nnoremap K :Man <cword> <CR>
 " Spell check
 cmap spc setlocal spell spelllang=
 
+" Bubble single lines
+nmap <C-Up> ddkP
+nmap <C-Down> ddp
+
+" Bubble multiple lines
+vmap <C-Up> xkP`[V`]
+vmap <C-Down> xp`[V`]
+
 ""
 " Skeletons :
 
