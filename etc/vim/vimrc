@@ -46,6 +46,11 @@ runtime! macros/matchit.vim
 runtime! plugin/imaps.vim
 runtime! ftplugin/man.vim
 
+" If par is installed, just use it:
+if executable("par")
+  set formatprg=par
+end
+
 " Read ~/.config/ctafconf/user-profile.sh
 " add load ~/.config/ctafconf/profile/<name>/vimrc
 " for each name in profile
