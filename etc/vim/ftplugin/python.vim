@@ -1,10 +1,14 @@
 set omnifunc=pythoncomplete#Complete
 
-set path+=/usr/lib/python2.6/,/usr/lib/python2.6/site-packages
 
-" Comment this if omnicomplete gets too slow...
-set tags+=~/.vim/tags/python/tags
+let s:py_version = system("python --version")
+let s:py_version = strpart(s:py_version, 7) " Remove 'Python '
+let s:py_version = strpart(s:py_version, 0, 3) " Keep only the major version
 
+let s:py_path="/usr/lib/python" . s:py_version .
+    \ "," . "/usr/lib/python" . s:py_version . "/site-packages"
+
+let &path=&path . "," . s:py_path
 
 " This is incredibly helpful...
 abbreviate <buffer> sefl self
