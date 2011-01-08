@@ -88,8 +88,8 @@ alias_set ne 'emacs -nw'
 alias_set gnus 'emacs -nw -f gnus'
 
 #vim
-alias_set vi  'vim'
-alias_set svi 'sudo vim'
+null_which vim && alias_set vi  'vim'
+null_which vim && alias_set svi 'sudo vim'
 
 # Screen is nice but options can be a bit hard to remember:
 alias_set sw 'screen -wipe'
