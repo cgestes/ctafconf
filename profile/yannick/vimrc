@@ -29,7 +29,8 @@ set statusline=%{VimBuddy()}\ %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 " Few keybindings
 
 " 'cd' towards the dir in which the current file is edited
-map ,cd :cd %:p:h<CR>
+" but only change the path for the current window
+map ,cd :lcd %:h<CR>
 
 " I prefer , for mapleader rather than \
 let mapleader=","
