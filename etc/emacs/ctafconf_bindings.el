@@ -110,3 +110,6 @@
 
 ;;jump to tag in semantic
 (global-set-key [(control shift mouse-1)] 'semantic-ia-fast-mouse-jump)
+
+;;disable suspend button
+(global-unset-key [(control x)(control z)])
