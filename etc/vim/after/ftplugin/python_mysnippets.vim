@@ -14,3 +14,5 @@ Snippet _init def __init__(self<{}>):<CR><TAB><{}>
 
 Snippet _str  def __str__(self):<CR><TAB><{}>
 
+Snippet pdb import pdb; pdb.set_trace()
+
