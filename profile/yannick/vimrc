@@ -50,6 +50,17 @@ nmap <C-Down> ddp
 vmap <C-Up> xkP`[V`]
 vmap <C-Down> xp`[V`]
 
+
+"""
+" Few commands:
+
+function! FromDos()
+  %s/\r//e
+endfunction
+
+command! FromDos call FromDos()
+
+
 ""
 " Skeletons :
 
