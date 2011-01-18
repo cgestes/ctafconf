@@ -109,6 +109,8 @@ general
 
 * Use rope for python completion like emacs
 * Auto-detect indent settings like emacs
+* In an autocommand like BufWritePre: chmod \+x the file
+  if it starts with a shebang.
 
 yannick's vimrc:
 ---------------
