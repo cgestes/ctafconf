@@ -50,6 +50,9 @@ nmap <C-Down> ddp
 vmap <C-Up> xkP`[V`]
 vmap <C-Down> xp`[V`]
 
+" Call chmod +x on a file when necessary:
+nmap <leader>! :call FixSheBang(@%) <CR>
+
 
 """
 " Few commands:
@@ -62,25 +65,10 @@ command! FromDos call FromDos()
 
 
 ""
-" Skeletons :
-
-" First read the skeleton ...
-autocmd BufNewFile *.rb        0r ~/.config/ctafconf/etc/vim/skeletons/rbskel.rb
-autocmd BufNewFile *.sh        0r ~/.config/ctafconf/etc/vim/skeletons/shskel.sh
-autocmd BufNewFile *.tex       0r ~/.config/ctafconf/etc/vim/skeletons/texskel.tex
-autocmd BufNewFile *.py        0r ~/.config/ctafconf/etc/vim/skeletons/pyskel.py
-autocmd BufNewFile *.html      0r ~/.config/ctafconf/etc/vim/skeletons/htmlskel.html
-
-" ... then move to the according line
-autocmd BufNewFile *.rb       :3
-autocmd BufNewFile *.sh       :3
-autocmd BufNewFile *.tex      :16
-autocmd BufNewFile *.html     :12
-
-""
 " Misc
 
 " I always make mistakes in these words
 abbreviate swith switch
 abbreviate wich which
 abbreviate lauch launch
+
