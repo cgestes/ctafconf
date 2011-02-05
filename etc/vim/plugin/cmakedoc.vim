@@ -28,6 +28,3 @@ endfunction
 
 "commands
 command! -nargs=1 ShowCMakeDoc :call ShowCMakeDoc('<args>')
-
-
-" file(
