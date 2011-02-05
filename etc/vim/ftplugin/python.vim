@@ -35,3 +35,6 @@ autocmd bufwritepre * :%s/\s\+$//e
 " This is a fix in a quick and dirty way:
 ": syn match dosiniComment "#.*^"
 "
+
+"Man K to call Pydoc
+noremap K  :call ShowPyDoc('<C-R><C-W>', 1)<CR>
