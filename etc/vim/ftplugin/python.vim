@@ -1,3 +1,5 @@
+" Special definitions for python files
+
 set omnifunc=pythoncomplete#Complete
 
 
@@ -25,8 +27,6 @@ setlocal expandtab
 setlocal smarttab
 setlocal shiftwidth=4
 
-" Remove trailing whitespaces when saving:
-autocmd bufwritepre * :%s/\s\+$//e
 
 " When editing .ini files, VIM will most of the
 " time load syntax/dosini.vim.
@@ -35,9 +35,6 @@ autocmd bufwritepre * :%s/\s\+$//e
 " This is a fix in a quick and dirty way:
 ": syn match dosiniComment "#.*^"
 "
-
-"Man K to call Pydoc
-noremap K  :call ShowPyDoc('<C-R><C-W>', 1)<CR>
 
 
 " Map <leader>I to add an "import" line

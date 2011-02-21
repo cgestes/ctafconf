@@ -1,10 +1,6 @@
 " Configuration file for tex
 "
 
-
-" Activate spell chek:
-setlocal spell spelllang=fr
-
 " Set textwidth:
 set textwidth=80
 

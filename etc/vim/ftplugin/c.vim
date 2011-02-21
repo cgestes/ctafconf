@@ -5,12 +5,4 @@ setlocal expandtab
 setlocal smarttab
 setlocal shiftwidth=2
 
-
 setlocal cindent
-
-" Show trailing whitespaces, and tabs with hideous ^I
-"setlocal list listchars=trail:·
-
-" Remove trailing whitespaces when saving:
-autocmd bufwritepre * :%s/\s\+$//e
-
