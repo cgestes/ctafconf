@@ -18,3 +18,7 @@ alias_set sc "toc cmake -s"
 alias_set sm "toc build -s -j4"
 alias_set smt "toc build -s -j4 -t autotest"
 
+alias_set q  "qibuild"
+alias_set qc "qibuild configure"
+alias_set qm "qibuild make"
+alias_set qp "qisrc pull"
