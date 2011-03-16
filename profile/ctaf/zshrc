@@ -1,5 +1,6 @@
 #!/bin/sh
 
 #echo "aldebaran zshrc profile"
-[ -d ~/src/aldebaran ] && cdpath=~/src/aldebaran
+[ -d ~/src/qi ] && cdpath+=~/src/qi
+[ -d ~/src/aldebaran ] && cdpath+=~/src/aldebaran
 
