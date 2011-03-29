@@ -1,6 +1,7 @@
 " Additional settings for makefile
 
-" Make sure a hard tab is used, required for most make programs
-setlocal noexpandtab 
-setlocal softtabstop=0
-setlocal nosmarttab
+" Hard tabs, displayed like 4 spaces
+setlocal noexpandtab
+setlocal softtabstop=4
+setlocal shiftwidth=4
+setlocal tabstop=4

@@ -1,8 +1,10 @@
 "Special configuration for C/C++ files
 
-" /!\ this is *not* the default for many projects
+" Indent with two spaces
 setlocal expandtab
 setlocal smarttab
 setlocal shiftwidth=2
+setlocal softtabstop=2
+setlocal tabstop=2
 
 setlocal cindent

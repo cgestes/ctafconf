@@ -22,10 +22,12 @@ if executable("pyflakes")
 endif
 
 
-" Follow PEP8
+" Indent with 4 spaces
 setlocal expandtab
 setlocal smarttab
 setlocal shiftwidth=4
+setlocal tabstop=4
+setlocal softtabstop=4
 
 
 " When editing .ini files, VIM will most of the
