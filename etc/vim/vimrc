@@ -54,6 +54,20 @@ if executable("par")
   set formatprg=par
 end
 
+""
+" A few useful functions:
+
+" Remove trailing whitespace
+function! CleanWhiteSpace()
+  :%s/\s\+$//e
+endfunction()
+
+command! -nargs=0 CleanWhiteSpace :call CleanWhiteSpace()
+
+
+""
+" Handling ctafconf profiles
+
 " Read ~/.config/ctafconf/user-profile.sh
 " add load ~/.config/ctafconf/profile/<name>/vimrc
 " for each name in profile
@@ -66,3 +80,4 @@ if has("unix")
 else
   source ~/_vimrc.user
 endif
+
