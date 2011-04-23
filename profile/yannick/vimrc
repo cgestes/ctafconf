@@ -53,17 +53,6 @@ vmap <C-Down> xp`[V`]
 " Call chmod +x on a file when necessary:
 nmap <leader>! :call FixSheBang(@%) <CR>
 
-
-"""
-" Few commands:
-
-function! FromDos()
-  %s/\r//e
-endfunction
-
-command! FromDos call FromDos()
-
-
 ""
 " Misc
 
