@@ -1,13 +1,7 @@
-"cmakedoc.vim
-"Print cmake documentation for the command behind the cursor
-"Assumes cmake is in PATH
-
-
-
-"pydoc.vim is free software, you can redistribute or modify
-"it under the terms of the GNU General Public License Version 2 or any
-"later Version (see http://www.gnu.org/copyleft/gpl.html for details).
-
+" cmakedoc.vim
+" Print cmake documentation for the command behind the cursor
+" Assumes cmake is in PATH
+" (Based on code from pydoc.vim)
 
 set switchbuf=useopen
 function! ShowCMakeDoc(name)
@@ -26,5 +20,4 @@ function! ShowCMakeDoc(name)
 	normal 1G
 endfunction
 
-"commands
 command! -nargs=1 ShowCMakeDoc :call ShowCMakeDoc('<args>')
