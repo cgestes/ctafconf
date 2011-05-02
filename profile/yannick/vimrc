@@ -4,6 +4,12 @@ let did_install_default_menus = 1
 " Remove trailing whitespaces when saving:
 autocmd bufwritepre * :%s/\s\+$//e
 
+" I've always find it weird that it was not this way ...
+set splitbelow
+
+" More logical, but not vi-compatible
+noremap Y y$
+
 " Tabulations
 set shiftwidth=2
 set expandtab
