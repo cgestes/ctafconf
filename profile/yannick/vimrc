@@ -14,7 +14,7 @@ set tabstop=4
 
 
 " Status line (requires VimBuddy plugin to be present)
-set statusline=%{VimBuddy()}\ [%n]\ %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P\ %a
+set statusline=%{VimBuddy()}\ [%n]\ %<%f\ %{fugitive#statusline()}%h%m%r%=%-14.(%l,%c%V%)\ %P\ %a
 
 
 ""
