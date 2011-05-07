@@ -117,7 +117,7 @@ syntax-target: $(CHK_SOURCES:.c=.o)
 
 
 ################
-§# Dependencies #
+# Dependencies #
 ################
 # Include the dependency files, should be the last of the makefile
 -include $(shell mkdir .dep 2>/dev/null) $(wildcard .dep/*)
