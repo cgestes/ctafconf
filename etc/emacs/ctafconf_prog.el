@@ -42,6 +42,8 @@
          ("\\.pl$"              . perl-mode)
          ) auto-mode-alist))
 
+;;shebang matching
+(add-to-list 'interpreter-mode-alist (cons (purecopy "runscript") 'sh-mode))
 
 ;;auto-template for .cc, .c, .h, .hh, ...
 (setq auto-template-dir (concat ctafconf-path "templates/"))
