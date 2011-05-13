@@ -16,7 +16,7 @@
 bindkey -e
 
 #example to bind a key to a command (ctrl+t)
-bindkey -s '^T' 'uptime\n'
+#bindkey -s '^T' 'uptime\n'
 
 #give all in the history completion : up and down search
 # in the history based on the beginning of the line
