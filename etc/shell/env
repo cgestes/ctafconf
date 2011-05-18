@@ -67,6 +67,7 @@ test -d /sbin && env_set PATH "$PATH":/sbin
 test -d /usr/sbin && env_set PATH "$PATH":/usr/sbin
 test -d /usr/local/bin && env_set PATH "$PATH":/usr/local/bin
 test -d ~/.config/ctafconf/bin && env_set PATH "$PATH":"$HOME"/.config/ctafconf/bin
+test -d ~/bin && env_set PATH "$PATH":"$HOME"/bin
 
 #do not put . in PATH, it could lead to unobvious error.
 #env_set PATH "$PATH":.
