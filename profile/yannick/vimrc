@@ -66,4 +66,5 @@ nmap <leader>! :call FixSheBang(@%) <CR>
 abbreviate swith switch
 abbreviate wich which
 abbreviate lauch launch
+abbreviate MSCV MSVC
 
