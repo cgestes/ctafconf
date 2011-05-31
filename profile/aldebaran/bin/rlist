@@ -25,16 +25,20 @@ esac
 IFS="
 "
 
+
+naoqi_list=$(avahi-browse -p -r -t _naoqi._tcp 2> /dev/null | grep "^=" | cut -f8 -d';')
+
 avahi-browse -p -r -t _nao._tcp 2> /dev/null | grep "^=" | while read I;
 do
   HOST=`echo -n $I | cut -f 4 -d ';'`
   IP=`echo -n$I | cut -f 8 -d ';'`
+  NAOQI_STATUS=$(echo ${naoqi_list} | grep ${IP} &>/dev/null && echo "run" || echo "-")
   case $OPT in
     "-n")
-      printf "%-25s => %s\n" $HOST $IP
+      printf "%-25s => %-15s  naoqi: %s\n" $HOST $IP $NAOQI_STATUS
       ;;
     *)
-      printf "%-15s => %s\n" $IP $HOST
+      printf "%-15s => %-25s  naoqi: %s\n" $IP $HOST $NAOQI_STATUS
       ;;
   esac
 done | sort
