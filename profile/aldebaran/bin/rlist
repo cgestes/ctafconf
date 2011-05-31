@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 
 usage() {
   echo "Usage: rlist [-i | -n]" >&2
@@ -30,6 +30,7 @@ naoqi_list=$(avahi-browse -p -r -t _naoqi._tcp 2> /dev/null | grep "^=" | cut -f
 
 avahi-browse -p -r -t _nao._tcp 2> /dev/null | grep "^=" | while read I;
 do
+  [ "$(echo -n $I | cut -f3 -d ';')" = 'IPv4' ] || continue
   HOST=`echo -n $I | cut -f 4 -d ';'`
   IP=`echo -n$I | cut -f 8 -d ';'`
   NAOQI_STATUS=$(echo ${naoqi_list} | grep ${IP} &>/dev/null && echo "run" || echo "-")
