@@ -2,6 +2,11 @@
 
 usage() {
   echo "Usage: rlist [-i | -n]" >&2
+  echo "" >&2
+  echo "Options:" >&2
+  echo "  -i               sort by hostname (default)" >&2
+  echo "  -n               sort by IP address" >&2
+  echo "  --naoqi          display NAOqi status" >&2
   exit 1
 }
 
