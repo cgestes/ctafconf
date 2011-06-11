@@ -31,6 +31,14 @@ set incsearch
 " Tell NerdCommenter to shut up:
 let g:NERDShutUp=1
 
+" Prevent YankRing.vim from polluting $HOME:
+if has("unix")
+   let s:path_sep = "/"
+else
+   let s:path_sep = "\\"
+endif
+let g:yankring_history_dir = expand('$HOME') . s:path_sep . '.vim'
+
 " Allow completion on filenames right after a '='.
 " Uber-useful when editing bash scripts
 set isfname-==
