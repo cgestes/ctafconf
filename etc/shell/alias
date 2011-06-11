@@ -169,4 +169,4 @@ test -f ~/.config/ctafconf/etc/shell/alias.`uname` && source ~/.config/ctafconf/
 # test x$ctafconf_config != x && test -f ~/.config/ctafconf/etc/shell/alias.$ctafconf_config && source ~/.config/ctafconf/etc/shell/alias.$ctafconf_config
 
 #protect ls against failure
-ls ~/.config/ctafconf >/dev/null || alias_unset ls
+ls ~/.config/ctafconf 2>/dev/null >/dev/null || alias_unset ls
