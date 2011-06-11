@@ -1,0 +1,14 @@
+
+#!/bin/sh
+##CTAFCONF
+
+alias_unset grep
+
+alias_unset ls && alias_set ls 'ls -F'
+alias_unset ll && alias_set ll 'ls -Fl'
+alias_unset la && alias_set la 'ls -Fla'
+alias_unset l && alias_set l 'ls -Fa'
+alias_unset ls && alias_set ls 'ls -Fa'
+alias_unset lg && alias_set lg 'ls -F | grep'
+
+
