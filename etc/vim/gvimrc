@@ -5,9 +5,3 @@
 " but not for vim.
 colorscheme wonbat
 
-" I don't like display of space chars
-" when using vim, but on gvim it's okay
-" (more discrete)
-" UTF-8 power!
-set listchars=tab:».,eol:¬,trail:°
-set list
