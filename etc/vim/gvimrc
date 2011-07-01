@@ -5,3 +5,8 @@
 " but not for vim.
 colorscheme wonbat
 
+
+if has("gui_win32")
+  " Only available on windows 7 ...
+  set guifont=Consolas:h11:cANSI
+endif
