@@ -351,4 +351,5 @@ if __name__ == "__main__":
   write_default_profile()
 
 
+# vim: sw=2 et
 
