@@ -23,7 +23,3 @@ alias -s html=firefox
 # Add $HOME/bin to path:
 # (pretty standard)
 export PATH="$PATH:$HOME/bin"
-
-# Let your term surpise you!
-null_which fortune && fortune -s
-
