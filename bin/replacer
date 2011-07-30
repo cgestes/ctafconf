@@ -93,10 +93,18 @@ def recurse_file(opts, directory, action):
                     break
         if filter_out:
             continue
+        if opts.get("file_filter"):
+            filter_out = True
+            for fo in opts.get("file_filter"):
+                if fnmatch.fnmatch(f, fo):
+                    filter_out = False
+                    break
         f = os.path.join(directory, f)
         if os.path.isdir(f):
             recurse_file(opts, f, action)
         if os.path.isfile(f):
+            if filter_out:
+                continue
             action(f)
 
 class Context:
@@ -270,6 +278,8 @@ def main():
     option_parser.add_option("--no-skip-hidden",
         action = "store_false", dest = "no_hidden",
         help = "Do not skip hidden files. Use this if you know what you are doing...")
+    option_parser.add_option("--file-filter", dest = "file_filter", action = "append",
+                             help = "File filter to apply (multiple filters can be specified)")
     option_parser.add_option("--no-filter", action = "store_true", dest = "no_filter",
                              help = "Do not skip files that match the filter")
     option_parser.add_option("-d", "--debug",
