@@ -2,7 +2,7 @@
 #
 # colormake.pl 0.3
 #
-# Copyright: (C) 1999, 2010, Bjarni R. Einarsson <bre@netverjar.is>
+# Copyright: (C) 1999, 2010, 2011, Bjarni R. Einarsson <bre@netverjar.is>
 #                      http://bre.klaki.net/
 #
 #   This program is free software; you can redistribute it and/or modify
@@ -81,14 +81,18 @@ while (<>)
   $thisline =~ s/^(.*:\s*)(In\s|At\s)(.*)/$col_filename$1$col_trace$2$3$col_default/x;
 
   #filename: 123: error: ...
-  $thisline =~ s|^(.*:\s*)(\d+\s*:\s*)(error\s*:\s+)(.*)|$col_filename$1$col_linenum$2$col_underline$col_error$3$col_norm$col_purple$4$col_default|x;
-  $thisline =~ s|^(.*:\s*)(\d+\s*:\s*)(erreur\s*:\s+)(.*)|$col_filename$1$col_linenum$2$col_underline$col_error$3$col_norm$col_purple$4$col_default|x;
+  $thisline =~ s/^(.*:\s*)(\d*\s*:\s*)((error|ERROR)\s*:\s+)(.*)/$col_filename$1$col_linenum$2$col_underline$col_error$3$col_norm$col_purple$4$col_default/x;
+  $thisline =~ s/^(.*:\s*)(\d*\s*:\s*)(erreur\s*:\s+)(.*)/$col_filename$1$col_linenum$2$col_underline$col_error$3$col_norm$col_purple$4$col_default/x;
   #filename: 123: warning: ...
-  $thisline =~ s|^(.*:\s*)(\d+\s*:\s*)(attention\s*:\s+)(.*)|$col_filename$1$col_linenum$2$col_underline$col_warning$3$col_norm$col_brighten$col_purple$4$col_default|x;
+  $thisline =~ s/^(.*:\s*)(\d*\s*:\s*)(attention\s*:\s+)(.*)/$col_filename$1$col_linenum$2$col_underline$col_warning$3$col_norm$col_brighten$col_purple$4$col_default/x;
   #filename: 123:
-  $thisline =~ s|^(.*:\s*)(\d+\s*:\s*)()(.*)|$col_filename$1$col_linenum$2$col_underline$col_warning$3$col_norm$col_brighten$col_purple$4$col_default|x;
+  $thisline =~ s/^(.*:\s*)(\d*\s*:\s*)()(.*)/$col_filename$1$col_linenum$2$col_underline$col_warning$3$col_norm$col_brighten$col_purple$4$col_default/x;
 
-  $thisline =~ s|^(.*:\s*)(\d+\s*:\s*)(warning\s*:\s+)(.*)|$col_filename$1$col_linenum$2$col_underline$col_warning$3$col_norm$col_brighten$col_purple$4$col_default|x;
+  $thisline =~ s/^(.*:\s*)(\d*\s*:\s*)((warning|WARNING)\s*:\s+)(.*)/$col_filename$1$col_linenum$2$col_underline$col_warning$3$col_norm$col_brighten$col_purple$4$col_default/x;
+
+  #$thisline =~ s|^(.*:\s*)(:\s*)(WARNING\s*:\s+)(.*)/$col_filename$1$col_linenum$2$col_underline$col_warning$3$col_norm$col_brighten$col_purple$4$col_default/x;
+
+#/home/ctaf42/src/qi/naoqi/doc/modules_reference/almotion/gen_inv_kin.rst:: WARNING:
 
   print $thisline;
 }
