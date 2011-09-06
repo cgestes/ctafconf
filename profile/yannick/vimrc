@@ -59,6 +59,10 @@ vmap <C-Down> xp`[V`]
 " Call chmod +x on a file when necessary:
 nmap <leader>! :call FixSheBang(@%) <CR>
 
+
+" Remember where I was and what I searched
+set viminfo='20,\"50
+
 ""
 " Misc
 
