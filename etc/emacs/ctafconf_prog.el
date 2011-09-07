@@ -130,7 +130,7 @@
 
 ;;Cmake
 (autoload 'cmake-mode "cmake-mode" "major cmake mode" t)
-(add-to-list 'auto-mode-alist '("CMakeLists\\.txt\\'" . cmake-mode))
+(add-to-list 'auto-mode-alist '("\\CMakeLists\\.txt\\'" . cmake-mode))
 (add-to-list 'auto-mode-alist '("\\.cmake\\'"         . cmake-mode))
 
 ;;AsciiDoc
