@@ -20,11 +20,13 @@ function! ctafconf#load_profiles()
   let s:prof_str = substitute(s:prof_str, "'", "", "g")
   let s:profiles = split(s:prof_str)
   for ct_profile in s:profiles
-    let s:profile_path = s:ctafconf_path . s:path_sep. "profile" . s:path_sep . ct_profile . s:path_sep . "vimrc"
-    if filereadable(s:profile_path)
-      execute "source " . s:profile_path
-    else
-      continue
-    endif
+    let s:profile_path =  s:ctafconf_path .
+                        \ s:path_sep .
+                        \ "profile"  .
+                        \ s:path_sep .
+                        \ ct_profile .
+                        \ s:path_sep .
+                        \ "vim"
+    call pathogen#infect(s:profile_path)
   endfor
 endfunction
