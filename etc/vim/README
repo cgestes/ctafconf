@@ -30,21 +30,21 @@ Random notes:
 I'll try to keep the correct file system hierarchy for vim scripts,
 so the vimrc itself is  quite small
 
-The various plugins are versionned as they were when I downloaded them,
-and some of them are patched, so do not expect to have the latest
-version of every plugins.
-
+I'm using pathogen, so the downloaded plugins are nicely put
+in separated directories in etc/vim/bundle.
+I update them from time to time ...
 
 If you wish to change settings for a particular language, please use
 vim/ftplugin/<language>.vim, NOT vimrc.
 
-Non-standard behavior:
- - virtualedit in "block" mode
-
 There is support for profiles, too.
 You can put your favorite stuff to
-.config/ctafconf/profile/<name>/vimrc
+.config/ctafconf/profile/<name>/vim/<name>/vimrc
+This directory too is loaded with pathogen, so you can put your own
+plugins here if you want...
 
+Non-standard behavior (abbreviations, new shortcuts, ...) should go in your
+profile
 
 
 PLUGINS :
@@ -63,8 +63,8 @@ Code:
     ,cs      "sexy" comment of the selection
   - snippetsEmu: an emulation of TexMate snippates.
     They are stored in
-    after/ftplugin/<language>_mysnippets.vim
-    Open the files to see how to defoine your own snippets.
+    bundle/snippy/after/ftplugin/<language>_mysnippets.vim
+    Open the files to see how to define your own snippets.
     Templates are also completed with <TAB>
 
 * C/C++:
@@ -81,6 +81,10 @@ Code:
     :Pydoc <keywork>
     \pw on a word
   - make: if pyflakes is found, run it in quick-fix mode
+
+* CMake:
+  - cmake_doc: you can use 'K' on a word in your cmake file
+  to print the cmake documentation of the function
 
 Misc:
 ----
@@ -112,6 +116,3 @@ general
 * In an autocommand like BufWritePre: chmod \+x the file
   if it starts with a shebang.
 
-yannick's vimrc:
----------------
-* Cleanup the skeletons
