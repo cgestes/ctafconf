@@ -1,5 +1,10 @@
 ""
-" Sane defaults:
+" Vimrc for ctafconf
+"
+" Note: please keep this file clean!
+" Personal settings go to profile/<name>/vim/
+
+call pathogen#infect()
 
 set nocompatible
 syntax on
