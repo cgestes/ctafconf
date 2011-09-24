@@ -7,8 +7,6 @@
 call pathogen#infect()
 
 set nocompatible
-syntax on
-filetype plugin on
 set history=10000
 set mouse=a
 set encoding=utf-8
@@ -90,6 +88,12 @@ command! FromDos call FromDos()
 " add load ~/.config/ctafconf/profile/<name>/vimrc
 " for each name in profile
 call ctafconf#load_profiles()
+
+" Doing that causes pathogen to be called several
+" times, which somehow messes up with ftplugin,
+" so make sure it's set
+syntax on
+filetype plugin on
 
 
 " Last, load ~/.vimrc.user
