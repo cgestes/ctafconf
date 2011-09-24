@@ -41,7 +41,9 @@ There is support for profiles, too.
 You can put your favorite stuff to
 .config/ctafconf/profile/<name>/vim/<name>/vimrc
 This directory too is loaded with pathogen, so you can put your own
-plugins here if you want...
+plugins here if you want.
+For instance, you can add your own snippets to
+ctafconf/profile/<name>/vim/mysnippets/ftplugin/after/<language>_mysnippets.vim
 
 Non-standard behavior (abbreviations, new shortcuts, ...) should go in your
 profile
@@ -62,9 +64,6 @@ Code:
     ,c<ESC>i to inverse the comment of a line
     ,cs      "sexy" comment of the selection
   - snippetsEmu: an emulation of TexMate snippates.
-    They are stored in
-    bundle/snippy/after/ftplugin/<language>_mysnippets.vim
-    Open the files to see how to define your own snippets.
     Templates are also completed with <TAB>
 
 * C/C++:
@@ -79,7 +78,7 @@ Code:
 * Python:
   - pydoc:
     :Pydoc <keywork>
-    \pw on a word
+    <leader>pw on a word
   - make: if pyflakes is found, run it in quick-fix mode
 
 * CMake:
@@ -102,7 +101,7 @@ Useless:
   - matrix:
     :Matrix
   - vimbuddy:
-    For the nice smiley in the status line
+    For the nice smiley in the status line used by yannick's statusline
 
 
 TODO:
