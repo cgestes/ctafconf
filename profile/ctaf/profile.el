@@ -31,6 +31,6 @@
 ;;update copyright years in headers
 (add-hook 'before-save-hook 'copyright-update)
 
-(ctafconf-ropemacs)
+;;(ctafconf-ropemacs)
 
 (message "using ctaf emacs profile")
