@@ -16,7 +16,7 @@ else
   if [ x"$app" = xgmake ]; then
     "$@" 2>&1 | ~/.config/ctafconf/bin/colormake.pl
   elif [ x"$app" = xmake ] && echo $arg | grep -q menuconfig; then
-    "$SHELL" -c "$arg"
+    $@
   elif [ x"$app" = xdoxygen ]; then
     "$@" 2>&1 | ~/.config/ctafconf/bin/colordoxy.pl
   elif [ x"$app" = xsvn ] || [ x"$app" = xcvs ]; then
