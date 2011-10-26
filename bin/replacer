@@ -269,6 +269,13 @@ def repl_main(opts, args):
     else:
         recurse_file(opts, os.getcwd(), repl_action)
 
+    if not opts.get("go") and not opts.get("quiet"):
+        print
+        print("To apply change, run again:")
+        print("%s %s --go" % (os.path.basename(sys.argv[0]), ' '.join(sys.argv[1:])))
+        print
+
+
 def main():
     """
     manages options when called from command line
@@ -340,6 +347,7 @@ def main():
         find_main(opts, args)
     else:
         repl_main(opts, args)
+
 
 
 if __name__ == "__main__":
