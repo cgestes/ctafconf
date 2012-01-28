@@ -74,6 +74,18 @@ Files matching %s are discarded.
 
 LOGGER = logging.getLogger("replacer")
 
+def is_binary(filename):
+    """ Returns True if the file is binary
+
+    """
+    with open(filename, 'rb') as fp:
+        data = fp.read(1024)
+        if not data:
+            return False
+        if b'\0' in data:
+            return True
+        return False
+
 def recurse_file(opts, directory, action):
     """
     Recusively go do the subdirectories of the directory,
@@ -104,6 +116,8 @@ def recurse_file(opts, directory, action):
             recurse_file(opts, f, action)
         if os.path.isfile(f):
             if filter_out:
+                continue
+            if is_binary(f):
                 continue
             action(f)
 
