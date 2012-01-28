@@ -271,7 +271,11 @@ class GrkSetupVim:
       pass
     if not identical:
       dest_orig = dest + ".orig"
+    try:
       os.rename(dest, dest_orig)
+    except OSError as e:
+      print("Could not backup", dest, "->", dest_orig)
+      print("Error was:", e)
     try:
       os.symlink(src, dest)
     except OSError as e:
