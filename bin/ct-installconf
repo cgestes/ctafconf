@@ -9,7 +9,7 @@
 ## Author(s):
 ##  - Cedric GESTES <ctaf42@gmail.com>
 ##
-## Copyright (C) 2010 Cedric GESTES
+## Copyright (C) 2010, 2012 Cedric GESTES
 ## This program is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
 ## the Free Software Foundation; either version 3 of the License, or
@@ -271,11 +271,11 @@ class GrkSetupVim:
       pass
     if not identical:
       dest_orig = dest + ".orig"
-    try:
-      os.rename(dest, dest_orig)
-    except OSError as e:
-      print("Could not backup", dest, "->", dest_orig)
-      print("Error was:", e)
+      try:
+        os.rename(dest, dest_orig)
+      except OSError as e:
+        print("Could not backup", dest, "->", dest_orig)
+        print("Error was:", e)
     try:
       os.symlink(src, dest)
     except OSError as e:
