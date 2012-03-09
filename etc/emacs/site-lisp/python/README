@@ -1,7 +1,0 @@
-upstream:
-
-hg clone http://bitbucket.org/agr/rope
-hg clone http://bitbucket.org/agr/ropemacs
-hg clone http://bitbucket.org/agr/ropemode
-
-git clone git://github.com/pinard/Pymacs.git

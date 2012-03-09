@@ -161,29 +161,6 @@
     )
 (ctafconf-semantic)
 
-(defun ctafconf-ropemacs ()
-  (condition-case err
-      (progn
-        (let ((newpypath (concat (getenv "PYTHONPATH")  ":" ctafconf-path "site-lisp/python/Pymacs")))
-          (setenv "PYTHONPATH" newpypath)
-          (message "PYTHONPATH set to: %s" newpypath)
-          )
-
-          (add-to-list 'load-path (concat ctafconf-path "site-lisp/python/Pymacs"))
-
-          (set 'pymacs-load-path (list (concat ctafconf-path "site-lisp/python/Pymacs")
-                                       (concat ctafconf-path "site-lisp/python/rope")
-                                       (concat ctafconf-path "site-lisp/python/ropemode")
-                                       (concat ctafconf-path "site-lisp/python/ropemacs")))
-          )
-        (require 'pymacs)
-        (pymacs-load "ropemacs" "rope-")
-        (setq ropemacs-guess-project  t)
-        (setq ropemacs-confirm-saving nil)
-    (error
-     (message "Cannot load ropemacs %s" (cdr err))))
-  )
-
 
 ;;very good completion (using semantic, etags, ...)
 (add-to-list 'load-path (concat ctafconf-path "site-lisp/company-0.5"))
@@ -228,11 +205,6 @@
       )
   (error
    (message "Cannot load cc-mode with qtenable %s" (cdr err))))
-
-;;weird, recall ropemacs setting after company (that use and load ropemacs)
-(setq ropemacs-guess-project  t)
-(setq ropemacs-confirm-saving nil)
-(setq ropemacs-enable-autoimport t)
 
 ;;provide ecb
 (defun ctafconf-ecb ()
