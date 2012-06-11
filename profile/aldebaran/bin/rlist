@@ -7,11 +7,14 @@ usage() {
   echo "  -i               sort by hostname (default)" >&2
   echo "  -n               sort by IP address" >&2
   echo "  --naoqi          display NAOqi status" >&2
+  echo "  -s|--service SERVICE" >&2
+  echo "                   filter using SERVICE (default: _nao._tcp)" >&2
   exit 1
 }
 
 OPT_ORDER="-i"
 OPT_NAOQI='false'
+OPT_SERVICE='_nao._tcp'
 
 while [ $# -gt 0 ] ; do
   case $1 in
@@ -20,6 +23,10 @@ while [ $# -gt 0 ] ; do
       ;;
     '--naoqi')
       OPT_NAOQI="true"
+      ;;
+    '-s'|'--service')
+      OPT_SERVICE="$2"
+      shift
       ;;
     '-h')
       usage
@@ -40,7 +47,7 @@ if ${OPT_NAOQI} ; then
   naoqi_list=$(avahi-browse -p -r -t _naoqi._tcp 2> /dev/null | grep "^=" | cut -f8 -d';')
 fi
 
-avahi-browse -p -r -t _nao._tcp 2> /dev/null | grep "^=" | while read I;
+avahi-browse -p -r -t ${OPT_SERVICE} 2> /dev/null | grep "^=" | while read I;
 do
   [ "$(echo -n $I | cut -f3 -d ';')" = 'IPv4' ] || continue
   HOST=`echo -n $I | cut -f 4 -d ';'`
