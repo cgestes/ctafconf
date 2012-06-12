@@ -1,14 +1,11 @@
 #!/bin/sh
 ##
 ## rssh.sh
-## Login : <ctaf@localhost.localdomain>
-## Started on  Mon May 26 17:16:55 2008 Cedric GESTES
-## $Id$
 ##
 ## Author(s):
 ##  - Cedric GESTES <gestes@aldebaran-robotics.com>
 ##
-## Copyright (C) 2008, 2010 Cedric GESTES
+## Copyright (C) 2008, 2010, 2012 Cedric GESTES
 ## This program is free software; you can redistribute it and/or modify
 ## it under the terms of the GNU General Public License as published by
 ## the Free Software Foundation; either version 3 of the License, or
@@ -27,19 +24,25 @@
 COPY_ID=0
 ADDR=""
 SSH_USER=""
+SSH_PORT=""
 
 usage() {
-  echo "rssh [-c] <ip|name>"
+  echo "rssh [-c] [-p SSH_PORT] <ip|name>"
   echo ""
   echo "  -c : copy the current public keys to the destination authorized_keys"
+  echo "  -p : specify ssh port"
   exit 1
 }
 
 parse_option() {
-  while getopts hc opt ; do
+  while getopts hcp opt ; do
     case "$opt" in
       c)
         COPY_ID=1
+        ;;
+      p)
+        shift
+        SSH_PORT="$1"
         ;;
       [?]|h)
         usage
@@ -73,8 +76,14 @@ if echo ${ADDR} | grep -E '^[0-9]+(\.[0-9]+)*$' >/dev/null 2>/dev/null ; then
   else
     ssh_address=${ADDR}
   fi
+elif [ "${ADDR}" = 'localhost' ] ; then
+  ssh_address=${ADDR}
 else
   ssh_address=${ADDR}.local
+fi
+
+if [ -n ${SSH_PORT} ] ; then
+  ssh_port="-p ${SSH_PORT}"
 fi
 
 if [ $COPY_ID -eq 1 ] ; then
@@ -82,6 +91,11 @@ if [ $COPY_ID -eq 1 ] ; then
 fi
 
 echo "connecting to '$ssh_address'"
-ssh-keygen -R "$ssh_address"
-ssh -o StrictHostKeyChecking=no "${SSH_USER}@$ssh_address"
 
+# because ssh-keygen sucks, it seems not support host using a port different from 22!
+if [ -z ${SSH_PORT} ] ; then
+  ssh-keygen -R "$ssh_address"
+else
+  sed -e "/^\[$ssh_address\]:${SSH_PORT} /d" -i "${HOME}/.ssh/known_hosts"
+fi
+ssh -o StrictHostKeyChecking=no "${SSH_USER}@$ssh_address" ${ssh_port}
