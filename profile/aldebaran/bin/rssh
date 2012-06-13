@@ -82,7 +82,7 @@ else
   ssh_address=${ADDR}.local
 fi
 
-if [ -n ${SSH_PORT} ] ; then
+if [ ! -z ${SSH_PORT} ] ; then
   ssh_port="-p ${SSH_PORT}"
 fi
 
