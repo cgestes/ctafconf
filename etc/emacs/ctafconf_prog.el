@@ -100,6 +100,10 @@
 (autoload 'tiger-mode "tiger" "major mode for tiger" t)
 (add-to-list 'auto-mode-alist '("\\.tig$" . tiger-mode))
 
+;;provide the go mode
+(autoload 'go-mode "go-mode" "major mode for go" t)
+(add-to-list 'auto-mode-alist '("\\.go$" . go-mode))
+
 ;;provide the lua mode
 (autoload 'lua-mode "lua-mode" "major mode for lua" t)
 (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
