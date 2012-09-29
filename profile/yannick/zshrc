@@ -67,3 +67,7 @@ function smart_cd {
 }
 
 alias cd=smart_cd
+# autojump
+if [[ -f  /etc/profile.d/autojump.zsh ]] ; then
+  source /etc/profile.d/autojump.zsh
+fi
