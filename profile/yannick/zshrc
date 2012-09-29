@@ -54,3 +54,16 @@ function title_preexec {
 autoload -U add-zsh-hook
 add-zsh-hook precmd title_precmd
 add-zsh-hook preexec title_preexec
+
+# cd /path/to/file -> cd /path/to
+function smart_cd {
+  if [[ -z "$1" ]]; then
+    cd "$HOME"
+  elif [[ -f "$1" ]]; then
+    cd $(dirname "$1")
+  else
+    cd "$1"
+  fi
+}
+
+alias cd=smart_cd
