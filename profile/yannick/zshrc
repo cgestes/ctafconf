@@ -67,6 +67,23 @@ function smart_cd {
 }
 
 alias cd=smart_cd
+
+# vi foo/bar/bar.cpp:33 -> vim +33 foo/bar/bar.cpp
+unalias vi
+function vi() {
+  if [[ "$#" -eq 1 ]]; then
+    s="$1"
+    new_args=("${(s/:/)s}")
+    if [[ -z "$new_args[2]" ]]; then
+      /usr/bin/vim $1
+    else
+      /usr/bin/vim $new_args[1] "+$new_args[2]"
+    fi
+  else
+    /usr/bin/vim $@
+  fi
+}
+
 # autojump
 if [[ -f  /etc/profile.d/autojump.zsh ]] ; then
   source /etc/profile.d/autojump.zsh
