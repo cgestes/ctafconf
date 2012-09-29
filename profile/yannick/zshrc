@@ -17,6 +17,7 @@ alias_set cp "cp -iv"
 # and so on:
 alias -s mp3=mplayer
 alias -s avi=mplayer
+alias -s mkv=mplayer
 alias -s pdf=evince
 alias -s html=firefox
 
