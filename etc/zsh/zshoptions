@@ -45,6 +45,7 @@ setopt magic_equal_subst
 
 setopt numericglobsort
 setopt extendedglob             # weird & wacky pattern matching - yay zsh!
+setopt no_nomatch               # but when pattern matching fails, simply use the command as is
 
 setopt interactivecomments      # date # comment will work
 
