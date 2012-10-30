@@ -335,7 +335,7 @@ def main():
     option_parser.set_defaults(
         no_hidden = True,
         no_filter = False,
-        backup    = True,
+        backup    = False,
         go        = False,
         color     = True,
         debug     = False,
