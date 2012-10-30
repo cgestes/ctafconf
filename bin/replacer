@@ -286,7 +286,8 @@ def repl_main(opts, args):
     if not opts.get("go") and not opts.get("quiet"):
         print
         print("To apply change, run again:")
-        print("%s %s --go" % (os.path.basename(sys.argv[0]), ' '.join(sys.argv[1:])))
+        print("$ %s %s --go\n" % (os.path.basename(sys.argv[0]), ' '.join(sys.argv[1:])))
+        print("To backup altered files, add '--backup' to the above command line.")
         print
 
 
@@ -309,9 +310,6 @@ def main():
     option_parser.add_option("--backup",
         action = "store_true", dest = "backup",
         help = "Create a backup for each file. This is the default")
-    option_parser.add_option("--no-backup",
-        action = "store_false", dest = "backup",
-        help = "Do not create backups")
     option_parser.add_option("--go",
         action = "store_true", dest = "go",
         help = "Perform changes rather than just printing then")
@@ -366,5 +364,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
