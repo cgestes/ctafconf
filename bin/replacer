@@ -193,9 +193,13 @@ def replace_in_file(opts, in_file, regexp, repl):
     Perfoms re.sub(regexp, repl, line) for each line in
     in_file
     """
-    in_fd = open(in_file, "r")
-    in_lines = in_fd.readlines()
-    in_fd.close()
+    in_lines = []
+    try:
+        with open(in_file, "r") as in_fd:
+            in_lines = in_fd.readlines()
+    except:
+        print("Cant open file: ", in_file)
+        return
 
     out_lines = in_lines[:]
     out_lines = [re.sub(regexp, repl, l) for l in in_lines]
