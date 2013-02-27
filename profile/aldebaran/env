@@ -16,17 +16,3 @@ null_which /usr/lib/ccache/bin/clang++ && env_set CXX "/usr/lib/ccache/bin/clang
 alias_set na "naogentoo -c naogentoo-atom"
 alias_set ng "naogentoo -c naogentoo-geode"
 
-alias_set tc "toc cmake"
-alias_set tm "toc build"
-
-alias_set tcr "toc cmake --release"
-alias_set tmr "toc build --release"
-
-alias_set sc "toc cmake -s"
-alias_set sm "toc build -s -j4"
-alias_set smt "toc build -s -j4 -t autotest"
-
-alias_set q  "qibuild"
-alias_set qc "qibuild configure"
-alias_set qm "qibuild make"
-alias_set qp "qisrc pull"
