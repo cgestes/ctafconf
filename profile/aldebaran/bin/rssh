@@ -78,6 +78,8 @@ if echo ${ADDR} | grep -E '^[0-9]+(\.[0-9]+)*$' >/dev/null 2>/dev/null ; then
   fi
 elif [ "${ADDR}" = 'localhost' ] ; then
   ssh_address=${ADDR}
+elif [ `expr "${ADDR}" : ".*\.local$"` -gt 0 ] ; then
+  ssh_address=${ADDR}
 else
   ssh_address=${ADDR}.local
 fi
