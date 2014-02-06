@@ -1,7 +1,34 @@
 #!/bin/sh
 #echo "aldebaran zshrc profile"TH=$PATH:/usr/lib/ccache/
 # to put my python before mac's python
-PATH=/usr/local/bin:/Users/jfremy/.local/bin:$PATH
+PATH=/Users/jfremy/Library/Python/2.7/bin:/usr/local/bin:/Users/jfremy/.local/bin:$PATH
 # allow auto-completion from work dir
 [ -d ~/work ] && cdpath+=~/work
+# qp command
 alias qp="qisrc push --cc vpaleologue@aldebaran-robotics.com --cc gschweitzer@aldebaran-robotics.com --cc cgeiger@aldebaran-robotics.com --cc njauffret@aldebaran-robotics.com"
+# qicd
+function qicd {
+  p=$(python -m 'qicd' $1)
+  if [[ $? -ne 0 ]]; then
+    return
+  fi
+  cd ${p}
+}
+
+if hash qibuild 2>/dev/null; 
+then
+  HAS_QIBUILD=1
+else
+  echo >&2 "I require qibuild but it's not installed. Aborting."
+  HAS_QIBUILD=0
+fi
+
+if [ $HAS_QIBUILD == 1 ]
+then
+  function qc {
+    qibuild configure $@
+  }
+  function qm {
+    qibuild make $@
+  }
+fi
