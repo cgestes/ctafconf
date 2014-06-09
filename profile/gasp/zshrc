@@ -32,3 +32,11 @@ then
     qibuild make $@
   }
 fi
+
+# otdd
+function otdd
+{
+  if [ `git rev-parse --abbrev-ref HEAD` = team/desktop/dev ] 
+    then git reset --hard origin/team/desktop/dev
+  fi
+}
