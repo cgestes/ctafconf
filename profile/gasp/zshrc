@@ -40,3 +40,12 @@ function otdd
     then git reset --hard origin/team/desktop/dev
   fi
 }
+# rebase on tded
+function tddreb
+{
+  CURRENT_BRANCH=`git rev-parse --abbrev-ref HEAD`
+  git checkout team/desktop/dev
+  git pull --rebase
+  git checkout $CURRENT_BRANCH
+  git rebase team/desktop/dev
+}
