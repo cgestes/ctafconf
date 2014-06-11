@@ -5,7 +5,7 @@ PATH=/Users/jfremy/Library/Python/2.7/bin:/usr/local/bin:/Users/jfremy/.local/bi
 # allow auto-completion from work dir
 [ -d ~/work ] && cdpath+=~/work
 # qp command
-alias qp="qibuild configure -s && qibuild make -s && qisrc push --cc vpaleologue@aldebaran-robotics.com --cc gschweitzer@aldebaran-robotics.com --cc cgeiger@aldebaran-robotics.com --cc njauffret@aldebaran-robotics.com --cc abossard@aldebaran-robotics.com"
+alias qp="qibuild configure -s && qibuild make -s && qisrc push --cc vpaleologue --cc gschweitzer --cc cgeiger --cc njauffret --cc abossard --cc gvallat"
 # qicd
 function qicd {
   p=$(python -m 'qicd' $1)
