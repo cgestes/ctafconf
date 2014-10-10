@@ -5,7 +5,7 @@ PATH=/Users/jfremy/Library/Python/2.7/bin:/usr/local/bin:/Users/jfremy/.local/bi
 # allow auto-completion from work dir
 [ -d ~/work ] && cdpath+=~/work
 # qp command
-alias qp="qibuild configure -s && qibuild make -s && qisrc push --cc vpaleologue --cc gschweitzer --cc cgeiger --cc njauffret --cc abossard --cc gvallat"
+alias qp="qibuild configure -p with_toolchain_qt && qibuild make -p with_toolchain_qt && qitest run -p with_toolchain_qt && qisrc push --cc cgeiger --cc vpaleologue --cc gschweitzer --cc njauffret --cc abossard --cc gvallat $@"
 # qicd
 function qicd {
   p=$(python -m 'qicd' $1)
@@ -26,7 +26,7 @@ fi
 if [ $HAS_QIBUILD == 1 ]
 then
   function qc {
-    qibuild configure $@
+    qibuild configure $@ 
   }
   function qm {
     qibuild make $@
@@ -41,7 +41,7 @@ function otdd
   fi
 }
 # rebase on tded
-function tddreb
+function rebase_on_tded
 {
   CURRENT_BRANCH=`git rev-parse --abbrev-ref HEAD`
   git checkout team/desktop/dev
@@ -49,3 +49,53 @@ function tddreb
   git checkout $CURRENT_BRANCH
   git rebase team/desktop/dev
 }
+
+# $1 = type; 0 - both, 1 - tab, 2 - title
+# rest = text
+setTerminalText () {
+  # echo works in bash & zsh
+  local mode=$1 ; shift
+  echo -ne "\033]$mode;$@\007"
+}
+stt_both  () { setTerminalText 0 $@; }
+stt_tab   () { setTerminalText 1 $@; }
+stt_title () { setTerminalText 2 $@; }
+
+iterm_create_tab () {
+  osascript<<EOD
+  tell application "System Events" to tell process "iTerm" to keystroke "t" using command down
+EOD
+}
+iterm_name_current_tab () { 
+  osascript<<EOD
+  tell application "iTerm" to tell session -1 of current terminal to write text "stt_tab $@"
+EOD
+}
+iterm_split_window () {
+  osascript<<EOD
+  tell application "System Events" to tell process "iTerm" to keystroke "d" using command down
+EOD
+}
+iterm_go_to_worktree() {
+  osascript<<EOD
+  tell application "iTerm" to tell session -1 of current terminal to write text "cd tdd;qicd $@"
+EOD
+}
+
+set_up_tdd_tab () {
+  iterm_create_tab
+  iterm_go_to_worktree $@
+  iterm_name_current_tab $@
+  iterm_split_window
+  iterm_go_to_worktree $@
+  iterm_name_current_tab $@
+}
+
+
+set_up_iterm () {
+  osascript -e 'tell application "iTerm" to activate'
+  set_up_tdd_tab choregraphe
+  set_up_tdd_tab desktop
+  set_up_tdd_tab renderwidget
+}
+
