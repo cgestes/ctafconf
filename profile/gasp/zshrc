@@ -5,7 +5,12 @@ PATH=/Users/jfremy/Library/Python/2.7/bin:/usr/local/bin:/Users/jfremy/.local/bi
 # allow auto-completion from work dir
 [ -d ~/work ] && cdpath+=~/work
 # qp command
-alias qp="qibuild configure -p with_toolchain_qt && qibuild make -p with_toolchain_qt && qitest run -p with_toolchain_qt && qisrc push --cc cgeiger --cc vpaleologue --cc gschweitzer --cc njauffret --cc abossard --cc gvallat $@"
+#alias qp="qibuild configure -p with_toolchain_qt && qibuild make -p with_toolchain_qt && qitest run -p with_toolchain_qt && qisrc push --cc cgeiger --cc vpaleologue --cc gschweitzer --cc njauffret --cc abossard --cc gvallat $@"
+function qp {
+  DIR=$( cd "$( dirname "$0" )" && pwd )
+  echo $DIR
+  python qp.py $@
+}
 # qicd
 function qicd {
   p=$(python -m 'qicd' $1)
@@ -26,29 +31,60 @@ fi
 if [ $HAS_QIBUILD == 1 ]
 then
   function qc {
-    qibuild configure $@ 
+    qibuild configure -DQI_WITH_TESTS=OFF $@
   }
   function qm {
     qibuild make $@
   }
+  function qct {
+    qibuild configure $@
+  }
 fi
 
-# otdd
-function otdd
+function evil_git_dirty {
+  [[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]] && echo "*"
+}
+
+function evil_git_num_untracked_files {
+  expr `git status --porcelain 2>/dev/null| grep "^??" | wc -l`
+}
+
+# update function
+function qisrc_update_merge_branch
 {
-  if [ `git rev-parse --abbrev-ref HEAD` = team/desktop/dev ] 
-    then git reset --hard origin/team/desktop/dev
+  qisrc sync -a
+  qisrc foreach -g team/tardis/dev -- git checkout -b team/tardis/merge --track team/origin/tardis/dev
+  qisrc foreach -g team/tardis/dev -- git reset --hard origin/team/tardis/dev
+  qisrc foreach -g team/tardis/dev -- git push -f gerrit team/tardis/merge
+  qisrc foreach -g team/tardis/dev -- git checkout team/tardis/dev
+  qisrc foreach -g team/tardis/dev -- git branch -D team/tardis/merge
+}
+
+# function reset branch on origin
+function grho
+{
+  branchName=`git rev-parse --abbrev-ref HEAD`
+  originBranchName=`git rev-parse --symbolic-full-name @{u}`
+  if [[ $originBranchName == *$branchName ]]
+  then
+    git reset --hard origin/$branchName
+  else
+    echo >&2 "You surely tried something stupid"
   fi
 }
-# rebase on tded
-function rebase_on_tded
-{
-  CURRENT_BRANCH=`git rev-parse --abbrev-ref HEAD`
-  git checkout team/desktop/dev
-  git pull --rebase
-  git checkout $CURRENT_BRANCH
-  git rebase team/desktop/dev
-}
+
+# git aliases: http://githowto.com/aliases
+alias gs='git status '
+alias ga='git add '
+alias gb='git branch '
+alias gc='git commit'
+alias gd='git diff'
+alias go='git checkout '
+alias gk='gitk --all&'
+alias gx='gitx --all'
+
+alias got='git '
+alias get='git '
 
 # $1 = type; 0 - both, 1 - tab, 2 - title
 # rest = text
@@ -78,24 +114,19 @@ EOD
 }
 iterm_go_to_worktree() {
   osascript<<EOD
-  tell application "iTerm" to tell session -1 of current terminal to write text "cd tdd;qicd $@"
+  tell application "iTerm" to tell session -1 of current terminal to write text "cd $1;qicd $2"
 EOD
 }
 
-set_up_tdd_tab () {
+set_up_tab () {
   iterm_create_tab
-  iterm_go_to_worktree $@
-  iterm_name_current_tab $@
+  iterm_go_to_worktree $1 $2
+  firstArg=$1
+  firstLetter=${firstArg[1]}
+  tabName="$firstLetter/$2"
+  iterm_name_current_tab $tabName
   iterm_split_window
-  iterm_go_to_worktree $@
-  iterm_name_current_tab $@
-}
-
-
-set_up_iterm () {
-  osascript -e 'tell application "iTerm" to activate'
-  set_up_tdd_tab choregraphe
-  set_up_tdd_tab desktop
-  set_up_tdd_tab renderwidget
+  iterm_go_to_worktree $1 $2
+  iterm_name_current_tab $tabName
 }
 
