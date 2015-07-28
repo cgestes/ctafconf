@@ -87,6 +87,10 @@ alias gg='git gui&'
 alias got='git '
 alias get='git '
 
+
+# vim alias
+alias vim='vim --noplugin'
+
 # $1 = type; 0 - both, 1 - tab, 2 - title
 # rest = text
 setTerminalText () {
