@@ -4,8 +4,6 @@
 PATH=/Users/jfremy/Library/Python/2.7/bin:/usr/local/bin:/Users/jfremy/.local/bin:$PATH
 # allow auto-completion from work dir
 [ -d ~/work ] && cdpath+=~/work
-# qp command
-#alias qp="qibuild configure -p with_toolchain_qt && qibuild make -p with_toolchain_qt && qitest run -p with_toolchain_qt && qisrc push --cc cgeiger --cc vpaleologue --cc gschweitzer --cc njauffret --cc abossard --cc gvallat $@"
 function qp {
   DIR=$( cd "$( dirname "$0" )" && pwd )
   echo $DIR
@@ -20,7 +18,7 @@ function qicd {
   cd ${p}
 }
 
-if hash qibuild 2>/dev/null; 
+if hash qibuild 2>/dev/null;
 then
   HAS_QIBUILD=1
 else
@@ -73,6 +71,22 @@ function grho
   fi
 }
 
+# function to checkout branches and set the remotes
+# with multiple remotes.
+# This function is NOT needed with a single remote, see:
+# http://stackoverflow.com/questions/1783405/checkout-remote-git-branch
+function gitcheckoutoriginremote
+{
+  git checkout -b $1 origin/$1
+}
+
+# qibuild aliases
+alias qcm64='qibuild configure -DQI_WITH_TESTS=OFF -c mac64 '
+alias qctm64='qibuild configure -DQI_WITH_TESTS=ON -c mac64 '
+alias qmm64='qibuild make -c mac64 '
+alias qcios='qibuild configure -DQI_WITH_TESTS=OFF -c ios-mac -GXcode '
+alias qmios='qibuild make -c ios-mac '
+
 # git aliases: http://githowto.com/aliases
 alias gs='git status '
 alias ga='git add '
@@ -80,16 +94,16 @@ alias gb='git branch '
 alias gc='git commit'
 alias gd='git diff'
 alias go='git checkout '
-alias gk='gitk --all&'
-alias gx='gitx --all'
+alias gk='gitk --all& '
+alias gx='gitx --all '
 alias gg='git gui&'
 
 alias got='git '
 alias get='git '
 
-
 # vim alias
-alias vim='vim --noplugin'
+alias vim='vim --noplugin '
+alias mvim='mvim --noplugin '
 
 # $1 = type; 0 - both, 1 - tab, 2 - title
 # rest = text
@@ -107,7 +121,7 @@ iterm_create_tab () {
   tell application "System Events" to tell process "iTerm" to keystroke "t" using command down
 EOD
 }
-iterm_name_current_tab () { 
+iterm_name_current_tab () {
   osascript<<EOD
   tell application "iTerm" to tell session -1 of current terminal to write text "stt_tab $@"
 EOD
