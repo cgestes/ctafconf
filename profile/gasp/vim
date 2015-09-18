@@ -40,3 +40,14 @@ filetype plugin indent on    " required
 "
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
+
+" Ease window switching
+map <C-k> <C-w><Up>
+map <C-j> <C-w><Down>
+map <C-l> <C-w><Right>
+map <C-h> <C-w><Left>
+
+" Function to erase trailing whitespaces
+function! RemoveTrailingWhitespaces()
+  %s/\s\+$//
+endfunction
