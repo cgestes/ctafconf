@@ -16,7 +16,7 @@ limit maxproc 1042 2>/dev/null
 #never enter a command already entered once, NEVER!
 LISTMAX=10000
 #Filename suffixes to ignore during completion
-fignore=(.o .c~ .pro)
+fignore=(.o .c~)
 
 #OPTIONS
 source ~/.config/ctafconf/etc/zsh/zshoptions
