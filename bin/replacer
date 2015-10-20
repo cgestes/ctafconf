@@ -12,6 +12,8 @@ Quick script to replace stuff in files
 
 """
 
+from __future__ import print_function
+
 import sys
 import os
 import re
@@ -280,11 +282,11 @@ def repl_main(opts, args):
         recurse_file(opts, os.getcwd(), repl_action)
 
     if not opts.get("go") and not opts.get("quiet"):
-        print
+        print()
         print("To apply change, run again:")
         print("$ %s %s --go\n" % (os.path.basename(sys.argv[0]), ' '.join(sys.argv[1:])))
         print("To backup altered files, add '--backup' to the above command line.")
-        print
+        print()
 
 
 def main():
