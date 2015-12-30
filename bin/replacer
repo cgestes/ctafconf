@@ -192,27 +192,17 @@ def find_in_file(opts, in_file, regexp):
 
 def replace_in_file(opts, in_file, regexp, repl):
     """
-    Perfoms re.sub(regexp, repl, line) for each line in
-    in_file
+    Perfoms re.sub(regexp, repl, line) in in_file
     """
-    in_lines = []
     try:
-        with open(in_file, "r") as in_fd:
-            in_lines = in_fd.readlines()
+        f = open(in_file, "r")
+        in_buffer = f.read()
     except:
         print("Cant open file: ", in_file)
         return
+    out_buffer = re.sub(regexp, repl, in_buffer)
 
-    out_lines = in_lines[:]
-    out_lines = [re.sub(regexp, repl, l) for l in in_lines]
-
-    diff = False
-
-    # See if there's a diff first:
-    for (in_line, out_line) in zip(in_lines, out_lines):
-        if in_line != out_line:
-            diff = True
-
+    diff = in_buffer != out_buffer
     if not diff:
         return
 
@@ -223,28 +213,30 @@ def replace_in_file(opts, in_file, regexp, repl):
             rand_int = random.randint(100,999)
             back_file = "%s-%i.back" % (in_file, rand_int)
             back_file_fd = open(back_file, "w")
-            back_file_fd.writelines(in_lines)
+            back_file_fd.write(in_buffer)
             back_file_fd.close()
         out_fd = open(in_file, "w")
-        out_fd.writelines(out_lines)
+        out_fd.write(out_buffer)
         out_fd.close()
 
     if opts.get("quiet"):
         return
 
-    for (in_line, out_line) in zip(in_lines, out_lines):
-        if in_line != out_line:
-            in_line  = in_line.strip()
-            out_line = out_line.strip()
-            match    = re.search(regexp, in_line)
-            in_line_color  = in_line[0:match.start()] + COLORS_REPLACE["word1"]
-            in_line_color  = in_line_color + in_line[match.start():match.end()]
-            in_line_color  = in_line_color + COLORS_REPLACE["line1"] + in_line[match.end():]
-            out_line_color = re.sub(regexp, COLORS_REPLACE["word2"] + repl + COLORS_REPLACE["line2"], in_line)
+    iterator = regexp.finditer(in_buffer)
+    for match in iterator:
+        line_begin = in_buffer.rfind("\n", 0, match.start())
+        line_end = in_buffer.find("\n", match.end())
+        in_line_color  = in_buffer[line_begin + 1 :match.start()] + COLORS_REPLACE["word1"]
+        in_line_color  = in_line_color + in_buffer[match.start():match.end()]
+        in_line_color  = in_line_color + COLORS_REPLACE["line1"]
+        in_line_color  = in_line_color + COLORS["clear"] + in_buffer[match.end():line_end]
+        out_line_color = in_buffer[line_begin + 1 :match.start()] + COLORS_REPLACE["word2"]
+        out_line_color = out_line_color + repl + COLORS_REPLACE["line2"]
+        out_line_color = out_line_color + in_buffer[match.end():line_end]
 
-            print("%s--%s %s%s" % (COLORS_REPLACE["line1start"], COLORS_REPLACE["line1"], in_line_color, COLORS["clear"]))
-            print("%s++%s %s%s" % (COLORS_REPLACE["line2start"], COLORS_REPLACE["line2"], out_line_color, COLORS["clear"]))
-            print()
+        print("%s--%s %s%s" % (COLORS_REPLACE["line1start"], COLORS_REPLACE["line1"], in_line_color, COLORS["clear"]))
+        print("%s++%s %s%s" % (COLORS_REPLACE["line2start"], COLORS_REPLACE["line2"], out_line_color, COLORS["clear"]))
+        print()
 
 def find_main(opts, args):
     """ find main """
@@ -277,7 +269,7 @@ def repl_main(opts, args):
 
     pattern = args[0]
     repl    = args[1]
-    regexp  = re.compile(pattern)
+    regexp  = re.compile(pattern, re.MULTILINE)
 
     def repl_action(f):
         return replace_in_file(opts, f, regexp, repl)

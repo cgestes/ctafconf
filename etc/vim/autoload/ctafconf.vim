@@ -27,6 +27,6 @@ function! ctafconf#load_profiles()
                         \ ct_profile .
                         \ s:path_sep .
                         \ "vim"
-    call pathogen#infect(s:profile_path)
+    execute 'source '.fnameescape(s:profile_path)
   endfor
 endfunction
