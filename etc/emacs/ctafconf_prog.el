@@ -106,7 +106,7 @@
 (autoload 'go-mode "go-mode" "major mode for go" t)
 (add-to-list 'auto-mode-alist '("\\.go$" . go-mode))
 
-;;provide the go mode
+;;provide the julia mode
 (autoload 'julia-mode "julia-mode" "major mode for julia" t)
 (add-to-list 'auto-mode-alist '("\\.jl$" . julia-mode))
 
