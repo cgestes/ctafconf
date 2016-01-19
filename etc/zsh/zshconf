@@ -11,7 +11,8 @@
 
 #forbit bomb fork (255 is too low)
 #on mac 266 is a hardlimit..
-limit maxproc 1042 2>/dev/null
+#1024 is too low (with chrome browser..)
+limit maxproc 8096 2>/dev/null
 
 #never enter a command already entered once, NEVER!
 LISTMAX=10000
