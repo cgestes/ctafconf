@@ -38,7 +38,7 @@
 (setq sh-basic-offset    2)
 (setq standard-indent    2)
 (setq perl-indent-level  2)
-
+(setq js-indent-level    2)
 
 ;; scroll the compilation window
 (setq compilation-scroll-output t)
@@ -193,4 +193,3 @@
 (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'lisp-interaction-mode-hook 'turn-on-eldoc-mode)
 (add-hook 'ielm-mode-hook 'turn-on-eldoc-mode)
-

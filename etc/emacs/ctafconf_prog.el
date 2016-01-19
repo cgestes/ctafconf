@@ -41,6 +41,7 @@
          ("\\.cfm$"             . html-mode)
          ("\\.pl$"              . perl-mode)
          ("\\.pml$"              . xml-mode)
+         ("\\.jsx$"             . js-mode)
          ) auto-mode-alist))
 
 ;;shebang matching
