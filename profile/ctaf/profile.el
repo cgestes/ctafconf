@@ -2,7 +2,7 @@
 ;; Author(s):
 ;;  - Cedric GESTES <ctaf42@gmail.com>
 ;;
-;; Copyright (C) 2010 Cedric GESTES
+;; Copyright (C) 2010, 2016 Cedric GESTES
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
 ;; the Free Software Foundation; either version 3 of the License, or
@@ -29,7 +29,7 @@
 (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 
 ;;update copyright years in headers
-(add-hook 'before-save-hook 'copyright-update)
+;;(add-hook 'before-save-hook 'copyright-update)
 
 ;;(ctafconf-ropemacs)
 
