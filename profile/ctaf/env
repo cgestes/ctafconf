@@ -1,0 +1,7 @@
+#!/bin/sh
+
+env_set CC  "/usr/bin/clang"
+env_set CXX "/usr/bin/clang++"
+env_set ALTERNATE_EDITOR emacs
+alias_set e "emacsclient -c"
+alias_set ne "emacsclient -t"
