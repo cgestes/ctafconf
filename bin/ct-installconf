@@ -252,9 +252,6 @@ class GrkSetupEmacs:
   USERS = [ (".emacs.pre.el" , "emacs.user.el"),
             (".emacs.post.el", "emacs.user.el") ]
 
-class GrkSetupScreen:
-  FILES = [ (".screenrc"     , "etc/screen/screenrc") ]
-
 class GrkSetupVim:
   FILES = [ (".vimrc"        ,    "etc/vim/vimrc"),
             (".gvimrc"       ,   "etc/vim/gvimrc") ]
@@ -283,33 +280,12 @@ class GrkSetupVim:
       if e.errno != 17:
         raise
 
-class GrkSetupGnomeTerminal:
-  def install(self):
-    """ install the ctafconf profile in gnome-terminal """
-    import subprocess
-    if subprocess.call("which gconftool-2 >/dev/null 2>/dev/null", shell=True):
-      print("gconftool-2 is not available")
-      return
-    subprocess.check_call("gconftool-2 --load=${HOME}/.config/ctafconf/etc/gnome/gnome-terminal-ctafconf", shell=True)
-    output = subprocess.Popen(["gconftool-2 --get /apps/gnome-terminal/global/profile_list"], shell=True, stdout=subprocess.PIPE).communicate()[0]
-    profile_list = output.decode().strip()[1:-1].split(",")
-    if "ctafconf" not in profile_list:
-      profile_list.append("ctafconf")
-      print("installing gnome-terminal ctafconf profile")
-      #set the default profile
-      subprocess.check_call("gconftool-2 --set /apps/gnome-terminal/global/default_profile ctafconf -t string", shell=True)
-      #add ctafconf to the default profile
-      subprocess.check_call("gconftool-2 --set /apps/gnome-terminal/global/profile_list '%s' -t list --list-type=string" % ("[" + ",".join(profile_list) + "]"), shell=True)
-
-
 PACKAGES = [ GrkSetupZsh,
              GrkSetupBash,
              GrkSetupNano,
              GrkSetupTop,
              GrkSetupEmacs,
-             GrkSetupScreen,
-             GrkSetupVim,
-             GrkSetupGnomeTerminal ]
+             GrkSetupVim ]
 
 def prepare_tree():
   """ create symlink for etc and bin if necessary,
