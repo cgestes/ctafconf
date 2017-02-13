@@ -15,8 +15,8 @@
 ##
 
 #use + and - to navigate thru cd's dir history
-alias_set + 'pushd +0'
-alias_set - 'pushd -1'
+alias -- '+'='pushd +0'
+alias -- '-'='pushd -1'
 
 #############################
 #COMPILATION ALIAS_SET
@@ -25,12 +25,8 @@ alias c='./configure'
 alias a='autoreconf -isvf'
 alias smi='sudo make install'
 alias m='~/.config/ctafconf/bin/colorwarper make'
-alias md='~/.config/ctafconf/bin/colorwarper make distclean'
 alias ma='~/.config/ctafconf/bin/colorwarper make clean all'
-alias mac='~/.config/ctafconf/bin/colorwarper make clean all check'
-alias gm='~/.config/ctafconf/bin/colorwarper gmake'
 alias mm='~/.config/ctafconf/bin/colorwarper make |& less'
-alias make_mute="~/.config/ctafconf/bin/colorwarper make 1>/dev/null"
 alias fixme='grep -n -a -s FIXME * 2> /dev/null'
 alias todo='grep -n -a -s TODO * 2> /dev/null'
 alias svndiff='svn diff --diff-cmd `which diff` -x "-w -E -u -B -b"'
@@ -40,17 +36,12 @@ alias cvs_real='`which svn`'
 alias cvs='~/.config/ctafconf/bin/colorwarper cvs'
 alias make='~/.config/ctafconf/bin/colorwarper make'
 alias make_real='`which make`'
-alias gmake='~/.config/ctafconf/bin/colorwarper gmake'
-alias gmake_real='`which gmake`'
 alias ka='killall'
 alias doxygen='~/.config/ctafconf/bin/colorwarper doxygen'
-#alias make='gmake'
 
 # Quick chmod
 alias 644='chmod 644'
 alias 755='chmod 755'
-
-#default alias_set for firefox and thunderbird
 
 null_which mozilla-firefox && alias ff='mozilla-firefox'
 null_which firefox && alias ff='firefox'
@@ -79,9 +70,8 @@ alias wgetr_localhtml='wget -r -N -l inf -c -np --convert-links -p'
 alias rd='rm -r'
 alias rmrf='rm -rf'
 
-#emacs alias_set
 alias e='emacs'
-#emacs en console
+#console only emacs
 alias ne='emacs -nw'
 
 #vim
@@ -125,25 +115,6 @@ alias h='history'
 alias sudo_real='`which sudo`'
 alias sudo='sudo -H'
 
-#find a .env file
-sz-find-env()
-{
-  cur_dir=$(pwd)/fake
-  while true; do
-    cur_dir=$(dirname ${cur_dir})
-    if [ -f "${cur_dir}/.env" ]; then
-      echo "${cur_dir}/.env"
-      return;
-    fi
-    if [ "${cur_dir}" = "/" ] || [ -z "${cur_dir}" ] ; then
-      break
-    fi
-  done
-  return 1
-}
-#source a .env found in the current or parents directory
-alias sz='sz-find-env >/dev/null && source $(sz-find-env)'
-
 
 #AFTER HERE
 #PLATFORM SPECIFIC STUFF IS USED
@@ -159,9 +130,6 @@ alias grep_real='`which grep`'
 
 #different plateform test
 test -f ~/.config/ctafconf/etc/shell/alias.`uname` && source ~/.config/ctafconf/etc/shell/alias.`uname`
-
-# #sourcing plateform specific
-# test x$ctafconf_config != x && test -f ~/.config/ctafconf/etc/shell/alias.$ctafconf_config && source ~/.config/ctafconf/etc/shell/alias.$ctafconf_config
 
 #protect ls against failure
 ls ~/.config/ctafconf 2>/dev/null >/dev/null || unalias ls

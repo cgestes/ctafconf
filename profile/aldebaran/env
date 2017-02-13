@@ -3,15 +3,15 @@
 
 # Always use ccache if it's installed
 # ubuntu path
-null_which /usr/lib/ccache/gcc && env_set CC  "/usr/lib/ccache/gcc"
-null_which /usr/lib/ccache/g++ && env_set CXX "/usr/lib/ccache/g++"
+null_which /usr/lib/ccache/gcc && export CC="/usr/lib/ccache/gcc"
+null_which /usr/lib/ccache/g++ && export CXX="/usr/lib/ccache/g++"
 
 # archlinux path
-null_which /usr/lib/ccache/bin/gcc && env_set CC  "/usr/lib/ccache/bin/gcc"
-null_which /usr/lib/ccache/bin/g++ && env_set CXX "/usr/lib/ccache/bin/g++"
+null_which /usr/lib/ccache/bin/gcc && export CC="/usr/lib/ccache/bin/gcc"
+null_which /usr/lib/ccache/bin/g++ && export CXX="/usr/lib/ccache/bin/g++"
 
-null_which /usr/lib/ccache/bin/clang && env_set CC  "/usr/lib/ccache/bin/clang"
-null_which /usr/lib/ccache/bin/clang++ && env_set CXX "/usr/lib/ccache/bin/clang++"
+null_which /usr/lib/ccache/bin/clang && export CC="/usr/lib/ccache/bin/clang"
+null_which /usr/lib/ccache/bin/clang++ && export CXX="/usr/lib/ccache/bin/clang++"
 
 alias na="naogentoo -c naogentoo-atom"
 alias ng="naogentoo -c naogentoo-geode"

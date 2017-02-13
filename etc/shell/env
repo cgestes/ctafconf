@@ -1,12 +1,16 @@
 #!/bin/sh
 ##CTAFCONF
 
+null_which() {
+  which $1 >/dev/null 2>/dev/null
+  return $?
+}
 
+null_cmd() {
+  eval $@ >/dev/null 2>/dev/null
+}
 
-#include portable tools (env_set, alias_set, ...)
-source ~/.config/ctafconf/etc/shlib/shelltools.sh $1
-var_set param $1
-
+param=$1
 
 #source user profile
 test -f ~/.config/ctafconf/user-profile.sh && . ~/.config/ctafconf/user-profile.sh
@@ -21,68 +25,67 @@ null_cmd setterm -bfreq 0
 ###############################
 
 #linux style
-env_set LS_COLORS 'no=00:fi=00:di=0;33:ln=01;36:pi=40;33:so=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jpg=01;35:*.gif=01;35:*.bmp=01;35:*.pgm=01;35:*.pbm=01;35:*.ppm=01;35:*.tga=01;35:*.png=01;35:*.GIF=01;35:*.JPG=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.mpg=01;37:*.avi=01;37:*.gl=01;37:*.dl=01;37:*.mly=01;37:*.mll=01;37:*.mli=01;37:*.ml=01;37:*.cpp=01;37:*.cc=01;37:*.c=01;37:*.hh=01;37:*.h=01;37:*Makefile=4;32:*.pl=4;32:*.sh=4;32:*.ps=4;34:*.pdf=4;34:*.txt=01;37:*.tex=01;37:*TODO=01;37'
+export LS_COLORS='no=00:fi=00:di=0;33:ln=01;36:pi=40;33:so=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.gz=01;31:*.bz2=01;31:*.deb=01;31:*.rpm=01;31:*.jpg=01;35:*.gif=01;35:*.bmp=01;35:*.pgm=01;35:*.pbm=01;35:*.ppm=01;35:*.tga=01;35:*.png=01;35:*.GIF=01;35:*.JPG=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.mpg=01;37:*.avi=01;37:*.gl=01;37:*.dl=01;37:*.mly=01;37:*.mll=01;37:*.mli=01;37:*.ml=01;37:*.cpp=01;37:*.cc=01;37:*.c=01;37:*.hh=01;37:*.h=01;37:*Makefile=4;32:*.pl=4;32:*.sh=4;32:*.ps=4;34:*.pdf=4;34:*.txt=01;37:*.tex=01;37:*TODO=01;37'
 
 #BSD/Darwins style
 #enable color in bsd/osx
-env_set CLICOLOR 1
-env_set LSCOLORS 'dxgxfxexcxegedabagacad'
+export CLICOLOR=1
+export LSCOLORS='dxgxfxexcxegedabagacad'
 
-env_set FULLNAME "$ctafconf_name"
-env_set REALNAME "$ctafconf_name"
+export FULLNAME="$ctafconf_name"
+export REALNAME="$ctafconf_name"
 
-env_set EMAIL "$ctafconf_mail"
+export EMAIL="$ctafconf_mail"
 #for debian
-env_set DEBEMAIL "$ctafconf_mail"
-env_set DEBFULLNAME "$ctafconf_name"
+export DEBEMAIL="$ctafconf_mail"
+export DEBFULLNAME="$ctafconf_name"
 #used by man, ..
-env_set PAGER "more"
-null_which less && env_set PAGER "less"
-null_which most && env_set PAGER "most"
+export PAGER="more"
+null_which less && export PAGER="less"
+null_which most && export PAGER="most"
 
 
-env_set EADNULLCMD $PAGER
+export EADNULLCMD=$PAGER
 
 #option for less
 #dont use, this fuck up many think (macosx, color in ssh, ...)
-#env_set LESS "-Qx2Mz-3"
+#export LESS="-Qx2Mz-3"
 
 #text editor in console mode (for cvs, svn)
-env_set VISUAL "nano"
-env_set EDITOR "nano"
-null_which vi   && env_set VISUAL "vi"   && env_set EDITOR "vi"
-null_which vim  && env_set VISUAL "vim"   && env_set EDITOR "vim"
-null_which nano && env_set VISUAL "nano" && env_set EDITOR "nano"
-null_which emacs && env_set VISUAL "emacs" && env_set EDITOR "emacs"
+export VISUAL="nano"
+export EDITOR="nano"
+null_which vi   && export VISUAL="vi"   && export EDITOR="vi"
+null_which vim  && export VISUAL="vim"   && export EDITOR="vim"
+null_which nano && export VISUAL="nano" && export EDITOR="nano"
+null_which emacs && export VISUAL="emacs" && export EDITOR="emacs"
 if [ $ctafconf_editor ]; then
- null_which $ctafconf_editor && env_set VISUAL $ctafconf_editor && env_set EDITOR $ctafconf_editor
+ null_which $ctafconf_editor && export VISUAL=$ctafconf_editor && export EDITOR=$ctafconf_editor
 fi
 
 
 #cvs variable
-env_set CVS_RSH "ssh"
+export CVS_RSH="ssh"
 
 #SETTING PATH
-test -d /sbin && env_set PATH "$PATH":/sbin
-test -d /usr/sbin && env_set PATH "$PATH":/usr/sbin
-test -d /usr/local/bin && env_set PATH "$PATH":/usr/local/bin
-test -d ~/.config/ctafconf/bin && env_set PATH "$PATH":"$HOME"/.config/ctafconf/bin
-test -d ~/bin && env_set PATH "$PATH":"$HOME"/bin
-test -d ~/.local/bin && env_set PATH "$HOME"/.local/bin:"$PATH":
+test -d /sbin && export PATH="$PATH":/sbin
+test -d /usr/sbin && export PATH="$PATH":/usr/sbin
+test -d /usr/local/bin && export PATH="$PATH":/usr/local/bin
+test -d ~/.config/ctafconf/bin && export PATH="$PATH":"$HOME"/.config/ctafconf/bin
+test -d ~/bin && export PATH="$PATH":"$HOME"/bin
+test -d ~/.local/bin && export PATH="$HOME"/.local/bin:"$PATH":
 
 #do not put . in PATH, it could lead to unobvious error.
-#env_set PATH "$PATH":.
+#export PATH="$PATH":.
 
 #different plateform test
 test -f ~/.config/ctafconf/etc/shell/env.`uname` && source ~/.config/ctafconf/etc/shell/env.`uname`
 
 if ! test -z "$ctafconf_profiles" ; then
   for i in $(echo $ctafconf_profiles) ; do
-    test -d ~/.config/ctafconf/profile/$i/bin && env_set PATH "$PATH":"${HOME}/.config/ctafconf/profile/$i/bin"
+    test -d ~/.config/ctafconf/profile/$i/bin && export PATH="$PATH":"${HOME}/.config/ctafconf/profile/$i/bin"
     test -f ~/.config/ctafconf/profile/$i/env && source ~/.config/ctafconf/profile/$i/env
   done
 fi
 
 #update the ctafconf if VERSION has changed
 ~/.config/ctafconf/bin/ct-updateconf
-
