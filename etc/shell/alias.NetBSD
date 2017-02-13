@@ -13,13 +13,13 @@
 ## commands aliases
 ###################
 
-alias_unset ll && alias_set ll 'ls -FlG'
-alias_unset la && alias_set la 'ls -FlaG'
-alias_unset l && alias_set l 'ls -FaG'
-alias_unset lg && alias_set lg 'ls -FG | grep'
+unalias ll && alias ll='ls -FlG'
+unalias la && alias la='ls -FlaG'
+unalias l && alias l='ls -FaG'
+unalias lg && alias lg='ls -FG | grep'
 
-# alias_unset ll && alias_set ll 'gls -F --color=tty -l'
-# alias_unset la && alias_set la 'gls -F --color=tty -la'
-# alias_unset l && alias_set l 'gls -F --color=tty -a'
-# alias_unset lg && alias_set lg 'gls -F --color=tty | grep'
+# unalias ll && alias ll='gls -F --color=tty -l'
+# unalias la && alias la='gls -F --color=tty -la'
+# unalias l && alias l='gls -F --color=tty -a'
+# unalias lg && alias lg='gls -F --color=tty | grep'
 

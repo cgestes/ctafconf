@@ -2,12 +2,12 @@
 #!/bin/sh
 ##CTAFCONF
 
-alias_unset grep
+unalias grep
 
-alias_unset ls && alias_set ls 'ls -F'
-alias_unset ll && alias_set ll 'ls -Fl'
-alias_unset la && alias_set la 'ls -Fla'
-alias_unset l && alias_set l 'ls -Fa'
-alias_unset lg && alias_set lg 'ls -F | grep'
+unalias ls && alias ls='ls -F'
+unalias ll && alias ll='ls -Fl'
+unalias la && alias la='ls -Fla'
+unalias l && alias l='ls -Fa'
+unalias lg && alias lg='ls -F | grep'
 
 

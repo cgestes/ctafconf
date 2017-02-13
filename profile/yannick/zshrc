@@ -9,9 +9,9 @@ setopt correct
 setopt bang_hist
 
 # Better safe that sorry:
-alias_set rm "rm -i"
-alias_set mv "mv -iv"
-alias_set cp "cp -iv"
+alias rm="rm -i"
+alias mv="mv -iv"
+alias cp="cp -iv"
 
 # ./foo.mp3 will open the file with mplayer,
 # and so on:

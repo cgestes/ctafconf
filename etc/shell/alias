@@ -21,49 +21,49 @@ alias_set - 'pushd -1'
 #############################
 #COMPILATION ALIAS_SET
 #############################
-alias_set c './configure'
-alias_set a 'autoreconf -isvf'
-alias_set smi 'sudo make install'
-alias_set m '~/.config/ctafconf/bin/colorwarper make'
-alias_set md '~/.config/ctafconf/bin/colorwarper make distclean'
-alias_set ma '~/.config/ctafconf/bin/colorwarper make clean all'
-alias_set mac '~/.config/ctafconf/bin/colorwarper make clean all check'
-alias_set gm '~/.config/ctafconf/bin/colorwarper gmake'
-alias_set mm '~/.config/ctafconf/bin/colorwarper make |& less'
-alias_set make_mute "~/.config/ctafconf/bin/colorwarper make 1>/dev/null"
-alias_set fixme 'grep -n -a -s FIXME * 2> /dev/null'
-alias_set todo 'grep -n -a -s TODO * 2> /dev/null'
-alias_set svndiff 'svn diff --diff-cmd `which diff` -x "-w -E -u -B -b"'
-alias_set svn_real '`which svn`'
-alias_set svn '~/.config/ctafconf/bin/colorwarper svn'
-alias_set cvs_real '`which svn`'
-alias_set cvs '~/.config/ctafconf/bin/colorwarper cvs'
-alias_set make '~/.config/ctafconf/bin/colorwarper make'
-alias_set make_real '`which make`'
-alias_set gmake '~/.config/ctafconf/bin/colorwarper gmake'
-alias_set gmake_real '`which gmake`'
-alias_set ka 'killall'
-alias_set doxygen '~/.config/ctafconf/bin/colorwarper doxygen'
-#alias_set make 'gmake'
+alias c='./configure'
+alias a='autoreconf -isvf'
+alias smi='sudo make install'
+alias m='~/.config/ctafconf/bin/colorwarper make'
+alias md='~/.config/ctafconf/bin/colorwarper make distclean'
+alias ma='~/.config/ctafconf/bin/colorwarper make clean all'
+alias mac='~/.config/ctafconf/bin/colorwarper make clean all check'
+alias gm='~/.config/ctafconf/bin/colorwarper gmake'
+alias mm='~/.config/ctafconf/bin/colorwarper make |& less'
+alias make_mute="~/.config/ctafconf/bin/colorwarper make 1>/dev/null"
+alias fixme='grep -n -a -s FIXME * 2> /dev/null'
+alias todo='grep -n -a -s TODO * 2> /dev/null'
+alias svndiff='svn diff --diff-cmd `which diff` -x "-w -E -u -B -b"'
+alias svn_real='`which svn`'
+alias svn='~/.config/ctafconf/bin/colorwarper svn'
+alias cvs_real='`which svn`'
+alias cvs='~/.config/ctafconf/bin/colorwarper cvs'
+alias make='~/.config/ctafconf/bin/colorwarper make'
+alias make_real='`which make`'
+alias gmake='~/.config/ctafconf/bin/colorwarper gmake'
+alias gmake_real='`which gmake`'
+alias ka='killall'
+alias doxygen='~/.config/ctafconf/bin/colorwarper doxygen'
+#alias make='gmake'
 
 # Quick chmod
-alias_set 644 'chmod 644'
-alias_set 755 'chmod 755'
+alias 644='chmod 644'
+alias 755='chmod 755'
 
 #default alias_set for firefox and thunderbird
 
-null_which mozilla-firefox && alias_set ff 'mozilla-firefox'
-null_which firefox && alias_set ff 'firefox'
+null_which mozilla-firefox && alias ff='mozilla-firefox'
+null_which firefox && alias ff='firefox'
 
-null_which mozilla-firefox && alias_set cf 'mozilla-firefox -chrome chrome://conkeror/content'
-null_which firefox && alias_set cf 'firefox -chrome chrome://conkeror/content'
+null_which mozilla-firefox && alias cf='mozilla-firefox -chrome chrome://conkeror/content'
+null_which firefox && alias cf='firefox -chrome chrome://conkeror/content'
 
-null_which mozilla-thunderbird && alias_set tb 'mozilla-thunderbird'
-null_which thunderbird && alias_set tb 'thunderbird'
+null_which mozilla-thunderbird && alias tb='mozilla-thunderbird'
+null_which thunderbird && alias tb='thunderbird'
 
 
 #wget recursif
-#alias_set wgetr 'wget -r -N -l inf --connect-timeout=10'
+#alias wgetr='wget -r -N -l inf --connect-timeout=10'
 #-r recursif
 #-N timestamping
 #-l inf : recursion depth
@@ -72,63 +72,58 @@ null_which thunderbird && alias_set tb 'thunderbird'
 #-nH no hostname => wgetr ftp.free.fr/bob/ => ./bob/
 #-p get all files needed in order to render the html page completely
 #--convert-links
-alias_set wgetr 'wget -r -N -l inf -c -np'
-alias_set wgetr_localhtml 'wget -r -N -l inf -c -np --convert-links -p'
+alias wgetr='wget -r -N -l inf -c -np'
+alias wgetr_localhtml='wget -r -N -l inf -c -np --convert-links -p'
 
 #remove directory
-alias_set rd 'rm -r'
-alias_set rmrf 'rm -rf'
+alias rd='rm -r'
+alias rmrf='rm -rf'
 
 #emacs alias_set
-alias_set e 'emacs'
+alias e='emacs'
 #emacs en console
-alias_set enox 'emacs -nw'
-alias_set ne 'emacs -nw'
-#alias_set gnus 'LC_CTYPE=fr_FR emacs -f gnus'
-alias_set gnus 'emacs -nw -f gnus'
+alias ne='emacs -nw'
 
 #vim
-null_which vim && alias_set vi  'vim'
-null_which vim && alias_set svi 'sudo vim'
+null_which vim && alias vi= 'vim'
+null_which vim && alias svi='sudo vim'
 
 # Screen is nice but options can be a bit hard to remember:
-alias_set sw 'screen -wipe'
-alias_set sr 'screen -RaAd'
+alias sw='screen -wipe'
+alias sr='screen -RaAd'
 
 # Get current IP from checkip.dyndns.org
-alias_set myip "wget http://checkip.dyndns.org/ -O - -o /dev/null | perl -e '<STDIN> =~ m/((\d{1,3}\.){3}\d{1,3})/ && print \"\$1\n\"'"
+alias myip="wget http://checkip.dyndns.org/ -O - -o /dev/null | perl -e '<STDIN> =~ m/((\d{1,3}\.){3}\d{1,3})/ && print \"\$1\n\"'"
 
 
-alias_set z "zsh"
-alias_set b "bash"
-alias_set k "ksh"
-alias_set t "tcsh"
+alias z="zsh"
+alias b="bash"
+alias k="ksh"
+alias t="tcsh"
 
-alias_set psa 'ps ax'
-alias_set psu 'ps aux'
-alias_set psgrep 'ps aux | grep -v grep | grep'
+alias psa='ps ax'
+alias psu='ps aux'
+alias psgrep='ps aux | grep -v grep | grep'
 
 #change the user::group of all the file in the home user directory
-alias_set chownr 'chown -R $USER:`id -g -n`'
-alias_set cux    'chmod +x'
+alias chownr='chown -R $USER:`id -g -n`'
+alias cux=   'chmod +x'
 
 #image en fullscreen
-alias_set full 'xv -maxpect'
+alias full='xv -maxpect'
 
 #ghostview
-alias_set gv "gv -resize -center -antialias_set"
-alias_set xfig 'xfig -metric -startgridmode 1'
-alias_set less 'less -r -X -M'
+alias less='less -r -X -M'
 
-alias_set getx 'export DISPLAY=:0.0'
+alias getx='export DISPLAY=:0.0'
 
-alias_set h 'history'
+alias h='history'
 
 #never alias ls
-#alias_set ls 'ls -F --color=tty'
+#alias ls='ls -F --color=tty'
 
-alias_set sudo_real '`which sudo`'
-alias_set sudo 'sudo -H'
+alias sudo_real='`which sudo`'
+alias sudo='sudo -H'
 
 #find a .env file
 sz-find-env()
@@ -147,20 +142,20 @@ sz-find-env()
   return 1
 }
 #source a .env found in the current or parents directory
-alias_set sz 'sz-find-env >/dev/null && source $(sz-find-env)'
+alias sz='sz-find-env >/dev/null && source $(sz-find-env)'
 
 
 #AFTER HERE
 #PLATFORM SPECIFIC STUFF IS USED
 
-alias_set l 'ls -F --color=auto'
-alias_set ls 'ls -F --color=auto'
-alias_set ll 'ls -lF --color=auto'
-alias_set la 'ls -lAF --color=auto'
-alias_set lg 'ls -F --color=auto | grep'
+alias l='ls -F --color=auto'
+alias ls='ls -F --color=auto'
+alias ll='ls -lF --color=auto'
+alias la='ls -lAF --color=auto'
+alias lg='ls -F --color=auto | grep'
 
-alias_set grep 'grep --color=auto'
-alias_set grep_real '`which grep`'
+alias grep='grep --color=auto'
+alias grep_real='`which grep`'
 
 #different plateform test
 test -f ~/.config/ctafconf/etc/shell/alias.`uname` && source ~/.config/ctafconf/etc/shell/alias.`uname`
@@ -169,4 +164,4 @@ test -f ~/.config/ctafconf/etc/shell/alias.`uname` && source ~/.config/ctafconf/
 # test x$ctafconf_config != x && test -f ~/.config/ctafconf/etc/shell/alias.$ctafconf_config && source ~/.config/ctafconf/etc/shell/alias.$ctafconf_config
 
 #protect ls against failure
-ls ~/.config/ctafconf 2>/dev/null >/dev/null || alias_unset ls
+ls ~/.config/ctafconf 2>/dev/null >/dev/null || unalias ls
