@@ -44,6 +44,8 @@ export PAGER="more"
 null_which less && export PAGER="less"
 null_which most && export PAGER="most"
 
+#because it's better (the silver-searcher)
+export grepr=ag
 
 export EADNULLCMD=$PAGER
 
