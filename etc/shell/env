@@ -10,6 +10,11 @@ null_cmd() {
   eval $@ >/dev/null 2>/dev/null
 }
 
+#for compat (user
+var_set() {
+  eval $1=\${$1-\$2};
+}
+
 param=$1
 
 #source user profile
