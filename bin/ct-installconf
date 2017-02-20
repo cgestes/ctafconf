@@ -241,9 +241,6 @@ class GrkSetupBash:
   FILES = [ ( ".bashrc"      , "etc/bash/bashrc") ]
   USERS = [ ( ".bashrc.user" , "sh.user"), ]
 
-class GrkSetupNano:
-  FILES = [ (".nanorc"       , "etc/nano/nanorc") ]
-
 class GrkSetupTop:
   FILES = [ (".toprc"        , "etc/top/toprc") ]
 
@@ -282,7 +279,6 @@ class GrkSetupVim:
 
 PACKAGES = [ GrkSetupZsh,
              GrkSetupBash,
-             GrkSetupNano,
              GrkSetupTop,
              GrkSetupEmacs,
              GrkSetupVim ]
