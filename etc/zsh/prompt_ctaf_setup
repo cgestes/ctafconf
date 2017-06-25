@@ -14,6 +14,9 @@ autoload -Uz colors   && colors
 autoload -Uz vcs_info
 autoload -Uz add-zsh-hook
 
+source ~/.config/ctafconf/etc/zsh/vcs.zsh
+
+
 ####################################
 # COLORS
 ####################################
@@ -36,11 +39,17 @@ PR_FG_PROMPT="${PR_NO_COLOUR}"
 # VCS_INFO
 ####################################
 #may be slow
-zstyle ':vcs_info:*:ctaf:*' check-for-changes false
+zstyle ':vcs_info:*:ctaf:*' check-for-changes true
 #may be slow
 zstyle ':vcs_info:*:ctaf:*' get-revision      false
 zstyle ':vcs_info:*:ctaf:*' use-simple        false
 zstyle ':vcs_info:*:ctaf:*' max-exports       2
+
+zstyle ':vcs_info:*' stagedstr " $(print_icon 'VCS_STAGED_ICON')"
+zstyle ':vcs_info:*' unstagedstr " $(print_icon 'VCS_UNSTAGED_ICON')"
+
+POWERLEVEL9K_VCS_GIT_HOOKS=(vcs-detect-changes git-untracked git-aheadbehind git-stash git-remotebranch git-tagname)
+zstyle ':vcs_info:git*+set-message:*' hooks $POWERLEVEL9K_VCS_GIT_HOOKS
 
 # set formats
 # %b - branchname
@@ -51,7 +60,7 @@ zstyle ':vcs_info:*:ctaf:*' max-exports       2
 # %S - path in the repository
 #default format for standard vcs
 ACTION="[${PR_LIGHT_RED}%a${PR_FG_PROMPT}]"
-FORMAT="%s on ${PR_MAGENTA}%b${PR_FG_PROMPT}"
+FORMAT="%s on ${PR_MAGENTA}%b${PR_FG_PROMPT}%u%m"
 FORMAT_ACTION="$FORMAT $ACTION"
 zstyle ':vcs_info:*:ctaf:*' formats             "$FORMAT" "%s"
 zstyle ':vcs_info:*:ctaf:*' actionformats       "$FORMAT_ACTION" "%s"
@@ -119,4 +128,3 @@ ${PR_BG_PROMPT}${PR_FG_PROMPT}z${PR_LIGHT_GREEN}%(!.#.$)${PR_NO_COLOUR} "
 }
 
 prompt_ctaf_setup "$@"
-
