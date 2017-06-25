@@ -22,8 +22,14 @@ bindkey -e
 # in the history based on the beginning of the line
 #Down
 bindkey '^[[A' history-beginning-search-backward
+bindkey '\e[A' history-beginning-search-backward
+bindkey '\eOA' history-beginning-search-backward
+
 #Up
 bindkey '^[[B' history-beginning-search-forward
+bindkey '\e[B' history-beginning-search-forward
+bindkey '\eOB' history-beginning-search-forward
+
 
 #pageDown
 bindkey "^[[6~" down-line-or-history
