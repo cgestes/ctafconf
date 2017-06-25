@@ -66,3 +66,5 @@ fi
 if [ -f ~/.zshrc.user ]; then
   source ~/.zshrc.user
 fi
+
+source ~/.config/ctafconf/etc/zsh/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh

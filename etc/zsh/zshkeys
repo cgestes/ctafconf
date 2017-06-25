@@ -62,7 +62,7 @@ bindkey -M menuselect "^Z" undo
 bindkey -M menuselect "^c" undo
 
 
-bindkey -M menuselect "^I" menu-expand-or-interactive
+#bindkey -M menuselect "^I" menu-expand-or-interactive
 
 
 autoload zcalc
