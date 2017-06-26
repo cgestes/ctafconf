@@ -53,6 +53,7 @@ COLORS_REPLACE = {
 }
 
 FILTER_OUT = (
+    "node_modules",
     "build-*" ,
     ".git"    ,
     ".svn"    ,
