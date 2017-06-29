@@ -74,6 +74,18 @@ prompt_ctaf_git_tracking_branch()
   fi
 }
 
+prompt_background_jobs() {
+  local background_jobs_number=${$(jobs -l | wc -l)// /}
+  local wrong_lines=`jobs -l | awk '/pwd now/{ count++ } END {print count}'`
+  if [[ wrong_lines -gt 0 ]]; then
+     background_jobs_number=$(( $background_jobs_number - $wrong_lines ))
+  fi
+  if [[ background_jobs_number -gt 0 ]]; then
+    echo -n $background_jobs_number$(print_icon 'BACKGROUND_JOBS_ICON')${PR_NO_COLOUR}' '
+  fi
+}
+
+
 #format vcs information, append information to vcs_info that is a little poor
 #this function is called each time a prompt need to be display
 #this function set the psvar with changing information
@@ -122,7 +134,7 @@ prompt_ctaf_setup () {
 ${PR_BG_PROMPT}${PR_FG_PROMPT}z${PR_LIGHT_GREEN}%(!.#.$)${PR_NO_COLOUR} "
 
   PROMPT="\$psvar[1]${BASE_PROMPT}"
-  RPROMPT="[${PR_BG_PROMPT}${PR_LIGHT_CYAN}%D ${PR_LIGHT_GREEN}%T${PR_NO_COLOUR}]"
+  RPROMPT="${PR_BG_BLUE}${PR_BLACK}$(prompt_background_jobs)${PR_NO_COLOUR}${PR_LIGHT_GREEN}%T${PR_NO_COLOUR}"
 
   PS2=''
 }
